@@ -87,7 +87,7 @@ const nav = [
 <header class="site-header" id="site-header">
   <div class="hdr-inner container">
     <!-- Logo -->
-    <a href="/" class="hdr-logo" aria-label="ProyectoRed — Inicio">
+    <a href="/" class="hdr-logo" aria-label="Proyecto Red — Inicio">
       <span class="logo-mark">PR</span>
       <span class="logo-text">
         <strong>PROYECTO</strong><span class="logo-red">RED</span>
@@ -196,7 +196,7 @@ const nav = [
 <style>
   .site-header {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: var(--topbar-height, 36px); left: 0; right: 0;
     z-index: 1000;
     background: rgba(17, 17, 17, 0.96);
     backdrop-filter: blur(12px);
@@ -372,7 +372,7 @@ const nav = [
   /* Mobile menu */
   .mobile-menu {
     position: fixed;
-    top: var(--header-height);
+    top: var(--stack-height, 108px);
     left: 0; right: 0; bottom: 0;
     background: #111;
     z-index: 999;

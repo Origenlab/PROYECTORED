@@ -69,40 +69,34 @@ const estados = [
   { nombre: 'Baja California',  href: '/empresas/baja-california/' },
 ];
 
-const stats = [
-  { val: '8',      label: 'Categorías de producto' },
-  { val: '100%',   label: 'Proveedores verificados' },
-  { val: 'NFPA',   label: 'Estándar internacional' },
-  { val: 'NOM',    label: 'Normativa mexicana' },
-];
 
 const trust = [
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    titulo: 'Proveedores verificados',
-    desc: 'Cada empresa en nuestro directorio ha pasado por un proceso de verificación de certificaciones, historial y calidad de producto.',
+    titulo: 'Equipo certificado NOM y NFPA',
+    desc: 'Todo lo que vendemos cumple con la normativa mexicana e internacional. Pasa tus inspecciones de Protección Civil y STPS sin contratiempos.',
   },
   {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
-    titulo: 'Cumplimiento normativo',
-    desc: 'Todos los equipos cumplen NOM, NFPA y estándares de Protección Civil. Asesoría para que tu empresa esté siempre en regla.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+    titulo: 'Entrega directa en CDMX y EDOMEX',
+    desc: 'Somos proveedor directo. Sin intermediarios que encarecen el precio o alargan los tiempos. Entregamos en toda la zona metropolitana.',
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
-    titulo: 'Respuesta en 24 horas',
-    desc: 'Nuestro equipo de especialistas responde cotizaciones en menos de 24 horas hábiles. Sin formularios interminables.',
+    titulo: 'Cotización en menos de 24 horas',
+    desc: 'Mandanos un WhatsApp con lo que necesitas y te respondemos con precios reales, disponibilidad y tiempos de entrega ese mismo día.',
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
-    titulo: 'Asesoría especializada',
-    desc: 'No somos una tienda. Somos un equipo técnico que analiza tu riesgo específico y conecta con el proveedor correcto.',
+    titulo: 'Asesoría técnica incluida',
+    desc: 'Nuestro equipo analiza tu tipo de instalación y te recomienda el equipo correcto. No vendemos por volumen — vendemos lo que tu negocio realmente necesita.',
   },
 ];
 ---
 
 <Base
-  title="Equipos Contra Incendios en México — Directorio B2B | ProyectoRed"
-  description="Directorio B2B de equipos contra incendios en México. Extintores certificados, equipo para bomberos, señalamientos NOM, sistemas contra incendio y más. Proveedores verificados en CDMX, EDOMEX, Querétaro, Puebla y todo México."
+  title="Venta de Equipos Contra Incendios en CDMX | Proyecto Red"
+  description="Proyecto Red vende equipos contra incendios certificados en la Ciudad de México y Estado de México. Extintores, señalamientos NOM, equipo para bomberos, sistemas de detección y más. Entrega directa y asesoría técnica."
 >
 
   <!-- ═══════════════════════════════════════════════════════
@@ -114,10 +108,10 @@ const trust = [
       <div class="hero-left">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          Directorio verificado · México
+          CDMX y Estado de México
         </div>
-        <h1>Equipos Contra<br><span class="h1-accent">Incendios</span> en México</h1>
-        <p class="hero-sub">Directorio B2B de proveedores certificados. Extintores, equipo para bomberos, sistemas contra incendio y más — todo verificado bajo normas NFPA y NOM.</p>
+        <h1>Venta de Equipos<br>Contra <span class="h1-accent">Incendios</span></h1>
+        <p class="hero-sub">Extintores certificados, señalamientos NOM, equipo para bomberos y sistemas contra incendio. Entrega directa en CDMX y Estado de México con asesoría técnica incluida.</p>
         <div class="hero-ctas">
           <a
             href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20equipos%20contra%20incendios"
@@ -130,20 +124,12 @@ const trust = [
           </a>
           <a href="/extintores/" class="btn-secondary">Ver catálogo completo</a>
         </div>
-        <!-- Stats inline -->
-        <div class="hero-stats">
-          {stats.map(s => (
-            <div class="hero-stat">
-              <span class="stat-val">{s.val}</span>
-              <span class="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
+
       </div>
 
       <div class="hero-right">
-        <p>ProyectoRed es la plataforma que conecta a empresas, industrias y contratistas con los mejores proveedores de equipos contra incendios en México. Cada empresa en nuestro directorio ha sido verificada en certificaciones, trayectoria y calidad de producto.</p>
-        <p>Nuestro catálogo cubre desde extintores certificados bajo NOM hasta sistemas completos de detección y supresión de incendios. Toda la información técnica que necesitas para cumplir con Protección Civil, STPS y estándares NFPA en un solo lugar.</p>
+        <p>En Proyecto Red vendemos e instalamos equipos contra incendios directamente a empresas, plantas industriales, restaurantes y edificios en la Ciudad de México y el Estado de México. Sin intermediarios — lo que significa mejores precios, tiempos de entrega rápidos y alguien disponible para resolver tus dudas técnicas.</p>
+        <p>Todo nuestro catálogo cumple con las normas NOM y estándares NFPA, lo que te permite pasar inspecciones de Protección Civil y STPS sin contratiempos. Un solo proveedor, catálogo completo, documentación en orden.</p>
       </div>
 
     </div>
@@ -199,8 +185,8 @@ const trust = [
       <div class="trust-inner">
         <div class="trust-header">
           <p class="section-label">Por qué elegirnos</p>
-          <h2>El directorio de confianza para<br>equipos de seguridad en México</h2>
-          <p class="trust-desc">No somos una tienda en línea. Somos el motor de verificación que conecta compradores exigentes con proveedores que realmente cumplen.</p>
+          <h2>Proveedor directo.<br>Sin intermediarios.</h2>
+          <p class="trust-desc">Llevamos años equipando empresas en la CDMX y el Estado de México. Catálogo amplio, equipo certificado y alguien que responde cuando lo necesitas.</p>
           <a href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n" class="btn-outline" target="_blank" rel="noopener noreferrer">
             Hablar con un especialista
           </a>
@@ -218,29 +204,7 @@ const trust = [
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════
-       DIRECTORIO — Empresas por estado
-  ══════════════════════════════════════════════════════════ -->
-  <section class="estados-section">
-    <div class="container">
-      <div class="estados-inner">
-        <div class="estados-left">
-          <p class="section-label">Cobertura nacional</p>
-          <h2>Proveedores de equipos contra incendios en tu estado</h2>
-          <p>Nuestro directorio cubre las principales zonas industriales y metropolitanas de México. Encuentra proveedores locales verificados con inventario disponible.</p>
-        </div>
-        <div class="estados-right">
-          {estados.map(e => (
-            <a href={e.href} class="estado-card">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>{e.nombre}</span>
-              <svg class="estado-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- ═══════════════════════════════════════════════════════
        CTA FINAL — Barra de conversión
@@ -248,8 +212,8 @@ const trust = [
   <section class="cta-final">
     <div class="container cta-final-inner">
       <div class="cta-text">
-        <h2>¿Listo para proteger tu empresa?</h2>
-        <p>Cotiza sin compromiso. Nuestro equipo responde en menos de 24 horas con las mejores opciones para tu caso específico.</p>
+        <h2>¿Necesitas equipo contra incendios en CDMX?</h2>
+        <p>Mándanos un WhatsApp con lo que necesitas. Te respondemos con precios, disponibilidad y tiempos de entrega ese mismo día.</p>
       </div>
       <div class="cta-btns">
         <a
@@ -271,7 +235,7 @@ const trust = [
 <style>
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
-    padding-top: calc(var(--header-height) + 4.5rem);
+    padding-top: calc(var(--stack-height, 108px) + 4.5rem);
     padding-bottom: 5rem;
     background: linear-gradient(160deg, #0E0E0E 0%, #1A1010 55%, #0E0E0E 100%);
     color: #fff;
@@ -290,7 +254,7 @@ const trust = [
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: center;
     position: relative;
     z-index: 1;
   }
@@ -341,40 +305,10 @@ const trust = [
     margin-bottom: 3rem;
   }
 
-  /* Stats */
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 1rem;
-    border-right: 1px solid rgba(255,255,255,0.08);
-  }
-  .hero-stat:last-child { border-right: none; }
-  .stat-val {
-    font-size: 1.375rem;
-    font-weight: 800;
-    color: var(--c-primary);
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.3;
-  }
+
 
   /* Right col */
-  .hero-right {
-    padding-top: 1rem;
-  }
+  .hero-right {}
   .hero-right p {
     color: rgba(255,255,255,0.55);
     font-size: 0.9375rem;
@@ -667,13 +601,6 @@ const trust = [
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
-    .hero-stats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .hero-stat:nth-child(2) { border-right: none; }
-    .hero-stat:nth-child(3),
-    .hero-stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
-
     .cat-grid {
       grid-template-columns: 1fr;
     }
@@ -701,7 +628,6 @@ const trust = [
 
   @media (max-width: 480px) {
     .hero-ctas { flex-direction: column; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .cat-grid { gap: 0.875rem; }
   }
 </style>
