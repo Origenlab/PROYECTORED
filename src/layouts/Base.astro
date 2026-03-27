@@ -25,10 +25,13 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="PROYECTORED" />
+  <meta property="og:site_name" content="ProyectoRed" />
   {ogImage && <meta property="og:image" content={ogImage} />}
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
   <Header />
@@ -42,38 +45,52 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 
 <style is:global>
   :root {
-    --color-primary: #D72828;
-    --color-primary-dark: #B51E1E;
-    --color-black: #0D0D0D;
-    --color-white: #F8F8F8;
-    --color-gray: #6B7280;
-    --color-gray-light: #E5E7EB;
-    --color-gray-dark: #374151;
-    --header-height: 80px;
-    --max-width: 1200px;
+    /* Colores principales */
+    --c-primary:       #C41E24;
+    --c-primary-dark:  #A01820;
+    --c-primary-light: #F9E8E8;
+    --c-primary-rgb:   196, 30, 36;
+
+    /* Negros y grises (Zinc) */
+    --c-ink:    #111111;
+    --c-ink-2:  #27272A;
+    --c-muted:  #71717A;
+    --c-border: #E4E4E7;
+    --c-surface:#F4F4F5;
+    --c-white:  #FFFFFF;
+
+    /* Tipografía */
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Spacing */
+    --header-height: 72px;
+    --max-w: 1200px;
+    --section-py: 5rem;
+
+    /* Sombras tintadas */
+    --shadow-sm:  0 1px 3px rgba(var(--c-primary-rgb), 0.08);
+    --shadow-md:  0 4px 16px rgba(var(--c-primary-rgb), 0.12);
+    --shadow-lg:  0 8px 32px rgba(var(--c-primary-rgb), 0.16);
+    --shadow-ink: 0 4px 16px rgba(17, 17, 17, 0.1);
   }
 
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
+  *, *::before, *::after {
+    margin: 0; padding: 0;
     box-sizing: border-box;
   }
 
-  html, body {
-    overflow-x: hidden;
-  }
+  html, body { overflow-x: hidden; }
 
   html {
     font-size: 16px;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    color: var(--color-black);
-    background-color: #fff;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background: var(--c-white);
     line-height: 1.6;
   }
 
@@ -84,19 +101,70 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   }
 
   a {
-    color: var(--color-primary);
+    color: var(--c-primary);
     text-decoration: none;
     transition: color 0.2s;
   }
 
-  a:hover {
-    color: var(--color-primary-dark);
-  }
+  a:hover { color: var(--c-primary-dark); }
 
   .container {
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--max-w);
     margin: 0 auto;
     padding: 0 1.5rem;
   }
+
+  /* Botones globales */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--c-primary);
+    color: #fff;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--c-primary-dark); color: #fff; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid rgba(255,255,255,0.35);
+    color: #fff;
+    padding: 0.8125rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s, background-color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,0.08); color: #fff; }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid var(--c-primary);
+    color: var(--c-primary);
+    padding: 0.8125rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { background: var(--c-primary); color: #fff; }
 </style>

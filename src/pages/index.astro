@@ -1,285 +1,707 @@
 ---
 import Base from '../layouts/Base.astro';
-import TarjetaCategoria from '../components/TarjetaCategoria.astro';
-import BlogCard from '../components/BlogCard.astro';
 
 const categorias = [
-  { titulo: 'Extintores', descripcion: 'Polvo seco, CO2, AFFF, Tipo K, agente limpio y más tipos de extintores para toda necesidad.', href: '/extintores/', icono: '🧯' },
-  { titulo: 'Equipo para Bomberos', descripcion: 'Trajes, cascos, equipos de respiración autónoma, herramientas de rescate y arneses.', href: '/equipo-bomberos/', icono: '🚒' },
-  { titulo: 'Señalamientos', descripcion: 'Señales de prohibición, obligación, advertencia y salvación conforme a NOM.', href: '/senalamientos/', icono: '⚠️' },
-  { titulo: 'Gabinetes', descripcion: 'Gabinetes para extintor, porta extintor cenicero, para bombero y para hidrante.', href: '/gabinetes/', icono: '🗄️' },
-  { titulo: 'Mangueras y Herrajes', descripcion: 'Mangueras para hidrante, chiflones, válvulas, adaptadores, carretes y monitores.', href: '/mangueras/', icono: '🔧' },
-  { titulo: 'Sistemas Contra Incendio', descripcion: 'Alarmas, detectores, rociadores, tableros y redes hidráulicas contra incendio.', href: '/sistemas/', icono: '🔔' },
-  { titulo: 'Primeros Auxilios', descripcion: 'Botiquines, camillas, equipo de atención prehospitalaria para empresas.', href: '/primeros-auxilios/', icono: '🩹' },
-  { titulo: 'Equipo de Seguridad', descripcion: 'Equipo de protección personal y seguridad industrial para todo tipo de empresa.', href: '/equipo-seguridad/', icono: '🦺' },
+  {
+    titulo: 'Extintores',
+    sub: 'Polvo seco · CO₂ · AFFF · Tipo K · Agente Limpio',
+    href: '/extintores/',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    badge: '10 tipos',
+  },
+  {
+    titulo: 'Equipo para Bomberos',
+    sub: 'Trajes · ERA · Herramientas · Arneses',
+    href: '/equipo-bomberos/',
+    img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    badge: 'NFPA',
+  },
+  {
+    titulo: 'Señalamientos',
+    sub: 'Prohibición · Obligación · Advertencia · Salvación',
+    href: '/senalamientos/',
+    img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    badge: 'NOM-003',
+  },
+  {
+    titulo: 'Gabinetes',
+    sub: 'Para extintor · Para manguera · Para bombero',
+    href: '/gabinetes/',
+    img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    badge: null,
+  },
+  {
+    titulo: 'Mangueras y Herrajes',
+    sub: 'Hidrantes · Chiflones · Válvulas · Adaptadores',
+    href: '/mangueras/',
+    img: '/imagenes/mangueras/mangueras-hero.jpg',
+    badge: null,
+  },
+  {
+    titulo: 'Sistemas contra Incendio',
+    sub: 'Alarmas · Detectores · Rociadores · Tableros',
+    href: '/sistemas/',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    badge: 'NFPA 13/72',
+  },
+  {
+    titulo: 'Primeros Auxilios',
+    sub: 'Botiquines · Camillas · Material de curación',
+    href: '/primeros-auxilios/',
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    badge: 'STPS',
+  },
+  {
+    titulo: 'Equipo de Seguridad',
+    sub: 'Cascos · Lentes · Guantes · Arneses · EPP',
+    href: '/equipo-seguridad/',
+    img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    badge: null,
+  },
 ];
 
 const estados = [
-  { nombre: 'CDMX', href: '/empresas/cdmx/' },
+  { nombre: 'Ciudad de México', href: '/empresas/cdmx/' },
   { nombre: 'Estado de México', href: '/empresas/edomex/' },
-  { nombre: 'Querétaro', href: '/empresas/queretaro/' },
-  { nombre: 'Puebla', href: '/empresas/puebla/' },
-  { nombre: 'Aguascalientes', href: '/empresas/aguascalientes/' },
-  { nombre: 'Baja California', href: '/empresas/baja-california/' },
+  { nombre: 'Querétaro',        href: '/empresas/queretaro/' },
+  { nombre: 'Puebla',           href: '/empresas/puebla/' },
+  { nombre: 'Aguascalientes',   href: '/empresas/aguascalientes/' },
+  { nombre: 'Baja California',  href: '/empresas/baja-california/' },
+];
+
+const stats = [
+  { val: '8',      label: 'Categorías de producto' },
+  { val: '100%',   label: 'Proveedores verificados' },
+  { val: 'NFPA',   label: 'Estándar internacional' },
+  { val: 'NOM',    label: 'Normativa mexicana' },
+];
+
+const trust = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    titulo: 'Proveedores verificados',
+    desc: 'Cada empresa en nuestro directorio ha pasado por un proceso de verificación de certificaciones, historial y calidad de producto.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
+    titulo: 'Cumplimiento normativo',
+    desc: 'Todos los equipos cumplen NOM, NFPA y estándares de Protección Civil. Asesoría para que tu empresa esté siempre en regla.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    titulo: 'Respuesta en 24 horas',
+    desc: 'Nuestro equipo de especialistas responde cotizaciones en menos de 24 horas hábiles. Sin formularios interminables.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    titulo: 'Asesoría especializada',
+    desc: 'No somos una tienda. Somos un equipo técnico que analiza tu riesgo específico y conecta con el proveedor correcto.',
+  },
 ];
 ---
-<Base title="Equipos Contra Incendios en México | PROYECTORED — Directorio B2B" description="Directorio B2B de equipos contra incendios en México. Extintores, equipo para bomberos, señalamientos, gabinetes, mangueras y sistemas contra incendio.">
-  <section class="hero-home">
+
+<Base
+  title="Equipos Contra Incendios en México — Directorio B2B | ProyectoRed"
+  description="Directorio B2B de equipos contra incendios en México. Extintores certificados, equipo para bomberos, señalamientos NOM, sistemas contra incendio y más. Proveedores verificados en CDMX, EDOMEX, Querétaro, Puebla y todo México."
+>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — 2 columnas: H1+CTAs izq / texto SEO der
+  ══════════════════════════════════════════════════════════ -->
+  <section class="hero">
     <div class="container hero-grid">
-      <div class="hero-col1">
-        <h1>Equipos Contra Incendios en México — Directorio B2B</h1>
-        <p class="hero-tagline">Protegiendo tu seguridad, defendiendo tu futuro.</p>
+
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Directorio verificado · México
+        </div>
+        <h1>Equipos Contra<br><span class="h1-accent">Incendios</span> en México</h1>
+        <p class="hero-sub">Directorio B2B de proveedores certificados. Extintores, equipo para bomberos, sistemas contra incendio y más — todo verificado bajo normas NFPA y NOM.</p>
         <div class="hero-ctas">
-          <a href="https://wa.me/5255372385844?text=Hola%2C%20quiero%20información" class="btn-primary">Cotizar por WhatsApp</a>
-          <a href="/extintores/" class="btn-secondary">Ver Catálogo</a>
+          <a
+            href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20equipos%20contra%20incendios"
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar cotización
+          </a>
+          <a href="/extintores/" class="btn-secondary">Ver catálogo completo</a>
+        </div>
+        <!-- Stats inline -->
+        <div class="hero-stats">
+          {stats.map(s => (
+            <div class="hero-stat">
+              <span class="stat-val">{s.val}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
         </div>
       </div>
-      <div class="hero-col2">
-        <p>PROYECTORED es el directorio B2B líder en equipos contra incendios en México. Conectamos empresas, industrias y comercios con los mejores proveedores de extintores, sistemas de detección, señalamientos de seguridad y equipo profesional para bomberos en todo el país.</p>
-        <p>Desde la Ciudad de México hasta Baja California, ofrecemos un catálogo completo de productos certificados bajo normas NOM y estándares NFPA. Ya sea que necesites equipar tu empresa con extintores, instalar un sistema de alarma contra incendios o cumplir con las regulaciones de Protección Civil, aquí encontrarás todo lo necesario.</p>
+
+      <div class="hero-right">
+        <p>ProyectoRed es la plataforma que conecta a empresas, industrias y contratistas con los mejores proveedores de equipos contra incendios en México. Cada empresa en nuestro directorio ha sido verificada en certificaciones, trayectoria y calidad de producto.</p>
+        <p>Nuestro catálogo cubre desde extintores certificados bajo NOM hasta sistemas completos de detección y supresión de incendios. Toda la información técnica que necesitas para cumplir con Protección Civil, STPS y estándares NFPA en un solo lugar.</p>
       </div>
+
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       CATEGORÍAS — Grid asimétrico con imágenes
+  ══════════════════════════════════════════════════════════ -->
   <section class="categorias-section">
     <div class="container">
-      <h2>Categorías de Equipos</h2>
-      <div class="categorias-grid">
-        {categorias.map((cat) => (
-          <TarjetaCategoria titulo={cat.titulo} descripcion={cat.descripcion} href={cat.href} icono={cat.icono} />
+      <div class="section-header">
+        <p class="section-label">Catálogo completo</p>
+        <h2>Todas las categorías de<br>equipo contra incendios</h2>
+      </div>
+
+      <div class="cat-grid">
+        {categorias.map((cat, i) => (
+          <a
+            href={cat.href}
+            class={`cat-card ${i === 0 ? 'cat-card--featured' : ''}`}
+            aria-label={cat.titulo}
+          >
+            <div class="cat-img-wrap">
+              <img
+                src={cat.img}
+                alt={cat.titulo}
+                loading={i < 3 ? 'eager' : 'lazy'}
+                width="600"
+                height="400"
+              />
+              <div class="cat-overlay"></div>
+            </div>
+            <div class="cat-body">
+              {cat.badge && <span class="cat-badge">{cat.badge}</span>}
+              <h3>{cat.titulo}</h3>
+              <p>{cat.sub}</p>
+              <span class="cat-arrow">
+                Ver productos
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       TRUST — Por qué ProyectoRed
+  ══════════════════════════════════════════════════════════ -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-header">
+          <p class="section-label">Por qué elegirnos</p>
+          <h2>El directorio de confianza para<br>equipos de seguridad en México</h2>
+          <p class="trust-desc">No somos una tienda en línea. Somos el motor de verificación que conecta compradores exigentes con proveedores que realmente cumplen.</p>
+          <a href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n" class="btn-outline" target="_blank" rel="noopener noreferrer">
+            Hablar con un especialista
+          </a>
+        </div>
+        <div class="trust-grid">
+          {trust.map(t => (
+            <div class="trust-item">
+              <div class="trust-icon" set:html={t.icon} />
+              <h3>{t.titulo}</h3>
+              <p>{t.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DIRECTORIO — Empresas por estado
+  ══════════════════════════════════════════════════════════ -->
   <section class="estados-section">
     <div class="container">
-      <h2>Empresas por Estado</h2>
-      <p class="section-desc">Encuentra proveedores de equipos contra incendios en tu zona.</p>
-      <div class="estados-grid">
-        {estados.map((e) => (
-          <a href={e.href} class="estado-link">{e.nombre}</a>
-        ))}
+      <div class="estados-inner">
+        <div class="estados-left">
+          <p class="section-label">Cobertura nacional</p>
+          <h2>Proveedores de equipos contra incendios en tu estado</h2>
+          <p>Nuestro directorio cubre las principales zonas industriales y metropolitanas de México. Encuentra proveedores locales verificados con inventario disponible.</p>
+        </div>
+        <div class="estados-right">
+          {estados.map(e => (
+            <a href={e.href} class="estado-card">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{e.nombre}</span>
+              <svg class="estado-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="blog-section">
-    <div class="container">
-      <h2>Artículos Recientes</h2>
-      <div class="blog-grid">
-        <BlogCard titulo="Prevención de incendios en restaurantes: guía práctica" fecha="2025-07-15" categoria="Seguridad" href="/blog/incendios-restaurantes/" descripcion="Aprende las mejores prácticas para prevenir incendios en cocinas comerciales." />
-        <BlogCard titulo="Guía de protección contra incendios para PyMEs" fecha="2025-08-22" categoria="Seguridad" href="/blog/guia-proteccion-pymes/" descripcion="Todo lo que tu pequeña empresa necesita para cumplir con la normatividad." />
-        <BlogCard titulo="Colores de cascos de bombero: qué significa cada uno" fecha="2025-05-20" categoria="Equipo Bomberos" href="/blog/colores-cascos-bombero/" descripcion="Descubre el código de colores que identifica rangos en los cuerpos de bomberos." />
+  <!-- ═══════════════════════════════════════════════════════
+       CTA FINAL — Barra de conversión
+  ══════════════════════════════════════════════════════════ -->
+  <section class="cta-final">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2>¿Listo para proteger tu empresa?</h2>
+        <p>Cotiza sin compromiso. Nuestro equipo responde en menos de 24 horas con las mejores opciones para tu caso específico.</p>
       </div>
-      <div class="blog-cta">
-        <a href="/blog/">Ver todos los artículos &rarr;</a>
+      <div class="cta-btns">
+        <a
+          href="https://wa.me/525537238544?text=Hola%2C%20necesito%20cotizar%20equipos%20contra%20incendios"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/contacto/" class="btn-secondary">Enviar mensaje</a>
       </div>
     </div>
   </section>
 
-  <section class="cta-home">
-    <div class="container">
-      <h2>¿Listo para proteger tu empresa?</h2>
-      <p>Contáctanos y recibe asesoría personalizada sobre equipos contra incendios.</p>
-      <a href="https://wa.me/5255372385844?text=Hola%2C%20quiero%20información" class="btn-primary">Contactar por WhatsApp</a>
-    </div>
-  </section>
 </Base>
 
 <style>
-  .hero-home {
-    padding: calc(var(--header-height, 80px) + 3rem) 0 3rem;
-    background: linear-gradient(135deg, var(--color-black) 0%, #1a1a2e 100%);
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--header-height) + 4.5rem);
+    padding-bottom: 5rem;
+    background: linear-gradient(160deg, #0E0E0E 0%, #1A1010 55%, #0E0E0E 100%);
     color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(196,30,36,0.12) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Left col */
+  .hero-badge {
+    display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.1);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  .hero-col1 h1 {
-    font-size: 2.5rem;
+  h1 {
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
     font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 0.75rem;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
   }
+  .h1-accent { color: var(--c-primary); }
 
-  .hero-tagline {
-    font-size: 1.15rem;
-    color: var(--color-gray-light);
-    margin-bottom: 2rem;
+  .hero-sub {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+    max-width: 52ch;
   }
 
   .hero-ctas {
     display: flex;
-    gap: 1rem;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  /* Stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .stat-val {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--c-primary);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.3;
+  }
+
+  /* Right col */
+  .hero-right {
+    padding-top: 1rem;
+  }
+  .hero-right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1.125rem;
+    max-width: 60ch;
+  }
+
+  /* ── SECTION LABEL reutilizable ───────────────────── */
+  .section-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+    margin-bottom: 0.625rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+  }
+
+  /* ── CATEGORÍAS GRID ──────────────────────────────── */
+  .categorias-section {
+    padding: var(--section-py) 0;
+    background: var(--c-white);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.25rem;
+  }
+
+  /* Primera card: doble ancho */
+  .cat-card--featured {
+    grid-column: span 2;
+  }
+  .cat-card--featured .cat-img-wrap {
+    aspect-ratio: 16/9;
+  }
+
+  .cat-card {
+    display: block;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    background: var(--c-ink-2);
+  }
+  .cat-card:hover .cat-img-wrap img {
+    transform: scale(1.04);
+  }
+  .cat-card:hover .cat-overlay {
+    opacity: 0.72;
+  }
+  .cat-card:hover .cat-arrow {
+    color: #fff;
+    gap: 0.625rem;
+  }
+
+  .cat-img-wrap {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .cat-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+    opacity: 0.65;
+    transition: opacity 0.3s;
+  }
+
+  .cat-body {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.25rem;
+  }
+  .cat-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+  }
+  .cat-body h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .cat-card--featured .cat-body h3 { font-size: 1.375rem; }
+  .cat-body p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  .cat-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  /* ── TRUST ────────────────────────────────────────── */
+  .trust-section {
+    padding: var(--section-py) 0;
+    background: var(--c-surface);
+  }
+
+  .trust-inner {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .trust-header h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--c-ink);
+  }
+  .trust-desc {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 52ch;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .trust-item {}
+  .trust-icon {
+    width: 48px; height: 48px;
+    background: var(--c-primary-light);
+    color: var(--c-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  .trust-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+  }
+  .trust-item p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.65;
+  }
+
+  /* ── ESTADOS ─────────────────────────────────────── */
+  .estados-section {
+    padding: var(--section-py) 0;
+    background: var(--c-white);
+  }
+
+  .estados-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .estados-left h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--c-ink);
+  }
+  .estados-left p {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .estados-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .estado-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--c-border);
+    color: var(--c-ink);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+  }
+  .estado-card:first-child { border-top: 1px solid var(--c-border); }
+  .estado-card:hover { color: var(--c-primary); }
+  .estado-card svg:first-child { color: var(--c-primary); flex-shrink: 0; }
+  .estado-card span { flex: 1; }
+  .estado-arrow { color: var(--c-border); flex-shrink: 0; transition: color 0.2s; }
+  .estado-card:hover .estado-arrow { color: var(--c-primary); }
+
+  /* ── CTA FINAL ───────────────────────────────────── */
+  .cta-final {
+    background: var(--c-ink);
+    padding: 4rem 0;
+  }
+  .cta-final-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .cta-text h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .cta-text p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    max-width: 55ch;
+    line-height: 1.6;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 0.875rem;
+    flex-shrink: 0;
     flex-wrap: wrap;
   }
 
-  .btn-primary {
-    display: inline-block;
-    background-color: var(--color-primary);
-    color: #fff;
-    padding: 0.875rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: background-color 0.2s;
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-dark);
-    color: #fff;
-  }
-
-  .btn-secondary {
-    display: inline-block;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: background-color 0.2s, color 0.2s;
-  }
-
-  .btn-secondary:hover {
-    background-color: #fff;
-    color: var(--color-black);
-  }
-
-  .hero-col2 p {
-    color: var(--color-gray-light);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-  }
-
-  .categorias-section {
-    padding: 4rem 0;
-  }
-
-  .categorias-section h2 {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .categorias-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-
-  .estados-section {
-    padding: 4rem 0;
-    background-color: #f9fafb;
-  }
-
-  .estados-section h2 {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
-
-  .section-desc {
-    text-align: center;
-    color: var(--color-gray);
-    margin-bottom: 2rem;
-  }
-
-  .estados-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .estado-link {
-    display: block;
-    text-align: center;
-    padding: 0.875rem 1rem;
-    border: 1px solid var(--color-gray-light);
-    border-radius: 8px;
-    color: var(--color-black);
-    font-weight: 500;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .estado-link:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-
-  .blog-section {
-    padding: 4rem 0;
-  }
-
-  .blog-section h2 {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .blog-cta {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .blog-cta a {
-    font-weight: 600;
-  }
-
-  .cta-home {
-    background-color: var(--color-black);
-    color: #fff;
-    text-align: center;
-    padding: 4rem 0;
-  }
-
-  .cta-home h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .cta-home p {
-    color: var(--color-gray-light);
-    margin-bottom: 2rem;
-  }
-
+  /* ── RESPONSIVE ─────────────────────────────────── */
   @media (max-width: 1024px) {
-    .categorias-grid {
+    .cat-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+    .cat-card--featured {
+      grid-column: span 2;
+    }
+    .trust-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
   }
 
   @media (max-width: 768px) {
     .hero-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
     }
-
-    .hero-col1 h1 {
-      font-size: 1.75rem;
-    }
-
-    .categorias-grid, .blog-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .estados-grid {
+    .hero-stats {
       grid-template-columns: repeat(2, 1fr);
     }
+    .hero-stat:nth-child(2) { border-right: none; }
+    .hero-stat:nth-child(3),
+    .hero-stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+    .cat-card--featured { grid-column: span 1; }
+    .cat-card--featured .cat-img-wrap { aspect-ratio: 4/3; }
+
+    .trust-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .estados-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .cta-final-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .cta-btns {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-ctas { flex-direction: column; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { gap: 0.875rem; }
   }
 </style>

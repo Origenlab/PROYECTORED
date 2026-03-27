@@ -1,126 +1,190 @@
 ---
-const year = new Date().getFullYear();
+const cols = [
+  {
+    titulo: 'Extintores',
+    links: [
+      { label: 'Polvo Seco',     href: '/extintores/polvo-seco/' },
+      { label: 'CO₂',            href: '/extintores/co2/' },
+      { label: 'Tipo K',         href: '/extintores/tipo-k/' },
+      { label: 'AFFF / Espuma',  href: '/extintores/afff/' },
+      { label: 'Agente Limpio',  href: '/extintores/agente-limpio/' },
+      { label: 'Ver todos →',    href: '/extintores/' },
+    ],
+  },
+  {
+    titulo: 'Equipo & Sistemas',
+    links: [
+      { label: 'Equipo Bomberos',  href: '/equipo-bomberos/' },
+      { label: 'Señalamientos',    href: '/senalamientos/' },
+      { label: 'Gabinetes',        href: '/gabinetes/' },
+      { label: 'Mangueras',        href: '/mangueras/' },
+      { label: 'Sistemas CI',      href: '/sistemas/' },
+      { label: 'Primeros Auxilios',href: '/primeros-auxilios/' },
+    ],
+  },
+  {
+    titulo: 'Empresas por estado',
+    links: [
+      { label: 'CDMX',           href: '/empresas/cdmx/' },
+      { label: 'Estado de México',href: '/empresas/edomex/' },
+      { label: 'Querétaro',      href: '/empresas/queretaro/' },
+      { label: 'Puebla',         href: '/empresas/puebla/' },
+      { label: 'Aguascalientes', href: '/empresas/aguascalientes/' },
+      { label: 'Baja California',href: '/empresas/baja-california/' },
+    ],
+  },
+];
 ---
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-col">
-      <h3>PROYECTO<span class="red">RED</span></h3>
-      <p>Directorio B2B de equipos contra incendios en Mexico. Conectamos empresas con los mejores proveedores de seguridad.</p>
+
+<footer class="site-footer">
+  <div class="container ftr-inner">
+
+    <!-- Brand col -->
+    <div class="ftr-brand">
+      <a href="/" class="ftr-logo" aria-label="ProyectoRed inicio">
+        <span class="logo-mark">PR</span>
+        <span class="logo-text"><strong>PROYECTO</strong><span class="logo-red">RED</span></span>
+      </a>
+      <p>Directorio B2B de equipos contra incendios en México. Proveedores verificados bajo normas NOM y NFPA.</p>
+      <a
+        href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n"
+        class="ftr-wa"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        55 3723 8544
+      </a>
     </div>
-    <div class="footer-col">
-      <h4>Categorias</h4>
-      <ul>
-        <li><a href="/extintores/">Extintores</a></li>
-        <li><a href="/equipo-bomberos/">Equipo Bomberos</a></li>
-        <li><a href="/senalamientos/">Senalamientos</a></li>
-        <li><a href="/gabinetes/">Gabinetes</a></li>
-        <li><a href="/mangueras/">Mangueras</a></li>
-        <li><a href="/sistemas/">Sistemas</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/contacto/">Contacto</a></li>
-        <li><a href="/primeros-auxilios/">Primeros Auxilios</a></li>
-        <li><a href="/equipo-seguridad/">Equipo de Seguridad</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contacto</h4>
-      <p>WhatsApp: <a href="https://wa.me/5255372385844">+52 55 3723 8544</a></p>
-      <p>Ciudad de Mexico, Mexico</p>
-    </div>
+
+    <!-- Link cols -->
+    {cols.map(col => (
+      <div class="ftr-col">
+        <h4>{col.titulo}</h4>
+        <ul>
+          {col.links.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+    ))}
+
   </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <p>&copy; {year} PROYECTORED. Todos los derechos reservados.</p>
+
+  <div class="ftr-bottom">
+    <div class="container ftr-bottom-inner">
+      <p>© {new Date().getFullYear()} ProyectoRed. Todos los derechos reservados.</p>
+      <p>Directorio de equipos contra incendios en México · NOM · NFPA · Protección Civil</p>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background-color: var(--color-black);
-    color: var(--color-gray-light);
-    padding: 3rem 0 0;
+  .site-footer {
+    background: var(--c-ink);
+    color: rgba(255,255,255,0.55);
   }
 
-  .footer-inner {
+  .ftr-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: 280px repeat(3, 1fr);
+    gap: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 3.5rem;
   }
 
-  .footer-col h3 {
+  /* Brand */
+  .ftr-brand {}
+  .ftr-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+  .logo-mark {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--c-primary);
     color: #fff;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-weight: 800; font-size: 0.8125rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
   }
-
-  .red { color: var(--color-primary); }
-
-  .footer-col h4 {
+  .logo-text {
+    font-size: 0.9375rem; font-weight: 700;
     color: #fff;
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
+    font-family: var(--font-sans);
+  }
+  .logo-red { color: var(--c-primary); }
+
+  .ftr-brand p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
   }
 
-  .footer-col ul {
-    list-style: none;
+  .ftr-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 0.875rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s;
   }
+  .ftr-wa:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-  .footer-col ul li {
-    margin-bottom: 0.4rem;
+  /* Cols */
+  .ftr-col h4 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
-
-  .footer-col ul li a {
-    color: var(--color-gray);
-    font-size: 0.9rem;
+  .ftr-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .ftr-col a {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.875rem;
+    text-decoration: none;
     transition: color 0.2s;
   }
+  .ftr-col a:hover { color: #fff; }
 
-  .footer-col ul li a:hover {
-    color: #fff;
+  /* Bottom bar */
+  .ftr-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .ftr-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    font-size: 0.8125rem;
   }
 
-  .footer-col p {
-    font-size: 0.9rem;
-    color: var(--color-gray);
-    line-height: 1.6;
-  }
-
-  .footer-col p a {
-    color: var(--color-gray);
-    transition: color 0.2s;
-  }
-
-  .footer-col p a:hover {
-    color: #fff;
-  }
-
-  .footer-bottom {
-    border-top: 1px solid var(--color-gray-dark);
-    margin-top: 2rem;
-    padding: 1.25rem 0;
-    text-align: center;
-  }
-
-  .footer-bottom p {
-    font-size: 0.85rem;
-    color: var(--color-gray);
-  }
-
-  @media (max-width: 768px) {
-    .footer-inner {
+  @media (max-width: 1024px) {
+    .ftr-inner {
       grid-template-columns: 1fr 1fr;
     }
+    .ftr-brand {
+      grid-column: span 2;
+    }
   }
 
-  @media (max-width: 480px) {
-    .footer-inner {
+  @media (max-width: 640px) {
+    .ftr-inner {
       grid-template-columns: 1fr;
+      gap: 2rem;
     }
+    .ftr-brand { grid-column: span 1; }
+    .ftr-bottom-inner { flex-direction: column; text-align: center; }
   }
 </style>
