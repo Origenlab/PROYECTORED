@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  cta?: string;
+  ctaLink?: string;
+}
+
+const { title, subtitle, cta, ctaLink } = Astro.props;
+---
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>{title}</h1>
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+    {cta && ctaLink && (
+      <a href={ctaLink} class="hero-cta">{cta}</a>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: calc(var(--header-height, 80px) + 3rem) 0 3rem;
+    background: linear-gradient(135deg, var(--color-black) 0%, #1a1a2e 100%);
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-gray-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: background-color 0.2s;
+  }
+
+  .hero-cta:hover {
+    background-color: var(--color-primary-dark);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

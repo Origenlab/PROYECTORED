@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<Base title="Blog de Seguridad Contra Incendios | PROYECTORED" description="Artículos, guías y noticias sobre equipos contra incendios, normatividad y seguridad en México.">
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Blog de Seguridad Contra Incendios</h1>
+      <p>Artículos, guías y noticias sobre equipos contra incendios, normatividad y prevención en México.</p>
+    </div>
+  </section>
+  <section class="blog-list">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <BlogCard
+            titulo={post.data.title}
+            fecha={post.data.pubDate.toISOString()}
+            categoria={post.data.category}
+            href={`/blog/${post.id}/`}
+            descripcion={post.data.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog-hero {
+    padding: calc(var(--header-height, 80px) + 3rem) 0 3rem;
+    background: linear-gradient(135deg, var(--color-black) 0%, #1a1a2e 100%);
+    color: #fff;
+  }
+
+  .blog-hero h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-hero p {
+    color: var(--color-gray-light);
+    font-size: 1.1rem;
+  }
+
+  .blog-list {
+    padding: 3rem 0;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-hero h1 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

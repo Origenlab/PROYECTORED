@@ -1,0 +1,32 @@
+---
+import Categoria from '../../layouts/Categoria.astro';
+import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
+---
+<Categoria title="Venta de Extintores Contra Incendios | PROYECTORED" description="Catálogo completo de extintores contra incendios. Polvo seco, CO2, AFFF, Tipo K, agente limpio y más." heroTitle="Extintores Contra Incendios" heroSubtitle="Encuentra el extintor ideal para tu empresa, industria o comercio.">
+  <h2>Extintores para Toda Necesidad de Protección</h2>
+  <p>Los extintores son la primera línea de defensa contra un incendio. Contar con el tipo correcto de extintor, en la capacidad adecuada y con el mantenimiento al día, puede marcar la diferencia entre un conato controlado y una tragedia. En PROYECTORED ofrecemos un catálogo completo de extintores certificados bajo las Normas Oficiales Mexicanas (NOM-100-STPS y NOM-154-SCFI), abarcando todas las clases de fuego: A (sólidos combustibles), B (líquidos inflamables), C (equipos eléctricos energizados), D (metales combustibles) y K (aceites y grasas de cocina).</p>
+  <p>Cada tipo de extintor tiene características específicas que lo hacen más efectivo según el riesgo predominante en tu instalación. Ya sea una oficina, una cocina industrial, un almacén de sustancias químicas o un centro de datos, aquí encontrarás el equipo que necesitas con la asesoría de profesionales certificados. Todos nuestros extintores incluyen certificado de garantía, placa de identificación y se entregan listos para su instalación conforme a la normatividad vigente.</p>
+
+  <h2>Tipos de Extintores</h2>
+  <div class="grid-categorias">
+    <TarjetaCategoria titulo="Polvo Químico Seco" descripcion="Extintores PQS para fuegos clase A, B y C. El agente más utilizado en México." href="/extintores/polvo-seco" />
+    <TarjetaCategoria titulo="CO2 (Dióxido de Carbono)" descripcion="Descarga limpia sin residuos. Ideales para equipos eléctricos y electrónicos." href="/extintores/co2" />
+    <TarjetaCategoria titulo="AFFF (Espuma Mecánica)" descripcion="Espuma formadora de película acuosa para fuegos de líquidos inflamables." href="/extintores/afff" />
+    <TarjetaCategoria titulo="Tipo K para Cocinas" descripcion="Especializados en fuegos de aceites y grasas de cocina comercial e industrial." href="/extintores/tipo-k" />
+    <TarjetaCategoria titulo="Púrpura K" descripcion="Bicarbonato de potasio para fuegos clase B y C de alta intensidad." href="/extintores/purpura-k" />
+    <TarjetaCategoria titulo="Agua a Presión" descripcion="Solución ecológica para fuegos clase A en materiales sólidos combustibles." href="/extintores/agua-a-presion" />
+    <TarjetaCategoria titulo="Cold Fire" descripcion="Tecnología de enfriamiento avanzado para incendios de alta temperatura." href="/extintores/cold-fire" />
+    <TarjetaCategoria titulo="Automáticos" descripcion="Protección sin intervención humana para áreas desatendidas y servidores." href="/extintores/automaticos" />
+    <TarjetaCategoria titulo="ABC Multipropósito" descripcion="El extintor más versátil, requerido por norma en la mayoría de inmuebles." href="/extintores/abc" />
+    <TarjetaCategoria titulo="Agente Limpio" descripcion="Sin residuos. Protegen electrónica, archivos y equipos sensibles." href="/extintores/agente-limpio" />
+  </div>
+</Categoria>
+
+<style>
+  .grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+</style>

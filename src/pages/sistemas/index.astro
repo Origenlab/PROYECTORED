@@ -1,0 +1,27 @@
+---
+import Categoria from '../../layouts/Categoria.astro';
+import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
+---
+<Categoria title="Sistemas Contra Incendio | PROYECTORED" description="Sistemas contra incendio: alarmas, detectores, rociadores, tableros y redes hidráulicas. Diseño e instalación." heroTitle="Sistemas Contra Incendio" heroSubtitle="Diseño, instalación y mantenimiento de sistemas integrales de protección contra incendio.">
+  <h2>Sistemas Integrales de Protección Contra Incendio</h2>
+  <p>Un sistema contra incendio eficiente no depende de un solo componente, sino de la integración inteligente de múltiples subsistemas que trabajan coordinadamente para detectar, alertar y suprimir un incendio en sus etapas iniciales. En PROYECTORED diseñamos, instalamos y damos mantenimiento a sistemas completos de protección contra incendio conforme a las normas NFPA (National Fire Protection Association) y las Normas Oficiales Mexicanas aplicables, garantizando que cada instalación cumpla con los requisitos de Protección Civil y las aseguradoras.</p>
+  <p>Desde la detección temprana mediante sensores de humo y calor, pasando por la notificación a través de paneles de alarma centralizados, hasta la supresión automática con rociadores y redes hidráulicas presurizadas, cada elemento de nuestros sistemas está certificado y probado para operar bajo las condiciones más exigentes. Nuestro equipo de ingenieros especializados realiza el cálculo hidráulico, el diseño del sistema y la puesta en marcha, asegurando la máxima protección para tu inmueble, personal y activos.</p>
+
+  <h2>Componentes del Sistema</h2>
+  <div class="grid-categorias">
+    <TarjetaCategoria titulo="Alarmas Contra Incendio" descripcion="Sistemas de alarma convencionales y direccionables para detección y notificación oportuna." href="/sistemas/alarmas" />
+    <TarjetaCategoria titulo="Detectores de Humo e Incendio" descripcion="Detectores fotoeléctricos, iónicos y térmicos para monitoreo continuo de riesgos." href="/sistemas/detectores" />
+    <TarjetaCategoria titulo="Rociadores (Sprinklers)" descripcion="Sistemas automáticos de rociadores para supresión inmediata conforme a NFPA 13." href="/sistemas/rociadores" />
+    <TarjetaCategoria titulo="Tableros Contra Incendio" descripcion="Paneles de control, detección y monitoreo para gestión centralizada del sistema." href="/sistemas/tableros" />
+    <TarjetaCategoria titulo="Redes Hidráulicas" descripcion="Tuberías, bombas y accesorios certificados para la distribución de agua contra incendio." href="/sistemas/redes-hidraulicas" />
+  </div>
+</Categoria>
+
+<style>
+  .grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+</style>

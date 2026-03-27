@@ -1,0 +1,70 @@
+---
+interface Props {
+  nombre: string;
+  precio?: string;
+  descripcion: string;
+  href?: string;
+}
+
+const { nombre, precio, descripcion, href } = Astro.props;
+---
+<div class="tarjeta-producto">
+  <div class="producto-placeholder"></div>
+  <div class="producto-info">
+    <h3>{nombre}</h3>
+    {precio && <span class="producto-precio">{precio}</span>}
+    <p>{descripcion}</p>
+    {href && <a href={href} class="producto-link">Ver detalles &rarr;</a>}
+  </div>
+</div>
+
+<style>
+  .tarjeta-producto {
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .producto-placeholder {
+    width: 100%;
+    height: 200px;
+    background: var(--color-gray-light);
+  }
+
+  .producto-info {
+    padding: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .producto-precio {
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .producto-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .producto-link:hover {
+    color: var(--color-primary-dark);
+  }
+</style>

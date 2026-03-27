@@ -1,0 +1,26 @@
+---
+import Categoria from '../../layouts/Categoria.astro';
+import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
+---
+<Categoria title="Gabinetes y Porta Extintores | PROYECTORED" description="Gabinetes contra incendios: para extintor, porta extintor cenicero, para bombero y para hidrante." heroTitle="Gabinetes y Porta Extintores" heroSubtitle="Proteccion, organizacion y acceso rapido a tus equipos contra incendio.">
+  <h2>Gabinetes para Equipos Contra Incendio</h2>
+  <p>Los gabinetes contra incendio son elementos fundamentales para el resguardo, proteccion y acceso inmediato a los equipos de emergencia en cualquier inmueble. Su funcion va mas alla del almacenamiento: un gabinete correctamente instalado protege el extintor, la manguera o el equipo de bombero contra el polvo, la humedad, el vandalismo y el deterioro por exposicion ambiental, garantizando que el equipo este en condiciones optimas de operacion cuando se necesite. En PROYECTORED ofrecemos gabinetes fabricados en lamina de acero al carbon con acabado en pintura electrostatica roja o blanca, asi como modelos en fibra de vidrio y acero inoxidable para ambientes corrosivos o con requisitos esteticos especiales.</p>
+  <p>Todos nuestros gabinetes cuentan con puerta abatible o corrediza con vidrio templado o acrilico de seguridad que permite la visibilidad del equipo contenido. La instalacion se realiza empotrada en muro, sobrepuesta o tipo pedestal segun las caracteristicas del inmueble y los requerimientos de la autoridad de Proteccion Civil. Nuestro equipo tecnico puede asesorarte en la seleccion del gabinete adecuado segun el tipo y capacidad del equipo a resguardar, las dimensiones disponibles en el muro y las especificaciones del dictamen de proteccion civil de tu inmueble.</p>
+
+  <h2>Tipos de Gabinetes</h2>
+  <div class="grid-categorias">
+    <TarjetaCategoria titulo="Gabinetes para Extintor" descripcion="Gabinetes de acero y fibra de vidrio para resguardar y proteger extintores de todas las capacidades." href="/gabinetes/para-extintor" />
+    <TarjetaCategoria titulo="Porta Extintor con Cenicero" descripcion="Solucion practica que combina soporte para extintor con cenicero integrado para areas de fumadores." href="/gabinetes/porta-extintor-cenicero" />
+    <TarjetaCategoria titulo="Gabinetes para Bombero" descripcion="Gabinetes con espacio para manguera, extintor, hacha y accesorios de respuesta a emergencias." href="/gabinetes/para-bombero" />
+    <TarjetaCategoria titulo="Gabinetes para Hidrante" descripcion="Gabinetes con manguera y valvula para conexion directa al sistema hidraulico contra incendio." href="/gabinetes/para-hidrante" />
+  </div>
+</Categoria>
+
+<style>
+  .grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+</style>

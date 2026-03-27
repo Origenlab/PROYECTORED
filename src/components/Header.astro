@@ -1,0 +1,287 @@
+---
+const menuItems = [
+  {
+    label: 'Extintores',
+    href: '/extintores/',
+    submenu: [
+      { label: 'Polvo Seco', href: '/extintores/polvo-seco/' },
+      { label: 'CO2', href: '/extintores/co2/' },
+      { label: 'AFFF', href: '/extintores/afff/' },
+      { label: 'Tipo K', href: '/extintores/tipo-k/' },
+      { label: 'Purpura K', href: '/extintores/purpura-k/' },
+      { label: 'Agua a Presion', href: '/extintores/agua-a-presion/' },
+      { label: 'Cold Fire', href: '/extintores/cold-fire/' },
+      { label: 'Automaticos', href: '/extintores/automaticos/' },
+      { label: 'ABC', href: '/extintores/abc/' },
+      { label: 'Agente Limpio', href: '/extintores/agente-limpio/' },
+    ],
+  },
+  {
+    label: 'Equipo Bomberos',
+    href: '/equipo-bomberos/',
+    submenu: [
+      { label: 'Trajes', href: '/equipo-bomberos/trajes/' },
+      { label: 'Complementos', href: '/equipo-bomberos/complementos/' },
+      { label: 'Respiracion Autonoma', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'Herramientas', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Arneses', href: '/equipo-bomberos/arneses/' },
+    ],
+  },
+  {
+    label: 'Senalamientos',
+    href: '/senalamientos/',
+    submenu: [
+      { label: 'Prohibicion', href: '/senalamientos/prohibicion/' },
+      { label: 'Obligacion', href: '/senalamientos/obligacion/' },
+      { label: 'Advertencia', href: '/senalamientos/advertencia/' },
+      { label: 'Salvacion', href: '/senalamientos/salvacion/' },
+    ],
+  },
+  {
+    label: 'Gabinetes',
+    href: '/gabinetes/',
+    submenu: [
+      { label: 'Para Extintor', href: '/gabinetes/para-extintor/' },
+      { label: 'Porta Extintor Cenicero', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Para Bombero', href: '/gabinetes/para-bombero/' },
+      { label: 'Para Hidrante', href: '/gabinetes/para-hidrante/' },
+    ],
+  },
+  {
+    label: 'Mangueras',
+    href: '/mangueras/',
+    submenu: [
+      { label: 'Para Hidrante', href: '/mangueras/para-hidrante/' },
+      { label: 'Chiflones', href: '/mangueras/chiflones/' },
+      { label: 'Valvulas', href: '/mangueras/valvulas/' },
+      { label: 'Adaptadores', href: '/mangueras/adaptadores/' },
+      { label: 'Carretes', href: '/mangueras/carretes/' },
+      { label: 'Toma Siamesa', href: '/mangueras/toma-siamesa/' },
+      { label: 'Llaves', href: '/mangueras/llaves/' },
+      { label: 'Monitores', href: '/mangueras/monitores/' },
+    ],
+  },
+  {
+    label: 'Sistemas',
+    href: '/sistemas/',
+    submenu: [
+      { label: 'Alarmas', href: '/sistemas/alarmas/' },
+      { label: 'Detectores', href: '/sistemas/detectores/' },
+      { label: 'Rociadores', href: '/sistemas/rociadores/' },
+      { label: 'Tableros', href: '/sistemas/tableros/' },
+      { label: 'Redes Hidraulicas', href: '/sistemas/redes-hidraulicas/' },
+    ],
+  },
+  { label: 'Primeros Auxilios', href: '/primeros-auxilios/' },
+  { label: 'Equipo Seguridad', href: '/equipo-seguridad/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contacto', href: '/contacto/' },
+];
+---
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-text">PROYECTO<span class="logo-red">RED</span></span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    <nav class="nav" id="main-nav">
+      <ul class="nav-list">
+        {menuItems.map((item) => (
+          <li class={`nav-item ${item.submenu ? 'has-submenu' : ''}`}>
+            <a href={item.href}>{item.label}</a>
+            {item.submenu && (
+              <ul class="submenu">
+                {item.submenu.map((sub) => (
+                  <li><a href={sub.href}>{sub.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height, 80px);
+    background: #fff;
+    border-bottom: 1px solid var(--color-gray-light);
+    z-index: 1000;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-black);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-red {
+    color: var(--color-primary);
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-black);
+    transition: transform 0.2s;
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before { top: -7px; }
+  .hamburger::after { top: 7px; }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  .nav-item > a {
+    display: block;
+    padding: 0.5rem 0.625rem;
+    color: var(--color-black);
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-item > a:hover {
+    color: var(--color-primary);
+  }
+
+  .has-submenu {
+    position: relative;
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    list-style: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 100;
+  }
+
+  .has-submenu:hover .submenu {
+    display: block;
+  }
+
+  .submenu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--color-black);
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+  }
+
+  .submenu li a:hover {
+    background-color: var(--color-gray-light);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 1024px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height, 80px);
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid var(--color-gray-light);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .nav.open {
+      display: block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0;
+    }
+
+    .nav-item > a {
+      padding: 0.75rem 0;
+    }
+
+    .submenu {
+      position: static;
+      border: none;
+      box-shadow: none;
+      padding-left: 1rem;
+      display: none;
+    }
+
+    .has-submenu:hover .submenu,
+    .has-submenu:focus-within .submenu {
+      display: block;
+    }
+  }
+</style>

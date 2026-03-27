@@ -1,0 +1,126 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <h3>PROYECTO<span class="red">RED</span></h3>
+      <p>Directorio B2B de equipos contra incendios en Mexico. Conectamos empresas con los mejores proveedores de seguridad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <ul>
+        <li><a href="/extintores/">Extintores</a></li>
+        <li><a href="/equipo-bomberos/">Equipo Bomberos</a></li>
+        <li><a href="/senalamientos/">Senalamientos</a></li>
+        <li><a href="/gabinetes/">Gabinetes</a></li>
+        <li><a href="/mangueras/">Mangueras</a></li>
+        <li><a href="/sistemas/">Sistemas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+        <li><a href="/primeros-auxilios/">Primeros Auxilios</a></li>
+        <li><a href="/equipo-seguridad/">Equipo de Seguridad</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <p>WhatsApp: <a href="https://wa.me/5255372385844">+52 55 3723 8544</a></p>
+      <p>Ciudad de Mexico, Mexico</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {year} PROYECTORED. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-black);
+    color: var(--color-gray-light);
+    padding: 3rem 0 0;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-col h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .red { color: var(--color-primary); }
+
+  .footer-col h4 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 0.4rem;
+  }
+
+  .footer-col ul li a {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover {
+    color: #fff;
+  }
+
+  .footer-col p {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  .footer-col p a {
+    color: var(--color-gray);
+    transition: color 0.2s;
+  }
+
+  .footer-col p a:hover {
+    color: #fff;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--color-gray-dark);
+    margin-top: 2rem;
+    padding: 1.25rem 0;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: var(--color-gray);
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

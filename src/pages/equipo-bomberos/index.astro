@@ -1,0 +1,27 @@
+---
+import Categoria from '../../layouts/Categoria.astro';
+import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
+---
+<Categoria title="Equipo para Bomberos | PROYECTORED" description="Equipo profesional para bomberos en México. Trajes, cascos, ERA, herramientas de rescate y arneses." heroTitle="Equipo para Bomberos" heroSubtitle="Equipo profesional certificado para cuerpos de bomberos y brigadas industriales.">
+  <h2>Equipo Profesional para Bomberos y Brigadas de Emergencia</h2>
+  <p>La seguridad de los bomberos y brigadistas depende directamente de la calidad del equipo que portan. En PROYECTORED somos distribuidores autorizados de las principales marcas internacionales de equipo para bomberos, ofreciendo productos que cumplen con las certificaciones NFPA (National Fire Protection Association), UL (Underwriters Laboratories) y las normas mexicanas aplicables. Desde el traje de aproximación hasta las herramientas de rescate vehicular, cada pieza de equipo que ofrecemos ha sido seleccionada por su rendimiento comprobado en condiciones reales de emergencia.</p>
+  <p>Atendemos a cuerpos de bomberos municipales y estatales, brigadas de emergencia industrial, equipos de rescate de Protección Civil, departamentos de seguridad de empresas petroleras y petroquímicas, aeropuertos, y cualquier organización que requiera equipar a su personal de respuesta a emergencias con los más altos estándares de seguridad. Ofrecemos asesoría técnica para la selección del equipo adecuado según el tipo de riesgo, capacitación en el uso correcto de cada componente y servicio posventa que incluye mantenimiento, reparación y reemplazo de piezas.</p>
+
+  <h2>Categorías de Equipo</h2>
+  <div class="grid-categorias">
+    <TarjetaCategoria titulo="Trajes para Bombero" descripcion="Trajes de aproximación y combate certificados NFPA 1971 con protección térmica multicapa." href="/equipo-bomberos/trajes" />
+    <TarjetaCategoria titulo="Complementos" descripcion="Cascos, guantes, botas, gogles y accesorios para la protección completa del bombero." href="/equipo-bomberos/complementos" />
+    <TarjetaCategoria titulo="Respiración Autónoma (ERA)" descripcion="Equipos SCBA con cilindros, máscaras y reguladores certificados NIOSH." href="/equipo-bomberos/respiracion-autonoma" />
+    <TarjetaCategoria titulo="Herramientas de Rescate" descripcion="Hachas, halligans, cortadores hidráulicos y herramientas de entrada forzada." href="/equipo-bomberos/herramientas" />
+    <TarjetaCategoria titulo="Arneses" descripcion="Arneses de seguridad y rescate certificados para trabajo en altura y rescate vertical." href="/equipo-bomberos/arneses" />
+  </div>
+</Categoria>
+
+<style>
+  .grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+</style>
