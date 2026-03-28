@@ -287,8 +287,6 @@ const nav = [
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     opacity: 0;
     pointer-events: none;
-    transform: translateX(-50%) translateY(-6px);
-    transition: opacity 0.15s, transform 0.15s;
     z-index: 100;
     overflow: hidden;
   }
@@ -296,7 +294,6 @@ const nav = [
   .nav-item:focus-within .nav-dropdown {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
   }
 
   .dropdown-header {

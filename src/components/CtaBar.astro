@@ -1,0 +1,164 @@
+---
+const items = [
+  {
+    label: 'Catálogo Completo',
+    sub: 'Extintores, gabinetes, mangueras y más',
+    href: '/extintores/',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+  },
+  {
+    label: 'Equipo para Bomberos',
+    sub: 'Trajes NFPA, ERA, herramientas de rescate',
+    href: '/equipo-bomberos/',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    label: 'Sistemas contra Incendio',
+    sub: 'Alarmas, rociadores, redes hidráulicas',
+    href: '/sistemas/',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
+  },
+  {
+    label: 'Cotización Gratuita',
+    sub: 'Respuesta en menos de 24 horas',
+    href: 'https://wa.me/525537238544?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20equipos%20contra%20incendios',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 4a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.28-1.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
+    accent: true,
+    external: true,
+  },
+];
+---
+
+<section class="nav-cta" aria-label="Accesos rápidos">
+  <div class="container">
+    <div class="nav-cta__grid">
+      {items.map(item => (
+        <a
+          href={item.href}
+          class={`nav-cta__card${item.accent ? ' nav-cta__card--accent' : ''}`}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+        >
+          <div class="nav-cta__inner">
+            <span class="nav-cta__icon" set:html={item.icon} />
+            <div class="nav-cta__text">
+              <strong>{item.label}</strong>
+              <span>{item.sub}</span>
+            </div>
+            <svg class="nav-cta__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .nav-cta {
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+    padding: 0;
+  }
+
+  .nav-cta__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .nav-cta__card {
+    display: block;
+    padding: 1.625rem 1.5rem;
+    text-decoration: none;
+    color: var(--c-ink);
+    border-right: 1px solid var(--c-border);
+    transition: background-color 0.2s;
+  }
+  .nav-cta__card:last-child { border-right: none; }
+  .nav-cta__card:hover { background: var(--c-surface); }
+
+  /* Accent — última card */
+  .nav-cta__card--accent {
+    background: var(--c-primary);
+    color: #fff;
+  }
+  .nav-cta__card--accent:hover {
+    background: var(--c-primary-dark);
+  }
+  .nav-cta__card--accent .nav-cta__icon svg { stroke: #fff; }
+  .nav-cta__card--accent .nav-cta__text strong { color: #fff; }
+  .nav-cta__card--accent .nav-cta__text span { color: rgba(255,255,255,0.75); }
+  .nav-cta__card--accent .nav-cta__arrow { stroke: rgba(255,255,255,0.7); }
+  .nav-cta__card--accent:hover .nav-cta__arrow { stroke: #fff; }
+
+  /* Inner layout */
+  .nav-cta__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-cta__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--c-primary-light);
+    border-radius: 6px;
+    color: var(--c-primary);
+    flex-shrink: 0;
+  }
+  .nav-cta__card--accent .nav-cta__icon {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  .nav-cta__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+  .nav-cta__text strong {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .nav-cta__text span {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    line-height: 1.3;
+  }
+
+  .nav-cta__arrow {
+    flex-shrink: 0;
+    stroke: var(--c-border);
+    transition: stroke 0.2s;
+  }
+  .nav-cta__card:hover .nav-cta__arrow {
+    stroke: var(--c-primary);
+  }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-cta__grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-cta__card { border-bottom: 1px solid var(--c-border); }
+    .nav-cta__card:nth-child(2) { border-right: none; }
+    .nav-cta__card:nth-child(3) { border-bottom: none; }
+    .nav-cta__card:nth-child(4) { border-right: none; border-bottom: none; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-cta__grid { grid-template-columns: 1fr; }
+    .nav-cta__card { border-right: none; border-bottom: 1px solid var(--c-border); }
+    .nav-cta__card:last-child { border-bottom: none; }
+    .nav-cta__card:nth-child(2) { border-right: none; }
+    .nav-cta__inner { gap: 0.75rem; }
+  }
+</style>

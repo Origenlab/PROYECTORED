@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import CtaBar from '../components/CtaBar.astro';
 
 const categorias = [
   {
@@ -135,6 +136,8 @@ const trust = [
     </div>
   </section>
 
+  <CtaBar />
+
   <!-- ═══════════════════════════════════════════════════════
        CATEGORÍAS — Grid asimétrico con imágenes
   ══════════════════════════════════════════════════════════ -->
@@ -178,6 +181,179 @@ const trust = [
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
+       CATÁLOGO — Cards con subsecciones estilo GAMA
+  ══════════════════════════════════════════════════════════ -->
+  <section class="catalogo-section" id="catalogo">
+    <div class="container">
+
+      <div class="catalogo-header">
+        <div class="catalogo-header__left">
+          <p class="section-label">Catálogo completo</p>
+          <h2>Equipos Contra Incendios:<br>Todo en un Solo Proveedor</h2>
+          <p class="catalogo-sub">Equipo certificado NOM y NFPA. Selecciona una categoría para conocer productos y solicitar cotización directa.</p>
+        </div>
+        <div class="catalogo-header__right">
+          <p>Extintores de todos los tipos, señalamientos fotoluminiscentes, equipo profesional para bomberos, gabinetes industriales, mangueras y herrajes, sistemas de detección y supresión, botiquines y equipo de protección personal. Todo lo que necesitas para cumplir con Protección Civil y STPS en la Ciudad de México y Estado de México.</p>
+          <p>Cada producto incluye ficha técnica, certificados de conformidad y asesoría para elegir el equipo correcto según el tipo y tamaño de tu instalación. Sin intermediarios — somos el proveedor directo.</p>
+        </div>
+      </div>
+
+      <div class="catalogo-grid">
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/extintores/extintores-contra-incendios.jpg" alt="Extintores contra incendios" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Extintores</h3>
+            <p>Primera línea de defensa para cualquier tipo de riesgo</p>
+            <div class="cat-card-v2__pills">
+              <a href="/extintores/polvo-seco/">Polvo Seco (PQS)</a>
+              <a href="/extintores/co2/">CO₂</a>
+              <a href="/extintores/afff/">AFFF / Espuma</a>
+              <a href="/extintores/tipo-k/">Tipo K — Cocinas</a>
+              <a href="/extintores/purpura-k/">Púrpura K</a>
+              <a href="/extintores/agua-a-presion/">Agua a Presión</a>
+              <a href="/extintores/cold-fire/">Cold Fire</a>
+              <a href="/extintores/automaticos/">Automáticos</a>
+              <a href="/extintores/abc/">ABC Multiuso</a>
+              <a href="/extintores/agente-limpio/">Agente Limpio</a>
+            </div>
+            <a href="/extintores/" class="cat-card-v2__btn">Ver todos los extintores</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg" alt="Equipo para bomberos" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Equipo para Bomberos</h3>
+            <p>Protección personal certificada NFPA para cuerpos de bomberos y brigadas</p>
+            <div class="cat-card-v2__pills">
+              <a href="/equipo-bomberos/trajes/">Trajes Estructurales</a>
+              <a href="/equipo-bomberos/complementos/">Complementos</a>
+              <a href="/equipo-bomberos/respiracion-autonoma/">Respiración Autónoma (ERA)</a>
+              <a href="/equipo-bomberos/herramientas/">Herramientas de Rescate</a>
+              <a href="/equipo-bomberos/arneses/">Arneses</a>
+            </div>
+            <a href="/equipo-bomberos/" class="cat-card-v2__btn">Ver equipo de bomberos</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/senalamientos/senalamientos-hero.jpg" alt="Señalamientos de emergencia" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Señalamientos de Emergencia</h3>
+            <p>Señalética fotoluminiscente conforme a NOM-003-SEGOB y STPS</p>
+            <div class="cat-card-v2__pills">
+              <a href="/senalamientos/prohibicion/">Prohibición</a>
+              <a href="/senalamientos/obligacion/">Obligación</a>
+              <a href="/senalamientos/advertencia/">Advertencia</a>
+              <a href="/senalamientos/salvacion/">Salvación / Evacuación</a>
+            </div>
+            <a href="/senalamientos/" class="cat-card-v2__btn">Ver señalamientos</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/gabinetes/gabinetes-extintores.jpg" alt="Gabinetes contra incendios" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Gabinetes y Porta Extintores</h3>
+            <p>Resguardo y acceso inmediato para equipo contra incendios</p>
+            <div class="cat-card-v2__pills">
+              <a href="/gabinetes/para-extintor/">Para Extintor</a>
+              <a href="/gabinetes/porta-extintor-cenicero/">Porta Extintor Cenicero</a>
+              <a href="/gabinetes/para-bombero/">Para Bombero</a>
+              <a href="/gabinetes/para-hidrante/">Para Hidrante</a>
+            </div>
+            <a href="/gabinetes/" class="cat-card-v2__btn">Ver gabinetes</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/mangueras/mangueras-hero.jpg" alt="Mangueras y herrajes contra incendios" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Mangueras y Herrajes</h3>
+            <p>Conducción de agua a alta presión para respuesta inmediata</p>
+            <div class="cat-card-v2__pills">
+              <a href="/mangueras/para-hidrante/">Para Hidrante</a>
+              <a href="/mangueras/chiflones/">Chiflones</a>
+              <a href="/mangueras/valvulas/">Válvulas</a>
+              <a href="/mangueras/adaptadores/">Adaptadores</a>
+              <a href="/mangueras/carretes/">Carretes</a>
+              <a href="/mangueras/toma-siamesa/">Toma Siamesa</a>
+              <a href="/mangueras/llaves/">Llaves de Herramienta</a>
+              <a href="/mangueras/monitores/">Monitores</a>
+            </div>
+            <a href="/mangueras/" class="cat-card-v2__btn">Ver mangueras y herrajes</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/sistemas/alarmas.jpg" alt="Sistemas contra incendio" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Sistemas Contra Incendio</h3>
+            <p>Detección, supresión y control automático para protección total</p>
+            <div class="cat-card-v2__pills">
+              <a href="/sistemas/alarmas/">Alarmas</a>
+              <a href="/sistemas/detectores/">Detectores de Humo</a>
+              <a href="/sistemas/rociadores/">Rociadores Automáticos</a>
+              <a href="/sistemas/tableros/">Tableros de Control</a>
+              <a href="/sistemas/redes-hidraulicas/">Redes Hidráulicas</a>
+            </div>
+            <a href="/sistemas/" class="cat-card-v2__btn">Ver sistemas CI</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/primeros-auxilios/botiquines-hero.jpg" alt="Primeros auxilios" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Primeros Auxilios</h3>
+            <p>Kits de respuesta inmediata conforme a normativa STPS</p>
+            <div class="cat-card-v2__pills">
+              <a href="/primeros-auxilios/">Botiquines STPS</a>
+              <a href="/primeros-auxilios/">Camillas de Emergencia</a>
+              <a href="/primeros-auxilios/">Collarines</a>
+              <a href="/primeros-auxilios/">Material de Curación</a>
+            </div>
+            <a href="/primeros-auxilios/" class="cat-card-v2__btn">Ver primeros auxilios</a>
+          </div>
+        </article>
+
+        <article class="cat-card-v2">
+          <div class="cat-card-v2__img">
+            <img src="/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg" alt="Equipo de seguridad industrial" loading="lazy" width="640" height="360" />
+          </div>
+          <div class="cat-card-v2__body">
+            <h3>Equipo de Seguridad Industrial</h3>
+            <p>EPP certificado para entornos industriales y comerciales</p>
+            <div class="cat-card-v2__pills">
+              <a href="/equipo-seguridad/">Cascos de Seguridad</a>
+              <a href="/equipo-seguridad/">Lentes de Protección</a>
+              <a href="/equipo-seguridad/">Chalecos Reflectantes</a>
+              <a href="/equipo-seguridad/">Tapones Auditivos</a>
+              <a href="/equipo-seguridad/">Conos de Señalización</a>
+            </div>
+            <a href="/equipo-seguridad/" class="cat-card-v2__btn">Ver equipo de seguridad</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
        TRUST — Por qué Proyecto Red
   ══════════════════════════════════════════════════════════ -->
   <section class="trust-section">
@@ -207,6 +383,159 @@ const trust = [
 
 
   <!-- ═══════════════════════════════════════════════════════
+       RESEÑAS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="reviews-header">
+        <p class="section-label">Lo que dicen nuestros clientes</p>
+        <h2>Empresas que confían<br>en Proyecto Red</h2>
+      </div>
+      <div class="reviews-grid">
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "Llevamos tres años comprando extintores y señalamientos con Proyecto Red. Siempre tienen stock, el equipo llega certificado y cuando tuvimos una inspección de Protección Civil no hubo un solo señalamiento que corregir."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">RM</div>
+            <div class="review-info">
+              <strong>Ricardo Morales</strong>
+              <span>Gerente de Mantenimiento · Planta Industrial CDMX</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "Necesitábamos equipo para nuestra brigada de emergencia en tiempo récord. Proyecto Red nos entregó trajes, ERA y herramientas en dos días con toda la documentación NFPA lista. Imposible encontrar ese nivel de respuesta en otro lado."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">LC</div>
+            <div class="review-info">
+              <strong>Laura Cervantes</strong>
+              <span>Responsable de Seguridad · Centro Logístico Edomex</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "El asesor técnico nos explicó exactamente qué extintor necesitábamos para cada área de la cocina. Terminamos instalando los Tipo K correctos y pasamos la verificación del IMSS sin observaciones. Vale mucho que te digan la verdad."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">AT</div>
+            <div class="review-info">
+              <strong>Alejandro Torres</strong>
+              <span>Administrador · Cadena de Restaurantes CDMX</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "Cotizamos con cuatro proveedores. Proyecto Red no fue el más barato, pero sí el único que nos dio documentación completa y garantía real. Para un edificio corporativo con auditores de aseguradoras, eso no tiene precio."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">MV</div>
+            <div class="review-info">
+              <strong>Martha Villanueva</strong>
+              <span>Directora de Operaciones · Edificio Corporativo Polanco</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "Compramos botiquines, señalamientos y extintores para nuestros 12 locales en el Estado de México. Todo llegó etiquetado por sucursal, con las facturas separadas y listos para instalar. Eso es organización de verdad."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">JH</div>
+            <div class="review-info">
+              <strong>Jorge Hernández</strong>
+              <span>Gerente Regional · Cadena Comercial Edomex</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="review-badge">Verificado</span>
+          </div>
+          <blockquote>
+            "Tenemos un convenio anual con Proyecto Red para el mantenimiento y recarga de extintores en nuestro hospital. La puntualidad es impecable y los técnicos saben lo que hacen. En entornos médicos no puedes arriesgarte con proveedores improvisados."
+          </blockquote>
+          <div class="review-author">
+            <div class="review-avatar">PG</div>
+            <div class="review-info">
+              <strong>Patricia Guzmán</strong>
+              <span>Coordinadora de Infraestructura · Clínica Privada CDMX</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
        CTA FINAL — Barra de conversión
   ══════════════════════════════════════════════════════════ -->
   <section class="cta-final">
@@ -225,7 +554,7 @@ const trust = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Cotizar por WhatsApp
         </a>
-        <a href="/contacto/" class="btn-secondary">Enviar mensaje</a>
+        <a href="/contacto/" class="btn-cta-ghost">Ver catálogo completo</a>
       </div>
     </div>
   </section>
@@ -317,6 +646,161 @@ const trust = [
     max-width: 60ch;
   }
 
+  /* ── CATÁLOGO SECTION ────────────────────────────── */
+  .catalogo-section {
+    padding: var(--section-py) 0;
+    background: var(--c-surface);
+  }
+
+  /* Header 2 cols */
+  .catalogo-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
+  }
+  .catalogo-header__left h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+    margin-bottom: 0.875rem;
+  }
+  .catalogo-sub {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  .catalogo-header__right p {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 0.875rem;
+  }
+  .catalogo-header__right p:last-child { margin-bottom: 0; }
+
+  /* Grid 4 cols */
+  .catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* Card */
+  .cat-card-v2 {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-card-v2:hover {
+    border-color: rgba(var(--c-primary-rgb), 0.3);
+  }
+
+  .cat-card-v2__img {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: var(--c-surface);
+  }
+  .cat-card-v2__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .cat-card-v2__body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.625rem;
+  }
+  .cat-card-v2__body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .cat-card-v2__body > p {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    line-height: 1.5;
+  }
+
+  /* Lista de subcategorías — 2 columnas */
+  .cat-card-v2__pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 0.25rem;
+    flex: 1;
+    border-top: 1px solid var(--c-border);
+    border-left: 1px solid var(--c-border);
+  }
+  .cat-card-v2__pills a {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--c-ink-2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4375rem 0.625rem;
+    border-right: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-border);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    line-height: 1.3;
+  }
+  .cat-card-v2__pills a::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .cat-card-v2__pills a:hover {
+    background: var(--c-primary-light);
+    color: var(--c-primary);
+  }
+  .cat-card-v2__pills a:hover::before { opacity: 1; }
+
+  /* Botón "Ver categoría" */
+  .cat-card-v2__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--c-border);
+    color: var(--c-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+    margin-top: 0.875rem;
+  }
+  .cat-card-v2__btn::after {
+    content: ' →';
+  }
+  .cat-card-v2__btn:hover { color: var(--c-primary-dark); }
+
+  @media (max-width: 1200px) {
+    .catalogo-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .catalogo-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .catalogo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .catalogo-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── SECTION LABEL reutilizable ───────────────────── */
   .section-label {
     font-size: 0.8125rem;
@@ -394,7 +878,6 @@ const trust = [
     inset: 0;
     background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
     opacity: 0.65;
-    transition: opacity 0.3s;
   }
 
   .cat-body {
@@ -435,7 +918,7 @@ const trust = [
     font-size: 0.8125rem;
     font-weight: 600;
     color: rgba(255,255,255,0.55);
-    transition: color 0.2s, gap 0.2s;
+    transition: color 0.2s;
   }
 
   /* ── TRUST ────────────────────────────────────────── */
@@ -550,9 +1033,141 @@ const trust = [
   .estado-arrow { color: var(--c-border); flex-shrink: 0; transition: color 0.2s; }
   .estado-card:hover .estado-arrow { color: var(--c-primary); }
 
+  /* ── RESEÑAS ─────────────────────────────────────── */
+  .reviews-section {
+    padding: var(--section-py) 0;
+    background: var(--c-ink);
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .reviews-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .reviews-header .section-label { color: rgba(var(--c-primary-rgb), 0.9); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .review-card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 1.625rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+  .review-card:hover {
+    border-color: rgba(var(--c-primary-rgb), 0.35);
+  }
+
+  /* Top: estrellas + badge */
+  .review-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .review-stars {
+    display: flex;
+    gap: 2px;
+    color: #F59E0B;
+  }
+  .review-stars svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+  .review-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  /* Cita */
+  .review-card blockquote {
+    font-size: 0.9125rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    flex: 1;
+    font-style: normal;
+    position: relative;
+    padding-top: 1rem;
+  }
+  .review-card blockquote::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.125rem;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--c-primary);
+    opacity: 0.4;
+    font-family: Georgia, serif;
+  }
+
+  /* Autor */
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .review-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .review-info strong {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .review-info span {
+    font-size: 0.775rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 900px) {
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 580px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── CTA FINAL ───────────────────────────────────── */
   .cta-final {
-    background: var(--c-ink);
+    background: var(--c-primary);
     padding: 4rem 0;
   }
   .cta-final-inner {
@@ -570,7 +1185,7 @@ const trust = [
     margin-bottom: 0.5rem;
   }
   .cta-text p {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.75);
     font-size: 0.9375rem;
     max-width: 55ch;
     line-height: 1.6;
@@ -580,6 +1195,35 @@ const trust = [
     gap: 0.875rem;
     flex-shrink: 0;
     flex-wrap: wrap;
+  }
+  /* Botón ghost sobre fondo rojo */
+  .btn-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 0.8125rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s, background-color 0.2s;
+    white-space: nowrap;
+  }
+  .btn-cta-ghost:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  /* El btn-primary sobre rojo → fondo blanco con texto rojo */
+  .cta-final .btn-primary {
+    background: #fff;
+    color: var(--c-primary);
+  }
+  .cta-final .btn-primary:hover {
+    background: rgba(255,255,255,0.9);
+    color: var(--c-primary-dark);
   }
 
   /* ── RESPONSIVE ─────────────────────────────────── */
