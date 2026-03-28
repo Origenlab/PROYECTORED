@@ -88,10 +88,14 @@ const nav = [
   <div class="hdr-inner container">
     <!-- Logo -->
     <a href="/" class="hdr-logo" aria-label="Proyecto Red — Inicio">
-      <span class="logo-mark">PR</span>
-      <span class="logo-text">
-        <strong>PROYECTO</strong><span class="logo-red">RED</span>
-      </span>
+      <img
+        src="/imagenes/logos/logo-proyectored-201x60.png"
+        alt="Proyecto Red — Equipos contra incendios"
+        width="134"
+        height="40"
+        loading="eager"
+        class="hdr-logo-img"
+      />
     </a>
 
     <!-- Nav desktop -->
@@ -220,31 +224,16 @@ const nav = [
   .hdr-logo {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
     text-decoration: none;
     flex-shrink: 0;
   }
-  .logo-mark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px; height: 36px;
-    background: var(--c-primary);
-    color: #fff;
-    font-weight: 800;
-    font-size: 0.875rem;
-    letter-spacing: -0.5px;
-    border-radius: 4px;
-    font-family: var(--font-sans);
+  .hdr-logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+    /* El logo de WP es oscuro — lo invertimos para que se vea en header negro */
+    filter: brightness(0) invert(1);
   }
-  .logo-text {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.02em;
-    font-family: var(--font-sans);
-  }
-  .logo-red { color: var(--c-primary); }
 
   /* Nav desktop */
   .hdr-nav {
