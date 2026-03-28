@@ -228,11 +228,13 @@ const nav = [
     flex-shrink: 0;
   }
   .hdr-logo-img {
-    height: 40px;
+    height: 90px;
     width: auto;
     display: block;
-    /* El logo de WP es oscuro — lo invertimos para que se vea en header negro */
-    filter: brightness(0) invert(1);
+    /* Logo oscuro sobre header negro — fondo blanco redondeado */
+    background: rgba(255,255,255,0.95);
+    border-radius: 4px;
+    padding: 6px 12px;
   }
 
   /* Nav desktop */
