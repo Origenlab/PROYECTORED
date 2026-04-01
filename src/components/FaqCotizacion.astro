@@ -1,0 +1,767 @@
+---
+/**
+ * FaqCotizacion.astro — Módulo FAQ + Formulario de cotización
+ * Reutilizable en todas las páginas del sitio.
+ *
+ * Props:
+ *   titulo      — Título principal del módulo (opcional)
+ *   subtitulo   — Subtítulo (opcional)
+ *   faqs        — Array de { pregunta, respuesta } (opcional: usa FAQs globales si no se pasa)
+ *   pageId      — ID único para evitar conflictos de IDs de inputs en múltiples instancias
+ *   bgGray      — true = fondo gris, false = fondo blanco (default: false)
+ */
+
+interface FaqItem {
+  pregunta: string;
+  respuesta: string;
+}
+
+interface Props {
+  titulo?: string;
+  subtitulo?: string;
+  faqs?: FaqItem[];
+  pageId?: string;
+  bgGray?: boolean;
+}
+
+const {
+  titulo = "Preguntas Frecuentes y Cotización",
+  subtitulo = "Todo lo que necesitas saber antes de contactarnos — y cotización directa por WhatsApp",
+  pageId = "global",
+  bgGray = false,
+} = Astro.props;
+
+let { faqs } = Astro.props;
+
+const WHATSAPP = "525537238544";
+
+// FAQs globales por defecto (las mejores 8 para conversión y SEO)
+const faqsGlobales: FaqItem[] = [
+  {
+    pregunta: "¿Cuánto cuesta un extintor certificado NOM en CDMX?",
+    respuesta: "El precio depende del tipo y capacidad. Un extintor de <strong>polvo seco ABC de 4 kg</strong> (el más solicitado para oficinas y negocios) parte desde $450 MXN. Los extintores <strong>CO₂ para equipo electrónico</strong>, <strong>Tipo K para cocinas industriales</strong> y <strong>Agente Limpio para centros de datos</strong> tienen precios distintos según capacidad y marca. Escríbenos por WhatsApp con el tipo y cantidad — te damos precio con certificado NOM incluido ese mismo día.",
+  },
+  {
+    pregunta: "¿Qué equipo contra incendios exige Protección Civil para empresas en CDMX?",
+    respuesta: "La <strong>NOM-002-STPS</strong> establece: un extintor por cada 300 m² de área de trabajo, mínimo uno por piso. La <strong>NOM-003-SEGOB</strong> exige señalamientos fotoluminiscentes de evacuación, salidas de emergencia y punto de reunión. Para instalaciones industriales o con riesgos específicos (gas, líquidos inflamables, electrónica) se requieren extintores especializados y en algunos casos sistemas de detección. Te hacemos un diagnóstico gratuito para que sepas exactamente qué necesitas.",
+  },
+  {
+    pregunta: "¿Hacen entrega a domicilio en CDMX y Estado de México?",
+    respuesta: "Sí, entrega directa en toda la <strong>Ciudad de México y el Estado de México</strong>. Pedidos confirmados antes de las 2 PM se entregan el mismo día en la zona metropolitana. Para pedidos de mayor volumen o fuera de la ZMVM coordinamos logística en la cotización. También hacemos envíos a todo el país para pedidos de volumen con paqueterías certificadas.",
+  },
+  {
+    pregunta: "¿Los extintores incluyen certificado NOM y documentación para Protección Civil?",
+    respuesta: "Sí. Todos nuestros extintores cumplen con la <strong>NOM-154-SCFI</strong> y se entregan con ficha técnica, certificado de conformidad y etiqueta de inspección actualizada — todo lo que necesitas para tu expediente de Protección Civil y auditorías STPS. Si tu aseguradora o auditora requiere documentación adicional, te la gestionamos sin costo.",
+  },
+  {
+    pregunta: "¿También realizan mantenimiento preventivo y recarga de extintores?",
+    respuesta: "Sí. Ofrecemos <strong>mantenimiento preventivo, recarga y prueba hidrostática</strong> de extintores directamente en tus instalaciones. El servicio incluye: revisión del agente extintor y presión, inspección de válvula, manguera y gatillo, reemplazo de sellos y etiqueta de inspección actualizada. Podemos programar visitas periódicas con reporte para tus expedientes de Protección Civil.",
+  },
+  {
+    pregunta: "¿Qué señalamientos de emergencia son obligatorios en oficinas y negocios?",
+    respuesta: "La <strong>NOM-003-SEGOB</strong> y <strong>NOM-026-STPS</strong> exigen: rutas de evacuación, salidas de emergencia, ubicación de extintores, punto de reunión, señales de prohibición en áreas de riesgo y señalamiento de equipo de primeros auxilios. Vendemos señalética <strong>fotoluminiscente</strong> (visible en cortes de luz) que cumple la norma y es aceptada por Protección Civil sin observaciones.",
+  },
+  {
+    pregunta: "¿Manejan precios especiales para empresas y pedidos de volumen?",
+    respuesta: "Sí. Trabajamos con empresas que abastecen múltiples sucursales, plantas o proyectos de construcción. A partir de ciertos volúmenes ofrecemos <strong>precios preferenciales, crédito a 30 días, facturación consolidada y entregas programadas</strong>. Contáctanos para diseñar un esquema de suministro continuo adaptado a tu operación.",
+  },
+  {
+    pregunta: "¿Cuánto tiempo tarda la instalación de un sistema contra incendio?",
+    respuesta: "Depende del alcance. <strong>Detectores y alarmas</strong> para una oficina mediana: 1-2 días hábiles. <strong>Sistema de rociadores NFPA 13</strong> para planta industrial: 1-3 semanas según la complejidad. Todos los proyectos inician con una visita técnica gratuita donde determinamos el alcance exacto, el tiempo de instalación y el presupuesto firme antes de que firmes cualquier contrato.",
+  },
+];
+
+if (!faqs || faqs.length === 0) {
+  faqs = faqsGlobales;
+}
+
+const inputId = (name: string) => `cot-${pageId}-${name}`;
+---
+
+<section class={`faq-cot-section${bgGray ? ' faq-cot-section--gray' : ''}`} id={`cotizacion-${pageId}`} aria-labelledby={`faq-title-${pageId}`}>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="faq-cot__header">
+      <span class="faq-cot__badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+        Preguntas Frecuentes y Cotización
+      </span>
+      <h2 id={`faq-title-${pageId}`}>{titulo}</h2>
+      <p>{subtitulo}</p>
+    </div>
+
+    <!-- Grid: FAQ + Formulario -->
+    <div class="faq-cot__grid">
+
+      <!-- ── COLUMNA FAQ ── -->
+      <div class="faq-col">
+        <div class="faq-col__header">
+          <span class="faq-col__eyebrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Preguntas frecuentes
+          </span>
+          <h3>Lo que nos preguntan nuestros clientes</h3>
+          <p>
+            ¿Tu duda no aparece aquí? Escríbenos directo al
+            <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">WhatsApp 55 3723 8544</a>
+            — respondemos en menos de 2 horas.
+          </p>
+        </div>
+
+        <div class="faq-items" itemscope itemtype="https://schema.org/FAQPage">
+          {faqs.map((f, i) => (
+            <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.pregunta}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </summary>
+              <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text" set:html={f.respuesta} />
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <!-- Trust signals bajo el FAQ -->
+        <div class="faq-trust">
+          <div class="faq-trust__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            Equipo certificado NOM y NFPA
+          </div>
+          <div class="faq-trust__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Respuesta en menos de 24 horas
+          </div>
+          <div class="faq-trust__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Entrega en CDMX y Estado de México
+          </div>
+          <div class="faq-trust__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Asesoría técnica gratuita
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COLUMNA FORMULARIO ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+
+          <!-- Header del formulario -->
+          <div class="cot-card__header">
+            <div class="cot-header__top">
+              <span class="cot-badge">Cotización sin costo</span>
+              <div class="cot-header__stars" aria-label="5 estrellas">
+                {[1,2,3,4,5].map(() => (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+            </div>
+            <h3>Solicita tu cotización ahora</h3>
+            <p>Cuéntanos qué necesitas — te respondemos con precio real, disponibilidad y tiempo de entrega en menos de 24 horas.</p>
+          </div>
+
+          <!-- Campos -->
+          <div class="cot-card__body">
+            <div class="cot-row">
+              <div class="cot-field">
+                <label for={inputId('nombre')}>Nombre completo <span class="req">*</span></label>
+                <input
+                  type="text"
+                  id={inputId('nombre')}
+                  name="nombre"
+                  placeholder="Tu nombre o razón social"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="cot-field">
+                <label for={inputId('tel')}>Teléfono / WhatsApp <span class="req">*</span></label>
+                <input
+                  type="tel"
+                  id={inputId('tel')}
+                  name="telefono"
+                  placeholder="55 1234 5678"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <div class="cot-field">
+              <label for={inputId('empresa')}>Empresa o negocio <span class="opt">(opcional)</span></label>
+              <input
+                type="text"
+                id={inputId('empresa')}
+                name="empresa"
+                placeholder="Nombre de tu empresa"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="cot-field">
+              <label for={inputId('servicio')}>¿Qué producto o servicio necesitas? <span class="req">*</span></label>
+              <div class="cot-select-wrap">
+                <select id={inputId('servicio')} name="servicio">
+                  <option value="" disabled selected>Selecciona una categoría</option>
+                  <optgroup label="Productos">
+                    <option value="Extintores">Extintores certificados NOM</option>
+                    <option value="Señalamientos">Señalamientos de Emergencia NOM-003</option>
+                    <option value="Equipo para Bomberos">Equipo para Bomberos (NFPA)</option>
+                    <option value="Gabinetes">Gabinetes y Porta Extintores</option>
+                    <option value="Mangueras y Herrajes">Mangueras, Chiflones y Herrajes</option>
+                    <option value="Sistemas CI">Sistemas Contra Incendio</option>
+                    <option value="Primeros Auxilios">Botiquines y Primeros Auxilios</option>
+                    <option value="EPP">Equipo de Protección Personal (EPP)</option>
+                  </optgroup>
+                  <optgroup label="Servicios">
+                    <option value="Recarga de Extintores">Recarga de Extintores</option>
+                    <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
+                    <option value="Instalación de Sistemas CI">Instalación de Sistemas CI</option>
+                    <option value="Prueba Hidrostática">Prueba Hidrostática</option>
+                    <option value="Capacitación contra Incendios">Capacitación y Brigadas</option>
+                    <option value="Señalización NOM">Señalización e Instalación NOM</option>
+                  </optgroup>
+                  <option value="Varios">Varios / No estoy seguro</option>
+                </select>
+                <svg class="cot-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="cot-field">
+              <label for={inputId('detalle')}>Detalle de tu solicitud <span class="opt">(opcional)</span></label>
+              <textarea
+                id={inputId('detalle')}
+                name="detalle"
+                rows="3"
+                placeholder="Ejemplo: 3 extintores polvo seco 6 kg para bodega de 400 m², necesito entrega antes del viernes..."
+              ></textarea>
+            </div>
+
+            <!-- Urgencia -->
+            <div class="cot-urgencia">
+              <span class="cot-urgencia__label">¿Qué tan urgente es?</span>
+              <div class="cot-urgencia__opts">
+                {[
+                  { val: "Hoy mismo", icon: "🔴" },
+                  { val: "Esta semana", icon: "🟡" },
+                  { val: "Sin urgencia", icon: "🟢" },
+                ].map(opt => (
+                  <label class="cot-urgencia__opt">
+                    <input type="radio" name={`urgencia-${pageId}`} value={opt.val} />
+                    <span>{opt.icon} {opt.val}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer / CTA -->
+          <div class="cot-card__footer">
+            <button
+              type="button"
+              class="cot-btn"
+              id={`cot-btn-${pageId}`}
+              data-page-id={pageId}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Enviar cotización por WhatsApp
+            </button>
+
+            <div class="cot-trust-row">
+              <span class="cot-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Sin compromiso
+              </span>
+              <span class="cot-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Respuesta &lt;24h
+              </span>
+              <span class="cot-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Datos protegidos
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Handler para todos los botones de cotización en la página
+  document.querySelectorAll<HTMLButtonElement>('[id^="cot-btn-"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pid = btn.dataset.pageId ?? 'global';
+      const get = (name: string) => {
+        const el = document.getElementById(`cot-${pid}-${name}`);
+        if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
+          return el.value.trim();
+        }
+        return '';
+      };
+
+      const nombre   = get('nombre');
+      const tel      = get('tel');
+      const empresa  = get('empresa');
+      const servicio = get('servicio');
+      const detalle  = get('detalle');
+      const urgencia = (document.querySelector<HTMLInputElement>(`input[name="urgencia-${pid}"]:checked`)?.value) ?? '';
+
+      let msg = '¡Hola! Solicito cotización de equipos contra incendios.';
+      if (nombre)   msg += `\n\n👤 *Nombre:* ${nombre}`;
+      if (tel)      msg += `\n📞 *Teléfono:* ${tel}`;
+      if (empresa)  msg += `\n🏢 *Empresa:* ${empresa}`;
+      if (servicio) msg += `\n📦 *Necesito:* ${servicio}`;
+      if (urgencia) msg += `\n⏱ *Urgencia:* ${urgencia}`;
+      if (detalle)  msg += `\n📝 *Detalle:* ${detalle}`;
+
+      window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  });
+</script>
+
+<style>
+  /* ── SECCIÓN ──────────────────────────────────────── */
+  .faq-cot-section {
+    padding: 5rem 0;
+    background: var(--c-white);
+  }
+  .faq-cot-section--gray {
+    background: var(--c-surface);
+  }
+
+  /* ── HEADER ──────────────────────────────────────── */
+  .faq-cot__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-cot__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    background: var(--c-primary-light);
+    border: 1px solid rgba(var(--c-primary-rgb), 0.2);
+    padding: 0.3rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .faq-cot__header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.375rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+    margin-bottom: 0.625rem;
+  }
+
+  .faq-cot__header p {
+    color: var(--c-muted);
+    font-size: 1rem;
+    max-width: 60ch;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* ── GRID 2 COLUMNAS ─────────────────────────────── */
+  .faq-cot__grid {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── COLUMNA FAQ ─────────────────────────────────── */
+  .faq-col__header {
+    margin-bottom: 1.75rem;
+  }
+
+  .faq-col__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--c-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.625rem;
+  }
+
+  .faq-col__header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--c-ink);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-col__header p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.6;
+  }
+
+  .faq-col__header a {
+    color: var(--c-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .faq-col__header a:hover { color: var(--c-primary-dark); }
+
+  /* ── FAQ ITEMS ───────────────────────────────────── */
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary span {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.4;
+  }
+
+  .faq-item[open] summary span {
+    color: var(--c-primary);
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--c-primary);
+  }
+
+  .faq-answer {
+    padding-bottom: 1.25rem;
+  }
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.75;
+  }
+  .faq-answer strong { color: var(--c-ink-2); font-weight: 600; }
+  .faq-answer a { color: var(--c-primary); font-weight: 600; }
+
+  /* ── TRUST SIGNALS BAJO FAQ ──────────────────────── */
+  .faq-trust {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-trust__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+  .faq-trust__item svg {
+    color: var(--c-primary);
+    flex-shrink: 0;
+  }
+
+  /* ── COLUMNA FORMULARIO ──────────────────────────── */
+  .cot-col {
+    position: sticky;
+    top: calc(var(--stack-height, 124px) + 1.5rem);
+  }
+
+  .cot-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  /* Header formulario */
+  .cot-card__header {
+    background: var(--c-ink);
+    padding: 1.5rem 1.625rem;
+  }
+
+  .cot-header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .cot-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.225rem 0.625rem;
+    border-radius: 3px;
+  }
+
+  .cot-header__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .cot-card__header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+  }
+
+  .cot-card__header p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.55;
+  }
+
+  /* Campos */
+  .cot-card__body {
+    padding: 1.5rem 1.625rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cot-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .cot-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cot-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+    line-height: 1.3;
+  }
+
+  .req { color: var(--c-primary); }
+  .opt { color: var(--c-muted); font-weight: 400; font-size: 0.75rem; }
+
+  .cot-field input,
+  .cot-field textarea {
+    width: 100%;
+    padding: 0.6rem 0.875rem;
+    border: 1.5px solid var(--c-border);
+    border-radius: 5px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--c-ink);
+    background: var(--c-white);
+    outline: none;
+    resize: none;
+    line-height: 1.5;
+  }
+  .cot-field input:focus,
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(var(--c-primary-rgb), 0.08);
+  }
+  .cot-field input::placeholder,
+  .cot-field textarea::placeholder {
+    color: #A1A1AA;
+  }
+
+  /* Select custom */
+  .cot-select-wrap {
+    position: relative;
+  }
+  .cot-field select {
+    width: 100%;
+    padding: 0.6rem 2.25rem 0.6rem 0.875rem;
+    border: 1.5px solid var(--c-border);
+    border-radius: 5px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--c-ink);
+    background: var(--c-white);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .cot-field select:focus {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(var(--c-primary-rgb), 0.08);
+  }
+  .cot-select-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c-muted);
+    pointer-events: none;
+  }
+
+  /* Urgencia */
+  .cot-urgencia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cot-urgencia__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+  .cot-urgencia__opts {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .cot-urgencia__opt {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    cursor: pointer;
+  }
+  .cot-urgencia__opt input[type="radio"] {
+    width: auto;
+    accent-color: var(--c-primary);
+    cursor: pointer;
+  }
+  .cot-urgencia__opt span {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--c-ink-2);
+  }
+
+  /* Footer / CTA */
+  .cot-card__footer {
+    padding: 0 1.625rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .cot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: #25D366;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    padding: 0.9375rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    transition: background-color 0.2s;
+  }
+  .cot-btn:hover { background: #1EBA57; }
+  .cot-btn:active { background: #17A34A; }
+
+  .cot-trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cot-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--c-muted);
+  }
+  .cot-trust-item svg { color: var(--c-primary); }
+
+  /* ── RESPONSIVE ─────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .faq-cot__grid {
+      grid-template-columns: 1fr 400px;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .faq-cot__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .cot-col {
+      position: static;
+    }
+    .faq-trust {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cot-row {
+      grid-template-columns: 1fr;
+    }
+    .faq-trust {
+      grid-template-columns: 1fr;
+    }
+    .cot-trust-row {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

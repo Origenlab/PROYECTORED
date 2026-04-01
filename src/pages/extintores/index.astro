@@ -1,32 +1,398 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
-import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Venta de Extintores Contra Incendios en CDMX | Proyecto Red";
+const description = "Catálogo completo de extintores certificados NOM: polvo seco ABC, CO₂, AFFF, Tipo K, agente limpio, Cold Fire y automáticos. Venta directa en CDMX y Estado de México con entrega el mismo día.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Productos", href: "/productos/" },
+  { label: "Extintores" },
+];
+
+const metricas = [
+  { valor: "10", label: "Tipos de extintor" },
+  { valor: "NOM", label: "Certificación incluida" },
+  { valor: "1 kg–50 kg", label: "Capacidades" },
+  { valor: "24h", label: "Entrega CDMX" },
+];
+
+// ── Productos de esta categoría ──────────────────────
+const extintores = [
+  {
+    nombre: "Polvo Seco ABC (PQS)",
+    desc: "El más utilizado en México. Combate fuegos clase A, B y C. Desde 1 kg hasta 50 kg rodante. Obligatorio en la mayoría de inmuebles según NOM-002-STPS.",
+    href: "/extintores/polvo-seco/",
+    badge: "Más vendido",
+  },
+  {
+    nombre: "CO₂ — Dióxido de Carbono",
+    desc: "Descarga limpia sin residuos. Ideal para equipos eléctricos, servidores, laboratorios y salas de cómputo. No deja polvo ni daña componentes electrónicos.",
+    href: "/extintores/co2/",
+    badge: "Electrónica",
+  },
+  {
+    nombre: "AFFF — Espuma Mecánica",
+    desc: "Espuma formadora de película acuosa. Para fuegos de líquidos inflamables: gasolina, aceites, solventes. Usado en gasolineras, talleres y plantas químicas.",
+    href: "/extintores/afff/",
+    badge: null,
+  },
+  {
+    nombre: "Tipo K — Cocinas Industriales",
+    desc: "Especializado en aceites vegetales y grasas animales a alta temperatura. Obligatorio en restaurantes, cocinas industriales y dark kitchens con freidoras.",
+    href: "/extintores/tipo-k/",
+    badge: "Restaurantes",
+  },
+  {
+    nombre: "Púrpura K — Bicarbonato de Potasio",
+    desc: "Para fuegos clase B y C de alta intensidad. Mayor poder de extinción que el PQS en líquidos inflamables. Usado en industria petroquímica y aeroportuaria.",
+    href: "/extintores/purpura-k/",
+    badge: null,
+  },
+  {
+    nombre: "Agua a Presión",
+    desc: "Solución ecológica para materiales sólidos combustibles: madera, papel, tela y textiles. Sin agentes químicos — menor impacto ambiental.",
+    href: "/extintores/agua-a-presion/",
+    badge: null,
+  },
+  {
+    nombre: "Cold Fire — Enfriamiento Avanzado",
+    desc: "Tecnología de enfriamiento rápido para incendios de alta temperatura. Reduce la temperatura del combustible por debajo del punto de ignición.",
+    href: "/extintores/cold-fire/",
+    badge: "Innovación",
+  },
+  {
+    nombre: "Automáticos — Sin Intervención Humana",
+    desc: "Activación autónoma por temperatura. Ideales para áreas desatendidas: cuartos de máquinas, servidores, bodegas. Se activan solos a 68°C o 93°C.",
+    href: "/extintores/automaticos/",
+    badge: null,
+  },
+  {
+    nombre: "ABC Multipropósito",
+    desc: "El extintor más versátil: sólidos, líquidos y eléctricos. Requerido por norma en la mayoría de inmuebles comerciales e industriales en México.",
+    href: "/extintores/abc/",
+    badge: "Obligatorio",
+  },
+  {
+    nombre: "Agente Limpio",
+    desc: "Cero residuos, cero daño. Protege equipos electrónicos, archivos, obras de arte y materiales sensibles. El estándar premium para centros de datos.",
+    href: "/extintores/agente-limpio/",
+    badge: "Premium",
+  },
+];
+
+// ── FAQs de extintores ───────────────────────────────
+const faqsExtintores = [
+  { pregunta: "¿Qué extintor necesito para mi oficina o negocio?", respuesta: "Para la mayoría de oficinas y comercios, el extintor <strong>ABC multipropósito de 4.5 o 6 kg</strong> es la opción estándar. Si tienes equipo electrónico sensible (servidores, centros de datos), complementa con un <strong>CO₂ o agente limpio</strong>. Si manejas cocina con freidoras, necesitas un <strong>Tipo K</strong> además del ABC. Te asesoramos sin costo para que elijas exactamente lo que necesitas." },
+  { pregunta: "¿Cuántos extintores necesito según la NOM-002-STPS?", respuesta: "La norma establece <strong>un extintor por cada 300 m²</strong> de superficie, con un mínimo de uno por piso. La distancia máxima de recorrido hasta un extintor debe ser de 15 metros para riesgo ordinario. Además, deben ser del tipo adecuado para el riesgo predominante en cada zona. Te hacemos el cálculo gratuito según los metros cuadrados y el tipo de tu instalación." },
+  { pregunta: "¿Cuánto cuesta un extintor certificado NOM?", respuesta: "El precio varía según el tipo y la capacidad. Un extintor <strong>PQS ABC de 4.5 kg</strong> (el más común) parte desde $450 MXN. Los extintores de <strong>CO₂</strong> y <strong>agente limpio</strong> son más costosos por la tecnología del agente. Todos incluyen certificado NOM, ficha técnica y etiqueta de inspección. Escríbenos por WhatsApp con el tipo y la cantidad para un precio exacto." },
+  { pregunta: "¿Cuál es la diferencia entre un extintor PQS y un ABC?", respuesta: "El <strong>PQS (Polvo Químico Seco)</strong> y el <strong>ABC</strong> son prácticamente lo mismo: ambos usan fosfato monoamónico como agente extintor y cubren fuegos clase A, B y C. La denominación 'ABC' indica las clases de fuego que combate, mientras que 'PQS' se refiere al tipo de agente. En el mercado mexicano se usan ambos nombres para referirse al mismo producto." },
+  { pregunta: "¿Cada cuánto tiempo se recargan los extintores?", respuesta: "La <strong>NOM-154-SCFI</strong> exige recarga <strong>anual</strong> o después de cualquier uso parcial o total. Cada <strong>5 años</strong> es obligatoria la prueba hidrostática para verificar la integridad del cilindro. En Proyecto Red programamos tus fechas de vencimiento y te avisamos antes de que venzan." },
+  { pregunta: "¿Los extintores incluyen soporte de pared y señalamiento?", respuesta: "Los extintores incluyen <strong>soporte de pared (bracket)</strong> para su instalación. El <strong>señalamiento de ubicación</strong> se vende por separado — te lo cotizamos junto con los extintores. La norma exige señalar la ubicación de cada extintor con un señalamiento fotoluminiscente visible a distancia." },
+];
 ---
-<Categoria title="Venta de Extintores Contra Incendios | Proyecto Red" description="Catálogo completo de extintores contra incendios. Polvo seco, CO2, AFFF, Tipo K, agente limpio y más." heroTitle="Extintores Contra Incendios" heroSubtitle="Encuentra el extintor ideal para tu empresa, industria o comercio.">
-  <h2>Extintores para Toda Necesidad de Protección</h2>
-  <p>Los extintores son la primera línea de defensa contra un incendio. Contar con el tipo correcto de extintor, en la capacidad adecuada y con el mantenimiento al día, puede marcar la diferencia entre un conato controlado y una tragedia. En Proyecto Red ofrecemos un catálogo completo de extintores certificados bajo las Normas Oficiales Mexicanas (NOM-100-STPS y NOM-154-SCFI), abarcando todas las clases de fuego: A (sólidos combustibles), B (líquidos inflamables), C (equipos eléctricos energizados), D (metales combustibles) y K (aceites y grasas de cocina).</p>
-  <p>Cada tipo de extintor tiene características específicas que lo hacen más efectivo según el riesgo predominante en tu instalación. Ya sea una oficina, una cocina industrial, un almacén de sustancias químicas o un centro de datos, aquí encontrarás el equipo que necesitas con la asesoría de profesionales certificados. Todos nuestros extintores incluyen certificado de garantía, placa de identificación y se entregan listos para su instalación conforme a la normatividad vigente.</p>
 
-  <h2>Tipos de Extintores</h2>
-  <div class="grid-categorias">
-    <TarjetaCategoria titulo="Polvo Químico Seco" descripcion="Extintores PQS para fuegos clase A, B y C. El agente más utilizado en México." href="/extintores/polvo-seco" />
-    <TarjetaCategoria titulo="CO2 (Dióxido de Carbono)" descripcion="Descarga limpia sin residuos. Ideales para equipos eléctricos y electrónicos." href="/extintores/co2" />
-    <TarjetaCategoria titulo="AFFF (Espuma Mecánica)" descripcion="Espuma formadora de película acuosa para fuegos de líquidos inflamables." href="/extintores/afff" />
-    <TarjetaCategoria titulo="Tipo K para Cocinas" descripcion="Especializados en fuegos de aceites y grasas de cocina comercial e industrial." href="/extintores/tipo-k" />
-    <TarjetaCategoria titulo="Púrpura K" descripcion="Bicarbonato de potasio para fuegos clase B y C de alta intensidad." href="/extintores/purpura-k" />
-    <TarjetaCategoria titulo="Agua a Presión" descripcion="Solución ecológica para fuegos clase A en materiales sólidos combustibles." href="/extintores/agua-a-presion" />
-    <TarjetaCategoria titulo="Cold Fire" descripcion="Tecnología de enfriamiento avanzado para incendios de alta temperatura." href="/extintores/cold-fire" />
-    <TarjetaCategoria titulo="Automáticos" descripcion="Protección sin intervención humana para áreas desatendidas y servidores." href="/extintores/automaticos" />
-    <TarjetaCategoria titulo="ABC Multipropósito" descripcion="El extintor más versátil, requerido por norma en la mayoría de inmuebles." href="/extintores/abc" />
-    <TarjetaCategoria titulo="Agente Limpio" descripcion="Sin residuos. Protegen electrónica, archivos y equipos sensibles." href="/extintores/agente-limpio" />
-  </div>
-</Categoria>
+<Base
+  title={title}
+  description={description}
+>
 
-<style>
-  .grid-categorias {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-</style>
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          10 tipos de extintor certificados NOM
+        </div>
+        <h1>Venta de <span class="h1-accent">Extintores</span><br>Contra Incendios</h1>
+        <p class="hero-sub">
+          Catálogo completo de extintores certificados: polvo seco, CO₂, AFFF, Tipo K, agente limpio, Cold Fire y automáticos. Desde 1 kg portátil hasta 50 kg rodante. Entrega directa en CDMX y Estado de México.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar extintores
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver todos los tipos</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>Los extintores son la primera línea de defensa contra un incendio. Tener el tipo correcto, en la capacidad adecuada y con el mantenimiento al día, es la diferencia entre un conato controlado y una tragedia. En Proyecto Red vendemos extintores certificados NOM para todos los tipos de fuego.</p>
+        <p>Cada extintor sale con certificado de conformidad, ficha técnica, etiqueta de inspección y soporte de pared incluido. Asesoría técnica gratuita para que elijas exactamente lo que tu instalación necesita según la NOM-002-STPS.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Extintores">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO — cat-header + productos-grid
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" id="catalogo">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/extintores-contra-incendios.jpg" alt="Extintores contra incendios certificados NOM" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>Extintores Certificados</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Catálogo de extintores</span>
+            <span class="cat-badge-pill">NOM-002-STPS</span>
+          </div>
+          <h2 class="cat-header__title">10 Tipos de Extintores Certificados para Cada Tipo de Fuego</h2>
+          <p class="cat-header__desc">Selecciona el extintor adecuado según el riesgo de tu instalación. Todos incluyen certificado NOM, ficha técnica y soporte de pared. Proveedor directo — sin intermediarios.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-100-STPS</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href="/productos/" class="btn-outline">Ver catálogo completo</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20elegir%20extintores`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de productos — 4 columnas como productos.astro -->
+      <div class="productos-grid">
+        {extintores.map(ext => (
+          <a href={ext.href} class="prod-card" aria-label={ext.nombre}>
+            <div class="prod-card__top">
+              {ext.badge && <span class="prod-badge">{ext.badge}</span>}
+              {!ext.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{ext.nombre}</h3>
+              <p class="prod-card__sub">{ext.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Ver detalles y cotizar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Card CTA WhatsApp — igual que productos.astro -->
+        <a
+          href={`${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Cotizar extintores"
+        >
+          <div class="prod-card-cta__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿No sabes qué extintor necesitas?</p>
+          <p class="prod-card-cta__sub">Te asesoramos gratis — respondemos en menos de 24 horas</p>
+          <span class="prod-card-cta__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SEO CONTENT — ¿Por qué Proyecto Red?
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/extintores-contra-incendios.jpg" alt="Proveedor directo de extintores en CDMX" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Proveedor directo</span>
+            <h2>¿Por Qué Proyecto Red?</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Proveedor directo</span>
+            <span class="cat-badge-pill">NOM-002-STPS</span>
+          </div>
+          <h2 class="cat-header__title">¿Por Qué Comprar Extintores en Proyecto Red?</h2>
+          <p class="cat-header__desc">Somos fabricante y proveedor directo — no revendemos marcas de terceros. Eso significa mejores precios, disponibilidad inmediata en almacén y un equipo técnico que conoce cada producto porque los maneja todos los días.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-100-STPS</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href="/productos/" class="btn-outline">Ver catálogo completo</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20para%20mi%20empresa`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicios relacionados como prod-cards -->
+      <div class="productos-grid">
+        <a href="/servicios/#recarga-extintores" class="prod-card" aria-label="Recarga de extintores">
+          <div class="prod-card__top">
+            <span class="prod-badge">Servicio</span>
+          </div>
+          <div class="prod-card__body">
+            <h3 class="prod-card__name">Recarga de Extintores</h3>
+            <p class="prod-card__sub">Recarga anual obligatoria de todos los tipos de agente extintor. Collar de garantía y etiqueta de inspección incluidos.</p>
+          </div>
+          <div class="prod-card__footer">
+            <span class="prod-card__link">
+              Ver servicio
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+        <a href="/servicios/#mantenimiento-preventivo" class="prod-card" aria-label="Mantenimiento preventivo">
+          <div class="prod-card__top">
+            <span class="prod-badge">Servicio</span>
+          </div>
+          <div class="prod-card__body">
+            <h3 class="prod-card__name">Mantenimiento Preventivo</h3>
+            <p class="prod-card__sub">Pólizas anuales con revisión periódica, reportes para auditorías y programación de fechas de vencimiento.</p>
+          </div>
+          <div class="prod-card__footer">
+            <span class="prod-card__link">
+              Ver servicio
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+        <a href="/servicios/#prueba-hidrostatica" class="prod-card" aria-label="Prueba hidrostática">
+          <div class="prod-card__top">
+            <span class="prod-badge">Servicio</span>
+          </div>
+          <div class="prod-card__body">
+            <h3 class="prod-card__name">Prueba Hidrostática</h3>
+            <p class="prod-card__sub">Obligatoria cada 5 años según NOM-154-SCFI. Verificación de integridad del cilindro con certificado de prueba.</p>
+          </div>
+          <div class="prod-card__footer">
+            <span class="prod-card__link">
+              Ver servicio
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+        <a href="/servicios/#capacitacion" class="prod-card" aria-label="Capacitación y brigadas">
+          <div class="prod-card__top">
+            <span class="prod-badge">Servicio</span>
+          </div>
+          <div class="prod-card__body">
+            <h3 class="prod-card__name">Capacitación y Brigadas</h3>
+            <p class="prod-card__sub">Cursos de uso de extintores con prácticas en vivo. Constancias DC-3 válidas ante STPS incluidas.</p>
+          </div>
+          <div class="prod-card__footer">
+            <span class="prod-card__link">
+              Ver servicio
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores"
+    subtitulo="Todo lo que necesitas saber antes de comprar extintores para tu empresa"
+    pageId="extintores"
+    bgGray={false}
+    faqs={faqsExtintores}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">¿Necesitas extintores certificados en CDMX?</h2>
+        <p>Escríbenos con el tipo y la cantidad — te damos precio directo con certificado NOM incluido y entrega el mismo día en zona metropolitana.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20contra%20incendios`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

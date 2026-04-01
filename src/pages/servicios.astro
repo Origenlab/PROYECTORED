@@ -1,0 +1,599 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBar from '../components/CtaBar.astro';
+import FaqCotizacion from '../components/FaqCotizacion.astro';
+import '../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+// ── SEO ─────────────────────────────────────────────
+const title = "Servicios de Equipos Contra Incendios en CDMX | Proyecto Red";
+const description = "Servicios profesionales de protección contra incendios: venta de equipos, recarga de extintores, mantenimiento preventivo, instalación de sistemas CI, prueba hidrostática, capacitación DC-3 y señalización NOM. CDMX y Estado de México.";
+
+// ── Breadcrumb ───────────────────────────────────────
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Servicios" },
+];
+
+// ── Métricas ─────────────────────────────────────────
+const metricas = [
+  { valor: "8", label: "Servicios profesionales" },
+  { valor: "NOM", label: "Cumplimiento garantizado" },
+  { valor: "<24h", label: "Tiempo de respuesta" },
+  { valor: "DC-3", label: "Constancias STPS" },
+];
+
+// ── Servicios ────────────────────────────────────────
+const servicios = [
+  {
+    id: "venta-equipos",
+    titulo: "Venta de Equipos Contra Incendios",
+    badge: "Catálogo completo",
+    desc: "Más de 50 productos certificados NOM y NFPA: extintores de todos los tipos, señalamientos fotoluminiscentes, equipo para bomberos, gabinetes, mangueras, sistemas de detección y EPP. Proveedor directo, sin intermediarios — mejores precios y tiempos de entrega que cualquier distribuidor.",
+    href: "/productos/",
+    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
+    detalles: [
+      { nombre: "Extintores certificados NOM", sub: "PQS, CO₂, AFFF, Tipo K, agente limpio, Cold Fire", href: "/extintores/" },
+      { nombre: "Señalamientos de emergencia", sub: "Fotoluminiscentes NOM-003-SEGOB para evacuación", href: "/senalamientos/" },
+      { nombre: "Equipo para bomberos NFPA", sub: "Trajes estructurales, ERA, herramientas de rescate", href: "/equipo-bomberos/" },
+      { nombre: "Gabinetes y porta extintores", sub: "Para extintor, hidrante y equipos de bombero", href: "/gabinetes/" },
+      { nombre: "Mangueras y herrajes", sub: "Chiflones, válvulas, carretes, toma siamesa", href: "/mangueras/" },
+      { nombre: "Sistemas contra incendio", sub: "Alarmas, detectores, rociadores, tableros", href: "/sistemas/" },
+    ],
+    normas: ["NOM-154-SCFI", "NOM-002-STPS", "NFPA"],
+  },
+  {
+    id: "recarga-extintores",
+    titulo: "Recarga de Extintores",
+    badge: "NOM-154-SCFI",
+    desc: "Recarga certificada con agentes de alta calidad para todos los tipos de extintor. Incluye inspección completa del equipo, prueba de presión, reemplazo de sellos y collar de garantía. Servicio a domicilio en CDMX y Estado de México con préstamo de extintores durante el proceso.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20servicio%20de%20recarga%20de%20extintores`,
+    hrefExternal: true,
+    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
+    detalles: [
+      { nombre: "Polvo seco ABC / PQS", sub: "El más común — oficinas, bodegas, vehículos", href: "/extintores/polvo-seco/" },
+      { nombre: "CO₂ — Dióxido de carbono", sub: "Electrónica, servidores, laboratorios", href: "/extintores/co2/" },
+      { nombre: "AFFF / Espuma", sub: "Líquidos inflamables, talleres, gasolineras", href: "/extintores/afff/" },
+      { nombre: "Tipo K — Cocinas industriales", sub: "Aceites vegetales, freidoras, restaurantes", href: "/extintores/tipo-k/" },
+      { nombre: "Agente limpio", sub: "Centros de datos, archivos, equipos críticos", href: "/extintores/agente-limpio/" },
+      { nombre: "Automáticos y especiales", sub: "Activación autónoma sin intervención humana", href: "/extintores/automaticos/" },
+    ],
+    normas: ["NOM-154-SCFI", "NOM-002-STPS"],
+  },
+  {
+    id: "mantenimiento-preventivo",
+    titulo: "Mantenimiento Preventivo",
+    badge: "Pólizas anuales",
+    desc: "Programa de inspección periódica para que tu equipo siempre esté listo y tu empresa pase cualquier auditoría de Protección Civil sin observaciones. Revisión completa de presión, agente extintor, válvulas y manguera con reporte técnico documentado.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20cotizar%20mantenimiento%20preventivo%20de%20extintores`,
+    hrefExternal: true,
+    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
+    detalles: [
+      { nombre: "Inspección mensual o trimestral", sub: "Frecuencia adaptada a tu tipo de instalación" },
+      { nombre: "Revisión de presión y agente", sub: "Verificación de manómetro y cantidad de agente" },
+      { nombre: "Etiquetas y bitácoras", sub: "Actualización de registros para auditorías" },
+      { nombre: "Reportes técnicos STPS", sub: "Documentación lista para Protección Civil" },
+      { nombre: "Detección temprana de fallas", sub: "Antes de que sean un problema en inspección" },
+      { nombre: "Pólizas anuales con descuento", sub: "Precio preferencial para contratos anuales" },
+    ],
+    normas: ["NOM-002-STPS", "NOM-154-SCFI"],
+  },
+  {
+    id: "instalacion-sistemas",
+    titulo: "Instalación de Sistemas Contra Incendio",
+    badge: "NFPA 13/72",
+    desc: "Diseño e instalación llave en mano de sistemas completos de detección, alarma y supresión. Desde detectores de humo para oficinas hasta rociadores automáticos para plantas industriales — con ingeniería, instalación y certificación incluidas.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20cotizar%20instalaci%C3%B3n%20de%20sistema%20contra%20incendio`,
+    hrefExternal: true,
+    img: "/imagenes/sistemas/alarmas.jpg",
+    detalles: [
+      { nombre: "Alarmas contra incendio", sub: "Convencionales y analógico-direccionables", href: "/sistemas/alarmas/" },
+      { nombre: "Detectores de humo y calor", sub: "Iónicos, fotoeléctricos, termovelocimétricos", href: "/sistemas/detectores/" },
+      { nombre: "Rociadores automáticos NFPA 13", sub: "Sistemas húmedos, secos y de diluvio", href: "/sistemas/rociadores/" },
+      { nombre: "Redes hidráulicas", sub: "Diseño y tendido de tubería para rociadores", href: "/sistemas/redes-hidraulicas/" },
+      { nombre: "Tableros de control", sub: "Paneles con monitoreo y diagnóstico remoto", href: "/sistemas/tableros/" },
+      { nombre: "Visita técnica gratuita", sub: "Diagnóstico y presupuesto antes de iniciar" },
+    ],
+    normas: ["NFPA 13", "NFPA 72", "NOM-002-STPS"],
+  },
+  {
+    id: "prueba-hidrostatica",
+    titulo: "Prueba Hidrostática",
+    badge: "Obligatoria cada 5 años",
+    desc: "Verificación de la integridad estructural del cilindro del extintor. La NOM-154-SCFI exige esta prueba cada 5 años. Detecta corrosión interna, deformaciones y fallas invisibles a simple vista. Si el cilindro no pasa, te ofrecemos reemplazo inmediato.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20prueba%20hidrost%C3%A1tica%20para%20mis%20extintores`,
+    hrefExternal: true,
+    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
+    detalles: [
+      { nombre: "Prueba de presión certificada", sub: "Según NOM-154-SCFI vigente" },
+      { nombre: "Detección de corrosión interna", sub: "Fallas invisibles a inspección visual" },
+      { nombre: "Certificado oficial de prueba", sub: "Para tu expediente de Protección Civil" },
+      { nombre: "Todos los tipos de extintor", sub: "PQS, CO₂, AFFF, Tipo K, agente limpio" },
+      { nombre: "Dictamen técnico documentado", sub: "Resultado aprobado o rechazo fundamentado" },
+      { nombre: "Reemplazo inmediato", sub: "Si el cilindro no pasa, lo cambiamos" },
+    ],
+    normas: ["NOM-154-SCFI"],
+  },
+  {
+    id: "asesoria-tecnica",
+    titulo: "Asesoría Técnica y Dictamen",
+    badge: "Sin costo",
+    desc: "Análisis de riesgo de tu instalación para determinar el equipo exacto que necesitas. Evaluamos tipo de riesgo, superficie, normativas aplicables y te entregamos un plan de equipamiento con prioridades y presupuesto por etapas. Sin costo y sin compromiso.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20t%C3%A9cnica%20para%20mi%20empresa`,
+    hrefExternal: true,
+    img: "/imagenes/senalamientos/senalamientos-hero.jpg",
+    detalles: [
+      { nombre: "Evaluación de tipo de riesgo", sub: "Bajo, medio u ordinario según NOM-002-STPS" },
+      { nombre: "Recomendación de extintores", sub: "Tipo, cantidad y ubicación correcta por área" },
+      { nombre: "Diagnóstico de señalización", sub: "Qué señalamientos necesitas según NOM-003" },
+      { nombre: "Revisión de cumplimiento", sub: "Preparación para inspecciones de Protección Civil" },
+      { nombre: "Plan de equipamiento", sub: "Prioridades y presupuesto por etapas" },
+      { nombre: "Documentación técnica", sub: "Lista para tu expediente de seguridad" },
+    ],
+    normas: ["NOM-002-STPS", "NOM-003-SEGOB", "NOM-026-STPS"],
+  },
+  {
+    id: "capacitacion",
+    titulo: "Capacitación y Formación de Brigadas",
+    badge: "Constancias DC-3",
+    desc: "Cursos prácticos de prevención y combate de incendios para tu personal. Uso correcto de extintores, formación de brigadas, simulacros de evacuación y primeros auxilios. Incluye constancias DC-3 con validez oficial ante la STPS.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20capacitaci%C3%B3n%20contra%20incendios%20para%20mi%20empresa`,
+    hrefExternal: true,
+    img: "/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg",
+    detalles: [
+      { nombre: "Uso y manejo de extintores", sub: "Práctica con fuego real — todos los tipos" },
+      { nombre: "Formación de brigadas", sub: "Brigadas internas de emergencia certificadas" },
+      { nombre: "Simulacros de evacuación", sub: "Escenarios reales con cronometraje" },
+      { nombre: "Constancias DC-3 STPS", sub: "Validez oficial para auditorías laborales" },
+      { nombre: "Primeros auxilios básicos", sub: "Protocolo de emergencia y material de curación" },
+      { nombre: "Capacitación en sitio", sub: "En tus instalaciones, con tu equipo real" },
+    ],
+    normas: ["NOM-002-STPS", "STPS DC-3"],
+  },
+  {
+    id: "senalizacion",
+    titulo: "Señalización e Instalación NOM",
+    badge: "NOM-003-SEGOB",
+    desc: "Venta e instalación profesional de señalamientos fotoluminiscentes. Rutas de evacuación, salidas de emergencia, ubicación de extintores, punto de reunión y señales de prohibición. Material visible sin energía eléctrica — aprobado por Protección Civil.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20cotizar%20se%C3%B1alamientos%20para%20mi%20empresa`,
+    hrefExternal: true,
+    img: "/imagenes/senalamientos/senalamientos-hero.jpg",
+    detalles: [
+      { nombre: "Rutas de evacuación", sub: "Flechas fotoluminiscentes visibles en oscuridad", href: "/senalamientos/salvacion/" },
+      { nombre: "Ubicación de extintores", sub: "Señales de salvación para cada punto de equipo", href: "/senalamientos/" },
+      { nombre: "Señales de prohibición", sub: "No fumar, no paso, no encender fuego", href: "/senalamientos/prohibicion/" },
+      { nombre: "Señales de advertencia", sub: "Riesgo eléctrico, material inflamable, piso mojado", href: "/senalamientos/advertencia/" },
+      { nombre: "Instalación profesional", sub: "En la altura y ubicación que exige la norma" },
+      { nombre: "Plano de señalización", sub: "Documentación para expediente de Protección Civil" },
+    ],
+    normas: ["NOM-003-SEGOB", "NOM-026-STPS"],
+  },
+];
+
+// ── Proceso ──────────────────────────────────────────
+const proceso = [
+  { num: "01", titulo: "Contacto", desc: "Escríbenos por WhatsApp o llámanos. Cuéntanos qué tipo de instalación tienes, cuántos metros cuadrados y qué necesitas." },
+  { num: "02", titulo: "Diagnóstico", desc: "Analizamos tu instalación y determinamos el equipo y servicios exactos que necesitas según la normativa aplicable a tu giro." },
+  { num: "03", titulo: "Cotización", desc: "Te enviamos cotización detallada con productos, cantidades, precios unitarios y tiempos de entrega. Sin letra chica." },
+  { num: "04", titulo: "Entrega e Instalación", desc: "Entregamos en tu domicilio, instalamos el equipo y te dejamos la documentación lista para Protección Civil." },
+];
+
+// ── FAQs específicas de servicios ────────────────────
+const faqsServicios = [
+  { pregunta: "¿Cada cuánto tiempo se deben recargar los extintores?", respuesta: "La <strong>NOM-154-SCFI</strong> indica que los extintores deben recargarse cada año o después de cada uso parcial o total. Además, cada 5 años es obligatoria la <strong>prueba hidrostática</strong> para verificar la integridad del cilindro. En Proyecto Red te recordamos las fechas de vencimiento y programamos el servicio para que nunca tengas equipo fuera de norma." },
+  { pregunta: "¿La recarga incluye certificado NOM para Protección Civil?", respuesta: "Sí. Cada recarga incluye <strong>collar de garantía, etiqueta de servicio actualizada y ficha técnica</strong> para tu expediente de Protección Civil. La documentación cumple con la NOM-154-SCFI y es aceptada en inspecciones de STPS y Protección Civil sin observaciones." },
+  { pregunta: "¿Ofrecen mantenimiento preventivo con póliza anual?", respuesta: "Sí. Ofrecemos <strong>pólizas anuales de mantenimiento</strong> que incluyen inspecciones programadas (mensuales, trimestrales o semestrales), reporte técnico documentado, actualización de etiquetas y bitácoras. Las pólizas tienen precio preferencial comparado con servicio por evento y garantizan que siempre estés preparado para una auditoría." },
+  { pregunta: "¿Hacen la instalación de sistemas contra incendio en todo tipo de inmueble?", respuesta: "Sí. Instalamos sistemas de <strong>detección, alarma y supresión</strong> en oficinas, edificios corporativos, plantas industriales, restaurantes, hoteles, bodegas y centros comerciales. Cada proyecto inicia con una <strong>visita técnica gratuita</strong> donde determinamos el alcance, el presupuesto y el cronograma antes de que firmes cualquier contrato." },
+  { pregunta: "¿Las capacitaciones incluyen constancias con validez oficial?", respuesta: "Sí. Todas nuestras capacitaciones incluyen <strong>constancias DC-3 válidas ante la STPS</strong>. Los cursos cubren uso de extintores, formación de brigadas, evacuación y primeros auxilios. Se imparten en tus instalaciones con equipo real y escenarios prácticos — no solo teoría." },
+  { pregunta: "¿Cuánto cuesta una asesoría técnica para saber qué equipo necesito?", respuesta: "<strong>La asesoría técnica es completamente gratuita y sin compromiso.</strong> Evaluamos tu instalación, tipo de riesgo, superficie y normativas aplicables. Te entregamos un plan de equipamiento con prioridades y presupuesto por etapas para que puedas ir cumpliendo a tu ritmo." },
+  { pregunta: "¿Pueden instalar señalamientos y darme el plano para Protección Civil?", respuesta: "Sí. <strong>Vendemos, instalamos y documentamos</strong> la señalización completa. Te entregamos el plano de señalización con la ubicación de cada señal (rutas de evacuación, salidas, punto de reunión, extintores) listo para anexar a tu expediente de Protección Civil." },
+  { pregunta: "¿Atienden empresas fuera de CDMX y Estado de México?", respuesta: "Nuestra cobertura principal es la <strong>Ciudad de México y el Estado de México</strong>. Para empresas fuera de esta zona podemos coordinar envíos de productos por paquetería y, en proyectos de cierto volumen, desplazar equipos de instalación y capacitación. Contáctanos para evaluar tu caso específico." },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Servicios profesionales certificados
+        </div>
+        <h1>Servicios de Protección<br>Contra <span class="h1-accent">Incendios</span></h1>
+        <p class="hero-sub">
+          Venta, recarga, mantenimiento, instalación, capacitación y señalización. Todo lo que tu empresa necesita para cumplir con Protección Civil y STPS en CDMX y Estado de México.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar cotización
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver todos los servicios</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>En Proyecto Red no solo vendemos equipos — ofrecemos protección integral contra incendios. Desde la asesoría técnica inicial hasta la capacitación de tu personal, nos encargamos de que tu empresa tenga el equipo correcto, funcionando y documentado para cualquier inspección.</p>
+        <p>Todos nuestros servicios cumplen con la normativa mexicana vigente: NOM-002-STPS, NOM-154-SCFI, NOM-003-SEGOB y estándares NFPA. Un solo proveedor para todo — sin buscar entre cinco empresas diferentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Capacidades">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       NAVEGACIÓN RÁPIDA
+  ══════════════════════════════════════ -->
+  <section class="nav-cats" aria-label="Navegación por servicio">
+    <div class="container">
+      <div class="nav-cats__inner">
+        <span class="nav-cats__label">Ir a servicio:</span>
+        <div class="nav-cats__links">
+          {servicios.map(s => (
+            <a href={`#${s.id}`} class="nav-cat-pill">{s.titulo.replace("Venta de Equipos Contra Incendios", "Venta de Equipos").replace("Instalación de Sistemas Contra Incendio", "Instalación Sistemas CI").replace("Capacitación y Formación de Brigadas", "Capacitación").replace("Asesoría Técnica y Dictamen", "Asesoría Técnica").replace("Señalización e Instalación NOM", "Señalización NOM")}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO DE SERVICIOS
+  ══════════════════════════════════════ -->
+  <main id="catalogo">
+    {servicios.map((srv, idx) => (
+      <section
+        id={srv.id}
+        class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
+        aria-labelledby={`srv-title-${srv.id}`}
+      >
+        <div class="container">
+
+          {/* Header de servicio */}
+          <div class="cat-header">
+            <div class="cat-header__img-wrap">
+              <img
+                src={srv.img}
+                alt={srv.titulo}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                width="640"
+                height="400"
+              />
+              <div class="cat-header__img-overlay"></div>
+              <div class="cat-header__img-content">
+                <span class="cat-norm-badge">{srv.badge}</span>
+                <h2 id={`srv-title-${srv.id}`}>{srv.titulo}</h2>
+              </div>
+            </div>
+
+            <div class="cat-header__info">
+              <div class="cat-header__meta">
+                <span class="section-label">Servicio</span>
+                <span class="cat-badge-pill">{srv.badge}</span>
+              </div>
+              <h2 class="cat-header__title">{srv.titulo}</h2>
+              <p class="cat-header__desc">{srv.desc}</p>
+
+              {/* Normas */}
+              <div class="normas-row">
+                {srv.normas.map(n => (
+                  <span class="norma-tag">{n}</span>
+                ))}
+              </div>
+
+              <div class="cat-header__ctas">
+                <a
+                  href={srv.href}
+                  class="btn-outline"
+                  target={srv.hrefExternal ? '_blank' : undefined}
+                  rel={srv.hrefExternal ? 'noopener noreferrer' : undefined}
+                >
+                  {srv.hrefExternal ? 'Solicitar este servicio' : 'Ver catálogo completo'}
+                </a>
+                <a
+                  href={`${WA_URL}?text=Hola%2C%20necesito%20información%20sobre%20${encodeURIComponent(srv.titulo)}`}
+                  class="cat-wa-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Cotizar por WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Grid de detalles */}
+          <div class="productos-grid">
+            {srv.detalles.map(d => (
+              <a href={d.href || `${WA_URL}?text=Hola%2C%20necesito%20${encodeURIComponent(d.nombre)}`} class="prod-card" target={d.href ? undefined : '_blank'} rel={d.href ? undefined : 'noopener noreferrer'}>
+                <div class="prod-card__body">
+                  <h3 class="prod-card__name">{d.nombre}</h3>
+                  <p class="prod-card__sub">{d.sub}</p>
+                </div>
+                <div class="prod-card__footer">
+                  <span class="prod-card__link">
+                    {d.href ? 'Ver detalles' : 'Cotizar'}
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+
+            {/* Card CTA */}
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20cotizar%20${encodeURIComponent(srv.titulo)}`}
+              class="prod-card prod-card--cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="prod-card-cta__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p class="prod-card-cta__text">¿Necesitas este servicio?</p>
+              <p class="prod-card-cta__sub">Cotiza por WhatsApp — respondemos en menos de 24 horas</p>
+              <span class="prod-card-cta__btn">Escribir al WhatsApp →</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <!-- ══════════════════════════════════════
+       PROCESO
+  ══════════════════════════════════════ -->
+  <section class="proceso-section">
+    <div class="container">
+      <div class="proceso-header">
+        <span class="section-label">Cómo funciona</span>
+        <h2>De la consulta a la protección total en 4 pasos</h2>
+        <p>Simple, transparente y sin sorpresas — así es trabajar con Proyecto Red</p>
+      </div>
+      <div class="proceso-grid">
+        {proceso.map(p => (
+          <div class="paso-card">
+            <span class="paso-num">{p.num}</span>
+            <h3 class="paso-titulo">{p.titulo}</h3>
+            <p class="paso-desc">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Nuestros Servicios"
+    subtitulo="Recarga, mantenimiento, instalación, capacitación y más — resolvemos tus dudas antes de que nos contactes"
+    pageId="servicios"
+    bgGray={false}
+    faqs={faqsServicios}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">¿Tu empresa necesita ponerse al día con Protección Civil?</h2>
+        <p>Escríbenos por WhatsApp. Te asesoramos sin costo, te cotizamos en menos de 24 horas y te entregamos con documentación lista para cualquier inspección.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20servicios%20contra%20incendios`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo de productos</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<!--<style is:global>
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--stack-height, 124px) + 3.5rem);
+    padding-bottom: 4rem;
+    background: linear-gradient(160deg, #0E0E0E 0%, #1A1010 55%, #0E0E0E 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(196,30,36,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .breadcrumb { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 1.25rem; font-size: 0.8125rem; }
+  .breadcrumb__link { color: rgba(255,255,255,0.45); }
+  .breadcrumb__link:hover { color: rgba(255,255,255,0.8); }
+  .breadcrumb__sep { color: rgba(255,255,255,0.25); }
+  .breadcrumb__current { color: rgba(255,255,255,0.7); font-weight: 500; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(196,30,36,0.4); background: rgba(196,30,36,0.1); color: rgba(255,255,255,0.8); font-size: 0.8125rem; font-weight: 500; padding: 0.3125rem 0.875rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .badge-dot { width: 6px; height: 6px; background: var(--c-primary); border-radius: 50%; }
+  h1 { font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.125rem; }
+  .h1-accent { color: var(--c-primary); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 2rem; max-width: 52ch; }
+  .hero-ctas { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+  .hero-right p { color: rgba(255,255,255,0.55); font-size: 0.9375rem; line-height: 1.75; margin-bottom: 1rem; }
+
+  /* ── MÉTRICAS ──────────────────────────────────────── */
+  .metricas-section { background: var(--c-primary); padding: 2rem 0; }
+  .metricas-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .metrica-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; border-right: 1px solid rgba(255,255,255,0.2); }
+  .metrica-item:last-child { border-right: none; }
+  .metrica-valor { font-size: 1.875rem; font-weight: 800; color: #fff; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.25rem; }
+  .metrica-label { font-size: 0.8125rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+  /* ── NAVEGACIÓN ────────────────────────────────────── */
+  .nav-cats { background: var(--c-white); border-bottom: 1px solid var(--c-border); padding: 0.875rem 0; position: sticky; top: var(--stack-height, 124px); z-index: 50; }
+  .nav-cats__inner { display: flex; align-items: center; gap: 1rem; overflow-x: auto; scrollbar-width: none; }
+  .nav-cats__inner::-webkit-scrollbar { display: none; }
+  .nav-cats__label { font-size: 0.8125rem; font-weight: 600; color: var(--c-muted); white-space: nowrap; flex-shrink: 0; }
+  .nav-cats__links { display: flex; gap: 0.5rem; flex-wrap: nowrap; }
+  .nav-cat-pill { display: inline-block; padding: 0.375rem 0.875rem; border: 1px solid var(--c-border); border-radius: 100px; font-size: 0.8125rem; font-weight: 500; color: var(--c-ink-2); white-space: nowrap; text-decoration: none; }
+  .nav-cat-pill:hover { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primary-light); }
+
+  /* ── SECCIONES ─────────────────────────────────────── */
+  .cat-section { padding: 5rem 0; }
+  .cat-section--white { background: var(--c-white); }
+  .cat-section--gray { background: var(--c-surface); }
+
+  .cat-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--c-border); }
+  .cat-header__img-wrap { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/10; background: var(--c-ink); }
+  .cat-header__img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+  .cat-header__img-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 60%, transparent 100%); }
+  .cat-header__img-content { position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem; }
+  .cat-norm-badge { display: inline-block; background: var(--c-primary); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 3px; margin-bottom: 0.5rem; }
+  .cat-header__img-content h2 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.2; }
+
+  .cat-header__meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.625rem; }
+  .section-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-primary); }
+  .cat-badge-pill { display: inline-block; background: var(--c-primary-light); color: var(--c-primary); border: 1px solid rgba(var(--c-primary-rgb), 0.2); font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.625rem; border-radius: 100px; }
+  .cat-header__title { font-size: clamp(1.625rem, 2.5vw, 2.125rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--c-ink); margin-bottom: 0.875rem; }
+  .cat-header__desc { font-size: 0.9375rem; color: var(--c-muted); line-height: 1.7; margin-bottom: 1.25rem; max-width: 56ch; }
+
+  .normas-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .norma-tag { display: inline-block; background: var(--c-surface); border: 1px solid var(--c-border); color: var(--c-ink-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.2rem 0.625rem; border-radius: 3px; }
+
+  .cat-header__ctas { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .cat-wa-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #25D366; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+  .cat-wa-link:hover { color: #1EBA57; }
+
+  /* ── GRID DE DETALLES ──────────────────────────────── */
+  .productos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); }
+  .cat-section--gray .prod-card { background: var(--c-white); }
+  .cat-section--white .prod-card { background: var(--c-surface); }
+  .prod-card:hover { border-color: rgba(var(--c-primary-rgb), 0.4); background: var(--c-white); }
+  .prod-card__body { flex: 1; }
+  .prod-card__name { font-size: 0.9375rem; font-weight: 700; color: var(--c-ink); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 0.375rem; }
+  .prod-card:hover .prod-card__name { color: var(--c-primary); }
+  .prod-card__sub { font-size: 0.8125rem; color: var(--c-muted); line-height: 1.5; }
+  .prod-card__footer { padding-top: 0.75rem; border-top: 1px solid var(--c-border); margin-top: auto; }
+  .prod-card__link { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.8125rem; font-weight: 600; color: var(--c-primary); }
+  .prod-card:hover .prod-card__link { color: var(--c-primary-dark); }
+
+  .prod-card--cta { background: var(--c-ink) !important; border-color: transparent !important; color: #fff; align-items: center; justify-content: center; text-align: center; gap: 0.5rem; }
+  .prod-card--cta:hover { border-color: rgba(var(--c-primary-rgb), 0.5) !important; }
+  .prod-card-cta__icon { width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+  .prod-card-cta__text { font-size: 0.9375rem; font-weight: 700; color: #fff; }
+  .prod-card-cta__sub { font-size: 0.8125rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .prod-card-cta__btn { font-size: 0.875rem; font-weight: 600; color: #25D366; }
+  .prod-card--cta:hover .prod-card-cta__btn { color: #1EBA57; }
+
+  /* ── PROCESO ───────────────────────────────────────── */
+  .proceso-section { padding: 5rem 0; background: var(--c-ink); }
+  .proceso-header { text-align: center; margin-bottom: 3.5rem; }
+  .proceso-header .section-label { color: rgba(var(--c-primary-rgb), 0.9); }
+  .proceso-header h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 0.625rem; }
+  .proceso-header p { color: rgba(255,255,255,0.5); font-size: 1rem; }
+  .proceso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .paso-card { padding: 2rem 1.75rem; border-right: 1px solid rgba(255,255,255,0.07); }
+  .paso-card:last-child { border-right: none; }
+  .paso-num { font-size: 2rem; font-weight: 800; color: var(--c-primary); letter-spacing: -0.04em; line-height: 1; display: block; margin-bottom: 1rem; }
+  .paso-titulo { font-size: 1.125rem; font-weight: 700; color: #fff; margin-bottom: 0.625rem; letter-spacing: -0.01em; }
+  .paso-desc { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+  /* ── CTA FINAL ─────────────────────────────────────── */
+  .cta-final { background: var(--c-primary); padding: 4rem 0; }
+  .cta-final-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+  .cta-text h2 { font-size: clamp(1.375rem, 2.5vw, 1.875rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.5rem; }
+  .cta-text p { color: rgba(255,255,255,0.75); font-size: 0.9375rem; max-width: 55ch; line-height: 1.6; }
+  .cta-btns { display: flex; gap: 0.875rem; flex-shrink: 0; flex-wrap: wrap; }
+  .btn-cta-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 0.8125rem 1.75rem; border-radius: 4px; font-weight: 600; font-size: 0.9375rem; font-family: var(--font-sans); white-space: nowrap; text-decoration: none; }
+  .btn-cta-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.12); color: #fff; }
+  .cta-final .btn-primary { background: #fff; color: var(--c-primary); }
+  .cta-final .btn-primary:hover { background: rgba(255,255,255,0.9); color: var(--c-primary-dark); }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .productos-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .cat-header { grid-template-columns: 1fr; gap: 2rem; }
+    .cat-header__img-wrap { aspect-ratio: 16/9; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+    .metrica-item:nth-child(2) { border-right: none; }
+    .proceso-grid { grid-template-columns: repeat(2, 1fr); }
+    .paso-card:nth-child(2) { border-right: none; }
+    .paso-card { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .paso-card:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-final-inner { flex-direction: column; text-align: center; }
+    .cta-btns { justify-content: center; }
+    .hero-ctas { flex-direction: column; }
+    .proceso-grid { grid-template-columns: 1fr; }
+    .paso-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .paso-card:last-child { border-bottom: none; }
+  }
+  @media (max-width: 480px) {
+    .productos-grid { grid-template-columns: 1fr; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>-->

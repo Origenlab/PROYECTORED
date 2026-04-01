@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import CtaBar from '../components/CtaBar.astro';
+import FaqCotizacion from '../components/FaqCotizacion.astro';
 
 const categorias = [
   {
@@ -123,7 +124,7 @@ const trust = [
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Solicitar cotización
           </a>
-          <a href="/extintores/" class="btn-secondary">Ver catálogo completo</a>
+          <a href="/productos/" class="btn-secondary">Ver catálogo completo</a>
         </div>
 
       </div>
@@ -363,9 +364,12 @@ const trust = [
           <p class="section-label">Por qué elegirnos</p>
           <h2>Proveedor directo.<br>Sin intermediarios.</h2>
           <p class="trust-desc">Llevamos años equipando empresas en la CDMX y el Estado de México. Catálogo amplio, equipo certificado y alguien que responde cuando lo necesitas.</p>
-          <a href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n" class="btn-outline" target="_blank" rel="noopener noreferrer">
-            Hablar con un especialista
-          </a>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <a href="/servicios/" class="btn-outline">Ver todos los servicios</a>
+            <a href="https://wa.me/525537238544?text=Hola%2C%20necesito%20informaci%C3%B3n" class="btn-outline" target="_blank" rel="noopener noreferrer" style="border-color:rgba(var(--c-primary-rgb),0.3);color:var(--c-muted);">
+              Hablar con un especialista
+            </a>
+          </div>
         </div>
         <div class="trust-grid">
           {trust.map(t => (
@@ -380,7 +384,138 @@ const trust = [
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       SERVICIOS — Preview de los 8 servicios
+  ══════════════════════════════════════════════════════════ -->
+  <section class="servicios-preview">
+    <div class="container">
+      <div class="srv-preview__header">
+        <div class="srv-preview__left">
+          <p class="section-label">Servicios profesionales</p>
+          <h2>Más que productos:<br>protección integral</h2>
+          <p class="srv-preview__desc">Venta, recarga, mantenimiento, instalación, capacitación y asesoría. Todo desde un solo proveedor para que tu empresa cumpla con Protección Civil sin complicaciones.</p>
+          <a href="/servicios/" class="btn-outline">Ver todos los servicios</a>
+        </div>
+        <div class="srv-preview__grid">
+          <a href="/servicios/#venta-equipos" class="srv-mini">
+            <span class="srv-mini__num">01</span>
+            <div>
+              <strong>Venta de Equipos</strong>
+              <span>Catálogo completo certificado NOM y NFPA</span>
+            </div>
+          </a>
+          <a href="/servicios/#recarga-extintores" class="srv-mini">
+            <span class="srv-mini__num">02</span>
+            <div>
+              <strong>Recarga de Extintores</strong>
+              <span>Todos los tipos — collar de garantía incluido</span>
+            </div>
+          </a>
+          <a href="/servicios/#mantenimiento-preventivo" class="srv-mini">
+            <span class="srv-mini__num">03</span>
+            <div>
+              <strong>Mantenimiento Preventivo</strong>
+              <span>Pólizas anuales con reportes para auditorías</span>
+            </div>
+          </a>
+          <a href="/servicios/#instalacion-sistemas" class="srv-mini">
+            <span class="srv-mini__num">04</span>
+            <div>
+              <strong>Instalación Sistemas CI</strong>
+              <span>Detección, alarma y supresión llave en mano</span>
+            </div>
+          </a>
+          <a href="/servicios/#prueba-hidrostatica" class="srv-mini">
+            <span class="srv-mini__num">05</span>
+            <div>
+              <strong>Prueba Hidrostática</strong>
+              <span>Obligatoria cada 5 años — NOM-154-SCFI</span>
+            </div>
+          </a>
+          <a href="/servicios/#asesoria-tecnica" class="srv-mini">
+            <span class="srv-mini__num">06</span>
+            <div>
+              <strong>Asesoría Técnica</strong>
+              <span>Diagnóstico de tu instalación sin costo</span>
+            </div>
+          </a>
+          <a href="/servicios/#capacitacion" class="srv-mini">
+            <span class="srv-mini__num">07</span>
+            <div>
+              <strong>Capacitación y Brigadas</strong>
+              <span>Constancias DC-3 válidas ante STPS</span>
+            </div>
+          </a>
+          <a href="/servicios/#senalizacion" class="srv-mini">
+            <span class="srv-mini__num">08</span>
+            <div>
+              <strong>Señalización NOM</strong>
+              <span>Instalación y plano para Protección Civil</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       COBERTURA — Empresas por estado
+  ══════════════════════════════════════════════════════════ -->
+  <section class="cobertura-section">
+    <div class="container">
+      <div class="cobertura-inner">
+        <div class="cobertura-left">
+          <p class="section-label">Cobertura</p>
+          <h2>Entrega directa en<br>todo México</h2>
+          <p class="cobertura-desc">Nuestro centro de operaciones está en la Ciudad de México. Entregamos el mismo día en la zona metropolitana y coordinamos envíos a todo el país para pedidos de volumen.</p>
+        </div>
+        <div class="cobertura-right">
+          {estados.map(e => (
+            <a href={e.href} class="estado-card">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{e.nombre}</span>
+              <svg class="estado-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BLOG — Últimos artículos
+  ══════════════════════════════════════════════════════════ -->
+  <section class="blog-preview">
+    <div class="container">
+      <div class="blog-preview__header">
+        <div>
+          <p class="section-label">Blog</p>
+          <h2>Guías y recursos sobre<br>protección contra incendios</h2>
+        </div>
+        <a href="/blog/" class="btn-outline">Ver todos los artículos</a>
+      </div>
+      <div class="blog-preview__grid">
+        <a href="/blog/incendios-restaurantes" class="blog-card">
+          <span class="blog-card__cat">Seguridad</span>
+          <h3>Prevención de incendios en restaurantes: guía práctica</h3>
+          <p>Causas comunes, equipo necesario, estrategias de prevención y planes de emergencia para establecimientos de alimentos.</p>
+          <span class="blog-card__link">Leer artículo →</span>
+        </a>
+        <a href="/blog/regulaciones-extintores-electricos" class="blog-card">
+          <span class="blog-card__cat">Normativa</span>
+          <h3>Regulaciones de extintores para riesgos eléctricos</h3>
+          <p>Qué tipo de extintor necesitas según la normativa mexicana para proteger equipos eléctricos y electrónicos.</p>
+          <span class="blog-card__link">Leer artículo →</span>
+        </a>
+        <a href="/blog/seguridad-condominios" class="blog-card">
+          <span class="blog-card__cat">Guía</span>
+          <h3>Seguridad contra incendios en condominios</h3>
+          <p>Todo lo que necesitas saber sobre protección contra incendios en edificios residenciales y condominios.</p>
+          <span class="blog-card__link">Leer artículo →</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════════════════════
        RESEÑAS
@@ -751,7 +886,7 @@ const trust = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Cotizar por WhatsApp
         </a>
-        <a href="/contacto/" class="btn-cta-ghost">Ver catálogo completo</a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
       </div>
     </div>
   </section>
@@ -1245,6 +1380,190 @@ const trust = [
 
   .estado-card:hover .estado-arrow { color: var(--c-primary); }
 
+  /* ── SERVICIOS PREVIEW ──────────────────────────── */
+  .servicios-preview {
+    padding: var(--section-py) 0;
+    background: var(--c-ink);
+  }
+
+  .srv-preview__header {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .srv-preview__left h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  .srv-preview__left .section-label { color: rgba(var(--c-primary-rgb), 0.9); }
+  .srv-preview__desc {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .srv-preview__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .srv-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    text-decoration: none;
+    color: #fff;
+  }
+  .srv-mini:nth-child(even) { border-right: none; }
+  .srv-mini:nth-last-child(-n+2) { border-bottom: none; }
+  .srv-mini:hover { background: rgba(255,255,255,0.03); }
+
+  .srv-mini__num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--c-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+    margin-top: 0.125rem;
+  }
+
+  .srv-mini div { display: flex; flex-direction: column; gap: 0.2rem; }
+  .srv-mini strong {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .srv-mini span:not(.srv-mini__num) {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+  }
+
+  /* ── COBERTURA ───────────────────────────────────── */
+  .cobertura-section {
+    padding: var(--section-py) 0;
+    background: var(--c-white);
+  }
+
+  .cobertura-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .cobertura-left h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--c-ink);
+  }
+  .cobertura-desc {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .cobertura-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── BLOG PREVIEW ────────────────────────────────── */
+  .blog-preview {
+    padding: var(--section-py) 0;
+    background: var(--c-surface);
+  }
+
+  .blog-preview__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .blog-preview__header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+  }
+
+  .blog-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .blog-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: var(--c-ink);
+  }
+  .blog-card:hover {
+    border-color: rgba(var(--c-primary-rgb), 0.3);
+  }
+
+  .blog-card__cat {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+    background: var(--c-primary-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    align-self: flex-start;
+  }
+
+  .blog-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+  }
+
+  .blog-card p {
+    font-size: 0.8375rem;
+    color: var(--c-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .blog-card__link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    margin-top: auto;
+  }
+  .blog-card:hover .blog-card__link { color: var(--c-primary-dark); }
+
   /* ── RESEÑAS ─────────────────────────────────────── */
   .reviews-section {
     padding: var(--section-py) 0;
@@ -1702,6 +2021,17 @@ const trust = [
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
+    .srv-preview__header {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .cobertura-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .blog-preview__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 768px) {
@@ -1723,6 +2053,19 @@ const trust = [
     .estados-inner {
       grid-template-columns: 1fr;
       gap: 2.5rem;
+    }
+
+    .srv-preview__grid {
+      grid-template-columns: 1fr;
+    }
+    .srv-mini { border-right: none; }
+
+    .blog-preview__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .blog-preview__grid {
+      grid-template-columns: 1fr;
     }
 
     .cta-final-inner {

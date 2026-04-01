@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
 import Hero from '../components/Hero.astro';
+import FaqCotizacion from '../components/FaqCotizacion.astro';
 
 interface Props {
   title: string;
@@ -18,11 +19,21 @@ const { title, description, heroTitle, heroSubtitle } = Astro.props;
       <slot />
     </div>
   </section>
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes y Cotización"
+    subtitulo="Resolvemos tus dudas y te damos precio en menos de 24 horas — sin compromiso"
+    pageId="categoria"
+    bgGray={true}
+  />
+
   <section class="cta-final">
     <div class="container">
-      <h2>¿Necesitas asesoría personalizada?</h2>
-      <p>Contáctanos por WhatsApp y uno de nuestros especialistas te atenderá de inmediato.</p>
-      <a href="https://wa.me/525537238544?text=Hola%2C%20quiero%20información" class="btn-cta">Contactar por WhatsApp</a>
+      <h2>¿Necesitas equipo contra incendios certificado?</h2>
+      <p>Escríbenos por WhatsApp con lo que necesitas. Respondemos con precio real y tiempo de entrega ese mismo día.</p>
+      <div class="cta-final-btns">
+        <a href="https://wa.me/525537238544?text=Hola%2C%20quiero%20cotizar%20equipos%20contra%20incendios" class="btn-cta" target="_blank" rel="noopener noreferrer">Cotizar por WhatsApp</a>
+        <a href="/productos/" class="btn-cta-outline">Ver catálogo completo</a>
+      </div>
     </div>
   </section>
 </Base>
@@ -62,6 +73,29 @@ const { title, description, heroTitle, heroSubtitle } = Astro.props;
 
   .btn-cta:hover {
     background-color: #1da851;
+    color: #fff;
+  }
+
+  .cta-final-btns {
+    display: flex;
+    gap: 0.875rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-outline {
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 0.8125rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+  .btn-cta-outline:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
     color: #fff;
   }
 </style>

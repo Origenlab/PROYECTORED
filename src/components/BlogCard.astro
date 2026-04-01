@@ -14,7 +14,7 @@ const { titulo, fecha, categoria, href, descripcion } = Astro.props;
     {categoria && <span class="blog-card-cat">{categoria}</span>}
     <h3>{titulo}</h3>
     {descripcion && <p>{descripcion}</p>}
-    <time datetime={fecha}>{new Date(fecha).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+
   </div>
 </a>
 

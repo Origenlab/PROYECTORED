@@ -1,0 +1,854 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+// ── SEO ─────────────────────────────────────────────
+const title = "Cobertura — Equipos Contra Incendios en CDMX, EDOMEX y República | Proyecto Red";
+const description = "Entrega directa de equipos contra incendios certificados en Ciudad de México, Estado de México, Querétaro, Puebla, Aguascalientes y Baja California. Proveedor directo con logística propia y envíos nacionales.";
+
+// ── Breadcrumb ───────────────────────────────────────
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Cobertura" },
+];
+
+// ── Métricas ─────────────────────────────────────────
+const metricas = [
+  { valor: "16+", label: "Alcaldías CDMX" },
+  { valor: "25+", label: "Municipios EDOMEX" },
+  { valor: "6", label: "Estados con cobertura" },
+  { valor: "24h", label: "Entrega zona metro" },
+];
+
+// ── Zonas principales ────────────────────────────────
+const zonas = [
+  {
+    id: "cdmx",
+    titulo: "Ciudad de México",
+    badge: "Sede principal",
+    desc: "Cobertura total en las 16 alcaldías de la Ciudad de México. Entrega el mismo día para pedidos confirmados antes de las 2 PM. Centro de operaciones, almacén e inventario permanente. Proveedor registrado ante Protección Civil CDMX.",
+    href: "/empresas/cdmx/",
+    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
+    detalles: [
+      { nombre: "Cuauhtémoc / Centro Histórico", sub: "Oficinas, restaurantes, hoteles, comercio" },
+      { nombre: "Miguel Hidalgo / Polanco", sub: "Corporativos, embajadas, edificios premium" },
+      { nombre: "Benito Juárez / Del Valle", sub: "Pymes, consultorios, coworkings" },
+      { nombre: "Álvaro Obregón / Santa Fe", sub: "Torres corporativas, centros comerciales" },
+      { nombre: "Azcapotzalco / Industrial Vallejo", sub: "Plantas industriales, bodegas, distribuidoras" },
+      { nombre: "Gustavo A. Madero / Indios Verdes", sub: "Manufactura, comercio, almacenes" },
+      { nombre: "Iztapalapa / Central de Abasto", sub: "Mercados, bodegas, industria alimentaria" },
+      { nombre: "Tlalpan / Coyoacán / Sur", sub: "Hospitales, universidades, residencial comercial" },
+    ],
+    normas: ["Protección Civil CDMX", "NOM-002-STPS"],
+  },
+  {
+    id: "edomex",
+    titulo: "Estado de México",
+    badge: "Zona metropolitana",
+    desc: "Cobertura directa en los municipios más industrializados del Estado de México. Entrega en 24-48 horas. Atención a parques industriales, plantas de manufactura, distribuidoras y centros logísticos de la zona metropolitana.",
+    href: "/empresas/edomex/",
+    img: "/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg",
+    detalles: [
+      { nombre: "Naucalpan de Juárez", sub: "Parques industriales, Alce Blanco, Satélite" },
+      { nombre: "Tlalnepantla de Baz", sub: "Zona industrial, bodegas, manufactura" },
+      { nombre: "Ecatepec de Morelos", sub: "Industria, comercio, centros de distribución" },
+      { nombre: "Cuautitlán Izcalli", sub: "Parques logísticos, nearshoring, manufactura" },
+      { nombre: "Toluca / Lerma", sub: "Corredor industrial, plantas automotrices" },
+      { nombre: "Atizapán / Nicolás Romero", sub: "Manufactura, almacenes, distribución norte" },
+      { nombre: "Texcoco / Chimalhuacán", sub: "Zona oriente, proyectos en expansión" },
+      { nombre: "Huixquilucan / Interlomas", sub: "Corporativos, plazas, residencial premium" },
+    ],
+    normas: ["Protección Civil EDOMEX", "NOM-002-STPS"],
+  },
+  {
+    id: "queretaro",
+    titulo: "Querétaro",
+    badge: "Corredor industrial",
+    desc: "Atendemos el corredor industrial de Querétaro con envío directo desde CDMX. Plantas automotrices, aeronáuticas, alimentarias y centros logísticos. Entrega coordinada en 48-72 horas con documentación NOM completa.",
+    href: "/empresas/queretaro/",
+    img: "/imagenes/sistemas/alarmas.jpg",
+    detalles: [
+      { nombre: "Parque Industrial Querétaro", sub: "Zona norte, manufactura de exportación" },
+      { nombre: "El Marqués / Aeropuerto", sub: "Logística, distribución, e-commerce" },
+      { nombre: "San Juan del Río", sub: "Industria automotriz y alimentaria" },
+      { nombre: "Zona Centro / Juriquilla", sub: "Corporativos, universidades, hospitales" },
+    ],
+    normas: ["NOM-002-STPS", "Protección Civil QRO"],
+  },
+  {
+    id: "puebla",
+    titulo: "Puebla",
+    badge: "Industria automotriz",
+    desc: "Cobertura para la zona industrial de Puebla y Tlaxcala. Plantas automotrices, textileras, alimentarias y centros de distribución. Envío desde CDMX con logística coordinada.",
+    href: "/empresas/puebla/",
+    img: "/imagenes/senalamientos/senalamientos-hero.jpg",
+    detalles: [
+      { nombre: "Zona industrial Puebla", sub: "Plantas VW, Audi, proveedores Tier 1" },
+      { nombre: "Cholula / Atlixco", sub: "Industria alimentaria, turismo, hospitales" },
+      { nombre: "San Martín Texmelucan", sub: "Industria textil, manufactura, bodegas" },
+      { nombre: "Corredor Puebla-Tlaxcala", sub: "Distribución, logística, comercio" },
+    ],
+    normas: ["NOM-002-STPS", "Protección Civil PUE"],
+  },
+  {
+    id: "aguascalientes",
+    titulo: "Aguascalientes",
+    badge: "Industria automotriz",
+    desc: "Abastecimiento para el corredor industrial de Aguascalientes. Plantas Nissan, proveedores automotrices, manufactura de exportación y centros logísticos. Envío coordinado con paquetería certificada.",
+    href: "/empresas/aguascalientes/",
+    img: "/imagenes/gabinetes/gabinetes-extintores.jpg",
+    detalles: [
+      { nombre: "Parque Industrial Aguascalientes", sub: "Automotriz, electrónica, manufactura" },
+      { nombre: "Zona centro y comercial", sub: "Plazas, hoteles, hospitales, oficinas" },
+      { nombre: "Corredor logístico Ags-SLP", sub: "Distribución centro-norte del país" },
+    ],
+    normas: ["NOM-002-STPS"],
+  },
+  {
+    id: "baja-california",
+    titulo: "Baja California",
+    badge: "Maquiladoras",
+    desc: "Atendemos el corredor maquilador de Baja California: Tijuana, Mexicali y Ensenada. Plantas de exportación, maquiladoras, centros logísticos fronterizos y comercio. Envío desde CDMX con logística especializada.",
+    href: "/empresas/baja-california/",
+    img: "/imagenes/mangueras/mangueras-hero.jpg",
+    detalles: [
+      { nombre: "Tijuana / Zona industrial Otay", sub: "Maquiladoras, electrónica, aeroespacial" },
+      { nombre: "Mexicali", sub: "Industria, agricultura tecnificada, comercio" },
+      { nombre: "Ensenada", sub: "Vinícolas, turismo, industria pesquera" },
+      { nombre: "Rosarito / Tecate", sub: "Manufactura, comercio transfronterizo" },
+    ],
+    normas: ["NOM-002-STPS"],
+  },
+];
+
+// ── FAQs específicas de cobertura ─────────────────────
+const faqsCobertura = [
+  { pregunta: "¿Entregan equipos contra incendios el mismo día en CDMX?", respuesta: "Sí. Pedidos confirmados <strong>antes de las 2 PM</strong> se entregan el mismo día en toda la Ciudad de México (16 alcaldías). Para el Estado de México, la entrega es en <strong>24-48 horas</strong> dependiendo del municipio. Todo con logística propia — sin depender de paqueterías." },
+  { pregunta: "¿Tienen cobertura en todo el Estado de México?", respuesta: "Cubrimos directamente los municipios más industrializados: <strong>Naucalpan, Tlalnepantla, Ecatepec, Cuautitlán Izcalli, Toluca, Lerma, Atizapán, Texcoco y Huixquilucan</strong>. Para municipios fuera de esta lista coordinamos la entrega en la cotización — normalmente 48-72 horas." },
+  { pregunta: "¿Hacen envíos a otros estados fuera de CDMX y EDOMEX?", respuesta: "Sí. Enviamos a <strong>Querétaro, Puebla, Aguascalientes, Baja California</strong> y al resto de la república para pedidos de volumen. Coordinamos logística con paqueterías certificadas (DHL, Estafeta, FedEx) e incluimos el costo de flete en la cotización. Para proyectos grandes podemos desplazar equipos de instalación." },
+  { pregunta: "¿El equipo llega con documentación NOM completa?", respuesta: "Siempre. Todo equipo se entrega con <strong>ficha técnica, certificado de conformidad NOM, etiqueta de inspección</strong> y cualquier documentación adicional que tu expediente de Protección Civil requiera. No importa si la entrega es en CDMX o en Baja California — la documentación es la misma." },
+  { pregunta: "¿Ofrecen instalación y capacitación fuera de CDMX?", respuesta: "Para <strong>CDMX y Estado de México</strong> incluimos instalación y capacitación presencial. Para otros estados lo evaluamos por proyecto: en pedidos de cierto volumen podemos desplazar un equipo técnico para instalación de sistemas CI, señalización y capacitación con constancias DC-3." },
+  { pregunta: "¿Manejan inventario en otras ciudades o solo en CDMX?", respuesta: "Nuestro almacén y centro de operaciones están en la <strong>Ciudad de México</strong>. Todo se despacha desde aquí. Esto nos permite tener inventario permanente de más de 50 productos y garantizar disponibilidad inmediata para la zona metropolitana. Para otros estados coordinamos la logística según el volumen." },
+  { pregunta: "¿Tienen precios diferentes según la zona de entrega?", respuesta: "El <strong>precio del equipo es el mismo</strong> sin importar el destino. Lo que varía es el costo de flete para envíos fuera de la zona metropolitana. En CDMX y EDOMEX la entrega es gratuita a partir de cierto monto. Te desglosamos el flete en la cotización para que no haya sorpresas." },
+  { pregunta: "¿Pueden ser nuestro proveedor fijo para múltiples sucursales en diferentes estados?", respuesta: "Sí. Trabajamos con empresas que tienen <strong>sucursales en varios estados</strong> y necesitan un solo proveedor para todo. Ofrecemos facturación consolidada, entregas programadas por sucursal, precios preferenciales por volumen y un contacto único para todas tus ubicaciones." },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Entrega directa — logística propia
+        </div>
+        <h1>Cobertura de Entrega<br>en Todo <span class="h1-accent">México</span></h1>
+        <p class="hero-sub">
+          Entrega el mismo día en CDMX, 24-48 hrs en Estado de México y envíos coordinados a Querétaro, Puebla, Aguascalientes, Baja California y toda la república. Equipo certificado NOM con documentación completa.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20entrega%20de%20equipos%20contra%20incendios`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar cotización
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver zonas de cobertura</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>En Proyecto Red operamos desde la Ciudad de México con almacén propio, inventario permanente y logística dedicada. No dependemos de distribuidores ni intermediarios — nosotros controlamos cada entrega de principio a fin.</p>
+        <p>Para la zona metropolitana (CDMX y EDOMEX) entregamos con flota propia. Para el resto de la república coordinamos envíos con paqueterías certificadas. El equipo siempre llega con documentación NOM completa lista para tu expediente de Protección Civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Cobertura">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       NAVEGACIÓN RÁPIDA
+  ══════════════════════════════════════ -->
+  <section class="nav-cats" aria-label="Navegación por zona">
+    <div class="container">
+      <div class="nav-cats__inner">
+        <span class="nav-cats__label">Ir a zona:</span>
+        <div class="nav-cats__links">
+          {zonas.map(z => (
+            <a href={`#${z.id}`} class="nav-cat-pill">{z.titulo}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO DE ZONAS
+  ══════════════════════════════════════ -->
+  <main id="catalogo">
+    {zonas.map((zona, idx) => (
+      <section
+        id={zona.id}
+        class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
+        aria-labelledby={`zona-title-${zona.id}`}
+      >
+        <div class="container">
+
+          <div class="cat-header">
+            <div class="cat-header__img-wrap">
+              <img
+                src={zona.img}
+                alt={`Equipos contra incendios en ${zona.titulo}`}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                width="640"
+                height="400"
+              />
+              <div class="cat-header__img-overlay"></div>
+              <div class="cat-header__img-content">
+                <span class="cat-norm-badge">{zona.badge}</span>
+                <h2 id={`zona-title-${zona.id}`}>{zona.titulo}</h2>
+              </div>
+            </div>
+
+            <div class="cat-header__info">
+              <div class="cat-header__meta">
+                <span class="section-label">Zona de cobertura</span>
+                <span class="cat-badge-pill">{zona.badge}</span>
+              </div>
+              <h2 class="cat-header__title">Equipos Contra Incendios en {zona.titulo}</h2>
+              <p class="cat-header__desc">{zona.desc}</p>
+
+              <div class="normas-row">
+                {zona.normas.map(n => (
+                  <span class="norma-tag">{n}</span>
+                ))}
+              </div>
+
+              <div class="cat-header__ctas">
+                <a href={zona.href} class="btn-outline">Ver detalle de {zona.titulo}</a>
+                <a
+                  href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(zona.titulo)}`}
+                  class="cat-wa-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Cotizar envío
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="productos-grid">
+            {zona.detalles.map(d => (
+              <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(d.nombre)}`} class="prod-card" target="_blank" rel="noopener noreferrer">
+                <div class="prod-card__body">
+                  <h3 class="prod-card__name">{d.nombre}</h3>
+                  <p class="prod-card__sub">{d.sub}</p>
+                </div>
+                <div class="prod-card__footer">
+                  <span class="prod-card__link">
+                    Cotizar entrega
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(zona.titulo)}`}
+              class="prod-card prod-card--cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="prod-card-cta__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p class="prod-card-cta__text">¿Necesitas entrega en {zona.titulo}?</p>
+              <p class="prod-card-cta__sub">Cotiza por WhatsApp — te confirmamos disponibilidad y flete</p>
+              <span class="prod-card-cta__btn">Escribir al WhatsApp →</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Entrega y Cobertura"
+    subtitulo="Todo lo que necesitas saber sobre tiempos de entrega, zonas de cobertura y logística"
+    pageId="cobertura"
+    bgGray={true}
+    faqs={faqsCobertura}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">¿Necesitas equipo contra incendios en tu zona?</h2>
+        <p>Escríbenos con tu ubicación y lo que necesitas. Te confirmamos disponibilidad, tiempo de entrega y costo de flete en menos de 24 horas.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20y%20quiero%20saber%20si%20cubren%20mi%20zona`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo de productos</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<!--<style is:global>
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--stack-height, 124px) + 3.5rem);
+    padding-bottom: 4rem;
+    background: linear-gradient(160deg, #0E0E0E 0%, #1A1010 55%, #0E0E0E 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(196,30,36,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.8125rem;
+  }
+  .breadcrumb__link { color: rgba(255,255,255,0.45); }
+  .breadcrumb__link:hover { color: rgba(255,255,255,0.8); }
+  .breadcrumb__sep { color: rgba(255,255,255,0.25); }
+  .breadcrumb__current { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.1);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.125rem;
+  }
+  .h1-accent { color: var(--c-primary); }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 52ch;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  /* ── MÉTRICAS ─────────────────────────────────────── */
+  .metricas-section {
+    background: var(--c-primary);
+    padding: 2rem 0;
+  }
+  .metricas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .metrica-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .metrica-item:last-child { border-right: none; }
+  .metrica-valor {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .metrica-label {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  /* ── NAVEGACIÓN ────────────────────────────────────── */
+  .nav-cats {
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+    padding: 0.875rem 0;
+    position: sticky;
+    top: var(--stack-height, 124px);
+    z-index: 50;
+  }
+  .nav-cats__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .nav-cats__inner::-webkit-scrollbar { display: none; }
+  .nav-cats__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-cats__links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+  .nav-cat-pill {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--c-border);
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--c-ink-2);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cat-pill:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+    background: var(--c-primary-light);
+  }
+
+  /* ── SECCIONES ─────────────────────────────────────── */
+  .cat-section {
+    padding: 5rem 0;
+  }
+  .cat-section--white { background: var(--c-white); }
+  .cat-section--gray  { background: var(--c-surface); }
+
+  .cat-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .cat-header__img-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--c-ink);
+  }
+  .cat-header__img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  .cat-header__img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+  }
+  .cat-header__img-content {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+  .cat-norm-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+  }
+  .cat-header__img-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .cat-header__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+  .section-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+  }
+  .cat-badge-pill {
+    display: inline-block;
+    background: var(--c-primary-light);
+    color: var(--c-primary);
+    border: 1px solid rgba(var(--c-primary-rgb), 0.2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.625rem;
+    border-radius: 100px;
+  }
+
+  .cat-header__title {
+    font-size: clamp(1.625rem, 2.5vw, 2.125rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+    margin-bottom: 0.875rem;
+  }
+  .cat-header__desc {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    max-width: 56ch;
+  }
+
+  .normas-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .norma-tag {
+    display: inline-block;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.625rem;
+    border-radius: 3px;
+  }
+
+  .cat-header__ctas {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cat-wa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #25D366;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cat-wa-link:hover { color: #1EBA57; }
+
+  /* ── GRID ──────────────────────────────────────────── */
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .prod-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--c-ink);
+  }
+  .cat-section--gray .prod-card { background: var(--c-white); }
+  .cat-section--white .prod-card { background: var(--c-surface); }
+
+  .prod-card:hover {
+    border-color: rgba(var(--c-primary-rgb), 0.4);
+    background: var(--c-white);
+  }
+
+  .prod-card__body { flex: 1; }
+
+  .prod-card__name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 0.375rem;
+  }
+  .prod-card:hover .prod-card__name { color: var(--c-primary); }
+
+  .prod-card__sub {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    line-height: 1.5;
+  }
+
+  .prod-card__footer {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--c-border);
+    margin-top: auto;
+  }
+
+  .prod-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+  }
+  .prod-card:hover .prod-card__link { color: var(--c-primary-dark); }
+
+  /* Card CTA */
+  .prod-card--cta {
+    background: var(--c-ink) !important;
+    border-color: transparent !important;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .prod-card--cta:hover { border-color: rgba(var(--c-primary-rgb), 0.5) !important; }
+
+  .prod-card-cta__icon {
+    width: 52px; height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .prod-card-cta__text {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .prod-card-cta__sub {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  .prod-card-cta__btn {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #25D366;
+    margin-top: 0.25rem;
+  }
+  .prod-card--cta:hover .prod-card-cta__btn { color: #1EBA57; }
+
+  /* ── CTA FINAL ─────────────────────────────────────── */
+  .cta-final {
+    background: var(--c-primary);
+    padding: 4rem 0;
+  }
+  .cta-final-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .cta-text h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .cta-text p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9375rem;
+    max-width: 55ch;
+    line-height: 1.6;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 0.875rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+  .btn-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 0.8125rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-cta-ghost:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .cta-final .btn-primary {
+    background: #fff;
+    color: var(--c-primary);
+  }
+  .cta-final .btn-primary:hover {
+    background: rgba(255,255,255,0.9);
+    color: var(--c-primary-dark);
+  }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .productos-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 1024px) {
+    .cat-header { grid-template-columns: 1fr; gap: 2rem; }
+    .cat-header__img-wrap { aspect-ratio: 16/9; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+    .metrica-item:nth-child(2) { border-right: none; }
+    .metrica-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.2); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-final-inner { flex-direction: column; text-align: center; }
+    .cta-btns { justify-content: center; }
+    .hero-ctas { flex-direction: column; }
+  }
+
+  @media (max-width: 480px) {
+    .productos-grid { grid-template-columns: 1fr; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>-->
