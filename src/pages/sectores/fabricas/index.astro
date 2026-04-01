@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Fábricas e Industria CDMX | Proyecto Red";
+const description = "NOM-002-STPS y NOM-005-STPS para fábricas, plantas industriales y maquiladoras. Extintores según riesgo específico. Diagnóstico gratuito en CDMX y Edomex.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Fábricas e Industria" },
+];
+
+const metricas = [
+  { valor: "NOM-002", label: "STPS + NOM-005-STPS" },
+  { valor: "Por riesgo", label: "Extintor según proceso" },
+  { valor: "$500K", label: "Multa máxima STPS" },
+  { valor: "24h", label: "Entrega CDMX/Edomex" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Extintores Polvo Seco ABC", desc: "Para áreas generales, pasillos y zonas de almacenamiento de materias primas sólidas. La base de cualquier plan industrial contra incendios.", href: "/extintores/polvo-seco/", badge: "Áreas generales" },
+  { nombre: "Extintores AFFF (Espuma)", desc: "Para procesos con líquidos inflamables: aceites, solventes, combustibles, pinturas. Sella la superficie e impide la reignición del líquido.", href: "/extintores/afff/", badge: "Líquidos inf." },
+  { nombre: "Extintores CO₂", desc: "Para tableros eléctricos, subestaciones y cuartos de control. Sin residuos que dañen componentes electrónicos de maquinaria industrial.", href: "/extintores/co2/", badge: "Control eléctrico" },
+  { nombre: "Extintores Rodantes 50 kg", desc: "Para áreas industriales de alto riesgo o grandes superficies. Mayor alcance y capacidad para cubrir zonas donde los portátiles no alcanzan.", href: "/extintores/polvo-seco/", badge: "Alta capacidad" },
+  { nombre: "Señalamientos NOM-003", desc: "Señalización de evacuación, zonas peligrosas, rutas de emergencia y punto de reunión. Visible desde cualquier área de producción.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
+  { nombre: "Sistemas de Detección", desc: "Detectores de humo, calor o gas según el proceso. Alarma centralizada en plantas con turnos nocturnos o áreas sin presencia constante.", href: "/sistemas/detectores/", badge: "Turno nocturno" },
+];
+
+const pasos = [
+  { titulo: "Análisis del proceso productivo", desc: "Identificamos qué materiales se manejan: sólidos, líquidos inflamables, gases, electricidad de alta tensión. Cada proceso define qué agente extintor es necesario." },
+  { titulo: "Clasificación de zonas de riesgo", desc: "Dividimos la planta en zonas: bajo riesgo (oficinas), riesgo medio (almacén, línea de producción) y alto riesgo (área química, depósito de inflamables)." },
+  { titulo: "Dimensionamiento del sistema", desc: "Calculamos la cantidad y tipo de extintores por zona. Determinamos si se requieren extintores rodantes, rociadores automáticos o sistemas de gas." },
+  { titulo: "Instalación con seguridad industrial", desc: "Nuestro equipo cumple los protocolos de seguridad de tu planta: equipo de protección, señalización de trabajo y coordinación con tu área de mantenimiento." },
+  { titulo: "Capacitación al personal operativo", desc: "Brigadas de emergencia, operarios y supervisores reciben la capacitación sobre uso de extintores y evacuación conforme a NOM-002 y NOM-019-STPS." },
+];
+
+const faqs = [
+  { pregunta: "¿Qué normas aplican a fábricas y plantas industriales?", respuesta: "Las principales son la <strong>NOM-002-STPS-2010</strong> (extintores y prevención de incendios), la <strong>NOM-005-STPS-1998</strong> (manejo de sustancias peligrosas) y la <strong>NOM-019-STPS</strong> (brigadas de emergencia). Para industria química o petroquímica también aplican normas de SEMARNAT y la Secretaría de Energía." },
+  { pregunta: "¿Cómo determino qué tipo de extintor necesita cada área de mi planta?", respuesta: "Depende del tipo de fuego que puede ocurrir en cada zona: Fuego Clase A (sólidos) → polvo seco ABC. Clase B (líquidos inflamables) → AFFF o polvo seco. Clase C (eléctrico) → CO₂. Clase D (metales) → agente especial. Proyecto Red hace el análisis de riesgo por zona de forma gratuita." },
+  { pregunta: "¿Es obligatorio tener una brigada contra incendios en mi fábrica?", respuesta: "Sí. La <strong>NOM-019-STPS</strong> exige que todo centro de trabajo con 100 o más trabajadores cuente con brigadas de emergencia capacitadas, incluyendo una brigada contra incendios. Para plantas más pequeñas se exige al menos que el personal conozca el uso de extintores y las rutas de evacuación." },
+  { pregunta: "¿Cuándo es obligatorio el sistema de rociadores en fábricas?", respuesta: "Los rociadores automáticos son obligatorios en instalaciones industriales de más de 1,000 m² con materiales de alto riesgo, almacenamiento de inflamables o materiales combustibles apilados a más de 3 metros de altura. También los exigen las aseguradoras para dar cobertura de incendio industrial." },
+  { pregunta: "¿Proyecto Red trabaja con plantas fuera de CDMX?", respuesta: "Sí. Atendemos plantas industriales en toda la <strong>Zona Metropolitana del Valle de México</strong> incluyendo Ecatepec, Tlalnepantla, Naucalpan, Tultitlán y Cuautitlán Izcalli. Para instalaciones fuera del área metropolitana, coordinamos logística en la cotización." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/fabricas/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · NOM-005-STPS</span>
+          <h1>Equipo Contra Incendios<br><span class="h1-accent">para Fábricas e Industria</span></h1>
+          <p class="hero-sub">El extintor correcto depende del proceso: ABC para áreas generales, AFFF para líquidos, CO₂ para tableros eléctricos. Diagnóstico gratuito en planta.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipo%20contra%20incendios%20para%20mi%20planta%20industrial`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico en planta</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Las fábricas y plantas industriales tienen el mayor riesgo de incendio por la combinación de procesos, maquinaria eléctrica y materiales inflamables. La <strong>NOM-002-STPS</strong> y la <strong>NOM-005-STPS</strong> establecen requerimientos específicos según el tipo de proceso y las sustancias manejadas.</p>
+          <p>Proyecto Red analiza el proceso productivo de tu planta, clasifica las zonas de riesgo y suministra el equipo correcto para cada área. Desde extintores portátiles hasta sistemas de rociadores automáticos. Atendemos CDMX y toda la Zona Metropolitana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué equipo necesita tu planta industrial?</h2>
+          <p class="cat-header__desc">El proceso productivo define el agente extintor. Proyecto Red clasifica las zonas de riesgo y suministra el equipo correcto para cada área:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2z"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20equipo%20contra%20incendios%20para%20planta%20industrial`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Diagnóstico de riesgo gratuito en tu planta</strong>
+          <p>Análisis por zona de proceso</p>
+          <span>Agendar visita →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Plan de protección contra incendios para tu planta</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Desde el análisis de riesgo hasta la capacitación de brigadas.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Fábricas e Industria"
+    subtitulo="Extintores y sistemas contra incendios para procesos industriales"
+    faqs={faqs}
+    pageId="fabricas"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>Protege tu planta, tu equipo y tu personal.</h2>
+        <p>Diagnóstico de riesgo gratuito en tus instalaciones. CDMX y Zona Metropolitana.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20de%20riesgo%20para%20mi%20planta%20industrial`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Agendar diagnóstico →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
