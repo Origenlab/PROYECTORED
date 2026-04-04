@@ -1,22 +1,341 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
-import Gallery from '../../components/Gallery.astro';
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores Tipo K para Cocinas de Restaurantes | Proyecto Red";
+const description = "Extintores Tipo K de acetato de potasio para fuegos clase K: aceite vegetal y grasa animal a alta temperatura. Obligatorios en cocinas comerciales. NFPA 17A. Venta y recarga en CDMX y EDOMEX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Tipo K — Cocinas" },
+];
+
+const metricas = [
+  { valor: "Clase K", label: "Aceite y grasa a alta temp." },
+  { valor: "NFPA 17A", label: "Norma de cocinas comerciales" },
+  { valor: "Saponificación", label: "Mecanismo de extinción" },
+  { valor: "2–15 L", label: "Rango de capacidades" },
+];
+
+// ── Variantes por capacidad ───────────────────────────
+const variantes = [
+  {
+    nombre: "Tipo K 2 L",
+    desc: "Para taquerías, fondas, puestos de comida rápida y food trucks con 1 a 3 quemadores. El mínimo requerido en cualquier cocina comercial con fritura. Ligero y fácil de usar sin entrenamiento.",
+    badge: "Pequeña cocina",
+    specs: "Acetato de potasio · 2 L · Fuegos clase K · Boquilla de baja velocidad · Soporte de pared",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Tipo%20K%202%20litros%20para%20cocina`,
+  },
+  {
+    nombre: "Tipo K 6 L",
+    desc: "El estándar para restaurantes con 4 a 10 quemadores y freidoras. Cubre una campana extractora de tamaño normal. Es el más común en las inspecciones de Protección Civil para establecimientos de alimentos.",
+    badge: "Más vendido",
+    specs: "Acetato de potasio · 6 L · Fuegos clase K · Boquilla angulada · Manguera flexible · NOM compatible",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Tipo%20K%206%20litros%20para%20restaurante`,
+  },
+  {
+    nombre: "Tipo K 10 L",
+    desc: "Para cocinas industriales de hoteles, hospitales, comedores de empresa y restaurantes de alta rotación con múltiples freidoras industriales y superficies de cocción de gran formato.",
+    badge: null,
+    specs: "Acetato de potasio · 10 L · Fuegos clase K · Alta capacidad · Boquilla de cobertura amplia",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Tipo%20K%2010%20litros%20para%20cocina%20industrial`,
+  },
+  {
+    nombre: "Tipo K 15 L",
+    desc: "Para grandes cocinas industriales: banquetes, plantas procesadoras de alimentos, catering masivo y cocinas de escuelas o universidades con alta demanda de fritura continua.",
+    badge: "Industrial",
+    specs: "Acetato de potasio · 15 L · Fuegos clase K · Máxima cobertura · Para sistemas de campana grandes",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Tipo%20K%2015%20litros%20cocina%20industrial`,
+  },
+];
+
+// ── Guía por tipo de cocina ───────────────────────────
+const guia = [
+  {
+    tipo: "Taquería / fonda / comida rápida",
+    norma: "NFPA 17A · Protección Civil CDMX",
+    necesitas: "Tipo K 2 L — mínimo 1 extintor cerca de cada zona de fritura o plancha",
+    porque: "Cualquier cocina con aceite o grasa en operación es una fuente de incendio clase K. Protección Civil lo revisa en cada visita: sin Tipo K, no hay dictamen favorable para un establecimiento de alimentos — aunque tengas extintores de polvo seco.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintor%20Tipo%20K%20para%20taqueria%20o%20fonda`,
+  },
+  {
+    tipo: "Restaurante con salón comedor",
+    norma: "NFPA 17A · NOM-002-STPS",
+    necesitas: "Tipo K 6 L en cocina + PQS 4.5 kg en salón, barra y pasillos — dos agentes, dos zonas",
+    porque: "La cocina y el salón tienen riesgos diferentes. La cocina necesita Tipo K para las grasas. El salón necesita PQS para fuegos eléctricos y materiales sólidos. Cubrimos ambas zonas en el mismo pedido para que no tengas que comprar con dos proveedores.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20Tipo%20K%20y%20PQS%20para%20mi%20restaurante`,
+  },
+  {
+    tipo: "Hotel / hospital / comedor industrial",
+    norma: "NFPA 17A · NOM-001-STPS",
+    necesitas: "Tipo K 10–15 L para cocinas de gran volumen con múltiples freidoras, woks y superficies de cocción continua",
+    porque: "Las cocinas de alto volumen tienen mayor carga de fuego por la cantidad de aceite en operación simultánea. Un extintor de 6 L puede ser insuficiente — el cálculo de capacidad mínima se basa en la superficie de cocción y el volumen total de aceite.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20Tipo%20K%20para%20cocina%20de%20hotel%20o%20comedor%20industrial`,
+  },
+  {
+    tipo: "⚠ Cuándo NO usar Tipo K",
+    norma: "NFPA 10 · Alternativas: PQS · CO₂",
+    necesitas: "NO usar Tipo K fuera de la cocina. Para salón, bodega o zonas eléctricas usar PQS o CO₂ según el caso",
+    porque: "El acetato de potasio en solución acuosa conduce electricidad — nunca usar cerca de equipos energizados. Tampoco es efectivo para fuegos clase A o B. El Tipo K es un agente muy específico: potente en su zona, inútil fuera de ella.",
+    href: `${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20extintor%20necesito%20en%20cada%20%C3%A1rea%20de%20mi%20restaurante`,
+  },
+];
+
+// ── FAQs específicos Tipo K ───────────────────────────
+const faqsTipoK = [
+  {
+    pregunta: "¿Por qué el polvo seco PQS no funciona en incendios de cocina?",
+    respuesta: "El aceite vegetal o la grasa animal en una freidora puede estar a <strong>330–400°C</strong> cuando se incendia. El polvo seco extingue momentáneamente las llamas visibles, pero el aceite sigue tan caliente que <strong>se re-enciende en segundos</strong> al contacto con el oxígeno. El extintor Tipo K trabaja por <strong>saponificación</strong>: el acetato de potasio reacciona con las grasas calientes formando una capa jabonosa densa que sella físicamente la superficie del aceite e impide el contacto con el oxígeno — eso sí previene la re-ignición de manera definitiva."
+  },
+  {
+    pregunta: "¿Qué es la saponificación y por qué importa en un incendio de cocina?",
+    respuesta: "La saponificación es la misma reacción química que se usa para hacer jabón: una base (el acetato de potasio) reacciona con una grasa caliente para formar una espuma densa y estable. En un incendio clase K, esta espuma crea una <strong>capa física sellante</strong> sobre el aceite que: 1) sofoca las llamas al cortar el oxígeno, 2) enfría la superficie, 3) se mantiene en su lugar evitando re-ignición. Sin esa capa, cualquier agente que solo apague llamas sin sellar la superficie es ineficiente en fuegos de cocina."
+  },
+  {
+    pregunta: "¿El extintor Tipo K es obligatorio en todos los restaurantes?",
+    respuesta: "Sí. Para cualquier establecimiento con cocina comercial que incluya fritura, <strong>Protección Civil exige un extintor Tipo K</strong> en la zona de cocción. La referencia normativa es la <strong>NFPA 17A</strong> y las guías de Protección Civil de CDMX y Estado de México. Un extintor de polvo seco en la cocina no cumple — en el siguiente ciclo de inspección o tras un incidente real, el incumplimiento puede derivar en clausura."
+  },
+  {
+    pregunta: "¿Cuánto cuesta un extintor Tipo K para mi restaurante?",
+    respuesta: "El Tipo K tiene un costo mayor al PQS por la especialización del agente. Un <strong>Tipo K 6 L</strong> (el más común en restaurantes) parte desde $1,150 MXN. Considera que muchos restaurantes compran Tipo K para cocina <strong>y PQS para el salón</strong> en el mismo pedido — en Proyecto Red te cotizamos el paquete completo con descuento por volumen. Escríbenos con el tamaño de tu cocina y número de quemadores para una cotización exacta."
+  },
+  {
+    pregunta: "¿Cada cuánto se recarga el extintor Tipo K?",
+    respuesta: "El mantenimiento anual es obligatorio conforme a la <strong>NOM-154-SCFI</strong>. La recarga del agente de acetato de potasio se hace solo si el extintor fue usado o si la inspección detecta pérdida de presión. En ciclos normales (extintor no usado) solo se hace la revisión anual sin necesidad de recargar. En caso de uso parcial, siempre se recarga completo — el agente no se puede complementar parcialmente."
+  },
+  {
+    pregunta: "¿Puedo instalar un sistema fijo de supresión Tipo K en mi campana?",
+    respuesta: "Sí. Los sistemas de supresión fija bajo campana se activan automáticamente al detectar llamas en la zona de cocción, cortan el gas de manera coordinada y descargan el agente directamente sobre freidoras y superficies calientes. En Proyecto Red instalamos <strong>sistemas fijos Tipo K bajo campana</strong> conforme a NFPA 17A. Es la protección más efectiva para restaurantes de alto tráfico donde el extintor portátil puede no ser suficiente. Contáctanos para un diagnóstico de tu cocina."
+  },
+  {
+    pregunta: "¿El Tipo K se puede usar cerca de equipos eléctricos?",
+    respuesta: "<strong>No.</strong> El acetato de potasio en solución acuosa <strong>conduce la electricidad</strong> — nunca debe descargarse sobre equipos eléctricos energizados. Para zonas con tableros, motores o refrigeración el agente correcto es <a href='/extintores/co2/'>CO₂</a> o <a href='/extintores/agente-limpio/'>agente limpio</a>. En una cocina completa, lo correcto es Tipo K cerca de la zona de cocción y CO₂ cerca de los tableros eléctricos."
+  },
+];
 ---
-<Categoria title="Extintores Tipo K para Cocinas | Proyecto Red" description="Extintores Tipo K especializados para fuegos de aceites y grasas en cocinas comerciales e industriales." heroTitle="Extintores Tipo K para Cocinas" heroSubtitle="Protección especializada contra fuegos de aceites y grasas de cocina.">
-  <h2>Tipo K: El Extintor Obligatorio en Cocinas Comerciales</h2>
-  <p>Los extintores Tipo K están diseñados específicamente para combatir fuegos de clase K, originados por aceites y grasas de cocina que alcanzan temperaturas extremadamente altas (superiores a 360 °C). Su agente extintor, una solución de acetato de potasio, reacciona con los aceites calientes mediante un proceso químico llamado saponificación, transformando la grasa ardiente en una espuma jabonosa que sella la superficie y corta el suministro de oxígeno. Este mecanismo es el único efectivo contra incendios de cocina, donde el agua provocaría una explosión de vapor y el polvo químico seco no lograría sofocar las altas temperaturas del aceite.</p>
-  <p>En México, la Norma Oficial Mexicana y las regulaciones de Protección Civil exigen la instalación de extintores Tipo K en toda cocina comercial: restaurantes, hoteles, hospitales, comedores industriales, panaderías, cocinas de escuelas y cualquier establecimiento que utilice freidoras, planchas o estufas industriales. No contar con este equipo puede resultar en clausuras, multas significativas y, lo más importante, pone en riesgo la vida del personal de cocina.</p>
 
-  <Gallery folder="tipo-k" count={3} />
+<Base
+  title={title}
+  description={description}
+>
 
-  <h3>Capacidades y Ubicación</h3>
-  <ul>
-    <li>Extintores portátiles de 6 litros (1.6 galones) — el más común en cocinas medianas</li>
-    <li>Extintores de 9 litros (2.5 galones) para cocinas industriales de alto volumen</li>
-    <li>Deben instalarse a no más de 9 metros de la fuente de riesgo (freidora o estufa)</li>
-    <li>Se complementan con sistemas fijos de supresión en campanas extractoras</li>
-  </ul>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Clase K · Acetato de potasio · NFPA 17A · Cocinas comerciales
+        </div>
+        <h1>Extintores<br><span class="h1-accent">Tipo K</span> para Cocinas</h1>
+        <p class="hero-sub">
+          Tu extintor de polvo seco <strong>no apaga un incendio de freidora</strong> — el aceite a 350°C se re-enciende en segundos. Protección Civil lo sabe y lo revisa. Sin Tipo K en la cocina no hay dictamen favorable. Tipo K certificado NFPA 17A desde $1,150 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20Tipo%20K%20para%20mi%20cocina`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Tipo K
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
 
-  <h3>Cumplimiento Normativo para Restaurantes</h3>
-  <p>Además del extintor Tipo K, las cocinas comerciales deben contar con un programa de mantenimiento semestral que incluya la verificación del agente extintor, la integridad del cilindro y la operatividad de la válvula. En Proyecto Red ofrecemos tanto la venta del equipo como el servicio de mantenimiento periódico, asegurando que tu restaurante o cocina industrial cumpla al 100% con los requerimientos de Protección Civil y las aseguradoras. Nuestros técnicos certificados emiten la constancia de servicio que las autoridades solicitan durante las inspecciones.</p>
-</Categoria>
+      <div class="hero-right">
+        <p>Cuando el aceite de una freidora se incendia, la temperatura ya supera los 350°C. Cualquier intento de apagarlo con agua lo expande explosivamente. El polvo PQS sofoca momentáneamente las llamas pero el aceite sigue caliente y se re-enciende solo. La única solución es el <strong>acetato de potasio</strong>: al entrar en contacto con el aceite caliente produce saponificación — una reacción química que crea una capa sellante jabonosa que corta el oxígeno e impide físicamente la re-ignición.</p>
+        <p>En Proyecto Red vendemos extintores Tipo K certificados NFPA 17A en 4 capacidades: desde 2 L para taquerías hasta 15 L para cocinas industriales de hotel. También instalamos <strong>sistemas fijos de supresión bajo campana</strong> para restaurantes donde la protección automática es la mejor inversión. Cotizamos Tipo K y PQS juntos para cubrir cocina y salón en un solo pedido.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos extintor Tipo K">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/tipo-k-hero.jpg" alt="Extintor Tipo K de acetato de potasio para cocinas de restaurantes" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NFPA 17A</span>
+            <h2>Extintor Tipo K — Acetato de Potasio</h2>
+          </div>
+        </div>
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Cocinas certificadas</span>
+          </div>
+          <h2 class="cat-header__title">Cuatro Capacidades para Cada Tipo de Cocina Comercial</h2>
+          <p class="cat-header__desc">Desde la taquería de 3 quemadores hasta la cocina industrial de banquetes. Cada extintor Tipo K viene con agente de acetato de potasio certificado, boquilla de baja velocidad para no salpicar aceite caliente, etiqueta NOM-154-SCFI y constancia de inspección para tu expediente de Protección Civil.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 17A</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">Protección Civil</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20cotizar%20Tipo%20K%20y%20PQS%20para%20mi%20restaurante%20completo`} class="btn-outline" target="_blank" rel="noopener noreferrer">Paquete cocina + salón</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20Tipo%20K`} class="cat-wa-link" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">Cotizar esta capacidad <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </a>
+        ))}
+
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sistema%20fijo%20Tipo%20K%20bajo%20campana`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer" aria-label="Sistema fijo de supresión bajo campana">
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Cocina de alto volumen?</p>
+          <p class="prod-card-cta__sub">Sistemas fijos de supresión bajo campana — activación automática NFPA 17A</p>
+          <span class="prod-card-cta__btn">Consultar sistema fijo →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/tipo-k-cocina.jpg" alt="Extintor Tipo K instalado junto a freidoras en cocina de restaurante" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">¿Cuál Tipo K necesitas?</span>
+            <h2>Por Tamaño de Cocina</h2>
+          </div>
+        </div>
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Capacidad por cocina</span>
+          </div>
+          <h2 class="cat-header__title">La Capacidad del Extintor Depende del Volumen de Aceite en Operación</h2>
+          <p class="cat-header__desc">No es lo mismo una taquería con 1 freidora que un hotel con 6. La NFPA 17A establece que la capacidad mínima del extintor Tipo K se calcula en función de la superficie de cocción y el volumen total de aceite. Identifica tu cocina y cotiza sin adivinar.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20elegir%20el%20Tipo%20K%20correcto%20para%20mi%20cocina`} class="cat-wa-link" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">Cotizar para mi cocina <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores Tipo K"
+    subtitulo="Todo lo que los dueños de restaurantes deben saber sobre protección en cocinas comerciales"
+    pageId="extintores-tipo-k"
+    bgGray={false}
+    faqs={faqsTipoK}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Sin Tipo K en la cocina, tu extintor no sirve donde más lo necesitas</h2>
+        <p>El polvo seco te protege en el salón. El Tipo K te protege donde el fuego realmente ocurre — en la freidora. Cotiza tu extintor Tipo K hoy o pídenos el paquete completo cocina + salón para tener todo cubierto en un solo pedido.</p>
+      </div>
+      <div class="cta-btns">
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20Tipo%20K%20para%20la%20cocina%20de%20mi%20restaurante`} class="btn-primary" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar Tipo K
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+</style>

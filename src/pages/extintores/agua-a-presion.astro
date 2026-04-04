@@ -1,22 +1,371 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
-import Gallery from '../../components/Gallery.astro';
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintor de Agua a Presión | Clase A | Ecológico | Proyecto Red";
+const description = "Extintores de agua a presión para fuegos clase A (madera, papel, cartón). Ecológicos, sin residuo químico, reutilizables. De 9L a 45L rodante. NOM-154-SCFI. Entrega en CDMX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Agua a Presión" },
+];
+
+const metricas = [
+  { valor: "A", label: "Clase de fuego que combate" },
+  { valor: "100% ecológico", label: "Sin agentes químicos" },
+  { valor: "Cero residuo", label: "Se limpia con agua" },
+  { valor: "9L – 45L", label: "Rango de capacidades" },
+];
+
+const variantes = [
+  {
+    nombre: "Agua a Presión 9L Estándar",
+    desc: "Extintor manual de agua presurizada para archivos documentales, bodegas de cartón y talleres textiles. El agua enfría el material por debajo del punto de ignición sin dejar residuo químico. Ideal para proteger papeles y documentos donde el polvo PQS causaría daño irreversible.",
+    badge: "Compacto",
+    specs: "Agua presurizada · 9L · Presión 12 bar · 40-50 s descarga · 6-7 m alcance · Manguera flexible",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20de%20agua%209L`,
+  },
+  {
+    nombre: "Agua a Presión 9L Water Mist",
+    desc: "Tecnología moderna: microgotitas de agua (water mist) que penetran profundo en fuegos clase A sin causar daño por fluido. Especial para museos, archivos históricos y galerías donde ni una sola gota de polvo es aceptable. Enfriamiento máximo con mínimo impacto visual.",
+    badge: "Museos",
+    specs: "Agua desionizada en micro-niebla · 9L · Presión 14 bar · 40-50 s descarga · 5-6 m alcance · Manguera spray",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20water%20mist%209L%20para%20museo`,
+  },
+  {
+    nombre: "Agua a Presión 25L Rodante",
+    desc: "Sistema rodante para bodegas de cartón, papeleras y almacenes de materias primas secas. Capacidad mayor que portátil pero sin necesidad de sistemas fijos costosos. Cubre áreas grandes de riesgo clase A puro — donde polvo seco contaminaría todo.",
+    badge: null,
+    specs: "Agua presurizada · 25L · Rodante · Presión 14 bar · 60-80 s descarga · 7-8 m alcance · Manguera 2 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agua%2025L%20rodante`,
+  },
+  {
+    nombre: "Agua a Presión 45L Rodante Industrial",
+    desc: "Máxima capacidad para instalaciones de alto riesgo clase A: plantas de procesamiento de papel, depósitos de materiales secos de gran volumen y aserraderos. Cero residuo químico — la seguridad industrial sin contaminación. Reutilizable en cada mantenimiento.",
+    badge: "Industrial",
+    specs: "Agua presurizada · 45L · Rodante · Presión 16 bar · 90-120 s descarga · 8-10 m alcance · Manguera 3 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agua%2045L%20rodante%20industrial`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Archivo / bodega de documentos",
+    norma: "NFPA 10 · Normas de patrimonio",
+    necesitas: "Agua a presión 9L o 25L rodante. Preferencia: water mist para documentos históricos. Cero polvo químico.",
+    porque: "Un archivo de documentos históricos no puede toleran ni polvo PQS (mancharía tinta y papel) ni CO₂ (desecharía aire humidificado controlado). El agua limpia, no deja residuo visible y se elimina fácilmente. Para papeles raros, water mist es la opción porque penetra sin encharcamiento.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agua%20para%20archivo%20de%20documentos`,
+  },
+  {
+    tipo: "Museo / galería de arte",
+    norma: "NFPA 10 · Normas internacionales de preservación",
+    necesitas: "Agua a presión water mist. Micro-niebla, máxima precisión, cero daño colateral a obras. Sistema fijo en bóveda es ideal si presupuesto lo permite.",
+    porque: "En una galería de arte no puedes tolerar polvo PQS en un cuadro ni agua que deje manchas salinas en papel. Water mist es la solución: la micro-niebla enfría y evapora sin dejar residuo visible. El patrimonio se preserva y el fuego se extingue.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20para%20un%20museo%20o%20galeria%20de%20arte`,
+  },
+  {
+    tipo: "Bodega de cartón / papelera",
+    norma: "NOM-002-STPS · NFPA 10",
+    necesitas: "Agua a presión 25-45L rodante. Distribución: cada 50-100 metros en áreas de almacenamiento.",
+    porque: "El polvo PQS dejaría residuo en pilas de cartón que después contamina producto. El agua enfría profundo — especialmente importante en cardboard donde la combustión es lenta. Costo de agua: mínimo. Costo de daño por residuo polvo: enorme.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agua%20para%20bodega%20de%20cart%C3%B3n`,
+  },
+  {
+    tipo: "⚠ Cuándo NO usar Agua",
+    norma: "NFPA 10 · Alternativas: CO₂, PQS, AFFF, Tipo K",
+    necesitas: "NO usar agua en: equipos eléctricos energizados (peligro de electrocución), líquidos inflamables (agua flota, fuego se expande), aceites de cocina (agua causa explosión). NUNCA agua en clase B, C ni K.",
+    porque: "El agua es conductora de electricidad — un chorro de agua en un transformador energizado causa electrocución al operario. En gasolina o diésel, el agua se hunde y expande el fuego. En aceite de cocina a 300°C, el agua se vaporiza explosivamente. El agua es SOLO para clase A — sólidos.",
+    href: `${WA_URL}?text=Hola%2C%20tengo%20dudas%20sobre%20d%C3%B3nde%20usar%20extintor%20agua`,
+  },
+];
+
+const faqsAgua = [
+  {
+    pregunta: "¿Por qué agua a presión y no polvo seco ABC para fuegos clase A?",
+    respuesta: "Ambos combaten clase A, pero con resultados muy diferentes. El <strong>agua enfría el material</strong> — quita el calor. El <strong>polvo ABC sofoca momentáneamente</strong> pero deja residuo fino que se adhiere a superficies. En un archivo de documentos, el polvo PQS se adhiere a papeles, tinta y encuadernaciones — posteriormente provoca daño irreversible durante limpieza. El agua se limpia con agua. En bodegas de cartón, el polvo contamina producto final. En museos es inaceptable. Para clase A puro con riesgo de daño residual, agua es mejor opción."
+  },
+  {
+    pregunta: "¿Qué es water mist y en qué se diferencia de agua presurizada normal?",
+    respuesta: "El <strong>water mist es tecnología moderna</strong>: el agua se presuriza y se atomiza en micro-gotitas (niebla) en lugar de chorro. Las micro-gotitas penetran profundo en fuegos clase A con enfriamiento máximo pero dejan mínima cantidad de agua visible. En documentos históricos o arte, la diferencia es crítica: chorro de agua normal = visible, puede dejar manchas salinas. Water mist = micro-gotitas que evaporan rápido, sin residuo visible. Costo es mayor (tecnología más sofisticada) pero justificado en patrimonios."
+  },
+  {
+    pregunta: "¿Puede usarse agua a presión en un fuego de gasolina?",
+    respuesta: "<strong>No, nunca.</strong> El agua es más densa que la gasolina — se hunde debajo, empuja el combustible hacia los lados y <strong>expande el fuego</strong> en lugar de extinguirlo. Además, el chorro puede causar que el combustible se disperse y el fuego se propague a mayores distancias. Para fuegos clase B (gasolina, diésel, aceites) usa <a href='/extintores/afff/'>AFFF espuma</a> (sella vapores) o <a href='/extintores/co2/'>CO₂</a>. Agua es SOLO para clase A."
+  },
+  {
+    pregunta: "¿Es seguro usar agua a presión cerca de equipos eléctricos?",
+    respuesta: "<strong>No.</strong> El agua es conductora de electricidad. Si usas agua a presión en un transformador, tablero, monitor o cualquier equipo energizado, <strong>el chorro conducirá la corriente y electrocutará al operario</strong>. La electrocución ocurre en milisegundos. Por eso en oficinas con mezcla de riesgo (clase A en papeles + clase C en equipos), nunca uses agua. En su lugar: usa <a href='/extintores/abc/'>polvo seco ABC</a> que es no-conductor, o <a href='/extintores/co2/'>CO₂</a> para la parte eléctrica."
+  },
+  {
+    pregunta: "¿Cuánto peso de agua contiene realmente un extintor de 9L?",
+    respuesta: "Un extintor de agua a presión de <strong>9L contiene aproximadamente 8 litros de agua pura</strong> (el 1L restante es espacio de gas presurizado que mantiene presión). El peso total del extintor lleno es aproximadamente <strong>10-11 kg</strong> (8 kg agua + 1-2 kg cilindro acero + válvula + manguera). Es más pesado que extintor polvo ABC de 4.5 kg, pero menos que los rodantes de 25L que pesan ~40 kg con agua."
+  },
+  {
+    pregunta: "¿Cuál es la vida útil del agua en un extintor de agua a presión?",
+    respuesta: "El <strong>agua pura no se degrada con tiempo indefinido</strong> siempre que el cilindro esté sellado herméticamente. Sin embargo, la <strong>presión baja gradualmente</strong> por micro-fugas en válvula — por eso el <strong>mantenimiento anual NOM-154-SCFI</strong> es obligatorio. Durante el mantenimiento: (1) se verifica presión con manómetro, (2) se drena el agua, se limpia interior del cilindro (previene corrosión), (3) se recarga con agua desionizada y gas presurizado. El cilindro de acero se prueba hidrostáticamente cada 5 años."
+  },
+  {
+    pregunta: "¿Es verdad que water mist es mejor que agua normal para todos los casos clase A?",
+    respuesta: "Water mist es <strong>mejor cuando:</strong> patrimonio histórico, arte, documentos raros, equipos sensibles cercanos. Es <strong>más caro pero vale la pena</strong> si lo que proteges es irremplazable. Water mist es <strong>innecesario cuando:</strong> bodega de cartón industrial, taller de carpintería, aserradero — ahí agua normal es suficiente y cuesta menos. La elección depende del valor y sensibilidad de lo que proteges."
+  },
+];
 ---
-<Categoria title="Extintores de Agua a Presión | Proyecto Red" description="Extintores de agua a presión para fuegos clase A. Seguros, ecológicos y efectivos en materiales sólidos." heroTitle="Extintores de Agua a Presión" heroSubtitle="Solución ecológica y efectiva para fuegos en materiales sólidos combustibles.">
-  <h2>Agua a Presión: El Agente Extintor Natural</h2>
-  <p>Los extintores de agua a presión son los equipos más tradicionales y ecológicos del mercado, diseñados exclusivamente para combatir fuegos de clase A originados en materiales sólidos combustibles como madera, papel, cartón, tela, plásticos y fibras naturales. Su mecanismo de extinción se basa en el enfriamiento: el agua absorbe el calor del material en combustión, reduciendo su temperatura por debajo del punto de ignición y deteniendo el proceso de combustión. Al no contener agentes químicos, son completamente seguros para el medio ambiente y no generan residuos tóxicos ni corrosivos.</p>
-  <p>Estos extintores son especialmente recomendados para bibliotecas, archivos documentales, museos, talleres textiles, carpinterías, bodegas de materiales secos y espacios donde predominan los combustibles sólidos. Su descarga en chorro permite una aplicación precisa y dirigida, minimizando el daño colateral en el área circundante. Es fundamental recordar que los extintores de agua nunca deben utilizarse en fuegos de clase B (líquidos inflamables), clase C (equipos eléctricos energizados) ni clase K (aceites de cocina), ya que en estos casos el agua puede agravar el incendio o provocar descargas eléctricas.</p>
 
-  <Gallery folder="agua-a-presion" count={3} />
+<Base
+  title={title}
+  description={description}
+>
 
-  <h3>Presentaciones Disponibles</h3>
-  <ul>
-    <li>Extintores de agua presurizada de 6 litros y 9 litros</li>
-    <li>Extintores de agua con aditivo humectante para mayor penetración</li>
-    <li>Extintores de agua desionizada para áreas con equipos cercanos</li>
-    <li>Cilindros de acero inoxidable o acero al carbón con recubrimiento</li>
-  </ul>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Agua · Clase A · Ecológico · NOM-154-SCFI
+        </div>
+        <h1>Extintores<br><span class="h1-accent">Agua a Presión</span></h1>
+        <p class="hero-sub">
+          Tu archivo de documentos no se protege con polvo PQS — se ensucia con él. Agua a presión enfría sin residuo químico. Desde $450 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20de%20agua%20para%20archivo`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Agua
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
 
-  <h3>Una Opción Responsable con el Medio Ambiente</h3>
-  <p>En un contexto donde la sustentabilidad es cada vez más relevante, los extintores de agua a presión representan una alternativa consciente para empresas comprometidas con la responsabilidad ambiental. No generan gases de efecto invernadero, no agotan la capa de ozono y sus residuos se limpian simplemente con ventilación natural. En Proyecto Red ofrecemos extintores de agua de marcas certificadas, con servicio de recarga anual y mantenimiento conforme a la NOM-154-SCFI para garantizar su funcionamiento óptimo en el momento que más se necesitan.</p>
-</Categoria>
+      <div class="hero-right">
+        <p>El agua a presión es el agente extintor más antiguo y más ecológico del mundo. Funciona con un mecanismo simple pero efectivo: enfría el material en combustión por debajo de su punto de ignición. Para fuegos clase A (madera, papel, cartón, tela) el agua es insuperablemente efectiva. No deja ningún residuo químico — solo agua que se limpia con agua.</p>
+        <p>Es la opción obligatoria para archivos históricos, museos y galerías donde cualquier agente alternativo causaría daño irreversible. En bodegas de cartón y papeleras, el agua garantiza que el producto final no queda contaminado por polvo PQS. Moderno, tradicional, y absolutamente seguro para el patrimonio — el agua es la única opción que preserva mientras protege.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor agua">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/agua-hero.jpg" alt="Extintor de agua a presión para archivos y documentos" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>Agua — Cero Residuo</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">100% ecológico</span>
+          </div>
+          <h2 class="cat-header__title">De 9L Estándar a 45L Rodante Industrial</h2>
+          <p class="cat-header__desc">Cuatro capacidades de agua a presión, desde portátil estándar hasta rodante para plantas de procesamiento. Disponible en agua normal y water mist (micro-niebla) para patrimonio. Todos con certificado NOM-154-SCFI y presión controlada.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 10</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">Eco-friendly</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20o%20mantenimiento%20de%20extintores%20agua`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20agua`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20tengo%20un%20archivo%20de%20documentos%20y%20necesito%20asesor%C3%ADa%20sobre%20agua%20vs%20water%20mist`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para elegir agua normal vs water mist"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Agua normal o water mist?</p>
+          <p class="prod-card-cta__sub">Dinos qué proteges (documentos, arte, cartón) — elegimos tecnología óptima para tu presupuesto</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/agua-archivo.jpg" alt="Extintor agua en archivo de documentos históricos" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Clase A puro</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Patrimonios y bodegas</span>
+          </div>
+          <h2 class="cat-header__title">Donde el Residuo Químico No es Opción</h2>
+          <p class="cat-header__desc">El agua a presión es especialista en clase A — no es universal como ABC. Si tu riesgo es puro clase A (documentos, cartón, papel, madera) y el residuo químico es inaceptable, agua es tu solución.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20protecci%C3%B3n%20de%20archivos%20con%20agua`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Agua a Presión"
+    subtitulo="Protección ecológica para documentos, archivos e instalaciones clase A"
+    pageId="extintores-agua"
+    bgGray={false}
+    faqs={faqsAgua}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Protege tu patrimonio sin dañarlo</h2>
+        <p>Archivos históricos, museos, galerías y bodegas de documentos no pueden tolerar polvo químico. Agua a presión es la solución natural, ecológica y efectiva. Cotiza hoy o consulta sobre water mist para aplicaciones de patrimonio crítico.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20agua%20para%20proteger%20mi%20archivo%20o%20bodega`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar extintores agua
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+</style>
