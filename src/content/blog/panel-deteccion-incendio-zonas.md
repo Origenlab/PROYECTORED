@@ -221,3 +221,10 @@ En PROYECTORED no solo vendemos paneles. Realizamos:
 - Servicio de monitoreo 24/7 (si deseas)
 
 Contáctanos al 525537238544 por WhatsApp para consulta sobre panel de detección de incendio para tu edificio o planta industrial.
+
+---
+
+## Productos relacionados
+
+- [Tableros de Control Contra Incendio](/sistemas/tableros/) — Paneles de detección, control de bombas y monitoreo
+- [Alarmas Contra Incendio NFPA 72](/sistemas/alarmas/) — Sistemas de alarma convencionales y direccionables

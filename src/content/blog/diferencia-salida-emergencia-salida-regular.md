@@ -210,3 +210,9 @@ Si vas a instalar/mejorar salidas, especifica:
 En PROYECTORED realizamos evaluación de salidas de emergencia: medición, evaluación de cumplimiento, especificación de correcciones, y suministro de letreros de emergencia conforme [NOM-003-SEGOB](/senalamientos/).
 
 Contacta por WhatsApp **525537238544** para auditoría de tus salidas de emergencia sin costo y propuesta de mejoras requeridas.
+---
+
+## Productos relacionados
+
+- [Señalamientos de Salvación y Evacuación](/senalamientos/salvacion/) — Señales de salida de emergencia, rutas y punto de reunión NOM
+- [Señalamientos de Emergencia NOM](/senalamientos/) — Catálogo completo de señalética fotoluminiscente

@@ -277,3 +277,10 @@ Si tu empresa no tiene señalización completa conforme a NOM-003:
 Ofrecemos evaluación completa de necesidades de señalización, recomendación de materiales, e instalación profesional. También vendemos señalización certificada NOM-003-SEGOB (fotoluminiscentes y materiales para exteriores).
 
 Contáctanos al WhatsApp **5255372385544** para evaluación de necesidades de señalización de tu instalación.
+---
+
+## Productos relacionados
+
+- [Señalamientos de Emergencia NOM](/senalamientos/) — Catálogo completo de señalética fotoluminiscente
+- [Señalamientos de Salvación y Evacuación](/senalamientos/salvacion/) — Rutas de evacuación, salidas de emergencia y punto de reunión
+- [Señalamientos de Prohibición](/senalamientos/prohibicion/) — Señalética de áreas restringidas y riesgos conforme a NOM

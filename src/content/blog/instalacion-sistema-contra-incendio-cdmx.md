@@ -94,3 +94,11 @@ Un buen diseño incluye:
 - **Capacitación de operarios**: Personal que usa el sistema debe entender cómo opera, qué hacer en caso de alarma, cómo realizar mantenimiento básico.
 
 Ofrecemos diseño, instalación y certificación completa de sistemas contra incendio siguiendo **NFPA 13**, **NFPA 72**, y normativa local CDMX. Nuestros técnicos evalúan tu instalación sin costo, recomiendan soluciones, y proporcionan presupuesto detallado. Contáctanos al WhatsApp **5255372385544** para agendar evaluación de tu espacio.
+---
+
+## Productos relacionados
+
+- [Sistemas Contra Incendio en CDMX](/sistemas/) — Alarmas, detectores, rociadores y redes hidráulicas
+- [Rociadores Automáticos NFPA 13](/sistemas/rociadores/) — Supresión automática para edificios e industria
+- [Redes Hidráulicas Contra Incendio](/sistemas/redes-hidraulicas/) — Diseño e instalación con tuberías y bombas certificadas
+- [Servicio de instalación en CDMX](/empresas/cdmx/) — Proyectos en la Ciudad de México con entrega el mismo día

@@ -40,3 +40,9 @@ Ofrecemos recarga certificada a domicilio en toda la CDMX y Estado de México. E
 Puedes consultar nuestro catálogo completo de [extintores](/extintores/) y conocer más sobre nuestros [servicios de mantenimiento](/servicios/). Para coordinar una recarga en tu ubicación, contáctanos al WhatsApp **5255372385544** y agendar el servicio que se ajuste a tu calendario.
 
 La recarga certificada no es un gasto adicional; es inversión en seguridad, cumplimiento legal y continuidad de tu operación.
+---
+
+## Productos relacionados
+
+- [Servicio de recarga de extintores en CDMX](/servicios/) — Precios directos, servicio a domicilio, certificado NOM
+- [Cobertura en Ciudad de México](/empresas/cdmx/) — Entrega y servicio en las 16 alcaldías de CDMX

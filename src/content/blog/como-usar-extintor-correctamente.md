@@ -197,3 +197,10 @@ Si eres brigadista, practica PASA mensualmente aunque sea mental (sin agente, im
 Ofrecemos sesiones de práctica con extintores reales (agente simulado, seguro para interior) donde grupos aprenden y practican PASA. También capacitamos en identificación de clase de fuego y extintor correcto.
 
 Contáctanos al WhatsApp **5255372385544** para información sobre sesiones de práctica de PASA en tu empresa.
+---
+
+## Productos relacionados
+
+- [Extintores ABC Multipropósito](/extintores/abc/) — El extintor más versátil, requerido por NOM para oficinas y negocios
+- [Extintores de Polvo Seco](/extintores/polvo-seco/) — PQS para fuegos clase A, B y C — el más solicitado en empresas
+- [Servicios de capacitación DC-3](/servicios/) — Capacitación certificada para brigadas contra incendio en CDMX

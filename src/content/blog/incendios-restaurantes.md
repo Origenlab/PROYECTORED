@@ -12,3 +12,11 @@ Las causas mas comunes de incendios en restaurantes incluyen el sobrecalentamien
 El equipo minimo de proteccion contra incendios en un restaurante incluye extintores Tipo K para la zona de cocina, extintores ABC para el area de comensales y almacen, detectores de humo en zonas estrategicas, un sistema de supresion automatica en la campana extractora y senalizacion de rutas de evacuacion. La NOM-002-STPS-2010 establece los requisitos generales, pero las regulaciones municipales pueden exigir equipamiento adicional dependiendo del tamano del local y su aforo.
 
 Todo restaurante debe contar con un plan de emergencia documentado que incluya procedimientos de evacuacion, asignacion de roles en la brigada interna, puntos de reunion, numeros de emergencia y un programa de simulacros al menos dos veces al ano. La capacitacion del personal es critica: cada empleado debe saber como operar un extintor, como activar el sistema de supresion de la campana y como guiar a los comensales hacia las salidas de emergencia. Un proveedor de servicios de proteccion contra incendios puede disenar el plan de emergencia, capacitar al personal y encargarse del mantenimiento periodico de todo el equipo.
+
+---
+
+## Productos relacionados
+
+- [Equipo contra incendios para restaurantes](/sectores/restaurantes/) — Diagnóstico NOM gratuito para tu cocina
+- [Extintor Tipo K para Cocinas](/extintores/tipo-k/) — Obligatorio con freidoras según NOM-002-STPS
+- [Rociadores Automáticos para Cocinas](/sistemas/rociadores/) — Supresión automática sobre campana extractora

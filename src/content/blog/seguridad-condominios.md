@@ -12,3 +12,11 @@ El equipamiento requerido depende directamente de la altura y superficie del edi
 Los planes de evacuacion en edificios residenciales deben considerar la diversidad de ocupantes, incluyendo personas de la tercera edad, ninos y personas con discapacidad que pueden requerir asistencia especial. Cada piso debe contar con un croquis de evacuacion visible que indique la ubicacion de extintores, alarmas, escaleras de emergencia y puntos de reunion. La administracion del condominio es responsable de organizar al menos dos simulacros anuales y de mantener actualizado el directorio de emergencias. Las escaleras de emergencia deben mantenerse libres de obstaculos en todo momento, una regla que frecuentemente se incumple.
 
 La capacitacion de residentes es el componente mas subestimado pero quizas el mas importante de la seguridad contra incendios en edificios. Un residente que sabe como usar un extintor, como activar la alarma y cual es la ruta de evacuacion correcta puede marcar la diferencia entre un conato controlado y una tragedia. Las administraciones de condominios pueden contratar empresas especializadas para impartir talleres de prevencion, capacitacion en uso de extintores y organizacion de simulacros. La inversion en estos servicios se distribuye entre todos los condominios a traves de las cuotas de mantenimiento, lo que la hace accesible para cualquier edificio.
+
+---
+
+## Productos relacionados
+
+- [Extintores Certificados NOM](/extintores/) — Extintores para áreas comunes, estacionamientos y escaleras
+- [Alarmas Contra Incendio](/sistemas/alarmas/) — Sistemas de alarma para edificios residenciales
+- [Equipos contra incendios en CDMX](/empresas/cdmx/) — Entrega directa en las 16 alcaldías de la Ciudad de México

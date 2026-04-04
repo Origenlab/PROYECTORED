@@ -301,3 +301,11 @@ Para tu empresa:
 Nuestro catálogo incluye todos los [tipos de extintores](/extintores/) certificados NOM-154-SCFI. Ofrecemos análisis gratuito de necesidades, recomendación de cantidad y tipo, y entrega con documentación completa.
 
 Contáctanos al WhatsApp **5255372385544** para consulta sobre qué extintores necesitas.
+---
+
+## Productos relacionados
+
+- [Extintores Certificados NOM](/extintores/) — Catálogo completo: ABC, CO₂, AFFF, Tipo K, Agente Limpio
+- [Extintores ABC Multipropósito](/extintores/abc/) — Para fuegos clase A, B y C — el más versátil
+- [Extintores de CO₂](/extintores/co2/) — Para equipos eléctricos, servidores y laboratorios
+- [Extintor Tipo K para Cocinas](/extintores/tipo-k/) — Obligatorio con freidoras y aceites a alta temperatura

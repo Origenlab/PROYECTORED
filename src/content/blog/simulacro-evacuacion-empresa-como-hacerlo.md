@@ -245,3 +245,9 @@ Valor de mejora en seguridad y cumplimiento: Incalculable.
 En PROYECTORED ofrecemos [asesoramiento en planificación de simulacros](/servicios/), coordinación, observación profesional, y reporte de debrief. Tenemos experiencia en 50+ simulacros en CDMX.
 
 Contacta por WhatsApp **525537238544** para consultar sobre diseño de simulacro adaptado a tu empresa.
+---
+
+## Productos relacionados
+
+- [Servicios para empresas](/servicios/) — Capacitación DC-3, instalación de sistemas y diagnóstico NOM
+- [Señalamientos de Emergencia NOM](/senalamientos/) — Señalética fotoluminiscente para rutas y salidas de emergencia

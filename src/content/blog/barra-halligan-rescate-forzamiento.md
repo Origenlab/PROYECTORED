@@ -216,3 +216,9 @@ Su versatilidad (golpea, apalanca, penetra) y confiabilidad (mecánica pura, sin
 En PROYECTORED suministramos barras Halligan de acero forjado, especificadas para brigadas mexicanas y con documentación de cumplimiento de norma. Incluimos manual de técnicas de rescate.
 
 Contacta por WhatsApp **525537238544** para cotización. Ofrecemos también [capacitación para personal de brigada](/servicios/) en uso correcto y seguridad de la barra Halligan.
+---
+
+## Productos relacionados
+
+- [Herramientas de Rescate para Bomberos](/equipo-bomberos/herramientas/) — Hachas, barras Halligan, palancas y herramientas de forzamiento
+- [Equipo para Bomberos y Brigadas](/equipo-bomberos/) — Catálogo completo de equipo profesional para bomberos

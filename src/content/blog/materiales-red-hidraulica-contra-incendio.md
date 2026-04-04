@@ -331,3 +331,11 @@ En PROYECTORED diseñamos, instalamos y certificamos sistemas completos:
 Un sistema es solo tan bueno como su componente más débil. PROYECTORED diseña eliminando debilidades.
 
 Para evaluación de tu edificio o planta, contáctanos al 525537238544 por WhatsApp.
+
+---
+
+## Productos relacionados
+
+- [Mangueras y Herrajes Contra Incendio](/mangueras/) — Catálogo completo: mangueras, chiflones, válvulas y adaptadores
+- [Redes Hidráulicas Contra Incendio](/sistemas/redes-hidraulicas/) — Diseño e instalación de redes hidráulicas certificadas
+- [Válvulas Contra Incendio](/mangueras/valvulas/) — Válvulas mariposa, compuerta, check y alivio de presión

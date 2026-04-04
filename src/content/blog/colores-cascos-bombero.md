@@ -12,3 +12,10 @@ El sistema de colores mas utilizado a nivel internacional, y que muchos cuerpos 
 La adopcion de estandares NFPA en Mexico ha sido gradual pero consistente. La norma NFPA 1971 establece los requisitos de diseno, desempeno y certificacion para cascos estructurales, mientras que la NFPA 1951 cubre los cascos para operaciones de rescate tecnico. Muchos cuerpos de bomberos mexicanos han complementado estas normas internacionales con codigos de colores propios que reflejan su estructura organizacional. Lo importante es que cada corporacion mantenga un sistema estandarizado, documentado y conocido por todo el personal.
 
 Mas alla del color, los cascos modernos incorporan elementos reflectantes, protectores faciales, sistemas de montaje para linternas y comunicaciones, y escudos frontales con el numero de compania y rango. La inversion en cascos certificados y correctamente identificados no es solo una cuestion de imagen institucional, sino una medida de seguridad operativa que facilita el mando y control en emergencias complejas. Los proveedores en Mexico ofrecen programas de personalizacion que incluyen la aplicacion de colores, escudos y elementos reflectantes conforme a las especificaciones de cada corporacion.
+
+---
+
+## Productos relacionados
+
+- [Complementos para Bombero](/equipo-bomberos/complementos/) — Cascos, guantes, cinturones y accesorios de emergencia
+- [Equipo para Bomberos y Brigadas](/equipo-bomberos/) — Catálogo completo: trajes estructurales, ERA, arneses y más

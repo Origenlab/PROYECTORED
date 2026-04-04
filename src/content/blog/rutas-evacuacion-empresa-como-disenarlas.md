@@ -253,3 +253,9 @@ Revisa tu plano actual:
 Si no tienes plano, o si está viejo, es momento de hacerlo. Ofrecemos diseño profesional de rutas de evacuación, validación según norma, y creación de planos señalizados.
 
 Contáctanos al WhatsApp **5255372385544** para consulta sobre diseño de rutas de evacuación de tu instalación.
+---
+
+## Productos relacionados
+
+- [Señalamientos de Salvación y Evacuación](/senalamientos/salvacion/) — Flechas de evacuación, salidas de emergencia y punto de reunión
+- [Señalamientos de Advertencia](/senalamientos/advertencia/) — Señalética de advertencia para zonas de riesgo

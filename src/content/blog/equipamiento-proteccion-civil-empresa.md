@@ -288,3 +288,10 @@ Ofrecemos servicio completo: evaluación, recomendación de equipamiento, adquis
 Una solución integral asegura cumplimiento 100% de normativa, protección real de vidas, y tranquilidad ante auditorías.
 
 Contáctanos al WhatsApp **5255372385544** para evaluación gratuita de equipamiento de tu empresa y plan de implementación.
+---
+
+## Productos relacionados
+
+- [Catálogo de productos contra incendios](/productos/) — Extintores, sistemas, señalamientos y equipo de protección
+- [Servicios de protección civil](/servicios/) — Diagnóstico, instalación, capacitación y mantenimiento
+- [Equipo por tipo de negocio](/sectores/) — Diagnóstico NOM gratuito según tu sector empresarial

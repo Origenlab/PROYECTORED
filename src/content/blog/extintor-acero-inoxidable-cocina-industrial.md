@@ -86,3 +86,10 @@ Cuando se mantiene correctamente, el acero inoxidable luce como nuevo indefinida
 En PROYECTORED especializamos en equipamiento para cocinas certificadas. Nuestro [extintor de acero inoxidable 4 litros](/extintores/) viene con documentación de material 304, pasivación de fábrica, y etiqueta de cumplimiento NOM-251. Es la solución sin compromisos para operaciones que toman en serio la seguridad y la higiene.
 
 Solicita presupuesto por WhatsApp **525537238544** e incluye una evaluación de tu actual infraestructura de seguridad.
+---
+
+## Productos relacionados
+
+- [Extintor Tipo K para Cocinas](/extintores/tipo-k/) — Extintor específico para grasas y aceites a alta temperatura
+- [Equipo contra incendios para restaurantes](/sectores/restaurantes/) — Todo lo que exige la NOM para cocinas comerciales
+- [Equipo contra incendios para hospitales](/sectores/hospitales/) — Extintores y señalamientos para clínicas y hospitales
