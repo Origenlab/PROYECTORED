@@ -7,8 +7,8 @@ import '../../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Equipo Contra Incendios para Bodegas y Almacenes CDMX | Proyecto Red";
-const description = "1 extintor por cada 300 m² según NOM-002-STPS. Extintores rodantes, rociadores y alarmas para bodegas y centros de distribución en CDMX. Diagnóstico gratuito.";
+const title = "Extintores para Bodegas y Almacenes CDMX — NOM-002 | Proyecto Red";
+const description = "1 extintor por cada 300 m² según NOM-002-STPS. ABC desde $450, rodantes de 50 kg para bodegas grandes, AFFF para líquidos inflamables. Diagnóstico gratuito CDMX y Edomex.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -17,35 +17,78 @@ const breadcrumbs = [
 ];
 
 const metricas = [
-  { valor: "NOM-002", label: "STPS obligatoria" },
-  { valor: "1/300m²", label: "Extintor mínimo" },
-  { valor: "Rodantes", label: "Para bodegas grandes" },
-  { valor: "24h", label: "Entrega CDMX" },
+  { valor: "Desde $450", label: "Extintor ABC certificado NOM" },
+  { valor: "1/300 m²", label: "Mínimo por NOM-002-STPS" },
+  { valor: "$500K", label: "Multa máxima por incumplimiento" },
+  { valor: "CDMX+Edomex", label: "Cobertura de entrega" },
 ];
+
+const heroImg = "/img/sector-bodegas-extintor-almacen.avif";
 
 const equipoObligatorio = [
-  { nombre: "Extintores Polvo Seco ABC", desc: "1 por cada 300 m². Para bodegas de productos secos, cajas, textiles y materiales sólidos combustibles. Desde 6 kg hasta extintores rodantes de 50 kg.", href: "/extintores/polvo-seco/", badge: "Obligatorio NOM" },
-  { nombre: "Extintores Rodantes 50 kg", desc: "Para bodegas grandes o con productos de alto riesgo. Mayor alcance y capacidad de extinción. Un rodante puede cubrir hasta 1,500 m² como refuerzo.", href: "/extintores/polvo-seco/", badge: "Bodegas grandes" },
-  { nombre: "Extintores AFFF (Espuma)", desc: "Para bodegas con líquidos inflamables: aceites, solventes, pinturas, combustibles. La espuma sella la superficie del líquido y evita la reignición.", href: "/extintores/afff/", badge: "Líquidos inf." },
-  { nombre: "Señalamientos NOM-003", desc: "Rutas de evacuación, señales de salida y punto de reunión. Obligatorio en bodegas con 5 o más trabajadores o con acceso de montacargas.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
-  { nombre: "Sistemas de Rociadores", desc: "Para bodegas de más de 1,000 m² o con materiales de alto riesgo. Sistema automático que actúa sin intervención humana en caso de incendio.", href: "/sistemas/rociadores/", badge: "Bodegas +1000m²" },
-  { nombre: "Alarmas de Detección", desc: "Detectores de humo o calor con sirena. Especialmente necesarios en bodegas sin presencia constante de personal durante el turno nocturno.", href: "/sistemas/alarmas/", badge: "Turno nocturno" },
-];
-
-const pasos = [
-  { titulo: "Medición y clasificación del riesgo", desc: "Calculamos la superficie y analizamos qué materiales se almacenan. El tipo de mercancía define qué agente extintor es necesario: ABC para sólidos, AFFF para líquidos." },
-  { titulo: "Distribución estratégica", desc: "Los extintores se ubican en puntos de fácil acceso: entradas, pasillos de circulación de montacargas y zonas de carga/descarga. Nunca detrás de racks o estanterías altas." },
-  { titulo: "Señalización de rutas", desc: "Señalamientos de evacuación visibles desde cualquier punto de la bodega, incluyendo áreas de altura con operadores de montacargas." },
-  { titulo: "Sistema automático si aplica", desc: "Para bodegas mayores a 1,000 m² o con materiales de clase A y B, instalamos rociadores automáticos conforme a NFPA 13." },
-  { titulo: "Documentación y capacitación", desc: "Certificados NOM, factura fiscal y capacitación básica para el personal de almacén y vigilancia sobre uso de extintores y rutas de evacuación." },
+  {
+    nombre: "Extintores Polvo Seco ABC",
+    desc: "1 por cada 300 m² de área techada. Bodega de 900 m²: mínimo 3 extintores. Para mercancía sólida: cajas, textiles, muebles, electrónicos. El más solicitado en verificaciones.",
+    href: "/extintores/polvo-seco/",
+    badge: "Obligatorio NOM",
+  },
+  {
+    nombre: "Extintores Rodantes 50 kg",
+    desc: "Para bodegas grandes o con materiales de alto riesgo. 1 rodante puede cubrir hasta 1,500 m² como refuerzo. Mayor alcance sin necesidad de mover el extintor.",
+    href: "/extintores/polvo-seco/",
+    badge: "Bodegas grandes",
+  },
+  {
+    nombre: "Extintores AFFF (Espuma)",
+    desc: "Obligatorio si almacenas aceites, solventes, pinturas, combustibles o cualquier líquido inflamable. La espuma sella la superficie e impide la reignición que el ABC no previene.",
+    href: "/extintores/afff/",
+    badge: "Líquidos inf.",
+  },
+  {
+    nombre: "Señalamientos NOM-003",
+    desc: "Rutas de evacuación en pasillos de circulación de montacargas. Salida de emergencia visible desde cualquier punto. Punto de reunión en exterior marcado.",
+    href: "/senalamientos/",
+    badge: "NOM-003-SEGOB",
+  },
+  {
+    nombre: "Sistemas de Rociadores",
+    desc: "Obligatorios en bodegas de más de 1,000 m² con materiales combustibles o apilamiento mayor a 3 metros. Las aseguradoras los exigen para dar cobertura de incendio.",
+    href: "/sistemas/rociadores/",
+    badge: "Bodegas +1000m²",
+  },
+  {
+    nombre: "Alarmas de Detección",
+    desc: "Detectores de humo con sirena para turnos nocturnos o bodegas sin personal constante. Respuesta temprana sin depender de que alguien esté presente.",
+    href: "/sistemas/alarmas/",
+    badge: "Turno nocturno",
+  },
 ];
 
 const faqs = [
-  { pregunta: "¿Cuántos extintores necesita mi bodega?", respuesta: "La <strong>NOM-002-STPS</strong> exige mínimo <strong>1 extintor por cada 300 m²</strong> de superficie techada, con al menos uno visible desde cualquier punto. Una bodega de 900 m² necesita mínimo 3 extintores. Si hay productos inflamables o el riesgo es alto, el número aumenta. El diagnóstico gratuito te da el plan exacto." },
-  { pregunta: "¿Qué tipo de extintor necesita una bodega con líquidos inflamables?", respuesta: "Para bodegas con aceites, solventes, pinturas, combustibles o cualquier líquido inflamable se requiere un extintor <strong>AFFF (espuma) o CO₂</strong> en esas áreas específicas, además del polvo seco ABC para las zonas generales. El AFFF sella la superficie del líquido e impide la reignición, que es el mayor riesgo en estos casos." },
-  { pregunta: "¿Cuándo es obligatorio el sistema de rociadores?", respuesta: "Según la NOM-002 y las normas NFPA, los rociadores automáticos son obligatorios en bodegas de más de <strong>1,000 m²</strong> con materiales combustibles de clase A y B, o en instalaciones con almacenamiento de más de 3 metros de altura. También los exigen muchas aseguradoras para dar cobertura de incendio." },
-  { pregunta: "¿Los operadores de montacargas necesitan capacitación en uso de extintores?", respuesta: "Sí. La NOM-002 exige que todo el personal del centro de trabajo conozca la ubicación y uso básico de los extintores. Esto incluye a operadores de montacargas, recepcionistas de mercancía y vigilantes del turno nocturno. Proyecto Red incluye una sesión de capacitación básica con cada instalación." },
-  { pregunta: "¿Qué pasa con el seguro de mercancía si no tengo extintores certificados?", respuesta: "La mayoría de las aseguradoras de carga y mercancía exigen extintores certificados NOM como condición para dar cobertura. Si hay un siniestro y los extintores no tienen certificación vigente, la aseguradora puede negar el pago de la reclamación. Los certificados NOM que entrega Proyecto Red son los que aceptan las aseguradoras en México." },
+  {
+    pregunta: "¿Cuántos extintores necesita mi bodega?",
+    respuesta: "La <strong>NOM-002-STPS</strong> exige mínimo 1 extintor por cada 300 m² de área techada, siempre visible y accesible. Una bodega de 600 m²: 2 extintores mínimo. Si hay líquidos inflamables en alguna zona, esa área necesita AFFF adicional independientemente de los ABC. El diagnóstico gratuito te da el número y distribución exacta.",
+  },
+  {
+    pregunta: "¿Cuándo necesito AFFF y no ABC en mi bodega?",
+    respuesta: "Cuando almacenas aceites, solventes, pinturas, gasolina, lubricantes o cualquier líquido inflamable. El ABC apaga el fuego pero <strong>no impide la reignición del líquido</strong>. El AFFF sella la superficie e impide que el vapor inflamable vuelva a encenderse. Una bodega que mezcla mercancía sólida y líquidos necesita ABC en el área seca y AFFF en el área de líquidos.",
+  },
+  {
+    pregunta: "¿Cuándo son obligatorios los rociadores automáticos?",
+    respuesta: "Según la NOM-002 y NFPA, los rociadores son obligatorios en bodegas de más de <strong>1,000 m²</strong> con materiales combustibles de clase A y B, o con apilamiento mayor a 3 metros de altura. También los exigen la mayoría de aseguradoras para dar cobertura de incendio industrial.",
+  },
+  {
+    pregunta: "¿Los extintores afectan el seguro de mercancía?",
+    respuesta: "Sí. La mayoría de aseguradoras de carga exigen extintores certificados NOM vigentes como condición de la póliza. Si hay un siniestro y los extintores no tienen certificación en regla, la aseguradora puede negar el pago. Los certificados de Proyecto Red son los que aceptan las aseguradoras en México.",
+  },
+  {
+    pregunta: "¿Los operadores de montacargas necesitan capacitación en extintores?",
+    respuesta: "Sí. La NOM-002 exige que todo el personal conozca la ubicación y uso básico de los extintores. Incluye operadores de montacargas, recepcionistas de mercancía y vigilantes nocturnos. Proyecto Red incluye capacitación básica en cada instalación.",
+  },
+  {
+    pregunta: "¿Qué pasa si compro el extintor equivocado para mi bodega?",
+    respuesta: "Si compraste con base en nuestro diagnóstico y hay una observación de Protección Civil, lo resolvemos sin costo. El diagnóstico previo incluye revisar el tipo de mercancía exacta para determinar si necesitas ABC, AFFF o ambos — para que el equipo sea correcto desde el primer día.",
+  },
 ];
 ---
 
@@ -68,16 +111,17 @@ const faqs = [
       <div class="hero-grid">
         <div class="hero-left">
           <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · 1 extintor por 300 m²</span>
-          <h1>Equipo Contra Incendios<br><span class="h1-accent">para Bodegas y Almacenes</span></h1>
-          <p class="hero-sub">Extintores portátiles y rodantes, rociadores automáticos y señalamientos NOM para bodegas y centros de distribución en CDMX. Diagnóstico gratuito.</p>
+          <h1>Extintores para Bodegas<br><span class="h1-accent">y Almacenes en CDMX</span></h1>
+          <p class="hero-sub">Tu bodega sin extintores certificados invalida el seguro de mercancía en caso de siniestro — y la aseguradora lo sabe antes que tú. Desde $450 el extintor ABC, con certificado NOM vigente. Diagnóstico gratuito en CDMX y Edomex.</p>
           <div class="hero-ctas">
             <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20para%20mi%20bodega%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
             <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
           </div>
         </div>
         <div class="hero-right">
-          <p>La <strong>NOM-002-STPS-2010</strong> exige mínimo 1 extintor por cada 300 m² en toda bodega o almacén. Para bodegas con líquidos inflamables o materiales de alto riesgo, el tipo de extintor cambia. El incumplimiento puede resultar en <strong>multas de hasta 500,000 MXN</strong> y en caso de siniestro, el seguro puede negarse a pagar.</p>
-          <p>Proyecto Red suministra extintores portátiles desde 6 kg hasta rodantes de 50 kg, rociadores automáticos para bodegas grandes y señalamientos fotoluminiscentes. Diagnóstico gratuito, entrega en 24h, certificados NOM incluidos.</p>
+          <img src={heroImg} alt="Extintor y sistema contra incendio en bodega industrial" width="1200" height="675" loading="eager" style="border-radius: 12px; width: 100%; height: auto; margin-bottom: 1.5rem;" />
+          <p>La <strong>NOM-002-STPS</strong> exige 1 extintor por cada 300 m². Una bodega de 900 m² sin extintores certificados enfrenta <strong>multas de hasta 500,000 MXN</strong> — y si hay un incendio con póliza vigente pero sin certificados NOM actualizados, la aseguradora puede rechazar el siniestro.</p>
+          <p>Proyecto Red suministra extintores portátiles desde 6 kg hasta rodantes de 50 kg para bodegas grandes, y AFFF para las que manejan líquidos inflamables. Diagnóstico sin costo, entrega en 24h en CDMX y Edomex, certificados NOM incluidos con cada extintor.</p>
         </div>
       </div>
     </div>
@@ -102,8 +146,8 @@ const faqs = [
     <div class="container">
       <div class="cat-header" style="margin-bottom:2.5rem">
         <div class="cat-header__info">
-          <h2 class="cat-header__title">¿Qué equipo necesita tu bodega según la NOM?</h2>
-          <p class="cat-header__desc">El tipo de mercancía almacenada define el agente extintor. Estos son los productos que Proyecto Red suministra para bodegas y centros de distribución en CDMX:</p>
+          <h2 class="cat-header__title">¿Qué extintores necesita tu bodega según la mercancía que almacenas?</h2>
+          <p class="cat-header__desc">El tipo de mercancía define el agente extintor. Sólidos: ABC. Líquidos inflamables: AFFF. Bodegas grandes: rodantes. El diagnóstico gratuito determina la distribución exacta.</p>
         </div>
         <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
@@ -124,10 +168,15 @@ const faqs = [
             </div>
           </a>
         ))}
-        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20extintores%20para%20bodega`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
-          <strong>¿Cuántos extintores necesita tu bodega?</strong>
-          <p>Diagnóstico gratis según superficie y mercancía</p>
+        <a href={`${WA_URL}?text=Hola%2C%20ya%20s%C3%A9%20cu%C3%A1ntos%20extintores%20necesito%3A%20quiero%20cotizaci%C3%B3n%20para%20bodega`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Ya sé cuántos necesito — cotizar ahora</strong>
+          <p>ABC, AFFF o rodantes. Entrega 24h CDMX/Edomex.</p>
           <span>Cotizar por WhatsApp →</span>
+        </a>
+        <a href={`${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20cu%C3%A1ntos%20extintores%20necesita%20mi%20bodega%20%E2%80%94%20quiero%20el%20diagn%C3%B3stico%20gratuito`} class="prod-card prod-card--cta" style="background:var(--c-ink);" target="_blank" rel="noopener noreferrer">
+          <strong>No sé cuántos necesito — diagnóstico gratis</strong>
+          <p>Medimos tu bodega y te damos la lista exacta.</p>
+          <span>Agendar visita →</span>
         </a>
       </div>
     </div>
@@ -135,25 +184,56 @@ const faqs = [
 
   <section class="cat-section cat-section--gray">
     <div class="container">
-      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Plan de cumplimiento para bodegas</h2>
-      <p style="color:var(--c-muted);margin-bottom:0">Del diagnóstico a la instalación certificada, paso a paso.</p>
-      <div class="cumplimiento-steps">
-        {pasos.map((paso, i) => (
-          <div class="cumplimiento-step">
-            <span class="step-num">{i + 1}</span>
-            <div class="step-content">
-              <h4>{paso.titulo}</h4>
-              <p>{paso.desc}</p>
-            </div>
-          </div>
-        ))}
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Qué equipo necesita tu bodega según su tipo?</h2>
+      <p style="color:var(--c-muted);margin-bottom:1.5rem">La mercancía que almacenas define el agente extintor correcto:</p>
+      <div class="sector-escenarios-grid">
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Bodega seca</p>
+          <p class="sector-escenario__titulo">Cajas, textiles, electrónicos, muebles</p>
+          <ul class="sector-escenario__items">
+            <li>ABC: 1 por cada 300 m² de área techada</li>
+            <li>Bodega de 900 m²: mínimo 3 extintores ABC</li>
+            <li>Señalamientos en pasillos de montacargas</li>
+            <li>Detector de humo si hay turno nocturno</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Bodega con líquidos</p>
+          <p class="sector-escenario__titulo">Aceites, solventes, pinturas, lubricantes</p>
+          <ul class="sector-escenario__items">
+            <li>AFFF en área de líquidos (el ABC no es suficiente)</li>
+            <li>ABC para el resto de la bodega</li>
+            <li>Señalamientos de materiales inflamables</li>
+            <li>Área de líquidos delimitada con señal de riesgo</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Bodega grande</p>
+          <p class="sector-escenario__titulo">+1,000 m² o apilamiento +3 metros</p>
+          <ul class="sector-escenario__items">
+            <li>Rodantes de 50 kg como refuerzo estratégico</li>
+            <li>Sistema de rociadores automáticos (obligatorio)</li>
+            <li>Alarma centralizada para turnos nocturnos</li>
+            <li>Plan de evacuación documentado con PC</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Centro de distribución</p>
+          <p class="sector-escenario__titulo">Alto flujo, múltiples zonas de riesgo</p>
+          <ul class="sector-escenario__items">
+            <li>ABC por zona + AFFF en área de recepción/carga</li>
+            <li>Extintores en cada vehículo de montacargas</li>
+            <li>Señalamientos en cada pasillo y zona de carga</li>
+            <li>Certificados NOM para aseguradora de mercancía</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <FaqCotizacion
     titulo="Preguntas frecuentes — Bodegas y Almacenes"
-    subtitulo="Todo sobre extintores y sistemas contra incendios para almacenamiento"
+    subtitulo="Extintores y sistemas contra incendios para almacenamiento en CDMX"
     faqs={faqs}
     pageId="bodegas"
     bgGray={false}
@@ -162,8 +242,8 @@ const faqs = [
   <section class="cta-final">
     <div class="container">
       <div class="cta-final-inner">
-        <h2>Protege tu mercancía y cumple la NOM.</h2>
-        <p>Diagnóstico gratuito. Extintores portátiles y rodantes. Entrega 24h CDMX.</p>
+        <h2>Sin certificados NOM, el seguro de mercancía puede no aplicar.</h2>
+        <p>Desde $450. Diagnóstico gratuito. Entrega 24h en CDMX y Edomex.</p>
         <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratuito%20para%20mi%20bodega`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
       </div>
     </div>

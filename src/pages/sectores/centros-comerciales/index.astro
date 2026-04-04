@@ -8,7 +8,7 @@ const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
 const title = "Equipo Contra Incendios para Centros Comerciales CDMX | Proyecto Red";
-const description = "Rociadores, alarmas centralizadas y señalamientos masivos para plazas comerciales y tiendas departamentales. NOM-002 y NOM-003. Diagnóstico gratuito CDMX.";
+const description = "Rociadores NFPA 13, alarma centralizada y señalamientos masivos para plazas comerciales en CDMX. Cumplimiento para administradores e inquilinos. Diagnóstico gratuito.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -17,35 +17,76 @@ const breadcrumbs = [
 ];
 
 const metricas = [
-  { valor: "NOM-002", label: "STPS + NOM-003-SEGOB" },
-  { valor: "Masivo", label: "Señalización por m²" },
-  { valor: "NFPA 13", label: "Rociadores obligatorios" },
-  { valor: "24h", label: "Entrega CDMX" },
+  { valor: "Desde $450", label: "Extintor ABC por local" },
+  { valor: "NFPA 13", label: "Rociadores obligatorios +1,000m²" },
+  { valor: "Clausura", label: "Riesgo para alta afluencia" },
+  { valor: "Locatario", label: "Atendemos inquilinos y admins" },
 ];
 
 const equipoObligatorio = [
-  { nombre: "Rociadores Automáticos", desc: "Obligatorios en plazas de más de 1,000 m². Sistema NFPA 13 que actúa automáticamente sin intervención humana. La primera línea de defensa en alta afluencia.", href: "/sistemas/rociadores/", badge: "NFPA 13" },
-  { nombre: "Alarma Centralizada", desc: "Panel de detección y alarma centralizado que cubre todos los locales y pasillos. Evacuación coordinada ante cualquier incidente en el inmueble.", href: "/sistemas/alarmas/", badge: "Obligatorio" },
-  { nombre: "Extintores ABC (masivos)", desc: "Extintores en cada local y área común cada 300 m². En plazas grandes se requieren decenas de extintores distribuidos estratégicamente.", href: "/extintores/polvo-seco/", badge: "Por local" },
-  { nombre: "Señalamientos NOM-003", desc: "Señalamientos fotoluminiscentes masivos: rutas de evacuación en todos los pasillos, señales de salida sobre cada acceso, punto de reunión exterior claramente marcado.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
-  { nombre: "Detectores de Humo", desc: "Detectores en cada local, pasillo techado y estacionamiento interior. Conectados al panel centralizado para respuesta inmediata.", href: "/sistemas/detectores/", badge: "Por zona" },
-  { nombre: "Extintores CO₂", desc: "Para el área de kioscos tecnológicos, cajeros automáticos, cuartos de servidores y subestaciones eléctricas del inmueble.", href: "/extintores/co2/", badge: "Áreas eléctricas" },
-];
-
-const pasos = [
-  { titulo: "Evaluación del inmueble completo", desc: "Analizamos planta, locales, pasillos, estacionamiento, cuartos técnicos y accesos. La complejidad de un centro comercial requiere un plan por zona." },
-  { titulo: "Diseño del sistema de detección", desc: "Planeamos la cobertura de detectores de humo y calor para garantizar que cualquier inicio de incendio sea detectado antes de propagarse." },
-  { titulo: "Distribución de extintores por local", desc: "Cada local inquilino tiene su extintor. Los pasillos y áreas comunes tienen distribución según NOM. Todo debidamente señalizado." },
-  { titulo: "Señalización masiva de evacuación", desc: "Señalamientos en todos los accesos, pasillos y escaleras. El punto de reunión exterior marcado en el estacionamiento o área abierta más cercana." },
-  { titulo: "Coordinación con administración", desc: "Trabajamos con el administrador del inmueble y los inquilinos. Documentación de cumplimiento por área para el expediente de Protección Civil." },
+  {
+    nombre: "Rociadores Automáticos NFPA 13",
+    desc: "Obligatorios en plazas de más de 1,000 m². Actúan automáticamente sin intervención humana. Las aseguradoras de inmuebles los exigen para dar cobertura.",
+    href: "/sistemas/rociadores/",
+    badge: "NFPA 13",
+  },
+  {
+    nombre: "Alarma Centralizada",
+    desc: "Panel de detección que cubre todos los locales y pasillos. Evacuación coordinada del inmueble completo ante cualquier incidente. Obligatorio en plazas de más de 1 nivel.",
+    href: "/sistemas/alarmas/",
+    badge: "Obligatorio",
+  },
+  {
+    nombre: "Extintores ABC — por local",
+    desc: "Cada local inquilino necesita su propio extintor. El del pasillo no sustituye. 1 ABC por cada 300 m² de área arrendada, más 1 CO₂ si hay equipo electrónico.",
+    href: "/extintores/polvo-seco/",
+    badge: "Por inquilino",
+  },
+  {
+    nombre: "Señalamientos Masivos NOM-003",
+    desc: "Flechas de evacuación en todos los pasillos, señales de salida sobre cada acceso, punto de reunión exterior claramente marcado. Fotoluminiscentes para cortes de luz.",
+    href: "/senalamientos/",
+    badge: "NOM-003-SEGOB",
+  },
+  {
+    nombre: "Detectores de Humo",
+    desc: "En cada local, pasillo techado y estacionamiento interior. Conectados al panel centralizado para respuesta inmediata en cualquier punto del inmueble.",
+    href: "/sistemas/detectores/",
+    badge: "Por zona",
+  },
+  {
+    nombre: "Extintores CO₂",
+    desc: "Para kioscos tecnológicos, cajeros automáticos, cuartos de servidores del inmueble y subestaciones eléctricas de la plaza.",
+    href: "/extintores/co2/",
+    badge: "Áreas eléctricas",
+  },
 ];
 
 const faqs = [
-  { pregunta: "¿Los inquilinos de locales en una plaza necesitan sus propios extintores?", respuesta: "Sí. Cada local es un centro de trabajo independiente y el inquilino es responsable del cumplimiento de la NOM-002 dentro de su espacio. El administrador de la plaza es responsable de las áreas comunes, pasillos, estacionamiento y sistemas generales (rociadores, alarma central). No son excluyentes — ambos deben cumplir." },
-  { pregunta: "¿Cuándo son obligatorios los rociadores automáticos en plazas?", respuesta: "En México, los rociadores automáticos se exigen en centros comerciales de más de <strong>1,000 m²</strong> de área construida con alta afluencia de público. Bajo las normas NFPA 13 que adopta Protección Civil en CDMX, también se exigen cuando hay más de un nivel de área comercial techada." },
-  { pregunta: "¿Cómo funciona la señalización en emergencias masivas?", respuesta: "Los señalamientos fotoluminiscentes de la <strong>NOM-003-SEGOB</strong> deben ser visibles incluso en oscuridad total (se cargan con luz ambiental). En una evacuación masiva, las flechas de evacuación en pasillos y las señales de salida sobre accesos guían al público hacia el exterior sin necesidad de personal de seguridad en cada punto." },
-  { pregunta: "¿Qué pasa con la plaza si Protección Civil detecta incumplimiento?", respuesta: "Para establecimientos con alta afluencia de público, Protección Civil en CDMX puede decretar clausura preventiva inmediata si detecta riesgo inminente para los visitantes. No espera multa — cierra primero. La reapertura requiere demostrar cumplimiento completo. Proyecto Red puede regularizar y documentar el cumplimiento para tramitar la reapertura." },
-  { pregunta: "¿Los estacionamientos también necesitan equipo?", respuesta: "Sí. Los estacionamientos cubiertos requieren extintores CO₂ o ABC cada 300 m², detectores de CO y humo, y señalamientos de evacuación y punto de reunión. Es una de las áreas más olvidadas y de las primeras que revisa Protección Civil." },
+  {
+    pregunta: "¿El administrador o el inquilino es responsable del equipo?",
+    respuesta: "Los dos, en áreas distintas. El <strong>administrador</strong> es responsable de áreas comunes: pasillos, estacionamiento, rociadores generales y alarma central. El <strong>inquilino</strong> es responsable del equipo dentro de su local arrendado. Un fallo en cualquiera puede resultar en clausura del inmueble completo.",
+  },
+  {
+    pregunta: "¿Mi local en la plaza necesita su propio extintor?",
+    respuesta: "Sí. El extintor del pasillo de la plaza no cumple para tu local. La NOM-002 exige que cada centro de trabajo tenga su propio extintor dentro del área que ocupa. Un local de 80 m²: mínimo 1 ABC. Un local con equipo electrónico: 1 ABC + 1 CO₂.",
+  },
+  {
+    pregunta: "¿Cuándo son obligatorios los rociadores en plazas?",
+    respuesta: "En centros comerciales de más de <strong>1,000 m²</strong> de área construida con alta afluencia de público. Bajo las normas NFPA 13 adoptadas por Protección Civil CDMX, también se exigen cuando hay más de un nivel de área comercial techada. Las aseguradoras del inmueble también los requieren.",
+  },
+  {
+    pregunta: "¿Qué pasa si PC detecta incumplimiento en la plaza?",
+    respuesta: "Para inmuebles con alta afluencia pública, Protección Civil puede decretar clausura preventiva inmediata si detecta riesgo inminente. No aplica multa primero — cierra directo. La reapertura requiere demostrar cumplimiento completo, lo que puede tardar días.",
+  },
+  {
+    pregunta: "¿El estacionamiento también necesita equipo?",
+    respuesta: "Sí. Los estacionamientos cubiertos requieren extintores ABC o CO₂ cada 300 m², detectores de CO y humo, y señalamientos de evacuación con punto de reunión exterior. Es una de las áreas más olvidadas y de las primeras que revisa Protección Civil.",
+  },
+  {
+    pregunta: "¿Qué pasa si compro el equipo equivocado para mi local en la plaza?",
+    respuesta: "Si compraste con base en nuestro diagnóstico y hay una observación de PC, lo resolvemos sin costo. Para locatarios en plazas, el diagnóstico previo también verifica que el equipo sea compatible con el sistema centralizado del inmueble — para que no haya conflictos en una emergencia.",
+  },
 ];
 ---
 
@@ -67,17 +108,17 @@ const faqs = [
     <div class="container">
       <div class="hero-grid">
         <div class="hero-left">
-          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · NOM-003-SEGOB · NFPA 13</span>
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002 · NOM-003 · NFPA 13</span>
           <h1>Protección Contra Incendios<br><span class="h1-accent">para Centros Comerciales</span></h1>
-          <p class="hero-sub">Rociadores automáticos, alarma centralizada y señalización masiva NOM para plazas comerciales con alta afluencia de público. Diagnóstico gratuito.</p>
+          <p class="hero-sub">La falla en una sola área del inmueble puede clausurar la plaza completa. Administradores e inquilinos tienen responsabilidades distintas — ambos deben cumplir. Diagnóstico gratuito para cada caso.</p>
           <div class="hero-ctas">
-            <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipo%20contra%20incendios%20para%20centro%20comercial%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20sobre%20equipo%20contra%20incendios%20para%20centro%20comercial%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
             <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
           </div>
         </div>
         <div class="hero-right">
-          <p>Los centros comerciales tienen el mayor riesgo de consecuencias masivas en caso de incendio. La <strong>NOM-002-STPS</strong> y la <strong>NOM-003-SEGOB</strong> exigen sistemas de detección, rociadores automáticos y señalización exhaustiva en todo el inmueble. Para plazas de más de 1,000 m², los rociadores NFPA 13 son obligatorios.</p>
-          <p>Proyecto Red asesora tanto a administradores de plazas como a inquilinos de locales. El cumplimiento es responsabilidad compartida — ambos necesitan su propio equipo certificado para evitar clausuras y sanciones.</p>
+          <p>Un centro comercial tiene dos responsables: el <strong>administrador</strong> responde por pasillos, estacionamiento, rociadores generales y alarma central. El <strong>inquilino</strong> responde por el equipo dentro de su local. Un fallo en cualquiera puede resultar en clausura del inmueble completo — afectando a todos los locatarios aunque el resto esté en regla.</p>
+          <p>Proyecto Red asesora a administradores de plazas e inquilinos de locales. Para cada caso hay requerimientos distintos: Proyecto Red los conoce y entrega el equipo correcto con certificados NOM para el expediente de Protección Civil.</p>
         </div>
       </div>
     </div>
@@ -102,8 +143,8 @@ const faqs = [
     <div class="container">
       <div class="cat-header" style="margin-bottom:2.5rem">
         <div class="cat-header__info">
-          <h2 class="cat-header__title">¿Qué sistemas requiere un centro comercial?</h2>
-          <p class="cat-header__desc">La complejidad del inmueble requiere un enfoque por zona. Proyecto Red planea y suministra sistemas completos para plazas y tiendas departamentales:</p>
+          <h2 class="cat-header__title">¿Eres administrador de la plaza o locatario?</h2>
+          <p class="cat-header__desc">Los requerimientos son distintos para cada rol. El administrador responde por el inmueble. El inquilino responde por su local. Los dos necesitan equipo propio con certificado NOM.</p>
         </div>
         <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
@@ -124,10 +165,15 @@ const faqs = [
             </div>
           </a>
         ))}
-        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20para%20centro%20comercial%20o%20local%20en%20plaza`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
-          <strong>¿Administrador de plaza o inquilino?</strong>
-          <p>Asesoría diferenciada para cada caso</p>
-          <span>Consultar ahora →</span>
+        <a href={`${WA_URL}?text=Hola%2C%20soy%20locatario%20en%20plaza%20comercial%20y%20necesito%20extintor%20para%20mi%20local`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Soy locatario — necesito extintor para mi local</strong>
+          <p>Desde $450 ABC. Entrega hoy en CDMX.</p>
+          <span>Cotizar ahora →</span>
+        </a>
+        <a href={`${WA_URL}?text=Hola%2C%20administro%20una%20plaza%20comercial%20y%20necesito%20asesor%C3%ADa%20sobre%20cumplimiento%20NOM`} class="prod-card prod-card--cta" style="background:var(--c-ink);" target="_blank" rel="noopener noreferrer">
+          <strong>Administro la plaza — asesoría completa</strong>
+          <p>Rociadores, alarma central, señalización masiva.</p>
+          <span>Consultar →</span>
         </a>
       </div>
     </div>
@@ -135,18 +181,49 @@ const faqs = [
 
   <section class="cat-section cat-section--gray">
     <div class="container">
-      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Plan de cumplimiento para centros comerciales</h2>
-      <p style="color:var(--c-muted);margin-bottom:0">Coordinación con administración e inquilinos para cumplimiento total.</p>
-      <div class="cumplimiento-steps">
-        {pasos.map((paso, i) => (
-          <div class="cumplimiento-step">
-            <span class="step-num">{i + 1}</span>
-            <div class="step-content">
-              <h4>{paso.titulo}</h4>
-              <p>{paso.desc}</p>
-            </div>
-          </div>
-        ))}
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Qué necesita tu plaza según su tamaño?</h2>
+      <p style="color:var(--c-muted);margin-bottom:1.5rem">El tamaño y la afluencia determinan los sistemas obligatorios:</p>
+      <div class="sector-escenarios-grid">
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Local inquilino</p>
+          <p class="sector-escenario__titulo">Cualquier tamaño de local comercial</p>
+          <ul class="sector-escenario__items">
+            <li>1 ABC por cada 300 m² del local</li>
+            <li>1 CO₂ si hay equipo electrónico o caja registradora</li>
+            <li>Señal de extintor visible en el local</li>
+            <li>Certificado NOM para el expediente del inmueble</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Plaza pequeña</p>
+          <p class="sector-escenario__titulo">Hasta 1,000 m², 1 nivel</p>
+          <ul class="sector-escenario__items">
+            <li>ABC en cada local y áreas comunes</li>
+            <li>Señalamientos NOM-003 en pasillo principal</li>
+            <li>Detector de humo en áreas cerradas</li>
+            <li>Punto de reunión exterior señalizado</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Plaza mediana</p>
+          <p class="sector-escenario__titulo">+1,000 m² o 2+ niveles</p>
+          <ul class="sector-escenario__items">
+            <li>Rociadores NFPA 13 obligatorios</li>
+            <li>Alarma centralizada para todo el inmueble</li>
+            <li>Señalamientos en cada pasillo y nivel</li>
+            <li>Plan de evacuación con rutas por piso</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Plaza grande / anchor store</p>
+          <p class="sector-escenario__titulo">Tienda departamental, megaplaza</p>
+          <ul class="sector-escenario__items">
+            <li>Sistema completo: rociadores + detección + alarma</li>
+            <li>Señalización masiva en todos los pisos</li>
+            <li>Estacionamiento con detectores de CO</li>
+            <li>Mantenimiento anual del sistema completo</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -162,9 +239,9 @@ const faqs = [
   <section class="cta-final">
     <div class="container">
       <div class="cta-final-inner">
-        <h2>Protege tu plaza y tus inquilinos.</h2>
-        <p>Diagnóstico gratuito para administradores y locatarios. Cumplimiento total NOM.</p>
-        <a href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20centro%20comercial%20en%20CDMX`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar asesoría →</a>
+        <h2>Administradores e inquilinos: los dos necesitan cumplir.</h2>
+        <p>Diagnóstico gratuito para cada rol. Equipo correcto con certificado NOM.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20de%20equipo%20contra%20incendios%20para%20centro%20comercial`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar asesoría →</a>
       </div>
     </div>
   </section>

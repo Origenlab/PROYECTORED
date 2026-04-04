@@ -7,8 +7,8 @@ import '../../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Equipo Contra Incendios para Restaurantes CDMX — Tipo K y NOM-002 | Proyecto Red";
-const description = "Extintor Tipo K obligatorio en cocinas con freidoras. NOM-002-STPS para restaurantes, dark kitchens y cafeterías en CDMX. Diagnóstico gratuito, entrega misma día.";
+const title = "Extintor Tipo K para Restaurantes CDMX — NOM-002 Obligatorio | Proyecto Red";
+const description = "El extintor Tipo K es obligatorio en cocinas con freidoras según NOM-002-STPS. Sin él Protección Civil clausura la cocina aunque el resto esté bien. Desde $890. Entrega hoy.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -17,35 +17,78 @@ const breadcrumbs = [
 ];
 
 const metricas = [
+  { valor: "Desde $890", label: "Extintor Tipo K certificado" },
+  { valor: "Clausura", label: "Sin Tipo K con freidoras" },
   { valor: "NOM-002", label: "STPS obligatoria" },
-  { valor: "Clausura", label: "Riesgo por incumplimiento" },
-  { valor: "Tipo K", label: "Obligatorio con freidoras" },
   { valor: "Mismo día", label: "Entrega urgente CDMX" },
 ];
 
-const equipoObligatorio = [
-  { nombre: "Extintor Tipo K — Cocinas", desc: "Obligatorio en cualquier cocina con freidoras, parrillas o aceites a alta temperatura. Específico para grasas vegetales y animales — el ABC convencional no es suficiente.", href: "/extintores/tipo-k/", badge: "Obligatorio NOM" },
-  { nombre: "Extintores Polvo Seco ABC", desc: "Para el área de comensales, barra, caja y accesos. 1 por cada 300 m² de superficie total del establecimiento.", href: "/extintores/polvo-seco/", badge: "Área comensales" },
-  { nombre: "Señalamientos NOM-003", desc: "Salidas de emergencia, rutas de evacuación y punto de reunión fotoluminiscentes. Obligatorio visible desde todas las mesas y cocina.", href: "/senalamientos/salvacion/", badge: "NOM-003-SEGOB" },
-  { nombre: "Sistema Automático Cocina", desc: "Para cocinas industriales de alto volumen: supresión automática sobre campana extractora. Exigido en dark kitchens y cocinas de hotel.", href: "/sistemas/rociadores/", badge: "Cocinas industriales" },
-  { nombre: "Extintor CO₂", desc: "Para el área de cómputo, caja registradora, servidores del punto de venta. No daña equipos electrónicos ni alimentos cercanos.", href: "/extintores/co2/", badge: "Área eléctrica" },
-  { nombre: "Gabinete para Extintor", desc: "Presentación profesional del extintor en pared. Visible y accesible según norma, sin ocupar espacio del pasillo de circulación.", href: "/gabinetes/para-extintor/", badge: "Presentación" },
-];
+const heroImg = "/img/sector-restaurantes-extintor-tipo-k.avif";
 
-const pasos = [
-  { titulo: "Revisión de la cocina", desc: "Un técnico analiza el tipo de equipos de cocción: freidoras, parrillas, salamandras. Esto determina si se requiere Tipo K, sistema automático o ambos." },
-  { titulo: "Medición del inmueble", desc: "Calculamos la superficie total para determinar el número de extintores ABC necesarios en área de comensales y accesos." },
-  { titulo: "Entrega e instalación", desc: "Los extintores se instalan a la altura y distancia correcta según norma. La señalización queda visible desde todos los puntos del establecimiento." },
-  { titulo: "Capacitación del personal", desc: "Explicamos al personal cómo usar cada extintor y cuándo evacuar. La NOM-002 exige que el personal conozca el uso del equipo." },
-  { titulo: "Documentación oficial", desc: "Factura fiscal y certificado NOM por cada extintor. Listos para mostrar en verificación de Protección Civil o IMSS." },
+const equipoObligatorio = [
+  {
+    nombre: "Extintor Tipo K — Cocinas",
+    desc: "Obligatorio en cualquier cocina con freidoras. Sella aceites a alta temperatura. Sin él, PC clausura la cocina aunque el ABC esté presente — el ABC solo no es suficiente.",
+    href: "/extintores/tipo-k/",
+    badge: "Obligatorio NOM",
+  },
+  {
+    nombre: "Extintores Polvo Seco ABC",
+    desc: "Para el área de comensales, barra, caja y accesos. 1 por cada 300 m². Un local de 200 m²: mínimo 1 ABC + 1 Tipo K. No sustituyen al Tipo K en cocina.",
+    href: "/extintores/polvo-seco/",
+    badge: "Área comensales",
+  },
+  {
+    nombre: "Señalamientos NOM-003",
+    desc: "Salidas de emergencia, ruta de evacuación y punto de reunión fotoluminiscentes. Obligatorio visible desde todas las mesas y desde la cocina.",
+    href: "/senalamientos/salvacion/",
+    badge: "NOM-003-SEGOB",
+  },
+  {
+    nombre: "Sistema Automático Cocina",
+    desc: "Para dark kitchens y cocinas industriales de alto volumen. Supresión automática sobre la campana extractora. Exigido en cocinas de hotel.",
+    href: "/sistemas/rociadores/",
+    badge: "Cocinas industriales",
+  },
+  {
+    nombre: "Extintor CO₂",
+    desc: "Para el área de cómputo, POS, caja registradora y servidores del sistema de pedidos. No deja residuos en equipos ni en alimentos cercanos.",
+    href: "/extintores/co2/",
+    badge: "Área eléctrica",
+  },
+  {
+    nombre: "Gabinete para Extintor",
+    desc: "Presentación profesional en pared. Visible y accesible según norma sin ocupar espacio del pasillo de circulación entre mesas.",
+    href: "/gabinetes/para-extintor/",
+    badge: "Presentación",
+  },
 ];
 
 const faqs = [
-  { pregunta: "¿Por qué mi restaurante necesita un extintor Tipo K?", respuesta: "La <strong>NOM-002-STPS</strong> establece que toda cocina con equipos de fritura (freidoras, sartenes basculantes) debe tener un extintor específico para fuegos de clase K — aceites y grasas a alta temperatura. Un extintor ABC convencional no solo es insuficiente: en algunos casos puede provocar salpicadura del aceite encendido y empeorar el incendio." },
-  { pregunta: "¿Cuántos extintores necesita mi restaurante?", respuesta: "Depende de la superficie. Para el área de comensales y accesos se aplica la regla de <strong>1 extintor por cada 300 m²</strong>. Adicionalmente, la cocina necesita al menos 1 extintor Tipo K independientemente del tamaño. Un local pequeño (menos de 300 m²) necesita mínimo 2 extintores: 1 ABC y 1 Tipo K." },
-  { pregunta: "¿Qué pasa si Protección Civil me clausura?", respuesta: "Para restaurantes la clausura es especialmente dañina: pierdes el servicio, el inventario de alimentos y la reputación. Proyecto Red puede regularizar tu restaurante en <strong>el mismo día</strong>: llevamos el equipo, lo instalamos y te dejamos la documentación. Si ya tienes una visita programada, contáctanos con anticipación." },
-  { pregunta: "¿Las dark kitchens también necesitan equipo NOM?", respuesta: "Sí. Las dark kitchens y cocinas de delivery están sujetas a la misma NOM-002-STPS que los restaurantes tradicionales. Al no recibir clientes no están exentas — y Protección Civil puede verificarlas igual. Además, los seguros de negocio suelen exigir cumplimiento NOM para ser válidos." },
-  { pregunta: "¿Cada cuánto se revisan los extintores en restaurantes?", respuesta: "La NOM-002 exige mantenimiento <strong>anual certificado</strong> para todos los extintores. Para el extintor Tipo K en cocinas la revisión es especialmente importante porque el agente se degrada con el calor ambiental. Proyecto Red hace el servicio completo con certificación oficial." },
+  {
+    pregunta: "¿Por qué el extintor Tipo K y no el ABC para mi cocina?",
+    respuesta: "El ABC puede extinguir temporalmente un fuego en aceite caliente, pero <strong>no impide la reignición</strong>. El aceite sigue caliente y vuelve a encenderse. El Tipo K forma una capa jabonosa sobre la superficie del aceite que sella el vapor inflamable e impide que vuelva a arder. La NOM-002 lo exige específicamente porque el ABC solo es insuficiente en cocinas con freidoras.",
+  },
+  {
+    pregunta: "¿Cuántos extintores necesita mi restaurante?",
+    respuesta: "Mínimo: 1 Tipo K en la cocina (si hay freidoras) + 1 ABC por cada 300 m² del área total. Un local de 200 m² necesita mínimo 2 extintores: 1 ABC y 1 Tipo K. Un local de 500 m² con cocina: 2 ABC + 1 Tipo K. El diagnóstico gratuito confirma el número exacto.",
+  },
+  {
+    pregunta: "¿Las dark kitchens y cocinas de delivery también necesitan Tipo K?",
+    respuesta: "Sí. Las dark kitchens están sujetas a la misma NOM-002-STPS que los restaurantes tradicionales. No recibir clientes no las exime. Protección Civil puede verificarlas igual. Además, los seguros de negocio suelen exigir cumplimiento NOM para ser válidos en caso de siniestro.",
+  },
+  {
+    pregunta: "¿Qué pasa si Protección Civil clausura mi cocina?",
+    respuesta: "Para restaurantes la clausura es crítica: pierdes el servicio, el inventario de alimentos y la reputación. Proyecto Red puede regularizar tu restaurante en el <strong>mismo día</strong>: llevamos el Tipo K, lo instalamos y te dejamos la documentación. Si ya tienes una visita programada, contáctanos hoy.",
+  },
+  {
+    pregunta: "¿Cada cuánto se revisa el Tipo K?",
+    respuesta: "La NOM-002 exige mantenimiento anual certificado. Para el Tipo K en cocinas la revisión es especialmente importante porque el agente se degrada con el calor ambiental de la cocina. Proyecto Red hace el servicio completo con certificación oficial.",
+  },
+  {
+    pregunta: "¿Qué pasa si compro el equipo equivocado para mi restaurante?",
+    respuesta: "Si compraste con base en nuestro diagnóstico y hay una observación de PC, lo resolvemos sin costo. Cambiamos el agente, completamos el equipo o ajustamos la ubicación. El diagnóstico previo existe exactamente para evitar eso — no vendemos a ciegas.",
+  },
 ];
 ---
 
@@ -67,17 +110,18 @@ const faqs = [
     <div class="container">
       <div class="hero-grid">
         <div class="hero-left">
-          <span class="hero-badge"><span class="badge-dot"></span> Extintor Tipo K — Obligatorio en cocinas</span>
-          <h1>Equipo Contra Incendios<br><span class="h1-accent">para Restaurantes CDMX</span></h1>
-          <p class="hero-sub">El extintor Tipo K es obligatorio en cualquier cocina con freidoras según la NOM-002-STPS. Diagnóstico gratuito, entrega el mismo día en CDMX.</p>
+          <span class="hero-badge"><span class="badge-dot"></span> Tipo K obligatorio · NOM-002-STPS</span>
+          <h1>Extintor Tipo K para<br><span class="h1-accent">Restaurantes en CDMX</span></h1>
+          <p class="hero-sub">Si tienes freidoras y solo ABC en la cocina, Protección Civil puede clausurar en el momento — aunque el resto del restaurante esté bien. El Tipo K es obligatorio según NOM-002. Desde $890, entrega hoy en CDMX.</p>
           <div class="hero-ctas">
-            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintor%20Tipo%20K%20y%20equipo%20para%20mi%20restaurante%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Cotizar ahora</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintor%20Tipo%20K%20para%20mi%20restaurante%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Cotizar Tipo K ahora</a>
             <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
           </div>
         </div>
         <div class="hero-right">
-          <p>Un extintor ABC convencional <strong>no es suficiente en cocinas con freidoras</strong>. La NOM-002-STPS exige el extintor <strong>Tipo K</strong> específicamente para aceites y grasas a alta temperatura — y Protección Civil lo sabe. El incumplimiento puede resultar en clausura inmediata, especialmente en cocinas industriales y dark kitchens.</p>
-          <p>Proyecto Red entrega e instala el equipo correcto para tu tipo de cocina el mismo día del pedido en CDMX. Incluye factura fiscal y certificado NOM para presentar en cualquier verificación. Sin intermediarios, precio directo.</p>
+          <img src={heroImg} alt="Extintor Tipo K instalado en cocina de restaurante en CDMX" width="1200" height="675" loading="eager" style="border-radius: 12px; width: 100%; height: auto; margin-bottom: 1.5rem;" />
+          <p>El ABC apaga el fuego de la freidora pero el aceite sigue caliente — y vuelve a encenderse. El <strong>Tipo K</strong> forma una capa jabonosa que sella el vapor inflamable e impide la reignición. Por eso la NOM-002 lo exige en cocinas con freidoras: no es capricho normativo, es química.</p>
+          <p>Proyecto Red entrega Tipo K certificado con instalación y etiqueta NOM ese mismo día en CDMX. Si ya tienes una visita de Protección Civil programada, contáctanos ahora y coordinamos para que estés listo antes. Con factura fiscal y certificado para presentar en la inspección.</p>
         </div>
       </div>
     </div>
@@ -102,8 +146,8 @@ const faqs = [
     <div class="container">
       <div class="cat-header" style="margin-bottom:2.5rem">
         <div class="cat-header__info">
-          <h2 class="cat-header__title">¿Qué equipo necesita tu restaurante según la NOM?</h2>
-          <p class="cat-header__desc">El tipo de equipos de cocción define qué extintor va en la cocina. Estos son los productos que Proyecto Red suministra para restaurantes, cafeterías y dark kitchens en CDMX:</p>
+          <h2 class="cat-header__title">¿Qué equipo necesita tu restaurante para cumplir la NOM?</h2>
+          <p class="cat-header__desc">El Tipo K es obligatorio en cualquier cocina con freidoras. El ABC solo cubre el área de comensales. Los dos juntos, más señalamientos visibles, son el paquete mínimo que revisa PC.</p>
         </div>
         <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
@@ -124,10 +168,15 @@ const faqs = [
             </div>
           </a>
         ))}
-        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20equipo%20para%20mi%20restaurante`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
-          <strong>¿Cuánto cuesta el equipo para tu restaurante?</strong>
-          <p>Cotización en minutos, entrega hoy en CDMX</p>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20Tipo%20K%20y%20equipo%20completo%20para%20mi%20restaurante%2C%20quiero%20cotizaci%C3%B3n`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Tengo freidoras — necesito el Tipo K ya</strong>
+          <p>Entrega hoy en CDMX. Certificado NOM incluido.</p>
           <span>Cotizar por WhatsApp →</span>
+        </a>
+        <a href={`${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20si%20mi%20restaurante%20cumple%20la%20NOM%20%E2%80%94%20quiero%20el%20diagn%C3%B3stico%20gratuito`} class="prod-card prod-card--cta" style="background:var(--c-ink);" target="_blank" rel="noopener noreferrer">
+          <strong>No sé si mi cocina cumple — diagnóstico gratis</strong>
+          <p>Te decimos qué tienes y qué falta antes de la inspección.</p>
+          <span>Agendar revisión →</span>
         </a>
       </div>
     </div>
@@ -135,25 +184,56 @@ const faqs = [
 
   <section class="cat-section cat-section--gray">
     <div class="container">
-      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Cómo cumplir la NOM en tu restaurante?</h2>
-      <p style="color:var(--c-muted);margin-bottom:0">Desde el diagnóstico hasta tener todo listo para Protección Civil.</p>
-      <div class="cumplimiento-steps">
-        {pasos.map((paso, i) => (
-          <div class="cumplimiento-step">
-            <span class="step-num">{i + 1}</span>
-            <div class="step-content">
-              <h4>{paso.titulo}</h4>
-              <p>{paso.desc}</p>
-            </div>
-          </div>
-        ))}
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Qué equipo necesita tu cocina según su tipo?</h2>
+      <p style="color:var(--c-muted);margin-bottom:1.5rem">No todas las cocinas tienen el mismo riesgo. Identifica la tuya:</p>
+      <div class="sector-escenarios-grid">
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Cocina sin freidoras</p>
+          <p class="sector-escenario__titulo">Pizzería, sushi, ensaladas, sándwiches</p>
+          <ul class="sector-escenario__items">
+            <li>1-2 extintores ABC (1 por cada 300 m²)</li>
+            <li>1 CO₂ si hay POS o equipo electrónico</li>
+            <li>Señalamientos NOM-003 visibles desde mesas</li>
+            <li>Punto de reunión exterior marcado</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Cocina con freidoras</p>
+          <p class="sector-escenario__titulo">Pollerías, mariscos, taquerías, fast food</p>
+          <ul class="sector-escenario__items">
+            <li>1 Tipo K en cocina (obligatorio NOM)</li>
+            <li>1-2 ABC en área de comensales y accesos</li>
+            <li>Señalamientos en cocina y área de clientes</li>
+            <li>Capacitación al personal de cocina</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Dark kitchen o delivery</p>
+          <p class="sector-escenario__titulo">Solo producción, sin servicio a mesa</p>
+          <ul class="sector-escenario__items">
+            <li>Tipo K obligatorio si hay freidoras</li>
+            <li>1 ABC por cada 300 m² de cocina</li>
+            <li>Señalamientos de evacuación para el personal</li>
+            <li>Mismo cumplimiento que restaurante tradicional</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Cocina industrial o de hotel</p>
+          <p class="sector-escenario__titulo">Alto volumen, múltiples freidoras</p>
+          <ul class="sector-escenario__items">
+            <li>Sistema automático de supresión sobre campana</li>
+            <li>Tipo K de mayor capacidad (6+ litros)</li>
+            <li>Plan contra incendios documentado con PC</li>
+            <li>Mantenimiento semestral del sistema</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <FaqCotizacion
     titulo="Preguntas frecuentes — Restaurantes y Cocinas"
-    subtitulo="Todo sobre el extintor Tipo K y cumplimiento NOM en hostelería"
+    subtitulo="Todo sobre el Tipo K y cumplimiento NOM-002 en hostelería"
     faqs={faqs}
     pageId="restaurantes"
     bgGray={false}
@@ -162,9 +242,9 @@ const faqs = [
   <section class="cta-final">
     <div class="container">
       <div class="cta-final-inner">
-        <h2>¿Tu cocina tiene freidoras? Necesitas el Tipo K.</h2>
-        <p>Entrega el mismo día en CDMX. Factura y certificado NOM incluidos.</p>
-        <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintor%20Tipo%20K%20para%20mi%20restaurante%20en%20CDMX`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Cotizar extintor Tipo K →</a>
+        <h2>El Tipo K no es opcional cuando hay freidoras.</h2>
+        <p>Desde $890. Entrega hoy en CDMX. Certificado NOM para tu inspección de PC.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintor%20Tipo%20K%20para%20mi%20restaurante%20hoy`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Cotizar Tipo K →</a>
       </div>
     </div>
   </section>

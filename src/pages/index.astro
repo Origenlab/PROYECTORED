@@ -130,6 +130,7 @@ const trust = [
       </div>
 
       <div class="hero-right">
+        <img src="/img/hero-tecnico-extintor-cdmx.avif" alt="Técnico certificado inspeccionando extintor en empresa de CDMX" width="1200" height="675" loading="eager" style="border-radius: 12px; width: 100%; height: auto; margin-bottom: 1.5rem;" />
         <p>En Proyecto Red vendemos e instalamos equipos contra incendios directamente a empresas, plantas industriales, restaurantes y edificios en la Ciudad de México y el Estado de México. Sin intermediarios — lo que significa mejores precios, tiempos de entrega rápidos y alguien disponible para resolver tus dudas técnicas.</p>
         <p>Todo nuestro catálogo cumple con las normas NOM y estándares NFPA, lo que te permite pasar inspecciones de Protección Civil y STPS sin contratiempos. Un solo proveedor, catálogo completo, documentación en orden.</p>
       </div>
@@ -496,22 +497,37 @@ const trust = [
       </div>
       <div class="blog-preview__grid">
         <a href="/blog/incendios-restaurantes" class="blog-card">
-          <span class="blog-card__cat">Seguridad</span>
-          <h3>Prevención de incendios en restaurantes: guía práctica</h3>
-          <p>Causas comunes, equipo necesario, estrategias de prevención y planes de emergencia para establecimientos de alimentos.</p>
-          <span class="blog-card__link">Leer artículo →</span>
+          <div class="blog-card__img">
+            <img src="/imagenes/blog/prevencion-incendios-restaurantes.avif" alt="Prevención de incendios en restaurantes" loading="lazy" width="400" height="225" />
+          </div>
+          <div class="blog-card__content">
+            <span class="blog-card__cat">Seguridad</span>
+            <h3>Prevención de incendios en restaurantes: guía práctica</h3>
+            <p>Causas comunes, equipo necesario, estrategias de prevención y planes de emergencia para establecimientos de alimentos.</p>
+            <span class="blog-card__link">Leer artículo →</span>
+          </div>
         </a>
         <a href="/blog/regulaciones-extintores-electricos" class="blog-card">
-          <span class="blog-card__cat">Normativa</span>
-          <h3>Regulaciones de extintores para riesgos eléctricos</h3>
-          <p>Qué tipo de extintor necesitas según la normativa mexicana para proteger equipos eléctricos y electrónicos.</p>
-          <span class="blog-card__link">Leer artículo →</span>
+          <div class="blog-card__img">
+            <img src="/imagenes/blog/regulaciones-extintores-electricos.avif" alt="Extintores eléctricos" loading="lazy" width="400" height="225" />
+          </div>
+          <div class="blog-card__content">
+            <span class="blog-card__cat">Normativa</span>
+            <h3>Regulaciones de extintores para riesgos eléctricos</h3>
+            <p>Qué tipo de extintor necesitas según la normativa mexicana para proteger equipos eléctricos y electrónicos.</p>
+            <span class="blog-card__link">Leer artículo →</span>
+          </div>
         </a>
         <a href="/blog/seguridad-condominios" class="blog-card">
-          <span class="blog-card__cat">Guía</span>
-          <h3>Seguridad contra incendios en condominios</h3>
-          <p>Todo lo que necesitas saber sobre protección contra incendios en edificios residenciales y condominios.</p>
-          <span class="blog-card__link">Leer artículo →</span>
+          <div class="blog-card__img">
+            <img src="/imagenes/blog/seguridad-condominios.avif" alt="Seguridad en condominios" loading="lazy" width="400" height="225" />
+          </div>
+          <div class="blog-card__content">
+            <span class="blog-card__cat">Guía</span>
+            <h3>Seguridad contra incendios en condominios</h3>
+            <p>Todo lo que necesitas saber sobre protección contra incendios en edificios residenciales y condominios.</p>
+            <span class="blog-card__link">Leer artículo →</span>
+          </div>
         </a>
       </div>
     </div>
@@ -1516,16 +1532,46 @@ const trust = [
   .blog-card {
     background: var(--c-white);
     border: 1px solid var(--c-border);
-    border-radius: 6px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+    border-color: rgba(var(--c-primary-rgb), 0.3);
+  }
+
+  .blog-card__img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--c-surface);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .blog-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .blog-card:hover .blog-card__img img {
+    transform: scale(1.05);
+  }
+
+  .blog-card__content {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 0.625rem;
-    text-decoration: none;
-    color: var(--c-ink);
-  }
-  .blog-card:hover {
-    border-color: rgba(var(--c-primary-rgb), 0.3);
   }
 
   .blog-card__cat {

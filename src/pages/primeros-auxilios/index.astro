@@ -1,20 +1,337 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import CategoriesNav from '../../components/CategoriesNav.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Botiquines y Primeros Auxilios NOM-005-STPS para Empresas | Proyecto Red";
+const description = "Botiquines certificados NOM-005-STPS Tipo A/B/C desde $380 MXN, camillas de emergencia y material de curación para empresas en CDMX. Factura y certificado para auditorías STPS incluidos.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Productos", href: "/productos/" },
+  { label: "Primeros Auxilios" },
+];
+
+const metricas = [
+  { valor: "$380", label: "Desde MXN — Botiquín Tipo A con NOM" },
+  { valor: "3", label: "Tipos: A (≤25) · B (26-100) · C (100+)" },
+  { valor: "NOM-005", label: "STPS con certificado de contenido" },
+  { valor: "Factura", label: "Con desglose para auditorías STPS" },
+];
+
+const productos = [
+  {
+    nombre: "Botiquín Tipo A — Oficinas",
+    desc: "Para hasta 25 trabajadores en actividades de bajo riesgo. Lo exige la NOM-005-STPS en cualquier oficina o comercio. Incluye lista de contenido sellada con referencia normativa — lo que el inspector de STPS va a verificar.",
+    href: "/primeros-auxilios/",
+    badge: "NOM-005-STPS",
+    specs: "≤25 trabajadores · Bajo riesgo · Caja plástica · Lista de contenido certificada",
+  },
+  {
+    nombre: "Botiquín Tipo B — Industria Ligera",
+    desc: "Para 26 a 100 trabajadores en actividades de mediano riesgo: talleres, bodegas, comercio con maquinaria. Contenido ampliado con férulas inflables, collar cervical básico y manual de primeros auxilios.",
+    href: "/primeros-auxilios/",
+    badge: "NOM-005-STPS",
+    specs: "26-100 trabajadores · Mediano riesgo · Caja metálica con seguro",
+  },
+  {
+    nombre: "Botiquín Tipo C — Industrial",
+    desc: "Para más de 100 trabajadores o actividades de alto riesgo. Incluye todo el Tipo B más DEA (desfibrilador), camilla de lona, collarines de 3 tallas y equipo de inmovilización espinal.",
+    href: "/primeros-auxilios/",
+    badge: "Alto riesgo",
+    specs: "+100 trabajadores · Alto riesgo · Armario metálico · DEA incluido",
+  },
+  {
+    nombre: "Camillas de Emergencia",
+    desc: "Rígidas tipo Miller para espacios confinados, plegables de aluminio para traslado, canasta (Stokes) para rescate en alturas y vacío para inmovilización de trauma. Tipo según el riesgo del inmueble.",
+    href: "/primeros-auxilios/",
+    badge: null,
+    specs: "Rígida · Plegable · Canasta · Vacío · Aluminio y fibra de vidrio",
+  },
+];
+
+// v7 mejorado: comparación directa NOM vs genérico
+const comparacion = [
+  {
+    aspecto: "Lista de contenido",
+    nom: "Lista sellada con referencia NOM exacta. El inspector de STPS puede verificar cada pieza contra la norma.",
+    generico: "Sin lista normativa. En auditoría STPS, un botiquín sin lista NOM es observación aunque esté lleno.",
+  },
+  {
+    aspecto: "Especificación de material",
+    nom: "Gasas estériles con fecha de caducidad visible, vendas de calibre especificado, guantes de nitrilo certificados.",
+    generico: "Material sin especificación de calibre ni garantía de esterilidad. Puede estar vencido en el empaque.",
+  },
+  {
+    aspecto: "Documentación para auditoría",
+    nom: "Factura con desglose por tipo de botiquín y certificado de conformidad para el expediente STPS.",
+    generico: "Ticket de caja sin desglose. No es evidencia válida en auditoría formal de STPS.",
+  },
+  {
+    aspecto: "Resurtido y vigencia",
+    nom: "Resurtido periódico con materiales de la misma especificación NOM. El botiquín siempre cumple la norma.",
+    generico: "Se repone lo que se encuentra. Sin garantía de cumplir la norma en el resurtido.",
+  },
+];
+
+const faqsPrimeros = [
+  {
+    pregunta: "¿Cuántos botiquines necesito y de qué tipo?",
+    respuesta: "La <strong>NOM-005-STPS</strong> define por número de trabajadores y nivel de riesgo: <strong>Tipo A</strong> hasta 25 trabajadores (bajo riesgo, oficinas); <strong>Tipo B</strong> 26-100 trabajadores (mediano riesgo, talleres, bodegas); <strong>Tipo C</strong> más de 100 trabajadores o riesgo alto (plantas industriales). Si tienes varios turnos o áreas separadas, necesitas uno por área independiente — mínimo uno por cada 25 trabajadores por turno.",
+  },
+  {
+    pregunta: "¿Por qué no comprar el botiquín de Walmart o farmacia?",
+    respuesta: "El botiquín de farmacia no tiene <strong>lista de contenido NOM sellada</strong>, no especifica el calibre de vendas y gasas, y no trae documentación para auditorías. Si la STPS audita tu empresa y el inspector revisa el botiquín contra la NOM-005-STPS, un botiquín genérico resulta en observación aunque esté lleno. La factura de farmacia tampoco tiene el desglose que requieren las auditorías internas y expedientes STPS.",
+  },
+  {
+    pregunta: "¿Cuánto cuesta equipar una empresa con botiquines NOM?",
+    respuesta: "Botiquín <strong>Tipo A</strong> desde $380 MXN. <strong>Tipo B</strong> desde $850 MXN. <strong>Tipo C industrial</strong> desde $2,400 MXN. Para empresas que necesitan varios botiquines, manejamos <strong>precio por volumen desde 5 unidades</strong>. El costo de cumplir la norma es significativamente menor a la multa STPS por incumplimiento — que puede ir de <strong>50 a 500 UMA por trabajador</strong>: con 50 trabajadores, hasta $271,000 MXN.",
+  },
+  {
+    pregunta: "¿Cada cuánto reviso y resurto el botiquín?",
+    respuesta: "La norma exige que el botiquín esté <strong>siempre completo y con materiales vigentes</strong>. En la práctica: revisión mensual si hay movimiento y revisión completa cada 6 meses para checar caducidades. Ofrecemos <strong>servicio de resurtido periódico</strong> — te avisamos cuándo vence el material y lo reponemos con el contenido NOM correcto.",
+  },
+  {
+    pregunta: "¿La camilla es obligatoria en mi empresa?",
+    respuesta: "La <strong>NOM-005-STPS</strong> exige camilla en centros de trabajo con <strong>más de 50 trabajadores o actividades de riesgo alto</strong>. En edificios de más de 3 pisos, Protección Civil puede exigirla independientemente del número de trabajadores para facilitar la evacuación de lesionados. El tipo (rígida, plegable, canasta) depende del riesgo y el acceso del inmueble.",
+  },
+  {
+    pregunta: "¿Qué pasa si me auditan y no tengo los botiquines correctos?",
+    respuesta: "La STPS puede emitir una <strong>acta de infracción</strong> por incumplimiento. La multa va de <strong>50 a 500 UMA por trabajador en riesgo</strong>. Con UMA 2024 de $108.57 MXN y 50 trabajadores, la multa puede llegar a <strong>$271,425 MXN</strong>. Un botiquín Tipo B que los cubre a todos cuesta $850 MXN. Si compraste con nosotros y seguiste nuestra recomendación de tipo y cantidad, <strong>no va a pasar</strong> — y si hay una observación, la resolvemos sin costo.",
+  },
+];
+
+const schemaPage = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://proyectored.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Productos", "item": "https://proyectored.com.mx/productos/" },
+        { "@type": "ListItem", "position": 3, "name": "Primeros Auxilios", "item": "https://proyectored.com.mx/primeros-auxilios/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqsPrimeros.map(f => ({
+        "@type": "Question",
+        "name": f.pregunta,
+        "acceptedAnswer": { "@type": "Answer", "text": f.respuesta }
+      }))
+    }
+  ]
+});
 ---
-<Categoria title="Equipo para Primeros Auxilios | Proyecto Red" description="Equipo de primeros auxilios para empresas: botiquines, camillas, desfibriladores y material de curación." heroTitle="Equipo para Primeros Auxilios" heroSubtitle="Todo lo que necesitas para atender emergencias médicas en tu centro de trabajo.">
-  <h2>Primeros Auxilios: Preparación que Salva Vidas</h2>
-  <p>Contar con equipo de primeros auxilios adecuado en el centro de trabajo no es solo una buena práctica, es una obligación legal establecida en la NOM-005-STPS-1998 (Condiciones de seguridad e higiene en los centros de trabajo para el manejo, transporte y almacenamiento de sustancias químicas peligrosas) y la NOM-030-STPS-2009 (Servicios preventivos de seguridad y salud en el trabajo). En Proyecto Red ofrecemos un catálogo completo de equipo para primeros auxilios que cumple con los requerimientos normativos y las mejores prácticas internacionales, permitiendo a tu empresa responder de manera efectiva ante cualquier emergencia médica.</p>
-  <p>Desde botiquines básicos para oficinas hasta estaciones completas de primeros auxilios para plantas industriales, nuestros productos están diseñados para cubrir las necesidades reales de cada tipo de centro de trabajo. Todo nuestro equipo incluye los insumos especificados por Protección Civil y la Secretaría del Trabajo, y ofrecemos el servicio de resurtido periódico para mantener tus botiquines siempre completos y con materiales vigentes.</p>
 
-  <h3>Productos Disponibles</h3>
-  <ul>
-    <li><strong>Botiquines de Primeros Auxilios:</strong> Desde botiquines portátiles tipo A (hasta 25 trabajadores) hasta botiquines industriales tipo C (más de 100 trabajadores), con el contenido especificado por la normatividad mexicana.</li>
-    <li><strong>Camillas:</strong> Camillas rígidas tipo Miller, camillas plegables de aluminio, camillas tipo canasta (Stokes) para rescate en alturas y camillas de vacío para inmovilización de trauma.</li>
-    <li><strong>Desfibriladores Externos Automáticos (DEA):</strong> Equipos de desfibrilación automática para atención de paro cardíaco, con instrucciones en español y capacitación incluida para el personal designado.</li>
-    <li><strong>Material de Curación:</strong> Gasas, vendas, apósitos, soluciones antisépticas, guantes de nitrilo, tijeras de trauma, férulas, collarines cervicales y todo el material necesario para la atención prehospitalaria básica.</li>
-    <li><strong>Inmovilizadores y Férulas:</strong> Tablas espinales, inmovilizadores de cabeza, férulas rígidas y neumáticas para la correcta inmovilización y traslado de lesionados.</li>
-  </ul>
+<Base title={title} description={description} schema={schemaPage}>
 
-  <h3>Capacitación en Primeros Auxilios</h3>
-  <p>Complementamos nuestro equipo con cursos de capacitación en primeros auxilios impartidos por instructores certificados, cubriendo los temas requeridos por la NOM-030-STPS: evaluación primaria del lesionado, reanimación cardiopulmonar (RCP), control de hemorragias, manejo de fracturas, quemaduras y uso del desfibrilador. La capacitación se adapta al giro y los riesgos específicos de cada empresa.</p>
-</Categoria>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          NOM-005-STPS · Desde $380 MXN · Factura con desglose para STPS
+        </div>
+        <h1>Primeros <span class="h1-accent">Auxilios</span><br>para Empresas</h1>
+        <p class="hero-sub">
+          El botiquín de Walmart no tiene lista de contenido NOM. En auditoría STPS, eso es observación aunque esté lleno. Botiquines Tipo A/B/C desde $380 MXN — con certificado NOM, factura y desglose para tu expediente.
+        </p>
+        <div class="hero-ctas">
+          <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20botiquines%20NOM-005-STPS%20para%20mi%20empresa`} class="btn-primary" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar botiquines NOM
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver tipos disponibles</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="/img/botiquin-primeros-auxilios-stps.avif" alt="Botiquín de primeros auxilios certificado NOM-STPS para empresa" width="1200" height="675" loading="eager" style="border-radius: 12px; width: 100%; height: auto; margin-bottom: 1.5rem;" />
+        <p>La STPS puede multar de 50 a 500 UMA por trabajador cuando el botiquín no cumple la NOM-005-STPS. Con 50 trabajadores, eso es hasta $271,000 MXN de multa. El botiquín Tipo B que los cubre a todos cuesta $850 MXN. No es exageración — es la tabla de infracciones publicada en la norma.</p>
+        <p>La diferencia entre un botiquín de farmacia y uno NOM no está en el contenido visible — está en la lista de contenido sellada con referencia normativa, el material con calibre especificado, la factura con desglose y el certificado de conformidad para el expediente. Eso es lo que el inspector verifica. Eso es lo que nosotros incluimos.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Primeros auxilios">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="catalogo">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/primeros-auxilios/botiquines-hero.jpg" alt="Botiquines de primeros auxilios certificados NOM-005-STPS" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-005-STPS</span>
+            <h2>Botiquines Tipo A · B · C</h2>
+          </div>
+        </div>
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Catálogo NOM certificado</span>
+            <span class="cat-badge-pill">Tipo A · B · C</span>
+          </div>
+          <h2 class="cat-header__title">¿Cuántos Trabajadores Tienes? Eso Define Tu Tipo de Botiquín</h2>
+          <p class="cat-header__desc">La NOM-005-STPS define 3 tipos según número de trabajadores y nivel de riesgo. La diferencia no es el tamaño — es el contenido específico que el inspector va a verificar. Tipo A desde $380 MXN, Tipo C desde $2,400 MXN. Todos con factura y desglose para expediente.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-005-STPS</span>
+            <span class="norma-tag">NOM-030-STPS</span>
+            <span class="norma-tag">NOM-019-STPS</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20tengo%20X%20trabajadores%2C%20necesito%20saber%20qu%C3%A9%20tipo%20de%20botiqu%C3%ADn%20me%20aplica`} class="btn-outline" target="_blank" rel="noopener noreferrer">¿Qué tipo me aplica?</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20resurtir%20mis%20botiquines%20con%20material%20NOM`} class="cat-wa-link" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Resurtido de botiquines
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {productos.map(p => (
+          <a href={p.href} class="prod-card" aria-label={p.nombre}>
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{p.nombre}</h3>
+              <p class="prod-card__sub">{p.desc}</p>
+              <p class="prod-card__specs">{p.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">Ver contenido y cotizar →
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20botiquines%20NOM%20para%20m%C3%BAltiples%20%C3%A1reas%20o%20sucursales`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <div class="prod-card-cta__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Múltiples áreas o sucursales?</p>
+          <p class="prod-card-cta__sub">Precio por volumen + factura consolidada desde 5 unidades</p>
+          <span class="prod-card-cta__btn">Cotizar volumen →</span>
+        </a>
+        <a href={`${WA_URL}?text=Hola%2C%20tengo%20botiquines%20pero%20necesito%20resurtirlos%20con%20material%20NOM`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Ya tienes botiquín pero está incompleto?</p>
+          <p class="prod-card-cta__sub">Resurtido con material NOM — certificado de contenido actualizado</p>
+          <span class="prod-card-cta__btn">Resurtir botiquín →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN GRIS: comparación NOM vs genérico -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/img/camilla-emergencia-empresa.avif" alt="Camilla de emergencia portátil para evacuación en empresa" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM vs genérico</span>
+            <h2>Lo que el Inspector STPS Verifica</h2>
+          </div>
+        </div>
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Diferencia real en auditoría</span>
+            <span class="cat-badge-pill">4 puntos de falla</span>
+          </div>
+          <h2 class="cat-header__title">Mismo Precio en Apariencia — Diferente Resultado en Auditoría</h2>
+          <p class="cat-header__desc">Un botiquín genérico puede verse idéntico a uno NOM. La diferencia está en lo que el inspector de STPS busca: lista de contenido sellada, especificaciones técnicas y documentación para el expediente. Aquí está la comparación punto por punto.</p>
+          <div class="cat-header__ctas">
+            <a href="/equipo-seguridad/" class="btn-outline">Ver EPP complementario</a>
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20reemplazar%20mis%20botiquines%20gen%C3%A9ricos%20por%20botiquines%20NOM`} class="cat-wa-link" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cambiar a botiquín NOM
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {comparacion.map(c => (
+          <div class="prod-card">
+            <div class="prod-card__top">
+              <span class="prod-badge">Aspecto: {c.aspecto}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">✅ Botiquín NOM</h3>
+              <p class="prod-card__sub" style="margin-bottom: 0.875rem;">{c.nom}</p>
+              <h3 class="prod-card__name" style="color: var(--c-muted);">❌ Botiquín genérico</h3>
+              <p class="prod-card__sub">{c.generico}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CategoriesNav currentCategory="primeros-auxilios" />
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Primeros Auxilios Empresariales"
+    subtitulo="Lo que necesitas saber antes de que llegue la auditoría STPS"
+    pageId="primeros-auxilios"
+    bgGray={false}
+    faqs={faqsPrimeros}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">La multa STPS por botiquín incorrecto puede costar más que 300 botiquines correctos</h2>
+        <p>Dinos cuántos trabajadores tienes y el tipo de actividad. Te decimos el tipo de botiquín, la cantidad necesaria y el precio total con factura para tu expediente STPS.</p>
+      </div>
+      <div class="cta-btns">
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20botiquines%20NOM%20para%20mi%20empresa.%20Somos%20X%20trabajadores.`} class="btn-primary" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar botiquines NOM
+        </a>
+        <a href="/equipo-seguridad/" class="btn-cta-ghost">Ver EPP complementario</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs { font-size: 0.75rem; color: var(--c-primary); font-weight: 600; margin-top: 0.5rem; letter-spacing: 0.02em; opacity: 0.85; line-height: 1.4; }
+  .prod-card-cta__icon--muted { background: rgba(var(--c-primary-rgb), 0.15); color: var(--c-primary); }
+</style>

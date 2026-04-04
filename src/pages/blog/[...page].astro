@@ -5,6 +5,162 @@ import FaqCotizacion from '../../components/FaqCotizacion.astro';
 import '../../styles/pages.css';
 import { getCollection } from 'astro:content';
 
+function getImageForPost(post: any): string {
+  // 1. Priorizar imagen específica del frontmatter (generada por IA)
+  if (post.data.image) return post.data.image;
+
+  // 2. Fallback a lógica de categorías si no hay imagen personalizada
+  const category = post.data.category;
+  const postId = post.id;
+  const map: Record<string, string[]> = {
+    'Extintores': [
+      '/imagenes/extintores/extintores-contra-incendios.jpg',
+      '/imagenes/extintores/extintores.jpg',
+      '/imagenes/extintores/extintor.jpg',
+      '/imagenes/extintores/extintores-mexico.jpg',
+      '/imagenes/extintores/venta-de-extintores.jpg',
+      '/imagenes/extintores/polvo-seco.jpg',
+      '/imagenes/extintores/co2.jpg',
+      '/imagenes/extintores/tipo-k.jpg',
+      '/imagenes/extintores/afff.jpg',
+      '/imagenes/extintores/agente-limpio.jpg',
+      '/imagenes/extintores/abc.jpg',
+      '/imagenes/extintores/automaticos.jpg',
+      '/imagenes/extintores/agua-a-presion.jpg',
+      '/imagenes/extintores/purpura-k.jpg',
+      '/imagenes/extintores/extintores-de-agua.jpg',
+      '/imagenes/extintores/venta-de-extintor.jpg',
+      '/imagenes/extintores/extintores-para-incendios.jpg',
+      '/imagenes/extintores/venta-de-extintores-economicos.jpg',
+      '/imagenes/extintores/equipo-contra-incendios.jpg',
+      '/img/blog-extintor-mantenimiento-certificado.avif',
+      '/img/blog-extintor-tipo-k-cocina-restaurante.avif',
+    ],
+    'Señalización': [
+      '/imagenes/senalamientos/senalamientos-hero.jpg',
+      '/imagenes/senalamientos/salida-emergencia.jpg',
+      '/imagenes/senalamientos/letrero-extintor.jpg',
+      '/imagenes/senalamientos/punto-reunion.jpg',
+      '/imagenes/senalamientos/escaleras-emergencia.jpg',
+      '/imagenes/senalamientos/advertencia.jpg',
+      '/imagenes/senalamientos/obligacion.jpg',
+      '/imagenes/senalamientos/prohibicion.jpg',
+      '/imagenes/senalamientos/senalamiento-alt.jpg',
+      '/img/blog-senalizacion-ruta-evacuacion-nom.avif',
+    ],
+    'Sistemas': [
+      '/imagenes/sistemas/alarmas.jpg',
+      '/imagenes/sistemas/detectores.jpg',
+      '/imagenes/sistemas/rociadores.jpg',
+      '/imagenes/sistemas/tableros.jpg',
+      '/imagenes/sistemas/redes-hidraulicas.jpg',
+      '/imagenes/sistemas/tuberia-hidraulica.jpg',
+      '/imagenes/sistemas/tablero-control.jpg',
+      '/imagenes/sistemas/tablero-incendios.jpg',
+      '/imagenes/sistemas/tableros-detectores.jpg',
+      '/img/rociadores-automaticos-sprinklers.avif',
+      '/img/red-hidraulica-contra-incendio.avif',
+      '/img/tablero-control-alarma-incendio.avif',
+      '/img/detectores-humo-instalacion-oficina.avif',
+    ],
+    'Detección': [
+      '/imagenes/sistemas/detectores.jpg',
+      '/imagenes/sistemas/alarmas.jpg',
+      '/imagenes/sistemas/tableros-detectores.jpg',
+      '/imagenes/sistemas/tablero-control.jpg',
+    ],
+    'Equipo Bomberos': [
+      '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+      '/imagenes/equipo-bomberos/trajes-bombero.jpg',
+      '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+      '/imagenes/equipo-bomberos/respiracion-autonoma.jpg',
+      '/imagenes/equipo-bomberos/arnes-bombero.jpg',
+      '/imagenes/equipo-bomberos/complementos-traje.jpg',
+    ],
+    'Rescate': [
+      '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+      '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+      '/imagenes/equipo-bomberos/arnes-bombero.jpg',
+    ],
+    'Herramientas': [
+      '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+      '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+      '/imagenes/equipo-bomberos/complementos-traje.jpg',
+    ],
+    'Primeros Auxilios': [
+      '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+      '/imagenes/primeros-auxilios/botiquin.jpg',
+      '/imagenes/primeros-auxilios/camilla.jpg',
+      '/imagenes/primeros-auxilios/camillas.jpg',
+      '/imagenes/primeros-auxilios/collarin.jpg',
+      '/img/botiquin-primeros-auxilios-stps.avif',
+      '/img/camilla-emergencia-empresa.avif',
+    ],
+    'EPP': [
+      '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+      '/imagenes/equipo-seguridad/cascos.jpg',
+      '/imagenes/equipo-seguridad/lentes.jpg',
+      '/imagenes/equipo-seguridad/chalecos.jpg',
+      '/imagenes/equipo-seguridad/tapones-auditivos.jpg',
+      '/imagenes/equipo-seguridad/conos.jpg',
+    ],
+    'Seguridad Industrial': [
+      '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+      '/imagenes/equipo-seguridad/cascos.jpg',
+      '/imagenes/equipo-seguridad/chalecos.jpg',
+      '/imagenes/equipo-seguridad/conos.jpg',
+    ],
+    'Mangueras': [
+      '/imagenes/mangueras/mangueras-hero.jpg',
+      '/imagenes/mangueras/chiflon.jpg',
+      '/imagenes/mangueras/valvulas.jpg',
+      '/imagenes/mangueras/toma-siamesa.jpg',
+      '/imagenes/mangueras/adaptadores.jpg',
+      '/imagenes/mangueras/carrete-manguera.jpg',
+      '/imagenes/mangueras/llaves.jpg',
+    ],
+    'Hidráulico': [
+      '/imagenes/sistemas/redes-hidraulicas.jpg',
+      '/imagenes/mangueras/mangueras-hero.jpg',
+      '/imagenes/sistemas/tuberia-hidraulica.jpg',
+      '/imagenes/sistemas/red-hidraulica-1.jpg',
+      '/imagenes/sistemas/red-hidraulica-2.jpg',
+    ],
+    'Gabinetes': [
+      '/imagenes/gabinetes/gabinetes-hero.jpg',
+      '/imagenes/gabinetes/gabinetes-extintores.jpg',
+      '/imagenes/gabinetes/gabinete-mangueras.jpg',
+      '/imagenes/gabinetes/gabinete-bombero.jpg',
+      '/imagenes/gabinetes/porta-extintor-cenicero.jpg',
+    ],
+    'Capacitación': [
+      '/imagenes/extintores/equipo-contra-incendios.jpg',
+      '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+      '/imagenes/extintores/extintores-contra-incendios.jpg',
+      '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    ],
+    'Normativa': [
+      '/imagenes/senalamientos/senalamientos-hero.jpg',
+      '/imagenes/extintores/equipo-contra-incendios.jpg',
+      '/imagenes/senalamientos/salida-emergencia.jpg',
+      '/imagenes/extintores/extintores-contra-incendios.jpg',
+    ],
+  };
+  const fallback = [
+    '/imagenes/extintores/extintores-contra-incendios.jpg',
+    '/imagenes/sistemas/alarmas.jpg',
+    '/imagenes/senalamientos/senalamientos-hero.jpg',
+    '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    '/imagenes/mangueras/mangueras-hero.jpg',
+    '/imagenes/gabinetes/gabinetes-hero.jpg',
+  ];
+  const pool = category ? (map[category] ?? fallback) : fallback;
+  let hash = 0;
+  for (let i = 0; i < postId.length; i++) hash = (hash * 31 + postId.charCodeAt(i)) & 0xffffffff;
+  return pool[Math.abs(hash) % pool.length];
+}
+
+
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const allPosts = (await getCollection('blog')).sort(
     (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -147,9 +303,9 @@ const metricas = [
         <div class="nav-cats__inner">
           <span class="nav-cats__label">Categorías:</span>
           <div class="nav-cats__links">
-            <a href="#articulos" class="nav-cat-pill nav-cat-pill--active">Todos</a>
+            <a href="#articulos" class="nav-cat-pill nav-cat-pill--active" data-category="all">Todos</a>
             {categorias.map((cat: any) => (
-              <a href="#articulos" class="nav-cat-pill">{cat}</a>
+              <a href="#articulos" class="nav-cat-pill" data-category={cat}>{cat}</a>
             ))}
           </div>
         </div>
@@ -165,7 +321,14 @@ const metricas = [
       <div class="container">
         <div class="cat-header">
           <div class="cat-header__img-wrap">
-            <div class="featured-placeholder"></div>
+            <img 
+              src={getImageForPost(featuredPost)} 
+              alt={featuredPost.data.title}
+              loading="eager"
+              width="800"
+              height="500"
+              style="width:100%;height:100%;object-fit:cover;"
+            />
             <div class="cat-header__img-overlay"></div>
             <div class="cat-header__img-content">
               {featuredPost.data.category && <span class="cat-norm-badge">{featuredPost.data.category}</span>}
@@ -211,7 +374,10 @@ const metricas = [
 
       <div class="productos-grid">
         {gridPosts.map((post: any) => (
-          <a href={`/blog/${post.id}/`} class="prod-card blog-card-pro">
+          <a href={`/blog/${post.id}/`} class="prod-card blog-card-pro" data-category={post.data.category}>
+            <div class="blog-card__img">
+              <img src={getImageForPost(post)} alt={post.data.title} loading="lazy" width="600" height="338" />
+            </div>
             <div class="prod-card__top-blog">
               {post.data.category && <span class="blog-cat-tag">{post.data.category}</span>}
             </div>
@@ -224,6 +390,7 @@ const metricas = [
                 Leer artículo
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
+              <span class="read-time">⏱ 4 min</span>
             </div>
           </a>
         ))}
@@ -458,8 +625,46 @@ const metricas = [
   .cat-header__desc { font-size: 0.9375rem; color: var(--c-muted); line-height: 1.7; margin-bottom: 1.25rem; max-width: 56ch; }
   .cat-header__ctas { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 
-  /* Featured placeholder */
-  .featured-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #2d1515 100%); }
+  /* Blog card image */
+  .blog-card__img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--c-surface);
+  }
+  .blog-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .prod-card:hover .blog-card__img img {
+    transform: scale(1.06);
+  }
+  .blog-card-pro {
+    padding: 0 !important;
+  }
+  .blog-card-pro .prod-card__top-blog,
+  .blog-card-pro .prod-card__body,
+  .blog-card-pro .prod-card__footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .blog-card-pro .prod-card__top-blog {
+    padding-top: 1rem;
+  }
+  .blog-card-pro .prod-card__footer {
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .read-time {
+    font-size: 0.75rem;
+    color: var(--c-muted);
+    font-weight: 500;
+  }
 
   /* Blog section header */
   .blog-section-header { margin-bottom: 3rem; }
@@ -469,10 +674,25 @@ const metricas = [
   /* ── GRID DE ARTÍCULOS ─────────────────────────────── */
   .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 
-  .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); transition: border-color 0.2s, box-shadow 0.2s; }
-  .cat-section--gray .prod-card { background: var(--c-white); }
-  .cat-section--white .prod-card { background: var(--c-surface); }
-  .prod-card:hover { border-color: rgba(var(--c-primary-rgb), 0.4); box-shadow: 0 4px 20px rgba(var(--c-primary-rgb), 0.08); background: var(--c-white); }
+  .prod-card { 
+    background: var(--c-white); 
+    border: 1px solid var(--c-border); 
+    border-radius: 12px; 
+    padding: 1rem; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.75rem; 
+    text-decoration: none; 
+    color: var(--c-ink); 
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .prod-card:hover { 
+    border-color: rgba(var(--c-primary-rgb), 0.5); 
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06); 
+  }
 
   /* Blog card top */
   .prod-card__top-blog { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 22px; }
@@ -519,7 +739,6 @@ const metricas = [
     color: var(--c-ink);
     text-decoration: none;
     background: var(--c-white);
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
   .pagination__btn:hover {
     border-color: var(--c-primary);
@@ -551,7 +770,6 @@ const metricas = [
     color: var(--c-ink);
     text-decoration: none;
     background: var(--c-white);
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
   .pagination__page:hover {
     border-color: var(--c-primary);
@@ -600,3 +818,23 @@ const metricas = [
     .metricas-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
+
+<script>
+  const pills = document.querySelectorAll('.nav-cat-pill');
+  const cards = document.querySelectorAll('.prod-card[data-category]');
+  pills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.preventDefault();
+      pills.forEach(p => p.classList.remove('nav-cat-pill--active'));
+      pill.classList.add('nav-cat-pill--active');
+      const cat = (pill as HTMLElement).dataset.category;
+      cards.forEach(card => {
+        if (cat === 'all' || (card as HTMLElement).dataset.category === cat) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

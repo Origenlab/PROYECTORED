@@ -7,8 +7,8 @@ import '../../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Equipo Contra Incendios para Hospitales y Clínicas CDMX | Proyecto Red";
-const description = "CO₂ y Agente Limpio obligatorios en áreas con equipo médico. NOM-002-STPS y NOM-016-SSA3 para hospitales, clínicas y consultorios en CDMX. Diagnóstico gratuito.";
+const title = "Extintores CO₂ y Agente Limpio para Hospitales CDMX — Sin residuos | Proyecto Red";
+const description = "CO₂ desde $1,100 y Agente Limpio para hospitales y clínicas. Sin residuos en equipos médicos ni ambientes estériles. NOM-002-STPS y NOM-016-SSA3. Diagnóstico gratuito CDMX.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -17,35 +17,78 @@ const breadcrumbs = [
 ];
 
 const metricas = [
+  { valor: "Desde $1,100", label: "Extintor CO₂ para equipo médico" },
+  { valor: "0 residuos", label: "CO₂ y Agente Limpio" },
   { valor: "NOM-002", label: "STPS + NOM-016-SSA3" },
-  { valor: "CO₂", label: "Obligatorio en equipo médico" },
-  { valor: "0", label: "Residuos en áreas críticas" },
-  { valor: "24h", label: "Entrega CDMX" },
+  { valor: "24h", label: "Entrega en CDMX" },
 ];
+
+const heroImg = "/img/sector-hospitales-sistema-contra-incendio.avif";
 
 const equipoObligatorio = [
-  { nombre: "Extintores CO₂", desc: "Obligatorio en quirófanos, UCI, salas de recuperación y áreas con equipo médico electrónico. No deja residuos y no contamina el ambiente estéril.", href: "/extintores/co2/", badge: "Áreas críticas" },
-  { nombre: "Agente Limpio", desc: "Para centros de datos hospitalarios, farmacia y laboratorio. Extinción sin residuos, sin daño a equipos de diagnóstico ni a medicamentos almacenados.", href: "/extintores/agente-limpio/", badge: "Sin residuos" },
-  { nombre: "Extintores Polvo Seco ABC", desc: "Para pasillos, accesos, estacionamiento, cocina hospitalaria y áreas de baja sensibilidad. La base de cualquier plan contra incendios.", href: "/extintores/polvo-seco/", badge: "Áreas generales" },
-  { nombre: "Señalamientos NOM-003", desc: "Señalamientos fotoluminiscentes de evacuación en cada piso, incluyendo rutas especiales para pacientes en camillas y sillas de ruedas.", href: "/senalamientos/salvacion/", badge: "NOM-003-SEGOB" },
-  { nombre: "Sistemas de Detección", desc: "Detectores de humo y calor con alarma centralizada. Exigidos en instalaciones de salud de más de 1 piso o con internamiento de pacientes.", href: "/sistemas/detectores/", badge: "Internamiento" },
-  { nombre: "Gabinetes para Extintor", desc: "Instalación visible y accesible en pasillos clínicos. Altura y señalización conforme a norma para facilitar el acceso en emergencia.", href: "/gabinetes/para-extintor/", badge: "Accesibilidad" },
-];
-
-const pasos = [
-  { titulo: "Mapeo de áreas críticas", desc: "Identificamos quirófanos, UCI, laboratorio, farmacia y centros de cómputo. Cada área tiene requerimientos distintos según el equipo presente." },
-  { titulo: "Selección del agente correcto", desc: "CO₂ o Agente Limpio para áreas médicas sensibles. Polvo seco ABC para zonas generales. El agente incorrecto puede contaminar equipos o medicamentos." },
-  { titulo: "Instalación especializada", desc: "Ubicación estratégica en pasillos clínicos a la altura correcta, sin obstruir el paso de camillas ni equipos de traslado." },
-  { titulo: "Señalización de evacuación", desc: "Rutas de evacuación que contemplan la movilidad de pacientes con limitaciones físicas, conforme a NOM-003 y estándares de la Secretaría de Salud." },
-  { titulo: "Documentación y capacitación", desc: "Certificados NOM, factura fiscal y sesión de uso básico para el personal administrativo. El personal médico requiere saber cómo actuar antes de usar el extintor." },
+  {
+    nombre: "Extintores CO₂",
+    desc: "Para quirófanos, UCI, laboratorios y cuartos de equipo electrónico. Descarga sin residuos que contaminen ambientes estériles o dañen monitores y equipos de diagnóstico.",
+    href: "/extintores/co2/",
+    badge: "Áreas críticas",
+  },
+  {
+    nombre: "Agente Limpio (FM-200)",
+    desc: "Para farmacias, laboratorios de análisis clínico y centros de datos hospitalarios. Se evapora sin residuos — cero contaminación de muestras o medicamentos almacenados.",
+    href: "/extintores/agente-limpio/",
+    badge: "Sin residuos",
+  },
+  {
+    nombre: "Extintores Polvo Seco ABC",
+    desc: "Para pasillos generales, estacionamiento, cocina hospitalaria y cuartos de limpieza. Solo donde no hay equipo médico sensible ni ambientes estériles.",
+    href: "/extintores/polvo-seco/",
+    badge: "Áreas generales",
+  },
+  {
+    nombre: "Señalamientos NOM-003",
+    desc: "Rutas de evacuación que contemplan pacientes con movilidad reducida. Fotoluminiscentes en cada piso y área crítica. Obligatorio por NOM-003-SEGOB en instalaciones de salud.",
+    href: "/senalamientos/",
+    badge: "NOM-003-SEGOB",
+  },
+  {
+    nombre: "Sistemas de Detección",
+    desc: "Detectores de humo con alarma centralizada. Obligatorios en hospitales de 2+ pisos o con internamiento. Acción temprana sin depender de personal de guardia.",
+    href: "/sistemas/detectores/",
+    badge: "Internamiento",
+  },
+  {
+    nombre: "Botiquines NOM Hospitalarios",
+    desc: "Botiquines certificados para el personal administrativo y de mantenimiento. Complemento del equipo médico interno. Exigidos por la NOM-002 en centros de trabajo.",
+    href: "/primeros-auxilios/",
+    badge: "Personal",
+  },
 ];
 
 const faqs = [
-  { pregunta: "¿Por qué no se usa polvo seco ABC en quirófanos?", respuesta: "El polvo del extintor ABC contamina el ambiente estéril del quirófano, daña los equipos de anestesia y monitoreo, y puede causar problemas respiratorios en pacientes intubados. La norma y los estándares de la <strong>Secretaría de Salud</strong> exigen extintores de CO₂ o Agente Limpio en todas las áreas con equipo médico electrónico o ambientes estériles." },
-  { pregunta: "¿Qué normativas aplican a hospitales y clínicas?", respuesta: "Principalmente la <strong>NOM-002-STPS-2010</strong> (prevención y protección contra incendios en centros de trabajo) y la <strong>NOM-016-SSA3-2012</strong> (establecimientos de salud). Para instalaciones con internamiento también aplica la <strong>NOM-003-SEGOB-2011</strong> de señalamientos y las guías de la COFEPRIS para clínicas con manejo de medicamentos controlados." },
-  { pregunta: "¿Las clínicas pequeñas y consultorios también necesitan este equipo?", respuesta: "Sí. Cualquier establecimiento de salud — desde un consultorio dental hasta un hospital de tercer nivel — está sujeto a las normas de prevención de incendios. La diferencia está en la cantidad y tipo de equipo. Un consultorio pequeño puede necesitar solo 1-2 extintores CO₂ y señalamientos básicos. El diagnóstico gratuito te dice exactamente qué aplica en tu caso." },
-  { pregunta: "¿El Agente Limpio es seguro en ambientes con pacientes?", respuesta: "Sí, cuando se usa correctamente. El Agente Limpio (halon o sustitutos como FM-200) actúa rápido y se disipa sin dejar residuos. <strong>No es tóxico</strong> en concentraciones de extinción para personas fuera de la zona de descarga. Es la opción más adecuada para farmacia, laboratorio y centros de datos hospitalarios." },
-  { pregunta: "¿Con qué frecuencia se revisa el equipo en instalaciones de salud?", respuesta: "La NOM-002 exige mantenimiento anual certificado. Sin embargo, para instalaciones de salud recomendamos revisión semestral del CO₂ y el Agente Limpio dado el uso continuo del inmueble. Proyecto Red ofrece contratos de mantenimiento preventivo con visitas programadas." },
+  {
+    pregunta: "¿Por qué no usar polvo seco ABC en un quirófano?",
+    respuesta: "El polvo ABC contamina el ambiente estéril del quirófano, daña equipos de anestesia y monitoreo, y puede causar problemas respiratorios en pacientes intubados. La <strong>Secretaría de Salud y la NOM-002-STPS</strong> exigen extintores de CO₂ o Agente Limpio en áreas con equipo médico. El polvo solo va en áreas generales donde no hay equipo sensible ni pacientes.",
+  },
+  {
+    pregunta: "¿Las clínicas pequeñas y consultorios también necesitan CO₂?",
+    respuesta: "Depende del equipo presente. Un consultorio con solo silla dental y luz puede usar ABC. Una clínica con equipo de rayos X, ultrasonido o laboratorio de análisis necesita CO₂ o Agente Limpio en esas áreas. El diagnóstico gratuito evalúa el equipo específico de tu instalación.",
+  },
+  {
+    pregunta: "¿Qué normativas aplican a hospitales y clínicas?",
+    respuesta: "La <strong>NOM-002-STPS-2010</strong> (extintores en centros de trabajo) y la <strong>NOM-016-SSA3-2012</strong> (establecimientos de atención médica). Para farmacias también aplica COFEPRIS. Hospitales con internamiento tienen requisitos adicionales de Protección Civil y la Secretaría de Salud CDMX.",
+  },
+  {
+    pregunta: "¿Con qué frecuencia se revisa el equipo en instalaciones de salud?",
+    respuesta: "La NOM-002 exige mantenimiento anual. Para hospitales recomendamos <strong>revisión semestral</strong> del CO₂ y Agente Limpio dado el uso continuo del inmueble. Los certificados vigentes son necesarios para auditorías de COFEPRIS y acreditaciones hospitalarias.",
+  },
+  {
+    pregunta: "¿El Agente Limpio es seguro con pacientes presentes?",
+    respuesta: "Sí, en concentraciones de extinción. El Agente Limpio (FM-200) actúa en segundos y se disipa sin residuos. No es tóxico para personas fuera de la zona directa de descarga. Es la opción más usada en farmacia, laboratorio y centros de datos hospitalarios precisamente por su seguridad.",
+  },
+  {
+    pregunta: "¿Qué pasa si compro el extintor incorrecto para un área médica?",
+    respuesta: "Si compraste con base en nuestro diagnóstico y hay una observación de Protección Civil o COFEPRIS, lo resolvemos sin costo adicional. Por eso el diagnóstico previo es clave en instalaciones de salud — el equipo incorrecto puede ser peor que no tener nada en áreas con muestras o equipos de precisión.",
+  },
 ];
 ---
 
@@ -67,17 +110,18 @@ const faqs = [
     <div class="container">
       <div class="hero-grid">
         <div class="hero-left">
-          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · NOM-016-SSA3</span>
-          <h1>Equipo Contra Incendios<br><span class="h1-accent">para Hospitales y Clínicas</span></h1>
-          <p class="hero-sub">CO₂ y Agente Limpio para áreas con equipo médico. Extintores sin residuos que no contaminan ambientes estériles ni dañan equipos de diagnóstico.</p>
+          <span class="hero-badge"><span class="badge-dot"></span> CO₂ y Agente Limpio · Sin residuos</span>
+          <h1>Extintores sin Residuos<br><span class="h1-accent">para Hospitales y Clínicas</span></h1>
+          <p class="hero-sub">Un extintor ABC en quirófano o laboratorio no solo incumple la norma — contamina el ambiente estéril y puede dañar equipos que valen millones. CO₂ desde $1,100, Agente Limpio para áreas de mayor sensibilidad. Diagnóstico gratuito sin interrumpir operaciones.</p>
           <div class="hero-ctas">
-            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20y%20equipo%20para%20instalaci%C3%B3n%20de%20salud%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20o%20Agente%20Limpio%20para%20instalaci%C3%B3n%20de%20salud%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
             <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
           </div>
         </div>
         <div class="hero-right">
-          <p>Las instalaciones de salud tienen requerimientos especiales: el extintor de <strong>polvo seco ABC contamina equipos médicos</strong> y ambientes estériles. La <strong>NOM-002-STPS</strong> y los estándares de la Secretaría de Salud exigen CO₂ o Agente Limpio en quirófanos, UCI, laboratorio y farmacia.</p>
-          <p>Proyecto Red suministra el agente correcto para cada área de tu instalación: CO₂ para cuartos de máquinas y equipo eléctrico, Agente Limpio para ambientes sensibles, y ABC para pasillos y áreas generales. Diagnóstico gratuito, entrega en 24h en CDMX.</p>
+          <img src={heroImg} alt="Sistema contra incendio en pasillo de hospital" width="1200" height="675" loading="eager" style="border-radius: 12px; width: 100%; height: auto; margin-bottom: 1.5rem;" />
+          <p>El polvo de un extintor ABC arruina el ambiente estéril del quirófano, daña los contactos de equipos de monitoreo y puede quedar impregnado en superficies que tardas semanas en limpiar. La <strong>NOM-002-STPS</strong> y los estándares de la Secretaría de Salud exigen <strong>CO₂ o Agente Limpio</strong> en áreas con equipo médico electrónico o ambientes estériles.</p>
+          <p>Proyecto Red identifica cada área de tu instalación — quirófano, laboratorio, farmacia, cuartos técnicos, pasillos generales — y asigna el agente correcto a cada espacio. Cero riesgo de contaminar lo que estás protegiendo. Diagnóstico sin costo, instalación coordinada con tu equipo de mantenimiento.</p>
         </div>
       </div>
     </div>
@@ -102,8 +146,8 @@ const faqs = [
     <div class="container">
       <div class="cat-header" style="margin-bottom:2.5rem">
         <div class="cat-header__info">
-          <h2 class="cat-header__title">¿Qué equipo contra incendios requiere una instalación de salud?</h2>
-          <p class="cat-header__desc">El tipo de extintor depende del área. En zonas con equipo médico electrónico o ambientes estériles, el agente correcto es CO₂ o Agente Limpio — nunca polvo seco.</p>
+          <h2 class="cat-header__title">¿Qué agente extintor va en cada área de tu instalación?</h2>
+          <p class="cat-header__desc">La regla es simple: donde hay equipo médico o ambiente estéril → CO₂ o Agente Limpio. Donde solo hay material de construcción o personas → ABC. El diagnóstico gratuito mapea tu instalación área por área.</p>
         </div>
         <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -124,10 +168,15 @@ const faqs = [
             </div>
           </a>
         ))}
-        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20extintores%20para%20instalaci%C3%B3n%20de%20salud`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
-          <strong>¿Qué equipo necesita tu clínica u hospital?</strong>
-          <p>Diagnóstico gratuito según área y equipo médico</p>
+        <a href={`${WA_URL}?text=Hola%2C%20ya%20s%C3%A9%20qu%C3%A9%20necesito%3A%20quiero%20cotizaci%C3%B3n%20CO2%20o%20Agente%20Limpio%20para%20mi%20cl%C3%ADnica`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Ya sé qué agente necesito — cotizar ahora</strong>
+          <p>CO₂ o Agente Limpio. Entrega en 24h CDMX.</p>
           <span>Cotizar por WhatsApp →</span>
+        </a>
+        <a href={`${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20extintor%20va%20en%20cada%20%C3%A1rea%20de%20mi%20instalaci%C3%B3n%20de%20salud%20%E2%80%94%20quiero%20el%20diagn%C3%B3stico`} class="prod-card prod-card--cta" style="background:var(--c-ink);" target="_blank" rel="noopener noreferrer">
+          <strong>No sé qué va en cada área — diagnóstico gratis</strong>
+          <p>Mapeamos tu instalación sin interrumpir operaciones.</p>
+          <span>Agendar diagnóstico →</span>
         </a>
       </div>
     </div>
@@ -135,25 +184,56 @@ const faqs = [
 
   <section class="cat-section cat-section--gray">
     <div class="container">
-      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Cómo cumplir la NOM en instalaciones de salud?</h2>
-      <p style="color:var(--c-muted);margin-bottom:0">Cada área requiere el agente y la instalación correcta.</p>
-      <div class="cumplimiento-steps">
-        {pasos.map((paso, i) => (
-          <div class="cumplimiento-step">
-            <span class="step-num">{i + 1}</span>
-            <div class="step-content">
-              <h4>{paso.titulo}</h4>
-              <p>{paso.desc}</p>
-            </div>
-          </div>
-        ))}
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Qué extintor va en cada área de tu instalación?</h2>
+      <p style="color:var(--c-muted);margin-bottom:1.5rem">La elección del agente depende de lo que hay en el área, no del tamaño:</p>
+      <div class="sector-escenarios-grid">
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Quirófano / UCI</p>
+          <p class="sector-escenario__titulo">Ambiente estéril con equipo crítico</p>
+          <ul class="sector-escenario__items">
+            <li>CO₂ o Agente Limpio — nunca ABC</li>
+            <li>1 por cuarto, accesible en 10 segundos</li>
+            <li>Sin residuos que contaminen ambiente o paciente</li>
+            <li>Personal capacitado para uso en emergencia</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Laboratorio / Farmacia</p>
+          <p class="sector-escenario__titulo">Muestras, reactivos y medicamentos</p>
+          <ul class="sector-escenario__items">
+            <li>Agente Limpio ideal (cero residuos en muestras)</li>
+            <li>CO₂ como alternativa si no hay muestras abiertas</li>
+            <li>Señal de advertencia de reactivos en puerta</li>
+            <li>Detector de humo conectado a alarma central</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Cuartos técnicos / Servidores</p>
+          <p class="sector-escenario__titulo">Tableros, UPS, equipos electrónicos</p>
+          <ul class="sector-escenario__items">
+            <li>CO₂ — sin residuos en componentes</li>
+            <li>1 por cuarto técnico, señalizado en puerta</li>
+            <li>Detector de calor (no solo humo) en cuartos cerrados</li>
+            <li>Plan de apagado coordinado con el extintor</li>
+          </ul>
+        </div>
+        <div class="sector-escenario">
+          <p class="sector-escenario__tipo">Pasillos / Cocina / Estacionamiento</p>
+          <p class="sector-escenario__titulo">Áreas generales sin equipo sensible</p>
+          <ul class="sector-escenario__items">
+            <li>ABC estándar: 1 por cada 300 m²</li>
+            <li>Tipo K en cocina si hay freidoras industriales</li>
+            <li>Señalamientos NOM-003 en cada piso</li>
+            <li>Punto de reunión exterior para personal y visitantes</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <FaqCotizacion
     titulo="Preguntas frecuentes — Hospitales y Clínicas"
-    subtitulo="Extintores sin residuos para ambientes médicos sensibles"
+    subtitulo="Extintores sin residuos para instalaciones de salud en CDMX"
     faqs={faqs}
     pageId="hospitales"
     bgGray={false}
@@ -162,9 +242,9 @@ const faqs = [
   <section class="cta-final">
     <div class="container">
       <div class="cta-final-inner">
-        <h2>Protege tus equipos médicos y tu personal.</h2>
-        <p>Diagnóstico gratuito. CO₂ y Agente Limpio para cada área. Entrega 24h.</p>
-        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20para%20mi%20instalaci%C3%B3n%20de%20salud`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
+        <h2>El agente incorrecto puede contaminar lo que estás protegiendo.</h2>
+        <p>Diagnóstico área por área sin costo. CO₂ desde $1,100. Agente Limpio sin interrumpir operaciones.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20de%20extintores%20para%20mi%20instalaci%C3%B3n%20de%20salud`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
       </div>
     </div>
   </section>
