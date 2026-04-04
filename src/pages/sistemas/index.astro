@@ -1,27 +1,404 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
-import TarjetaCategoria from '../../components/TarjetaCategoria.astro';
----
-<Categoria title="Sistemas Contra Incendio | Proyecto Red" description="Sistemas contra incendio: alarmas, detectores, rociadores, tableros y redes hidráulicas. Diseño e instalación." heroTitle="Sistemas Contra Incendio" heroSubtitle="Diseño, instalación y mantenimiento de sistemas integrales de protección contra incendio.">
-  <h2>Sistemas Integrales de Protección Contra Incendio</h2>
-  <p>Un sistema contra incendio eficiente no depende de un solo componente, sino de la integración inteligente de múltiples subsistemas que trabajan coordinadamente para detectar, alertar y suprimir un incendio en sus etapas iniciales. En Proyecto Red diseñamos, instalamos y damos mantenimiento a sistemas completos de protección contra incendio conforme a las normas NFPA (National Fire Protection Association) y las Normas Oficiales Mexicanas aplicables, garantizando que cada instalación cumpla con los requisitos de Protección Civil y las aseguradoras.</p>
-  <p>Desde la detección temprana mediante sensores de humo y calor, pasando por la notificación a través de paneles de alarma centralizados, hasta la supresión automática con rociadores y redes hidráulicas presurizadas, cada elemento de nuestros sistemas está certificado y probado para operar bajo las condiciones más exigentes. Nuestro equipo de ingenieros especializados realiza el cálculo hidráulico, el diseño del sistema y la puesta en marcha, asegurando la máxima protección para tu inmueble, personal y activos.</p>
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
 
-  <h2>Componentes del Sistema</h2>
-  <div class="grid-categorias">
-    <TarjetaCategoria titulo="Alarmas Contra Incendio" descripcion="Sistemas de alarma convencionales y direccionables para detección y notificación oportuna." href="/sistemas/alarmas" />
-    <TarjetaCategoria titulo="Detectores de Humo e Incendio" descripcion="Detectores fotoeléctricos, iónicos y térmicos para monitoreo continuo de riesgos." href="/sistemas/detectores" />
-    <TarjetaCategoria titulo="Rociadores (Sprinklers)" descripcion="Sistemas automáticos de rociadores para supresión inmediata conforme a NFPA 13." href="/sistemas/rociadores" />
-    <TarjetaCategoria titulo="Tableros Contra Incendio" descripcion="Paneles de control, detección y monitoreo para gestión centralizada del sistema." href="/sistemas/tableros" />
-    <TarjetaCategoria titulo="Redes Hidráulicas" descripcion="Tuberías, bombas y accesorios certificados para la distribución de agua contra incendio." href="/sistemas/redes-hidraulicas" />
-  </div>
-</Categoria>
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Sistemas Contra Incendio CDMX | Alarmas, Rociadores y Redes Hidráulicas | Proyecto Red";
+const description = "Diseño, instalación y mantenimiento de sistemas contra incendio en CDMX: alarmas NFPA 72, detectores, rociadores NFPA 13, tableros FACP y redes hidráulicas. Ingenieros certificados. Desde $45,000 MXN instalado.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Productos", href: "/productos/" },
+  { label: "Sistemas Contra Incendio" },
+];
+
+const metricas = [
+  { valor: "5", label: "Subsistemas integrados" },
+  { valor: "NFPA", label: "72 · 13 · 14 · 20" },
+  { valor: "1–3", label: "Semanas de instalación" },
+  { valor: "1 año", label: "Garantía en sistemas" },
+];
+
+const productos = [
+  {
+    nombre: "Alarmas Contra Incendio",
+    desc: "Paneles convencionales para espacios simples y sistemas direccionables para edificios complejos con identificación exacta de zona. Cada panel incluye batería de respaldo para operación sin luz eléctrica.",
+    href: "/sistemas/alarmas/",
+    badge: "NFPA 72",
+    specs: "Convencional · Direccionable · 2–250 zonas · UL Listed · Batería 24h",
+  },
+  {
+    nombre: "Detectores de Humo e Incendio",
+    desc: "Fotoeléctrico para humo visible de fuegos lentos, iónico para partículas de combustión rápida, calor fijo para cocinas y áreas con polvo. La selección incorrecta del detector genera falsas alarmas o detección tardía.",
+    href: "/sistemas/detectores/",
+    badge: "NFPA 72",
+    specs: "Fotoeléctrico · Iónico · Calor fijo · IP42–IP55 · Direccionable",
+  },
+  {
+    nombre: "Rociadores Automáticos",
+    desc: "Se activan individualmente solo en la zona del incendio, no todo el edificio. Cada cabeza responde a temperatura específica: 57°C para áreas normales, 93°C para cocinas, 141°C para zonas de alto calor ambiental.",
+    href: "/sistemas/rociadores/",
+    badge: "NFPA 13",
+    specs: "Colgante · Montante · Lateral · 57°C–141°C · RTI estándar",
+  },
+  {
+    nombre: "Tableros de Control (FACP)",
+    desc: "El cerebro del sistema: recibe señales de todos los detectores, activa alarmas, controla supresión y envía alertas remotas. Un tablero mal configurado puede silenciar una alarma real o no activar los rociadores a tiempo.",
+    href: "/sistemas/tableros/",
+    badge: "NFPA 72",
+    specs: "Convencional · Analógico-direccionable · UL864 · 2–2048 puntos · Monitoreo remoto",
+  },
+  {
+    nombre: "Redes Hidráulicas",
+    desc: "La tubería, la bomba y los accesorios que llevan agua bajo presión hasta cada rociador e hidrante. El cálculo hidráulico determina el diámetro, la presión y la capacidad de bomba que tu edificio necesita.",
+    href: "/sistemas/redes-hidraulicas/",
+    badge: "NFPA 14 · 20",
+    specs: "CPVC · Acero negro Sch 40 · Bomba diésel/eléctrica · Hasta 2,000 GPM",
+  },
+];
+
+const guiaInstalacion = [
+  {
+    tipo: "Bodega o nave industrial",
+    norma: "NFPA 13",
+    necesitas: "Rociadores NFPA 13 riesgo ordinario + detectores de calor + tablero direccionable + red hidráulica con bomba",
+    porque: "El volumen y la carga de fuego en bodegas exigen cobertura automática completa. Los detectores de calor toleran el polvo y los vapores sin falsas alarmas. La bomba garantiza presión suficiente en el rociador más alejado aunque la presión municipal falle.",
+    href: "/sistemas/rociadores/",
+  },
+  {
+    tipo: "Edificio de oficinas (5+ pisos)",
+    norma: "NFPA 72",
+    necesitas: "Detección y alarma NFPA 72 por piso + rociadores en sótano y estacionamiento + tablero centralizado con monitoreo remoto",
+    porque: "Protección Civil exige sistema de alarma por piso en edificios sobre 5 niveles. El tablero centralizado permite evacuar por zonas sin alarmar todo el edificio. El monitoreo remoto notifica a bomberos aunque no haya personal en turno nocturno.",
+    href: "/sistemas/alarmas/",
+  },
+  {
+    tipo: "Restaurante o cocina industrial",
+    norma: "NFPA 96",
+    necesitas: "Sistema de supresión bajo campana + detectores térmicos en cocina + alarma con enlace al sistema de gas + extintor Tipo K",
+    porque: "Los aceites de cocina generan fuegos Clase K que el agua agrava. El sistema de campana suprime el fuego y simultáneamente corta el suministro de gas. Sin este enlace automático, el fuego puede reavivarse segundos después de la supresión.",
+    href: "/sistemas/detectores/",
+  },
+  {
+    tipo: "Centro de datos o sala de servidores",
+    norma: "NFPA 75 / 2001",
+    necesitas: "VESDA (detección muy temprana) + supresión de agente limpio + tablero con monitoreo 24/7 + doble confirmación antes de descarga",
+    porque: "El agua destruye el equipo — no es opción. El agente limpio suprime sin residuo en segundos. El VESDA detecta el incendio en fase de pirólisis, antes del humo visible, cuando todavía se puede intervenir sin activar la supresión. La doble confirmación evita descargas por alarmas falsas.",
+    href: "/sistemas/tableros/",
+  },
+];
+
+const faqsSistemas = [
+  {
+    pregunta: "¿Cuánto cuesta instalar un sistema contra incendio en CDMX?",
+    respuesta: "Depende del tipo y tamaño del espacio. Un <strong>sistema de alarma convencional</strong> para una bodega pequeña parte desde $18,000 MXN instalado. Un <strong>sistema completo con rociadores, tablero direccionable y red hidráulica</strong> para un edificio de 3 pisos va desde $45,000 MXN. Para naves industriales grandes o edificios de 10+ pisos, el rango va de $150,000 a $500,000+ MXN dependiendo del cálculo hidráulico. Te hacemos diagnóstico y cotización detallada sin costo."
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre un sistema convencional y uno direccionable?",
+    respuesta: "En un sistema <strong>convencional</strong>, el tablero sabe que hay alarma en una zona (piso 3, ala norte) pero no qué detector específico se activó. En un sistema <strong>direccionable</strong>, el tablero identifica exactamente qué detector reporta y desde dónde — lo que reduce el tiempo de respuesta a segundos. Para espacios simples hasta 10 zonas, el convencional es suficiente y más económico. Para edificios con múltiples pisos, corredores largos o espacios críticos, el direccionable es la norma."
+  },
+  {
+    pregunta: "¿Es obligatorio tener rociadores en mi empresa o edificio?",
+    respuesta: "Depende del uso y superficie. La <strong>NOM-002-STPS</strong> exige sistema de supresión automática en plantas industriales con riesgo alto. El <strong>Reglamento de Construcciones del CDMX</strong> exige rociadores en edificios de más de 5,000 m² o 5+ pisos. Los <strong>seguros de propiedad industrial</strong> generalmente condicionan la cobertura o ajustan la prima según la existencia del sistema. Si recibes visita de Protección Civil, la falta de sistema en un espacio que lo requiere resulta en observación con plazo de corrección."
+  },
+  {
+    pregunta: "¿Cada cuánto necesita mantenimiento un sistema de alarma contra incendio?",
+    respuesta: "La <strong>NFPA 72</strong> exige inspección <strong>semestral</strong> de todos los componentes del sistema: detectores, campanillas, luces estroboscópicas, batería de respaldo y tablero. La <strong>prueba funcional completa</strong> debe realizarse anualmente. Los detectores de humo tienen vida útil de <strong>10 años</strong> — después de ese tiempo deben reemplazarse aunque funcionen correctamente. Sin estos reportes de mantenimiento, tu sistema no cuenta como operativo ante Protección Civil aunque físicamente esté encendido."
+  },
+  {
+    pregunta: "¿Cuánto tiempo tarda la instalación de un sistema completo?",
+    respuesta: "Un <strong>sistema de alarma convencional</strong> en espacio pequeño: 2–4 días. Un <strong>sistema de rociadores con red hidráulica</strong> en bodega mediana: 1–2 semanas. Un <strong>sistema integrado completo</strong> (alarma + detección + rociadores + red hidráulica) en edificio de 5+ pisos: 3–6 semanas incluyendo cálculo hidráulico, instalación y pruebas de comisionamiento. Los tiempos dependen del acceso, el estado de la obra y si se requiere gestión de planos ante Protección Civil."
+  },
+  {
+    pregunta: "¿Qué pasa si la presión municipal no es suficiente para los rociadores?",
+    respuesta: "La mayoría de edificios en CDMX no tienen suficiente presión municipal para alimentar un sistema de rociadores. La solución estándar es un <strong>cuarto de bombas conforme a NFPA 20</strong> con bomba eléctrica principal, bomba diésel de respaldo y bomba jockey de mantenimiento de presión. El cálculo hidráulico determina el GPM y la presión requerida para el sistema. Nosotros hacemos el cálculo, suministramos el equipo e instalamos el cuarto de bombas completo."
+  },
+  {
+    pregunta: "¿Necesito planos del sistema para el trámite de Protección Civil?",
+    respuesta: "Sí. Para cualquier trámite de <strong>Licencia de Funcionamiento o revisión de Protección Civil</strong> que involucre un sistema contra incendio, necesitas: memoria de cálculo hidráulico, planos de planta con ubicación de detectores y rociadores, diagrama del sistema de alarma, certificados de los equipos instalados y bitácora de mantenimiento. Nosotros generamos toda esta documentación como parte del proyecto de instalación y te entregamos el expediente completo para el trámite."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          NFPA 72 · 13 · 14 · 20 · Ingenieros certificados
+        </div>
+        <h1>Sistemas Contra <span class="h1-accent">Incendio</span><br>CDMX</h1>
+        <p class="hero-sub">
+          Tu bodega tiene detectores del 2011. El tablero de alarma no está conectado a monitoreo. Cuando un rociador se activa, nadie sabe en qué zona. Todo eso es observación de Protección Civil — y riesgo real para tu operación. Sistema de detección y supresión certificado NFPA desde $45,000 MXN instalado.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20un%20sistema%20contra%20incendio%20certificado%20NFPA`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar sistema completo
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver los 5 subsistemas</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>Un sistema contra incendio eficiente no depende de un solo componente. Necesita detectores que identifiquen el fuego en sus primeros segundos, un tablero que procese la señal y active la respuesta, rociadores que supriman antes de que el fuego se propague, una red hidráulica con presión suficiente y una alarma que evacúe al personal. Si falla un eslabón, el sistema no funciona.</p>
+        <p>En Proyecto Red diseñamos, instalamos y damos mantenimiento a sistemas completos conforme a NFPA 72, 13, 14 y 20. Hacemos el cálculo hidráulico, los planos para Protección Civil, el comisionamiento y la documentación del expediente. Un solo proveedor para todo el sistema — desde el primer detector hasta la bomba de agua.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Sistemas contra incendio">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" id="catalogo">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/sistemas/sistemas-hero.jpg" alt="Sistema contra incendio con rociadores y tablero NFPA instalado" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NFPA 72 · 13 · 14 · 20</span>
+            <h2>Sistemas Integrados</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Detección · Notificación · Supresión</span>
+            <span class="cat-badge-pill">5 subsistemas</span>
+          </div>
+          <h2 class="cat-header__title">5 Subsistemas que Trabajan como Uno Solo</h2>
+          <p class="cat-header__desc">Detectar en 30 segundos. Notificar en 60. Suprimir en 90. Ese es el objetivo de un sistema bien integrado. Te instalamos cada subsistema por separado o el sistema completo llave en mano — con cálculo hidráulico, planos y documentación para Protección Civil incluidos desde $45,000 MXN.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 72</span>
+            <span class="norma-tag">NFPA 13</span>
+            <span class="norma-tag">NFPA 14</span>
+            <span class="norma-tag">NFPA 20</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20un%20sistema%20contra%20incendio%20completo%20llave%20en%20mano`} class="btn-outline" target="_blank" rel="noopener noreferrer">Cotizar sistema llave en mano</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20mejorar%20mi%20sistema%20contra%20incendio%20existente`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Mejorar sistema existente
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {productos.map(p => (
+          <a href={p.href} class="prod-card" aria-label={p.nombre}>
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{p.nombre}</h3>
+              <p class="prod-card__sub">{p.desc}</p>
+              <p class="prod-card__specs">{p.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Ver specs y cotizar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20instalar%20un%20sistema%20contra%20incendio%20nuevo%20en%20mi%20empresa`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Sistema nuevo"
+        >
+          <div class="prod-card-cta__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Sistema nuevo desde cero?</p>
+          <p class="prod-card-cta__sub">Diagnóstico sin costo, cálculo hidráulico, instalación y documentación para Protección Civil</p>
+          <span class="prod-card-cta__btn">Cotizar sistema completo →</span>
+        </a>
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20tengo%20un%20sistema%20contra%20incendio%20pero%20necesito%20actualizarlo%20o%20darle%20mantenimiento`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Mantenimiento o actualización"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Sistema existente que no cumple?</p>
+          <p class="prod-card-cta__sub">Diagnóstico de tu sistema actual + reporte de observaciones + plan de corrección</p>
+          <span class="prod-card-cta__btn">Solicitar diagnóstico →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       GUÍA POR TIPO DE INSTALACIÓN
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/sistemas/tablero-facp.jpg" alt="Tablero FACP de control de sistema contra incendio instalado" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Guía por instalación</span>
+            <h2>¿Qué Sistema Necesitas?</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Configuración por tipo de espacio</span>
+            <span class="cat-badge-pill">4 escenarios</span>
+          </div>
+          <h2 class="cat-header__title">Dime Qué Espacio Tienes y Te Digo Qué Sistema Necesitas</h2>
+          <p class="cat-header__desc">Una bodega industrial, un edificio de oficinas, una cocina comercial y un centro de datos necesitan sistemas completamente diferentes. Aquí te damos la configuración exacta para cada caso — con las normas que la exigen y el por qué de cada componente.</p>
+          <div class="cat-header__ctas">
+            <a href="/servicios/instalacion-sistemas-ci/" class="btn-outline">Ver servicio de instalación</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesoría%20técnica%20para%20el%20sistema%20contra%20incendio%20de%20mi%20empresa`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría técnica sin costo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guiaInstalacion.map(g => (
+          <a href={g.href} class="prod-card" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__specs">{g.necesitas}</p>
+              <p class="prod-card__sub">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta configuración
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Sistemas Contra Incendio"
+    subtitulo="Las respuestas que tu proveedor actual debería darte — y probablemente no te da"
+    pageId="sistemas"
+    bgGray={false}
+    faqs={faqsSistemas}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Un sistema contra incendio sin mantenimiento ni documentación no es un sistema — es una observación de Protección Civil esperando a suceder</h2>
+        <p>Mándanos el tipo de espacio, la superficie aproximada y lo que tienes instalado actualmente. Te regresamos un diagnóstico, la configuración recomendada y el precio del sistema con instalación, planos y expediente completo.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20un%20sistema%20contra%20incendio%20NFPA%20para%20mi%20empresa`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/servicios/" class="btn-cta-ghost">Ver todos los servicios</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
 
 <style>
-  .grid-categorias {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    line-height: 1.4;
   }
 </style>
