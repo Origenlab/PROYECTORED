@@ -1,22 +1,402 @@
 ---
-import Categoria from '../../layouts/Categoria.astro';
-import Gallery from '../../components/Gallery.astro';
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores de Polvo Seco PQS ABC en CDMX | Proyecto Red";
+const description = "Venta de extintores de polvo químico seco PQS para fuegos clase A, B y C. Capacidades de 1 a 50 kg. Cumplen NOM-154-SCFI. Entrega el mismo día en CDMX y EDOMEX. Recarga y mantenimiento incluidos.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Polvo Seco PQS" },
+];
+
+const metricas = [
+  { valor: "A · B · C", label: "Clases de fuego que combate" },
+  { valor: "1–50 kg", label: "Rango de capacidades" },
+  { valor: "5 m", label: "Alcance de descarga" },
+  { valor: "NOM-154", label: "Mantenimiento certificado" },
+];
+
+// ── Variantes de producto — por capacidad ─────────────
+const variantes = [
+  {
+    nombre: "PQS 4.5 kg",
+    desc: "El más utilizado en oficinas, tiendas y locales comerciales. Cubre hasta 200 m² de área abierta. Fácil de operar sin entrenamiento previo. El extintor que exige Protección Civil como mínimo en cualquier local con acceso al público.",
+    badge: "Más vendido",
+    specs: "Polvo ABC · 4.5 kg · ~10 s descarga · 3–4 m alcance · 60 bar · Manómetro incluido",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20de%20polvo%20seco%204.5%20kg`,
+  },
+  {
+    nombre: "PQS 6 kg",
+    desc: "Estándar para talleres, bodegas pequeñas y plantas de manufactura ligera. Mayor carga de agente para áreas con mayor densidad de material combustible. Buen equilibrio entre capacidad y portabilidad.",
+    badge: null,
+    specs: "Polvo ABC · 6 kg · ~13 s descarga · 4–5 m alcance · 60 bar · Manguera con boquilla",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20de%20polvo%20seco%206%20kg`,
+  },
+  {
+    nombre: "PQS 9 kg",
+    desc: "Para zonas de riesgo medio-alto: almacenes con mercancía, pasillos de carga y descarga, áreas de maquinaria. Requerido por NOM-002-STPS en espacios industriales con mayor concentración de combustibles.",
+    badge: null,
+    specs: "Polvo ABC · 9 kg · ~18 s descarga · 4–5 m alcance · 60 bar · Soporte de pared incluido",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20de%20polvo%20seco%209%20kg`,
+  },
+  {
+    nombre: "PQS 12 kg",
+    desc: "Uso industrial intensivo: talleres de soldadura, zonas de carga con montacargas, plantas con líquidos inflamables clase B. Se coloca en gabinete metálico visible. Inspección semestral recomendada.",
+    badge: "Industrial",
+    specs: "Polvo ABC · 12 kg · ~22 s descarga · 5–6 m alcance · 60 bar · Para gabinete metálico",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20de%20polvo%20seco%2012%20kg`,
+  },
+  {
+    nombre: "PQS Rodante 25–50 kg",
+    desc: "Para plantas industriales de gran escala, estacionamientos, zonas de almacenamiento de combustible y áreas con riesgo elevado. Se desplaza sobre ruedas neumáticas para cubrir puntos distantes de forma rápida.",
+    badge: "Gran capacidad",
+    specs: "Polvo ABC · 25 / 35 / 50 kg · Rodante · Hasta 8 m alcance · Manguera 5 m incluida",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20rodante%20de%20polvo%20seco`,
+  },
+];
+
+// ── Guía de uso por tipo de espacio ───────────────────
+const guia = [
+  {
+    tipo: "Oficina / negocio comercial",
+    norma: "NOM-002-STPS · Protección Civil CDMX",
+    necesitas: "PQS 4.5 kg — 1 extintor por cada 200 m², máximo 15 m de recorrido hasta el equipo",
+    porque: "Los fuegos más comunes en oficina son clase A (papel, cartón, mobiliario) y clase C (equipo eléctrico en corto). El PQS ABC cubre ambos y es el agente aprobado para obtener el dictamen de Protección Civil.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20de%20polvo%20seco%20para%20mi%20oficina%20o%20negocio`,
+  },
+  {
+    tipo: "Bodega / almacén con mercancía",
+    norma: "NOM-002-STPS · NFPA 10",
+    necesitas: "PQS 9–12 kg — la mayor carga de fuego exige mayor capacidad de agente extintor",
+    porque: "Las bodegas combinan riesgo A (cartón, embalajes, papel) con riesgo B (solventes, lubricantes, líquidos de limpieza). El PQS cubre ambas clases y es el agente que STPS acepta en inspecciones industriales.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20de%20polvo%20seco%20para%20bodega%20o%20almac%C3%A9n`,
+  },
+  {
+    tipo: "Restaurante — área de salón (no cocina)",
+    norma: "NOM-002-STPS · Protección Civil",
+    necesitas: "PQS 4.5–6 kg para salón, bar y pasillos. La cocina requiere extintor Tipo K — el polvo seco NO es válido en zona de cocción",
+    porque: "El polvo daña los equipos de cocina y no es efectivo en incendios de grasa vegetal/animal (clase K). Para el salón y áreas sin cocción, el PQS es correcto. Combinamos PQS + Tipo K en el mismo pedido para tu restaurante.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20para%20restaurante%2C%20PQS%20y%20Tipo%20K`,
+  },
+  {
+    tipo: "Vehículo / transporte de carga",
+    norma: "NOM-068-SCT-2-2014 · Reglamento de Tránsito",
+    necesitas: "PQS 1–2 kg para auto particular. PQS 4.5–6 kg para camión, unidad de carga o transporte de personal",
+    porque: "El polvo seco ABC es el extintor reglamentario para vehículos en México conforme a la NOM-SCT. Cubre fuegos eléctricos del motor (clase C), combustible derramado (clase B) y tapicería (clase A).",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20de%20polvo%20seco%20para%20veh%C3%ADculos`,
+  },
+];
+
+// ── FAQs específicos de polvo seco ────────────────────
+const faqsPQS = [
+  {
+    pregunta: "¿El extintor de polvo seco daña los equipos electrónicos?",
+    respuesta: "Sí. El polvo PQS deja un <strong>residuo amarillo de fosfato monoamónico</strong> que es corrosivo y muy difícil de limpiar en componentes electrónicos, tarjetas de circuito y maquinaria de precisión. Si en tu área hay servidores, equipos médicos o electrónica sensible, lo correcto es usar <strong>extintores de CO₂ o agente limpio</strong> para esas zonas, y reservar el PQS para áreas sin electrónica. Te asesoramos sin costo para que cada zona tenga el agente correcto."
+  },
+  {
+    pregunta: "¿Cuánto cuesta recargar un extintor de polvo seco?",
+    respuesta: "El costo de recarga varía por capacidad. Como referencia: extintores de <strong>4.5 a 6 kg</strong> entran en un rango accesible, y los de <strong>9 a 12 kg</strong> tienen un costo mayor por la cantidad de agente. La recarga incluye vaciado del polvo viejo, limpieza interna del cilindro, recarga con agente nuevo certificado, prueba de presión y etiqueta de inspección con collar de garantía. <strong>Cotiza por WhatsApp con la capacidad y cantidad de extintores</strong> — te respondemos el mismo día."
+  },
+  {
+    pregunta: "¿Qué tamaño de extintor necesito para mi oficina o local?",
+    respuesta: "La <strong>NOM-002-STPS</strong> y las guías de Protección Civil establecen que para un local de hasta 200 m², el extintor mínimo requerido es de <strong>4.5 kg de polvo ABC</strong>. Para bodegas o áreas industriales la norma exige mayor capacidad. La regla práctica es que el extintor más cercano no debe estar a más de <strong>15 metros de recorrido</strong> desde cualquier punto del área protegida. Si no estás seguro, te hacemos el diagnóstico de tu espacio sin costo."
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre polvo seco ABC y polvo seco BC?",
+    respuesta: "El <strong>polvo ABC</strong> (también llamado PQS multiclase) contiene fosfato monoamónico y combate fuegos de <strong>clase A</strong> (sólidos), <strong>clase B</strong> (líquidos inflamables) y <strong>clase C</strong> (equipos eléctricos). El <strong>polvo BC</strong> contiene bicarbonato de sodio y solo cubre clases B y C — no es efectivo en fuegos de materiales sólidos. <strong>Para uso general en oficinas, comercios e industria se recomienda siempre el ABC</strong>, que es el que vendemos y recargamos."
+  },
+  {
+    pregunta: "¿Cada cuánto necesita mantenimiento un extintor de polvo seco?",
+    respuesta: "La <strong>NOM-154-SCFI</strong> establece que todo extintor portátil debe recibir <strong>mantenimiento anual</strong> sin excepción — ya sea que se haya usado o no. Este mantenimiento incluye revisión del manómetro, estado de la manguera, boquilla y válvula, peso del agente extintor y limpieza general. Además, cada <strong>5 años</strong> el cilindro debe pasar una <strong>prueba hidrostática</strong> para verificar su integridad estructural. Un extintor sin mantenimiento no solo falla en una emergencia — también genera multa en una inspección."
+  },
+  {
+    pregunta: "¿Por qué mi extintor de polvo perdió presión si nunca lo usé?",
+    respuesta: "Es uno de los problemas más comunes. Los extintores de polvo seco son de <strong>cilindro a presión permanente</strong>: el agente impulsor (nitrógeno seco) puede fugarse lentamente por desgaste de la válvula o por vibraciones acumuladas. Un extintor con manómetro en zona roja (<strong>por debajo de la zona verde</strong>) ya no funciona correctamente aunque esté lleno de polvo — la presión es lo que impulsa el agente. La solución es una recarga completa con revisión de la válvula. No esperes a que falle en una emergencia."
+  },
+  {
+    pregunta: "¿El polvo seco sirve para incendios en cocinas?",
+    respuesta: "<strong>No es el agente recomendado para cocinas industriales.</strong> Los incendios de aceite vegetal o grasa animal a alta temperatura son fuegos de <strong>clase K</strong>, y el polvo PQS no los apaga eficientemente — en muchos casos el calor del aceite re-ignita después de la descarga. La norma <strong>NFPA 17A</strong> y las guías de Protección Civil especifican el uso de <strong>extintores Tipo K</strong> en zonas de cocción. Para el área de salón y servicio sí puedes usar PQS, pero en la cocina instala un Tipo K. Te cotizamos ambos en el mismo pedido."
+  },
+];
 ---
-<Categoria title="Extintores de Polvo Químico Seco | Proyecto Red" description="Extintores de polvo químico seco PQS para fuegos clase A, B y C. Venta y recarga en México." heroTitle="Extintores de Polvo Químico Seco" heroSubtitle="El agente extintor más utilizado y versátil del mercado mexicano.">
-  <h2>Polvo Químico Seco (PQS): Protección Multiclase</h2>
-  <p>Los extintores de Polvo Químico Seco (PQS) son los equipos de protección contra incendios más utilizados en México debido a su capacidad para combatir fuegos de clase A (materiales sólidos como madera, papel y tela), clase B (líquidos inflamables como gasolina, aceites y solventes) y clase C (equipos eléctricos energizados). Su agente extintor, compuesto principalmente por fosfato monoamónico, actúa interrumpiendo la reacción química en cadena del fuego, sofocando las llamas de manera rápida y eficaz.</p>
-  <p>Estos extintores están disponibles en capacidades que van desde 1 kg hasta 50 kg en unidades rodantes, cubriendo desde pequeñas oficinas hasta grandes naves industriales. Todo nuestro inventario cumple con la NOM-100-STPS-1994, garantizando la calidad del cilindro, la válvula y el agente extintor. Además, ofrecemos servicio de recarga y mantenimiento anual conforme a la NOM-154-SCFI, asegurando que tu equipo esté siempre operativo y dentro de la normatividad vigente.</p>
 
-  <Gallery folder="polvo-seco" count={1} />
+<Base
+  title={title}
+  description={description}
+>
 
-  <h3>Capacidades Disponibles</h3>
-  <ul>
-    <li>Extintores portátiles de 1 kg, 2 kg, 4.5 kg, 6 kg y 9 kg</li>
-    <li>Extintores de 12 kg para áreas industriales</li>
-    <li>Unidades rodantes de 25 kg, 35 kg y 50 kg para almacenes y plantas</li>
-    <li>Todos con manómetro de presión, manguera con boquilla y soporte de pared</li>
-  </ul>
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Polvo ABC · NOM-154-SCFI · Entrega CDMX mismo día
+        </div>
+        <h1>Extintores de<br><span class="h1-accent">Polvo Seco PQS</span></h1>
+        <p class="hero-sub">
+          Tu extintor tiene 3 años sin mantenimiento, el manómetro está en rojo y la manguera cuarteada — en un incendio real ese equipo no funciona y Protección Civil te multa. Extintores PQS certificados NOM-154-SCFI desde $320 MXN. Entrega el mismo día en CDMX y EDOMEX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20de%20polvo%20seco%20PQS`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar PQS
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
 
-  <h3>Aplicaciones Recomendadas</h3>
-  <p>Los extintores PQS son obligatorios en oficinas, comercios, escuelas, hospitales, fábricas y cualquier inmueble que requiera un Programa Interno de Protección Civil. Su relación costo-beneficio los convierte en la primera opción para cumplir con los requerimientos de las autoridades locales y federales. Es importante considerar que el polvo químico seco puede generar residuo corrosivo en equipos electrónicos delicados, por lo que en centros de datos o laboratorios se recomienda complementar con extintores de CO2 o agente limpio.</p>
-</Categoria>
+      <div class="hero-right">
+        <p>El extintor de polvo seco PQS es el más versátil del mercado: apaga fuegos de clase A (madera, papel, cartón), clase B (líquidos inflamables, gasolina, solventes) y clase C (equipos eléctricos en corto). Su agente activo — el fosfato monoamónico — interrumpe la reacción química en cadena del fuego en segundos, sofocando las llamas antes de que escalen.</p>
+        <p>En Proyecto Red vendemos extintores PQS certificados con NOM-154-SCFI desde 1 kg hasta rodantes de 50 kg. Cada equipo viene con manómetro verificado, manguera flexible, boquilla de descarga y soporte de pared. Incluimos etiqueta de inspección y collar de garantía. Si ya tienes extintores, también recargamos y damos mantenimiento anual con reporte útil para auditorías de STPS y Protección Civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Datos técnicos del extintor PQS">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       VARIANTES POR CAPACIDAD
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/polvo-seco-hero.jpg" alt="Extintores de polvo seco PQS ABC certificados NOM en diferentes capacidades" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>Polvo Químico Seco PQS</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Stock permanente</span>
+          </div>
+          <h2 class="cat-header__title">Desde 4.5 kg para Oficina hasta 50 kg Rodante para Planta Industrial</h2>
+          <p class="cat-header__desc">Cinco capacidades en stock permanente. Cada extintor PQS entregado con certificado de calidad, etiqueta de inspección y collar de garantía conforme a NOM-154-SCFI. Entrega el mismo día en CDMX para pedidos antes de las 14:00 hrs.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-100-STPS</span>
+            <span class="norma-tag">NFPA 10</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20mantenimiento%20o%20recarga%20de%20extintores%20PQS`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20de%20polvo%20seco%20PQS`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de variantes -->
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Card CTA recarga -->
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20y%20mantenimiento%20de%20extintores%20PQS`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Recarga y mantenimiento de extintores"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Ya tienes extintores PQS?</p>
+          <p class="prod-card-cta__sub">Recarga + mantenimiento anual NOM-154-SCFI con collar de garantía</p>
+          <span class="prod-card-cta__btn">Solicitar recarga →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       GUÍA POR TIPO DE ESPACIO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/polvo-seco-uso.jpg" alt="Extintor de polvo seco PQS instalado en planta industrial" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">¿Cuál necesitas?</span>
+            <h2>Por Tipo de Espacio</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección PQS</span>
+            <span class="cat-badge-pill">NOM-002-STPS · NFPA 10</span>
+          </div>
+          <h2 class="cat-header__title">El Tamaño y la Cantidad Dependen de tu Tipo de Riesgo</h2>
+          <p class="cat-header__desc">No es lo mismo una oficina de 100 m² que una nave industrial de 2,000 m². La NOM-002-STPS y NFPA 10 definen la capacidad mínima y la distancia máxima de recorrido según el tipo y densidad de riesgo. Identifica tu caso y cotiza sin adivinar.</p>
+          <div class="cat-header__ctas">
+            <a href="/servicios/#asesoria-tecnica" class="btn-outline">Diagnóstico gratuito</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20elegir%20extintores%20PQS%20para%20mi%20espacio`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de guía por espacio -->
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar para este espacio
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores PQS"
+    subtitulo="Todo lo que debes saber antes de comprar o recargar un extintor de polvo seco"
+    pageId="extintores-polvo-seco"
+    bgGray={false}
+    faqs={faqsPQS}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Un extintor vencido es como no tener extintor</h2>
+        <p>Si el manómetro está en rojo, la etiqueta tiene más de un año o nunca le han dado mantenimiento, ese extintor no va a funcionar cuando lo necesites. Cotiza hoy — extintores nuevos o recarga del que ya tienes, entrega el mismo día en CDMX.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20de%20polvo%20seco%20PQS`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar extintores PQS
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+</style>
