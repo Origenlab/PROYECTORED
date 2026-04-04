@@ -1,19 +1,78 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 ---
-<Categoria title="Tableros Contra Incendio | Proyecto Red" description="Tableros de control para sistemas contra incendio. Paneles de detección, control de bombas y monitoreo." heroTitle="Tableros Contra Incendio" heroSubtitle="Control centralizado para la gestión integral de tu sistema de protección.">
-  <h2>Tableros de Control: El Cerebro del Sistema Contra Incendio</h2>
-  <p>Los tableros contra incendio son el centro de mando de todo el sistema de protección, encargados de recibir las señales de los dispositivos de detección, procesar la información y ejecutar las acciones de respuesta programadas. Un tablero correctamente configurado puede activar alarmas sonoras y visuales, enviar señales al cuerpo de bomberos, controlar la presurización de escaleras de emergencia, liberar puertas electromagnéticas, desactivar el sistema de ventilación y arrancar las bombas contra incendio, todo en cuestión de segundos tras la detección de un evento.</p>
-  <p>En Proyecto Red suministramos e instalamos tableros de las principales marcas del mercado, incluyendo paneles de alarma contra incendio (FACP), controladores de bombas contra incendio conforme a NFPA 20, y sistemas de monitoreo remoto que permiten la supervisión continua del estado de todos los componentes del sistema. Todos nuestros tableros cumplen con las normas NFPA 72 para detección y alarma, y NFPA 20 para control de bombas, asegurando la compatibilidad y confiabilidad del sistema completo.</p>
+<Categoria
+  title="Tableros Contra Incendio NFPA 72/20 | FACP Direccionable | Controladores de Bomba | Proyecto Red"
+  description="Tableros contra incendio certificados UL 864. FACP convencional y direccionable NFPA 72, controladores de bomba eléctrica y diésel NFPA 20, anunciadores remotos y monitoreo remoto UL 827. Integración HVAC, elevadores y puertas cortafuego."
+  heroTitle="Tableros Contra Incendio"
+  heroSubtitle="FACP direccionable UL 864 NFPA 72 y controladores de bomba NFPA 20. Batería de respaldo 24 h, integración HVAC/elevadores/puertas, monitoreo remoto UL 827. El cerebro de tu sistema de protección."
+>
+  <h2>El Centro de Comando: Procesa Señales, Toma Decisiones, Activa la Respuesta</h2>
+  <p>Un sistema de alarma contra incendio puede tener cientos de detectores, decenas de módulos de control y múltiples subsistemas integrados. Sin un tablero central que reciba todas las señales, las procese correctamente y active las respuestas adecuadas en la secuencia correcta, ese hardware es solo hardware. El tablero — el panel FACP (Fire Alarm Control Panel) en el caso de la detección y alarma, el controlador de bomba en el caso de la supresión — es la inteligencia del sistema. Su configuración correcta, su calibración y su mantenimiento son la diferencia entre un sistema que funciona en la emergencia real y uno que funciona solo en las pruebas.</p>
+  <p>La NFPA 72 regula el diseño, la instalación y la operación del FACP. La NFPA 20 regula el controlador de bomba. Ambas normas tienen requisitos específicos que los tableros industriales estándar no cumplen — por eso los tableros contra incendio son equipos especializados con certificación UL 864 (FACP) y UL 508 para controladores de bomba según NFPA 20. En Proyecto Red instalamos tableros de los principales fabricantes con todas las certificaciones requeridas, y configuramos la integración completa del sistema.</p>
 
-  <h3>Tipos de Tableros</h3>
+  <h3>FACP — Panel de Alarma Contra Incendio: Arquitectura y Capacidades</h3>
   <ul>
-    <li><strong>Paneles de Alarma (FACP):</strong> Reciben señales de detectores y estaciones manuales, activan dispositivos de notificación y controlan la secuencia de respuesta ante emergencias. Disponibles en versiones convencionales y direccionables.</li>
-    <li><strong>Controladores de Bombas:</strong> Gestionan el arranque automático y manual de las bombas contra incendio, monitoreando presión, flujo y estado del equipo. Conforme a NFPA 20 para bombas eléctricas y diésel.</li>
-    <li><strong>Anunciadores Remotos:</strong> Réplicas del panel principal ubicadas en puntos estratégicos como la entrada del edificio o la caseta de vigilancia, permitiendo al personal de emergencia identificar rápidamente la zona afectada.</li>
-    <li><strong>Sistemas de Monitoreo:</strong> Plataformas de supervisión remota que permiten verificar el estado del sistema en tiempo real desde cualquier ubicación, recibir notificaciones de fallas y generar reportes de mantenimiento.</li>
+    <li><strong>Paneles convencionales (zonal):</strong> cada circuito de iniciación (zona) se conecta a una entrada dedicada del panel. El panel puede mostrar qué zona está en alarma pero no qué dispositivo específico dentro de la zona. Para instalaciones de 1–8 zonas en inmuebles pequeños. Costo significativamente menor que los direccionables para instalaciones pequeñas.</li>
+    <li><strong>Paneles direccionables SLC:</strong> cada dispositivo tiene una dirección única en el lazo SLC. El panel muestra el tipo de dispositivo, su ubicación exacta (nombre programado del punto, como "Detector D-14A Piso 3 Bodega Norte") y su condición (normal, pre-alarma, alarma, supervisión, falla de circuito, falla de alimentación). Capacidades típicas: 1 lazo SLC con hasta 250 puntos (paneles pequeños), 2–8 lazos (paneles medianos, hasta 2,000 puntos), tarjetas de expansión para hasta 3,000+ puntos (paneles de gran edificio). Certificados UL 864.</li>
+    <li><strong>Memorias de eventos:</strong> el FACP registra todos los eventos del sistema con fecha, hora, tipo de evento y dirección del dispositivo en una memoria no volátil. Los eventos incluyen: alarma, restauración de alarma, supervisión (tamper de válvula, falla de módulo), falla (circuito abierto, tierra, pérdida de alimentación CA), prueba de dispositivos. El registro de eventos es requerido por NFPA 72 y sirve como documentación para aseguradoras y autoridades reguladoras.</li>
+    <li><strong>Estados del sistema NFPA 72:</strong>
+      <ul>
+        <li><em>Normal (Verde):</em> todos los circuitos en supervisión, alimentación CA presente, baterías cargadas.</li>
+        <li><em>Trouble/Falla (Amarillo):</em> pérdida de supervisión de un circuito, falla de batería, pérdida de CA, falla de comunicación con estación central. El trouble no activa alarma ni evacuación — es una condición de mantenimiento.</li>
+        <li><em>Supervisory/Supervisión (Amarillo diferente):</em> activación de un tamper switch (válvula de control fuera de posición), nivel bajo de agua en cisterna, falla de bomba jockey. Indica que un componente del sistema de supresión no está en el estado correcto.</li>
+        <li><em>Alarm/Alarma (Rojo):</em> activación de un detector o estación manual. Activa todos los dispositivos de notificación, ejecuta las funciones de control programadas y transmite a la estación central.</li>
+      </ul>
+    </li>
+    <li><strong>Batería de respaldo:</strong> NFPA 72 requiere batería sellada de plomo-ácido o litio suficiente para 24 horas en modo de supervisión (con todos los dispositivos en modo normal) seguidas de 5 minutos en modo de alarma plena (todos los dispositivos de notificación activos simultáneamente). El panel monitorea el estado de las baterías continuamente — una caída de tensión debajo del umbral activa señal de trouble de batería.</li>
+    <li><strong>Certificación UL 864:</strong> la norma de UL para paneles de alarma contra incendio (FACP). Verifica resistencia a variaciones de alimentación eléctrica (brownouts, picos de tensión), temperatura y humedad, inmunidad a interferencia electromagnética (EMI), precisión de la respuesta a los estados del sistema y funciones de autodiagnóstico. Un panel sin UL 864 no debe instalarse en sistemas de protección contra incendio — no hay garantía de que responderá correctamente bajo las condiciones de una emergencia real.</li>
   </ul>
 
-  <h3>Mantenimiento Preventivo</h3>
-  <p>Un tablero contra incendio requiere inspecciones periódicas conforme a NFPA 25 para verificar el correcto funcionamiento de todos los circuitos, baterías de respaldo, módulos de comunicación y dispositivos conectados. Nuestro programa de mantenimiento preventivo incluye pruebas funcionales trimestrales, inspección visual mensual y pruebas de aceptación anuales, generando la documentación necesaria para cumplir con los requerimientos de Protección Civil y las compañías aseguradoras.</p>
+  <h3>Integración del FACP con Sistemas del Edificio</h3>
+  <p>El FACP no opera de forma aislada. Mediante los módulos de control (MCM/relay modules) ejecuta funciones de control sobre múltiples sistemas del edificio:</p>
+  <ul>
+    <li><strong>Elevadores (recall de emergencia):</strong> en alarma, el FACP envía señal de recall al controlador de elevadores conforme a ASME A17.1. Los elevadores bajan al nivel base designado, abren puertas y permanecen fuera de servicio para los ocupantes. Los elevadores de servicio de bomberos se ponen en modo de control manual exclusivo para el cuerpo de bomberos.</li>
+    <li><strong>Sistema HVAC (paro de ventilación):</strong> en alarma, el FACP abre el circuito de control de los manejadores de aire, parando la circulación de aire que puede transportar humo a través de los ductos a zonas no afectadas. En sistemas con control de humo, el FACP puede activar la presurización diferencial de corredores de escape o la extracción mecánica de humo del área en alarma.</li>
+    <li><strong>Puertas cortafuego electromagnéticas:</strong> puertas retenidas en posición abierta por magnetos reciben la señal de desactivación del magneto desde el FACP, permitiendo el cierre automático de la puerta. Esta función es crítica para la compartimentación — una puerta cortafuego abierta puede permitir la propagación de humo y fuego a toda la planta en minutos.</li>
+    <li><strong>Sistemas de supresión especial:</strong> en cuartos con FM-200, CO₂ o Novec 1230, el FACP puede ejecutar la secuencia de descarga: verificación de doble detector (double-knock), retardo programado (15–60 segundos para evacuación del cuarto), activación de sirenas de advertencia pre-descarga, cierre de dampers de ventilación y finalmente señal de disparo al panel del sistema de supresión.</li>
+    <li><strong>Iluminación de emergencia:</strong> algunos sistemas integran la activación de la iluminación de emergencia adicional (más allá de la iluminación de emergencia con batería independiente) en zonas de evacuación al activarse la alarma.</li>
+    <li><strong>Anunciador gráfico remoto:</strong> réplica del panel con mapa gráfico del edificio, instalada en la entrada principal o en el puesto de seguridad. El mapa muestra la ubicación exacta del evento en el plano del edificio. El bombero que llega a atender la emergencia puede identificar en segundos el piso y el área afectada sin necesidad de consultar con personal del edificio.</li>
+  </ul>
+
+  <h3>Controladores de Bomba NFPA 20: Requisitos Específicos</h3>
+  <p>El controlador de bomba contra incendio no es un arrancador de motor industrial estándar. NFPA 20 establece requisitos específicos que lo diferencian de los controladores industriales convencionales:</p>
+  <ul>
+    <li><strong>Arranque automático sin temporización:</strong> el controlador debe arrancar la bomba inmediatamente cuando la presión del sistema cae por debajo del umbral de arranque, sin ningún retardo deliberado. Los temporizadores de retardo de arranque (anti-cycling timers) están prohibidos en el arranque automático de emergencia.</li>
+    <li><strong>No-paro automático:</strong> una vez que la bomba arranca automáticamente, solo puede detenerse de forma manual. Esto garantiza que la bomba no se apague durante un incendio aunque la presión se recupere por alguna razón. El personal de emergencia debe confirmar físicamente que el incendio está controlado antes de parar la bomba.</li>
+    <li><strong>Arranque manual de emergencia:</strong> el controlador debe tener un mecanismo de arranque manual mecánico que arranque la bomba sin conexión eléctrica al sistema de control. Es el último recurso si el controlador falla eléctricamente.</li>
+    <li><strong>Controladores para bombas diésel:</strong> incluyen el sistema de arranque del motor (dos sistemas de arranque independientes con baterías dedicadas), el panel de monitoreo del motor (temperatura de agua, presión de aceite, temperatura de aceite) y las alarmas de condiciones de falla del motor. El motor diésel debe poder arrancar en ≤10 segundos.</li>
+    <li><strong>Prueba semanal programada:</strong> el controlador moderno incluye un timer que inicia la prueba de arranque semanal automáticamente (generalmente los domingos a las 3:00 AM para minimizar la interrupción). La prueba registra la duración del arranque, la presión alcanzada y cualquier condición de falla, generando un reporte accesible para el personal de mantenimiento.</li>
+    <li><strong>Registro de eventos:</strong> similar al FACP, el controlador moderno registra todos los arranques (automáticos, manuales, de prueba), paros, alarmas de falla y condiciones de supervisión con fecha y hora. Esta bitácora electrónica es requerida por NFPA 25 para la documentación de mantenimiento.</li>
+  </ul>
+
+  <h3>Monitoreo Remoto UL 827: La Vigilancia 24/7</h3>
+  <p>La transmisión de señales de alarma a una estación central de monitoreo certificada UL 827 es el último eslabón de la cadena de respuesta. Cuando el sistema detecta un incendio en las 3 AM en un edificio vacío, la estación central es quien notifica al cuerpo de bomberos:</p>
+  <ul>
+    <li><strong>Tiempo de transmisión:</strong> NFPA 72 requiere que la señal llegue a la estación central dentro de 60 segundos de la activación de la alarma. La estación central tiene 90 segundos adicionales para notificar al cuerpo de bomberos.</li>
+    <li><strong>Medios de transmisión:</strong> línea telefónica dedicada (POTS — Plain Old Telephone System), transmisión celular (LTE), red IP (Ethernet/WiFi con canal de respaldo celular). Los sistemas modernos utilizan doble canal redundante: IP primario + celular de respaldo, garantizando la transmisión incluso si los sistemas de comunicación del edificio están afectados por el incendio.</li>
+    <li><strong>Tipos de señales:</strong> la estación central recibe señales diferenciadas para alarma, restore (fin de alarma), supervisión, trouble y prueba. La diferenciación es crítica: una señal de supervisión (tamper de válvula) no activa el despacho de bomberos — solo notifica al personal de mantenimiento del inmueble.</li>
+    <li><strong>Verificación de alarma:</strong> antes de despachar bomberos, la estación central puede intentar verificación por teléfono con el personal del edificio (excepto en señales de sprinkler o múltiples detectores simultáneos, donde el despacho es inmediato sin verificación).</li>
+  </ul>
+
+  <h3>Mantenimiento e Inspección de Tableros NFPA 72/25</h3>
+  <ul>
+    <li><strong>Inspección mensual:</strong> verificar que el panel muestra estado "Normal" (sin troubles ni supervisiones activas), que la alimentación CA está presente y que las baterías muestran carga correcta.</li>
+    <li><strong>Prueba funcional semestral:</strong> verificar la respuesta del panel a la activación de detectores y estaciones manuales de muestra. Confirmar que los dispositivos de notificación activan correctamente, que los módulos de control ejecutan las funciones programadas y que la transmisión a la estación central llega en tiempo.</li>
+    <li><strong>Prueba anual de batería:</strong> NFPA 72 requiere verificar la capacidad de la batería para sustentar la carga del sistema durante 24 horas en supervisión + 5 minutos en alarma. En la prueba, se desconecta la CA y se verifica que el sistema opera correctamente durante el período mínimo requerido.</li>
+    <li><strong>Actualización de software y firmware:</strong> los paneles modernos tienen firmware actualizable. Las actualizaciones de fabricante pueden corregir errores de funcionamiento, mejorar la compatibilidad con nuevos dispositivos y agregar funcionalidades de registro. Las actualizaciones deben realizarse por técnico certificado del fabricante o por el integrador del sistema.</li>
+  </ul>
+
+  <h3>Tableros en el Sistema Integral de Protección</h3>
+  <ul>
+    <li><a href="/sistemas/alarmas/"><strong>Sistemas de alarma NFPA 72</strong></a> — la arquitectura completa del sistema que el FACP controla: SLC, IDC, NAC y funciones de control.</li>
+    <li><a href="/sistemas/detectores/"><strong>Detectores de incendio</strong></a> — los dispositivos de iniciación cuya señal el FACP recibe, interpreta y procesa para determinar la condición del sistema.</li>
+    <li><a href="/sistemas/redes-hidraulicas/"><strong>Redes hidráulicas</strong></a> — el sistema de bombas y tuberías cuyo controlador NFPA 20 recibe señales de supervisión desde el FACP y cuyo estado monitorea el panel.</li>
+    <li><a href="/mangueras/valvulas/"><strong>Válvulas con tamper switch</strong></a> — los dispositivos de supervisión de válvulas cuya señal llega al FACP a través de módulos de monitoreo MIM en el lazo SLC.</li>
+    <li><a href="/senalamientos/salvacion/"><strong>Señalamientos de salvación</strong></a> — las rutas de evacuación que el personal sigue cuando el sistema de alarma activa la evacuación mediante sus dispositivos de notificación.</li>
+  </ul>
 </Categoria>
