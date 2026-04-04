@@ -1,6 +1,14 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 import Gallery from '../../components/Gallery.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Equipo para Restaurantes", href: "/sectores/restaurantes/", desc: "Todo el equipo NOM para tu cocina comercial" },
+  { nombre: "Gabinetes para Extintor", href: "/gabinetes/para-extintor/", desc: "Presentación profesional conforme a norma" },
+  { nombre: "Señalamientos de Evacuación", href: "/senalamientos/salvacion/", desc: "Fotoluminiscentes NOM-003-SEGOB" },
+  { nombre: "Extintores ABC Multipropósito", href: "/extintores/abc/", desc: "Para área de comensales y accesos" },
+];
 ---
 <Categoria title="Extintores Tipo K para Cocinas | Proyecto Red" description="Extintores Tipo K especializados para fuegos de aceites y grasas en cocinas comerciales e industriales." heroTitle="Extintores Tipo K para Cocinas" heroSubtitle="Protección especializada contra fuegos de aceites y grasas de cocina.">
   <h2>Tipo K: El Extintor Obligatorio en Cocinas Comerciales</h2>
@@ -19,4 +27,6 @@ import Gallery from '../../components/Gallery.astro';
 
   <h3>Cumplimiento Normativo para Restaurantes</h3>
   <p>Además del extintor Tipo K, las cocinas comerciales deben contar con un programa de mantenimiento semestral que incluya la verificación del agente extintor, la integridad del cilindro y la operatividad de la válvula. En Proyecto Red ofrecemos tanto la venta del equipo como el servicio de mantenimiento periódico, asegurando que tu restaurante o cocina industrial cumpla al 100% con los requerimientos de Protección Civil y las aseguradoras. Nuestros técnicos certificados emiten la constancia de servicio que las autoridades solicitan durante las inspecciones.</p>
+
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

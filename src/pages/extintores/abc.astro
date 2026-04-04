@@ -1,6 +1,13 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 import Gallery from '../../components/Gallery.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Gabinetes para Extintor", href: "/gabinetes/para-extintor/", desc: "Presentación profesional conforme a norma" },
+  { nombre: "Señalamientos de Emergencia", href: "/senalamientos/", desc: "Señalética fotoluminiscente NOM" },
+  { nombre: "Equipo para Oficinas", href: "/sectores/oficinas/", desc: "Todo el equipo NOM para corporativos" },
+];
 ---
 <Categoria title="Extintores ABC Multipropósito | Proyecto Red" description="Extintores ABC multipropósito para fuegos clase A, B y C. El extintor más versátil y requerido por norma." heroTitle="Extintores ABC Multipropósito" heroSubtitle="El extintor más versátil del mercado, requerido por la normatividad mexicana.">
   <h2>ABC Multipropósito: Un Solo Extintor, Tres Clases de Fuego</h2>
@@ -19,4 +26,5 @@ import Gallery from '../../components/Gallery.astro';
 
   <h3>Mantenimiento y Recarga Obligatoria</h3>
   <p>Conforme a la NOM-154-SCFI, los extintores ABC deben someterse a mantenimiento anual que incluye verificación de presión, inspección visual del cilindro, revisión de la manguera y boquilla, y confirmación de que el agente extintor mantiene sus propiedades. Cada cinco años se requiere una prueba hidrostática del cilindro para garantizar su integridad estructural. En Proyecto Red realizamos tanto la venta de equipos nuevos como el servicio de recarga y mantenimiento a domicilio en toda la República Mexicana, emitiendo la etiqueta de servicio y el certificado que las autoridades requieren.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

@@ -1,5 +1,12 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Alarmas Contra Incendio", href: "/sistemas/alarmas/", desc: "Paneles convencionales y direccionables NFPA 72" },
+  { nombre: "Detectores de Humo e Incendio", href: "/sistemas/detectores/", desc: "Fotoeléctricos, iónicos y térmicos" },
+  { nombre: "Redes Hidráulicas CI", href: "/sistemas/redes-hidraulicas/", desc: "Infraestructura hidráulica certificada" },
+];
 ---
 <Categoria title="Tableros Contra Incendio | Proyecto Red" description="Tableros de control para sistemas contra incendio. Paneles de detección, control de bombas y monitoreo." heroTitle="Tableros Contra Incendio" heroSubtitle="Control centralizado para la gestión integral de tu sistema de protección.">
   <h2>Tableros de Control: El Cerebro del Sistema Contra Incendio</h2>
@@ -16,4 +23,5 @@ import Categoria from '../../layouts/Categoria.astro';
 
   <h3>Mantenimiento Preventivo</h3>
   <p>Un tablero contra incendio requiere inspecciones periódicas conforme a NFPA 25 para verificar el correcto funcionamiento de todos los circuitos, baterías de respaldo, módulos de comunicación y dispositivos conectados. Nuestro programa de mantenimiento preventivo incluye pruebas funcionales trimestrales, inspección visual mensual y pruebas de aceptación anuales, generando la documentación necesaria para cumplir con los requerimientos de Protección Civil y las compañías aseguradoras.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

@@ -1,6 +1,13 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 import Gallery from '../../components/Gallery.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Equipo para Gasolineras", href: "/sectores/gasolineras/", desc: "AFFF obligatorio para estaciones de combustible" },
+  { nombre: "Extintores de CO₂", href: "/extintores/co2/", desc: "Para equipos eléctricos y áreas sensibles" },
+  { nombre: "Rociadores Automáticos", href: "/sistemas/rociadores/", desc: "Supresión automática para áreas de alto riesgo" },
+];
 ---
 <Categoria title="Extintores AFFF (Espuma) | Proyecto Red" description="Extintores AFFF de espuma mecánica para fuegos clase A y B. Efectivos en líquidos inflamables." heroTitle="Extintores AFFF — Espuma Mecánica" heroSubtitle="Formación de película acuosa para sofocar incendios de líquidos inflamables.">
   <h2>AFFF: Espuma Formadora de Película Acuosa</h2>
@@ -19,4 +26,5 @@ import Gallery from '../../components/Gallery.astro';
 
   <h3>Ventajas en Aplicaciones Industriales</h3>
   <p>A diferencia de los extintores de polvo químico, la espuma AFFF no genera una nube de partículas que dificulte la visibilidad durante la emergencia, permitiendo a los brigadistas mantener contacto visual con la zona del siniestro. Además, su capacidad de sellado superficial reduce significativamente el riesgo de reignición, un factor crítico en instalaciones donde los líquidos inflamables están almacenados en grandes volúmenes. En Proyecto Red proveemos extintores AFFF de marcas certificadas con concentrados de espuma que cumplen las especificaciones UL y la normatividad mexicana vigente.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

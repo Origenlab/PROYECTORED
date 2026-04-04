@@ -1,5 +1,12 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Redes Hidráulicas CI", href: "/sistemas/redes-hidraulicas/", desc: "Tuberías y bombas para distribución de agua" },
+  { nombre: "Mangueras Contra Incendio", href: "/mangueras/", desc: "Mangueras, chiflones y válvulas NFPA" },
+  { nombre: "Equipo para Hoteles", href: "/sectores/hoteles/", desc: "Cumplimiento NOM para hoteles y hospedajes" },
+];
 ---
 <Categoria title="Rociadores Contra Incendio (Sprinklers) | Proyecto Red" description="Sistemas de rociadores automáticos contra incendio. Diseño, instalación y mantenimiento conforme a NFPA 13." heroTitle="Rociadores (Sprinklers)" heroSubtitle="Supresión automática de incendios para la máxima protección de tu inmueble.">
   <h2>Rociadores Automáticos: Supresión Inmediata y Confiable</h2>
@@ -16,4 +23,5 @@ import Categoria from '../../layouts/Categoria.astro';
 
   <h3>Tipos de Rociadores</h3>
   <p>Ofrecemos rociadores de diferentes configuraciones según la aplicación: pendientes (pendant) para techos planos, montantes (upright) para instalaciones expuestas, de pared lateral (sidewall) para pasillos y habitaciones, y ocultos (concealed) para áreas donde la estética es prioritaria. Cada rociador se selecciona considerando la clasificación de riesgo del área, la altura del techo, el espaciamiento requerido y la temperatura de activación adecuada.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

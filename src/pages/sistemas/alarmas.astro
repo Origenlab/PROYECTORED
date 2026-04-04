@@ -1,5 +1,12 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Detectores de Humo e Incendio", href: "/sistemas/detectores/", desc: "Fotoeléctricos, iónicos y térmicos" },
+  { nombre: "Tableros de Control CI", href: "/sistemas/tableros/", desc: "Control centralizado de todo el sistema" },
+  { nombre: "Equipo por Sector", href: "/sectores/", desc: "Soluciones NOM según tu tipo de negocio" },
+];
 ---
 <Categoria title="Alarmas Contra Incendio | Proyecto Red" description="Sistemas de alarma contra incendio: convencionales y direccionables. Diseño e instalación conforme a NFPA 72." heroTitle="Alarmas Contra Incendio" heroSubtitle="Detección y notificación temprana para proteger vidas y patrimonio.">
   <h2>Sistemas de Alarma: Tu Primera Línea de Defensa</h2>
@@ -19,4 +26,5 @@ import Categoria from '../../layouts/Categoria.astro';
     <li>Módulos de monitoreo, supervisión y control</li>
     <li>Anunciadores remotos y teclados secundarios</li>
   </ul>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

@@ -1,6 +1,13 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 import Gallery from '../../components/Gallery.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Extintores ABC Multipropósito", href: "/extintores/abc/", desc: "El extintor más versátil para negocios" },
+  { nombre: "Gabinetes para Extintor", href: "/gabinetes/para-extintor/", desc: "Resguardo profesional conforme a norma" },
+  { nombre: "Servicio de Recarga NOM", href: "/servicios/", desc: "Recarga y mantenimiento certificado en CDMX" },
+];
 ---
 <Categoria title="Extintores de Polvo Químico Seco | Proyecto Red" description="Extintores de polvo químico seco PQS para fuegos clase A, B y C. Venta y recarga en México." heroTitle="Extintores de Polvo Químico Seco" heroSubtitle="El agente extintor más utilizado y versátil del mercado mexicano.">
   <h2>Polvo Químico Seco (PQS): Protección Multiclase</h2>
@@ -19,4 +26,5 @@ import Gallery from '../../components/Gallery.astro';
 
   <h3>Aplicaciones Recomendadas</h3>
   <p>Los extintores PQS son obligatorios en oficinas, comercios, escuelas, hospitales, fábricas y cualquier inmueble que requiera un Programa Interno de Protección Civil. Su relación costo-beneficio los convierte en la primera opción para cumplir con los requerimientos de las autoridades locales y federales. Es importante considerar que el polvo químico seco puede generar residuo corrosivo en equipos electrónicos delicados, por lo que en centros de datos o laboratorios se recomienda complementar con extintores de CO2 o agente limpio.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

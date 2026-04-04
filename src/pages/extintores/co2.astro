@@ -1,6 +1,13 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
 import Gallery from '../../components/Gallery.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Detectores de Humo e Incendio", href: "/sistemas/detectores/", desc: "Para protección integral del área eléctrica" },
+  { nombre: "Gabinetes para Extintor", href: "/gabinetes/para-extintor/", desc: "Presentación profesional conforme a norma" },
+  { nombre: "Equipo para Laboratorios", href: "/sectores/laboratorios/", desc: "Soluciones NOM para laboratorios y farmacias" },
+];
 ---
 <Categoria title="Extintores de CO2 | Proyecto Red" description="Extintores de dióxido de carbono CO2 para fuegos clase B y C. Ideales para equipos eléctricos." heroTitle="Extintores de CO2" heroSubtitle="Descarga limpia y sin residuos para proteger equipos eléctricos y electrónicos.">
   <h2>Dióxido de Carbono: Extinción Limpia y Efectiva</h2>
@@ -18,4 +25,5 @@ import Gallery from '../../components/Gallery.astro';
 
   <h3>Consideraciones de Uso</h3>
   <p>Es importante saber que los extintores de CO2 no son recomendables para fuegos clase A (sólidos combustibles), ya que no dejan una capa de agente sobre el material que evite la reignición. Tampoco deben utilizarse en espacios muy reducidos sin ventilación, debido al riesgo de desplazamiento de oxígeno. Para un plan integral de protección, se recomienda combinar extintores de CO2 con equipos PQS o de agente limpio según la clasificación de riesgo del área protegida.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>

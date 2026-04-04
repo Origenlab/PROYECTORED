@@ -1,5 +1,12 @@
 ---
 import Categoria from '../../layouts/Categoria.astro';
+import ProductosRelacionados from '../../components/ProductosRelacionados.astro';
+
+const relacionados = [
+  { nombre: "Alarmas Contra Incendio NFPA 72", href: "/sistemas/alarmas/", desc: "Paneles convencionales y direccionables" },
+  { nombre: "Tableros de Control CI", href: "/sistemas/tableros/", desc: "Control centralizado del sistema de detección" },
+  { nombre: "Redes Hidráulicas CI", href: "/sistemas/redes-hidraulicas/", desc: "Infraestructura hidráulica certificada" },
+];
 ---
 <Categoria title="Detectores de Humo e Incendio | Proyecto Red" description="Detectores de humo, calor y gas para sistemas contra incendio. Fotoeléctricos, iónicos y térmicos." heroTitle="Detectores de Humo e Incendio" heroSubtitle="Tecnología avanzada para la detección temprana de incendios.">
   <h2>Detectores: Los Ojos del Sistema Contra Incendio</h2>
@@ -10,4 +17,5 @@ import Categoria from '../../layouts/Categoria.astro';
   <p><strong>Detectores fotoeléctricos:</strong> Utilizan un haz de luz y un sensor óptico para detectar partículas de humo en el aire. Son especialmente efectivos para fuegos de combustión lenta que generan humo visible antes de producir llama, como los que se originan en cableado eléctrico sobrecalentado o materiales sintéticos. Son los más recomendados para oficinas, hoteles, hospitales y áreas de almacenamiento general.</p>
   <p><strong>Detectores iónicos:</strong> Contienen una pequeña cámara de ionización que detecta cambios en la corriente eléctrica causados por partículas de combustión. Son más sensibles a fuegos de llama rápida con partículas muy pequeñas, como los producidos por papel, madera seca o líquidos inflamables. Se utilizan en áreas donde se requiere detección de fuegos de rápida evolución.</p>
   <p><strong>Detectores térmicos:</strong> Responden a cambios de temperatura en el ambiente. Existen dos tipos principales: los de temperatura fija, que se activan cuando el ambiente alcanza un umbral predeterminado (generalmente 57 C o 68 C), y los de tasa de incremento, que detectan un aumento rápido de temperatura independientemente del valor absoluto. Son ideales para cocinas, cuartos de máquinas, bodegas y áreas donde el humo o el polvo podrían causar falsas alarmas en detectores de humo.</p>
+  <ProductosRelacionados items={relacionados} />
 </Categoria>
