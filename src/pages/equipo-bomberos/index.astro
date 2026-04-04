@@ -30,50 +30,67 @@ const productos = [
     desc: "Protección multicapa contra temperaturas extremas, llamas directas y calor radiante. Fabricados en Nomex, PBI y Kevlar. Chaquetón + pantalón con tirantes, tallas estándar y sobre medida.",
     href: "/equipo-bomberos/trajes/",
     badge: "NFPA 1971",
+    specs: "Nomex · PBI · Kevlar · 3 capas · Chaquetón + Pantalón · S–4XL · Sobre medida disponible",
   },
   {
     nombre: "Complementos de Uniforme",
     desc: "Cascos con visor, guantes térmicos, botas certificadas, capuchas Nomex y gogles. Cada pieza diseñada para integrarse al ensemble completo de protección del bombero.",
     href: "/equipo-bomberos/complementos/",
     badge: null,
+    specs: "Casco NFPA 1971 · Guantes térmicos · Botas NFPA 1971 · Capucha Nomex · Gogles anti-flash",
   },
   {
     nombre: "ERA — Respiración Autónoma",
     desc: "Equipos SCBA con cilindros de aire comprimido, máscaras panorámicas y reguladores certificados NIOSH. Para atmósferas contaminadas con humo, gases tóxicos o deficiencia de oxígeno.",
     href: "/equipo-bomberos/respiracion-autonoma/",
     badge: "Esencial",
+    specs: "SCBA · NIOSH · Cilindro 30 / 45 / 60 min · Máscara panorámica · Alarma PASS integrada",
   },
   {
     nombre: "Herramientas de Rescate",
     desc: "Quijadas de vida, hachas, halligans, palancas, cortadores hidráulicos y herramientas de entrada forzada. Equipo para rescate vehicular, estructural y en espacios confinados.",
     href: "/equipo-bomberos/herramientas/",
     badge: null,
+    specs: "Manual · Hidráulica · Neumática · Eléctrica · Rescate vehicular · Espacios confinados",
   },
   {
     nombre: "Arneses de Rescate",
     desc: "Arneses certificados para trabajo en altura, rescate vertical y evacuación. Con puntos de anclaje dorsal y pectoral, diseñados para soportar cargas de hasta 140 kg en caída.",
     href: "/equipo-bomberos/arneses/",
     badge: null,
+    specs: "NFPA 1983 · NOM-009-STPS · Dorsal + Pectoral · Hasta 140 kg · Rescate vertical y evacuación",
   },
 ];
 
-// ── Clientes objetivo ────────────────────────────────
-const clientes = [
+// ── Guía por tipo de operación ───────────────────────
+const guia = [
   {
-    titulo: "Bomberos Municipales y Estatales",
-    desc: "Equipamiento completo para estaciones de bomberos: trajes, ERA, herramientas de rescate y complementos. Pedidos por lote con documentación para licitaciones.",
+    tipo: "Combate estructural — Bomberos",
+    norma: "NFPA 1971 · NFPA 1851 · NFPA 1981",
+    necesitas: "Traje 3 capas + ERA SCBA + casco + guantes + botas + capucha Nomex",
+    porque: "El ensemble completo NFPA 1971 es obligatorio para entrada a estructuras en llamas. Cada componente debe estar certificado individualmente — no hay atajos.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20para%20combate%20estructural%20NFPA%201971`,
   },
   {
-    titulo: "Brigadas Industriales",
-    desc: "Empresas petroleras, petroquímicas, plantas de manufactura y naves industriales que requieren brigadas internas de emergencia equipadas conforme a STPS.",
+    tipo: "HAZMAT — Materiales Peligrosos",
+    norma: "NFPA 1991 · NFPA 1992 · NFPA 1994",
+    necesitas: "Traje encapsulado Nivel A/B + ERA + detector multigas + traje de decontaminación",
+    porque: "Los incidentes químicos requieren protección contra vapores, líquidos y aerosoles tóxicos. La norma NFPA 1991 define los 4 niveles de protección según el agente.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20HAZMAT%20para%20materiales%20peligrosos`,
   },
   {
-    titulo: "Protección Civil y Rescate",
-    desc: "Equipos de respuesta estatal y municipal. Arneses de rescate vertical, herramientas de entrada forzada y equipo para operaciones en espacios confinados.",
+    tipo: "Rescate en Altura y Espacios Confinados",
+    norma: "NFPA 1983 · NOM-009-STPS · NFPA 1670",
+    necesitas: "Arnés de rescate + cuerda técnica + sistema antícaída + trípode de espacios confinados",
+    porque: "El rescate vertical y en espacios confinados requiere equipo específico. Un arnés de construcción no es válido para rescate — los puntos de anclaje y la geometría son distintos.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20para%20rescate%20en%20altura%20y%20espacios%20confinados`,
   },
   {
-    titulo: "Aeropuertos y Zonas Especiales",
-    desc: "Trajes de proximidad aluminizados para temperaturas superiores a 500°C. Equipo especializado para incendios aeronáuticos y zonas de alto riesgo térmico.",
+    tipo: "Aeronáutico y Zonas de Proximidad",
+    norma: "NFPA 1976 · NFPA 1975",
+    necesitas: "Traje aluminizado de proximidad + ERA + casco especializado + guantes aluminizados",
+    porque: "Los incendios aeronáuticos generan temperaturas de 500°C o más con combustible de aviación. La protección aluminizada es la única opción — los trajes estructurales no son suficientes.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20aeronautico%20o%20de%20proximidad%20NFPA%201976`,
   },
 ];
 
@@ -116,7 +133,7 @@ const faqsBomberos = [
         </div>
         <h1>Equipo para <span class="h1-accent">Bomberos</span><br>Certificado NFPA</h1>
         <p class="hero-sub">
-          Trajes estructurales, equipos de respiración autónoma, herramientas de rescate, arneses y complementos. Todo con certificación NFPA original. Para cuerpos de bomberos y brigadas industriales en México.
+          Tu brigada tiene trajes sin inspección NFPA 1851, el ERA lleva años sin prueba hidrostática y las herramientas no son certificadas — en una operación real eso pone vidas en riesgo. Ensemble completo desde $18,000 MXN. Certificaciones NFPA originales incluidas.
         </p>
         <div class="hero-ctas">
           <a
@@ -212,6 +229,7 @@ const faqsBomberos = [
             <div class="prod-card__body">
               <h3 class="prod-card__name">{p.nombre}</h3>
               <p class="prod-card__sub">{p.desc}</p>
+              <p class="prod-card__specs">{p.specs}</p>
             </div>
             <div class="prod-card__footer">
               <span class="prod-card__link">
@@ -243,34 +261,32 @@ const faqsBomberos = [
   </section>
 
   <!-- ══════════════════════════════════════
-       ¿PARA QUIÉN? — Segmentos de cliente
-       (MEJORA vs extintores: reemplaza la sección
-       SEO genérica con contenido de valor real)
+       GUÍA POR TIPO DE OPERACIÓN
   ══════════════════════════════════════ -->
   <section class="cat-section cat-section--gray">
     <div class="container">
 
       <div class="cat-header">
         <div class="cat-header__img-wrap">
-          <img src="/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg" alt="Bomberos equipados con trajes NFPA en operación" loading="lazy" width="640" height="400" />
+          <img src="/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg" alt="Bomberos equipados con trajes NFPA en operación de rescate" loading="lazy" width="640" height="400" />
           <div class="cat-header__img-overlay"></div>
           <div class="cat-header__img-content">
-            <span class="cat-norm-badge">Proveedor directo</span>
-            <h2>¿Quién Compra Este Equipo?</h2>
+            <span class="cat-norm-badge">Por tipo de operación</span>
+            <h2>¿Qué Equipo Necesitas?</h2>
           </div>
         </div>
 
         <div class="cat-header__info">
           <div class="cat-header__meta">
-            <span class="section-label">Clientes que equipamos</span>
-            <span class="cat-badge-pill">B2B y gobierno</span>
+            <span class="section-label">Guía de equipo</span>
+            <span class="cat-badge-pill">NFPA por operación</span>
           </div>
-          <h2 class="cat-header__title">Equipo Profesional para Quien Responde Primero</h2>
-          <p class="cat-header__desc">No vendemos equipo genérico. Cada cotización parte de un análisis del tipo de riesgo, la operación y la normativa que aplica. Trabajamos con licitaciones gubernamentales, pedidos industriales y compras directas para estaciones de bomberos.</p>
+          <h2 class="cat-header__title">El Equipo Correcto Depende de la Operación</h2>
+          <p class="cat-header__desc">Un traje estructural NFPA 1971 no es el mismo que un traje HAZMAT NFPA 1991. Un arnés de construcción no es un arnés de rescate NFPA 1983. Identifica tu tipo de operación para saber exactamente qué necesitas.</p>
           <div class="cat-header__ctas">
             <a href="/servicios/#asesoria-tecnica" class="btn-outline">Solicitar asesoría técnica</a>
             <a
-              href={`${WA_URL}?text=Hola%2C%20necesito%20equipar%20a%20mi%20brigada%20de%20emergencia`}
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20t%C3%A9cnica%20para%20equipo%20de%20emergencia`}
               class="cat-wa-link"
               target="_blank"
               rel="noopener noreferrer"
@@ -282,18 +298,25 @@ const faqsBomberos = [
         </div>
       </div>
 
-      <!-- Grid de segmentos de cliente — 4 cols como prod-cards -->
+      <!-- Grid de guía por tipo de operación -->
       <div class="productos-grid">
-        {clientes.map(c => (
-          <div class="prod-card">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
             <div class="prod-card__top">
-              <span class="prod-badge">Cliente</span>
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
             </div>
             <div class="prod-card__body">
-              <h3 class="prod-card__name">{c.titulo}</h3>
-              <p class="prod-card__sub">{c.desc}</p>
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
             </div>
-          </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar para esta operación
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
         ))}
       </div>
 
@@ -336,3 +359,22 @@ const faqsBomberos = [
   </section>
 
 </Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+</style>

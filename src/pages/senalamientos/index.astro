@@ -31,49 +31,60 @@ const productos = [
     desc: "Círculo rojo con diagonal: no fumar, no paso, no usar elevador en incendio, no obstruir. Indican acciones prohibidas en zonas de riesgo. Fotoluminiscentes o estándar según necesidad.",
     href: "/senalamientos/prohibicion/",
     badge: "NOM-003",
-    // MEJORA: ejemplo visual de qué señales incluye
-    ejemplo: "No fumar · No paso · No usar en incendio",
+    specs: "PVC · Acrílico · Vinilo UV · 20×20 cm · 30×30 cm · Fotoluminiscente opcional",
   },
   {
     nombre: "Señales de Obligación",
     desc: "Círculo azul con símbolo blanco: uso obligatorio de casco, lentes, guantes, protección auditiva. Para áreas donde el EPP es mandatorio según NOM-017-STPS.",
     href: "/senalamientos/obligacion/",
     badge: "NOM-026",
-    ejemplo: "Usar casco · Usar lentes · Usar guantes",
+    specs: "PVC rígido · Lámina galvanizada · 20×20 cm · 30×30 cm · Instalación tornillo o adhesivo",
   },
   {
     nombre: "Señales de Advertencia",
     desc: "Triángulo amarillo con contorno negro: riesgo eléctrico, material inflamable, piso resbaloso, caída de objetos. Alertan sobre peligros presentes en el área de trabajo.",
     href: "/senalamientos/advertencia/",
     badge: null,
-    ejemplo: "Riesgo eléctrico · Inflamable · Piso húmedo",
+    specs: "PVC · Vinilo autoadherible · 20×20 cm · 30×30 cm · Interior y exterior",
   },
   {
     nombre: "Señales de Evacuación y Salvamento",
     desc: "Rectángulo verde con flechas y pictogramas: rutas de evacuación, salidas de emergencia, punto de reunión, ubicación de extintores y botiquines. Las más importantes en una inspección de Protección Civil.",
     href: "/senalamientos/salvacion/",
     badge: "Obligatorio",
-    ejemplo: "Salida · Ruta evacuación · Punto de reunión",
+    specs: "Fotoluminiscente 8h+ · Acrílico · 20×30 cm · 30×45 cm · NOM-003-SEGOB",
   },
 ];
 
-// MEJORA vs anteriores: sección de diferenciadores con datos concretos, no genérica
-const diferenciadores = [
+// Guía contextual por tipo de inmueble — qué señalamientos necesita cada espacio
+const guia = [
   {
-    titulo: "Fotoluminiscentes de verdad",
-    desc: "8+ horas de visibilidad sin electricidad. No son simples calcomanías reflectantes — absorben luz durante el día y brillan en oscuridad total. Es lo que exige Protección Civil para dar dictamen favorable.",
+    tipo: "Oficina / negocio comercial",
+    norma: "NOM-003-SEGOB · NOM-026-STPS",
+    necesitas: "Rutas de evacuación, salidas de emergencia, punto de reunión, ubicación de extintores, no fumar",
+    porque: "Protección Civil exige señalización mínima para cualquier local con acceso al público. Sin ella no hay dictamen favorable.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20mi%20oficina%20o%20negocio`,
   },
   {
-    titulo: "Levantamiento de tu inmueble",
-    desc: "Nuestro equipo visita tus instalaciones, identifica cuántas señales necesitas, de qué tipo y en qué ubicación exacta. Sales de la visita con un plano de señalización listo para tu expediente.",
+    tipo: "Restaurante / cocina industrial",
+    norma: "NOM-003-SEGOB · NOM-002-STPS",
+    necesitas: "Evacuación + salida de emergencia + zona gas LP + no fumar + ruta cocina separada",
+    porque: "Las cocinas tienen riesgo clase B (grasa) y gas LP. STPS y Protección Civil verifican señalización específica por zona.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20un%20restaurante%20o%20cocina%20industrial`,
   },
   {
-    titulo: "Materiales que no se degradan",
-    desc: "Acrílico, PVC, vinilo autoadherible y lámina galvanizada con tintas resistentes a UV. No se decoloran en 6 meses como las genéricas de papelería — duran el ciclo completo entre inspecciones.",
+    tipo: "Nave industrial / almacén",
+    norma: "NOM-026-STPS · NOM-017-STPS · NOM-003-SEGOB",
+    necesitas: "EPP obligatorio por área + advertencia eléctrica + advertencia de químicos + evacuación industrial",
+    porque: "STPS verifica obligación de EPP por zona de riesgo y señalización de advertencia. El incumplimiento genera multa directa.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20planta%20industrial%20o%20almac%C3%A9n`,
   },
   {
-    titulo: "Paquetes por tipo de inmueble",
-    desc: "Oficina de 200 m², restaurante, nave industrial, edificio de 10 pisos — tenemos paquetes prediseñados que cubren la norma completa. Cotización inmediata sin adivinar cuántas necesitas.",
+    tipo: "Edificio de oficinas / corporativo",
+    norma: "NOM-003-SEGOB · NFPA 101",
+    necesitas: "Fotoluminiscentes en cada piso + rutas en escaleras + salida de emergencia + punto de reunión exterior",
+    porque: "Edificios de más de 2 pisos requieren fotoluminiscentes en cada nivel. En emergencia nocturna, son el único sistema de guía sin electricidad.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20edificio%20de%20oficinas`,
   },
 ];
 
@@ -240,8 +251,7 @@ const faqsSenalamientos = [
             <div class="prod-card__body">
               <h3 class="prod-card__name">{p.nombre}</h3>
               <p class="prod-card__sub">{p.desc}</p>
-              {/* MEJORA: línea de ejemplos concretos — le dice al visitante exactamente qué va a encontrar */}
-              <p class="prod-card__examples">{p.ejemplo}</p>
+              <p class="prod-card__specs">{p.specs}</p>
             </div>
             <div class="prod-card__footer">
               <span class="prod-card__link">
@@ -288,60 +298,62 @@ const faqsSenalamientos = [
   </section>
 
   <!-- ══════════════════════════════════════
-       POR QUÉ NOSOTROS — Diferenciadores concretos
-       (MEJORA vs anteriores: no "quién compra" ni
-       "servicios genéricos" — POR QUÉ estos señalamientos
-       y no los de la papelería de la esquina)
+       GUÍA POR TIPO DE INMUEBLE
   ══════════════════════════════════════ -->
   <section class="cat-section cat-section--gray">
     <div class="container">
 
       <div class="cat-header">
         <div class="cat-header__img-wrap">
-          <!-- MEJORA: imagen diferente a la del catálogo -->
           <img src="/imagenes/senalamientos/salida-emergencia.jpg" alt="Señalamiento fotoluminiscente de salida de emergencia visible en oscuridad" loading="lazy" width="640" height="400" />
           <div class="cat-header__img-overlay"></div>
           <div class="cat-header__img-content">
-            <span class="cat-norm-badge">Fotoluminiscente</span>
-            <h2>8+ Horas de Visibilidad</h2>
+            <span class="cat-norm-badge">Por tipo de inmueble</span>
+            <h2>¿Cuáles Necesitas Tú?</h2>
           </div>
         </div>
 
         <div class="cat-header__info">
           <div class="cat-header__meta">
-            <span class="section-label">Por qué Proyecto Red</span>
-            <span class="cat-badge-pill">Señalización NOM</span>
+            <span class="section-label">Guía de señalización</span>
+            <span class="cat-badge-pill">NOM según espacio</span>
           </div>
-          <!-- MEJORA: título que ataca la objeción principal ("los de papelería son más baratos") -->
-          <h2 class="cat-header__title">La Diferencia entre Pasar la Inspección y Repetirla</h2>
-          <p class="cat-header__desc">Los señalamientos genéricos de papelería se decoloran en meses, no brillan en la oscuridad y no traen certificado. Protección Civil los rechaza. Los nuestros están fabricados para cumplir la norma desde el día uno hasta la siguiente inspección.</p>
+          <h2 class="cat-header__title">Cada Espacio Tiene sus Señales Obligatorias</h2>
+          <p class="cat-header__desc">No todos los inmuebles necesitan las mismas señales. Una oficina, un restaurante, una nave industrial y un edificio corporativo tienen requerimientos normativos distintos. Identifica tu caso y cotiza sin adivinar.</p>
           <div class="cat-header__ctas">
-            <a href="/servicios/#senalizacion" class="btn-outline">Servicio de instalación</a>
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20un%20levantamiento%20de%20señalización%20para%20mi%20inmueble`} class="btn-outline" target="_blank" rel="noopener noreferrer">Levantamiento gratuito</a>
             <a
-              href={`${WA_URL}?text=Hola%2C%20quiero%20reemplazar%20mis%20señalamientos%20por%20unos%20que%20cumplan%20la%20NOM`}
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20señalamientos%20NOM%20para%20mi%20espacio`}
               class="cat-wa-link"
               target="_blank"
               rel="noopener noreferrer"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Reemplazar señalización
+              Cotizar por WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Grid de diferenciadores concretos -->
+      <!-- Grid de guía por tipo de inmueble -->
       <div class="productos-grid">
-        {diferenciadores.map(d => (
-          <div class="prod-card">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
             <div class="prod-card__top">
-              <span class="prod-badge">Ventaja</span>
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
             </div>
             <div class="prod-card__body">
-              <h3 class="prod-card__name">{d.titulo}</h3>
-              <p class="prod-card__sub">{d.desc}</p>
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
             </div>
-          </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar para este espacio
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
         ))}
       </div>
 
@@ -387,14 +399,21 @@ const faqsSenalamientos = [
 
 </Base>
 
-<!-- MEJORA: estilo mínimo para la línea de ejemplos en prod-card -->
 <style>
-  .prod-card__examples {
+  .prod-card__specs {
     font-size: 0.75rem;
     color: var(--c-primary);
     font-weight: 600;
     margin-top: 0.5rem;
     letter-spacing: 0.02em;
     opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
   }
 </style>
