@@ -7,8 +7,8 @@ import '../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Extintores AFFF Espuma | Combustibles Líquidos A y B | Proyecto Red";
-const description = "Extintores AFFF (espuma formadora de película acuosa) para clases A y B. Protege gasolineras, talleres, plantas petroquímicas y hangares. PFAS-free. De 6L a 50L rodante. NOM-154-SCFI. Entrega en CDMX.";
+const title = "Extintores AFFF Espuma Clase A y B en CDMX | Proyecto Red";
+const description = "Extintores AFFF espuma formadora de película acuosa clase A y B. Para gasolineras, talleres y plantas petroquímicas. NOM-154-SCFI. Entrega en CDMX.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -77,12 +77,19 @@ const guia = [
     href: `${WA_URL}?text=Hola%2C%20necesito%20sistema%20de%20extintores%20AFFF%20para%20instalaci%C3%B3n%20industrial`,
   },
   {
-    tipo: "⚠ Cuándo NO usar AFFF",
-    norma: "NFPA 10 · Alternativas: CO₂ · PQS",
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
     necesitas: "No usar AFFF en equipos eléctricos energizados (conduce electricidad), ni en cocinas (usar Tipo K), ni en materiales sólidos clase A pequeños (usar PQS ABC)",
     porque: "El AFFF es una espuma a base acuosa — la presencia de agua lo hace conductor de electricidad. Nunca debe usarse en equipos bajo tensión. Para fuegos eléctricos, usa CO₂. Para cocinas con grasa, usa Tipo K. Para oficinas con riesgo A+B, usa PQS ABC universal.",
     href: `${WA_URL}?text=Hola%2C%20no%20estoy%20seguro%20si%20AFFF%20es%20el%20agente%20correcto%20para%20mi%20instalaci%C3%B3n`,
   },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Púrpura K", href: "/extintores/purpura-k/", tag: "Alta potencia B", desc: "Bicarbonato de potasio — 2x más efectivo que PQS en clase B." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Clase A·B·C", desc: "Cuando también necesitas cubrir fuegos de materiales sólidos." },
+  { nombre: "CO₂", href: "/extintores/co2/", tag: "Eléctrico", desc: "Para las zonas eléctricas e instalaciones con maquinaria energizada." },
 ];
 
 const faqsAFFF = [
@@ -320,6 +327,24 @@ const faqsAFFF = [
     </div>
   </section>
 
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <FaqCotizacion
     titulo="Preguntas Frecuentes sobre Extintores AFFF"
     subtitulo="Lo que necesitas saber sobre espuma para gasolineras, talleres y plantas petroquímicas"
@@ -368,4 +393,14 @@ const faqsAFFF = [
     white-space: normal;
     line-height: 1.3;
   }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
 </style>

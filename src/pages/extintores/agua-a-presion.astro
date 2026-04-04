@@ -7,8 +7,8 @@ import '../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Extintor de Agua a Presión | Clase A | Ecológico | Proyecto Red";
-const description = "Extintores de agua a presión para fuegos clase A (madera, papel, cartón). Ecológicos, sin residuo químico, reutilizables. De 9L a 45L rodante. NOM-154-SCFI. Entrega en CDMX.";
+const title = "Extintores Agua a Presión Clase A | Proyecto Red";
+const description = "Extintores de agua a presión clase A y water mist. Sin residuo, ecológicos. Para archivos, museos y bodegas de papel. NOM-154-SCFI. Entrega en CDMX.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -77,12 +77,19 @@ const guia = [
     href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agua%20para%20bodega%20de%20cart%C3%B3n`,
   },
   {
-    tipo: "⚠ Cuándo NO usar Agua",
-    norma: "NFPA 10 · Alternativas: CO₂, PQS, AFFF, Tipo K",
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
     necesitas: "NO usar agua en: equipos eléctricos energizados (peligro de electrocución), líquidos inflamables (agua flota, fuego se expande), aceites de cocina (agua causa explosión). NUNCA agua en clase B, C ni K.",
     porque: "El agua es conductora de electricidad — un chorro de agua en un transformador energizado causa electrocución al operario. En gasolina o diésel, el agua se hunde y expande el fuego. En aceite de cocina a 300°C, el agua se vaporiza explosivamente. El agua es SOLO para clase A — sólidos.",
     href: `${WA_URL}?text=Hola%2C%20tengo%20dudas%20sobre%20d%C3%B3nde%20usar%20extintor%20agua`,
   },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "B y C también", desc: "Cubre clase A, B y C — más versátil si tienes múltiples riesgos." },
+  { nombre: "Agente Limpio HFC", href: "/extintores/agente-limpio/", tag: "Electrónica", desc: "Para zonas con equipos electrónicos que el agua podría dañar." },
+  { nombre: "Cold Fire", href: "/extintores/cold-fire/", tag: "Biodegradable", desc: "Agente acuoso moderno que no daña superficies ni equipos sensibles." },
 ];
 
 const faqsAgua = [
@@ -320,6 +327,24 @@ const faqsAgua = [
     </div>
   </section>
 
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <FaqCotizacion
     titulo="Preguntas Frecuentes sobre Agua a Presión"
     subtitulo="Protección ecológica para documentos, archivos e instalaciones clase A"
@@ -368,4 +393,14 @@ const faqsAgua = [
     white-space: normal;
     line-height: 1.3;
   }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
 </style>

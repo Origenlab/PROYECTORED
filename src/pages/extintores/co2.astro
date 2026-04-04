@@ -7,8 +7,8 @@ import '../../styles/pages.css';
 const WHATSAPP = "525537238544";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 
-const title = "Extintores de CO₂ para Equipos Eléctricos y Electrónicos | Proyecto Red";
-const description = "Extintores de CO₂ (dióxido de carbono) para fuegos clase B y C. Descarga limpia sin residuo: no dañan servidores, equipo médico ni electrónica. De 2.2 kg a 45 kg rodante. NOM-154-SCFI. Entrega en CDMX.";
+const title = "Extintores de CO₂ para Electrónica en CDMX | Proyecto Red";
+const description = "Extintores CO₂ para servidores, laboratorios y subestaciones eléctricas. Cero residuo. De 2.2 a 45 kg. NOM-154-SCFI. Entrega en CDMX y EDOMEX.";
 
 const breadcrumbs = [
   { label: "Inicio", href: "/" },
@@ -96,6 +96,13 @@ const guia = [
   },
 ];
 
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Agente Limpio HFC", href: "/extintores/agente-limpio/", tag: "Premium", desc: "Seguro en presencia de personas. Para salas de control con operadores." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Clase A·B·C", desc: "Cuando necesitas cubrir fuegos clase A además de eléctrico." },
+  { nombre: "Automáticos", href: "/extintores/automaticos/", tag: "24/7", desc: "Protección sin intervención humana para cuartos de servidores." },
+];
+
 // ── FAQs específicos de CO₂ ───────────────────────────
 const faqsCO2 = [
   {
@@ -134,9 +141,6 @@ const faqsCO2 = [
   description={description}
 >
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-left">
@@ -182,9 +186,6 @@ const faqsCO2 = [
 
   <CtaBar />
 
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
   <section class="metricas-section" aria-label="Datos técnicos del extintor CO₂">
     <div class="container">
       <div class="metricas-grid">
@@ -198,9 +199,6 @@ const faqsCO2 = [
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       VARIANTES POR CAPACIDAD
-  ══════════════════════════════════════ -->
   <section class="cat-section cat-section--white" id="variantes">
     <div class="container">
 
@@ -347,9 +345,24 @@ const faqsCO2 = [
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       FAQ + COTIZACIÓN
-  ══════════════════════════════════════ -->
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <FaqCotizacion
     titulo="Preguntas Frecuentes sobre Extintores de CO₂"
     subtitulo="Lo que necesitas saber antes de proteger tu sala de servidores, laboratorio o cuarto eléctrico"
@@ -401,4 +414,14 @@ const faqsCO2 = [
     white-space: normal;
     line-height: 1.3;
   }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
 </style>
