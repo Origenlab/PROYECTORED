@@ -9,6 +9,7 @@ const categorias = [
     sub: 'Polvo seco · CO₂ · AFFF · Tipo K · Agente Limpio',
     href: '/extintores/',
     img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    imgAlt: 'Extintores contra incendios certificados NOM en CDMX — polvo seco ABC, CO₂ y Tipo K',
     badge: '10 tipos',
   },
   {
@@ -16,6 +17,7 @@ const categorias = [
     sub: 'Trajes · ERA · Herramientas · Arneses',
     href: '/equipo-bomberos/',
     img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    imgAlt: 'Equipo profesional para bomberos y brigadas certificado NFPA en México',
     badge: 'NFPA',
   },
   {
@@ -23,6 +25,7 @@ const categorias = [
     sub: 'Prohibición · Obligación · Advertencia · Salvación',
     href: '/senalamientos/',
     img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    imgAlt: 'Señalamientos de emergencia fotoluminiscentes certificados NOM-003-SEGOB en CDMX',
     badge: 'NOM-003',
   },
   {
@@ -30,6 +33,7 @@ const categorias = [
     sub: 'Para extintor · Para manguera · Para bombero',
     href: '/gabinetes/',
     img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    imgAlt: 'Gabinetes para extintor e hidrante en acero calibre 20 para empresas en CDMX',
     badge: null,
   },
   {
@@ -37,6 +41,7 @@ const categorias = [
     sub: 'Hidrantes · Chiflones · Válvulas · Adaptadores',
     href: '/mangueras/',
     img: '/imagenes/mangueras/mangueras-hero.jpg',
+    imgAlt: 'Mangueras contra incendio NFPA 1961, chiflones y válvulas para sistemas hidráulicos en CDMX',
     badge: null,
   },
   {
@@ -44,6 +49,7 @@ const categorias = [
     sub: 'Alarmas · Detectores · Rociadores · Tableros',
     href: '/sistemas/',
     img: '/imagenes/sistemas/alarmas.jpg',
+    imgAlt: 'Sistemas contra incendio NFPA: alarmas, detectores, rociadores y tableros de control en CDMX',
     badge: 'NFPA 13/72',
   },
   {
@@ -51,6 +57,7 @@ const categorias = [
     sub: 'Botiquines · Camillas · Material de curación',
     href: '/primeros-auxilios/',
     img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    imgAlt: 'Botiquines de primeros auxilios NOM-005-STPS y desfibriladores DEA para empresas en CDMX',
     badge: 'STPS',
   },
   {
@@ -58,6 +65,7 @@ const categorias = [
     sub: 'Cascos · Lentes · Guantes · Arneses · EPP',
     href: '/equipo-seguridad/',
     img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    imgAlt: 'Equipos de protección personal EPP: cascos, guantes, arneses y lentes de seguridad industrial',
     badge: null,
   },
 ];
@@ -159,7 +167,7 @@ const trust = [
             <div class="cat-img-wrap">
               <img
                 src={cat.img}
-                alt={cat.titulo}
+                alt={cat.imgAlt || cat.titulo}
                 loading={i < 3 ? 'eager' : 'lazy'}
                 width="600"
                 height="400"

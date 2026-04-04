@@ -2,9 +2,10 @@
 interface Props {
   folder: string; // e.g., 'abc', 'co2'
   count: number;  // number of images to show
+  label?: string; // Descriptive label for alt text (e.g., "Extintor Tipo K para cocinas")
 }
 
-const { folder, count } = Astro.props;
+const { folder, count, label } = Astro.props;
 const images = Array.from({ length: count }, (_, i) => `/imagenes/extintores/${folder}/galeria-${i + 1}.png`);
 ---
 
@@ -20,7 +21,7 @@ const images = Array.from({ length: count }, (_, i) => `/imagenes/extintores/${f
       <div class={`gallery-item item-${index + 1}`}>
         <img 
           src={src} 
-          alt={`Galería ${folder} - Imagen ${index + 1}`} 
+          alt={label ? `${label} — imagen ${index + 1}` : `Extintor ${folder} certificado NOM — imagen ${index + 1}`}
           loading="lazy"
           onerror="this.parentElement.style.display='none'"
         />

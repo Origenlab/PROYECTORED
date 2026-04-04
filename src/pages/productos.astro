@@ -258,7 +258,7 @@ const categorias = [
             <div class="cat-header__img-wrap">
               <img
                 src={cat.img}
-                alt={cat.titulo}
+                alt={`${cat.titulo} — ${cat.desc.substring(0, 80)}`}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 width="640"
                 height="400"
