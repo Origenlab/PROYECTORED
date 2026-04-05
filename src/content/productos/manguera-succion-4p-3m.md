@@ -1,0 +1,17 @@
+---
+title: "Manguera de Succion Rigida 4 Pulgadas 3 Metros"
+description: "Manguera de succion rigida de 4 pulgadas (100mm) y 3 metros para bombas centrifugas y camiones cisterna. Espiral de acero interior anti-colapso con racores Storz 100mm."
+category: "Mangueras"
+precio: "$2,600 MXN"
+slug: "manguera-succion-4p-3m"
+---
+
+## Manguera de Succion Rigida 4 Pulgadas para Camiones Cisterna y Bombas
+
+La manguera de succion rigida de 4 pulgadas (100 milimetros) es el accesorio hidraulico que permite a los camiones cisterna de bomberos abastecer agua desde fuentes no presurizadas como cisternos de almacenamiento, rios, lagos, canales de riego, piletas y cualquier fuente abierta a nivel o por debajo del nivel del camion. A diferencia de las mangueras de descarga que operan bajo presion positiva del sistema, la manguera de succion opera bajo presion negativa (vacio), condicion que colapsa cualquier manguera flexible convencional y corta el suministro de agua a la bomba. La espiral metalica de refuerzo interior de la manguera de succion rigida impide este colapso manteniendo la geometria circular del tubo incluso cuando la bomba genera hasta 28 pulgadas de mercurio (95 kPa) de vacio en la linea.
+
+La manguera de succion rigida esta construida con un tubo interior de caucho SBR (estireno-butadieno) de 5 mm de espesor reforzado con espiral de alambre de acero galvanizado de 3 mm de diametro con paso de 25 mm, cubierta exterior de caucho negro de 4 mm resistente a la abrasion y la intemperie. La construccion semirigida del conjunto tubo+espiral mantiene un radio de curvatura minimo de 50 centimetros, suficiente para realizar una conexion desde el compartimento trasero del camion hasta un deposito de agua ubicado hasta 3 metros por debajo del nivel del chasis. Los tramos de 3 metros son la longitud estandar para camiones de bomberos ya que se almacenan en los compartimentos laterales del vehiculo sin sobresalir, y pueden conectarse en serie con acopladores Storz intermedios para alcanzar profundidades de succion mayores.
+
+Las especificaciones tecnicas incluyen: diametro interior nominal 100 mm (4 pulgadas), diametro exterior aproximado 128 mm incluyendo la cubierta sobre la espiral, longitud nominal 3.05 metros con accesorios incluidos, presion maxima de trabajo en descarga 6 bar (87 PSI) para uso combinado succion-descarga, vacio maximo de trabajo 85 kPa (25 pulgadas de mercurio), presion de prueba hidrostatica 900 kPa (131 PSI) conforme a EN 1947:2003 para mangueras de succion, racores Storz de aluminio 100 mm (Storz A segun DIN 14307-1) con junta plana de neopreno en ambos extremos, peso total incluyendo racores: 8.5 kg. Radio de curvatura minimo: 50 cm.
+
+La altura de succion maxima teorica de una bomba centrifuga es de 10.33 metros (la altura equivalente a la presion atmosferica a nivel del mar), pero en la practica las perdidas de carga en la manguera y la accion del cebado reducen la altura de succion efectiva a 6 u 8 metros para bombas bien mantenidas a nivel del mar, reduciendose adicionalmente por cada 1,000 metros de altitud sobre el nivel del mar en aproximadamente 1.2 metros por cada 1,000 metros de elevacion. Para instalaciones en ciudades de alta altitud como Ciudad de Mexico (2,240 msnm) o Toluca (2,680 msnm), la altura practica de succion puede reducirse a 5 o 6 metros maximos, lo que debe considerarse en el diseno de cisternas y depositos para que el nivel de agua minimo de operacion este dentro del alcance de la bomba del camion de bomberos durante emergencias con nivel bajo de reserva.

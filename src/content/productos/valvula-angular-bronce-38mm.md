@@ -1,0 +1,17 @@
+---
+title: "Valvula Angular de Bronce 38mm para Gabinete de Manguera"
+description: "Valvula angular de bronce ASTM B584 de 38 mm para gabinetes de incendio tipo I-A. Rosca NST hembra con cierre de asiento esfera, presion nominal 300 PSI y maneta ergonomica."
+category: "Mangueras"
+precio: "$890 MXN"
+slug: "valvula-angular-bronce-38mm"
+---
+
+## Valvula Angular de Bronce para Gabinetes de Manguera 38mm
+
+La valvula angular de bronce para gabinetes de manguera es el componente hidraulico de control que regula el suministro de agua desde la red fija del edificio hacia la manguera de ataque durante una emergencia. Su diseno angular en forma de L (90 grados entre entrada y salida) permite instalarla en la parte trasera del gabinete con la entrada conectada verticalmente a la tuberia de la red hidraulica empotrada en la pared, mientras la salida horizontal queda orientada hacia la apertura del gabinete para facilitar la conexion rapida de la manguera. Este diseno de 90 grados es el que da nombre a la pieza y es el mas comun en instalaciones de interior por su eficiencia en el uso del espacio dentro del gabinete.
+
+La valvula angular de 38 mm esta fabricada en bronce ASTM B584 aleacion C83600, una aleacion de cobre-estano-plomo con excelente resistencia a la corrosion en agua potable, agua tratada con cloro y agua con dureza elevada que es caracteristica de muchos sistemas municipales en el norte de Mexico. El cuerpo de la valvula es de fundicion con paredes de 4 mm de espesor minimo en las zonas de mayor presion. El elemento de cierre es de tipo globo o esfera de bronce con sello de PTFE (teflón) que garantiza el cierre hermetico a cero fugas despues de anos de instalacion sin uso regular, caracteristica critica en equipos de emergencia que pueden permanecer sin activarse durante meses o anos.
+
+Las especificaciones tecnicas incluyen: material cuerpo ASTM B584 C83600, maneta de operacion en aluminio o acero inoxidable segun version, entrada NPT de 1.5 pulgadas para conexion a tuberia de red hidraulica, salida NST 1.5 pulgadas hembra para acoplamiento directo de manguera sin herramientas adicionales, presion nominal PN 300 PSI (clase 200 segun clasificacion ASME B16.24), presion de prueba de fabrica en agua a 450 PSI conforme a MSS SP-80, esfuerzo de apertura menor a 20 Newtons-metro cuando la valvula esta a presion de servicio, longitud de apertura completa con 2 a 2.5 vueltas de maneta. Temperatura de operacion de 0 a 120 grados centigrados. Peso: 820 gramos.
+
+La instalacion de la valvula angular debe realizarse con cinta de sello PTFE de al menos 3 vueltas en la rosca NPT de entrada para garantizar la hermeticidad de la conexion a la red hidraulica. Una fuga en la conexion de la valvula dentro del gabinete no solo danara el equipo por humedad constante sino que puede generar condiciones de mold y deterioro de la manguera almacenada que comprometan su operatividad en una emergencia. La prueba de hermeticidad post-instalacion debe realizarse con el sistema a presion de servicio del edificio, verificando visualmente la ausencia de fugas en todos los puntos de conexion antes de cerrar el gabinete. El mantenimiento preventivo anual del gabinete incluye la operacion completa de apertura y cierre de la valvula angular para prevenir que el asiento de cierre quede pegado por depositos minerales despues de largos periodos de inactividad, la falla mas comun reportada en inspecciones de sistemas de mangueras en Mexico.

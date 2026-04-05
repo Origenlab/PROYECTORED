@@ -1,0 +1,17 @@
+---
+title: "Manguera de Incendio 63mm (2.5 Pulgadas) 30 Metros"
+description: "Manguera de combate plana de 63 mm (2.5 pulgadas) de 30 metros para uso exclusivo de bomberos. Nylon doble cubierta, racores NST 63mm de bronce, presion de prueba 400 PSI."
+category: "Mangueras"
+precio: "$3,800 MXN"
+slug: "manguera-incendio-63mm-30m"
+---
+
+## Manguera de Combate de 63mm para Brigadas de Bomberos
+
+La manguera de incendio de 63 milimetros (2.5 pulgadas nominales) de 30 metros es la linea de ataque de gran caudal utilizada exclusivamente por brigadas de bomberos profesionales para operaciones de extincion interior de alta intensidad y para el abastecimiento de agua entre vehiculos cisterna y camiones de ataque en el teatro de operaciones. Con capacidad de transportar hasta 500 GPM (1,893 l/min) a presiones de hasta 200 PSI (13.8 bar), esta manguera puede suministrar el caudal de una linea de ataque de gran diametro necesaria para combatir incendios en ocupaciones de alto riesgo como fabricas, bodegas de productos quimicos, y edificios con alta carga de fuego donde las lineas de 38 mm resultan insuficientes para controlar la propagacion del incendio.
+
+La construccion de esta manguera es de tipo tejida plana o doblada, a diferencia de la manguera semirigida de uso en gabinetes: cuando esta descargada de agua la manguera se aplana completamente, lo que permite doblarla y almacenarla en compartimentos de los camiones en dobles o triples pliegues que ocupan minimo espacio pero se despliegan rapidamente al momento de conectar y abrir la presion. El tubo interior es de caucho de alto grado nitrilo-buna (NBR) de 4 mm de espesor con mayor resistencia a hidrocarburos que el EPDM, y la cubierta exterior es de nylon 6.6 de alta tenacidad en tejido cruzado de doble capa que resiste la abrasion en superficies de asfalto, concreto y terreno irregular durante el tendido de lineas bajo presion.
+
+Las especificaciones tecnicas incluyen: diametro interior nominal de 63 mm (2.5 pulgadas), presion de trabajo maxima de 250 PSI (17.2 bar), presion de prueba hidrostatica de 400 PSI (27.6 bar) durante 3 minutos conforme a la NFPA 1961 para mangueras de uso en combate, longitud de 30 metros (30.5 con racores), racores de bronce ASTM B584 con rosca NST 2.5 pulgadas o NH 65mm segun especificacion de la brigada, resistencia a la traccion minima de la tela de 3,000 Newtons por 25 mm de ancho, temperatura de uso de menos 25 a mas 70 grados centigrados. Peso en seco: 15.2 kg. Peso en operacion con agua: 30.4 kg aproximadamente.
+
+Las mangueras de 63 mm requieren un programa de mantenimiento mas riguroso que las de 38 mm por su mayor exposicion a condiciones extremas durante las operaciones de combate. La NFPA 1962 establece prueba hidrostatica anual para mangueras de combate de uso frecuente, con presion de prueba equivalente al 110% de la presion maxima de servicio declarada. Las mangueras deben lavarse despues de cada uso con agua dulce para eliminar aceites, combustibles, espuma y productos de combustion, secarse completamente antes de almacenarse para prevenir el desarrollo de hongos en el interior del tubo de caucho, e inspeccionarse en toda su longitud para detectar abrasiones, hernias o deformaciones en el tubo interior. Una manguera hernida, es decir, con el tubo interior asomando por un corte de la cubierta, debe retirarse inmediatamente de servicio independientemente de su apariencia general.

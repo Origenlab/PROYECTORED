@@ -1,0 +1,17 @@
+---
+title: "Devanadera Giratoria para Manguera de Incendio 38mm"
+description: "Devanadera giratoria de acero galvanizado para manguera semirigida de 38mm hasta 30 metros. Giro 180 grados para despliegue rapido sin nudos. Compatible con gabinetes tipo I-A."
+category: "Mangueras"
+precio: "$750 MXN"
+slug: "devanadera-manguera-giratoria"
+---
+
+## Devanadera Giratoria de Acero para Manguera de Incendio 38mm
+
+La devanadera giratoria para manguera de incendio es el accesorio de almacenamiento que garantiza el despliegue rapido y sin obstrucciones de la manguera durante una emergencia. Mientras los soportes de pared estaticos o las configuraciones de manguera doblada en el fondo del gabinete obligan al usuario a extraer toda la manguera y extenderla manualmente antes de poder avanzar hacia el foco de incendio (proceso que puede tomar 30 a 60 segundos bajo condiciones de estres), la devanadera giratoria permite que la manguera se desenrolle automaticamente conforme el usuario avanza, jalando simplemente de la boquilla en la direccion del incendio sin necesidad de extender la manguera previamente. Esta diferencia en tiempo de respuesta puede ser determinante en los primeros minutos de un conato de incendio.
+
+La devanadera esta fabricada en tubo estructural de acero de 1 pulgada galvanizado en caliente con ejes de rotacion en rodamientos de bolas sellados que permiten el giro libre de 180 grados hacia cada lado desde la posicion central. La estructura circular interior donde se enrolla la manguera tiene un diametro de 40 centimetros, suficiente para almacenar manguera semirigida de 38 mm hasta 30 metros de longitud sin forzar el radio minimo de curvatura del tubo de EPDM. El soporte de montaje es un bracket de acero galvanizado con dos puntos de anclaje en pared de M10 que permiten ajustar la altura de instalacion de la devanadera entre 40 y 90 centimetros desde el piso del gabinete para adaptarse a diferentes alturas y tamanos de gabinete.
+
+Las especificaciones tecnicas incluyen: capacidad maxima de manguera 30 metros de 38 mm o 15 metros de 50 mm, diametro del carrete 40 cm, ancho del carrete 25 cm, peso de la devanadera vacia 4.2 kg, carga maxima soportada con manguera llena de agua 18 kg (equivalente a 30 metros de manguera de 38 mm con agua), material acero al carbon galvanizado electroliticamente con cromatado para proteccion adicional en ambientes con humedad relativa hasta 95%, rodamientos doble fila de bolas sellados con grasa tipo 2 para cero mantenimiento durante 10 anos, angulo de giro 180 grados (90 grados a cada lado del eje central). Incluye soporte mural y tornilleria de anclaje.
+
+La devanadera giratoria es compatible con todos los modelos de gabinete tipo I-A estandar con profundidad interior minima de 22 centimetros. Para gabinetes de mayor profundidad disponibles como los gabinetes combinados extintor-manguera o los gabinetes empotrados de mayor fondo, la devanadera puede instalarse en posicion central o desplazada a un costado del gabinete para optimizar el espacio. La inspeccion semestral de la devanadera debe incluir: verificacion del giro libre del carrete (el eje no debe presentar resistencia significativa al giro manual), lubricacion de los cojinetes si se percibe chirrido o resistencia, y verificacion del estado del galvanizado en busca de oxidacion incipiente especialmente en la zona de contacto con el borde inferior de la manguera durante el almacenamiento, donde la compresion y la humedad residual de la manguera aceleran la corrosion.
