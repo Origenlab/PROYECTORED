@@ -1,0 +1,17 @@
+---
+title: "Gabinete de Conexion Siamesa para Bomberos FDC"
+description: "Gabinete de conexion siamesa FDC (Fire Department Connection) de 63mm con dos entradas NST para carga de sistemas de rociadores y mangueras desde camion de bomberos."
+category: "Gabinetes"
+precio: "$8,900 MXN"
+slug: "gabinete-conexion-siamesa"
+---
+
+## Gabinete de Conexion Siamesa FDC para Sistemas Contra Incendios
+
+El gabinete de conexion siamesa, conocido en la norma NFPA como FDC (Fire Department Connection), es el punto de acceso que permite a los bomberos conectar las lineas de manguera de su camion cisterna directamente al sistema de rociadores o de mangueras del edificio para reforzar la presion y el suministro de agua durante un incendio cuando el sistema interno del edificio es insuficiente, falla o cuando la reserva de agua se agota. Toda instalacion con rociadores automaticos o sistema de mangueras de clase I o III en edificios de mas de tres niveles esta obligada por la NFPA 13 y la NFPA 14 a contar con al menos una conexion FDC accesible desde la via publica, en un lugar claramente identificado y libre de obstrucciones permanentes para los vehiculos de bomberos.
+
+La conexion siamesa tipo Y incorpora dos entradas independientes de 63 mm (2.5 pulgadas) con rosca NST (National Standard Thread) hembra, que convergen en una salida comun de mayor diametro hacia el sistema del edificio a traves de una valvula de retencion o cheque que impide el retorno del agua del sistema hacia la conexion exterior. Las dos entradas permiten conectar simultaneamente dos lineas de manguera de diferente camion, sumando los caudales disponibles cuando un solo camion no tiene capacidad de suministro suficiente para sistemas de mayor demanda. Cada entrada cuenta con tapon de seguridad encadenado de bronce para prevenir la entrada de objetos extraños al sistema cuando la conexion no esta en uso y para desmotivar el vandalismo.
+
+Las especificaciones tecnicas del gabinete incluyen: cuerpo de union siamesa en bronce ASTM B584 (aleacion C83600) con presion maxima de trabajo de 300 PSI (20.7 bar), valvulas de retencion de disco de bronce en cada ramal de la Y con presion de apertura de 3 PSI, tapones de cadena de bronce con rosca NST macho de 63 mm, soporte de montaje en pared o pedestal de acero galvanizado incluido, placa de identificacion de acero inoxidable con la leyenda BOMBA DE INCENDIO grabada y la indicacion del sistema al que alimenta (ROCIADORES / MANGUERAS / SISTEMA COMBINADO). La conexion de salida al sistema del edificio es de 100 mm (4 pulgadas) roscado NPT. Peso del conjunto: 12 kg.
+
+La ubicacion del FDC en la fachada del edificio debe coordinarse desde las etapas de diseno con el departamento de bomberos del municipio correspondiente, ya que los reglamentos locales pueden establecer requisitos especificos sobre la ubicacion minima respecto a entradas vehiculares, hidrantes publicos y esquinas de la manzana. La NFPA 13 establece que la conexion FDC debe ser visible y accesible desde la calle sin necesidad de ingresar al predio, debe estar protegida contra daños por vehiculos mediante bolardos o cercado cuando se ubica a nivel de banqueta, y debe mantener un area de despeje minima de 0.9 metros a cada lado para el tendido de mangueras de los equipos de bomberos. La identificacion correcta del FDC en los planos de emergencia del edificio y en los protocolos del departamento de bomberos local es fundamental para una respuesta eficaz durante un incendio real.

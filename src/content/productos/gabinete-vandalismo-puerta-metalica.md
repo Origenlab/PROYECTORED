@@ -1,0 +1,17 @@
+---
+title: "Gabinete Contra Incendio Anti-Vandalismo Puerta Metalica"
+description: "Gabinete contra incendio con puerta metalica solida anti-vandalismo para zonas publicas de alto trafico. Acero calibre 14 reforzado con cerradura de cuadro y martillo de emergencia."
+category: "Gabinetes"
+precio: "$3,600 MXN"
+slug: "gabinete-vandalismo-puerta-metalica"
+---
+
+## Gabinete Contra Incendio Anti-Vandalismo con Puerta Metalica Solida
+
+El gabinete contra incendio anti-vandalismo con puerta metalica solida es la solucion para instalaciones en areas publicas de alto trafico donde la version estandar con puerta de vidrio es vulnerable al dano accidental o intencional. Estaciones del metro, paraderos de autobus, parques publicos, estadios deportivos, instalaciones penitenciarias, areas de carga y descarga de bodegas, y cualquier ubicacion donde el equipo puede ser impactado por herramientas, carros de carga o personas en estado de agitacion son candidatos idoneos para este gabinete. La puerta metalica solida elimina el riesgo de dano del vidrio sin comprometer la accesibilidad al equipo en una emergencia real, gracias al sistema de apertura de emergencia integrado.
+
+El mecanismo de acceso en emergencia combina dos sistemas complementarios: una cerradura de cuadro estandar para bomberos con triangulo de 10 milimetros que permite la apertura con la llave universal que todo cuerpo de bomberos porta en sus unidades, y un martillo de acero inoxidable con punta de ruptura montado en soporte exterior de la puerta que permite al personal del establecimiento golpear el panel de disco central de la puerta, diseado para ceder ante un impacto de 15 Joules sin deformar el marco de la puerta. Este sistema dual garantiza que tanto el personal de emergencias como el personal no especializado puedan acceder al equipo en menos de 10 segundos desde el momento en que identifican el gabinete.
+
+Las especificaciones tecnicas incluyen: cuerpo y puerta en lamina de acero calibre 14 (1.90 mm) con refuerzo de angulo perimetral de 1.5 pulgadas soldado en todo el marco, bisagras de piano continuas de acero de 100 kg de capacidad por gozne, cerradura de cuadro de 10 mm para llave de triangulo de bomberos con cerrojo de 25 mm de profundidad, panel de disco de ruptura de aluminio de 1 mm en el centro de la puerta con indicacion de ruptura de emergencia en pintura serigrafíca, acabado exterior en pintura epoxica texturizada roja RAL 3000 de alta resistencia al grafiti y solventes de limpieza, dimensiones exteriores de 70 x 60 x 24 centimetros. Interior: soporte ajustable para extintor de 4 a 9 kg o devanadera con manguera de 38 mm de 15 metros.
+
+La seleccion entre gabinete con vidrio y gabinete metalico anti-vandalismo debe considerar el perfil de riesgo de la instalacion y los requisitos normativos locales. La NFPA 10 no prohibe los gabinetes de puerta solida siempre que el acceso en emergencia sea posible sin el uso de llaves especiales o herramientas que el personal pueda no tener disponibles, por lo que el sistema de disco de ruptura por martillo es el elemento que valida el cumplimiento de este requisito. En Mexico, las autoridades de Proteccion Civil de algunos estados requieren que los gabinetes en instalaciones educativas y hospitalarias sean del tipo vidrio para facilitar la inspeccion visual del contenido durante los recorridos de verificacion; en estos casos se recomienda consultar la reglamentacion local antes de especificar la version metalica.

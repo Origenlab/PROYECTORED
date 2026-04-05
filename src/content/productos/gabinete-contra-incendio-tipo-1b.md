@@ -1,0 +1,17 @@
+---
+title: "Gabinete Contra Incendio Tipo I-B Manguera 63mm Bomberos"
+description: "Gabinete tipo I-B de uso exclusivo para bomberos con manguera de 63 mm (2.5 pulgadas) y valvula angular 63 mm. Para edificios con riesgo alto y servicio de bomberos municipal."
+category: "Gabinetes"
+precio: "$5,800 MXN"
+slug: "gabinete-contra-incendio-tipo-1b"
+---
+
+## Gabinete Contra Incendio Tipo I-B para Uso de Bomberos
+
+El gabinete contra incendio tipo I-B es el equipo de extinction fija de mayor capacidad en sistemas de mangueras para edificios, disenado exclusivamente para uso por brigadas de bomberos profesionales durante la fase de ataque sostenido de un incendio estructural. A diferencia del tipo I-A que opera con manguera de 38 mm a presiones moderadas que cualquier persona puede manejar, el tipo I-B trabaja con manguera de 63 milimetros (2.5 pulgadas) a presiones que pueden superar los 100 PSI en el extremo de la lanza, generando fuerzas de reaccion que requieren al menos dos personas entrenadas para manejar la linea con seguridad y eficacia tactica. Este gabinete proporciona los caudales de agua necesarios para combatir incendios de clase media y alta intensidad en edificios de altura y uso comercial o industrial.
+
+La NFPA 14 sobre sistemas de tuberia para servicios de manguera de la NFPA clasifica los sistemas tipo I-B como sistemas de clase I o clase III, estableciendo que las conexiones de manguera de 63 mm deben proporcionar un flujo minimo de 500 GPM (1,893 l/min) a una presion residual minima de 100 PSI (6.9 bar) en la valvula mas desfavorable del sistema. Este requerimiento es significativamente mayor al de los sistemas tipo I-A, lo que implica que el sistema hidraulico del edificio (red de tuberias, bomba contra incendios y tanque de reserva) debe estar disenado especificamente para soportar este nivel de demanda sin comprometer la presion disponible en el punto de uso.
+
+El gabinete tipo I-B esta construido en lamina de acero calibre 16 (1.52 mm) con refuerzos soldados en todas las uniones estructurales y marco de perfil de acero de 2 pulgadas en el perimetro de la puerta. La puerta es de doble hoja en acero con ventana de vidrio laminado de seguridad, cerradura de cuadro que requiere llave especial para apertura normal y dispositivo de rotura de emergencia para acceso rapido en condiciones de incendio. El contenido incluye: valvula angular de hierro fundido clase 250 de 63 mm con rosca NST, manguera de incendio de 63 mm de 30 metros de longitud con cubierta de caucho doble vulcanizado, soporte de manguera tipo carrusel giratorio de 360 grados, y conector de reduccion 63 a 38 mm para adaptacion de mangueras de diametro menor cuando la situacion lo requiera. Dimensiones: 80 x 75 x 30 cm.
+
+Para edificios de altura mayor de 25 metros (aproximadamente 8 pisos), la combinacion de gabinetes tipo I-B en todos los pisos con toma siamesa en fachada es un requisito minimo de las normas de proteccion civil estatales en Mexico. El sistema debe incluir una bomba jockey de mantenimiento de presion, una bomba principal electrica y una bomba de respaldo diesel para garantizar la disponibilidad hidraulica en todo momento, incluyendo durante incendios que afecten el suministro electrico del edificio. El mantenimiento trimestral del gabinete tipo I-B debe verificar el estado de la valvula, la integridad de la manguera y la correcta presion estatica en el punto de conexion.

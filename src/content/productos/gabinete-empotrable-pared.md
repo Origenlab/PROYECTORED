@@ -1,0 +1,17 @@
+---
+title: "Gabinete Contra Incendio Empotrable en Pared"
+description: "Gabinete contra incendio para empotrarse en pared con nicho de 65 x 55 x 20 cm. Marco de presentacion de acero con puerta de vidrio templado. Apto para manguera 38mm y extintor."
+category: "Gabinetes"
+precio: "$4,800 MXN"
+slug: "gabinete-empotrable-pared"
+---
+
+## Gabinete Contra Incendio Empotrado en Pared para Proyectos Arquitectonicos
+
+El gabinete empotrable en pared representa la solucion estetica preferida por arquitectos y disenadores de interiores en proyectos donde la presencia de un gabinete de superficie con profundidad de 25 a 30 centimetros afectaria negativamente la continuidad visual de pasillos, lobbies o areas de trabajo de alta calidad arquitectonica. Al instalarse empotrado, el gabinete queda a nivel con la superficie de la pared, dejando visible unicamente el marco y la puerta del equipo. Esta solucion es ampliamente utilizada en hoteles de cinco estrellas, edificios corporativos de oficinas, centros comerciales de alto perfil, hospitales y cualquier instalacion donde la estetica del espacio es un factor de igual peso que la funcionalidad del sistema de proteccion.
+
+El nicho requerido para la instalacion del gabinete tiene dimensiones de 65 centimetros de alto, 55 centimetros de ancho y 20 centimetros de profundidad libre interior. En muros de concreto o block, el nicho debe construirse durante la etapa de obra gris del edificio, ya que su apertura posterior implica corte de concreto con disco diamantado y refuerzo metalico del marco del hueco para prevenir la propagacion de fisuras. En muros de tablaroca o drywall, el nicho puede abrirse en cualquier etapa de la obra cortando los paneles y reforzando el espacio entre montantes existentes con un marco de acero galvanizado de 1.5 pulgadas, sin necesidad de perforar elementos estructurales. El gabinete incluye instrucciones de instalacion para ambas condiciones.
+
+El marco de presentacion visible del gabinete empotrado es de perfiles de acero de 1.5 mm de espesor con acabado en pintura electrostatica blanca RAL 9016 o roja RAL 3000 segun especificacion del proyecto. La puerta tiene bisagras de piano continuas en acero inoxidable que garantizan un movimiento suave y sin vibracion, y se abre 180 grados para dar acceso completo al equipo interior. El panel de la puerta es de vidrio templado de seguridad de 4 mm de espesor con serigrafía de instrucciones de uso. Las dimensiones de la caja empotrable son de 63 x 53 x 18 cm interiores, con capacidad para devanadera de manguera de 38 mm con 15 metros de manguera o soporte de extintor de hasta 9 kg con repisa ajustable.
+
+La coordinacion entre el contratista de obra civil y el instalador del sistema contra incendios es fundamental para la correcta instalacion del gabinete empotrable. El nicho debe quedar listo y con la tuberia hidraulica de alimentacion posicionada antes del acabado de la pared, requiriendo que el proveedor del sistema contra incendios entregue los planos de instalacion con las dimensiones exactas del nicho y la ubicacion de la toma de agua desde las etapas de diseno del proyecto. La instalacion improvosada de gabinetes empotrados en muros terminados no solo resulta costosa y dificil sino que frecuentemente produce resultados esteticamente insatisfactorios que frustran el objetivo de mejorar la apariencia de los espacios respecto a los gabinetes de superficie.
