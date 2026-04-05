@@ -1,0 +1,17 @@
+---
+title: "Botiquin de Primeros Auxilios Tipo A para 10 Personas"
+description: "Botiquin de primeros auxilios tipo A conforme a NOM-005-STPS para centros de trabajo con hasta 10 trabajadores. Gabinete de plastico con contenido completo y lista de verificacion."
+category: "Primeros Auxilios"
+precio: "$680 MXN"
+slug: "botiquin-tipo-a-10-personas"
+---
+
+## Botiquin de Primeros Auxilios Tipo A para Centros de Trabajo Pequenos
+
+El botiquin de primeros auxilios tipo A es el equipamiento medico de emergencia minimo requerido por la NOM-005-STPS sobre relaciones laborales en materia de primeros auxilios para establecimientos con hasta 10 trabajadores. Este es el tipo de botiquin mas comun en Mexico y el punto de partida del cumplimiento normativo para microempresas, oficinas pequenas, talleres de servicio, comercios y cualquier centro de trabajo que inicie operaciones con personal reducido. Su contenido esta definido por la norma como el minimo indispensable para atender emergencias medicas de primer nivel: lesiones leves, cortaduras, quemaduras superficiales, intoxicaciones menores y traumatismos de baja gravedad mientras se traslada al lesionado a un centro de salud o se espera la llegada de los servicios de emergencia.
+
+El gabinete es de polipropileno de alta densidad inyectado en color blanco con la cruz verde de primeros auxilios serigrafíada en la tapa, con cierre de seguridad tipo broche de presion que impide la apertura accidental pero permite el acceso rapido en emergencia sin necesidad de llaves ni herramientas. El interior cuenta con separadores extraibles y etiquetas de posicion para cada insumo, facilitando la inspeccion visual rapida del inventario y la identificacion inmediata de los insumos faltantes que deben reponerse. La lista de verificacion plastificada adherida al interior de la tapa lista todos los insumos con casillas de verificacion para el programa de revision mensual obligatorio del botiquin.
+
+El contenido tipo A completo conforme a la NOM-005-STPS incluye: 10 gasas esteriles de 10x10 cm individualmente embaladas, 1 rollo de venda de gasa de 5 cm x 5 m, 1 rollo de venda elastica de 10 cm x 5 m, 1 rollo de micropore o cinta adhesiva medica de 1.25 cm x 9.1 m, 10 curitas o venditas adhesivas de 2x7.6 cm, 1 frasco de solucion fisiologica de 250 ml para lavado de heridas y ojos, 1 frasco de agua oxigenada de 250 ml al 3%, 1 frasco de isopropanol al 70% de 100 ml, 10 guantes desechables de latex o nitrilo (5 pares talla M), 2 mascarillas de RCP de bolsillo con valvula unidireccional, 1 par de tijeras de punta roma de acero inoxidable, 1 pinzas de plastico para remover objetos de heridas, y 1 manual basico de primeros auxilios plastificado. Todos los insumos tienen fecha de vencimiento minima de 18 meses desde la fecha de entrega.
+
+La NOM-005-STPS establece que el responsable del botiquin debe verificar mensualmente el inventario y las fechas de vencimiento de todos los insumos, reponer los insumos utilizados o vencidos dentro de un plazo no mayor a 5 dias habiles despues de la verificacion, y mantener un registro de las atenciones de primeros auxilios realizadas con el botiquin incluyendo el tipo de lesion, el insumo utilizado y el seguimiento medico del afectado. Este registro es fundamental para demostrar el cumplimiento normativo ante inspecciones de la STPS y para el analisis de incidentes que puede revelar patrones de riesgo en el centro de trabajo que requieren medidas preventivas adicionales.

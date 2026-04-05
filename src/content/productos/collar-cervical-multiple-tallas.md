@@ -1,0 +1,17 @@
+---
+title: "Collar Cervical de Inmovilizacion Extrication Multi-Talla"
+description: "Collar cervical rigido para inmovilizacion de columna cervical en trauma. Set de 4 tallas adulto (pequeno, mediano, grande, extragrande) de polietileno con ventana de acceso a carotida."
+category: "Primeros Auxilios"
+precio: "$1,450 MXN"
+slug: "collar-cervical-multiple-tallas"
+---
+
+## Set de Collares Cervicales para Inmovilizacion en Trauma
+
+El collar cervical rigido de inmovilizacion, tambien conocido como collar tipo Extrication o Philadelphia, es el dispositivo de inmovilizacion de la columna cervical utilizado en la atencion pre-hospitalaria de victimas con mecanismos de lesion que generan riesgo de lesion cervical: accidentes de transito con impacto frontal o lateral, caidas desde mas de 1 metro, zambullidas en agua, aplastamientos de cuello, y cualquier evento con impacto directo sobre la cabeza o el cuello. El objetivo del collar no es tratar la fractura cervical sino prevenir que el movimiento inadvertido de la cabeza durante el transporte agrave una lesion medular potencial que podria resultar en tetraplejia permanente.
+
+El set incluye cuatro tallas de collar para adulto que cubren el rango completo de circumferencias cervicales: collar pequeno (12-14 cm de altura cervical), mediano (14-16 cm), grande (16-18 cm) y extragrande (18-20 cm). La talla correcta se determina midiendo la distancia desde el hombro del paciente hasta el angulo de la mandibula con el cuello en posicion neutral; el collar debe soportar la mandibula firmemente sin hiperextender ni flexionar el cuello. El uso de la talla incorrecta es tan perjudicial como no usar collar: un collar demasiado pequeno permite movimiento axial, mientras que uno demasiado grande hiperextiende el cuello y puede comprimir la trachea o las venas yugulares.
+
+Las especificaciones tecnicas incluyen: construccion de polietileno de alta densidad en dos piezas (anterior y posterior) con cierre de velcro perimetral de 50 mm de ancho para fijacion segura sin movimiento lateral, ventana anterior circular de 5 cm de diametro para acceso y monitorizacion del pulso carotideo sin necesidad de retirar el collar, orificios de ventilacion laterales que reducen el sudor y la incomodidad durante periodos de uso prolongados, acabado interior con espuma de poliuretano de densidad baja de 12 mm para amortiguar el contacto con la piel sin crear puntos de presion que generen ulceras en uso prolongado mayor a 4 horas, color naranja de alta visibilidad para identificacion inmediata en campo. La restriccion de movimiento cervical con collar correcto conforme a estudios biomecánicos: flexion-extension 72% de restriccion, rotacion axial 56%, inclinacion lateral 62%.
+
+La tendencia actual en medicina de emergencias prehospitalaria es hacia el uso del collar cervical solo en pacientes con alteracion del nivel de conciencia o hallazgos positivos en el examen neurologico, ya que los estudios de la decada de 2010 demostraron que la inmovilizacion cervical indiscriminada en todos los pacientes de trauma puede en realidad aumentar el riesgo de lesion cervical al dificultar el manejo de la via aerea e incrementar la presion intracraneal. Sin embargo, en el contexto de brigadas de emergencia industriales donde los primeros respondedores no tienen formacion medica avanzada, el principio de inmovilizacion ante cualquier mecanismo de lesion de alta energia sigue siendo la practica mas segura mientras no se disponga de personal medico que pueda realizar una evaluacion neurologica completa en campo.
