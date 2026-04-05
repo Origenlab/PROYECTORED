@@ -1,17 +1,57 @@
 ---
-title: "Boquilla de Niebla Regulable 38mm con Control On-Off"
-description: "Boquilla de niebla regulable de 38 mm con patron de descarga ajustable de chorro solido a niebla de 60 grados. Cuerpo de aluminio anodizado con palanca de cierre on-off integrada."
+title: "Boquilla Niebla Regulable 38 mm On/Off — 60–125 GPM UL 668 Bomberos México"
+description: "Boquilla combinada 38 mm con control on/off y ángulo 0–60°. Aluminio 6063-T5, 60–125 GPM, alcance 25 m, fuerza reacción 72 N. Certificada UL 668. PROYECTORED México."
 category: "Mangueras"
 precio: "$1,350 MXN"
 slug: "boquilla-niebla-regulable-38mm"
 ---
 
-## Boquilla de Niebla Regulable para Mangueras de 38mm
+## Boquilla de Niebla Regulable para Mangueras de 38 mm
 
-La boquilla de niebla regulable para mangueras de 38 milimetros es el accesorio de descarga que determina la eficacia tactica de la linea de ataque. Una boquilla correctamente seleccionada y ajustada convierte el flujo turbulento de la manguera en el patron de descarga optimo para cada situacion: niebla abierta de 60 grados para el enfriamiento de gases calientes acumulados en techos y la proteccion del bombero contra calor radiante, niebla estrecha de 30 grados para concentrar el agente sobre fuegos delimitados en interiores reducidos, o chorro solido para penetrar grandes masas de llama, alcanzar fuegos en pisos superiores desde el exterior o romper materiales en combustion para llegar al nucleo incandescente. La capacidad de transicionar entre estos patrones con un solo movimiento de muneca es la ventaja fundamental de la boquilla combinada sobre boquillas de patron fijo.
+La boquilla de niebla regulable para mangueras de 38 milímetros es el accesorio de descarga que determina la eficacia táctica de la línea de ataque. Una boquilla correctamente seleccionada y ajustada convierte el flujo turbulento de la manguera en el patrón de descarga óptimo para cada situación: niebla abierta de 60° para el enfriamiento de gases calientes acumulados en techos y la protección del bombero contra calor radiante, niebla estrecha de 30° para concentrar el agente sobre fuegos delimitados en interiores reducidos, o chorro sólido para penetrar grandes masas de llama, alcanzar fuegos a distancia o romper materiales en combustión para llegar al núcleo incandescente. La capacidad de transicionar entre estos patrones con un solo movimiento de muñeca es la ventaja fundamental de la boquilla combinada sobre boquillas de patrón fijo.
 
-El cuerpo de la boquilla esta maquinado en aluminio de aviacion aleacion 6063-T5 con anodizado duro de 25 micras de espesor para maxima resistencia a la corrosion y a la abrasion. El asiento interior es de acero inoxidable AISI 303 con acabado pulido que garantiza el sello correcto y evita la erosion por el paso de agua a alta velocidad a lo largo de miles de horas de operacion. La palanca de cierre on-off es de aluminio con recubrimiento de caucho antideslizante negro que permite la apertura y cierre del flujo con una sola mano, operacion critica para el bombero que debe controlar simultaneamente la posicion de la manguera y la direccion de la descarga. El mecanismo de rotacion de niebla requiere un giro de 90 grados completo para pasar de niebla abierta a chorro solido, con 4 posiciones intermedias definidas por marcas de posicion grabadas en el cuerpo.
+El cuerpo de la boquilla está maquinado en aluminio de aviación aleación 6063-T5 con anodizado duro de 25 micras de espesor para máxima resistencia a la corrosión y a la abrasión. El asiento interior es de acero inoxidable AISI 303 con acabado pulido que garantiza el sello correcto y evita la erosión por el paso de agua a alta velocidad a lo largo de miles de horas de operación. La palanca de cierre on/off es de aluminio con recubrimiento de caucho antideslizante negro que permite la apertura y cierre del flujo con una sola mano, operación crítica para el bombero que debe controlar simultáneamente la posición de la manguera y la dirección de la descarga. El mecanismo de rotación de niebla requiere un giro de 90° completo para pasar de niebla abierta a chorro sólido, con 5 posiciones definidas por marcas grabadas en el cuerpo.
 
-Las especificaciones tecnicas incluyen: conexion de entrada NST 1.5 pulgadas hembra (compatible con mangueras 38mm y 40mm del mercado mexicano), rango de caudal de 60 a 125 GPM (227 a 473 l/min) segun orificio de boquilla instalado y presion de servicio, presion de trabajo de 40 a 150 PSI (2.8 a 10.3 bar), alcance del chorro solido de 20 a 25 metros a 80 PSI de presion en la boquilla, angulo de niebla ajustable de 0 (chorro) a 60 grados en 5 posiciones, fuerza de reaccion maxima de la boquilla a plena presion y caudal maximo: 72 Newtons (16 libras-fuerza), peso del conjunto: 780 gramos. La boquilla esta equipada con anillo de retencion que facilita el colgar la boquilla del cuello durante operaciones que requieren las dos manos libres.
+La fuerza de reacción de la boquilla de 72 Newtons a pleno caudal y máxima presión es un dato operativo crítico que todo bombero y brigadista debe conocer. Esta fuerza, equivalente al peso de 7.3 kg actuando horizontalmente en la muñeca del operador, requiere una postura corporal correcta con el pie adelantado firmemente plantado para absorber el empuje sin perder el control de la línea. Para mangueras de 63 mm con caudales de 250 GPM o mayores, las fuerzas de reacción superan los 250 N y siempre requieren dos operadores en la lanza.
 
-La fuerza de reaccion de la boquilla de 72 Newtons a pleno caudal y maxima presion es un dato operativo critico que todo bombero debe conocer. Esta fuerza, equivalente al peso de 7.3 kg actuando horizontalmente en la muñeca del operador, requiere una postura corporal correcta con el pie adelantado firmemente plantado para absorber el empuje sin perder el control de la linea. Para mangueras de 63 mm con caudales de 250 GPM o mayores, las fuerzas de reaccion superan los 250 Newtons y siempre requieren dos operadores en la lanza. En operaciones de formacion inicial de bomberos, el entrenamiento en control de la linea de manguera con boquilla abierta es uno de los ejercicios fisicos mas demandantes del plan de estudios y un indicador directo de la preparacion fisica del aspirante.
+## Especificaciones Técnicas
+
+| Característica | Valor |
+|---|---|
+| Conexión de entrada | NST 1.5" hembra (compatible mangueras 38 mm y 40 mm) |
+| Material cuerpo | Aluminio 6063-T5 anodizado duro 25 μm |
+| Asiento interior | AISI 303 pulido |
+| Control de flujo | Palanca on/off aluminio + caucho antideslizante |
+| Rango de caudal | 60–125 GPM (227–473 l/min) |
+| Presión de trabajo | 40–150 PSI (2.8–10.3 bar) |
+| Alcance chorro sólido | 20–25 m a 80 PSI en boquilla |
+| Ángulo de niebla | 0–60° en 5 posiciones graduadas |
+| Fuerza de reacción máxima | 72 N (16 lb-f) a pleno caudal |
+| Anillo de retención | Incluido (para colgar del cuello en operación) |
+| Peso | 780 g |
+| Certificaciones | UL 668, NFPA 1410 |
+
+## Productos Relacionados
+
+- [Manguera Contra Incendio 38 mm × 15 m](/productos/manguera-incendio-38mm-15m) — manguera semirrígida que alimenta esta boquilla en sistemas de gabinete tipo I-A
+- [Manguera Contra Incendio 38 mm × 30 m](/productos/manguera-incendio-38mm-30m) — manguera extendida compatible con esta misma boquilla
+- [Lanza Agua Combinada 1.5"](/productos/lanza-agua-combinada) — variante de mayor caudal para operaciones de combate con bomberos profesionales
+- [Válvula Angular Bronce 38 mm](/productos/valvula-angular-bronce-38mm) — válvula de control instalada en el gabinete que alimenta la línea de manguera y boquilla
+
+## Preguntas Frecuentes
+
+### ¿Cuándo usar niebla y cuándo usar chorro sólido en un incendio interior?
+
+La niebla es más efectiva para enfriar gases calientes acumulados en el techo (gas caliente a 400–600°C puede encenderse en flashover sin llama visible), proteger al bombero del calor radiante creando una cortina de vapor, y extinguir fuegos de pequeña área en espacios cerrados donde el vapor desplaza el oxígeno. El chorro sólido tiene mayor alcance y penetración, siendo preferible para fuegos en materiales sólidos compactos, para alcanzar el núcleo de un fuego desde mayor distancia y para romper apilamentos o materiales en combustión. La regla general: niebla para calor y protección personal, chorro para extinción directa de masa de fuego.
+
+### ¿La palanca on/off puede cerrarse con la manguera bajo presión total?
+
+Sí, el diseño de la palanca on/off permite el cierre con la manguera a presión plena de servicio (hasta 150 PSI) con un esfuerzo de menos de 15 N·m de torque en la palanca. El cierre bajo presión es fundamental para que el operador pueda reposicionarse, cambiar de táctica o retirarse temporalmente sin necesidad de que otro operador cierre la válvula del gabinete. Sin control on/off en boquilla, el operador pierde la capacidad de maniobra táctica individual. Nunca debe intentarse el cierre brusco de la palanca porque genera golpe de ariete en la manguera; siempre cerrar gradualmente en 1–2 segundos.
+
+### ¿Cuánto tiempo dura la anodización y cuándo debe reemplazarse la boquilla?
+
+El anodizado duro de 25 micras tiene una vida útil funcional de 10 a 15 años en uso normal con agua potable. Los indicadores de reemplazo son: erosión del asiento de AISI 303 visible como estrías radiales en el orificio de salida (causa pérdida de patrón de niebla definido), deformación o rotura de la rosca NST en la entrada, palanca on/off con resistencia excesiva o movimiento libre sin fricción suficiente para mantener la posición, o fractura del cuerpo por impacto. La boquilla no requiere mantenimiento regular más allá del enjuague con agua dulce después de cada uso para eliminar residuos de espuma o productos de combustión que pueden atacar el aluminio.
+
+### ¿Esta boquilla funciona con agua de mar o agua con alta concentración de sales?
+
+El aluminio 6063-T5 y el anodizado son susceptibles a la corrosión por cloruros en concentraciones superiores a las del agua potable municipal. Para operaciones con agua de mar, se recomienda enjuagar la boquilla inmediatamente después del uso con agua dulce para eliminar los cloruros residuales. Para instalaciones permanentes en ambientes costeros o en plataformas marinas donde el agua de extinción puede ser salada, se recomienda la boquilla en versión bronce o acero inoxidable 316, que tiene mayor resistencia a cloruros a expensas de mayor peso (boquilla bronce 38 mm: aproximadamente 1.2 kg).
