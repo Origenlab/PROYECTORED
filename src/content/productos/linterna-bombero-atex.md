@@ -1,0 +1,17 @@
+---
+title: "Linterna Tactica para Bombero Certificacion ATEX"
+description: "Linterna tactica para bombero con certificacion ATEX zona 1 y 2. Resistente al calor, agua y golpes con 1000 lumenes, IP67 y 8 horas de autonomia en modo normal."
+category: "Equipo Bomberos"
+precio: "$2,100 MXN"
+slug: "linterna-bombero-atex"
+---
+
+## Linterna Tactica ATEX para Bomberos y Rescatistas
+
+La linterna tactica para bombero es una herramienta de trabajo critica durante las operaciones en interiores de estructuras con humo denso donde la visibilidad es practicamente nula. A diferencia de una linterna de uso general, la linterna tactica para bombero debe sobrevivir inmersion en agua durante operaciones en incendios con descarga de rociadores, impactos contra superficies duras en condiciones de baja visibilidad, temperaturas elevadas en proximidad de las llamas y, en instalaciones industriales y petroquimicas, la presencia de mezclas de gases inflamables donde una chispa electrica puede desencadenar una explosion. La certificacion ATEX (Atmosferas Explosivas) garantiza que la linterna no puede ser fuente de ignicion en atmosferas con concentraciones de gas inflamable dentro del rango de inflamabilidad.
+
+El cuerpo de la linterna esta fabricado en aluminio de aleacion 6061-T6 anodizado con acabado texturizado antideslizante de color negro mate o naranja de alta visibilidad. El cristal de la cabeza es de polisafiro templado de 3 mm de espesor con tratamiento antirreflejo que maximiza la transmision luminosa del LED. La fuente de luz es un LED de alta eficiencia de tercera generacion con vida util de 50,000 horas que proporciona un flujo luminoso de 1,000 lumenes en modo alta intensidad y 350 lumenes en modo economico de trabajo nocturno de largo alcance. El haz principal es regulable entre enfoque puntual (spot) para iluminacion de largo alcance de hasta 180 metros y haz difuso (flood) para iluminacion de area amplia a corta distancia.
+
+Las especificaciones tecnicas incluyen: clasificacion de proteccion IP67 (inmersion en agua hasta 1 metro durante 30 minutos), resistencia al impacto de 2 metros sobre superficie de concreto conforme a ANSI/NEMA FL1, certificacion ATEX II 2G Ex ib IIC T4 Gb para uso en zonas 1 y 2 con gases del grupo IIC (hidrogeno y acetileno), temperatura de operacion ambiental de menos 20 a mas 60 grados centigrados, bateria de litio-ion 18650 de 3,400 mAh con carga por USB-C incluida, autonomia de 8 horas en modo normal (350 lm) y 2.5 horas en modo turbo (1,000 lm), peso de 310 gramos con bateria. Incluye clip de cinturon, cordel de muneca y estuche rigido de transporte.
+
+La certificacion ATEX es un requisito obligatorio para cualquier equipo electrico utilizado en instalaciones clasificadas como zona 0, 1 o 2 segun la norma NOM-022-STPS y la directiva europea 2014/34/UE. En Mexico, las plantas petroquimicas, refineries de la CFE, plantas de tratamiento de aguas residuales con produccion de biogas, fabricas de pinturas y solventes, y bodegas de almacenamiento de LPG son instalaciones clasificadas donde el equipo no certificado ATEX no puede operar. Para los cuerpos de bomberos que prestan servicio en municipios con este tipo de instalaciones industriales, contar con linternas ATEX en las unidades de primera respuesta es indispensable para la seguridad del personal durante las primeras etapas de una emergencia cuando la naturaleza del incidente aun no ha sido completamente evaluada.
