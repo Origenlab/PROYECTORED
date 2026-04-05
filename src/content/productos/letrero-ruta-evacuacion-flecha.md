@@ -1,0 +1,17 @@
+---
+title: "Letrero Ruta de Evacuacion con Flecha Direccional Fotoluminiscente"
+description: "Letrero de ruta de evacuacion con flecha direccional derecha, izquierda o abajo. Fotoluminiscente clase B de 30x10 cm, aluminio 0.5mm. Cumple NOM-003-SEGOB e ISO 7010-E001."
+category: "Senalamiento"
+precio: "$110 MXN"
+slug: "letrero-ruta-evacuacion-flecha"
+---
+
+## Letrero de Ruta de Evacuacion con Flecha Direccional para Pasillos
+
+El letrero de ruta de evacuacion con flecha direccional es el elemento de senalizacion que guia a los ocupantes de un edificio a lo largo del recorrido mas corto y seguro hacia la salida durante una evacuacion. A diferencia del letrero de salida de emergencia que se instala sobre o junto a la puerta de salida, el letrero de ruta de evacuacion con flecha se instala a lo largo del trayecto, en cada punto del recorrido donde el evacuante podria dudar sobre la direccion correcta a seguir: en intersecciones de pasillos, al pie de escaleras, en cambios de direccion mayores de 45 grados, y en cualquier punto del recorrido con distancia superior a 20 metros hasta la siguiente senal visible. La flecha puede orientarse a la derecha, izquierda, arriba o abajo segun la configuracion especifica del recorrido de evacuacion del edificio.
+
+El material del sustrato es aluminio laminado de 0.5 mm de espesor, que a diferencia del PVC rigido mantiene su planitud en instalaciones en exteriores sometidas a variaciones termicas extremas sin deformarse ni arquearse. La capa fotoluminiscente es de aluminato de estroncio clase B con los mismos parametros de luminancia que el letrero de prohibicion de fumar: 100 mcd/m2 inicial y persistencia superior a 8 horas. La figura del letrero corresponde al pictograma ISO 7010-E001 de persona corriendo hacia una puerta con flecha de direccion en blanco sobre fondo verde de seguridad conforme a la norma NOM-003-SEGOB que adopta el sistema de colores de la ISO 3864.
+
+Las especificaciones tecnicas incluyen: dimensiones de 30 x 10 centimetros en formato horizontal (disponible tambien en 20x20 cm cuadrado o 10x30 cm vertical), aluminio lacado verde de seguridad RAL 6032 como fondo con pictograma y flecha en blanco fotoluminiscente, cuatro perforaciones de 4 mm en esquinas con arandelas de neopreno para instalacion con tornillos o remaches, version autoadhesiva con adhesivo 3M 467MP de alta performance disponible por solicitud, temperatura de operacion del adhesivo de menos 40 a mas 120 grados centigrados para instalacion en interiores y exteriores, resistencia al agua del material base para instalacion en areas humedas y exteriores protegidos. Peso: 35 gramos.
+
+El diseno correcto de la ruta de evacuacion y la disposicion de las senales direccionales es un requisito del programa de proteccion civil del establecimiento y debe realizarse por personal certificado en proteccion civil o ingeniero con experiencia en diseno de planes de emergencia. La norma NOM-003-SEGOB establece que las senales de evacuacion deben instalarse a una altura de 2.0 a 2.5 metros sobre el nivel de piso terminado para ser visibles por sobre el umbral de humo que tiende a acumularse en la parte superior de los pasillos durante un incendio, garantizando que la senal permanezca legible incluso cuando la visibilidad en la parte baja del pasillo ya esta comprometida. Este principio, conocido como senalizacion en la zona libre de humo, es fundamental para que el sistema de evacuacion funcione correctamente en condiciones reales de incendio.

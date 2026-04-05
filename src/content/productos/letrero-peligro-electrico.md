@@ -1,0 +1,17 @@
+---
+title: "Letrero Peligro Electrico Alta Tension Riesgo de Muerte"
+description: "Letrero de advertencia peligro electrico alta tension con simbolo rayo ISO 7010-W012. Vinilo rigido amarillo 20x30 cm con leyenda bilingue. Cumple NOM-026-STPS y NOM-022-STPS."
+category: "Senalamiento"
+precio: "$95 MXN"
+slug: "letrero-peligro-electrico"
+---
+
+## Letrero de Advertencia de Peligro Electrico y Alta Tension
+
+El letrero de peligro electrico alta tension es la senal de advertencia de mayor criticidad en instalaciones electricas industriales, comerciales y de infraestructura. Su objetivo es prevenir que personas no autorizadas o sin el equipo de proteccion personal adecuado accedan a areas con equipos o conductores electricos energizados a voltajes que representan riesgo de electrocucion. La NFPA 70E sobre seguridad electrica en lugares de trabajo y la NOM-022-STPS sobre electricidad en los centros de trabajo establecen la obligatoriedad de senalizar con advertencias visibles y claras todos los tableros, subestaciones, transformadores, interruptores de alta tension y cualquier punto de acceso a equipos con voltaje superior a 50 voltios en corriente alterna o 120 voltios en corriente continua.
+
+El letrero combina dos elementos visuales de maximo impacto: el fondo amarillo con borde negro de categoria de advertencia conforme a ISO 3864 (los colores de mayor contraste y asociacion psicologica con el peligro electrico en el inconsciente colectivo por su uso universal en la industria electrica mundial), y el simbolo del rayo o destello en negro sobre triangulo amarillo correspondiente al pictograma ISO 7010-W012 de riesgo electrico. La leyenda impresa en rojo incluye las frases PELIGRO ALTA TENSION / DANGER HIGH VOLTAGE / RIESGO DE MUERTE / RISK OF DEATH en formato bilingue espanol-ingles, lo que cumple los requisitos de instalaciones con personal extranjero y de instalaciones maquiladoras bajo normas de seguridad internacional.
+
+Las especificaciones tecnicas incluyen: sustrato de PVC rigido de 3 mm de espesor con superficie laminada en polipropileno UV-estabilizado para resistencia a la radiacion solar y a la decoloracion, dimensiones estandar de 20 x 30 centimetros con variante disponible de 30x45 para visibilidad a mayor distancia, impresion en serigrafía de cuatro tintas con barniz UV de alta adherencia que resiste limpieza con solventes y vapor de agua a presion hasta 80 grados centigrados, cuatro perforaciones en esquinas con refuerzo de ojillo metalico de acero inoxidable para instalacion con tornillos o bridas de plastico, resistencia a temperaturas de uso de menos 20 a mas 80 grados centigrados. Peso: 120 gramos.
+
+La instalacion de este letrero debe realizarse en el acceso a cuartos de tableros, en la puerta de subestaciones y transformadores, en el exterior de gabinetes de medicion, en la parte frontal de tableros de distribucion principales, y en cualquier punto donde exista exposicion a conductores o equipos sin la proteccion de envolvente adecuada. La NOM-022-STPS establece adicionalmente que los letreros de advertencia electrica deben ser legibles desde el punto de inicio del acercamiento limitado al equipo electrico, calculado segun la tabla de distancias de la norma para cada nivel de voltaje: para sistemas de 480 voltios, el limite de acercamiento restringido es de 30 centimetros, lo que implica que el letrero debe ser legible desde al menos 1 metro de distancia para alertar al trabajador antes de que llegue a la zona de riesgo.
