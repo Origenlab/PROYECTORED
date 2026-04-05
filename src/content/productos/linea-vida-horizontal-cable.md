@@ -1,0 +1,17 @@
+---
+title: "Linea de Vida Horizontal Temporaria Cable Acero 10 Metros"
+description: "Linea de vida horizontal temporaria de cable de acero 3/8 pulgada con tensor y anclajes de mordaza para trabajos en techos y estructuras. Capacidad 2 usuarios. Cumple ANSI Z359.2."
+category: "Equipo Seguridad"
+precio: "$3,200 MXN"
+slug: "linea-vida-horizontal-cable"
+---
+
+## Linea de Vida Horizontal Temporaria para Trabajos en Techos y Altura
+
+La linea de vida horizontal temporaria es el sistema de proteccion colectiva contra caidas que permite a uno o dos trabajadores desplazarse a lo largo de una estructura horizontal, como el caballete de un techo, la cubierta de un edificio o una viga metalica de gran longitud, manteniendo en todo momento la proteccion contra caidas sin necesidad de mover puntos de anclaje individuales cada vez que el trabajador avanza. Mientras el arnes con gancho de un solo punto de anclaje fijo protege al trabajador solo dentro del radio de la longitud del gancho desde ese punto, la linea de vida horizontal convierte toda la longitud del cable en una zona de proteccion continua desde la que el trabajador puede colgar su gancho en cualquier punto del recorrido.
+
+El sistema se compone de dos anclajes extremos de mordaza de cable instalados en puntos estructurales certificados (secciones de acero, vigas o anclas de hormigon con capacidad verificada de al menos 22 kilonewtons por anclaje), un cable de acero galvanizado de 3/8 de pulgada (9.5 mm) de alma de acero con 7 torones de 19 alambres con carga de rotura minima de 70 kilonewtons, un tensor de tornillo con ojo abierto en ambos extremos para ajustar la tension del cable entre 2 y 4 kilonewtons (el rango que permite que el sagitado del cable en caso de caida no supere los 30 centimetros en el centro del tramo), y un indicador de tension con codigo de color que permite al instalador verificar visualmente que el cable esta en el rango de tension correcto sin necesidad de dinamometro.
+
+Las especificaciones tecnicas incluyen: longitud de cable disponible de 10, 15 o 20 metros segun configuracion de pedido, cable de acero galvanizado 6x19 IWRC con recubrimiento de PVC naranja de alta visibilidad y resistencia a la abrasion, anclajes de mordaza de acero forjado grado ASTM F3125 con capacidad estatica de 30 kilonewtons, sistema de absorcion de energia en los anclajes extremos que reduce la carga dinamica en caso de caida con factor 1 a menos de 6 kilonewtons, capacidad de usuarios simultaneos: 2 personas de hasta 140 kg cada una con arreos y herramientas, deflexion maxima del cable con 2 usuarios en el centro a tension correcta: 45 cm. Certificado bajo ANSI/ASSP Z359.2 para lineas de vida horizontales temporarias.
+
+La instalacion de la linea de vida horizontal debe ser realizada por personal certificado en sistemas de proteccion contra caidas conforme a la NOM-009-STPS, ya que la seleccion incorrecta de los puntos de anclaje o la tension incorrecta del cable pueden resultar en la falla del sistema durante una caida real, transformando el equipo de proteccion en un factor de riesgo adicional. Antes de cada uso, el supervisor debe verificar que la tension del cable este en el indicador verde del indicador de tension, que los anclajes no presentan juego ni corrosion en los tornillos de ajuste, y que el cable no tiene deformaciones, kinks o alambres rotos en ninguno de sus puntos. Un cable con tres alambres rotos en un mismo torón debe retirarse inmediatamente de servicio independientemente de su apariencia general.

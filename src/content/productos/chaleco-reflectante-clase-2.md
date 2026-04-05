@@ -1,0 +1,17 @@
+---
+title: "Chaleco Reflectante Clase 2 ANSI/ISEA 107 Naranja"
+description: "Chaleco de alta visibilidad clase 2 para obra civil, mantenimiento y trafico. Cinta reflectante de 5 cm tipo 3M Scotchlite en fondo naranja fluorescente. Cumple NOM-017-STPS y ANSI 107."
+category: "Equipo Seguridad"
+precio: "$185 MXN"
+slug: "chaleco-reflectante-clase-2"
+---
+
+## Chaleco de Alta Visibilidad Clase 2 para Obra y Trafico
+
+El chaleco reflectante de alta visibilidad clase 2 es el elemento de proteccion personal mas utilizado en obras de construccion, trabajos de mantenimiento en vias publicas, operaciones en patios de maniobras, aeropuertos y cualquier entorno donde los trabajadores comparten el espacio con vehiculos en movimiento y necesitan ser claramente identificados por los conductores a distancia suficiente para tomar maniobras de frenado o evasion. La clase 2 conforme a la norma ANSI/ISEA 107 de prendas de alta visibilidad para uso diurno y nocturno es el nivel de proteccion minimo requerido en la mayoria de las aplicaciones de obra civil en Mexico y el nivel mas comun en la industria de la construccion, mantenimiento de instalaciones y logistica.
+
+La especificacion ANSI/ISEA 107 para clase 2 establece un area minima de material de fondo fluorescente de 0.5 metros cuadrados (del material naranja o amarillo brillante visible de dia) y una longitud minima de cinta reflectante de 1,270 milimetros distribuida en dos bandas circunferenciales en el torso y dos bandas en los hombros. La cinta reflectante tipo 3M Scotchlite serie 8906 utilizada en este chaleco tiene un coeficiente de retroreflexion de 330 cd/lux/m2, lo que significa que a 150 metros de distancia con los faros de un vehiculo, la cinta refleja suficiente luz hacia el conductor para hacer visible al trabajador con un tiempo de reaccion de frenado mayor a 4 segundos a 60 km/h, suficiente para detener el vehiculo antes del contacto.
+
+Las especificaciones tecnicas incluyen: material de fondo poliester naranja fluorescente 100% de 120 g/m2 con acabado en malla para ventilacion en climas calidos, cinta reflectante 3M Scotchlite de 5 cm de ancho en patron circunferencial al torso con dos bandas sobre hombros, cierre frontal tipo gancho de plastico con ajuste por velcro lateral para tallas S hasta 3XL (ajuste perimetral de 72 a 140 cm), 4 bolsillos exteriores con cierre de velcro para documentos y herramientas pequenas, borde inferior con elasto para fijacion sobre pantalon de trabajo y evitar el levantamiento por el viento, etiqueta de lavado hasta 25 ciclos sin perdida significativa de la propiedad retroreflectante. Peso: 180 gramos. Cumple NOM-017-STPS y ANSI/ISEA 107.
+
+El mantenimiento y reemplazo correcto del chaleco reflectante es fundamental para mantener su funcion protectora. La propiedad retroreflectante de la cinta 3M se degrada gradualmente por lavado, exposicion UV y contaminacion con aceites, tierra y lodo que obstruyen los microesferas de vidrio que generan la reflexion de la luz. Un chaleco con cinta reflectante visiblemente sucia, desgastada o con burbujeo de la lamina protectora ha perdido parte de su capacidad retroreflectante y debe reemplazarse. La NFPA 1953 para prendas de alta visibilidad en servicios de emergencia establece pruebas cuantitativas de retroreflexion; en el contexto de obra civil en Mexico se recomienda el criterio pragmatico de reemplazo anual o cuando la cinta presenta signos visibles de deterioro, ya que el bajo costo del chaleco no justifica el riesgo de mantener en servicio un equipo degradado.

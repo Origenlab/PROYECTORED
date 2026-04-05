@@ -1,0 +1,17 @@
+---
+title: "Casco de Seguridad Industrial Clase E Electrico 20000V"
+description: "Casco de seguridad industrial clase E con resistencia electrica de 20,000 voltios. Polietileno de alta densidad HDPE con suspension de 6 puntos. Cumple NOM-115-STPS y ANSI Z89.1."
+category: "Equipo Seguridad"
+precio: "$320 MXN"
+slug: "casco-seguridad-industrial-clase-e"
+---
+
+## Casco de Seguridad Industrial Clase E para Trabajos Electricos
+
+El casco de seguridad industrial clase E (Electrico) es el equipo de proteccion de la cabeza de mayor especificacion disponible en el mercado de seguridad industrial, combinando proteccion contra impactos mecanicos con resistencia a la penetracion electrica de hasta 20,000 voltios en corriente alterna. Esta clase de casco es obligatoria para trabajadores que realizan actividades en proximidad de lineas energizadas de distribucion electrica, subestaciones de media y alta tension, instalacion y mantenimiento de transformadores, y cualquier trabajo dentro de las distancias de acercamiento limitado a conductores energizados establecidas por la NOM-022-STPS y la norma NFPA 70E.
+
+La norma ANSI/ISEA Z89.1, adoptada como referencia por la NOM-115-STPS para cascos de seguridad industrial en Mexico, define tres clases de resistencia electrica: Clase G (General) para 2,200 voltios, Clase E (Electrico) para 20,000 voltios, y Clase C (Conductor) sin proteccion electrica. El casco clase E de este listado supera el ensayo de corriente de fuga maxima de 9 miliamperios a 20,000 voltios durante 3 minutos, lo que garantiza que en caso de contacto accidental con un conductor energizado a voltajes de distribcion tipicos de entre 4,160 y 13,800 voltios la corriente que pasa a traves del casco hacia la cabeza del usuario sea menor al umbral de parada cardiaca de 100 miliamperios.
+
+Las especificaciones tecnicas incluyen: carcasa de polietileno de alta densidad (HDPE) inyectado con aditivos UV-estabilizadores para uso en exteriores, grosor de pared de 4 mm en zona de impacto, sistema de suspension interior de seis puntos con ajuste de circunferencia de 53 a 63 cm mediante rueda de trinquete en la parte trasera, banda de sudor interior de polipropileno lavable, ranuras laterales para acoplamiento de protectores faciales, orejeras y linternas de tipo clip sin herramientas, altura interior de la cavidad de proteccion minima de 12 mm segun requisito ANSI Z89.1 para absorcion de impacto. Colores disponibles: blanco (supervision), amarillo (operativo general), naranja (trafico/obra), azul (visitante), rojo (brigada de emergencia). Peso: 365 gramos.
+
+La vida util de un casco de seguridad industrial esta determinada por la degradacion del material termoplastico por exposicion ultravioleta, calor y productos quimicos, no unicamente por el historial de impactos. La ANSI Z89.1 establece una vida util maxima de 5 anos desde la fecha de fabricacion (impresa en el interior del casco) para la carcasa, y de 2 a 3 anos para el sistema de suspension interior, independientemente de que el casco nunca haya recibido un impacto. Un casco de HDPE que se agrieta o se vuelve opaco y amarillento por degradacion UV ha perdido significativamente su capacidad de absorcion de impacto aunque visualmente parezca intacto. El programa de reemplazo sistematico de cascos por fecha de fabricacion, y no por aspecto visual, es una practica de seguridad de nivel world class que distingue a las empresas con culturas de seguridad maduras.
