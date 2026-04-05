@@ -1,0 +1,17 @@
+---
+title: "Rociador Colgante Estandar de Respuesta Normal 57 Grados"
+description: "Rociador automatico colgante de respuesta normal con ampolla de vidrio de 57 grados centigrados. Factor K de 5.6 para sistemas mojados, certificado UL 199 y FM. Para NFPA 13 riesgo ordinario."
+category: "Sistemas"
+precio: "$85 MXN"
+slug: "rociador-pendiente-estandar-57c"
+---
+
+## Rociador Automatico Colgante de 57 Grados para Sistemas contra Incendios
+
+El rociador automatico de respuesta normal con ampolla de vidrio de 57 grados centigrados (135 grados Fahrenheit) es el componente mas numeroso y fundamental de cualquier sistema de rociadores automaticos contra incendios. Cada rociador funciona como un detector de calor y un dispositivo de descarga de agua simultaneamente: la ampolla de vidrio sellada llena de liquido de alta expansion termica actua como elemento de disparo que se rompe automaticamente cuando la temperatura en su entorno alcanza el valor de calibracion, liberando el sello y permitiendo que el agua de la red hidraulica a presion fluya y se disperse sobre el area de proteccion del rociador. Este mecanismo totalmente mecanico, sin electricidad ni senales externas, garantiza que el rociador actuara incluso si todos los sistemas de alarma y deteccion del edificio han fallado.
+
+La temperatura de calibracion de 57 grados centigrados (color de ampolla naranja/rojo) es la adecuada para la mayoria de los locales de ocupacion normal donde la temperatura ambiente en condiciones normales no supera los 38 grados centigrados, ya que la NFPA 13 establece que la temperatura de calibracion del rociador debe ser al menos 19 grados centigrados mayor que la temperatura maxima esperada en el espacio protegido para evitar activaciones accidentales por calor ambiental. Para instalaciones con temperaturas de proceso superiores (hornos, tunelesde lavado, cuartos de calderas), se utilizan ampollas de mayor temperatura de calibracion: 68°C (verde), 79°C (verde), 93°C (azul), 141°C (morado).
+
+Las especificaciones tecnicas del rociador incluyen: cuerpo de bronce ASTM B584 con roscas NPT de 1/2 pulgada o 3/4 pulgada, ampolla de vidrio de 3 mm de diametro lleno de liquido termosensible de color naranja (57°C) que se rompe a temperatura de calibracion con tolerancia de mas/menos 1.5°C, deflector de tipo pendiente (pendant) de cobre estampado con 16 brazos radiales que forma el patron de descarga circular de 3.7 metros de radio a 1 metro por debajo del rociador a la presion de diseno de 7 PSI (0.5 bar), factor K de 5.6 GPM/psi^0.5 (equivalente a 80 l/min a 1 bar de presion), caudal minimo de diseno: 26 GPM (98 l/min) a la presion residual minima de 7 PSI en el rociador. Certificado UL 199 y FM Global.
+
+El espaciado correcto de los rociadores en el plafon o techo del edificio es determinado por el diseno hidraulico del sistema conforme a la NFPA 13, considerando el tipo de ocupacion (ligera, ordinaria I y II, extra), el area de proteccion por rociador (maxima de 12 m2 para ocupacion ordinaria), la distancia maxima entre rociadores (4.6 m) y la distancia maxima a la pared (2.3 m). En Mexico, la instalacion de sistemas de rociadores es obligatoria en edificios de mas de 5 pisos, centros comerciales con superficie mayor a 3,000 m2, hospitales, hoteles de mas de 30 habitaciones y edificios industriales de riesgo ordinario o extra segun los reglamentos de proteccion civil estatales y municipales. El sistema debe ser disenado, instalado y probado por empresa certificada por la AFAA-Mexico o certificacion equivalente.
