@@ -8,7 +8,7 @@ const PAGE_WA = waUrl('Hola, leí su blog y tengo una pregunta')
 
 // Obtener todos los artículos del blog ordenados por fecha
 const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 
 const stats = [
   { value: String(posts.length), label: 'Artículos publicados' },
@@ -88,8 +88,8 @@ const categories = ['Todas', ...new Set(posts.map((p) => p.data.category).filter
                   <h2 class="post-card__title">{post.data.title}</h2>
                   <p class="post-card__excerpt">{post.data.description}</p>
                   <div class="post-card__meta">
-                    <time datetime={post.data.date.toISOString()}>
-                      {post.data.date.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </time>
                     <span class="post-card__read">Leer artículo →</span>
                   </div>
