@@ -1,0 +1,135 @@
+---
+// FAQ.astro
+// Acordeón de preguntas frecuentes — reutilizable con props
+// Nativo HTML (details/summary) — cero JavaScript, accesible por default
+
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface Props {
+  items: FAQItem[]
+  title?: string
+  subtitle?: string
+}
+
+const {
+  items,
+  title = 'Lo que nos preguntan nuestros clientes',
+  subtitle,
+} = Astro.props
+---
+
+<section class="faq section" aria-labelledby="faq-heading">
+  <div class="container faq__inner">
+
+    <header class="faq__header">
+      <h2 class="faq__title" id="faq-heading">{title}</h2>
+      {subtitle && <p class="faq__subtitle">{subtitle}</p>}
+    </header>
+
+    <dl class="faq__list">
+      {items.map((item, i) => (
+        <details class="faq__item" name="faq">
+          <summary class="faq__question" id={`faq-q-${i}`}>
+            <span>{item.question}</span>
+            <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq__answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </dl>
+
+  </div>
+</section>
+
+<style>
+  .faq { background: var(--color-gray-50); }
+
+  .faq__inner {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .faq__header {
+    text-align: center;
+    margin-bottom: var(--sp-10);
+  }
+
+  .faq__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-black);
+    color: var(--color-gray-900);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--sp-3);
+  }
+
+  .faq__subtitle {
+    font-size: var(--text-base);
+    color: var(--color-gray-500);
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .faq__item {
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color var(--transition);
+  }
+
+  .faq__item[open] {
+    border-color: var(--color-red);
+  }
+
+  .faq__item[open] .faq__icon {
+    transform: rotate(180deg);
+    color: var(--color-red);
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    padding: var(--sp-5) var(--sp-6);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-700);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--transition);
+  }
+
+  .faq__question::-webkit-details-marker { display: none; }
+
+  .faq__item[open] .faq__question {
+    color: var(--color-red);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    transition: transform var(--transition), color var(--transition);
+  }
+
+  .faq__answer {
+    padding: var(--sp-5) var(--sp-6);
+  }
+
+  .faq__answer p {
+    font-size: var(--text-base);
+    color: var(--color-gray-500);
+    line-height: var(--leading-relaxed);
+  }
+</style>

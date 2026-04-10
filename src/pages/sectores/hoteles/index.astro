@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Hoteles CDMX — Cumple NOM-002 | Proyecto Red";
+const description = "Extintores, señalamientos y sistemas obligatorios para hoteles y hospedajes en CDMX. Cumple la NOM-002-STPS y NOM-003-SEGOB. Diagnóstico gratuito, entrega 24h.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Hoteles y Hospedaje" },
+];
+
+const metricas = [
+  { valor: "NOM-002", label: "STPS + NOM-003-SEGOB" },
+  { valor: "$500K", label: "Multa máxima STPS" },
+  { valor: "1/300m²", label: "Extintores mínimos" },
+  { valor: "24h", label: "Entrega en CDMX" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Extintores Polvo Seco ABC", desc: "1 por cada 300 m². Obligatorio en lobby, pasillos, cocina, estacionamiento y cuartos técnicos. El más exigido por Protección Civil.", href: "/extintores/polvo-seco/", badge: "Obligatorio NOM" },
+  { nombre: "Extintores CO₂", desc: "Para cuartos de servidores, tableros eléctricos y telecomunicaciones. No deja residuos y protege el equipo electrónico valioso.", href: "/extintores/co2/", badge: "Área eléctrica" },
+  { nombre: "Extintor Tipo K", desc: "Obligatorio si el hotel tiene restaurante o cocina con freidoras. La NOM-002 lo exige para aceites y grasas a alta temperatura.", href: "/extintores/tipo-k/", badge: "Cocinas" },
+  { nombre: "Señalamientos NOM-003", desc: "Rutas de evacuación, salidas de emergencia y punto de reunión fotoluminiscentes en todos los pisos. Obligatorio en cada nivel.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
+  { nombre: "Gabinetes para Extintor", desc: "Montaje visible y accesible según norma. En pasillos y áreas comunes donde la presentación importa al huésped.", href: "/gabinetes/para-extintor/", badge: "Presentación" },
+  { nombre: "Sistemas de Detección", desc: "Detectores de humo y alarma centralizada para inmuebles de más de 3 pisos o con alta afluencia. Exigidos por PC en hoteles formales.", href: "/sistemas/alarmas/", badge: "Edificios altos" },
+];
+
+const pasos = [
+  { titulo: "Diagnóstico del inmueble", desc: "Un técnico visita el hotel, mide las áreas e identifica riesgos específicos (cocina, boiler, área eléctrica) para determinar exactamente qué exige la norma." },
+  { titulo: "Lista de equipo requerido", desc: "Te entregamos tipos, capacidades y cantidades con precios finales. Sin sorpresas ni cobros ocultos." },
+  { titulo: "Entrega e instalación", desc: "Surtimos el equipo y lo instalamos en los puntos correctos: altura, distancia y señalización adecuada para pasar cualquier verificación." },
+  { titulo: "Documentación oficial", desc: "Recibes factura fiscal (CFDI) y certificado NOM de cada extintor. Todo listo para presentar a Protección Civil." },
+  { titulo: "Mantenimiento anual", desc: "Servicio de revisión y recarga cada año. Te avisamos cuando el equipo necesita atención para que nunca estés fuera de norma." },
+];
+
+const faqs = [
+  { pregunta: "¿Qué normas aplican a los hoteles en CDMX?", respuesta: "Principalmente la <strong>NOM-002-STPS-2010</strong> (extintores y prevención) y la <strong>NOM-003-SEGOB-2011</strong> (señalamientos de protección civil). Si el hotel tiene restaurante con freidoras, también aplica el requisito de extintor Tipo K de la NOM-002." },
+  { pregunta: "¿Cuántos extintores necesita mi hotel?", respuesta: "La regla base es <strong>1 extintor por cada 300 m²</strong>, con al menos uno por planta. Pero la cantidad real depende de los riesgos específicos: cocina, cuartos eléctricos, lavandería. El diagnóstico gratuito te da el número exacto." },
+  { pregunta: "¿La NOM-003 exige señalamientos en todos los pisos?", respuesta: "Sí. La <strong>NOM-003-SEGOB-2011</strong> exige señalamientos fotoluminiscentes en cada planta: flechas de evacuación, señal de salida de emergencia, punto de reunión y señal de extintor. En corte de luz deben ser visibles — por eso deben ser fotoluminiscentes." },
+  { pregunta: "¿Qué pasa si Protección Civil clausura el hotel?", respuesta: "Una clausura puede durar días o semanas con pérdidas enormes. Proyecto Red puede regularizarte en 24 horas con entrega, instalación y documentación. Si tienes una visita de PC programada, avísanos y coordinamos para que estés listo a tiempo." },
+  { pregunta: "¿Hacen mantenimiento anual de extintores?", respuesta: "Sí. La NOM-002 exige mantenimiento anual certificado para todos los extintores. Proyecto Red hace el servicio completo: revisión, prueba hidrostática si aplica, recarga y actualización de etiqueta de certificación." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/hoteles/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · NOM-003-SEGOB</span>
+          <h1>Equipo Contra Incendios<br><span class="h1-accent">para Hoteles en CDMX</span></h1>
+          <p class="hero-sub">Todo lo que exige la norma para tu hotel o hospedaje: extintores, señalamientos y sistemas de detección. Diagnóstico gratuito, entrega en 24h.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipo%20contra%20incendios%20para%20mi%20hotel%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Los hoteles y hospedajes están sujetos a la <strong>NOM-002-STPS-2010</strong> y la <strong>NOM-003-SEGOB-2011</strong>. Protección Civil puede hacer verificaciones sin previo aviso y el incumplimiento puede resultar en <strong>multas de hasta 500,000 MXN</strong> o clausura inmediata.</p>
+          <p>El equipo requerido varía según el número de pisos, la superficie total y si tiene restaurante, cochera o cuartos de máquinas. Un técnico de Proyecto Red evalúa tu inmueble sin costo y te entrega la lista exacta — para que pases cualquier verificación sin contratiempos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué equipo exige la NOM para hoteles y hospedajes?</h2>
+          <p class="cat-header__desc">El requerimiento depende de la superficie, número de pisos y áreas específicas. Estos son los productos que Proyecto Red suministra para cumplimiento hotelero en CDMX:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20equipo%20contra%20incendios%20para%20hotel`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>¿Cuánto cuesta regularizar tu hotel?</strong>
+          <p>Diagnóstico gratuito + cotización en el día</p>
+          <span>Cotizar por WhatsApp →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">¿Cómo regularizar tu hotel en 5 pasos?</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Del diagnóstico a la documentación oficial — sin trámites complicados.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Hoteles y Hospedaje"
+    subtitulo="Todo lo que necesitas saber sobre cumplimiento NOM en hotelería"
+    faqs={faqs}
+    pageId="hoteles"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>¿Tu hotel está listo para una verificación?</h2>
+        <p>Diagnóstico gratuito, entrega en 24h, factura y certificado NOM incluidos.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratuito%20para%20mi%20hotel`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

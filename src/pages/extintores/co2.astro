@@ -1,0 +1,427 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores de CO₂ para Electrónica en CDMX | Proyecto Red";
+const description = "Extintores CO₂ para servidores, laboratorios y subestaciones eléctricas. Cero residuo. De 2.2 a 45 kg. NOM-154-SCFI. Entrega en CDMX y EDOMEX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "CO₂ Dióxido de Carbono" },
+];
+
+const metricas = [
+  { valor: "B · C", label: "Clases de fuego que combate" },
+  { valor: "Cero", label: "Residuo tras la descarga" },
+  { valor: "−78°C", label: "Temperatura de descarga" },
+  { valor: "2.2–45 kg", label: "Rango de capacidades" },
+];
+
+// ── Variantes por capacidad ───────────────────────────
+const variantes = [
+  {
+    nombre: "CO₂ 2.2 kg (5 lb)",
+    desc: "Para proteger escritorios individuales, racks de telecomunicaciones pequeños y equipos de cómputo aislados. El extintor mínimo para áreas con electrónica sensible donde el polvo seco causaría un daño irreparable.",
+    badge: "Compacto",
+    specs: "CO₂ · 2.2 kg · ~8 s descarga · 1–2 m alcance · Corneta antichoque · Soporte de pared",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20CO2%202.2%20kg`,
+  },
+  {
+    nombre: "CO₂ 4.5 kg (10 lb)",
+    desc: "El más utilizado en salas de servidores medianas, cuartos de telecomunicaciones, laboratorios y clínicas. Descarga limpia que no compromete el funcionamiento de los equipos protegidos.",
+    badge: "Más vendido",
+    specs: "CO₂ · 4.5 kg · ~12 s descarga · 1.5–2.5 m alcance · Corneta antichoque · Válvula latón cromado",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20CO2%204.5%20kg`,
+  },
+  {
+    nombre: "CO₂ 6.8 kg (15 lb)",
+    desc: "Para data centers, subestaciones eléctricas, cuartos de control industrial y salas con mayor concentración de equipos activos. Mayor autonomía de descarga para áreas más grandes.",
+    badge: null,
+    specs: "CO₂ · 6.8 kg · ~16 s descarga · 2–3 m alcance · Manguera flexible · Corneta giratoria",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintores%20CO2%206.8%20kg`,
+  },
+  {
+    nombre: "CO₂ Rodante 22.6 kg (50 lb)",
+    desc: "Para grandes salas de servidores, centros de datos empresariales y zonas industriales con maquinaria eléctrica de alto valor. Movilidad en ruedas para cubrir puntos distantes.",
+    badge: "Industrial",
+    specs: "CO₂ · 22.6 kg · Rodante · Manguera 3 m · Corneta alta presión · Hasta 4 m alcance",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20CO2%20rodante%2022.6%20kg`,
+  },
+  {
+    nombre: "CO₂ Rodante 45.3 kg (100 lb)",
+    desc: "Para cuartos de transformadores, instalaciones eléctricas de alta tensión y grandes data centers. La máxima capacidad en CO₂ para protección de activos críticos de alto valor.",
+    badge: "Gran capacidad",
+    specs: "CO₂ · 45.3 kg · Rodante · Manguera 5 m · Corneta industrial · Hasta 5 m alcance",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20CO2%20rodante%2045%20kg`,
+  },
+];
+
+// ── Guía de uso por tipo de espacio ───────────────────
+// EVOLUCIÓN vs polvo-seco: incluimos tarjeta explícita de "cuándo NO usar CO₂"
+// para educar y redirigir hacia el producto correcto — mejor UX y menor fricción
+const guia = [
+  {
+    tipo: "Data center / sala de servidores",
+    norma: "NFPA 75 · NOM-002-STPS",
+    necesitas: "CO₂ 4.5–6.8 kg por rack crítico. Rodante 22–45 kg para sala completa",
+    porque: "Una descarga de polvo PQS sobre un servidor en operación puede generar un daño total de decenas o cientos de miles de pesos. El CO₂ se descarga, protege, y desaparece sin dejar nada — el equipo puede continuar operando o ser revisado sin limpieza mayor.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20para%20data%20center%20o%20sala%20de%20servidores`,
+  },
+  {
+    tipo: "Laboratorio / clínica / hospital",
+    norma: "NOM-002-STPS · NOM-005-SSA3",
+    necesitas: "CO₂ 2.2–4.5 kg en cada área con equipos de diagnóstico, instrumentación o análisis",
+    porque: "Los equipos médicos de diagnóstico (resonadores, tomógrafos, analizadores) y los instrumentos de laboratorio son incompatibles con cualquier agente que deje residuo. El CO₂ es el único agente que garantiza cero contaminación sobre superficies y componentes.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20para%20laboratorio%20o%20cl%C3%ADnica`,
+  },
+  {
+    tipo: "Subestación eléctrica / cuarto de tableros",
+    norma: "NOM-001-SEDE · NOM-002-STPS",
+    necesitas: "CO₂ 6.8 kg o rodante 22 kg, dependiendo del tamaño del cuarto y la potencia instalada",
+    porque: "El CO₂ no conduce electricidad — es el agente correcto para fuegos en equipos energizados. A diferencia del polvo seco, no deja residuo que pueda generar cortocircuitos secundarios en tableros, interruptores o transformadores.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20para%20subestaci%C3%B3n%20o%20cuarto%20de%20tableros`,
+  },
+  {
+    tipo: "⚠ Cuándo NO usar CO₂",
+    norma: "NFPA 10 · Alternativas: PQS · Tipo K",
+    necesitas: "No usar CO₂ en fuegos clase A (papel, madera, cartón) ni en cocinas — usa extintor de Polvo Seco PQS o Tipo K según el caso",
+    porque: "El CO₂ no deja residuo sobre el material que se incendia — lo que significa que en fuegos clase A puede extinguir las llamas pero el material queda a alta temperatura y puede re-ignitar. Para bodegas, oficinas y cocinas el agente correcto es PQS o Tipo K, no CO₂.",
+    href: `${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20extintor%20usar%20en%20mi%20espacio%2C%20necesito%20asesor%C3%ADa`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Agente Limpio HFC", href: "/extintores/agente-limpio/", tag: "Premium", desc: "Seguro en presencia de personas. Para salas de control con operadores." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Clase A·B·C", desc: "Cuando necesitas cubrir fuegos clase A además de eléctrico." },
+  { nombre: "Automáticos", href: "/extintores/automaticos/", tag: "24/7", desc: "Protección sin intervención humana para cuartos de servidores." },
+];
+
+// ── FAQs específicos de CO₂ ───────────────────────────
+const faqsCO2 = [
+  {
+    pregunta: "¿Por qué los extintores de CO₂ no tienen manómetro?",
+    respuesta: "Esta es una de las preguntas más frecuentes. Los extintores de CO₂ almacenan el gas en forma <strong>líquida a alta presión</strong>. Mientras haya líquido dentro, la presión del recipiente se mantiene constante — por lo que un manómetro no indica si hay mucho o poco CO₂ dentro. La forma correcta de verificar la carga es <strong>pesarlo</strong>: el peso del gas CO₂ se compara con el peso vacío grabado en el cuerpo del extintor. Si el peso real es menor al nominal, necesita recarga. Esta revisión la hacemos en el mantenimiento anual NOM-154-SCFI."
+  },
+  {
+    pregunta: "¿El CO₂ daña los equipos electrónicos o los servidores?",
+    respuesta: "<strong>No</strong>. El dióxido de carbono es un gas inerte que no conduce electricidad y no deja ningún residuo sólido ni líquido tras la descarga. Se evapora completamente. Los equipos expuestos a una descarga de CO₂ pueden seguir operando o ser revisados sin necesidad de limpieza mayor. En contraste, el <a href='/extintores/polvo-seco/'>polvo seco PQS</a> deja un residuo de fosfato monoamónico corrosivo que puede inutilizar un servidor en minutos. Para centros de datos, el CO₂ o el <a href='/extintores/agente-limpio/'>agente limpio</a> son los únicos agentes aceptables."
+  },
+  {
+    pregunta: "¿Para qué sirve la corneta (bocina) en los extintores de CO₂?",
+    respuesta: "La corneta no es solo una boquilla — es un componente de seguridad crítico. Cuando el CO₂ sale del cilindro a alta presión pasa de estado líquido a gas instantáneamente, bajando su temperatura a <strong>−78°C</strong>. Sin la corneta, ese chorro podría causar quemaduras por congelamiento en la piel. La corneta difunde el gas de forma controlada y segura. <strong>Nunca debes sostener la corneta metálica directamente con la mano durante una descarga</strong> — siempre toma el mango de plástico aislante."
+  },
+  {
+    pregunta: "¿El CO₂ es peligroso para las personas en espacios cerrados?",
+    respuesta: "Sí, con condiciones específicas. El CO₂ desplaza el oxígeno del área: a concentraciones superiores al <strong>7-9% en volumen</strong> puede causar mareo, inconsciencia y asfixia. En espacios muy reducidos o sin ventilación, una descarga de un extintor de gran capacidad puede crear esa concentración. La norma establece que en espacios <strong>menores a 20 m³ sin ventilación</strong>, se debe salir del área antes de descargar o preferir el <a href='/extintores/agente-limpio/'>agente limpio</a>, que es seguro en presencia de personas. Para espacios abiertos o bien ventilados, el CO₂ es completamente seguro."
+  },
+  {
+    pregunta: "¿Cuánto dura la carga de un extintor de CO₂?",
+    respuesta: "La vida útil del agente en un extintor de CO₂ bien mantenido es <strong>indefinida</strong> — el CO₂ no se degrada ni pierde propiedades con el tiempo mientras el cilindro esté hermético. Lo que puede perderse es gas por microfugas en la válvula, por eso el <strong>mantenimiento anual NOM-154-SCFI</strong> incluye pesaje para verificar que no haya pérdida de carga. Si el peso bajó más de un 10% del nominal, se recarga. La <strong>prueba hidrostática del cilindro</strong> se hace cada 5 años para verificar integridad estructural."
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre CO₂ y agente limpio HFC?",
+    respuesta: "Ambos son agentes sin residuo aptos para electrónica, pero tienen diferencias importantes. El <strong>CO₂</strong> es más económico, ampliamente disponible y no tiene impacto en la capa de ozono (ODP=0), pero desplaza el oxígeno y no es seguro en concentraciones altas en presencia de personas. El <a href='/extintores/agente-limpio/'>agente limpio HFC-236fa / HFC-227ea</a> es más caro, pero es <strong>seguro en presencia de personas</strong> en concentraciones normales de diseño, actúa más rápido y tiene mayor alcance de descarga. Para salas con operadores presentes, se recomienda agente limpio; para cuartos de servidores desocupados, el CO₂ es la solución más eficiente en costo."
+  },
+  {
+    pregunta: "¿Sirve el extintor de CO₂ para apagar un incendio en una cocina?",
+    respuesta: "<strong>No.</strong> Los incendios en cocinas industriales son principalmente de clase K (aceite vegetal o grasa animal a alta temperatura). El CO₂ puede reducir temporalmente las llamas, pero el aceite a 300-400°C se re-ignita casi inmediatamente porque el CO₂ no deja ningún agente sobre la superficie. Para cocinas de restaurantes o cafeterías el extintor correcto es el <a href='/extintores/tipo-k/'>extintor Tipo K</a>, que crea una capa de espuma jabonosa que sella el aceite e impide la re-ignición. Combinamos CO₂ + Tipo K en el mismo pedido para restaurantes con área eléctrica y cocina."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          CO₂ · Cero residuo · Protege electrónica · NOM-154-SCFI
+        </div>
+        <h1>Extintores de<br><span class="h1-accent">CO₂ Dióxido de Carbono</span></h1>
+        <p class="hero-sub">
+          Un extintor de polvo seco en tu sala de servidores puede costar más que el incendio: el residuo de fosfato corroe los componentes en minutos, incluso si el fuego fue pequeño. El CO₂ apaga y desaparece — cero residuo, cero daño secundario. Desde $820 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20de%20CO2%20para%20equipo%20electr%C3%B3nico`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar CO₂
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>El CO₂ trabaja con dos mecanismos simultáneos: desplaza el oxígeno del área de combustión y enfría a <strong>−78°C</strong> mediante la expansión del gas, que sale en forma de nieve carbónica. El resultado es extinción rápida y completa sin dejar absolutamente nada sobre los equipos. No es un gas conductor — no genera cortocircuitos, no oxida contactos, no obstruye ventiladores ni ensambla con componentes.</p>
+        <p>Es la diferencia entre un incidente menor y una pérdida total. Un servidor de $80,000 MXN cubierto de polvo PQS puede quedar inutilizable — el mismo incidente con CO₂ puede significar solo apagar el equipo, revisar y reencender. Si tienes equipos eléctricos o electrónicos de valor, el CO₂ no es un gasto: es la póliza de seguro más barata que existe.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor CO₂">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/co2-hero.jpg" alt="Extintor de CO₂ para sala de servidores y equipos eléctricos" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>CO₂ — Descarga Limpia</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Cero residuo</span>
+          </div>
+          <h2 class="cat-header__title">De 2.2 kg para Escritorio a 45 kg Rodante para Data Center</h2>
+          <p class="cat-header__desc">Cinco capacidades en stock permanente, fabricadas con cilindros de acero sin costura, válvula de latón cromado y corneta antichoque. Cada unidad viene con certificado de calidad y etiqueta NOM-154-SCFI. Sin manómetro — la carga se verifica por peso en el mantenimiento anual.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-100-STPS</span>
+            <span class="norma-tag">NFPA 10</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20o%20mantenimiento%20de%20extintores%20CO2`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20de%20CO2`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de variantes -->
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- CTA: no sabes cuál necesitas -->
+        <a
+          href={`${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20capacidad%20de%20CO2%20necesito%2C%20tengo%20una%20sala%20de%20servidores`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para elegir capacidad CO₂"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿No sabes qué capacidad necesitas?</p>
+          <p class="prod-card-cta__sub">Dinos los m² y número de equipos — te calculamos la cantidad y capacidad correcta</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       GUÍA POR TIPO DE INSTALACIÓN
+       + tarjeta explícita de "cuándo NO usar CO₂"
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/co2-datacenter.jpg" alt="Extintor de CO₂ en sala de servidores y data center" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">¿Cuándo usar CO₂?</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">SÍ y NO del CO₂</span>
+          </div>
+          <h2 class="cat-header__title">El CO₂ es el Agente Correcto — pero Solo en el Área Correcta</h2>
+          <p class="cat-header__desc">El CO₂ es ideal para proteger equipos eléctricos y electrónicos de alto valor, pero no es el agente correcto para todos los espacios. Conocer sus límites es tan importante como conocer sus ventajas — eso define si proteges bien o proteges mal.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20saber%20qu%C3%A9%20extintor%20usar%20en%20cada%20%C3%A1rea`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores de CO₂"
+    subtitulo="Lo que necesitas saber antes de proteger tu sala de servidores, laboratorio o cuarto eléctrico"
+    pageId="extintores-co2"
+    bgGray={false}
+    faqs={faqsCO2}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Protege tu inversión tecnológica con el agente correcto</h2>
+        <p>Un extintor de polvo en la sala de servidores es una amenaza, no una protección. El CO₂ es la solución — apaga sin dañar. Cotiza hoy por capacidad o pídenos asesoría para calcular cuántos necesitas según el tamaño y valor de tus equipos.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20CO2%20para%20proteger%20mis%20equipos%20electr%C3%B3nicos`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar extintores CO₂
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

@@ -1,0 +1,15 @@
+# ============================================================
+# Cloudflare Pages — Proyecto Red
+# Deploy: npx wrangler pages deploy dist
+# Dashboard: https://dash.cloudflare.com → Pages → proyectored
+# ============================================================
+
+name = "proyectored"
+pages_build_output_dir = "dist"
+
+# Variables de entorno por entorno (sin secrets)
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[env.preview]
+vars = { ENVIRONMENT = "preview" }

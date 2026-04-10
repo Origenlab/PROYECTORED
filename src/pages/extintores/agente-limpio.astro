@@ -1,0 +1,406 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores de Agente Limpio HFC en CDMX | Proyecto Red";
+const description = "Extintores agente limpio HFC-236fa y HFC-227ea. Sin residuo, seguros con personas. Para data centers y laboratorios. NFPA 2001. Venta en CDMX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Agente Limpio" },
+];
+
+const metricas = [
+  { valor: "A · B · C", label: "Clases de fuego que combate" },
+  { valor: "Cero residuo", label: "Se evapora completamente" },
+  { valor: "100% seguro", label: "Uso con personas presentes" },
+  { valor: "1kg – 9kg", label: "Rango de capacidades" },
+];
+
+const variantes = [
+  {
+    nombre: "Agente Limpio 1 kg",
+    desc: "Extintor pequeño para escritorios con servidores, racks individuales de telecomunicaciones y estaciones de trabajo con equipos críticos de valor alto. Protección puntual para áreas donde un incidente menor podría significar daño total con otro agente.",
+    badge: "Portátil",
+    specs: "HFC-236fa o HFC-227ea · 1 kg · 8-10 s descarga · 1-2 m alcance · Manómetro · Presión 25 bar",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agente%20limpio%201%20kg`,
+  },
+  {
+    nombre: "Agente Limpio 2.5 kg",
+    desc: "Capacidad intermedia para cuartos de servidores pequeños a medianos, archivos históricos con documentos irreemplazables y cuartos de telecomunicaciones. Más autonomía de descarga que 1 kg, ideal para áreas de hasta 20 m² con equipos concentrados.",
+    badge: "Más vendido",
+    specs: "HFC-236fa o HFC-227ea · 2.5 kg · 12-15 s descarga · 2-3 m alcance · Manguera flexible · Manómetro",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agente%20limpio%202.5%20kg`,
+  },
+  {
+    nombre: "Agente Limpio 4.5 kg",
+    desc: "La capacidad más versátil para salas de control, data centers medianos, museos y quirófanos. Cubre áreas de hasta 40 m² con protección integral. Tiempo descarga extendido para garantizar cobertura completa de toda el área sin necesidad de múltiples equipos.",
+    badge: null,
+    specs: "HFC-236fa o HFC-227ea · 4.5 kg · 18-20 s descarga · 3-4 m alcance · Manguera 2 m · Manómetro",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agente%20limpio%204.5%20kg`,
+  },
+  {
+    nombre: "Agente Limpio 9 kg",
+    desc: "Máxima capacidad portátil para data centers grandes, bóvedas de archivos de empresas medianas y salas de servidores empresariales. Cubre áreas de hasta 80 m² sin necesidad de sistemas fijos. Presión máxima para alcance óptimo en espacios grandes.",
+    badge: "Industrial",
+    specs: "HFC-236fa o HFC-227ea · 9 kg · 25-30 s descarga · 4-5 m alcance · Manguera 3 m · Manómetro",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20agente%20limpio%209%20kg`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Data center / sala de servidores",
+    norma: "NFPA 75 · NFPA 2001 · NOM-002-STPS",
+    necesitas: "Agente limpio 2.5-4.5 kg por rack crítico. Redundancia: mínimo 2 equipos en salas de tamaño medio. Sistemas fijos para data centers de +100 m²",
+    porque: "Los servidores activos no pueden toleran ni polvo PQS ni CO₂ con desplazamiento de oxígeno. El agente limpio extingue en segundos, se evapora, y el equipo puede reiniciar sin limpieza. Un servidor de $200,000 MXN no se asegura con un extintor barato — la inversión en agente limpio es mínima comparada al valor protegido.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agente%20limpio%20para%20data%20center`,
+  },
+  {
+    tipo: "Archivo histórico / museo",
+    norma: "NFPA 75 · NFPA 2001 · Normas de patrimonio",
+    necesitas: "Agente limpio 1-4.5 kg distribuidos estratégicamente. Preferencia por sistemas fijos en bóvedas. Cero daño colateral a documentos, arte o encuadernaciones.",
+    porque: "Un incendio en un archivo de documentos históricos es una catástrofe cultural. Ni el polvo PQS ni el agua pueden usarse — ambos destruyen lo que intentan salvar. El agente limpio extingue sin residuo visible y sin humedad, preservando la integridad de manuscritos y obras irreemplazables.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agente%20limpio%20para%20archivo%20hist%C3%B3rico`,
+  },
+  {
+    tipo: "Quirófano / sala de cirugía",
+    norma: "NOM-005-SSA3 · NFPA 2001 · Normativa hospitalaria",
+    necesitas: "Agente limpio 2.5-4.5 kg. Ubicación estratégica sin interferencia con equipos médicos. Capacitación de personal en uso.",
+    porque: "En un quirófano con paciente anestesiado no puedes desplazar oxígeno con CO₂. El agente limpio es seguro en presencia de personas — NOAEL (No Observed Adverse Effect Level) de 9% para HFC-236fa permite uso sin evacuación. Protege equipos quirúrgicos de alto costo sin riesgo para el paciente.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20agente%20limpio%20para%20quir%C3%B3fano`,
+  },
+  {
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
+    necesitas: "No usar agente limpio en fuegos clase A grandes (bodegas de papel), ni en materiales que requieran enfriamiento intenso (madera apilada, aserrín). El costo es injustificado si no hay equipos de valor.",
+    porque: "El agente limpio es premium — cuesta 3-4 veces más que el CO₂ y más aún que el PQS. Si tu riesgo es solo papel y cartón en una bodega, el PQS ABC es más económico y suficiente. El agente limpio se justifica donde el activo protegido (equipo, información) vale más que el costo del extintor.",
+    href: `${WA_URL}?text=Hola%2C%20no%20estoy%20seguro%20si%20agente%20limpio%20es%20necesario%20en%20mi%20instalaci%C3%B3n`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "CO₂", href: "/extintores/co2/", tag: "Económico", desc: "Alternativa sin residuo para cuartos de servidores sin personal." },
+  { nombre: "Automáticos", href: "/extintores/automaticos/", tag: "24/7", desc: "Protección automática para áreas críticas sin intervención humana." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Áreas generales", desc: "Para zonas sin electrónica donde el polvo no representa un riesgo." },
+];
+
+const faqsAgenteL = [
+  {
+    pregunta: "¿Cuál es la diferencia entre HFC-236fa y HFC-227ea?",
+    respuesta: "Ambos son agentes limpios HFC de nuevas generaciones sin HCFC antiguos. El <strong>HFC-236fa</strong> tiene un NOAEL (nivel sin efecto adverso observable) de <strong>9%</strong> y es más seguro en espacios con personas — es el preferido para quirófanos y laboratorios ocupados. El <strong>HFC-227ea</strong> tiene NOAEL de <strong>10.5%</strong> y alcance ligeramente mayor. Ambos tienen ODP=0 (cero impacto en capa de ozono). La elección depende de tu aplicación — en espacios con presencia frecuente de personas, HFC-236fa; en data centers sin personal, HFC-227ea es comparable. Ofrecemos ambos según necesidad."
+  },
+  {
+    pregunta: "¿Por qué es tan caro el agente limpio comparado con CO₂ y PQS?",
+    respuesta: "El agente limpio es <strong>premium por su efectividad combinada</strong>: cero residuo + seguro con personas + actúa en todas las clases A, B y C. El CO₂ deja el equipo sin oxígeno (peligroso con personas) y no es efectivo en clase A. El PQS deja residuo que puede corroer componentes. El agente limpio combina lo mejor de ambos sin desventajas. Además, el costo de síntesis y control de pureza de HFC es mayor. Pero compara el costo de un extintor de agente limpio ($3,500 MXN) versus el daño a un servidor ($150,000 MXN) — repentinamente el extintor es la inversión más rentable del año."
+  },
+  {
+    pregunta: "¿Es verdad que el agente limpio daña la capa de ozono?",
+    respuesta: "<strong>No.</strong> Los agentes limpios HFC modernos tienen <strong>ODP = 0</strong> (cero potencial de agotamiento de ozono) — no contienen átomos de cloro. Los HCFC antiguos (años 1980-2000) sí tenían ODP menor pero no cero. Los HFC que usamos hoy cumplen el Protocolo de Montreal y la legislación ambiental mexicana. Tienen un GWP (potencial de calentamiento global) moderado, pero su uso está permitido porque la cantidad de agente liberada en un incendio es mínima comparada a otras fuentes de GWP industrial."
+  },
+  {
+    pregunta: "¿Es seguro el agente limpio si hay personas presentes en el área?",
+    respuesta: "Sí, completamente. Los agentes HFC tienen NOAEL (No Observed Adverse Effect Level) muy altos — <strong>9-10.5% en volumen</strong>. En una descarga típica en una sala de servidores o quirófano, la concentración alcanza máximo 6-7%, muy por debajo del nivel de riesgo. Los operarios pueden permanecer presentes durante la descarga sin riesgo a la salud. Comparado con CO₂, que requiere evacuación (desplaza oxígeno), el agente limpio permite presencia de personas — es la razón por la que los quirófanos y laboratorios lo prefieren."
+  },
+  {
+    pregunta: "¿Cuánto tiempo persiste el agente limpio en el aire después de la descarga?",
+    respuesta: "El agente limpio HFC se evapora completamente en <strong>15-60 minutos</strong> dependiendo de ventilación. Completamente volatilizado — no deja residuo ni en aire ni en superficies. Los equipos cubiertos por agente limpio pueden reiniciarse inmediatamente después de enfriar a temperatura segura. Esta evaporación rápida es lo que lo diferencia de CO₂ (que crea nube blanca persistente) y polvo PQS (que requiere limpieza activa con aspiradora industrial)."
+  },
+  {
+    pregunta: "¿Cuántas concentraciones o fórmulas de agente limpio existen?",
+    respuesta: "Las principales son <strong>HFC-236fa y HFC-227ea</strong>, ambas en pureza mínima 99.5%. También existen mezclas como <strong>FK-5-1-12</strong> (hexafluoruro) que es aún más nuevo pero menos disponible en México. Para aplicaciones estándar, HFC-236fa y HFC-227ea cubren todas las necesidades. Las diferencias técnicas son mínimas — la clave es que ambas son modernas, sin HCFC, ODP=0 y seguras con personas."
+  },
+  {
+    pregunta: "¿Cómo sé si necesito agente limpio o si CO₂ es suficiente en mi data center?",
+    respuesta: "Pregúntate: <strong>¿hay personas en la sala de servidores durante operación normal?</strong> Si SÍ, agente limpio (seguro con personas). Si NO, CO₂ es económicamente válido — es más barato y no hay riesgo de asfixia sin presencia de personas. Pero incluso sin personas, el agente limpio es preferible si los servidores deben reiniciar inmediatamente — no requieren limpieza post-incendio. Para consultá personalizada: <a href={`${WA_URL}?text=Hola%2C%20tengo%20un%20data%20center%20y%20necesito%20saber%20si%20agente%20limpio%20o%20CO2%20es%20mejor`}>contáctanos</a>."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Agente limpio · Cero residuo · A, B, C · NOM-154-SCFI
+        </div>
+        <h1>Extintores<br><span class="h1-accent">Agente Limpio HFC</span></h1>
+        <p class="hero-sub">
+          Tus servidores de $200,000 MXN no se protegen con un extintor de $800. Agente limpio HFC extingue en segundos, se evapora sin dejar nada, y es seguro mientras alguien sigue trabajando. Desde $2,800 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20agente%20limpio%20para%20data%20center`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Agente Limpio
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>El agente limpio HFC (hexafluoropropano) no es solo otro extintor — es protección premium donde cada segundo cuenta. Funciona con dos mecanismos simultáneos: absorbe calor de la reacción y rompe la cadena química de la combustión, extinguiendo en segundos. Se evapora completamente sin dejar absolutamente nada en superficies — cero residuo corrosivo, cero necesidad de limpieza post-incendio.</p>
+        <p>Eso significa que un servidor apagado por incendio y agente limpio puede reiniciarse sin inspección de limpieza. Un documento histórico protegido por agente limpio no sufre daño colateral. Es la diferencia entre una crisis manejable y una pérdida total. Seguro para personas presentes — los hospitales lo usan en quirófanos. Los museos lo usan en bóvedas de arte. Las empresas Fortune 500 lo usan en data centers críticos.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor agente limpio">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/agente-limpio-hero.jpg" alt="Extintor agente limpio en sala de servidores y data center" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>Agente Limpio — Cero Residuo</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Premium para electrónica</span>
+          </div>
+          <h2 class="cat-header__title">De 1 kg para Escritorio a 9 kg para Data Center</h2>
+          <p class="cat-header__desc">Cuatro capacidades de agente limpio HFC-236fa y HFC-227ea, desde protección puntual de servidores hasta salas completas de telecom. Cilindros de acero con válvulas de descarga de precisión, manómetros de alta sensibilidad y mangueras de titanio para máxima durabilidad.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 2001</span>
+            <span class="norma-tag">ISO 14520</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20o%20mantenimiento%20de%20agente%20limpio`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20agente%20limpio`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20tengo%20un%20data%20center%20y%20necesito%20asesor%C3%ADa%20sobre%20capacidad%20de%20agente%20limpio`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para elegir capacidad agente limpio"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Cuánta capacidad necesito?</p>
+          <p class="prod-card-cta__sub">Dinos m², número de racks y valor de equipos — diseñamos protección óptima para tu presupuesto</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/agente-limpio-datacenter.jpg" alt="Agente limpio en sala de servidores y equipos electrónicos" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">¿Dónde usar?</span>
+            <h2>Aplicaciones Premium</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Activos críticos</span>
+          </div>
+          <h2 class="cat-header__title">El Agente para Donde Cada Minuto de Downtime Cuesta Miles</h2>
+          <p class="cat-header__desc">El agente limpio no es para todos — es para instalaciones donde el costo de reemplazar o reparar el activo protegido supera ampliamente el costo del extintor. Si tu riesgo es papel y cartón en una bodega, usa PQS. Si tu riesgo son servidores de $500,000 MXN, usa agente limpio.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20si%20agente%20limpio%20es%20necesario`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Agente Limpio"
+    subtitulo="Todo lo que necesitas saber sobre protección premium para electrónica y equipos críticos"
+    pageId="extintores-agente-limpio"
+    bgGray={false}
+    faqs={faqsAgenteL}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Protege activos críticos con la solución premium</h2>
+        <p>El agente limpio no es un lujo — es lógica de negocio. Cuando el costo del equipo protegido supera $100,000 MXN, un extintor de agente limpio es la inversión más inteligente en seguridad. Cotiza hoy y recibe asesoría personalizada sobre cantidad y ubicación óptima de equipos.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20proteger%20mi%20data%20center%20con%20agente%20limpio`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar agente limpio
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

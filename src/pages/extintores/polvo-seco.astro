@@ -1,0 +1,445 @@
+---
+// src/pages/extintores/polvo-seco.astro
+// Página de extintor Polvo Seco PQS — sistema de diseño actual (CategoryLayout + Hero.astro)
+// Este archivo tiene prioridad sobre [producto].astro y agrega la sección de variantes por capacidad.
+
+import CategoryLayout from '../../layouts/CategoryLayout.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import { waUrl, SERVICES } from '../../config/site'
+import { EXTINTOR_PAGES, EXTINTOR_PRODUCTS } from '../../data/extintores-productos'
+import '../../styles/product-page.css'
+
+const producto = 'polvo-seco'
+const data = EXTINTOR_PAGES[producto]
+
+const RELATED_SERVICES = SERVICES.filter((s) =>
+  ['recarga-extintores', 'mantenimiento-preventivo', 'prueba-hidrostatica', 'asesoria-tecnica'].includes(s.id)
+)
+
+const related = EXTINTOR_PRODUCTS.filter((p) => p.slug !== producto)
+const PAGE_WA = waUrl(data.waMessage)
+
+// ── Variantes por capacidad ───────────────────────────────────────────────────
+const variantes = [
+  {
+    nombre: 'PQS 1 kg',
+    badge: 'Vehículos',
+    badgeGhost: false,
+    desc: 'Para cabina de camiones, motocicletas y vehículos de carga. Compacto y de fácil montaje. Reglamentario conforme a NOM-068-SCT-2 para transporte.',
+    specs: 'Polvo ABC · 1 kg · ~5 s descarga · 2–3 m alcance',
+    waText: 'Hola, quiero cotizar extintores PQS de 1 kg para vehículos',
+  },
+  {
+    nombre: 'PQS 4.5 kg',
+    badge: 'Más vendido',
+    badgeGhost: false,
+    desc: 'El más solicitado para oficinas, tiendas y locales comerciales. Cubre hasta 200 m². El mínimo que exige Protección Civil para cualquier inmueble con acceso al público.',
+    specs: 'Polvo ABC · 4.5 kg · ~10 s descarga · 3–4 m alcance · 60 bar · Manómetro',
+    waText: 'Hola, quiero cotizar extintores de polvo seco 4.5 kg',
+  },
+  {
+    nombre: 'PQS 6 kg',
+    badge: null,
+    badgeGhost: true,
+    desc: 'Estándar para talleres, bodegas pequeñas y plantas de manufactura ligera. Mayor carga de agente para áreas con mayor densidad de material combustible.',
+    specs: 'Polvo ABC · 6 kg · ~13 s descarga · 4–5 m alcance · Manguera con boquilla',
+    waText: 'Hola, quiero cotizar extintores de polvo seco 6 kg',
+  },
+  {
+    nombre: 'PQS 9 kg',
+    badge: null,
+    badgeGhost: true,
+    desc: 'Para zonas de riesgo medio-alto: almacenes con mercancía, pasillos de carga, áreas de maquinaria. Requerido por NOM-002-STPS en industria.',
+    specs: 'Polvo ABC · 9 kg · ~18 s descarga · 4–5 m alcance · Soporte de pared incluido',
+    waText: 'Hola, quiero cotizar extintores de polvo seco 9 kg',
+  },
+  {
+    nombre: 'PQS 12 kg',
+    badge: 'Industrial',
+    badgeGhost: false,
+    desc: 'Uso industrial intensivo: talleres de soldadura, montacargas, plantas con líquidos clase B. Para gabinete metálico visible. Inspección semestral recomendada.',
+    specs: 'Polvo ABC · 12 kg · ~22 s descarga · 5–6 m alcance · Para gabinete metálico',
+    waText: 'Hola, quiero cotizar extintores de polvo seco 12 kg',
+  },
+  {
+    nombre: 'PQS Rodante 25–50 kg',
+    badge: 'Gran capacidad',
+    badgeGhost: false,
+    desc: 'Plantas industriales, estacionamientos y zonas de almacenamiento de combustible. Ruedas neumáticas para cubrir puntos distantes rápidamente.',
+    specs: 'Polvo ABC · 25 / 35 / 50 kg · Rodante · Hasta 8 m alcance · Manguera 5 m',
+    waText: 'Hola, quiero cotizar extintor rodante de polvo seco',
+  },
+]
+---
+
+<CategoryLayout
+  title={data.metaTitle}
+  description={data.metaDesc}
+  badge={data.badge}
+  heroTitle={data.heroTitle}
+  heroAccent={data.heroAccent}
+  heroSubtitle={data.heroSubtitle}
+  heroDescRight={data.heroDescRight}
+  cta1={{ text: 'Cotizar por WhatsApp', href: PAGE_WA }}
+  cta2={{ text: 'Ver todos los extintores', href: '/extintores/' }}
+  breadcrumb={[
+    { label: 'Inicio',     href: '/'            },
+    { label: 'Productos',  href: '/productos/'  },
+    { label: 'Extintores', href: '/extintores/' },
+    { label: data.heroAccent },
+  ]}
+  stats={data.stats}
+  showForm={true}
+  faqItems={data.faqItems}
+  ctaTitle={data.ctaTitle}
+  ctaBody={data.ctaBody}
+  ctaCTA1Text="Cotizar por WhatsApp"
+  ctaCTA1Href={PAGE_WA}
+  ctaCTA2Text="Ver todos los extintores"
+  ctaCTA2Href="/extintores/"
+>
+
+  <!-- ===========================================================
+       BLOQUE 0 — Variantes por capacidad
+       =========================================================== -->
+  <section class="prod-section section--sm" id="variantes">
+    <div class="container">
+
+      <SectionHeader
+        eyebrow="Capacidades disponibles"
+        titleLine1="Selecciona la capacidad"
+        titleLine2="correcta para tu instalación"
+        desc="Desde extintores portátiles de 1 kg para vehículos hasta rodantes de 50 kg para planta industrial. Todos en stock permanente, documentación NOM-154-SCFI incluida."
+      />
+
+      <div class="variantes-grid">
+        {variantes.map((v) => (
+          <a
+            href={waUrl(v.waText)}
+            class="variante-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Cotizar ${v.nombre}`}
+          >
+            <div class="variante-card__top">
+              {v.badge
+                ? <span class="variante-card__badge">{v.badge}</span>
+                : <span class="variante-card__badge variante-card__badge--ghost">En stock</span>
+              }
+            </div>
+
+            <div class="variante-card__body">
+              <h3 class="variante-card__name">{v.nombre}</h3>
+              <p class="variante-card__desc">{v.desc}</p>
+              <p class="variante-card__specs">{v.specs}</p>
+            </div>
+
+            <div class="variante-card__footer">
+              <span class="variante-card__cta">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Card especial: recarga y mantenimiento -->
+        <a
+          href={waUrl('Hola, necesito recarga y mantenimiento de extintores de polvo seco PQS')}
+          class="variante-card variante-card--service"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Recarga y mantenimiento de extintores PQS"
+        >
+          <div class="variante-card__top">
+            <span class="variante-card__badge variante-card__badge--service">Servicio</span>
+          </div>
+          <div class="variante-card__body">
+            <h3 class="variante-card__name">¿Ya tienes extintores PQS?</h3>
+            <p class="variante-card__desc">Recarga + mantenimiento anual NOM-154-SCFI con collar de garantía. Incluye reporte para expediente de STPS y Protección Civil.</p>
+            <p class="variante-card__specs">Mantenimiento anual · Prueba hidrostática c/5 años</p>
+          </div>
+          <div class="variante-card__footer">
+            <span class="variante-card__cta variante-card__cta--service">
+              Solicitar recarga
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       BLOQUE 1 — Características técnicas
+       =========================================================== -->
+  <section class="prod-section section prod-section--light" id="caracteristicas">
+    <div class="container">
+
+      <SectionHeader
+        eyebrow={data.caracteristicas.eyebrow}
+        titleLine1={data.caracteristicas.titleLine1}
+        titleLine2={data.caracteristicas.titleLine2}
+        desc={data.caracteristicas.desc}
+      />
+
+      <div class="features-grid">
+        {data.caracteristicas.items.map((item) => (
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="feature-card__body">
+              <h3 class="feature-card__title">{item.title}</h3>
+              <p class="feature-card__desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="inline-cta">
+        <p class="inline-cta__text">¿Tienes dudas sobre las especificaciones? Te asesoramos sin costo.</p>
+        <a href={PAGE_WA} class="btn btn--red" target="_blank" rel="noopener noreferrer">
+          Preguntar por WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       BLOQUE 2 — ¿Cuándo usar?
+       =========================================================== -->
+  <section class="prod-section section--sm" id="cuando-usar">
+    <div class="container">
+
+      <SectionHeader
+        eyebrow={data.cuandoUsar.eyebrow}
+        titleLine1={data.cuandoUsar.titleLine1}
+        titleLine2={data.cuandoUsar.titleLine2}
+        desc={data.cuandoUsar.desc}
+      />
+
+      <div class="usos-grid">
+        {data.cuandoUsar.usos.map((uso) => (
+          <div class="uso-item">
+            <div class="uso-item__dot" aria-hidden="true"></div>
+            <div class="uso-item__body">
+              <h3 class="uso-item__label">{uso.label}</h3>
+              <p class="uso-item__desc">{uso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       BLOQUE 3 — Servicios relacionados
+       =========================================================== -->
+  <section class="prod-section section--sm prod-section--light" id="servicios-extintor">
+    <div class="container">
+      <div class="svc-header">
+        <p class="svc-header__label">Servicios disponibles para tu extintor</p>
+        <a href="/servicios/" class="svc-header__link">Ver todos los servicios →</a>
+      </div>
+      <div class="svc-grid">
+        {RELATED_SERVICES.map((svc) => (
+          <a href={`/servicios/#${svc.id}`} class="svc-card">
+            <span class="svc-card__name">{svc.label}</span>
+            <span class="svc-card__desc">{svc.desc}</span>
+            <span class="svc-card__arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       BLOQUE 4 — Otros extintores del catálogo
+       =========================================================== -->
+  <section class="prod-section section--sm">
+    <div class="container">
+      <div class="related-header">
+        <p class="related-header__label">{data.relatedTitle}:</p>
+        <a href="/extintores/" class="related-header__link">Ver todos los extintores →</a>
+      </div>
+      <div class="related-grid">
+        {related.map((r) => (
+          <a href={`/extintores/${r.slug}/`} class="related-card">
+            <span class="related-card__label">{r.label}</span>
+            <span class="related-card__badge">{r.badge}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</CategoryLayout>
+
+<style>
+  /* ── Grid de variantes ─────────────────────────────────────── */
+  .variantes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--sp-5);
+  }
+
+  /* ── Card base ─────────────────────────────────────────────── */
+  .variante-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-6);
+    background: var(--color-white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
+  }
+
+  .variante-card:hover {
+    border-color: var(--color-red);
+    box-shadow: 0 6px 24px rgba(196, 30, 58, 0.10);
+    transform: translateY(-3px);
+  }
+
+  /* Card de servicio — fondo oscuro */
+  .variante-card--service {
+    background: var(--color-dark);
+    border-color: rgba(255,255,255,0.08);
+  }
+  .variante-card--service:hover {
+    border-color: var(--color-red-light);
+    box-shadow: 0 6px 24px rgba(196, 30, 58, 0.20);
+  }
+  .variante-card--service .variante-card__name {
+    color: var(--color-white);
+  }
+  .variante-card--service .variante-card__desc {
+    color: rgba(255,255,255,0.65);
+  }
+  .variante-card--service .variante-card__specs {
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.06);
+    border: none;
+  }
+  .variante-card--service .variante-card__footer {
+    border-top-color: rgba(255,255,255,0.10);
+  }
+
+  /* ── Badge ─────────────────────────────────────────────────── */
+  .variante-card__badge {
+    display: inline-block;
+    background: var(--color-red);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px var(--sp-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .variante-card__badge--ghost {
+    background: transparent;
+    color: var(--color-gray-500);
+    border: 1px solid var(--border);
+  }
+
+  .variante-card__badge--service {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── Body ──────────────────────────────────────────────────── */
+  .variante-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .variante-card__name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-gray-900);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
+  }
+
+  .variante-card:hover .variante-card__name {
+    color: var(--color-red);
+  }
+  .variante-card--service:hover .variante-card__name {
+    color: var(--color-white);
+  }
+
+  .variante-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .variante-card__specs {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-400);
+    background: var(--color-gray-50);
+    border: 1px solid var(--border);
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: var(--radius-md);
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Footer / CTA ──────────────────────────────────────────── */
+  .variante-card__footer {
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .variante-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-red);
+    transition: gap var(--transition);
+  }
+
+  .variante-card:hover .variante-card__cta {
+    gap: var(--sp-3);
+  }
+
+  .variante-card__cta--service {
+    color: rgba(255,255,255,0.75);
+  }
+  .variante-card--service:hover .variante-card__cta--service {
+    color: var(--color-white);
+  }
+
+  /* ── Responsive ────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .variantes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

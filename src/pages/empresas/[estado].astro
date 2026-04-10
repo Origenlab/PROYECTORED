@@ -1,0 +1,366 @@
+---
+// /empresas/[estado]/ — Página de cobertura por estado
+import CategoryLayout from '../../layouts/CategoryLayout.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import { COVERAGE_STATES, waUrl } from '../../config/site'
+
+// Datos completos de cada zona de cobertura
+const estadoData: Record<string, {
+  title: string
+  badge: string
+  heroSubtitle: string
+  heroDescRight: string[]
+  stats: { value: string; label: string }[]
+  delivery: { label: string; desc: string }[]
+  zones?: string[]
+  ctaBody: string
+}> = {
+  'cdmx': {
+    title: 'Ciudad de México',
+    badge: 'Zona operativa — entrega el mismo día',
+    heroSubtitle: 'Entrega directa en las 16 alcaldías de la Ciudad de México. Pedidos confirmados antes de las 2 PM se entregan el mismo día, con flota propia y sin costos adicionales.',
+    heroDescRight: [
+      'Nuestro almacén central está ubicado en la Colonia Juárez, CDMX. Operamos con flota propia en toda la Ciudad de México, lo que nos permite entregar sin depender de paqueterías externas y garantizar tiempos precisos.',
+      'La Ciudad de México es nuestra zona de mayor cobertura: extintores, señalamientos, gabinetes, sistemas CI y cualquier equipo de nuestro catálogo disponible para entrega el mismo día en cualquier alcaldía.',
+    ],
+    stats: [
+      { value: '16',    label: 'Alcaldías cubiertas' },
+      { value: 'Mismo día', label: 'Entrega local' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Entrega el mismo día', desc: 'Pedidos confirmados antes de las 2 PM se entregan ese mismo día en cualquier alcaldía.' },
+      { label: 'Flota propia', desc: 'Sin paqueterías intermedias — nosotros controlamos cada entrega de principio a fin.' },
+      { label: 'Instalación en sitio', desc: 'Instalamos sistemas CI, señalamientos y gabinetes directamente en tus instalaciones.' },
+      { label: 'Mantenimiento y recarga', desc: 'Servicio de recarga de extintores y mantenimiento preventivo en toda la CDMX.' },
+    ],
+    zones: ['Cuauhtémoc', 'Miguel Hidalgo', 'Benito Juárez', 'Álvaro Obregón', 'Coyoacán', 'Iztapalapa', 'Gustavo A. Madero', 'Azcapotzalco', 'Venustiano Carranza', 'Iztacalco', 'Xochimilco', 'Tlalpan', 'Magdalena Contreras', 'Milpa Alta', 'Tláhuac', 'Cuajimalpa'],
+    ctaBody: 'Cuéntanos qué equipo necesitas y en qué alcaldía. Te confirmamos precio y hora de entrega en menos de 2 horas.',
+  },
+  'edomex': {
+    title: 'Estado de México',
+    badge: 'Zona operativa — 24–48 horas',
+    heroSubtitle: 'Entrega en 24–48 horas en los principales municipios del Estado de México. Operamos con flota propia en toda la zona conurbada.',
+    heroDescRight: [
+      'El Estado de México forma parte de nuestra zona de operación directa. Cubrimos los municipios de la zona conurbada con flota propia y los demás municipios del estado con paquetería certificada.',
+      'Entregamos con documentación NOM completa lista para tu expediente de Protección Civil, igual que en la Ciudad de México. Un solo proveedor para toda la zona metropolitana.',
+    ],
+    stats: [
+      { value: '25+',  label: 'Municipios cubiertos' },
+      { value: '24–48h', label: 'Tiempo de entrega' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Zona conurbada — 24 horas', desc: 'Naucalpan, Tlalnepantla, Ecatepec, Nezahualcóyotl, Chimalhuacán y municipios cercanos.' },
+      { label: 'Interior del estado — 48 horas', desc: 'Toluca, Metepec, Atlacomulco, Texcoco y todos los demás municipios.' },
+      { label: 'Documentación completa', desc: 'Fichas técnicas, certificados NOM y etiqueta de inspección en cada entrega.' },
+      { label: 'Instalación disponible', desc: 'Servicio de instalación en zona conurbada. Consulta disponibilidad para tu municipio.' },
+    ],
+    zones: ['Naucalpan', 'Tlalnepantla', 'Ecatepec', 'Nezahualcóyotl', 'Chimalhuacán', 'Ixtapaluca', 'Tultitlán', 'Coacalco', 'Cuautitlán Izcalli', 'Toluca', 'Metepec', 'Texcoco', 'Nicolás Romero', 'Atizapán'],
+    ctaBody: 'Dinos tu municipio y qué necesitas. Te confirmamos tiempo de entrega y precio en menos de 24 horas.',
+  },
+  'queretaro': {
+    title: 'Querétaro',
+    badge: 'Cobertura comercial — envío certificado',
+    heroSubtitle: 'Envíos coordinados a toda la zona metropolitana de Querétaro y su zona industrial. Equipo certificado NOM y NFPA con documentación completa.',
+    heroDescRight: [
+      'Atendemos a plantas industriales, empresas y contratistas en Querétaro con equipo certificado enviado desde nuestro almacén en la Ciudad de México. El tiempo de entrega es de 2–4 días hábiles según el tipo de producto.',
+      'Cada envío incluye documentación NOM completa: ficha técnica, certificado de conformidad y etiqueta de inspección. Todo listo para tu expediente de Protección Civil local.',
+    ],
+    stats: [
+      { value: '2–4 días', label: 'Tiempo de entrega' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'NFPA', label: 'Certificación internacional' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Querétaro ciudad', desc: 'Entrega en 2–3 días hábiles a domicilio en Querétaro, Corregidora y El Marqués.' },
+      { label: 'Zona industrial', desc: 'Parques industriales de Querétaro: tiempo de entrega y disponibilidad según inventario.' },
+      { label: 'Paquetería certificada', desc: 'Enviamos con paquetería especializada para equipo de seguridad.' },
+      { label: 'Documentación NOM', desc: 'Toda la documentación para cumplir con Protección Civil Querétaro.' },
+    ],
+    ctaBody: 'Envíanos lo que necesitas por WhatsApp. Te cotizamos con precio final, tiempo de entrega y costo de envío incluido.',
+  },
+  'puebla': {
+    title: 'Puebla',
+    badge: 'Cobertura comercial — envío certificado',
+    heroSubtitle: 'Suministro de equipos contra incendios certificados NOM y NFPA con entrega directa en Puebla capital y zona industrial.',
+    heroDescRight: [
+      'Atendemos a empresas, plantas industriales y contratistas en Puebla con todo nuestro catálogo de equipos contra incendios. Enviamos desde nuestra bodega en CDMX con paquetería certificada para equipos de seguridad.',
+      'Documentación completa incluida en cada pedido: fichas técnicas, certificados NOM, garantía y etiqueta de inspección. Todo lo que necesitas para tu expediente de Protección Civil Puebla.',
+    ],
+    stats: [
+      { value: '2–4 días', label: 'Tiempo de entrega' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'NFPA', label: 'Certificación internacional' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Puebla capital', desc: 'Entrega en 2–3 días hábiles a domicilio en Puebla, Cholula y San Andrés Cholula.' },
+      { label: 'Zona industrial', desc: 'Parques industriales de Puebla y Tlaxcala: tiempo estimado según disponibilidad.' },
+      { label: 'Todo el catálogo disponible', desc: 'Extintores, señalamientos, gabinetes, sistemas CI y más.' },
+      { label: 'Crédito a 30 días', desc: 'Para empresas con volumen: precios especiales y crédito disponible.' },
+    ],
+    ctaBody: 'Cuéntanos qué necesitas y en qué municipio. Te damos precio, tiempo de entrega y costo de envío sin compromiso.',
+  },
+  'aguascalientes': {
+    title: 'Aguascalientes',
+    badge: 'Cobertura comercial — envío programado',
+    heroSubtitle: 'Equipo contra incendios certificado con entrega programada en Aguascalientes y su zona industrial. Coordinamos tiempos según tu urgencia.',
+    heroDescRight: [
+      'Enviamos desde nuestra bodega en CDMX a toda la zona industrial y empresarial de Aguascalientes. Coordinamos tiempos de entrega con paquetería especializada en equipos de seguridad.',
+      'Toda la documentación NOM incluida: fichas técnicas, certificados de conformidad y etiqueta de inspección. Para pedidos grandes coordinamos directamente con logística dedicada.',
+    ],
+    stats: [
+      { value: '3–5 días', label: 'Tiempo de entrega' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'NFPA', label: 'Certificación internacional' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Aguascalientes capital', desc: 'Tiempo estimado de 3–4 días hábiles para la zona metropolitana.' },
+      { label: 'Parques industriales', desc: 'Coordinamos entregas para plantas y parques industriales del estado.' },
+      { label: 'Logística dedicada para volumen', desc: 'Pedidos grandes con flota dedicada y cronograma confirmado.' },
+      { label: 'Documentación completa', desc: 'Todo lo necesario para Protección Civil Aguascalientes.' },
+    ],
+    ctaBody: 'Dinos qué necesitas y en qué fecha. Coordinamos la entrega y te confirmamos precio total con envío incluido.',
+  },
+  'baja-california': {
+    title: 'Baja California',
+    badge: 'Cobertura comercial — envío programado',
+    heroSubtitle: 'Equipo certificado NOM y NFPA con entrega en Tijuana, Mexicali, Ensenada y toda Baja California.',
+    heroDescRight: [
+      'Atendemos a empresas en Baja California con equipo certificado enviado por paquetería especializada. Documentación completa para cumplir con Protección Civil local y con normativa de zonas de exportación y maquiladoras.',
+      'Para plantas que requieren certificaciones adicionales (como las aplicables en zonas de exportación), podemos acompañarte con la selección del equipo más adecuado y la documentación necesaria.',
+    ],
+    stats: [
+      { value: '4–6 días', label: 'Tiempo de entrega' },
+      { value: 'NOM', label: 'Documentación incluida' },
+      { value: 'NFPA', label: 'Certificación internacional' },
+      { value: 'Gratis', label: 'Asesoría técnica' },
+    ],
+    delivery: [
+      { label: 'Tijuana y Tecate', desc: 'Parques industriales y empresas. Entrega estimada en 4–5 días hábiles.' },
+      { label: 'Mexicali', desc: 'Zona industrial y maquiladoras. Tiempo estimado 4–5 días hábiles.' },
+      { label: 'Ensenada', desc: 'Entrega en 5–6 días hábiles. Coordinamos según tipo de equipo.' },
+      { label: 'Documentación NOM/NFPA', desc: 'Completa para cumplir con Protección Civil Baja California.' },
+    ],
+    ctaBody: 'Cuéntanos en qué ciudad y qué necesitas. Te cotizamos con precio final y tiempo de entrega confirmado.',
+  },
+}
+
+export async function getStaticPaths() {
+  return COVERAGE_STATES.map((s) => ({ params: { estado: s.slug } }))
+}
+
+const { estado } = Astro.params
+const data = estadoData[estado]
+
+if (!data) {
+  return Astro.redirect('/empresas/')
+}
+
+const PAGE_WA = waUrl(`Hola, necesito información sobre cobertura en ${data.title}`)
+---
+
+<CategoryLayout
+  title={`Equipos Contra Incendios en ${data.title} | Proyecto Red`}
+  description={`Proveedor de equipos contra incendios en ${data.title}. Extintores, señalamientos y sistemas CI certificados NOM y NFPA. ${data.badge}.`}
+  badge={data.badge}
+  heroTitle={`Cobertura en`}
+  heroAccent={data.title}
+  heroSubtitle={data.heroSubtitle}
+  heroDescRight={data.heroDescRight}
+  cta1={{ text: 'Solicitar cotización', href: PAGE_WA }}
+  cta2={{ text: 'Ver detalle de cobertura', href: '#cobertura' }}
+  breadcrumb={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Cobertura', href: '/empresas/' },
+    { label: data.title },
+  ]}
+  stats={data.stats}
+  showForm={true}
+  ctaTitle={`¿Necesitas equipo en ${data.title}?`}
+  ctaBody={data.ctaBody}
+  ctaCTA1Text="Cotizar por WhatsApp"
+  ctaCTA1Href={PAGE_WA}
+  ctaCTA2Text="Ver catálogo completo"
+  ctaCTA2Href="/productos/"
+>
+
+  <section id="cobertura" class="estado section">
+    <div class="container">
+
+      <!-- Cómo entregamos -->
+      <SectionHeader
+        eyebrow={`Entrega en ${data.title}`}
+        titleLine1="Cómo"
+        titleLine2="entregamos"
+        desc={`Detalles del servicio de entrega y cobertura para ${data.title}.`}
+      />
+
+      <div class="delivery-grid">
+        {data.delivery.map((item) => (
+          <div class="delivery-card">
+            <div class="delivery-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h3 class="delivery-card__title">{item.label}</h3>
+              <p class="delivery-card__desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Municipios/ciudades cubiertas (si aplica) -->
+      {data.zones && data.zones.length > 0 && (
+        <div class="zones-section">
+          <h3 class="zones-section__title">Municipios y zonas cubiertas</h3>
+          <ul class="zones-list">
+            {data.zones.map((zone) => (
+              <li class="zones-list__item">{zone}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Links a otras zonas -->
+      <div class="other-zones">
+        <p class="other-zones__label">Ver otras zonas de cobertura:</p>
+        <div class="other-zones__links">
+          {COVERAGE_STATES.filter((s) => s.slug !== estado).map((s) => (
+            <a href={`/empresas/${s.slug}/`} class="other-zone-link">{s.label}</a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</CategoryLayout>
+
+<style>
+  /* Tarjetas de entrega */
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-12);
+  }
+
+  .delivery-card {
+    display: flex;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  .delivery-card__icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--color-red-faint);
+    color: var(--color-red);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .delivery-card__title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--sp-1);
+  }
+
+  .delivery-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Municipios */
+  .zones-section {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-xl);
+    padding: var(--sp-8);
+    margin-bottom: var(--sp-12);
+  }
+
+  .zones-section__title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--sp-5);
+  }
+
+  .zones-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--sp-3);
+  }
+
+  .zones-list__item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+  }
+
+  .zones-list__item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--color-red);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Otras zonas */
+  .other-zones {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+    padding: var(--sp-5);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-xl);
+  }
+
+  .other-zones__label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-500);
+    white-space: nowrap;
+  }
+
+  .other-zones__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .other-zone-link {
+    padding: var(--sp-2) var(--sp-4);
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    font-weight: var(--weight-medium);
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .other-zone-link:hover {
+    border-color: var(--color-red);
+    color: var(--color-red);
+  }
+</style>

@@ -1,0 +1,406 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores Cold Fire Biodegradable en CDMX | Proyecto Red";
+const description = "Extintores Cold Fire biodegradables para clases A y B. Eficaces en vehículos eléctricos. 6 veces más eficientes que el agua. Venta en CDMX y EDOMEX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Cold Fire" },
+];
+
+const metricas = [
+  { valor: "A · B · D", label: "Clases de fuego que combate" },
+  { valor: "100% biodegradable", label: "Base acuosa natural" },
+  { valor: "6x más eficiente", label: "Enfriamiento vs agua" },
+  { valor: "2.5L – 25L", label: "Rango de capacidades" },
+];
+
+const variantes = [
+  {
+    nombre: "Cold Fire 2.5L Portátil",
+    desc: "Extintor compacto para vehículos eléctricos, motocicletas y espacios pequeños. Base acuosa biodegradable que enfría 6 veces más rápido que agua pura. Ideal para garajes con vehículos EV — el Cold Fire es especialista en baterías de iones de litio.",
+    badge: "EV",
+    specs: "Agente acuoso biodegradable · 2.5L · Presión 10 bar · 20-25 s descarga · 2-3 m alcance · No conductor",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Cold%20Fire%202.5L%20para%20veh%C3%ADculos%20el%C3%A9ctricos`,
+  },
+  {
+    nombre: "Cold Fire 6L Estándar",
+    desc: "Capacidad intermedia para garajes de tamaño mediano, talleres con vehículos eléctricos y almacenes de baterías. Enfriamiento profundo sin residuo corrosivo — diferencia crítica versus polvo PQS. No deja mancha blanca en pintura ni daña componentes eléctricos.",
+    badge: "Más vendido",
+    specs: "Agente acuoso biodegradable · 6L · Presión 12 bar · 30-40 s descarga · 3-4 m alcance · No conductor",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Cold%20Fire%206L%20para%20taller`,
+  },
+  {
+    nombre: "Cold Fire 9L Profesional",
+    desc: "Para instalaciones de recarga de vehículos eléctricos, plantas de almacenamiento de baterías y talleres de servicio EV grandes. Tiempo descarga extendido para coberturas mayores. Biodegradable — seguro para ambiente en caso de derrame accidental.",
+    badge: null,
+    specs: "Agente acuoso biodegradable · 9L · Presión 14 bar · 45-60 s descarga · 4-5 m alcance · No conductor",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Cold%20Fire%209L%20para%20instalaci%C3%B3n%20de%20carga%20EV`,
+  },
+  {
+    nombre: "Cold Fire 25L Rodante Industrial",
+    desc: "Máxima capacidad para depósitos de baterías, plantas de manufactura EV y centros de distribución de vehículos eléctricos. Cubre áreas grandes con protección especializada contra EV fires — el riesgo más moderno de la industria.",
+    badge: "Industrial",
+    specs: "Agente acuoso biodegradable · 25L · Rodante · Presión 16 bar · 80-100 s descarga · 6-7 m alcance",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20Cold%20Fire%2025L%20rodante%20para%20EV%20factory`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Garaje / taller de vehículos eléctricos",
+    norma: "NOM-002-STPS · NFPA 10 · Estándares EV",
+    necesitas: "Cold Fire 6L mínimo — si hay +10 vehículos EV, añade rodante 25L. Ubicación próxima a zona de carga rápida.",
+    porque: "Los incendios de baterías de litio (EV fires) son clase B extrema — son impredecibles, calor intenso y riesgos específicos. El polvo ABC tradicional no penetra bien en baterías. Cold Fire enfría 6x más que agua, no deja residuo corrosivo y es biodegradable.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20Cold%20Fire%20para%20taller%20de%20veh%C3%ADculos%20el%C3%A9ctricos`,
+  },
+  {
+    tipo: "Centro de carga de vehículos eléctricos",
+    norma: "NFPA 10 · Estándares de infraestructura EV",
+    necesitas: "Cold Fire 6-9L por cada 3-5 puntos de carga. Sistema fijo (spray automático) si presupuesto lo permite.",
+    porque: "En instalaciones de carga rápida, el riesgo no es solo el vehículo — es la energía en los cables y transformadores. Cold Fire no conduce electricidad (no conductor) — crítico en ambientes eléctricos de alto voltaje.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20Cold%20Fire%20para%20estaci%C3%B3n%20de%20carga%20EV`,
+  },
+  {
+    tipo: "Planta de manufacturación / distribución EV",
+    norma: "NFPA 10 · Estándares automotrices internacionales",
+    necesitas: "Rodante Cold Fire 25L distribuido estratégicamente. Sistema fijo recomendado en bóvedas de almacenamiento de baterías.",
+    porque: "En fabricación EV el riesgo es exponencial — cientos de baterías en progreso. El Cold Fire es la herramienta especializada que muchas factories Tier-1 y OEMs exigen. Biodegradable, no tóxico, y efectivo en riesgos modernos.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20Cold%20Fire%20para%20planta%20de%20veh%C3%ADculos%20el%C3%A9ctricos`,
+  },
+  {
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
+    necesitas: "En riesgo general (vehículos tradicionales de combustión, oficinas, comercios) ABC multipropósito 75% es suficiente. Cold Fire es premium — justificado solo con presencia de EV.",
+    porque: "Cold Fire cuesta más que polvo ABC tradicional. Si tu flota es 100% combustión interna, ABC satisface normativa. Pero si tienes aunque sea 20% EV, el riesgo específico de batería justifica Cold Fire en esas áreas.",
+    href: `${WA_URL}?text=Hola%2C%20no%20estoy%20seguro%20si%20necesito%20Cold%20Fire%20o%20ABC%20tradicional`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Clásico", desc: "El extintor más usado en México — versátil y económico." },
+  { nombre: "Agente Limpio HFC", href: "/extintores/agente-limpio/", tag: "Electrónica fina", desc: "Para proteger servidores y equipos sensibles sin ningún residuo." },
+  { nombre: "Automáticos", href: "/extintores/automaticos/", tag: "24/7", desc: "Activación automática — ideal para vehículos de carga y maquinaria." },
+];
+
+const faqsColdFire = [
+  {
+    pregunta: "¿Qué es exactamente Cold Fire?",
+    respuesta: "<strong>Cold Fire es un agente extintor a base acuosa moderna</strong>, formulado con componentes orgánicos biodegradables. A diferencia del agua pura que enfría lentamente, Cold Fire contiene aditivos que aumentan capacidad de absorción de calor — hasta <strong>6 veces más eficiente que agua</strong>. Se descompone naturalmente en el ambiente (biodegradable) y es no-conductor de electricidad, lo que lo hace seguro cerca de equipos eléctricos. Es la evolución moderna de los extintores acuosos."
+  },
+  {
+    pregunta: "¿Por qué Cold Fire es mejor que polvo ABC para vehículos eléctricos?",
+    respuesta: "En un EV fire (incendio de batería de litio), el polvo ABC tradicional tiene limitaciones: (1) penetra lentamente en celdas de batería densas, (2) deja residuo corrosivo que puede activar cortocircuitos, (3) no enfría tan efectivamente. <strong>Cold Fire enfría profundo</strong> — crítico para baterías que recalan como molten lava. No deja residuo corrosivo (es agua) y puede usarse cerca de sistemas eléctricos sin riesgo de conducción. Para EV, Cold Fire > ABC."
+  },
+  {
+    pregunta: "¿Es verdad que el Cold Fire no deja residuo?",
+    respuesta: "Correcto. Cold Fire es base acuosa — <strong>se evapora o se seca sin dejar residuo químico visible</strong>. Diferencia crítica con polvo ABC que deja polvo fino adherido. En un garaje de lujo con vehículos de $2 millones MXN, el polvo ABC dejaría mancha blanca permanente en pintura. Cold Fire desaparece. Si el derrame es en piso, se limpia con agua."
+  },
+  {
+    pregunta: "¿El Cold Fire es realmente biodegradable?",
+    respuesta: "<strong>Sí.</strong> La formulación de Cold Fire es <strong>100% biodegradable</strong> — se descompone en ambiente en días o semanas según clima. Esto es ventaja ambiental crítica si hay derrame accidental en suelo o drenaje. Comparado con polvo fosfato monoamónico (ABC) que requiere remediación ambiental si contamina agua subterránea, Cold Fire es ecológico."
+  },
+  {
+    pregunta: "¿El Cold Fire se puede usar en equipos eléctricos energizados?",
+    respuesta: "El Cold Fire es <strong>no-conductor de electricidad</strong> en concentraciones normales de uso — es agua desionizada con aditivos orgánicos, no polímeros conductores. Sin embargo, no debes usar NINGÚN extintor directamente en transformadores o tableros energizados — el riesgo de electrocución persiste. Para clase C (eléctricos) puro, <a href='/extintores/co2/'>CO₂</a> sigue siendo más seguro."
+  },
+  {
+    pregunta: "¿Cuál es el costo de Cold Fire comparado con ABC y agua?",
+    respuesta: "Cold Fire cuesta <strong>2-3 veces más que polvo ABC tradicional</strong>, pero <strong>es más barato que agente limpio HFC</strong>. El costo justificado por: (1) eficiencia 6x superior a agua, (2) biodegradable (no costo ambiental futuro), (3) especializado en EV fires (riesgo creciente). Si tu negocio depende de vehículos eléctricos, el ROI es claro."
+  },
+  {
+    pregunta: "¿Debo reemplazar todos mis ABC con Cold Fire?",
+    respuesta: "<strong>No necesariamente.</strong> Estrategia óptima: <strong>Cold Fire en áreas EV</strong> (garaje con vehículos eléctricos, zona de carga), <strong>ABC tradicional en áreas generales</strong> (oficinas, tienda, áreas sin EV). Cold Fire es especialista — úsalo donde el riesgo es EV. Para cumplimiento normativo general, ABC 75% sigue siendo el estándar."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Cold Fire · Biodegradable · EV fires · A, B, D
+        </div>
+        <h1>Extintores<br><span class="h1-accent">Cold Fire Biodegradable</span></h1>
+        <p class="hero-sub">
+          Un vehículo eléctrico en llamas no se apaga como gasolina — es incendio de batería de litio. Cold Fire enfría 6x más que agua, sin residuo tóxico. Desde $1,400 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20Cold%20Fire%20para%20veh%C3%ADculos%20el%C3%A9ctricos`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Cold Fire
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>Cold Fire es la evolución moderna de los extintores acuosos — formulado para riesgos del siglo XXI. Su base acuosa biodegradable enfría con eficiencia 6 veces superior al agua pura. Penetra profundo en baterías de litio, equipos eléctricos, y derrames de combustible. No deja residuo corrosivo — crítico en vehículos de valor alto donde polvo PQS causaría daño permanente.</p>
+        <p>Es la herramienta especializada que fábricas EV, centros de recarga, y talleres con flotas eléctricas exigen hoy. Biodegradable, no conductor, y efectivo en clase A, B y D (metales combustibles). Es el futuro de la extinción — cuando el riesgo son baterías de iones de litio, no gasolina tradicional.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor Cold Fire">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/cold-fire-hero.jpg" alt="Extintor Cold Fire para vehículos eléctricos" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">EV Ready</span>
+            <h2>Cold Fire — Moderno</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Biodegradable</span>
+          </div>
+          <h2 class="cat-header__title">De 2.5L Portátil a 25L Rodante EV</h2>
+          <p class="cat-header__desc">Cuatro capacidades de Cold Fire biodegradable, desde vehículos eléctricos individuales hasta plantas de manufactura. Especializado en EV fires (baterías de litio) y derrames de combustible moderno. Ecológico, sin residuo corrosivo.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 10</span>
+            <span class="norma-tag">UL 711</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">Eco-friendly</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20o%20mantenimiento%20de%20Cold%20Fire`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20Cold%20Fire`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20qu%C3%A9%20cantidad%20de%20Cold%20Fire%20necesito%20para%20mi%20flota%20EV`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para flota de vehículos eléctricos"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Cuántos Cold Fire necesito?</p>
+          <p class="prod-card-cta__sub">Dinos cantidad de vehículos EV y tipo de instalación — diseñamos protección óptima</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/cold-fire-ev.jpg" alt="Cold Fire en centro de carga de vehículos eléctricos" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">El futuro</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Vehículos eléctricos</span>
+          </div>
+          <h2 class="cat-header__title">Protección Especializada para EV Fires</h2>
+          <p class="cat-header__desc">Cold Fire es el extintor del futuro — cuando tu negocio depende de vehículos eléctricos, necesitas especialización. Batería de litio en llamas no es lo mismo que gasolina. Cold Fire es lo que Tesla, Audi, Hyundai esperan en sus instalaciones.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20Cold%20Fire%20para%20mi%20negocio%20EV`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Cold Fire"
+    subtitulo="Protección moderna para vehículos eléctricos y derrames de combustible"
+    pageId="extintores-cold-fire"
+    bgGray={false}
+    faqs={faqsColdFire}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Prepárate para el futuro — EV fires requieren especialización</h2>
+        <p>Si tu negocio depende de vehículos eléctricos, Cold Fire es la herramienta moderna que necesitas. Biodegradable, eficiente en baterías de litio, y sin residuo corrosivo. Cotiza hoy para protección EV-ready.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20Cold%20Fire%20para%20protecci%C3%B3n%20EV`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar Cold Fire
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

@@ -1,0 +1,406 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores AFFF Espuma Clase A y B en CDMX | Proyecto Red";
+const description = "Extintores AFFF espuma formadora de película acuosa clase A y B. Para gasolineras, talleres y plantas petroquímicas. NOM-154-SCFI. Entrega en CDMX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "AFFF Espuma" },
+];
+
+const metricas = [
+  { valor: "A · B", label: "Clases de fuego que combate" },
+  { valor: "Película acuosa", label: "Mecanismo: sella vapores" },
+  { valor: "3% – 6%", label: "Concentración de agente" },
+  { valor: "6L – 50L", label: "Rango de capacidades" },
+];
+
+const variantes = [
+  {
+    nombre: "AFFF 6L Portátil",
+    desc: "Extintor manual de espuma concentrada para gasolineras, talleres mecánicos y garajes. Forma una película acuosa que flota sobre el combustible, cortando vapores e impidiendo la re-ignición. Ideal para proteger áreas de dispensarios o almacenes pequeños de aceite y combustible.",
+    badge: "Compacto",
+    specs: "AFFF 3% · 6L · 45-50 s descarga · 4-6 m alcance · Manguera flexible · Presión 10 bar",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20AFFF%206L%20para%20taller%20o%20gasolinera`,
+  },
+  {
+    nombre: "AFFF 9L Estándar",
+    desc: "Capacidad intermedia recomendada para gasolineras medianas, talleres mecánicos con área de solventes y plantas pequeñas. La espuma AFFF crea una capa aislante que evita vapores y permite enfriamiento rápido de la superficie del líquido inflamable. Mayor autonomía de descarga que el de 6L.",
+    badge: "Más vendido",
+    specs: "AFFF 3% · 9L · 60-75 s descarga · 5-7 m alcance · Manguera 1.5 m · Presión 12 bar",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20AFFF%209L%20para%20gasolinera`,
+  },
+  {
+    nombre: "AFFF 25L Rodante",
+    desc: "Sistema rodante con ruedas para gasolineras de tamaño mediano, depósitos de combustible y talleres con riesgo alto de derrames. La espuma de 6% concentración ofrece mayor retención en la película flotante, ideal para fuegos de clase B grandes. Movilidad completa con manguera de 3 metros.",
+    badge: null,
+    specs: "AFFF 6% · 25L · Rodante · Manguera 3 m · Alcance 8-10 m · Presión 14 bar · Peso rodante 60 kg",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20AFFF%2025L%20rodante`,
+  },
+  {
+    nombre: "AFFF 50L Rodante Industrial",
+    desc: "Máxima capacidad en AFFF para plantas petroquímicas, hangares de aviación, grandes depósitos de combustible e instalaciones de alto riesgo. Concentración 6% con espuma de muy larga vida útil. Cobertura de hasta 12 metros y tiempo descarga extendido para incendios de clase B grandes.",
+    badge: "Industrial",
+    specs: "AFFF 6% · 50L · Rodante · Manguera 5 m · Alcance 10-12 m · Presión 16 bar · Peso rodante 115 kg",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20AFFF%2050L%20rodante%20industrial`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Gasolinera / estación de servicio",
+    norma: "NFPA 11 · NOM-002-STPS",
+    necesitas: "AFFF 9L en cada punto de dispensario. Rodante 25L en depósito de almacenamiento. Sistema de espuma automático en áreas de carga/descarga",
+    porque: "Un derrame de gasolina en la bomba de dispensario que se incendia es clase B puro: polvo seco ABC NO funciona bien — se hunde en el combustible y no sella vapores. La espuma AFFF forma una película flotante que extingue en segundos y previene re-ignición incluso durante limpieza posterior.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20AFFF%20para%20una%20gasolinera`,
+  },
+  {
+    tipo: "Taller mecánico / lubricentro",
+    norma: "NOM-002-STPS · NOM-154-SCFI",
+    necesitas: "AFFF 6-9L en área de cambio de aceite. AFFF 9L en almacén de solventes y combustible.",
+    porque: "Los incendios en talleres mecánicos suelen iniciar en derrames de aceite SAE o combustible en pisos. La espuma AFFF es el agente diseñado específicamente para este tipo de clase B. El polvo seco deja residuo pegajoso que ensucia equipos; la espuma se limpia con agua.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20AFFF%20para%20un%20taller%20mec%C3%A1nico`,
+  },
+  {
+    tipo: "Planta petroquímica / hangar de aviación",
+    norma: "NFPA 11 · NOM-154-SCFI · PEMEX",
+    necesitas: "Rodante AFFF 25-50L. Sistema automático de espuma en áreas críticas. Múltiples puntos de descarga manual.",
+    porque: "En zonas de alto riesgo con almacenamiento de grandes cantidades de hidrocarburos, la espuma AFFF es mandatoria — es el agente que las normas NFPA 11 y PEMEX especifican para clase B industrial. La capacidad de la película para sellar vapores es crítica cuando el fuego es de gran escala.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20sistema%20de%20extintores%20AFFF%20para%20instalaci%C3%B3n%20industrial`,
+  },
+  {
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
+    necesitas: "No usar AFFF en equipos eléctricos energizados (conduce electricidad), ni en cocinas (usar Tipo K), ni en materiales sólidos clase A pequeños (usar PQS ABC)",
+    porque: "El AFFF es una espuma a base acuosa — la presencia de agua lo hace conductor de electricidad. Nunca debe usarse en equipos bajo tensión. Para fuegos eléctricos, usa CO₂. Para cocinas con grasa, usa Tipo K. Para oficinas con riesgo A+B, usa PQS ABC universal.",
+    href: `${WA_URL}?text=Hola%2C%20no%20estoy%20seguro%20si%20AFFF%20es%20el%20agente%20correcto%20para%20mi%20instalaci%C3%B3n`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Púrpura K", href: "/extintores/purpura-k/", tag: "Alta potencia B", desc: "Bicarbonato de potasio — 2x más efectivo que PQS en clase B." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Clase A·B·C", desc: "Cuando también necesitas cubrir fuegos de materiales sólidos." },
+  { nombre: "CO₂", href: "/extintores/co2/", tag: "Eléctrico", desc: "Para las zonas eléctricas e instalaciones con maquinaria energizada." },
+];
+
+const faqsAFFF = [
+  {
+    pregunta: "¿Qué diferencia hay entre AFFF y polvo seco PQS para fuegos clase B?",
+    respuesta: "Ambos combaten clase B, pero con mecanismos completamente diferentes. El <strong>AFFF es espuma</strong> que forma una película acuosa flotante sobre el combustible — sella vapores, baja temperatura y previene re-ignición incluso después que el fuego se extingue. El <strong>polvo PQS</strong> cae sobre el combustible, sofoca el fuego momentáneamente pero no sella vapores. En gasolineras y plantas petroquímicas el AFFF es superior porque evita re-igniciones. Para talleres pequeños con derrames ocasionales, el PQS es más económico. Para aplicaciones críticas clase B, AFFF es el estándar de la industria."
+  },
+  {
+    pregunta: "¿Los nuevos AFFF son PFAS-free? ¿Cuál es el riesgo ambiental?",
+    respuesta: "Los extintores AFFF de generación antigua (pre-2015) contenían PFAS (compuestos perfluoroalquilos) que persisten en el ambiente indefinidamente — las agencias ambientales los regulan estrictamente. Los <strong>AFFF modernos que ofrecemos son PFAS-free</strong>: formulados con fluorosurfactantes de degradación más rápida. No contaminarán agua subterránea. Recomendamos reemplazar AFFF antiguos en gasolineras — el costo de remediación ambiental si hay derrame supera ampliamente el costo del extintor."
+  },
+  {
+    pregunta: "¿Por qué la espuma AFFF no funciona en fuegos clase A (papel, madera)?",
+    respuesta: "El AFFF está formulado específicamente para crear una película flotante sobre líquidos inflamables. En materiales sólidos clase A (papel, madera, cartón), la espuma no tiene dónde flotar — se filtra entre las fibras sin crear una barrera aislante. Además, el agua en la espuma enfría lentamente en comparación con agentes especializados. Para clase A debes usar <a href='/extintores/agua-a-presion/'>agua a presión</a> o <a href='/extintores/polvo-seco/'>polvo seco PQS</a>. El AFFF es clase B, no es multiniversal."
+  },
+  {
+    pregunta: "¿Puede usarse AFFF en un equipo eléctrico energizado?",
+    respuesta: "<strong>No, nunca.</strong> El AFFF es a base acuosa — el agua es conductora de electricidad. Si usas AFFF en un transformador, tablero o instalación energizada, el chorro conducirá la corriente y electrocutará al operario. Para fuegos clase C (eléctricos) usa <a href='/extintores/co2/'>CO₂</a>. Si tienes un espacio con riesgo A (combustibles sólidos) Y riesgo C (equipos eléctricos), usa <a href='/extintores/polvo-seco/'>polvo seco PQS ABC</a> que es no conductor."
+  },
+  {
+    pregunta: "¿Cuánto tiempo dura la espuma AFFF después de la descarga?",
+    respuesta: "La espuma AFFF forma una película flotante estable por <strong>5-15 minutos</strong> según concentración y tipo de combustible. En aceites pesados (diésel, fuel oil), la película dura más porque el combustible es más denso. En gasolina volatile, dura menos. La película sella vapores durante toda su vida útil — por eso aunque el fuego se extinga, mientras la espuma permanece, la re-ignición es casi imposible. Después que se disipa, si hay ventilación adecuada el riesgo baja significativamente."
+  },
+  {
+    pregunta: "¿Cómo se diferencia AFFF 3% de AFFF 6% en capacidad?",
+    respuesta: "La concentración <strong>3% es para capacidades pequeñas</strong> (6-9L) donde el volumen de líquido por proteger es menor — suficiente espuma para formar película. <strong>AFFF 6% es para capacidades mayores</strong> (25-50L rodante) donde necesitas más espuma para cubrir superficies grandes y asegurar vida útil de la película más larga. En instalaciones industriales, la 6% es siempre mejor porque la película es más robusta y resiste mejor a los vapores de hidrocarburos densos."
+  },
+  {
+    pregunta: "¿Pueden combinarse extintores AFFF con polvo seco PQS en la misma instalación?",
+    respuesta: "Sí, y es común en instalaciones mixtas. Por ejemplo, en una <strong>gasolinera con área de oficinas</strong>: usas AFFF en el dispensario y almacén de combustible (clase B puro), y usas <a href='/extintores/polvo-seco/'>polvo seco PQS ABC</a> en oficinas y tienda (riesgo general A+B+C). En un <strong>taller mecánico con área eléctrica</strong>: AFFF en el área de lubricantes, <a href='/extintores/co2/'>CO₂</a> en el cuarto de tableros. La clave es usar el agente correcto para cada zona — multiservicios como PQS ABC sirven para riesgo general, pero para aplicaciones específicas (B crítico o C eléctrico), especializados son mejores."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          AFFF · Espuma acuosa · Combustibles · NOM-154-SCFI
+        </div>
+        <h1>Extintores<br><span class="h1-accent">AFFF Espuma Formadora de Película</span></h1>
+        <p class="hero-sub">
+          Un derrame de gasolina en llamas en tu gasolinera no se apaga con polvo seco — la espuma AFFF sella los vapores y previene re-ignición. Desde $680 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20AFFF%20para%20gasolinera%20o%20taller`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar AFFF
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>El AFFF (Aqueous Film Forming Foam) funciona con un mecanismo único: forma una película acuosa flotante que se deposita sobre la superficie del combustible. Esta película sella los vapores inflamables previniendo la combinación con oxígeno, y simultáneamente enfría el combustible por debajo de su punto de ignición. Una vez formada, la película persiste aunque se retire el extintor — re-igniciones son casi imposibles incluso en fuegos grandes de clase B.</p>
+        <p>Por eso los AFFF son mandatorios en gasolineras, plantas petroquímicas y hangares de aviación. El polvo seco ABC es más barato pero no sella vapores — en hidrocarburos, especialmente en superficies grandes, los AFFF son insuperables. Nuestros AFFF modernos son PFAS-free: formulados sin compuestos tóxicos persistentes que contaminen agua subterránea.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor AFFF">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/afff-hero.jpg" alt="Extintor AFFF espuma para gasolinera y taller mecánico" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>AFFF — Película Flotante</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Combustibles líquidos</span>
+          </div>
+          <h2 class="cat-header__title">De 6L Portátil a 50L Rodante Industrial</h2>
+          <p class="cat-header__desc">Cuatro capacidades de espuma AFFF PFAS-free, desde gasolineras pequeñas hasta plantas petroquímicas. Todas con certificado de calidad, manguera flexible y presión de descarga controlada. Especificadas en NFPA 11 para fuegos clase B.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NFPA 11</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">PEMEX</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20o%20mantenimiento%20de%20extintores%20AFFF`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga y mantenimiento</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20AFFF`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20tengo%20una%20gasolinera%2Ftaller%20y%20quiero%20saber%20qu%C3%A9%20capacidad%20de%20AFFF%20necesito`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para elegir capacidad AFFF"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Cuántos AFFF necesito?</p>
+          <p class="prod-card-cta__sub">Dinos el tipo de instalación y m² — calculamos cantidad, capacidad y ubicación óptima</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/afff-gasolinera.jpg" alt="Extintor AFFF en gasolinera y dispensario de combustible" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">¿Cuándo usar AFFF?</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Combustibles clase B</span>
+          </div>
+          <h2 class="cat-header__title">El Especialista en Fuegos de Líquidos Inflamables</h2>
+          <p class="cat-header__desc">AFFF no es universal como el polvo seco — es un especialista. Si tu riesgo es principalmente fuegos clase B (gasolina, diésel, solventes, aceite), el AFFF es superior. Pero si tienes riesgo mixto A+B, el PQS ABC es más práctico.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20qu%C3%A9%20extintor%20AFFF%20es%20el%20indicado`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores AFFF"
+    subtitulo="Lo que necesitas saber sobre espuma para gasolineras, talleres y plantas petroquímicas"
+    pageId="extintores-afff"
+    bgGray={false}
+    faqs={faqsAFFF}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">La espuma que sella vapores y previene re-ignición</h2>
+        <p>En gasolineras, talleres y plantas petroquímicas, el polvo seco ABC no es suficiente — la espuma AFFF es el estándar de la industria para clase B. Cotiza hoy por capacidad o pídenos asesoría para calcular cuántos extintores necesitas según tu instalación y presupuesto.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20AFFF%20para%20proteger%20mi%20gasolinera%20o%20taller`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar extintores AFFF
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

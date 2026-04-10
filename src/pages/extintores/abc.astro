@@ -1,0 +1,413 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores ABC Multipropósito NOM-002-STPS | Proyecto Red";
+const description = "Extintores ABC multipropósito 40%, 75% y 90% de concentración. El extintor que exige NOM-002-STPS. Stock permanente en CDMX. Recarga y mantenimiento.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "ABC Multipropósito" },
+];
+
+const metricas = [
+  { valor: "A · B · C", label: "Clases de fuego que combate" },
+  { valor: "40%-90%", label: "Concentración por tipo" },
+  { valor: "El más vendido", label: "Requerido por NOM-002-STPS" },
+  { valor: "1kg – 50kg", label: "Rango de capacidades" },
+];
+
+const variantes = [
+  {
+    nombre: "ABC 1 kg Residencial 40%",
+    desc: "Extintor compacto para viviendas, apartamentos y oficinas pequeñas. Concentración 40% de fosfato monoamónico — suficiente para riesgos bajos. Cumple con requisitos de Protección Civil para casas habitación. Ideal como respaldo en cocinas y garajes residenciales.",
+    badge: "Residencial",
+    specs: "Fosfato monoamónico 40% · 1 kg · Presión 12 bar · Manómetro · Presilla de pared",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20ABC%201kg%20residencial`,
+  },
+  {
+    nombre: "ABC 4.5 kg Comercial 75%",
+    desc: "El más vendido en México. Concentración 75% para comercios, oficinas estándar, escuelas y restaurantes. Cumple exactamente con lo que Protección Civil espera en inspecciones. Cubierta protectora de plástico, manguera flexible y acceso rápido — todo lo necesario para riesgo comercial típico.",
+    badge: "Más vendido",
+    specs: "Fosfato monoamónico 75% · 4.5 kg · Presión 14 bar · Manómetro · Manguera 1.5 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20ABC%204.5kg%20comercial`,
+  },
+  {
+    nombre: "ABC 6 kg Comercial 75%",
+    desc: "Alternativa intermedia entre 4.5 kg y 9 kg para locales medianos, tiendas departamentales pequeñas y gasolineras de bajo volumen. Mayor autonomía de descarga que 4.5 kg — cubre áreas más grandes con un solo equipo. Presión estándar para alcance controlado.",
+    badge: null,
+    specs: "Fosfato monoamónico 75% · 6 kg · Presión 14 bar · Manómetro · Manguera 2 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20ABC%206kg%20comercial`,
+  },
+  {
+    nombre: "ABC 9 kg Industrial 90%",
+    desc: "Máxima concentración al 90% de fosfato monoamónico para almacenes, fábricas, plantas de producción y zonas de alto riesgo. Mayor efectividad en fuegos grandes clase A, B y C. Presión superior para alcance extendido — cubre hasta 5 metros.",
+    badge: "Industrial",
+    specs: "Fosfato monoamónico 90% · 9 kg · Presión 16 bar · Manómetro · Manguera 2 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20ABC%209kg%20industrial`,
+  },
+  {
+    nombre: "ABC 12 kg Rodante Industrial",
+    desc: "Máxima capacidad portátil con ruedas para áreas de alto riesgo: zonas de producción, bodegas grandes e industria metalmecánica. Concentración 90% — máxima efectividad. Movilidad completa con manguera de 3 metros — posiciona el extintor rápidamente donde se necesita.",
+    badge: "Premium",
+    specs: "Fosfato monoamónico 90% · 12 kg · Rodante · Presión 16 bar · Manguera 3 m · Alcance 5-6 m",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20ABC%2012kg%20rodante%20industrial`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Oficina, comercio o escuela",
+    norma: "NOM-002-STPS · Protección Civil CDMX",
+    necesitas: "ABC 4.5 kg al 75% — mínimo 1 por cada 500 m² según tipo de riesgo. Ubicación en ruta de evacuación, visible y accesible.",
+    porque: "La NOM-002-STPS exige específicamente extintores ABC para riesgo general de oficinas. Inspectores de Protección Civil verifican concentración (75% es estándar), vigencia de recarga anual, y distribución en planta. Sin el ABC adecuado, clausuran el local.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20ABC%20para%20cumplir%20con%20Protecci%C3%B3n%20Civil`,
+  },
+  {
+    tipo: "Vivienda / apartamento",
+    norma: "Protección Civil · Recomendación NFPA 10",
+    necesitas: "ABC 1-2 kg residencial 40%. Mínimo 1 en cocina, 1 en cochera. No es obligatorio pero sí recomendado — y reduce prima de seguro.",
+    porque: "Las viviendas enfrentan riesgos principalmente en cocina (clase A+B) y garaje (clase B). El ABC 1 kg residencial es proporcional al riesgo y es lo que las aseguradoras esperan ver — contar con él reduce la prima de seguros de hogar en 5-10%.",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20un%20extintor%20ABC%20para%20proteger%20mi%20casa`,
+  },
+  {
+    tipo: "Almacén, bodega o fábrica",
+    norma: "NOM-002-STPS · NFPA 10 · Auditoría STPS",
+    necesitas: "ABC 9 kg al 90% — distribución: 1 por cada 1,000 m² de piso. Rodante 12 kg en acceso principal. Distancia máxima: 22 metros entre equipos.",
+    porque: "En almacenes de alto volumen, Protección Civil y STPS exigen máxima concentración (90%) porque el riesgo de fuego clase A es grande — pilas de cajas, racks de almacenamiento, materias primas inflamables. El 90% garantiza mayor residuo que cubre mejor la superficie incendiada.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20ABC%20para%20un%20almac%C3%A9n%20o%20f%C3%A1brica`,
+  },
+  {
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
+    necesitas: "No usar ABC solo en: data centers (usar CO₂ o agente limpio), cocinas industriales (usar Tipo K), gasolineras (usar AFFF espuma). El ABC es versátil pero no especializado.",
+    porque: "Aunque el ABC combate clase C (equipos eléctricos), el polvo deja residuo corrosivo en circuitos finos — data centers lo odian. Aunque combate clase B, no sella vapores como AFFF — gasolineras necesitan espuma. Aunque combate clase A, la grasa en cocinas necesita Tipo K para sellar. ABC es 'algo para todo' pero no es lo mejor en nada.",
+    href: `${WA_URL}?text=Hola%2C%20no%20s%C3%A9%20si%20ABC%20es%20suficiente%20para%20mi%20instalaci%C3%B3n%20espec%C3%ADfica`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Técnico", desc: "Profundiza en el agente PQS: capacidades, specs y aplicaciones." },
+  { nombre: "Tipo K — Cocinas", href: "/extintores/tipo-k/", tag: "Restaurantes", desc: "Si tienes cocina comercial, el ABC no cubre la zona de freidoras." },
+  { nombre: "CO₂", href: "/extintores/co2/", tag: "Electrónica", desc: "Para áreas con servidores o equipos eléctricos de alto valor." },
+];
+
+const faqsABC = [
+  {
+    pregunta: "¿Cuál es la diferencia entre ABC 40%, 75% y 90%?",
+    respuesta: "La concentración es el porcentaje de <strong>fosfato monoamónico</strong> puro en la mezcla. A mayor concentración, mayor efectividad por kg de agente. <strong>40%</strong> es para viviendas con riesgo bajo — cumple norma pero con menos poder de sofocación. <strong>75%</strong> es comercial estándar — lo que Protección Civil espera ver en inspecciones de rutina. <strong>90%</strong> es industrial — máxima efectividad para riesgos altos. Si una oficina tiene inspección de STPS, revisan que sea 75% mínimo — si ves 40% te van a cuestionar."
+  },
+  {
+    pregunta: "¿Cuánto dura la carga de un extintor ABC?",
+    respuesta: "Un <strong>extintor ABC bien mantenido puede durar indefinidamente</strong> si no fue descargado. El fosfato monoamónico no se degrada con el tiempo. Lo que caduca es la <strong>vigencia de mantenimiento</strong>: la NOM-154-SCFI obliga recarga anual. En la inspección anual verificamos: (1) peso del polvo (si bajó más de 5%, recarga), (2) presión (debe estar en zona verde del manómetro), (3) integridad del cilindro y válvula. Un ABC puede tener 10 años pero si no tiene sello de recarga anual, Protección Civil lo marca como fuera de servicio."
+  },
+  {
+    pregunta: "¿Qué pasa si un extintor ABC se descarga accidentalmente?",
+    respuesta: "Si se descargó completamente, debe <strong>recargarse inmediatamente</strong> — es servicio de mantenimiento estándar. Nosotros lo hacemos el mismo día. El costo de recarga (vaciado, limpieza, rellenado, prueba de presión) es aproximadamente 30-50% del costo del extintor nuevo. Por eso si un extintor se descarga en una emergencia REAL, es recarga obligatoria — si se descargó por accidente de transporte o falla de válvula, llamanos y hacemos recarga de emergencia."
+  },
+  {
+    pregunta: "¿Por qué el extintor ABC deja tanto polvo después de usarlo?",
+    respuesta: "El fosfato monoamónico es un polvo fino — es su naturaleza. Cuando se descarga cubre la zona incendiada formando una barrera que aísla oxígeno. Después del incidente, ese polvo queda en superficies, piso y equipos. Esto es una ventaja en bodegas (donde hay poco equipo sensible) pero una desventaja en oficinas con computadoras. Por eso en data centers usan <a href='/extintores/agente-limpio/'>agente limpio</a> (cero residuo) o <a href='/extintores/co2/'>CO₂</a> en lugar de ABC."
+  },
+  {
+    pregunta: "¿Es verdad que Protección Civil rechaza extintores ABC recargados múltiples veces?",
+    respuesta: "<strong>No es verdad</strong> — pero hay un límite. Un extintor ABC puede recargarse 10, 15 incluso 20 veces en su vida útil, siempre que: (1) la prueba hidrostática se haga cada 5 años (verifica integridad del cilindro), (2) la válvula y manguera estén en condición óptima, (3) no haya corrosión interna. Protección Civil verifica que haya sellos de recarga anual válidos — si tiene los sellos, el extintor es legal aunque haya sido recargado múltiples veces. El mito surge porque algunos técnicos usan cilindros viejos con corrosión interna — eso SÍ se rechaza."
+  },
+  {
+    pregunta: "¿Puede un extintor ABC usarse en un incendio clase D (metales combustibles)?",
+    respuesta: "<strong>No.</strong> El ABC <strong>NO combate clase D</strong> (magnesio, sodio, potasio, titanio). Usar ABC en metales combustibles puede EMPEORAR el fuego — el polvo reacciona con algunos metales en combustión. Para clase D necesitas extintores especiales de polvos específicos (óxido de grafito, cloruro de sodio, etc.) que solo se usan en laboratorios y fábricas de metales. En una oficina o comercio normal, nunca encuentras clase D — no te preocupes."
+  },
+  {
+    pregunta: "¿Cuántos extintores ABC necesito según NOM-002-STPS?",
+    respuesta: "La <strong>NOM-002-STPS</strong> da esta fórmula: <strong>1 extintor por cada 500 m²</strong> para riesgo bajo, <strong>1 por cada 250 m²</strong> para riesgo medio, <strong>1 por cada 150 m²</strong> para riesgo alto. Pero hay más criterios: (1) distancia máxima entre equipos: 22 metros, (2) distribución: mínimo 2 equipos aunque sea pequeño el lugar, (3) accesibilidad: altura 1-1.5 metros del piso. Si tienes oficina de 200 m² necesitas mínimo 1 ABC de 4.5 kg; si es almacén de 1,000 m² necesitas 4-5 equipos ABC de 9 kg distribuidos. <a href={`${WA_URL}?text=Hola%2C%20qu%C3%A9%20cantidad%20de%20extintores%20ABC%20necesito%20seg%C3%BAn%20NOM-002`}>Contáctanos para cálculo personalizado.</a>"
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          ABC · Multipropósito · A, B, C · NOM-002-STPS
+        </div>
+        <h1>Extintores<br><span class="h1-accent">ABC Multipropósito</span></h1>
+        <p class="hero-sub">
+          Mañana viene Protección Civil y verifica que tus extintores cumplan con NOM-002-STPS. Si no tienes ABC vigentes con concentración correcta, clausuran el local. Desde $295 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20ABC%20para%20cumplir%20con%20NOM-002`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar ABC
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>El extintor ABC multipropósito es el caballo de batalla de la seguridad contra incendios en México. Su agente — fosfato monoamónico a diferentes concentraciones — es capaz de sofoca las tres clases de fuego más comunes: sólidos (clase A), líquidos (clase B) y equipos eléctricos (clase C). Un solo equipo reemplaza lo que antes requerían dos o tres extintores especializados.</p>
+        <p>Pero lo más importante: es lo que la ley exige. La NOM-002-STPS (Norma Oficial Mexicana de Condiciones de Seguridad para la Prevención de Incendios) mandata específicamente extintores ABC en las concentraciones correctas según el tipo de inmueble. Protección Civil verifica esto en cada inspección. Sin ABC vigentes con recarga anual, no solo faltas a la ley — abres tu negocio a sanciones, clausuras y problemas con aseguradoras.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor ABC">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/abc-hero.jpg" alt="Extintor ABC multipropósito para oficina, comercio e industria" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>ABC — Multipropósito</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Variantes disponibles</span>
+            <span class="cat-badge-pill">Cumple NOM-002-STPS</span>
+          </div>
+          <h2 class="cat-header__title">Desde Residencial 40% a Industrial 90%</h2>
+          <p class="cat-header__desc">Cinco capacidades de extintor ABC con concentraciones de fosfato monoamónico adaptadas a cada tipo de riesgo. Todos con certificado NOM-154-SCFI, manómetro de precisión y manguera flexible. Recarga anual obligatoria por ley.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NFPA 10</span>
+            <span class="norma-tag">Protección Civil</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20recarga%20anual%20de%20extintores%20ABC`} class="btn-outline" target="_blank" rel="noopener noreferrer">Recarga anual</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20ABC`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta capacidad
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20qu%C3%A9%20cantidad%20de%20extintores%20ABC%20necesito%20seg%C3%BAn%20NOM-002`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para cumplir NOM-002-STPS"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Cuántos ABC necesito?</p>
+          <p class="prod-card-cta__sub">Dinos m² y tipo de riesgo (oficina, comercio, industria) — calculamos cantidad exacta según NOM-002</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/abc-cumplimiento.jpg" alt="Cumplimiento de NOM-002-STPS con extintores ABC" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Cumplimiento normativo</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">NOM-002-STPS</span>
+          </div>
+          <h2 class="cat-header__title">El Extintor que la Norma Exige</h2>
+          <p class="cat-header__desc">El ABC no es el "mejor" en nada, pero es el "correcto" en casi todo. Por eso es el más vendido en México — la ley lo pide, las aseguradoras lo exigen, Protección Civil lo verifica. Conoce cuál es la concentración correcta para tu tipo de inmueble.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20qu%C3%A9%20concentraci%C3%B3n%20ABC%20necesito`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores ABC"
+    subtitulo="Cumplimiento normativo, mantenimiento y selección correcta para tu instalación"
+    pageId="extintores-abc"
+    bgGray={false}
+    faqs={faqsABC}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Cumple con NOM-002-STPS hoy</h2>
+        <p>No esperes a que Protección Civil llegue sin avisar. ABC vigentes con recarga anual son obligatorio por ley. Cotiza hoy por capacidad o déjanos calcular exactamente cuántos extintores necesitas según NOM-002, m² y tipo de riesgo.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20ABC%20para%20cumplir%20NOM-002-STPS`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar extintores ABC
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

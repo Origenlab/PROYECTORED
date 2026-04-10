@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Oficinas y Corporativos CDMX | Proyecto Red";
+const description = "Extintores ABC y CO₂ para servidores. NOM-002-STPS para oficinas, corporativos y coworkings en CDMX. Diagnóstico gratuito, certificado NOM incluido.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Oficinas y Corporativos" },
+];
+
+const metricas = [
+  { valor: "NOM-002", label: "STPS obligatoria" },
+  { valor: "1/300m²", label: "Extintor mínimo por planta" },
+  { valor: "CO₂", label: "Obligatorio para servidores" },
+  { valor: "24h", label: "Entrega CDMX" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Extintores Polvo Seco ABC", desc: "1 por cada 300 m². Para áreas de trabajo general, salas de juntas, recepción y archivos. El extintor más versátil para oficinas.", href: "/extintores/polvo-seco/", badge: "Obligatorio NOM" },
+  { nombre: "Extintores CO₂", desc: "Para cuartos de servidores, data center y centros de cómputo. No deja residuos, no daña equipos y no activa aspersores automáticos.", href: "/extintores/co2/", badge: "Servidores" },
+  { nombre: "Agente Limpio", desc: "Para oficinas con servidores de alto valor o archivos críticos donde el polvo seco causaría daños irreparables. Sin residuos, sin daños.", href: "/extintores/agente-limpio/", badge: "Datos críticos" },
+  { nombre: "Señalamientos NOM-003", desc: "Señales de evacuación, salidas de emergencia y punto de reunión fotoluminiscentes. Obligatorio en oficinas con 5 o más trabajadores.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
+  { nombre: "Detectores de Humo", desc: "Para oficinas en edificios de varios pisos o sin sistema centralizado. Detección temprana antes de que el incendio se propague.", href: "/sistemas/detectores/", badge: "Detección" },
+  { nombre: "Gabinetes para Extintor", desc: "Instalación discreta y profesional en pasillos de oficinas. Mantiene el extintor accesible sin afectar la estética del espacio.", href: "/gabinetes/para-extintor/", badge: "Presentación" },
+];
+
+const pasos = [
+  { titulo: "Revisión de la distribución", desc: "Mapeamos plantas y oficinas para determinar la ubicación óptima de extintores: ni muy lejos, ni obstruyendo pasillos de emergencia." },
+  { titulo: "Identificar el cuarto de servidores", desc: "Si hay servidores o data center, ese espacio requiere CO₂ o Agente Limpio — nunca polvo seco. Evaluamos el tamaño y el equipo presente." },
+  { titulo: "Instalación sin interrumpir operaciones", desc: "Instalamos fuera de horario pico o en fin de semana si el negocio lo requiere. Sin cortar servicios ni interrumpir al equipo de trabajo." },
+  { titulo: "Señalización de evacuación", desc: "Señalamientos en cada pasillo y acceso. En edificios compartidos coordinamos con la administración para señalización consistente en todos los pisos." },
+  { titulo: "Documentación fiscal", desc: "Factura CFDI y certificados NOM. Útil para el área de activos fijos, auditorías de seguridad y reportes de Recursos Humanos." },
+];
+
+const faqs = [
+  { pregunta: "¿Cuántos extintores necesita mi oficina?", respuesta: "La <strong>NOM-002-STPS</strong> establece mínimo <strong>1 extintor por planta</strong> y 1 por cada 300 m² de área de trabajo. Una oficina de 600 m² en un piso necesita mínimo 2 extintores. Si hay cuarto de servidores, ese espacio requiere un extintor adicional de CO₂." },
+  { pregunta: "¿Por qué el CO₂ para el cuarto de servidores y no el ABC?", respuesta: "El polvo del extintor ABC se introduce en los componentes electrónicos, provoca cortocircuitos y puede dañar irreparablemente servidores y equipos de almacenamiento. El <strong>CO₂</strong> actúa por desplazamiento de oxígeno sin dejar residuos, protegiendo el equipo. Para data centers de alto valor, el Agente Limpio es la mejor opción." },
+  { pregunta: "¿Las oficinas en edificios compartidos necesitan sus propios extintores?", respuesta: "Sí. Cada empresa inquilina es responsable del cumplimiento de la NOM-002 dentro de su espacio rentado. El extintor en el pasillo o en áreas comunes del edificio es responsabilidad del administrador, pero no exime al inquilino de contar con extintores propios dentro de su oficina." },
+  { pregunta: "¿Los coworkings y espacios flex están exentos?", respuesta: "No. Los coworkings son centros de trabajo y están sujetos a la misma NOM-002-STPS que cualquier oficina. El operador del coworking debe tener el equipo en cumplimiento para todos los espacios rentados. Si rentas un espacio dentro de uno, pregunta al operador por los certificados vigentes." },
+  { pregunta: "¿El extintor puede afectar la estética de nuestra oficina?", respuesta: "Proyecto Red ofrece gabinetes para extintor de presentación discreta para oficinas corporativas. También podemos recomendar la ubicación más conveniente para que el extintor sea accesible sin afectar la imagen del espacio. La normativa define accesibilidad y señalización, no la ubicación exacta." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/oficinas/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · Oficinas y Corporativos</span>
+          <h1>Extintores para Oficinas<br><span class="h1-accent">y Corporativos en CDMX</span></h1>
+          <p class="hero-sub">ABC para áreas generales, CO₂ para servidores. Cumple la NOM-002 sin interrumpir operaciones. Diagnóstico gratuito, instalación discreta.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20para%20mis%20oficinas%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Toda oficina con 5 o más trabajadores en México está sujeta a la <strong>NOM-002-STPS-2010</strong>. El requerimiento base es simple: 1 extintor por cada 300 m². Pero si hay servidores o datos críticos, el extintor correcto es <strong>CO₂ o Agente Limpio</strong> — el polvo seco puede destruir el equipo que intentas proteger.</p>
+          <p>Proyecto Red instala el equipo correcto para cada área de tu oficina sin interrumpir operaciones. Certificado NOM incluido para tus auditorías internas, área de RRHH y verificaciones de Protección Civil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué extintores necesita tu oficina o corporativo?</h2>
+          <p class="cat-header__desc">El tipo depende del área. ABC para trabajo general, CO₂ para servidores. Proyecto Red instala el equipo correcto sin interrumpir tu operación:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20extintores%20para%20oficinas`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>¿Cuántos extintores necesita tu oficina?</strong>
+          <p>Diagnóstico gratis sin interrumpir operaciones</p>
+          <span>Cotizar por WhatsApp →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Cómo regularizar tu oficina sin interrumpir el trabajo</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Instalación discreta, documentación completa.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Oficinas y Corporativos"
+    subtitulo="Extintores correctos para cada área de tu empresa"
+    faqs={faqs}
+    pageId="oficinas"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>Cumple la NOM sin interrumpir operaciones.</h2>
+        <p>Instalación discreta en horario que tú elijas. Certificado NOM incluido.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20extintores%20para%20mis%20oficinas%20en%20CDMX`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar cotización →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

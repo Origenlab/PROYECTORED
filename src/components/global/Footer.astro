@@ -1,0 +1,199 @@
+---
+// Footer.astro — Footer completo del sitio
+// Datos desde config/site.ts
+
+import { SITE, CONTACT, PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES } from '../../config/site'
+
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+
+    <!-- Columna marca -->
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label="Proyecto Red inicio">
+        <img src="/logo.svg" alt="Proyecto Red" width="140" height="35" loading="lazy" />
+      </a>
+      <p class="footer__desc">
+        Venta de equipos contra incendios en CDMX y Estado de México.
+        Equipo certificado NOM y NFPA con entrega directa.
+      </p>
+      <div class="footer__contact">
+        <a href={`https://wa.me/${CONTACT.whatsapp}`} class="footer__contact-item" target="_blank" rel="noopener noreferrer">
+          {CONTACT.phone}
+        </a>
+        <a href={`mailto:${CONTACT.email}`} class="footer__contact-item">
+          {CONTACT.email}
+        </a>
+        <span class="footer__contact-item footer__contact-item--text">
+          {CONTACT.address}
+        </span>
+        <span class="footer__contact-item footer__contact-item--text">
+          {CONTACT.schedule.footer}
+        </span>
+      </div>
+    </div>
+
+    <!-- Columna productos -->
+    <nav class="footer__col" aria-label="Productos">
+      <h3 class="footer__heading">Productos</h3>
+      <ul class="footer__list" role="list">
+        <li><a href="/productos/" class="footer__link">Catálogo completo</a></li>
+        {PRODUCT_CATEGORIES.map((cat) => (
+          <li><a href={cat.href} class="footer__link">{cat.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Columna servicios -->
+    <nav class="footer__col" aria-label="Servicios">
+      <h3 class="footer__heading">Servicios</h3>
+      <ul class="footer__list" role="list">
+        {SERVICES.map((svc) => (
+          <li><a href={`/servicios/#${svc.id}`} class="footer__link">{svc.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Columna empresa -->
+    <nav class="footer__col" aria-label="Empresa">
+      <h3 class="footer__heading">Cobertura</h3>
+      <ul class="footer__list" role="list">
+        {COVERAGE_STATES.map((state) => (
+          <li><a href={`/empresas/${state.slug}/`} class="footer__link">{state.label}</a></li>
+        ))}
+      </ul>
+
+      <h3 class="footer__heading footer__heading--mt">Empresa</h3>
+      <ul class="footer__list" role="list">
+        <li><a href="/nosotros/"  class="footer__link">Nosotros</a></li>
+        <li><a href="/servicios/" class="footer__link">Todos los servicios</a></li>
+        <li><a href="/productos/" class="footer__link">Productos</a></li>
+        <li><a href="/blog/"      class="footer__link">Blog</a></li>
+        <li><a href="/contacto/"  class="footer__link">Contacto</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p class="footer__copy">
+        © {currentYear} {SITE.name}. Todos los derechos reservados.
+      </p>
+      <p class="footer__seo-text">
+        Venta de equipos contra incendios en CDMX · NOM · NFPA · Protección Civil
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-dark);
+    color: rgba(255,255,255,0.7);
+    padding-top: var(--sp-16);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--sp-10);
+    padding-bottom: var(--sp-12);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Marca */
+  .footer__logo img {
+    filter: brightness(0) invert(1);
+    height: 32px;
+    width: auto;
+    margin-bottom: var(--sp-4);
+  }
+
+  .footer__desc {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--sp-5);
+    max-width: 30ch;
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .footer__contact-item {
+    font-size: var(--text-sm);
+    transition: color var(--transition);
+  }
+
+  a.footer__contact-item:hover { color: var(--color-white); }
+
+  .footer__contact-item--text { cursor: default; }
+
+  /* Columnas */
+  .footer__col { }
+
+  .footer__heading {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--sp-4);
+  }
+
+  .footer__heading--mt { margin-top: var(--sp-6); }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .footer__link {
+    font-size: var(--text-sm);
+    transition: color var(--transition);
+    line-height: var(--leading-snug);
+  }
+
+  .footer__link:hover { color: var(--color-white); }
+
+  /* Bottom */
+  .footer__bottom {
+    padding-block: var(--sp-5);
+    background: rgba(0,0,0,0.3);
+  }
+
+  .footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+
+  .footer__copy,
+  .footer__seo-text {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 1024px) {
+    .footer__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 640px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+    .footer__bottom-inner { flex-direction: column; text-align: center; }
+  }
+</style>

@@ -1,0 +1,315 @@
+---
+// /nosotros/ — Quiénes somos
+import CategoryLayout from '../layouts/CategoryLayout.astro'
+import SectionHeader from '../components/ui/SectionHeader.astro'
+import { CONTACT, waUrl } from '../config/site'
+
+const PAGE_WA = waUrl('Hola, quiero conocer más sobre Proyecto Red')
+
+const stats = [
+  { value: '10+', label: 'Años en el mercado'       },
+  { value: '50+', label: 'Productos en catálogo'    },
+  { value: 'NOM', label: 'Todo certificado'         },
+  { value: 'CDMX', label: 'Base de operaciones'     },
+]
+
+const faqItems = [
+  {
+    question: '¿Son fabricantes o distribuidores?',
+    answer: 'Somos distribuidores directos y proveedores integrales. Trabajamos directamente con fabricantes y marcas certificadas, lo que nos permite ofrecer mejores precios que un distribuidor intermedio y tiempos de entrega más cortos.',
+  },
+  {
+    question: '¿Atienden a cuerpos de bomberos y brigadas industriales?',
+    answer: 'Sí. Atendemos a brigadas de emergencia industrial, corporativos, cuerpos de bomberos voluntarios y municipales. Manejamos equipo profesional certificado NFPA: trajes estructurales, ERA, herramientas de rescate y más.',
+  },
+  {
+    question: '¿Qué normativas cubren sus productos?',
+    answer: 'Nuestros productos cumplen con NOM-154-SCFI (extintores), NOM-003-SEGOB (señalamientos de evacuación), NOM-026-STPS (colores de seguridad), NFPA 13/20/72 (sistemas CI) y NOM-017-STPS-2008 (EPP). Toda la documentación necesaria para Protección Civil y STPS.',
+  },
+  {
+    question: '¿Dan factura electrónica y crédito a empresas?',
+    answer: 'Sí, emitimos CFDI automático en todos los pedidos. Para empresas con proyectos recurrentes o volumen, ofrecemos crédito a 30 días previa apertura de cuenta.',
+  },
+]
+
+const valores = [
+  {
+    title: 'Proveedor directo',
+    desc: 'Sin intermediarios entre el fabricante y tu empresa. Eso se traduce en mejores precios, tiempos más cortos y control total sobre la cadena de suministro.',
+    icon: '🏭',
+  },
+  {
+    title: 'Solución integral',
+    desc: 'Un solo proveedor para venta, instalación, recarga, mantenimiento, capacitación y señalización. No tienes que coordinar cinco proveedores distintos.',
+    icon: '🔧',
+  },
+  {
+    title: 'Cumplimiento normativo',
+    desc: 'Todos nuestros productos y servicios están diseñados para que tu empresa cumpla con Protección Civil, STPS y las normas NOM y NFPA aplicables.',
+    icon: '📋',
+  },
+  {
+    title: 'Respuesta rápida',
+    desc: 'Cotización en menos de 24 horas, entrega el mismo día en CDMX y soporte técnico directo por WhatsApp. Sin tiempos de espera innecesarios.',
+    icon: '⚡',
+  },
+  {
+    title: 'Asesoría sin costo',
+    desc: 'Te decimos exactamente qué necesitas según tu tipo de instalación y riesgo, antes de que compres. El diagnóstico siempre es gratuito.',
+    icon: '🎓',
+  },
+  {
+    title: 'Documentación completa',
+    desc: 'Cada entrega incluye fichas técnicas, certificados NOM, garantía y etiqueta de inspección. Todo listo para tu expediente de Protección Civil.',
+    icon: '📄',
+  },
+]
+
+const normas = [
+  { code: 'NOM-154-SCFI', desc: 'Extintores — requisitos de fabricación y prestaciones' },
+  { code: 'NOM-002-STPS',  desc: 'Condiciones de seguridad contra incendio en centros de trabajo' },
+  { code: 'NOM-003-SEGOB', desc: 'Señales y avisos para Protección Civil' },
+  { code: 'NOM-026-STPS',  desc: 'Colores y señales de seguridad e higiene' },
+  { code: 'NOM-017-STPS',  desc: 'Equipo de protección personal — selección y uso' },
+  { code: 'NFPA 13',       desc: 'Instalación de sistemas de rociadores automáticos' },
+  { code: 'NFPA 20',       desc: 'Instalación de bombas estacionarias para protección contra incendios' },
+  { code: 'NFPA 72',       desc: 'Código Nacional de Alarmas de Incendio y Señalización' },
+  { code: 'NFPA 1971',     desc: 'Ropa de protección para operaciones de incendio estructural' },
+]
+---
+
+<CategoryLayout
+  title="Nosotros — Quiénes Somos | Proyecto Red"
+  description="Proyecto Red: proveedor directo de equipos contra incendios certificados NOM y NFPA en CDMX. Venta, instalación, mantenimiento, recarga y capacitación para empresas."
+  badge="Proveedor directo certificado NOM · NFPA"
+  heroTitle="Proyecto Red —"
+  heroAccent="Protección Integral"
+  heroSubtitle="Somos un proveedor directo de equipos contra incendios y seguridad industrial en la Ciudad de México. Sin intermediarios, con catálogo completo y acompañamiento técnico en cada proyecto."
+  heroDescRight={[
+    'Proyecto Red nació para resolver un problema real del mercado: que una empresa tenga que buscar el extintor con un proveedor, los señalamientos con otro, la instalación con otro y la capacitación con uno más. Nosotros lo centralizamos todo.',
+    'Operamos desde la Ciudad de México con almacén propio y equipo técnico especializado. Atendemos empresas, plantas industriales, restaurantes, edificios, brigadas y cuerpos de bomberos en CDMX, Estado de México y el interior de la república.',
+  ]}
+  cta1={{ text: 'Contactar por WhatsApp', href: PAGE_WA }}
+  cta2={{ text: 'Ver nuestro catálogo', href: '/productos/' }}
+  breadcrumb={[{ label: 'Inicio', href: '/' }, { label: 'Nosotros' }]}
+  {stats}
+  faqItems={faqItems}
+  ctaTitle="¿Quieres trabajar con nosotros?"
+  ctaBody="Escríbenos por WhatsApp y cuéntanos tu proyecto. Te respondemos con asesoría técnica gratuita, disponibilidad y precio real en menos de 24 horas."
+  ctaCTA1Text="Escribir por WhatsApp"
+  ctaCTA1Href={PAGE_WA}
+  ctaCTA2Text="Ver catálogo completo"
+  ctaCTA2Href="/productos/"
+>
+
+  <!-- =====================================================
+       CONTENIDO ÚNICO: Qué hacemos, valores, normas
+       ===================================================== -->
+
+  <!-- Qué hacemos -->
+  <section class="que-hacemos section">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Nuestra propuesta"
+        titleLine1="Más que productos:"
+        titleLine2="protección integral"
+        desc="No somos una tienda de accesorios de seguridad. Somos un integrador técnico-comercial que combina catálogo, cumplimiento normativo y servicio."
+      />
+
+      <div class="valores-grid">
+        {valores.map((v) => (
+          <div class="valor-card">
+            <span class="valor-card__icon">{v.icon}</span>
+            <h3 class="valor-card__title">{v.title}</h3>
+            <p class="valor-card__desc">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Normas que cubrimos -->
+  <section class="normas section section--light">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Normativa"
+        titleLine1="Normas que"
+        titleLine2="cubrimos"
+        desc="Nuestros productos y servicios están diseñados para cumplir con las normas mexicanas e internacionales aplicables a tu tipo de instalación."
+      />
+
+      <div class="normas-grid">
+        {normas.map((n) => (
+          <div class="norma-item">
+            <span class="norma-item__code">{n.code}</span>
+            <p class="norma-item__desc">{n.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Datos de contacto directo -->
+  <section class="contacto-directo section">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Encuéntranos"
+        titleLine1="Contacto y"
+        titleLine2="ubicación"
+      />
+      <div class="contacto-grid">
+        <div class="contacto-item">
+          <span class="contacto-item__icon">📍</span>
+          <div>
+            <p class="contacto-item__label">Oficina y bodega</p>
+            <p class="contacto-item__value">{CONTACT.address}</p>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-item__icon">📱</span>
+          <div>
+            <p class="contacto-item__label">WhatsApp (canal principal)</p>
+            <a href={PAGE_WA} class="contacto-item__value contacto-item__value--link" target="_blank" rel="noopener noreferrer">{CONTACT.phone}</a>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-item__icon">✉️</span>
+          <div>
+            <p class="contacto-item__label">Correo electrónico</p>
+            <a href={`mailto:${CONTACT.email}`} class="contacto-item__value contacto-item__value--link">{CONTACT.email}</a>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-item__icon">🕐</span>
+          <div>
+            <p class="contacto-item__label">Horario de atención</p>
+            <p class="contacto-item__value">{CONTACT.schedule.weekdays}</p>
+            <p class="contacto-item__value">{CONTACT.schedule.saturday}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</CategoryLayout>
+
+<style>
+  .section--light { background: var(--color-gray-50); }
+
+  /* Valores */
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--sp-5);
+  }
+
+  .valor-card {
+    padding: var(--sp-6);
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  }
+
+  .valor-card:hover {
+    border-color: var(--color-red);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .valor-card__icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: var(--sp-3);
+  }
+
+  .valor-card__title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--sp-2);
+  }
+
+  .valor-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Normas */
+  .normas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--sp-4);
+  }
+
+  .norma-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-5);
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--color-red);
+    border-radius: var(--radius-lg);
+  }
+
+  .norma-item__code {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-red);
+    font-family: monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .norma-item__desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Contacto */
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--sp-5);
+  }
+
+  .contacto-item {
+    display: flex;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  .contacto-item__icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contacto-item__label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--sp-1);
+  }
+
+  .contacto-item__value {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-800);
+    line-height: var(--leading-snug);
+  }
+
+  .contacto-item__value--link {
+    color: var(--color-red);
+    transition: color var(--transition);
+  }
+
+  .contacto-item__value--link:hover { color: var(--color-red-hover); }
+</style>

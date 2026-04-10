@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Laboratorios y Farmacias CDMX | Proyecto Red";
+const description = "Agente Limpio y CO₂ para laboratorios, farmacias y centros de datos. Sin residuos que contaminen muestras o medicamentos. COFEPRIS y NOM-002. Diagnóstico gratuito.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Laboratorios y Farmacias" },
+];
+
+const metricas = [
+  { valor: "NOM-002", label: "STPS + COFEPRIS" },
+  { valor: "0", label: "Residuos en muestras" },
+  { valor: "Limpio", label: "Agente sin contaminación" },
+  { valor: "24h", label: "Entrega CDMX" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Agente Limpio (FM-200)", desc: "El mejor para laboratorios y centros de datos. Extinción sin residuos, sin daño a equipos de análisis, sin contaminación de muestras o medicamentos almacenados.", href: "/extintores/agente-limpio/", badge: "Sin residuos" },
+  { nombre: "Extintores CO₂", desc: "Para áreas con equipos electrónicos de análisis: cromatógrafos, espectrómetros, equipos de PCR. Descarga limpia sin afectar instrumentos de precisión.", href: "/extintores/co2/", badge: "Equipo de análisis" },
+  { nombre: "Extintores Polvo Seco ABC", desc: "Para pasillos, áreas de almacén general y zonas sin equipo sensible. La base del plan contra incendios en áreas de menor sensibilidad.", href: "/extintores/polvo-seco/", badge: "Áreas generales" },
+  { nombre: "Señalamientos NOM-003", desc: "Rutas de evacuación fotoluminiscentes. En laboratorios con materiales peligrosos se requieren además señales de zona de riesgo químico.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
+  { nombre: "Señalamientos de Advertencia", desc: "Señales de materiales corrosivos, inflamables y tóxicos según la clasificación de reactivos del laboratorio. Obligatorio para laboratorios con COFEPRIS.", href: "/senalamientos/advertencia/", badge: "Reactivos" },
+  { nombre: "Detectores de Humo y Gas", desc: "Para cuartos de almacenamiento de reactivos volátiles. Detectores que activan alarma antes de que el gas alcance concentración de riesgo.", href: "/sistemas/detectores/", badge: "Gases volátiles" },
+];
+
+const pasos = [
+  { titulo: "Clasificación de áreas sensibles", desc: "Identificamos cuartos de equipos analíticos, almacén de reactivos, sala de cultivos y farmacia. Cada área define si se necesita Agente Limpio, CO₂ o ABC." },
+  { titulo: "Selección del agente por zona", desc: "Agente Limpio para equipos de alto valor y muestras. CO₂ para instrumentos electrónicos. ABC solo en áreas sin equipo sensible ni muestras en proceso." },
+  { titulo: "Instalación sin contaminación", desc: "Instalamos sin manipular reactivos ni interferir con muestras en proceso. Coordinamos con el responsable de laboratorio para minimizar cualquier riesgo de contaminación cruzada." },
+  { titulo: "Señalización especializada", desc: "Además de las señales de evacuación, instalamos señales de zona de riesgo químico, manejo de reactivos y equipos de protección personal requeridos." },
+  { titulo: "Documentación COFEPRIS y PC", desc: "Certificados NOM para el expediente del laboratorio. Útil para auditorías de COFEPRIS, acreditaciones de laboratorio y renovaciones de licencia sanitaria." },
+];
+
+const faqs = [
+  { pregunta: "¿Por qué el polvo seco ABC es problemático en laboratorios?", respuesta: "El polvo del extintor ABC <strong>contamina muestras en proceso, daña equipos de precisión</strong> como cromatógrafos y espectrómetros, e impregna superficies estériles. En laboratorios clínicos o de investigación, un incidente con polvo puede invalidar semanas de trabajo o arruinar muestras irreemplazables. El Agente Limpio o CO₂ actúan sin dejar residuos." },
+  { pregunta: "¿Qué es el Agente Limpio y cómo funciona?", respuesta: "El Agente Limpio (FM-200 o equivalentes) es un gas que extingue el incendio por una combinación de absorción de calor e inhibición química. <strong>Se evapora completamente sin residuos</strong>, no es conductor eléctrico y no daña equipos ni contamina muestras. Es la solución estándar para laboratorios, farmacias y centros de datos de alta sensibilidad." },
+  { pregunta: "¿COFEPRIS exige equipo específico contra incendios?", respuesta: "COFEPRIS no especifica el tipo de extintor en sus normas generales, pero exige que los establecimientos farmacéuticos cumplan con la <strong>NOM-002-STPS</strong> para el manejo de materiales inflamables y con la señalización correspondiente. En auditorías de BPM (Buenas Prácticas de Manufactura), el incumplimiento de medidas contra incendios puede resultar en observaciones que retrasen la certificación." },
+  { pregunta: "¿Las farmacias de retail (tienda) también necesitan Agente Limpio?", respuesta: "Depende. Una farmacia pequeña de venta al público probablemente solo necesita extintores ABC y CO₂ básicos. Un laboratorio farmacéutico, farmacia hospitalaria o centro de compuestos magistrales sí necesita Agente Limpio en el área de preparación y almacén de medicamentos. El diagnóstico gratuito evalúa el caso específico." },
+  { pregunta: "¿Cómo se instala el Agente Limpio sin contaminar el laboratorio?", respuesta: "Proyecto Red coordina la instalación con el responsable del laboratorio. El Agente Limpio en extintores portátiles se instala sin descargar — solo se posiciona y señaliza. Para sistemas fijos (protección de salas completas), la instalación se hace fuera de horario de trabajo para evitar cualquier interferencia con procesos activos." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/laboratorios/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · COFEPRIS · Sin residuos</span>
+          <h1>Extintores para Laboratorios<br><span class="h1-accent">Farmacias y Centros de Datos</span></h1>
+          <p class="hero-sub">Agente Limpio y CO₂ para ambientes sensibles. Extinción sin residuos que contaminen muestras, medicamentos ni equipos de análisis de precisión.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20sin%20residuos%20para%20laboratorio%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>El extintor de polvo seco ABC contamina muestras en proceso, daña cromatógrafos y espectrómetros, e impregna superficies estériles. En laboratorios y farmacias, <strong>el agente extintor correcto es el que no deja huella</strong>: Agente Limpio FM-200 o CO₂ según el área.</p>
+          <p>Proyecto Red suministra extintores sin residuos con certificación NOM para cumplir con la <strong>NOM-002-STPS</strong> y los requerimientos de COFEPRIS, sin contaminar tu laboratorio ni interferir con tus procesos activos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué extintores necesita tu laboratorio o farmacia?</h2>
+          <p class="cat-header__desc">El agente depende de lo que proteges. Agente Limpio para equipos y muestras, CO₂ para electrónica, ABC solo donde no hay sensibilidad. Proyecto Red determina el mix correcto:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20sin%20residuos%20para%20laboratorio%20o%20farmacia`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>¿Qué agente es correcto para tu laboratorio?</strong>
+          <p>Diagnóstico gratuito por área y tipo de proceso</p>
+          <span>Consultar ahora →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Instalación sin contaminar tu laboratorio</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Coordinado con el responsable del laboratorio para cero interferencia con procesos activos.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Laboratorios y Farmacias"
+    subtitulo="Extintores sin residuos para ambientes sensibles en CDMX"
+    faqs={faqs}
+    pageId="laboratorios"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>Protege tus muestras y equipos sin dejar residuos.</h2>
+        <p>Agente Limpio y CO₂ con certificado NOM. Instalación coordinada con tu laboratorio.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20para%20mi%20laboratorio%20o%20farmacia`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

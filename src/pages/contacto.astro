@@ -1,0 +1,341 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBar from '../components/CtaBar.astro';
+import FaqCotizacion from '../components/FaqCotizacion.astro';
+import '../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Contacto — Equipos Contra Incendios CDMX | Proyecto Red";
+const description = "Contáctanos para cotizaciones de equipos contra incendios certificados NOM en CDMX y Estado de México. WhatsApp, teléfono, email y formulario de contacto. Respuesta en menos de 24 horas.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Contacto" },
+];
+
+const metricas = [
+  { valor: "<24h", label: "Tiempo de respuesta" },
+  { valor: "Gratis", label: "Cotización sin costo" },
+  { valor: "NOM", label: "Equipo certificado" },
+  { valor: "CDMX", label: "Entrega el mismo día" },
+];
+
+const canales = [
+  {
+    titulo: "WhatsApp",
+    sub: "La forma más rápida de contactarnos",
+    dato: "+52 55 3723 8544",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20información%20sobre%20equipos%20contra%20incendios`,
+    external: true,
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`,
+    badge: "Respuesta inmediata",
+    accent: true,
+  },
+  {
+    titulo: "Teléfono",
+    sub: "Lun–Sáb 6:00–18:00",
+    dato: "55 3723 8544",
+    href: "tel:+525537238544",
+    external: false,
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
+    badge: null,
+    accent: false,
+  },
+  {
+    titulo: "Email",
+    sub: "Para documentación y cotizaciones formales",
+    dato: "info@proyectored.com.mx",
+    href: "mailto:info@proyectored.com.mx",
+    external: false,
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    badge: null,
+    accent: false,
+  },
+  {
+    titulo: "Ubicación",
+    sub: "Centro de operaciones y almacén",
+    dato: "Paseo de la Reforma 26, Col. Juárez, Cuauhtémoc, CDMX 06600",
+    href: "https://maps.google.com/?q=Paseo+de+la+Reforma+26+CDMX",
+    external: true,
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    badge: null,
+    accent: false,
+  },
+];
+
+const razones = [
+  { titulo: "Proveedor directo", desc: "Sin intermediarios — mejores precios y tiempos que un distribuidor." },
+  { titulo: "Equipo certificado NOM y NFPA", desc: "Documentación completa para tu expediente de Protección Civil." },
+  { titulo: "Entrega en CDMX el mismo día", desc: "Pedidos antes de las 2 PM se entregan ese mismo día." },
+  { titulo: "Asesoría técnica gratuita", desc: "Te decimos exactamente qué necesitas según tu instalación." },
+  { titulo: "Más de 50 productos en catálogo", desc: "Extintores, señalamientos, sistemas CI, EPP y más." },
+  { titulo: "Factura electrónica incluida", desc: "CFDI automático en cada pedido. Crédito a 30 días para empresas." },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Respuesta en menos de 24 horas
+        </div>
+        <h1>Contacto y<br><span class="h1-accent">Cotización</span></h1>
+        <p class="hero-sub">
+          Escríbenos por WhatsApp, llámanos o mándanos un correo. Te respondemos con precio real, disponibilidad y tiempo de entrega — sin compromiso y sin letra chica.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipos%20contra%20incendios`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp directo
+          </a>
+          <a href="#cotizacion-contacto" class="btn-secondary">Formulario de cotización</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>En Proyecto Red no usamos formularios genéricos que nadie contesta. Cuando nos escribes, te responde alguien que conoce el equipo, entiende la normativa y te puede dar un precio real con tiempo de entrega concreto.</p>
+        <p>Nuestro canal principal es WhatsApp — ahí es donde respondemos más rápido. Pero también puedes llamarnos, mandarnos un correo o llenar el formulario de cotización que aparece más abajo.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Datos de contacto">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CANALES DE CONTACTO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="blog-section-header">
+        <div class="blog-section-header__left">
+          <span class="section-label">Cómo contactarnos</span>
+          <h2>Elige el canal que prefieras — todos te llevan al mismo equipo</h2>
+          <p>WhatsApp es el más rápido, pero respondemos en todos. Cotización gratuita y sin compromiso.</p>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {canales.map(c => (
+          <a
+            href={c.href}
+            class={`prod-card contacto-canal ${c.accent ? 'contacto-canal--accent' : ''}`}
+            target={c.external ? '_blank' : undefined}
+            rel={c.external ? 'noopener noreferrer' : undefined}
+          >
+            <div class="contacto-canal__top">
+              <span class="contacto-canal__icon" set:html={c.icon} />
+              {c.badge && <span class="prod-badge">{c.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{c.titulo}</h3>
+              <p class="prod-card__sub">{c.sub}</p>
+              <p class="contacto-canal__dato">{c.dato}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                {c.titulo === 'WhatsApp' ? 'Escribir ahora' : c.titulo === 'Ubicación' ? 'Ver en mapa' : 'Contactar'}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       POR QUÉ CONTACTARNOS
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <div class="featured-placeholder"></div>
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Proveedor directo</span>
+            <h2>Por qué Proyecto Red</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Nuestra diferencia</span>
+            <span class="cat-badge-pill">CDMX y EDOMEX</span>
+          </div>
+          <h2 class="cat-header__title">Por Qué Elegir a Proyecto Red como tu Proveedor</h2>
+          <p class="cat-header__desc">No somos el único proveedor de equipos contra incendios en CDMX — pero sí somos el que te responde rápido, te da precio directo y te entrega con documentación lista para Protección Civil.</p>
+          <div class="cat-header__ctas">
+            <a href="/productos/" class="btn-outline">Ver catálogo completo</a>
+            <a href="/servicios/" class="cat-wa-link" style="color: var(--c-primary);">
+              Ver todos los servicios →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {razones.map(r => (
+          <div class="prod-card">
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{r.titulo}</h3>
+              <p class="prod-card__sub">{r.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       HORARIO Y DATOS
+  ══════════════════════════════════════ -->
+  <section class="proceso-section">
+    <div class="container">
+      <div class="proceso-header">
+        <span class="section-label">Horario de atención</span>
+        <h2>Estamos disponibles cuando nos necesitas</h2>
+        <p>WhatsApp y teléfono de lunes a sábado — cotizaciones las 24 horas por formulario</p>
+      </div>
+      <div class="proceso-grid">
+        <div class="paso-card">
+          <span class="paso-num">L–V</span>
+          <h3 class="paso-titulo">Lunes a Viernes</h3>
+          <p class="paso-desc">6:00 AM – 6:00 PM. Atención completa: cotizaciones, asesoría técnica, entregas y servicio.</p>
+        </div>
+        <div class="paso-card">
+          <span class="paso-num">Sáb</span>
+          <h3 class="paso-titulo">Sábados</h3>
+          <p class="paso-desc">6:00 AM – 6:00 PM. Entregas programadas, cotizaciones y atención por WhatsApp.</p>
+        </div>
+        <div class="paso-card">
+          <span class="paso-num">Dom</span>
+          <h3 class="paso-titulo">Domingos</h3>
+          <p class="paso-desc">Solo urgencias. Déjanos un mensaje por WhatsApp y lo atendemos al siguiente día hábil.</p>
+        </div>
+        <div class="paso-card">
+          <span class="paso-num">24h</span>
+          <h3 class="paso-titulo">Formulario web</h3>
+          <p class="paso-desc">Envía tu solicitud desde el formulario a cualquier hora. Te respondemos en el siguiente horario hábil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Formulario de Cotización y Preguntas Frecuentes"
+    subtitulo="Llena el formulario con lo que necesitas — te respondemos con precio, disponibilidad y tiempo de entrega"
+    pageId="contacto"
+    bgGray={false}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">¿Listo para cotizar?</h2>
+        <p>La forma más rápida es por WhatsApp. Mándanos un mensaje con lo que necesitas y te respondemos con precio directo ese mismo día.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipos%20contra%20incendios`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* Contacto-specific styles */
+  .contacto-canal__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .contacto-canal__icon {
+    width: 48px;
+    height: 48px;
+    background: var(--c-primary-light);
+    color: var(--c-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contacto-canal--accent .contacto-canal__icon {
+    background: #25D366;
+    color: #fff;
+  }
+  .contacto-canal__dato {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+  .contacto-canal--accent {
+    border-color: rgba(37, 211, 102, 0.3) !important;
+  }
+  .contacto-canal--accent:hover {
+    border-color: #25D366 !important;
+  }
+</style>

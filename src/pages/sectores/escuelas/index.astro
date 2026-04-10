@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Escuelas y Universidades CDMX | Proyecto Red";
+const description = "Extintores ABC, botiquines y señalamientos NOM para escuelas, universidades y guarderías en CDMX. Cumple SEP y Protección Civil. Diagnóstico gratuito.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Escuelas y Universidades" },
+];
+
+const metricas = [
+  { valor: "NOM-002", label: "STPS obligatoria" },
+  { valor: "SEP", label: "Verificación obligatoria" },
+  { valor: "Simulacros", label: "2 veces al año mínimo" },
+  { valor: "24h", label: "Entrega CDMX" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Extintores Polvo Seco ABC", desc: "1 por cada 300 m². En pasillos, aulas, biblioteca y laboratorios. La base de cualquier plan de evacuación escolar.", href: "/extintores/polvo-seco/", badge: "Obligatorio NOM" },
+  { nombre: "Botiquines de Primeros Auxilios", desc: "Obligatorios en todas las instalaciones educativas. La SEP exige botiquín completo en cada nivel y área de recreo o patio.", href: "/primeros-auxilios/", badge: "SEP obligatorio" },
+  { nombre: "Señalamientos NOM-003", desc: "Señalamientos fotoluminiscentes de evacuación en todos los pasillos y aulas. El punto de reunión exterior claramente marcado en el patio.", href: "/senalamientos/", badge: "NOM-003-SEGOB" },
+  { nombre: "Extintores CO₂", desc: "Para el laboratorio de cómputo, sala de servidores y talleres con equipo electrónico. Protege los equipos sin dejar residuos en el aula.", href: "/extintores/co2/", badge: "Lab. cómputo" },
+  { nombre: "Camillas de Emergencia", desc: "Para evacuación de alumnos con movilidad reducida o lesiones. La SEP y Protección Civil pueden solicitarlas en inspecciones.", href: "/primeros-auxilios/", badge: "Evacuación" },
+  { nombre: "Alarmas de Detección", desc: "Detectores de humo en cocina escolar, laboratorios y cuartos eléctricos. Alarma audible en toda la instalación para evacuación coordinada.", href: "/sistemas/alarmas/", badge: "Cocina y talleres" },
+];
+
+const pasos = [
+  { titulo: "Revisión por nivel y área", desc: "Mapeamos aulas, laboratorios, cocina, talleres, patio y accesos. Cada área tiene necesidades distintas: la cocina requiere más que el aula de kínder." },
+  { titulo: "Equipamiento por zona", desc: "Extintores ABC en pasillos y aulas, CO₂ en laboratorio de cómputo, botiquín en cada nivel y camilla en área de enfermería o patio." },
+  { titulo: "Señalización de evacuación escolar", desc: "Señalamientos visibles para alumnos de todas las edades. El punto de reunión marcado en el patio exterior con señal fija y fotoluminiscente." },
+  { titulo: "Documentación para SEP y PC", desc: "Factura fiscal y certificados NOM de todo el equipo. Formato listo para presentar en revisiones de la Secretaría de Educación Pública y Protección Civil." },
+  { titulo: "Apoyo para simulacros", desc: "Orientación sobre cómo estructurar los 2 simulacros anuales obligatorios. El equipo debe estar visible y los alumnos deben conocer las rutas de evacuación." },
+];
+
+const faqs = [
+  { pregunta: "¿Qué exige la SEP en materia de seguridad contra incendios?", respuesta: "La SEP exige que todas las escuelas tengan: extintores certificados NOM, botiquín de primeros auxilios completo, señalamientos de evacuación fotoluminiscentes, al menos un punto de reunión exterior marcado y la realización de <strong>mínimo 2 simulacros al año</strong>. Protección Civil puede suspender actividades si encuentra deficiencias graves." },
+  { pregunta: "¿Las guarderías y kínderes necesitan el mismo equipo que una preparatoria?", respuesta: "Necesitan el mismo tipo de equipo pero con consideraciones especiales para niños pequeños. Las rutas de evacuación deben considerar la movilidad y velocidad de los menores, los extintores deben estar en puntos donde los adultos puedan acceder rápidamente y el botiquín debe tener materiales pediátricos. Las guarderías tienen requisitos adicionales de la STPS y SEDESOL." },
+  { pregunta: "¿Los laboratorios de cómputo necesitan extintor especial?", respuesta: "Sí. En laboratorios de cómputo el extintor de polvo seco ABC puede destruir los equipos al descargar. El extintor <strong>CO₂</strong> es la opción correcta: actúa por desplazamiento de oxígeno sin dejar residuos, protegiendo computadoras y servidores. Para laboratorios de química o electrónica también puede requerirse Agente Limpio." },
+  { pregunta: "¿Cada cuánto se deben revisar los extintores en escuelas?", respuesta: "La <strong>NOM-002-STPS</strong> exige mantenimiento anual certificado para todos los extintores. En escuelas recomendamos revisar al inicio de cada ciclo escolar (agosto-septiembre). Proyecto Red puede programar una visita de mantenimiento anual coincidiendo con el inicio del ciclo." },
+  { pregunta: "¿Qué pasa si Protección Civil inspecciona la escuela y encuentra irregularidades?", respuesta: "Protección Civil puede emitir una orden de clausura preventiva de actividades escolares si detecta riesgos para los alumnos. La reapertura requiere demostrar que las deficiencias fueron corregidas. Proyecto Red puede regularizar en 24 horas con entrega, instalación y documentación completa." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/escuelas/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-002-STPS · SEP · Protección Civil</span>
+          <h1>Equipo de Emergencia<br><span class="h1-accent">para Escuelas y Universidades</span></h1>
+          <p class="hero-sub">Extintores, botiquines, camillas y señalamientos NOM para instituciones educativas. Cumple los requisitos de la SEP y Protección Civil. Diagnóstico gratuito.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipo%20de%20emergencia%20para%20escuela%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Las escuelas, universidades y guarderías en México están sujetas a la <strong>NOM-002-STPS</strong> y a los requerimientos de la <strong>Secretaría de Educación Pública</strong>. La SEP y Protección Civil realizan inspecciones que pueden resultar en suspensión de actividades si el plantel no cumple con el equipamiento mínimo de seguridad.</p>
+          <p>Proyecto Red suministra extintores certificados, botiquines completos, camillas y señalamientos para que tu plantel cumpla en todas las áreas. Diagnóstico gratuito, entrega en 24h, documentación lista para presentar en cualquier revisión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué equipo necesita tu institución educativa?</h2>
+          <p class="cat-header__desc">La SEP y Protección Civil exigen más que solo extintores. Proyecto Red suministra el equipamiento completo para planteles educativos en CDMX:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizaci%C3%B3n%20de%20equipo%20de%20emergencia%20para%20escuela`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>¿Tu escuela está lista para la inspección?</strong>
+          <p>Diagnóstico gratuito antes de la visita de PC</p>
+          <span>Cotizar ahora →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Cómo cumplir los requisitos de la SEP y Protección Civil</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Del diagnóstico al equipamiento completo, listo para cualquier inspección.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Escuelas y Universidades"
+    subtitulo="Equipamiento de emergencia para instituciones educativas en CDMX"
+    faqs={faqs}
+    pageId="escuelas"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>Protege a tus alumnos y cumple con la SEP.</h2>
+        <p>Diagnóstico gratuito. Equipo completo. Documentación lista para inspecciones.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20para%20mi%20escuela%20en%20CDMX`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

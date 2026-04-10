@@ -1,0 +1,79 @@
+---
+// Breadcrumb.astro — Navegación de migas de pan con schema.org
+
+interface BreadcrumbItem {
+  label: string
+  href?: string
+}
+
+interface Props {
+  items: BreadcrumbItem[]
+}
+
+const { items } = Astro.props
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb">
+  <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {items.map((item, index) => (
+      <li
+        class="breadcrumb__item"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        {item.href ? (
+          <a href={item.href} class="breadcrumb__link" itemprop="item">
+            <span itemprop="name">{item.label}</span>
+          </a>
+        ) : (
+          <span class="breadcrumb__current" aria-current="page" itemprop="name">
+            {item.label}
+          </span>
+        )}
+        <meta itemprop="position" content={String(index + 1)} />
+        {index < items.length - 1 && (
+          <svg class="breadcrumb__sep" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb { margin-bottom: var(--sp-5); }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-1);
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition);
+  }
+
+  .breadcrumb__link:hover { color: rgba(255,255,255,0.9); }
+
+  .breadcrumb__current {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .breadcrumb__sep {
+    color: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+</style>

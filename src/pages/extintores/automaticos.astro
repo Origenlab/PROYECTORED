@@ -1,0 +1,402 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Extintores Automáticos sin Intervención | Proyecto Red";
+const description = "Extintores automáticos de activación por calor sin intervención humana. Para bodegas, generadores y cocinas. NOM-154-SCFI. Venta e instalación CDMX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Automáticos" },
+];
+
+const metricas = [
+  { valor: "24/7", label: "Protección sin intervención humana" },
+  { valor: "57°C - 93°C", label: "Rango de temperaturas activación" },
+  { valor: "Instantáneo", label: "Tiempo de respuesta al calor" },
+  { valor: "Múltiples agentes", label: "ABC, CO₂, HFC disponibles" },
+];
+
+const variantes = [
+  {
+    nombre: "Automático Techo ABC 68°C",
+    desc: "Extintor automático de techo con ampolleta termosensible para activación a 68°C. Agente ABC multipropósito — idealpara áreas generales, bodegas y oficinas donde no hay personal nocturno. Se descarga automáticamente si la temperatura ambiente sube por incendio.",
+    badge: "Estándar",
+    specs: "ABC polvo · Ampolleta 68°C · Descarga automática · 1-2kg por unidad · Instalación de techo o pared",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20autom%C3%A1tico%20ABC%20de%20techo`,
+  },
+  {
+    nombre: "Automático Techo CO₂ 68°C",
+    desc: "Extintor automático con agente CO₂ para salas de servidores y cuartos eléctricos. Cero residuo — la descarga automática protege equipos sin contaminar. Activación a 68°C mediante ampolleta — ideal para áreas donde el polvo ABC es inaceptable.",
+    badge: "Para electrónica",
+    specs: "CO₂ gas · Ampolleta 68°C · Descarga automática · 2-3kg por unidad · Soporte de techo robusto",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20extintor%20autom%C3%A1tico%20CO2%20de%20techo`,
+  },
+  {
+    nombre: "Sistema Automático Generador/Motor",
+    desc: "Sistema especializado para motores de combustión interna, generadores y compresores — lugares de alto riesgo donde no hay vigilancia constante. Se instala en compartimiento del motor. Activación automática a cualquier indicio de fuego — protección 24/7 sin operario.",
+    badge: null,
+    specs: "ABC o CO₂ · Ampolleta 57°C-93°C configurable · Sistema cerrado bajo cubierta · Instalación en compartimiento",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20sistema%20autom%C3%A1tico%20para%20generador%20o%20motor`,
+  },
+  {
+    nombre: "Sistema Automático Cocina Industrial",
+    desc: "Sistema automático bajo campana de cocina semi-industrial o industria de alimentos. Detección de temperatura elevada en freidora o parrilla — descarga automática de agente especializado (Tipo K o espuma) sin evacuar personel. Protección durante horarios de cierre nocturno.",
+    badge: "Cocina",
+    specs: "Tipo K o Espuma · Tubo detector de calor · Descarga automática bajo campana · Control manual de respaldo",
+    href: `${WA_URL}?text=Hola%2C%20quiero%20cotizar%20sistema%20autom%C3%A1tico%20para%20cocina%20industrial`,
+  },
+];
+
+const guia = [
+  {
+    tipo: "Bodega sin vigilancia nocturna",
+    norma: "NOM-002-STPS · NFPA 10 · Protección Civil",
+    necesitas: "Automático ABC techo — 1 cada 100 m² aprox. Temperatura activación: 68°C. Revisar accesibilidad en revisión anual.",
+    porque: "Una bodega cerrada a las 8pm puede incendiarse a las 3am sin que nadie se entere — especialmente si hay acumulación de material seco. El automático techo se activa sin intervención humana. El fuego se controla antes de alcanzar proporciones inmanejables.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20autom%C3%A1ticos%20para%20bodega%20sin%20vigilancia`,
+  },
+  {
+    tipo: "Sala de servidores / cuarto eléctrico",
+    norma: "NFPA 75 · NFPA 2001 · NOM-002-STPS",
+    necesitas: "Automático CO₂ o agente limpio — 1 cada 50-100 m² según densidad de equipos. Temperatura: 68-75°C. Redundancia: mínimo 2 equipos.",
+    porque: "En un cuarto de servidores sin vigilancia nocturna, un cortocircuito puede iniciar fuego clase C silencientemente. El automático CO₂ responde sin intervención — cero residuo contaminante. Diferencia entre pérdida controlada y catastrophe total.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintores%20autom%C3%A1ticos%20para%20sala%20de%20servidores`,
+  },
+  {
+    tipo: "Generador, motor o compressor",
+    norma: "NOM-002-STPS · Normativa seguridad maquinaria",
+    necesitas: "Sistema automático bajo cubierta — instalado en compartimiento del motor. Activación a 57-68°C. Respaldo manual de emergencia.",
+    porque: "Generadores sin vigilancia de 24 horas (especialmente en instalaciones remotas) pueden incendiarse sin que nadie lo sepa. Protección automática detiene el fuego en fase conato — evita explosión de tanque de combustible.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20extintor%20autom%C3%A1tico%20para%20generador%20o%20compresor`,
+  },
+  {
+    tipo: "Cuándo NO usar este agente",
+    norma: "⚠ NFPA 10 · Alternativas disponibles",
+    necesitas: "Automáticos son complemento, no sustituto de: brigadas capacitadas, sistemas fijos sprinkler en áreas críticas, detección automática profesional con monitoreo. Para área con valor >$10M USD, considera sistema fijo profesional además de automáticos.",
+    porque: "Los automáticos responden al calor pero no a TODAS las emergencias. Si necesitas garantía 99.9% de protección (data center Tier-4, hospital quirófano), los automáticos deben ser parte de sistema integrado con sprinklers, detectores, y monitoring 24/7.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20dise%C3%B1ar%20sistema%20integral%20de%20protecci%C3%B3n%20contra%20incendios`,
+  },
+];
+
+// Relacionados para interlinking entre L3 de extintores
+const relacionados = [
+  { nombre: "Sistemas Contra Incendio", href: "/sistemas/", tag: "Protección total", desc: "Sistemas fijos de detección, alarma y supresión para edificios completos." },
+  { nombre: "Polvo Seco PQS", href: "/extintores/polvo-seco/", tag: "Manual", desc: "Complemento manual para zonas donde se requiera intervención humana." },
+  { nombre: "Agente Limpio HFC", href: "/extintores/agente-limpio/", tag: "Electrónica", desc: "Para data centers — automáticos con agente limpio sin residuo." },
+];
+
+const faqsAuto = [
+  {
+    pregunta: "¿Cómo se activa un extintor automático sin que nadie lo toque?",
+    respuesta: "El extintor automático contiene una <strong>ampolleta de vidrio termosensible</strong> (bulbo rojo pequeño visible) llena de líquido que se expande con el calor. Cuando la temperatura ambiente sube a ~68°C por presencia de fuego, el líquido dentro se expande, <strong>rompe el vidrio por presión interna</strong>, y esto accionamecanismo que libera el agente extintor. Todo ocurre automáticamente — ninguna intervención humana necesaria."
+  },
+  {
+    pregunta: "¿Qué diferencia hay entre ampolleta de 57°C, 68°C y 93°C?",
+    respuesta: "Es la <strong>temperatura de activación</strong>. <strong>57°C</strong> = sensible, activa rápido (para áreas con riesgo muy alto de fuego rápido). <strong>68°C</strong> = estándar, balance entre sensibilidad y falsas activaciones (mejor para la mayoría de usos). <strong>93°C</strong> = muy sensible solo al calor extremo (para áreas donde hay fuentes naturales de calor periódico sin ser incendio). Recomendación: usa 68°C para casi todo."
+  },
+  {
+    pregunta: "¿Qué pasa si se activa el automático accidentalmente?",
+    respuesta: "Si la ampolleta se rompió por accidente (no por fuego), el extintor se descargó completamente. Tienes dos opciones: (1) <strong>recarga del extintor</strong> — nosotros hacemos el mismo día, costo ~30% del precio del equipo; (2) <strong>reemplazo de ampolleta</strong> si el cilindro está íntegro — cambio de ampolleta es más barato. En cualquier caso, contacta rápido — no dejes el área desprotegida."
+  },
+  {
+    pregunta: "¿Los extintores automáticos requieren mantenimiento?",
+    respuesta: "<strong>Sí.</strong> El <strong>mantenimiento anual NOM-154-SCFI es obligatorio</strong> para todos los extintores, automáticos incluidos. Verificamos: (1) integridad del cilindro (corrosión), (2) presión (debe estar en zona verde), (3) condición de la ampolleta (no esté cristalizada o rota), (4) mecanismo de descarga funcione correctamente. Si algo falla, se repara o se reemplaza la ampolleta."
+  },
+  {
+    pregunta: "¿Un extintor automático puede usarse como manual si es necesario?",
+    respuesta: "<strong>Algunos sí, otros no.</strong> Los automáticos de techo están instalados de forma que no son fáciles de alcanzar — no diseñados para uso manual. PERO los sistemas automáticos para generador o cocina industrial tienen <strong>palanca manual de descarga de respaldo</strong> — si el mecanismo automático falla, alguien puede activarlo manualmente. Especifica si necesitas capacidad manual de respaldo durante cotización."
+  },
+  {
+    pregunta: "¿Cuál es la vida útil de un extintor automático?",
+    respuesta: "El <strong>cilindro puede durar 10-15 años</strong> si se mantiene correctamente. Lo que envejece es la <strong>ampolleta termosensible</strong> — típicamente <strong>cada 5 años se recomienda reemplazo de ampolleta</strong> aunque no se haya roto, porque el líquido dentro se degrada lentamente. <strong>Prueba hidrostática cada 5 años</strong> — verifica integridad del cilindro. Si se reemplaza ampolleta y pasa hidrostática, el extintor sigue siendo funcional."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Automáticos · 24/7 · Sin intervención · NOM-154-SCFI
+        </div>
+        <h1>Extintores<br><span class="h1-accent">Automáticos</span></h1>
+        <p class="hero-sub">
+          Tu bodega se incendia a las 3am sin que nadie se entere. Extintor automático responde sin intervención — apaga fuego mientras todos duermen. Desde $580 MXN. Entrega el mismo día en CDMX.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20autom%C3%A1ticos%20para%20protecci%C3%B3n%2024%2F7`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Automáticos
+          </a>
+          <a href="#variantes" class="btn-secondary">Ver tipos</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>Los extintores automáticos son protección inteligente que no duerme. Se activan cuando detectan calor de fuego — sin necesidad de que alguien esté presente. Ideales para bodegas sin vigilancia nocturna, salas de servidores, generadores, y cualquier espacio donde un incendio podría ocurrir fuera de horas laborales.</p>
+        <p>Funcionan mediante ampolleta termosensible que se rompe al alcanzar temperatura crítica (~68°C), liberando el agente extintor instantáneamente. No hay intervalo de respuesta humana — la extinción comienza antes de que nadie se entere que hay fuego. Es protección 24/7 automática, confiable y certificada.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section" aria-label="Datos técnicos del extintor automático">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white" id="variantes">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/automaticos-hero.jpg" alt="Extintor automático de techo para bodega y cuarto de servidores" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-154-SCFI</span>
+            <h2>Automáticos — 24/7</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Tipos disponibles</span>
+            <span class="cat-badge-pill">Sin intervención humana</span>
+          </div>
+          <h2 class="cat-header__title">Techo, Generador, Cocina — Múltiples Configuraciones</h2>
+          <p class="cat-header__desc">Extintores automáticos para toda necesidad: techo para bodegas, CO₂ para servidores, sistemas cerrados para generadores y motores, sistemas bajo campana para cocinas. Todos con ampolleta termosensible y descarga automática garantizada.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-154-SCFI</span>
+            <span class="norma-tag">NFPA 10</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">Protección 24/7</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20mantenimiento%20anual%20de%20extintores%20autom%C3%A1ticos`} class="btn-outline" target="_blank" rel="noopener noreferrer">Mantenimiento anual</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20extintores%20autom%C3%A1ticos`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {variantes.map(v => (
+          <a href={v.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={v.nombre}>
+            <div class="prod-card__top">
+              {v.badge && <span class="prod-badge">{v.badge}</span>}
+              {!v.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{v.nombre}</h3>
+              <p class="prod-card__sub">{v.desc}</p>
+              <p class="prod-card__specs">{v.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar este tipo
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20qu%C3%A9%20tipo%20de%20extintor%20autom%C3%A1tico%20necesito%20para%20mi%20instalaci%C3%B3n`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Asesoría para elegir tipo de automático"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Qué tipo necesito?</p>
+          <p class="prod-card-cta__sub">Dinos qué proteges (bodega, servidor, generador, cocina) — indicamos tipo y cantidad óptima</p>
+          <span class="prod-card-cta__btn">Consultar por WhatsApp →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/extintores/automaticos-bodega.jpg" alt="Extintor automático en bodega sin vigilancia nocturna" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Protección permanente</span>
+            <h2>Por Tipo de Instalación</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de selección</span>
+            <span class="cat-badge-pill">Áreas desatendidas</span>
+          </div>
+          <h2 class="cat-header__title">Donde Nadie Puede Responder — La Máquina Responde</h2>
+          <p class="cat-header__desc">Los automáticos se especializan en espacios donde nadie está presente 24/7. Bodegas, cuartos eléctricos, generadores, cocinas de madrugada. Donde un incendio sin testigos puede crecer incontrolablemente, el automático es la defensa inteligente.</p>
+          <div class="cat-header__ctas">
+            <a href="/extintores/" class="btn-outline">Ver todos los extintores</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20quiero%20dise%C3%B1ar%20protecci%C3%B3n%20autom%C3%A1tica%20para%20mis%20instalaciones`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar / consultar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="relacionados-section">
+    <div class="container">
+      <p class="section-label">Sección de extintores</p>
+      <h2 class="relacionados-title">Otros Extintores que Podrías Necesitar</h2>
+      <p class="relacionados-sub">Cada espacio tiene un agente extintor correcto. Si necesitas más de un tipo, los cotizamos en el mismo pedido.</p>
+      <div class="relacionados-grid">
+        {relacionados.map(r => (
+          <a href={r.href} class="rel-card">
+            <span class="rel-tag">{r.tag}</span>
+            <h3 class="rel-nombre">{r.nombre}</h3>
+            <p class="rel-desc">{r.desc}</p>
+            <span class="rel-link">Ver detalles →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Extintores Automáticos"
+    subtitulo="Protección 24/7 para espacios desatendidos"
+    pageId="extintores-automaticos"
+    bgGray={false}
+    faqs={faqsAuto}
+  />
+
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Protección que nunca duerme</h2>
+        <p>Extintores automáticos responden 24/7 sin intervención humana. Para bodegas sin vigilancia, salas de servidores, generadores y espacios de alto riesgo. Cotiza hoy para protección inteligente y permanente.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20autom%C3%A1ticos%20para%20protecci%C3%B3n%202427`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.670.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar automáticos
+        </a>
+        <a href="/extintores/" class="btn-cta-ghost">Ver todos los extintores</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .relacionados-section { padding: 3rem 0 2rem; background: #fff; }
+  .relacionados-title { font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0 0.5rem; }
+  .relacionados-sub { color: #555; font-size: 0.9rem; margin: 0 0 1.75rem; }
+  .relacionados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .rel-card { display: flex; flex-direction: column; gap: 0.35rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel-card:hover { border-color: var(--c-primary, #dc2626); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .rel-tag { display: inline-block; background: var(--c-primary-light, #fee2e2); color: var(--c-primary, #dc2626); font-size: 0.68rem; font-weight: 700; padding: 0.15em 0.55em; border-radius: 999px; width: fit-content; }
+  .rel-nombre { font-size: 0.92rem; font-weight: 700; margin: 0; }
+  .rel-desc { font-size: 0.8rem; color: #666; margin: 0; flex: 1; }
+  .rel-link { font-size: 0.78rem; color: var(--c-primary, #dc2626); font-weight: 600; margin-top: 0.25rem; }
+</style>

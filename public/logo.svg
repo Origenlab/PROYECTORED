@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" role="img" aria-label="Proyecto Red">
+  <!-- Icono: llama estilizada -->
+  <path d="M20 38 C14 30 10 22 16 14 C17 20 19 22 22 20 C18 26 20 32 24 36 C26 30 27 24 24 18 C30 22 33 30 30 38 C28 42 24 44 22 44 C18 44 14 42 12 38 Z" fill="#C41E3A"/>
+  <!-- Texto: Proyecto -->
+  <text x="42" y="22" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="13" fill="#111827" letter-spacing="-0.3">PROYECTO</text>
+  <!-- Texto: Red -->
+  <text x="42" y="38" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="18" fill="#C41E3A" letter-spacing="-0.5">Red</text>
+</svg>

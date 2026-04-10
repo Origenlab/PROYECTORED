@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo Contra Incendios para Gasolineras CDMX — AFFF Obligatorio | Proyecto Red";
+const description = "Extintores AFFF y polvo seco especial obligatorios para gasolineras y estaciones de servicio. NOM-005-STPS y CRE. Diagnóstico gratuito CDMX y Edomex.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores", href: "/sectores/" },
+  { label: "Gasolineras y Estaciones" },
+];
+
+const metricas = [
+  { valor: "NOM-005", label: "STPS + CRE obligatoria" },
+  { valor: "AFFF", label: "Espuma obligatoria" },
+  { valor: "CRE", label: "Regulación PEMEX" },
+  { valor: "24h", label: "Entrega CDMX" },
+];
+
+const equipoObligatorio = [
+  { nombre: "Extintores AFFF (Espuma)", desc: "Obligatorio en islas de despacho y zona de tanques. El AFFF sella la superficie del combustible e impide la reignición — el único agente efectivo para incendios de gasolina.", href: "/extintores/afff/", badge: "Obligatorio CRE" },
+  { nombre: "Extintores Polvo Seco ABC", desc: "Para áreas de oficina, tienda de conveniencia, baños y accesos. Complemento del AFFF para las zonas de menor riesgo de la estación.", href: "/extintores/polvo-seco/", badge: "Áreas generales" },
+  { nombre: "Extintores CO₂", desc: "Para el área de compresores, tableros eléctricos y zona de cómputo de la estación. Sin residuos que contaminen los equipos de medición.", href: "/extintores/co2/", badge: "Área eléctrica" },
+  { nombre: "Señalamientos de Zona Peligrosa", desc: "Señales de prohibición de fumar, no encender motores, prohibido el paso y zona de riesgo. Obligatorias en toda el área de despacho por NOM-003.", href: "/senalamientos/prohibicion/", badge: "NOM-003-SEGOB" },
+  { nombre: "Señalamientos de Advertencia", desc: "Señales de materiales inflamables, zona de carga de tanques y área restringida. Visibles desde accesos vehiculares y peatonales.", href: "/senalamientos/advertencia/", badge: "Zona de riesgo" },
+  { nombre: "Señalamientos de Evacuación", desc: "Rutas de evacuación y punto de reunión exterior. En gasolineras el punto de reunión debe ser a distancia segura de las islas de despacho.", href: "/senalamientos/salvacion/", badge: "Evacuación" },
+];
+
+const pasos = [
+  { titulo: "Análisis del layout de la estación", desc: "Mapeamos islas de despacho, tanques de almacenamiento, compresor, zona de lubricantes, tienda y oficina. Cada área tiene su propio nivel de riesgo." },
+  { titulo: "Determinación del equipo por zona", desc: "AFFF en las islas de despacho y zona de tanques. CO₂ en tableros y compresores. ABC en tienda y oficina. Señalamientos de zona peligrosa en toda el área de combustible." },
+  { titulo: "Instalación conforme a CRE", desc: "La Comisión Reguladora de Energía tiene requerimientos específicos de ubicación del equipo contra incendios. Instalamos conforme a sus lineamientos y los de NOM-005." },
+  { titulo: "Señalización completa de la estación", desc: "Prohibiciones en islas de despacho, advertencias de zona de riesgo, evacuación y punto de reunión. Visibles para conductores y peatones." },
+  { titulo: "Documentación para CRE y PC", desc: "Certificados NOM de todos los extintores. La CRE y Protección Civil pueden solicitarlos en inspecciones de renovación de permiso de operación." },
+];
+
+const faqs = [
+  { pregunta: "¿Por qué el AFFF y no el polvo seco para gasolineras?", respuesta: "El polvo seco ABC puede extinguir temporalmente las llamas en un incendio de gasolina, pero <strong>no impide la reignición</strong> del combustible. El <strong>AFFF (Aqueous Film Forming Foam)</strong> forma una película acuosa sobre la superficie del líquido inflamable que sella el vapor de combustible e impide que vuelva a encenderse. Es el único agente recomendado por la norma para incendios de combustibles líquidos." },
+  { pregunta: "¿Qué normas exige la CRE para gasolineras?", respuesta: "La <strong>NOM-005-STPS-1998</strong> regula el manejo de sustancias inflamables y explosivas. La <strong>NOM-EM-005-CRE-2015</strong> establece los requisitos específicos de seguridad para estaciones de servicio. Ambas exigen extintores de espuma en las zonas de despacho y señalización de zona peligrosa conforme a NOM-003. El incumplimiento puede resultar en la suspensión del permiso de operación." },
+  { pregunta: "¿Cuántos extintores AFFF necesita una gasolinera?", respuesta: "La norma exige al menos <strong>1 extintor AFFF por isla de despacho</strong>, ubicado a no más de 15 metros del punto de mayor riesgo y siempre accesible sin necesidad de cruzar la zona de peligro. Una estación con 4 islas de despacho necesita mínimo 4 extintores AFFF, más los ABC para áreas generales." },
+  { pregunta: "¿Cada cuánto se revisan los extintores en gasolineras?", respuesta: "La <strong>NOM-002-STPS</strong> exige mantenimiento anual. Para gasolineras, dado el ambiente corrosivo de vapores de hidrocarburos, Proyecto Red recomienda <strong>revisión semestral</strong> del AFFF. El agente espumante se degrada más rápido en ambientes con vapores de combustible." },
+  { pregunta: "¿Los extintores pueden afectar la operación de la gasolinera?", respuesta: "No. Proyecto Red instala los extintores en los puntos indicados por norma sin afectar el flujo de despacho. La instalación se coordina en el horario de menor afluencia y se completa sin interrumpir la operación. Los extintores AFFF se instalan en soporte mural o pedestal según la configuración de cada isla." },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/gasolineras/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> NOM-005-STPS · CRE · AFFF obligatorio</span>
+          <h1>Extintores para Gasolineras<br><span class="h1-accent">y Estaciones de Servicio</span></h1>
+          <p class="hero-sub">El AFFF (espuma) es el único agente que funciona contra incendios de gasolina. NOM-005-STPS y CRE exigen su presencia en cada isla de despacho.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20AFFF%20para%20mi%20gasolinera%20en%20CDMX`} class="btn-primary" target="_blank" rel="noopener noreferrer">Cotizar AFFF ahora</a>
+            <a href="/sectores/" class="btn-ghost">← Todos los sectores</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Las gasolineras y estaciones de servicio tienen el mayor riesgo de incendio por la presencia permanente de combustibles líquidos inflamables. La <strong>NOM-005-STPS</strong> y la regulación de la <strong>CRE</strong> exigen extintores AFFF en cada isla de despacho — el polvo seco ABC no es suficiente para evitar la reignición del combustible.</p>
+          <p>Proyecto Red suministra extintores AFFF certificados, señalamientos de zona peligrosa y el equipo complementario para que tu estación cumpla con Protección Civil y renueve sin problemas su permiso de operación con la CRE.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div class="cat-header" style="margin-bottom:2.5rem">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Qué equipo exige la CRE y la NOM para gasolineras?</h2>
+          <p class="cat-header__desc">El AFFF es la base. La señalización de zona peligrosa es obligatoria en toda el área de despacho. Proyecto Red suministra el paquete completo:</p>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:200px">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V6a2 2 0 012-2h7a2 2 0 012 2v16"/><path d="M14 11h4a2 2 0 012 2v4a1 1 0 001 1 1 1 0 001-1V9l-3-4"/><line x1="3" y1="22" x2="22" y2="22"/><rect x="5" y="9" width="8" height="5" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="productos-grid">
+        {equipoObligatorio.map(p => (
+          <a href={p.href} class="prod-card">
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3>{p.nombre}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span>Ver producto →</span>
+            </div>
+          </a>
+        ))}
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20extintores%20AFFF%20y%20equipo%20completo%20para%20gasolinera`} class="prod-card prod-card--cta" target="_blank" rel="noopener noreferrer">
+          <strong>Paquete completo para gasolineras</strong>
+          <p>AFFF + señalamientos + CO₂ + ABC</p>
+          <span>Cotizar paquete →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <h2 style="font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem">Cumplimiento CRE y NOM para tu estación de servicio</h2>
+      <p style="color:var(--c-muted);margin-bottom:0">Sin interrumpir la operación. Documentación para renovación de permiso.</p>
+      <div class="cumplimiento-steps">
+        {pasos.map((paso, i) => (
+          <div class="cumplimiento-step">
+            <span class="step-num">{i + 1}</span>
+            <div class="step-content">
+              <h4>{paso.titulo}</h4>
+              <p>{paso.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqCotizacion
+    titulo="Preguntas frecuentes — Gasolineras y Estaciones"
+    subtitulo="AFFF, NOM-005 y CRE para estaciones de servicio en CDMX"
+    faqs={faqs}
+    pageId="gasolineras"
+    bgGray={false}
+  />
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>¿Tu gasolinera tiene el AFFF correcto?</h2>
+        <p>Paquete completo CRE-NOM. Entrega sin interrumpir operaciones. Certificados incluidos.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20extintores%20AFFF%20y%20equipo%20completo%20para%20mi%20gasolinera`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Cotizar AFFF →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

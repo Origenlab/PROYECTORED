@@ -1,0 +1,65 @@
+---
+// StatsBar.astro
+// Barra roja de métricas — recibe 4 stats via props por página
+
+interface Stat {
+  value: string   // "8+" | "50+" | "NOM" | "24h"
+  label: string   // "Categorías de equipo"
+}
+
+interface Props {
+  stats: Stat[]
+}
+
+const { stats } = Astro.props
+---
+
+<section class="statsbar section--red" aria-label="Datos destacados">
+  <div class="container statsbar__grid">
+    {stats.map((stat) => (
+      <div class="statsbar__item">
+        <span class="statsbar__value">{stat.value}</span>
+        <span class="statsbar__label">{stat.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .statsbar {
+    padding-block: var(--sp-8);
+  }
+
+  .statsbar__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-6);
+    text-align: center;
+  }
+
+  .statsbar__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .statsbar__value {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-black);
+    line-height: 1;
+    color: var(--color-white);
+  }
+
+  .statsbar__label {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--weight-medium);
+  }
+
+  @media (max-width: 640px) {
+    .statsbar__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-8);
+    }
+  }
+</style>

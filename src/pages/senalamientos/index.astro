@@ -1,0 +1,419 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Señalamientos de Emergencia NOM en CDMX | Proyecto Red";
+const description = "Venta de señalamientos fotoluminiscentes certificados NOM-003-SEGOB y NOM-026-STPS: prohibición, obligación, advertencia y evacuación. Visibles en cortes de luz. Entrega directa en CDMX y Estado de México.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Productos", href: "/productos/" },
+  { label: "Señalamientos" },
+];
+
+// MEJORA vs anteriores: métricas con datos duros que generan urgencia
+const metricas = [
+  { valor: "4", label: "Categorías NOM" },
+  { valor: "8h+", label: "Visibilidad sin luz" },
+  { valor: "NOM-003", label: "SEGOB certificado" },
+  { valor: "$35", label: "Desde MXN/pieza" },
+];
+
+// ── Productos ────────────────────────────────────────
+const productos = [
+  {
+    nombre: "Señales de Prohibición",
+    desc: "Círculo rojo con diagonal: no fumar, no paso, no usar elevador en incendio, no obstruir. Indican acciones prohibidas en zonas de riesgo. Fotoluminiscentes o estándar según necesidad.",
+    href: "/senalamientos/prohibicion/",
+    badge: "NOM-003",
+    specs: "PVC · Acrílico · Vinilo UV · 20×20 cm · 30×30 cm · Fotoluminiscente opcional",
+  },
+  {
+    nombre: "Señales de Obligación",
+    desc: "Círculo azul con símbolo blanco: uso obligatorio de casco, lentes, guantes, protección auditiva. Para áreas donde el EPP es mandatorio según NOM-017-STPS.",
+    href: "/senalamientos/obligacion/",
+    badge: "NOM-026",
+    specs: "PVC rígido · Lámina galvanizada · 20×20 cm · 30×30 cm · Instalación tornillo o adhesivo",
+  },
+  {
+    nombre: "Señales de Advertencia",
+    desc: "Triángulo amarillo con contorno negro: riesgo eléctrico, material inflamable, piso resbaloso, caída de objetos. Alertan sobre peligros presentes en el área de trabajo.",
+    href: "/senalamientos/advertencia/",
+    badge: null,
+    specs: "PVC · Vinilo autoadherible · 20×20 cm · 30×30 cm · Interior y exterior",
+  },
+  {
+    nombre: "Señales de Evacuación y Salvamento",
+    desc: "Rectángulo verde con flechas y pictogramas: rutas de evacuación, salidas de emergencia, punto de reunión, ubicación de extintores y botiquines. Las más importantes en una inspección de Protección Civil.",
+    href: "/senalamientos/salvacion/",
+    badge: "Obligatorio",
+    specs: "Fotoluminiscente 8h+ · Acrílico · 20×30 cm · 30×45 cm · NOM-003-SEGOB",
+  },
+];
+
+// Guía contextual por tipo de inmueble — qué señalamientos necesita cada espacio
+const guia = [
+  {
+    tipo: "Oficina / negocio comercial",
+    norma: "NOM-003-SEGOB · NOM-026-STPS",
+    necesitas: "Rutas de evacuación, salidas de emergencia, punto de reunión, ubicación de extintores, no fumar",
+    porque: "Protección Civil exige señalización mínima para cualquier local con acceso al público. Sin ella no hay dictamen favorable.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20mi%20oficina%20o%20negocio`,
+  },
+  {
+    tipo: "Restaurante / cocina industrial",
+    norma: "NOM-003-SEGOB · NOM-002-STPS",
+    necesitas: "Evacuación + salida de emergencia + zona gas LP + no fumar + ruta cocina separada",
+    porque: "Las cocinas tienen riesgo clase B (grasa) y gas LP. STPS y Protección Civil verifican señalización específica por zona.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20un%20restaurante%20o%20cocina%20industrial`,
+  },
+  {
+    tipo: "Nave industrial / almacén",
+    norma: "NOM-026-STPS · NOM-017-STPS · NOM-003-SEGOB",
+    necesitas: "EPP obligatorio por área + advertencia eléctrica + advertencia de químicos + evacuación industrial",
+    porque: "STPS verifica obligación de EPP por zona de riesgo y señalización de advertencia. El incumplimiento genera multa directa.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20planta%20industrial%20o%20almac%C3%A9n`,
+  },
+  {
+    tipo: "Edificio de oficinas / corporativo",
+    norma: "NOM-003-SEGOB · NFPA 101",
+    necesitas: "Fotoluminiscentes en cada piso + rutas en escaleras + salida de emergencia + punto de reunión exterior",
+    porque: "Edificios de más de 2 pisos requieren fotoluminiscentes en cada nivel. En emergencia nocturna, son el único sistema de guía sin electricidad.",
+    href: `${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20para%20edificio%20de%20oficinas`,
+  },
+];
+
+// MEJORA vs anteriores: FAQ orientado a resolver objeciones de compra, no solo informar
+const faqsSenalamientos = [
+  {
+    pregunta: "¿Cuáles señalamientos son obligatorios para pasar la inspección de Protección Civil?",
+    respuesta: "Para obtener el <strong>dictamen favorable</strong> de Protección Civil necesitas como mínimo: <strong>rutas de evacuación</strong> en todos los pasillos, <strong>salida de emergencia</strong> en cada salida, <strong>punto de reunión</strong> exterior, <strong>ubicación de extintores</strong> en cada equipo y <strong>no fumar</strong> en áreas de riesgo. La cantidad exacta depende de los metros cuadrados y el tipo de inmueble. Te hacemos el cálculo sin costo."
+  },
+  {
+    pregunta: "¿Qué diferencia hay entre señalamientos fotoluminiscentes y los normales?",
+    respuesta: "Los <strong>fotoluminiscentes</strong> absorben luz ambiental y brillan en oscuridad total durante <strong>8 horas o más</strong>, sin necesidad de electricidad ni baterías. Son los que exige la <strong>NOM-003-SEGOB</strong> para rutas de evacuación y salidas de emergencia. Los señalamientos estándar (no fotoluminiscentes) solo son visibles con luz y se usan para zonas que no requieren visibilidad en emergencias nocturnas."
+  },
+  {
+    pregunta: "¿Cuántos señalamientos necesito para mi oficina o negocio?",
+    respuesta: "Depende de la superficie, la distribución y el número de salidas. Como referencia rápida: una <strong>oficina de 200 m²</strong> típicamente necesita entre 15 y 25 señales. Un <strong>restaurante</strong> entre 20 y 35. Una <strong>nave industrial de 1,000 m²</strong> puede requerir 50 o más. Te hacemos un <strong>levantamiento gratuito</strong> con plano de ubicación para que no compres de más ni de menos."
+  },
+  {
+    pregunta: "¿Cuánto cuesta un señalamiento certificado NOM?",
+    respuesta: "Los señalamientos estándar en PVC arrancan desde <strong>$35 MXN por pieza</strong>. Los fotoluminiscentes certificados NOM-003-SEGOB van desde <strong>$65 MXN</strong> dependiendo del tamaño y material. Para pedidos de <strong>20+ piezas</strong> manejamos precios por volumen. Escríbenos con la lista o pídenos el levantamiento gratuito y te cotizamos el paquete completo."
+  },
+  {
+    pregunta: "¿Ustedes instalan los señalamientos o solo los venden?",
+    respuesta: "Ambos. Vendemos señalamientos sueltos para quien ya sabe qué necesita. Y también ofrecemos el <strong>servicio completo</strong>: levantamiento del inmueble → plano de señalización → venta → instalación. La instalación incluye colocación a la altura correcta según NOM (entre 1.80 m y 2.20 m del piso) con los materiales de fijación adecuados para cada superficie."
+  },
+  {
+    pregunta: "¿Cada cuánto tiempo se deben reemplazar los señalamientos?",
+    respuesta: "No hay una periodicidad fija en la norma, pero <strong>Protección Civil puede rechazar</strong> señalamientos decolorados, rotos, despegados o ilegibles durante una inspección. En la práctica, señalamientos de buena calidad duran <strong>3 a 5 años</strong> en interiores. Los de exterior o zonas con sol directo pueden requerir reemplazo cada 2-3 años. Los nuestros usan tintas UV-resistentes que duplican la vida útil de los genéricos."
+  },
+  {
+    // MEJORA: la pregunta que cierra — resuelve la última objeción
+    pregunta: "¿Qué pasa si Protección Civil me rechaza los señalamientos?",
+    respuesta: "Si compraste con nosotros y cumpliste con el plano de señalización que te entregamos, <strong>eso no va a pasar</strong>. Nuestros señalamientos cumplen NOM-003-SEGOB y NOM-026-STPS, y el plano que incluimos con el servicio completo está diseñado para pasar la inspección. Si por alguna razón el inspector hace una observación sobre señalización, <strong>te resolvemos sin costo adicional</strong>. Es nuestro compromiso."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Fotoluminiscentes · Certificados NOM
+        </div>
+        <h1>Señalamientos de<br><span class="h1-accent">Emergencia</span> NOM</h1>
+        <!-- MEJORA: hero-sub con dato numérico concreto y beneficio directo -->
+        <p class="hero-sub">
+          Desde $35 MXN por pieza. Señalética fotoluminiscente que brilla 8+ horas sin electricidad — lo que Protección Civil exige para darte dictamen favorable. Cuatro categorías NOM en stock permanente.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20señalamientos%20para%20mi%20inmueble`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar señalamientos
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver las 4 categorías</a>
+        </div>
+      </div>
+
+      <!-- MEJORA: hero-right con datos numéricos verificables, no párrafos descriptivos -->
+      <div class="hero-right">
+        <p>Protección Civil no da dictamen favorable sin señalización completa. La NOM-003-SEGOB exige señalamientos fotoluminiscentes en todas las rutas de evacuación y salidas de emergencia — visibles durante 8 horas o más en oscuridad total, sin electricidad, sin baterías. Si tus señales son calcomanías impresas que no brillan en la oscuridad, no pasan la inspección.</p>
+        <p>En Proyecto Red vendemos señalamientos que sí cumplen: fabricados en acrílico, PVC y vinilo con tintas UV-resistentes que no se decoloran. Cuatro categorías en stock: prohibición, obligación, advertencia y evacuación. Te hacemos el levantamiento de tu inmueble gratis para que sepas exactamente cuántos necesitas y dónde van.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Señalamientos">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" id="catalogo">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/senalamientos/senalamientos-hero.jpg" alt="Señalamientos fotoluminiscentes de emergencia certificados NOM" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-003-SEGOB</span>
+            <h2>Señalamientos Certificados</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Catálogo de señalamientos</span>
+            <span class="cat-badge-pill">Fotoluminiscentes</span>
+          </div>
+          <!-- MEJORA: título que habla del beneficio, no de la categoría -->
+          <h2 class="cat-header__title">Pasa tu Inspección de Protección Civil a la Primera</h2>
+          <!-- MEJORA: desc con dato verificable y diferenciador concreto -->
+          <p class="cat-header__desc">Señalamientos que cumplen NOM desde $35 MXN. Fotoluminiscentes desde $65 MXN. Tintas UV-resistentes con vida útil de 3-5 años en interiores — el doble que las genéricas de papelería. Stock permanente para entrega inmediata.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-003-SEGOB</span>
+            <span class="norma-tag">NOM-026-STPS</span>
+            <span class="norma-tag">NOM-002-STPS</span>
+            <span class="norma-tag">NOM-017-STPS</span>
+          </div>
+          <div class="cat-header__ctas">
+            <!-- MEJORA: CTA principal = levantamiento gratuito (no solo "ver catálogo") -->
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20agendar%20un%20levantamiento%20de%20señalización%20en%20mi%20inmueble`} class="btn-outline" target="_blank" rel="noopener noreferrer">Levantamiento gratuito</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20señalamientos%20NOM`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de productos — MEJORA: cada card incluye ejemplos de señales -->
+      <div class="productos-grid">
+        {productos.map(p => (
+          <a href={p.href} class="prod-card" aria-label={p.nombre}>
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{p.nombre}</h3>
+              <p class="prod-card__sub">{p.desc}</p>
+              <p class="prod-card__specs">{p.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Ver señales y cotizar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- MEJORA: 2 cards CTA diferentes — una para quien sabe qué necesita, otra para quien no -->
+        <a
+          href={`${WA_URL}?text=Hola%2C%20ya%20tengo%20la%20lista%20de%20señalamientos%20que%20necesito`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Cotizar señalamientos"
+        >
+          <div class="prod-card-cta__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Ya sabes qué necesitas?</p>
+          <p class="prod-card-cta__sub">Mándanos la lista — precio por volumen desde 20 piezas</p>
+          <span class="prod-card-cta__btn">Cotizar por WhatsApp →</span>
+        </a>
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20un%20levantamiento%20de%20señalización%20para%20mi%20inmueble`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Solicitar levantamiento"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿No sabes cuántos necesitas?</p>
+          <p class="prod-card-cta__sub">Levantamiento gratuito con plano de ubicación incluido</p>
+          <span class="prod-card-cta__btn">Agendar levantamiento →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       GUÍA POR TIPO DE INMUEBLE
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/senalamientos/salida-emergencia.jpg" alt="Señalamiento fotoluminiscente de salida de emergencia visible en oscuridad" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Por tipo de inmueble</span>
+            <h2>¿Cuáles Necesitas Tú?</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Guía de señalización</span>
+            <span class="cat-badge-pill">NOM según espacio</span>
+          </div>
+          <h2 class="cat-header__title">Cada Espacio Tiene sus Señales Obligatorias</h2>
+          <p class="cat-header__desc">No todos los inmuebles necesitan las mismas señales. Una oficina, un restaurante, una nave industrial y un edificio corporativo tienen requerimientos normativos distintos. Identifica tu caso y cotiza sin adivinar.</p>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20un%20levantamiento%20de%20señalización%20para%20mi%20inmueble`} class="btn-outline" target="_blank" rel="noopener noreferrer">Levantamiento gratuito</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20señalamientos%20NOM%20para%20mi%20espacio`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de guía por tipo de inmueble -->
+      <div class="productos-grid">
+        {guia.map(g => (
+          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge prod-badge--norm">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
+              <p class="prod-card__specs">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar para este espacio
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre Señalamientos"
+    subtitulo="Resolvemos tus dudas antes de la inspección — no después"
+    pageId="senalamientos"
+    bgGray={false}
+    faqs={faqsSenalamientos}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+       MEJORA: CTA con 2 caminos claros según
+       el nivel de conocimiento del visitante
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">Tu inspección de Protección Civil no espera</h2>
+        <p>Si ya tienes la lista, mándala. Si no sabes cuántos necesitas, pedimos el levantamiento gratuito. En ambos casos te respondemos el mismo día con precio, cantidad y plano de ubicación.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20señalamientos%20NOM%20para%20mi%20inmueble`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar señalamientos
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+  .prod-badge--norm {
+    background: var(--c-primary-light, #fee2e2);
+    color: var(--c-primary);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.3;
+  }
+</style>

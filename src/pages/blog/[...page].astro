@@ -1,0 +1,602 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const allPosts = (await getCollection('blog')).sort(
+    (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return paginate(allPosts, { pageSize: 6 });
+}
+
+const { page } = Astro.props as { page: any };
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+// Para categorías necesitamos todos los posts
+const allPosts = (await getCollection('blog')).sort(
+  (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const categorias = [...new Set(allPosts.map((p: any) => p.data.category).filter(Boolean))];
+const totalPosts = allPosts.length;
+
+const isFirstPage = page.currentPage === 1;
+const featuredPost = isFirstPage ? page.data[0] : null;
+const gridPosts   = isFirstPage ? page.data.slice(1) : page.data;
+
+// ── SEO ─────────────────────────────────────────────
+const title = isFirstPage
+  ? "Blog — Guías de Seguridad Contra Incendios | Proyecto Red"
+  : `Blog — Página ${page.currentPage} | Proyecto Red`;
+
+const description = isFirstPage
+  ? "Artículos, guías técnicas y normativas sobre equipos contra incendios, prevención, Protección Civil, NOM y seguridad industrial en México."
+  : `Página ${page.currentPage} del blog de Proyecto Red — guías y artículos técnicos sobre seguridad contra incendios.`;
+
+// ── Breadcrumb ───────────────────────────────────────
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Blog", href: "/blog/" },
+  ...(isFirstPage ? [] : [{ label: `Página ${page.currentPage}` }]),
+];
+
+// ── Métricas ─────────────────────────────────────────
+const metricas = [
+  { valor: `${totalPosts}`, label: "Artículos publicados" },
+  { valor: "NOM",    label: "Normativa actualizada" },
+  { valor: "STPS",   label: "Regulación laboral" },
+  { valor: "Gratis", label: "Contenido abierto" },
+];
+---
+
+<Base title={title} description={description}>
+
+  <!-- ══════════════════════════════════════
+       HERO — solo en página 1
+  ══════════════════════════════════════ -->
+  {isFirstPage ? (
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            {breadcrumbs.map((b, i) => (
+              <>
+                {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+                {(b as any).href
+                  ? <a href={(b as any).href} class="breadcrumb__link">{b.label}</a>
+                  : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+                }
+              </>
+            ))}
+          </nav>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Guías técnicas y normativas
+          </div>
+          <h1>Blog de Seguridad<br>Contra <span class="h1-accent">Incendios</span></h1>
+          <p class="hero-sub">
+            Guías prácticas, normativas actualizadas y contenido técnico para que tu empresa cumpla con Protección Civil, STPS y NOM sin contratiempos.
+          </p>
+          <div class="hero-ctas">
+            <a href="#articulos" class="btn-primary">Ver todos los artículos</a>
+            <a href="/productos/" class="btn-secondary">Ver catálogo de productos</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>En Proyecto Red creamos contenido técnico real — no relleno SEO genérico. Cada artículo responde preguntas que nuestros clientes nos hacen todos los días: qué extintor necesitan, qué exige Protección Civil, cómo pasar una auditoría STPS o qué norma aplica a su giro.</p>
+          <p>Si después de leer tienes dudas, escríbenos por WhatsApp. Nuestro equipo técnico te asesora sin costo sobre el equipo y los servicios que tu empresa necesita.</p>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <!-- MINI HEADER para páginas 2+ -->
+    <section class="page-subhero">
+      <div class="container">
+        <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {(b as any).href
+                ? <a href={(b as any).href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="page-subhero__inner">
+          <div>
+            <h1 class="page-subhero__title">Blog de Seguridad Contra Incendios</h1>
+            <p class="page-subhero__sub">Página {page.currentPage} de {page.lastPage} — {totalPosts} artículos publicados</p>
+          </div>
+          <a href="/blog/" class="btn-secondary">← Volver al inicio del blog</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isFirstPage && <CtaBar />}
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS — solo página 1
+  ══════════════════════════════════════ -->
+  {isFirstPage && (
+    <section class="metricas-section" aria-label="Blog stats">
+      <div class="container">
+        <div class="metricas-grid">
+          {metricas.map(m => (
+            <div class="metrica-item">
+              <span class="metrica-valor">{m.valor}</span>
+              <span class="metrica-label">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════════════════════════════════
+       NAVEGACIÓN POR CATEGORÍA
+  ══════════════════════════════════════ -->
+  {categorias.length > 0 && (
+    <section class="nav-cats" aria-label="Filtrar por categoría">
+      <div class="container">
+        <div class="nav-cats__inner">
+          <span class="nav-cats__label">Categorías:</span>
+          <div class="nav-cats__links">
+            <a href="#articulos" class="nav-cat-pill nav-cat-pill--active">Todos</a>
+            {categorias.map((cat: any) => (
+              <a href="#articulos" class="nav-cat-pill">{cat}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════════════════════════════════
+       ARTÍCULO DESTACADO — solo página 1
+  ══════════════════════════════════════ -->
+  {featuredPost && (
+    <section class="cat-section cat-section--white">
+      <div class="container">
+        <div class="cat-header">
+          <div class="cat-header__img-wrap">
+            <div class="featured-placeholder"></div>
+            <div class="cat-header__img-overlay"></div>
+            <div class="cat-header__img-content">
+              {featuredPost.data.category && <span class="cat-norm-badge">{featuredPost.data.category}</span>}
+              <h2>{featuredPost.data.title}</h2>
+            </div>
+          </div>
+          <div class="cat-header__info">
+            <div class="cat-header__meta">
+              <span class="section-label">Artículo destacado</span>
+              {featuredPost.data.category && <span class="cat-badge-pill">{featuredPost.data.category}</span>}
+            </div>
+            <h2 class="cat-header__title">{featuredPost.data.title}</h2>
+            <p class="cat-header__desc">{featuredPost.data.description}</p>
+            <div class="cat-header__ctas">
+              <a href={`/blog/${featuredPost.id}/`} class="btn-outline">Leer artículo completo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════════════════════════════════
+       GRID DE ARTÍCULOS
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray" id="articulos" aria-labelledby="blog-list-title">
+    <div class="container">
+
+      <div class="blog-section-header">
+        <div class="blog-section-header__left">
+          <span class="section-label">
+            {isFirstPage ? "Todos los artículos" : `Página ${page.currentPage} de ${page.lastPage}`}
+          </span>
+          <h2 id="blog-list-title">Guías, Normativas y Seguridad Contra Incendios</h2>
+          <p>
+            {isFirstPage
+              ? `${totalPosts} artículos publicados — contenido técnico actualizado para empresas en México`
+              : `Mostrando artículos ${(page.currentPage - 1) * 6 + 1}–${Math.min(page.currentPage * 6, totalPosts)} de ${totalPosts}`
+            }
+          </p>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {gridPosts.map((post: any) => (
+          <a href={`/blog/${post.id}/`} class="prod-card blog-card-pro">
+            <div class="prod-card__top-blog">
+              {post.data.category && <span class="blog-cat-tag">{post.data.category}</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{post.data.title}</h3>
+              {post.data.description && <p class="prod-card__sub">{post.data.description}</p>}
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Leer artículo
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Card CTA — solo en la última página -->
+        {page.currentPage === page.lastPage && (
+          <a
+            href={`${WA_URL}?text=Hola%2C%20tengo%20una%20duda%20sobre%20equipos%20contra%20incendios`}
+            class="prod-card prod-card--cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="prod-card-cta__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <p class="prod-card-cta__text">¿Tu duda no aparece aquí?</p>
+            <p class="prod-card-cta__sub">Pregúntale a nuestro equipo técnico por WhatsApp — respuesta en menos de 24 horas</p>
+            <span class="prod-card-cta__btn">Escribir al WhatsApp →</span>
+          </a>
+        )}
+      </div>
+
+      <!-- ══════════════════════════════════════
+           PAGINACIÓN
+      ══════════════════════════════════════ -->
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label="Paginación del blog">
+          <!-- Botón anterior -->
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination__btn pagination__btn--prev" aria-label="Página anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              Anterior
+            </a>
+          ) : (
+            <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              Anterior
+            </span>
+          )}
+
+          <!-- Números de página -->
+          <div class="pagination__pages">
+            {Array.from({ length: page.lastPage }, (_, i) => i + 1).map(pageNum => {
+              const url = pageNum === 1 ? '/blog/' : `/blog/${pageNum}/`;
+              const isCurrent = pageNum === page.currentPage;
+              return isCurrent ? (
+                <span class="pagination__page pagination__page--active" aria-current="page">{pageNum}</span>
+              ) : (
+                <a href={url} class="pagination__page">{pageNum}</a>
+              );
+            })}
+          </div>
+
+          <!-- Botón siguiente -->
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination__btn pagination__btn--next" aria-label="Página siguiente">
+              Siguiente
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          ) : (
+            <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">
+              Siguiente
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          )}
+        </nav>
+      )}
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN — solo página 1
+  ══════════════════════════════════════ -->
+  {isFirstPage && (
+    <FaqCotizacion
+      titulo="¿Necesitas Asesoría Personalizada?"
+      subtitulo="Si leíste un artículo y quieres saber exactamente qué equipo necesita tu empresa — pregúntanos sin compromiso"
+      pageId="blog"
+      bgGray={false}
+    />
+  )}
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">¿Tu empresa necesita equipos contra incendios?</h2>
+        <p>De la lectura a la acción — escríbenos con lo que necesitas y te cotizamos en menos de 24 horas con equipo certificado NOM.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipos%20contra%20incendios`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style is:global>
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--stack-height, 124px) + 3.5rem);
+    padding-bottom: 4rem;
+    background: linear-gradient(160deg, #0E0E0E 0%, #1A1010 55%, #0E0E0E 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(196,30,36,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 1.25rem; font-size: 0.8125rem; }
+  .breadcrumb__link { color: rgba(255,255,255,0.45); }
+  .breadcrumb__link:hover { color: rgba(255,255,255,0.8); }
+  .breadcrumb__sep { color: rgba(255,255,255,0.25); }
+  .breadcrumb__current { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+  /* Breadcrumb variante clara (para mini-header) */
+  .breadcrumb--dark .breadcrumb__link { color: var(--c-muted); }
+  .breadcrumb--dark .breadcrumb__link:hover { color: var(--c-primary); }
+  .breadcrumb--dark .breadcrumb__sep { color: var(--c-border); }
+  .breadcrumb--dark .breadcrumb__current { color: var(--c-ink); }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.1);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .badge-dot { width: 6px; height: 6px; background: var(--c-primary); border-radius: 50%; flex-shrink: 0; }
+
+  h1 { font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.125rem; }
+  .h1-accent { color: var(--c-primary); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 2rem; max-width: 52ch; }
+  .hero-ctas { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+  .hero-right p { color: rgba(255,255,255,0.55); font-size: 0.9375rem; line-height: 1.75; margin-bottom: 1rem; }
+
+  /* ── MINI HEADER páginas 2+ ───────────────────────── */
+  .page-subhero {
+    padding-top: calc(var(--stack-height, 124px) + 2.5rem);
+    padding-bottom: 2.5rem;
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .page-subhero__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .page-subhero__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--c-ink);
+    margin-bottom: 0.375rem;
+  }
+  .page-subhero__sub {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+  }
+
+  /* ── MÉTRICAS ─────────────────────────────────────── */
+  .metricas-section { background: var(--c-primary); padding: 2rem 0; }
+  .metricas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .metrica-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; border-right: 1px solid rgba(255,255,255,0.2); }
+  .metrica-item:last-child { border-right: none; }
+  .metrica-valor { font-size: 1.875rem; font-weight: 800; color: #fff; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.25rem; }
+  .metrica-label { font-size: 0.8125rem; color: rgba(255,255,255,0.7); font-weight: 500; line-height: 1.3; }
+
+  /* ── NAVEGACIÓN ────────────────────────────────────── */
+  .nav-cats { background: var(--c-white); border-bottom: 1px solid var(--c-border); padding: 0.875rem 0; position: sticky; top: var(--stack-height, 124px); z-index: 50; }
+  .nav-cats__inner { display: flex; align-items: center; gap: 1rem; overflow-x: auto; scrollbar-width: none; }
+  .nav-cats__inner::-webkit-scrollbar { display: none; }
+  .nav-cats__label { font-size: 0.8125rem; font-weight: 600; color: var(--c-muted); white-space: nowrap; flex-shrink: 0; }
+  .nav-cats__links { display: flex; gap: 0.5rem; flex-wrap: nowrap; }
+  .nav-cat-pill { display: inline-block; padding: 0.375rem 0.875rem; border: 1px solid var(--c-border); border-radius: 100px; font-size: 0.8125rem; font-weight: 500; color: var(--c-ink-2); white-space: nowrap; text-decoration: none; }
+  .nav-cat-pill:hover { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primary-light); }
+  .nav-cat-pill--active { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primary-light); }
+
+  /* ── SECCIONES ─────────────────────────────────────── */
+  .cat-section { padding: 5rem 0; }
+  .cat-section--white { background: var(--c-white); }
+  .cat-section--gray { background: var(--c-surface); }
+
+  .cat-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--c-border); }
+  .cat-header__img-wrap { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/10; background: var(--c-ink); }
+  .cat-header__img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+  .cat-header__img-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 60%, transparent 100%); }
+  .cat-header__img-content { position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem; }
+  .cat-norm-badge { display: inline-block; background: var(--c-primary); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 3px; margin-bottom: 0.5rem; }
+  .cat-header__img-content h2 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.2; }
+
+  .cat-header__meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.625rem; }
+  .section-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-primary); }
+  .cat-badge-pill { display: inline-block; background: var(--c-primary-light); color: var(--c-primary); border: 1px solid rgba(var(--c-primary-rgb), 0.2); font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.625rem; border-radius: 100px; }
+  .cat-header__title { font-size: clamp(1.625rem, 2.5vw, 2.125rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--c-ink); margin-bottom: 0.875rem; }
+  .cat-header__desc { font-size: 0.9375rem; color: var(--c-muted); line-height: 1.7; margin-bottom: 1.25rem; max-width: 56ch; }
+  .cat-header__ctas { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+
+  /* Featured placeholder */
+  .featured-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #2d1515 100%); }
+
+  /* Blog section header */
+  .blog-section-header { margin-bottom: 3rem; }
+  .blog-section-header__left h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--c-ink); margin-bottom: 0.625rem; }
+  .blog-section-header__left p { color: var(--c-muted); font-size: 0.9375rem; line-height: 1.6; }
+
+  /* ── GRID DE ARTÍCULOS ─────────────────────────────── */
+  .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+  .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); transition: border-color 0.2s, box-shadow 0.2s; }
+  .cat-section--gray .prod-card { background: var(--c-white); }
+  .cat-section--white .prod-card { background: var(--c-surface); }
+  .prod-card:hover { border-color: rgba(var(--c-primary-rgb), 0.4); box-shadow: 0 4px 20px rgba(var(--c-primary-rgb), 0.08); background: var(--c-white); }
+
+  /* Blog card top */
+  .prod-card__top-blog { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 22px; }
+  .blog-cat-tag { display: inline-block; background: var(--c-primary); color: #fff; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.175rem 0.5rem; border-radius: 3px; }
+
+  .prod-card__body { flex: 1; }
+  .prod-card__name { font-size: 0.9375rem; font-weight: 700; color: var(--c-ink); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 0.375rem; }
+  .prod-card:hover .prod-card__name { color: var(--c-primary); }
+  .prod-card__sub { font-size: 0.8125rem; color: var(--c-muted); line-height: 1.5; }
+  .prod-card__footer { padding-top: 0.75rem; border-top: 1px solid var(--c-border); margin-top: auto; }
+  .prod-card__link { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.8125rem; font-weight: 600; color: var(--c-primary); }
+  .prod-card:hover .prod-card__link { color: var(--c-primary-dark); }
+
+  /* Card CTA */
+  .prod-card--cta { background: var(--c-ink) !important; border-color: transparent !important; color: #fff; align-items: center; justify-content: center; text-align: center; gap: 0.5rem; }
+  .prod-card--cta:hover { border-color: rgba(var(--c-primary-rgb), 0.5) !important; }
+  .prod-card-cta__icon { width: 52px; height: 52px; background: rgba(var(--c-primary-rgb), 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-primary); flex-shrink: 0; }
+  .prod-card-cta__text { font-size: 0.9375rem; font-weight: 700; color: #fff; line-height: 1.3; }
+  .prod-card-cta__sub { font-size: 0.8125rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .prod-card-cta__btn { font-size: 0.875rem; font-weight: 600; color: var(--c-primary); margin-top: 0.25rem; }
+  .prod-card--cta:hover .prod-card-cta__btn { color: #fff; }
+
+  /* ── PAGINACIÓN ────────────────────────────────────── */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--c-border);
+    flex-wrap: wrap;
+  }
+
+  .pagination__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    text-decoration: none;
+    background: var(--c-white);
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .pagination__btn:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+    background: var(--c-primary-light);
+  }
+  .pagination__btn--disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .pagination__pages {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .pagination__page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    text-decoration: none;
+    background: var(--c-white);
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .pagination__page:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+    background: var(--c-primary-light);
+  }
+  .pagination__page--active {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: #fff;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* ── CTA FINAL ─────────────────────────────────────── */
+  .cta-final { background: var(--c-primary); padding: 4rem 0; }
+  .cta-final-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+  .cta-text h2 { font-size: clamp(1.375rem, 2.5vw, 1.875rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.5rem; }
+  .cta-text p { color: rgba(255,255,255,0.75); font-size: 0.9375rem; max-width: 55ch; line-height: 1.6; }
+  .cta-btns { display: flex; gap: 0.875rem; flex-shrink: 0; flex-wrap: wrap; }
+  .btn-cta-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 0.8125rem 1.75rem; border-radius: 4px; font-weight: 600; font-size: 0.9375rem; font-family: var(--font-sans); white-space: nowrap; text-decoration: none; }
+  .btn-cta-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.12); color: #fff; }
+  .cta-final .btn-primary { background: #fff; color: var(--c-primary); }
+  .cta-final .btn-primary:hover { background: rgba(255,255,255,0.9); color: var(--c-primary-dark); }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .cat-header { grid-template-columns: 1fr; gap: 2rem; }
+    .cat-header__img-wrap { aspect-ratio: 16/9; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+    .metrica-item:nth-child(2) { border-right: none; }
+    .metrica-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.2); }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cta-final-inner { flex-direction: column; text-align: center; }
+    .cta-btns { justify-content: center; }
+    .hero-ctas { flex-direction: column; }
+    .page-subhero__inner { flex-direction: column; align-items: flex-start; }
+    .pagination { gap: 0.375rem; }
+    .pagination__btn { padding: 0.5rem 0.875rem; font-size: 0.8125rem; }
+  }
+  @media (max-width: 480px) {
+    .productos-grid { grid-template-columns: 1fr; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

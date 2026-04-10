@@ -1,0 +1,514 @@
+---
+// Header.astro
+// Navegación principal con mega menú
+// Datos de categorías y servicios desde config/site.ts
+
+import { PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES, waUrl, WA_MESSAGES } from '../../config/site'
+
+const currentPath = Astro.url.pathname
+
+// Subcategorías destacadas para el mega menú (L4 publicados)
+const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
+  extintores: [
+    { label: 'Polvo Seco ABC',      slug: 'polvo-seco'      },
+    { label: 'CO₂',                 slug: 'co2'             },
+    { label: 'AFFF / Espuma',       slug: 'afff'            },
+    { label: 'Tipo K (Cocinas)',    slug: 'tipo-k'          },
+    { label: 'Agente Limpio',       slug: 'agente-limpio'   },
+  ],
+  'equipo-bomberos': [
+    { label: 'Trajes Estructurales',     slug: 'trajes-estructurales'  },
+    { label: 'ERA / Respiración',        slug: 'era'                   },
+    { label: 'Rescate Hidráulico',       slug: 'rescate-hidraulico'    },
+    { label: 'Arneses de Rescate',       slug: 'arneses-rescate-altura'},
+  ],
+  senalamientos: [
+    { label: 'Evacuación',         slug: 'evacuacion'       },
+    { label: 'Prohibición',        slug: 'prohibicion'      },
+    { label: 'Advertencia',        slug: 'advertencia'      },
+    { label: 'Fotoluminiscentes',  slug: 'fotoluminiscentes'},
+  ],
+  gabinetes: [
+    { label: 'Gabinete para Extintor', slug: 'gabinete-extintor' },
+    { label: 'Porta Extintor',         slug: 'porta-extintor'    },
+    { label: 'Gabinete para Bombero',  slug: 'gabinete-bombero'  },
+    { label: 'Gabinete para Hidrante', slug: 'gabinete-hidrante' },
+  ],
+  mangueras: [
+    { label: 'Manguera Hidrante',     slug: 'manguera-hidrante'    },
+    { label: 'Chiflones y Pitones',   slug: 'chiflones'            },
+    { label: 'Toma Siamesa',          slug: 'toma-siamesa'         },
+    { label: 'Monitor CI Elkhart',    slug: 'monitor-incendio'     },
+  ],
+  sistemas: [
+    { label: 'Detección y Alarma',    slug: 'deteccion-alarma'  },
+    { label: 'Rociadores Automáticos', slug: 'rociadores'        },
+    { label: 'Red Hidráulica CI',     slug: 'red-hidraulica'    },
+    { label: 'Agente Limpio',         slug: 'supresion-agente'  },
+  ],
+  'primeros-auxilios': [
+    { label: 'Botiquín STPS',          slug: 'botiquin-stps'      },
+    { label: 'Desfibrilador DEA',      slug: 'desfibrilador'      },
+    { label: 'Camilla de Emergencia',  slug: 'camilla-emergencia' },
+  ],
+  'equipo-seguridad': [
+    { label: 'Cascos de Seguridad',    slug: 'proteccion-craneal'      },
+    { label: 'Trabajo en Alturas',     slug: 'trabajo-alturas'         },
+    { label: 'Protección Respiratoria', slug: 'proteccion-respiratoria' },
+  ],
+}
+---
+
+<header class="header" role="banner">
+  <div class="container header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="header__logo" aria-label="Proyecto Red — Inicio">
+      <img
+        src="/logo.svg"
+        alt="Proyecto Red — Equipos contra incendios"
+        width="160"
+        height="40"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Navegación desktop -->
+    <nav class="header__nav" aria-label="Navegación principal">
+      <ul class="nav__list" role="list">
+
+        <!-- Productos -->
+        <li class="nav__item nav__item--mega">
+          <a
+            href="/productos/"
+            class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/productos') || currentPath.startsWith('/extintores') || currentPath.startsWith('/equipo-bomberos') || currentPath.startsWith('/senalamientos') || currentPath.startsWith('/gabinetes') || currentPath.startsWith('/mangueras') || currentPath.startsWith('/sistemas') }]}
+          >
+            Productos
+            <svg class="nav__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </a>
+          <div class="mega-menu" role="region" aria-label="Categorías de productos">
+            <div class="mega-menu__inner container">
+              <a href="/productos/" class="mega-menu__all">Ver catálogo completo →</a>
+              <ul class="mega-menu__grid" role="list">
+                {PRODUCT_CATEGORIES.map((cat) => {
+                  const subs = MEGA_SUBCATEGORIES[cat.slug] ?? []
+                  return (
+                    <li class="mega-col">
+                      <a href={cat.href} class="mega-menu__link">
+                        {cat.label}
+                        {cat.badge && <span class="mega-menu__badge">{cat.badge}</span>}
+                      </a>
+                      {subs.length > 0 && (
+                        <ul class="mega-sub" role="list">
+                          {subs.map((sub) => (
+                            <li>
+                              <a href={`/${cat.slug}/${sub.slug}/`} class="mega-sub__link">
+                                {sub.label}
+                              </a>
+                            </li>
+                          ))}
+                          <li>
+                            <a href={cat.href} class="mega-sub__link mega-sub__link--all">
+                              Ver todos →
+                            </a>
+                          </li>
+                        </ul>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- Servicios -->
+        <li class="nav__item nav__item--dropdown">
+          <a
+            href="/servicios/"
+            class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/servicios') }]}
+          >
+            Servicios
+            <svg class="nav__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </a>
+          <ul class="dropdown" role="list" aria-label="Servicios">
+            <li class="dropdown__header">
+              <a href="/servicios/">Ver todos los servicios →</a>
+            </li>
+            {SERVICES.map((svc) => (
+              <li>
+                <a href={`/servicios/#${svc.id}`} class="dropdown__link">{svc.label}</a>
+              </li>
+            ))}
+          </ul>
+        </li>
+
+        <!-- Cobertura -->
+        <li class="nav__item nav__item--dropdown">
+          <a
+            href="/empresas/"
+            class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/empresas') }]}
+          >
+            Cobertura
+            <svg class="nav__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </a>
+          <ul class="dropdown" role="list" aria-label="Cobertura">
+            <li class="dropdown__header">
+              <a href="/empresas/">Ver toda la cobertura →</a>
+            </li>
+            {COVERAGE_STATES.map((state) => (
+              <li>
+                <a href={`/empresas/${state.slug}/`} class="dropdown__link">{state.label}</a>
+              </li>
+            ))}
+          </ul>
+        </li>
+
+        <!-- Blog -->
+        <li class="nav__item">
+          <a
+            href="/blog/"
+            class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/blog') }]}
+          >Blog</a>
+        </li>
+
+        <!-- Contacto -->
+        <li class="nav__item">
+          <a
+            href="/contacto/"
+            class:list={['nav__link', { 'nav__link--active': currentPath === '/contacto/' }]}
+          >Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- CTA Cotizar -->
+    <a
+      href={waUrl(WA_MESSAGES.cotizacion)}
+      class="header__cta"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Cotizar por WhatsApp"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Cotizar
+    </a>
+
+    <!-- Hamburger mobile -->
+    <button class="header__burger" id="burger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <nav aria-label="Navegación móvil">
+    <a href="/productos/" class="mobile-nav__link">Productos</a>
+    <a href="/servicios/"  class="mobile-nav__link">Servicios</a>
+    <a href="/empresas/"   class="mobile-nav__link">Cobertura</a>
+    <a href="/blog/"       class="mobile-nav__link">Blog</a>
+    <a href="/contacto/"   class="mobile-nav__link">Contacto</a>
+    <a href={waUrl(WA_MESSAGES.cotizacion)} class="mobile-nav__cta" target="_blank" rel="noopener noreferrer">
+      Cotizar por WhatsApp
+    </a>
+  </nav>
+</div>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    height: 72px;
+  }
+
+  .header__logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  /* Nav */
+  .header__nav { flex: 1; }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .nav__item { position: relative; }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-700);
+    border-radius: var(--radius-md);
+    transition: color var(--transition), background var(--transition);
+    white-space: nowrap;
+  }
+
+  .nav__link:hover,
+  .nav__link--active {
+    color: var(--color-red);
+    background: var(--color-red-faint);
+  }
+
+  .nav__chevron {
+    transition: transform var(--transition);
+  }
+
+  /* Dropdown */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 240px;
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--sp-2);
+    z-index: 200;
+  }
+
+  .nav__item--dropdown:hover .dropdown,
+  .nav__item--dropdown:focus-within .dropdown { display: block; }
+
+  .nav__item--dropdown:hover .nav__chevron { transform: rotate(180deg); }
+
+  .dropdown__header {
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-red);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--sp-1);
+  }
+
+  .dropdown__link {
+    display: block;
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    border-radius: var(--radius-md);
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .dropdown__link:hover {
+    background: var(--color-red-faint);
+    color: var(--color-red);
+  }
+
+  /* Mega menu */
+  .mega-menu {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 113px; /* topbar + header */
+    background: var(--color-white);
+    border-top: 2px solid var(--color-red);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-xl);
+    z-index: 200;
+    padding-block: var(--sp-6);
+  }
+
+  .nav__item--mega:hover .mega-menu,
+  .nav__item--mega:focus-within .mega-menu { display: block; }
+
+  .nav__item--mega:hover .nav__chevron { transform: rotate(180deg); }
+
+  .mega-menu__inner { }
+
+  .mega-menu__all {
+    display: inline-block;
+    margin-bottom: var(--sp-4);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-red);
+  }
+
+  .mega-menu__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-4) var(--sp-6);
+    align-items: start;
+  }
+
+  .mega-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mega-menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-800);
+    border-radius: var(--radius-md);
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .mega-menu__link:hover {
+    background: var(--color-red-faint);
+    color: var(--color-red);
+  }
+
+  .mega-menu__badge {
+    font-size: 10px;
+    font-weight: var(--weight-semibold);
+    color: var(--color-red);
+    background: var(--color-red-faint);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+  }
+
+  /* Subcategorías L4 en el mega menú */
+  .mega-sub {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--sp-1);
+    padding-top: var(--sp-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .mega-sub__link {
+    display: block;
+    padding: var(--sp-1) var(--sp-3);
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+    border-radius: var(--radius-md);
+    transition: background var(--transition), color var(--transition);
+    line-height: var(--leading-snug);
+  }
+
+  .mega-sub__link:hover {
+    background: var(--color-red-faint);
+    color: var(--color-red);
+  }
+
+  .mega-sub__link--all {
+    font-weight: var(--weight-medium);
+    color: var(--color-red);
+    margin-top: 2px;
+  }
+
+  .mega-sub__link--all:hover { color: var(--color-red-dark); }
+
+  /* CTA */
+  .header__cta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-5);
+    background: var(--color-red);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+    transition: background var(--transition);
+    flex-shrink: 0;
+  }
+
+  .header__cta:hover { background: var(--color-red-hover); }
+
+  /* Burger */
+  .header__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--sp-2);
+    margin-left: auto;
+  }
+
+  .header__burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-gray-700);
+    border-radius: var(--radius-full);
+    transition: var(--transition-slow);
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 113px;
+    background: var(--color-white);
+    z-index: 99;
+    padding: var(--sp-6);
+    overflow-y: auto;
+  }
+
+  .mobile-nav[aria-hidden="false"] { display: block; }
+
+  .mobile-nav__link {
+    display: block;
+    padding: var(--sp-4) 0;
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-700);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-nav__cta {
+    display: block;
+    margin-top: var(--sp-6);
+    padding: var(--sp-4);
+    background: var(--color-red);
+    color: var(--color-white);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    text-align: center;
+    border-radius: var(--radius-xl);
+  }
+
+  @media (max-width: 1024px) {
+    .header__nav { display: none; }
+    .header__cta { display: none; }
+    .header__burger { display: flex; }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('burger-btn')
+  const mobileNav = document.getElementById('mobile-nav')
+
+  burger?.addEventListener('click', () => {
+    const isOpen = mobileNav?.getAttribute('aria-hidden') === 'false'
+    mobileNav?.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
+    burger.setAttribute('aria-expanded', isOpen ? 'false' : 'true')
+  })
+</script>

@@ -1,0 +1,250 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Cumplimiento NOM por Sector Empresarial CDMX | Proyecto Red";
+const description = "Guía de equipo contra incendios obligatorio por tipo de negocio: hoteles, restaurantes, hospitales, bodegas, fábricas y más. Diagnóstico NOM gratuito en CDMX.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Sectores" },
+];
+
+const metricas = [
+  { valor: "10", label: "Sectores cubiertos" },
+  { valor: "NOM-002", label: "Normativa base STPS" },
+  { valor: "Gratis", label: "Diagnóstico normativo" },
+  { valor: "24h", label: "Entrega en CDMX" },
+];
+
+const sectores = [
+  {
+    nombre: "Hoteles y Hospedaje",
+    norma: "NOM-002-STPS · NOM-003-SEGOB",
+    href: "/sectores/hoteles/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  },
+  {
+    nombre: "Restaurantes y Cocinas",
+    norma: "NOM-002-STPS · Tipo K obligatorio",
+    href: "/sectores/restaurantes/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
+  },
+  {
+    nombre: "Hospitales y Clínicas",
+    norma: "NOM-002-STPS · NOM-016-SSA3",
+    href: "/sectores/hospitales/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+  },
+  {
+    nombre: "Bodegas y Almacenes",
+    norma: "NOM-002-STPS · 1 extintor/300m²",
+    href: "/sectores/bodegas/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
+  },
+  {
+    nombre: "Oficinas y Corporativos",
+    norma: "NOM-002-STPS · CO₂ para servidores",
+    href: "/sectores/oficinas/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+  },
+  {
+    nombre: "Fábricas e Industria",
+    norma: "NOM-002-STPS · NOM-005-STPS",
+    href: "/sectores/fabricas/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2z"/></svg>`,
+  },
+  {
+    nombre: "Centros Comerciales",
+    norma: "NOM-002-STPS · NOM-003-SEGOB",
+    href: "/sectores/centros-comerciales/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>`,
+  },
+  {
+    nombre: "Escuelas y Universidades",
+    norma: "NOM-002-STPS · SEP / IMSS",
+    href: "/sectores/escuelas/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>`,
+  },
+  {
+    nombre: "Gasolineras y Estaciones",
+    norma: "NOM-005-STPS · NOM-EM-005-CRE",
+    href: "/sectores/gasolineras/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V6a2 2 0 012-2h7a2 2 0 012 2v16"/><path d="M14 11h4a2 2 0 012 2v4a1 1 0 001 1 1 1 0 001-1V9l-3-4"/><line x1="3" y1="22" x2="22" y2="22"/><rect x="5" y="9" width="8" height="5" rx="1"/></svg>`,
+  },
+  {
+    nombre: "Laboratorios y Farmacias",
+    norma: "NOM-002-STPS · COFEPRIS",
+    href: "/sectores/laboratorios/",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg>`,
+  },
+];
+
+const faqsSectores = [
+  {
+    pregunta: "¿Qué dice la NOM-002-STPS sobre extintores?",
+    respuesta: "La NOM-002-STPS-2010 establece que todo centro de trabajo debe contar con extintores portátiles: mínimo uno por cada 300 m² de área de trabajo, siempre visible y accesible. Además exige que el personal conozca su uso y que los extintores tengan mantenimiento anual certificado. El incumplimiento puede generar multas de hasta 500,000 MXN.",
+  },
+  {
+    pregunta: "¿Cuánto cuesta el diagnóstico de cumplimiento normativo?",
+    respuesta: "Proyecto Red ofrece el diagnóstico completamente gratuito. Un técnico visita tu inmueble, identifica qué equipo exige la norma para tu giro y entrega una lista con cantidades y costos. Sin obligación de compra. Contáctanos por WhatsApp para agendar.",
+  },
+  {
+    pregunta: "¿Qué pasa si Protección Civil hace una visita y no cumplo?",
+    respuesta: "Las consecuencias van desde multas económicas hasta clausura temporal o definitiva. En CDMX, la Ley de Gestión Integral de Riesgos establece multas de 50 a 1,000 veces la UMA. Para inmuebles con alta afluencia (hoteles, restaurantes, plazas) la clausura preventiva es inmediata si hay riesgo inminente.",
+  },
+  {
+    pregunta: "¿Puedo comprar directamente sin intermediarios?",
+    respuesta: "Sí. Proyecto Red vende directamente al usuario final sin distribuidores. Esto significa precios más bajos, atención directa del técnico especialista y entrega en el día para pedidos en CDMX y Edomex confirmados antes de las 2 PM.",
+  },
+  {
+    pregunta: "¿Emiten factura y certificado NOM?",
+    respuesta: "Sí. Todos nuestros productos incluyen factura fiscal (CFDI) y certificado de cumplimiento NOM. En caso de verificación de Protección Civil o STPS, tienes la documentación que acredita que el equipo cumple con la normativa vigente.",
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre extintores comerciales y domésticos?",
+    respuesta: "Los extintores certificados NOM para uso comercial tienen mayor capacidad, agente extintor de grado industrial y etiqueta con número de certificado oficial. Los domésticos sin certificación NOM NO son aceptados por Protección Civil y pueden generar multas aunque estén presentes.",
+  },
+];
+---
+
+<Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/">
+
+  <nav class="breadcrumb container" aria-label="Ruta de navegación">
+    {breadcrumbs.map((item, i) => (
+      <>
+        {i > 0 && <span class="breadcrumb__sep">›</span>}
+        {item.href
+          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
+          : <span class="breadcrumb__current">{item.label}</span>
+        }
+      </>
+    ))}
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="hero-badge"><span class="badge-dot"></span> Asesoría normativa gratuita</span>
+          <h1>Cumplimiento NOM<br><span class="h1-accent">por Sector Empresarial</span></h1>
+          <p class="hero-sub">Identifica exactamente qué equipo contra incendios exige la ley para tu tipo de negocio en CDMX. Diagnóstico sin costo, cotización en el día.</p>
+          <div class="hero-ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratuito%20NOM%20para%20mi%20empresa`} class="btn-primary" target="_blank" rel="noopener noreferrer">Diagnóstico gratuito</a>
+            <a href="/productos/" class="btn-ghost">Ver productos</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <p>Protección Civil y la STPS verifican el cumplimiento de la <strong>NOM-002-STPS-2010</strong> en todos los centros de trabajo. Cada giro comercial tiene requerimientos específicos: el equipo que necesita un hotel no es el mismo que el de una cocina industrial o un laboratorio farmacéutico.</p>
+          <p>En Proyecto Red analizamos tu inmueble sin costo, determinamos qué normas aplican a tu sector y te entregamos el equipo certificado con factura oficial. Cumple antes de la próxima verificación y evita multas de hasta <strong>500,000 MXN</strong> o clausura.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAR -->
+  <CtaBar />
+
+  <!-- MÉTRICAS -->
+  <section class="metricas-section">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID DE SECTORES -->
+  <section class="cat-section cat-section--white">
+    <div class="container">
+      <div style="margin-bottom:2rem">
+        <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1">¿Qué equipo exige la ley para tu tipo de negocio?</h2>
+        <p style="color:var(--c-muted);margin-top:0.75rem;max-width:60ch;font-size:0.9375rem">Selecciona tu sector para ver los requerimientos exactos, las normas que aplican y el equipo que necesitas para cumplir.</p>
+      </div>
+      <div class="sectores-grid">
+        {sectores.map(s => (
+          <a href={s.href} class="sector-card">
+            <div class="sector-card__icon" set:html={s.icon} />
+            <div>
+              <p class="sector-card__name">{s.nombre}</p>
+              <p class="sector-card__norma">{s.norma}</p>
+            </div>
+            <span class="sector-card__link">
+              Ver guía
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ ESTE SERVICIO -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+      <div class="cat-header">
+        <div class="cat-header__info">
+          <h2 class="cat-header__title">¿Por qué Proyecto Red ofrece asesoría normativa gratuita?</h2>
+          <p class="cat-header__desc">Porque el equipo correcto depende de tu giro, tu superficie y los riesgos específicos de tu inmueble. Venderte el extintor equivocado no te sirve — y Protección Civil lo sabe.</p>
+          <ul style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.875rem;list-style:none;padding:0">
+            <li style="display:flex;gap:0.75rem;align-items:flex-start">
+              <span style="color:var(--c-primary);font-weight:700;flex-shrink:0">✓</span>
+              <span><strong>Sin costo ni compromiso.</strong> El diagnóstico es gratis aunque no nos compres.</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start">
+              <span style="color:var(--c-primary);font-weight:700;flex-shrink:0">✓</span>
+              <span><strong>Técnico especialista en tu inmueble.</strong> Evaluamos tu espacio real, no una checklist genérica.</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start">
+              <span style="color:var(--c-primary);font-weight:700;flex-shrink:0">✓</span>
+              <span><strong>Entrega en el día en CDMX.</strong> Si necesitas regularizarte antes de una visita, lo resolvemos ese mismo día.</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start">
+              <span style="color:var(--c-primary);font-weight:700;flex-shrink:0">✓</span>
+              <span><strong>Factura y certificado NOM incluidos.</strong> Toda la documentación para pasar cualquier verificación.</span>
+            </li>
+          </ul>
+        </div>
+        <div style="background:var(--c-primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:280px;padding:2rem">
+          <div style="text-align:center">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <p style="margin-top:1rem;font-weight:700;color:var(--c-ink);font-size:1.125rem">Cumple la NOM.<br>Evita multas.</p>
+            <p style="color:var(--c-muted);font-size:0.875rem;margin-top:0.5rem">Diagnóstico gratuito<br>CDMX y Edomex</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ + COTIZACIÓN -->
+  <FaqCotizacion
+    titulo="Preguntas sobre cumplimiento normativo"
+    subtitulo="Todo lo que necesitas saber sobre la NOM-002 y cómo regularizar tu empresa"
+    faqs={faqsSectores}
+    pageId="sectores"
+    bgGray={false}
+  />
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+        <h2>¿Cuánto equipo necesita tu empresa?</h2>
+        <p>Diagnóstico gratuito. Respuesta el mismo día. Entrega en 24h en CDMX.</p>
+        <a href={`${WA_URL}?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratuito%20de%20cumplimiento%20NOM%20para%20mi%20empresa`} class="btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar diagnóstico gratuito →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

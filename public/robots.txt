@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# No indexar páginas de error ni assets internos de build
+Disallow: /404
+Disallow: /_astro/
+
+# Sitemap generado automáticamente por @astrojs/sitemap
+Sitemap: https://proyectored.com.mx/sitemap-index.xml

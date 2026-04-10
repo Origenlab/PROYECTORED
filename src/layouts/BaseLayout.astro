@@ -1,0 +1,135 @@
+---
+// BaseLayout.astro
+// Layout raíz: HTML shell + TopBar + Header + Footer + WhatsApp
+// Todas las páginas del sitio usan este layout (directa o via CategoryLayout)
+
+import TopBar from '../components/global/TopBar.astro'
+import Header from '../components/global/Header.astro'
+import Footer from '../components/global/Footer.astro'
+import WhatsAppButton from '../components/global/WhatsAppButton.astro'
+import { SITE, CONTACT } from '../config/site'
+import '../styles/global.css'
+
+// ── JSON-LD: LocalBusiness (estático, aparece en todas las páginas) ──────────
+const localBusinessLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: SITE.name,
+  url: SITE.url,
+  telephone: `+${CONTACT.whatsapp}`,
+  email: CONTACT.email,
+  description: SITE.description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Paseo de la Reforma 26',
+    addressLocality: 'Ciudad de México',
+    addressRegion: 'CDMX',
+    postalCode: '06600',
+    addressCountry: 'MX',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: '08:00',
+      closes: '14:00',
+    },
+  ],
+  areaServed: [
+    { '@type': 'City', name: 'Ciudad de México' },
+    { '@type': 'State', name: 'Estado de México' },
+  ],
+  sameAs: [SITE.url],
+}
+
+interface Props {
+  title: string
+  description?: string
+  canonical?: string
+  ogImage?: string
+  noindex?: boolean
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonical,
+  ogImage = '/og-default.jpg',
+  noindex = false,
+} = Astro.props
+
+const pageTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString()
+---
+
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- SEO primario -->
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, SITE.url).toString()} />
+  <meta property="og:locale" content={SITE.locale} />
+  <meta property="og:site_name" content={SITE.name} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, SITE.url).toString()} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preload fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
+
+  <!-- JSON-LD: LocalBusiness (global) -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessLd)} />
+
+  <!-- Slot para JSON-LD adicional y otros head tags por página -->
+  <slot name="head" />
+</head>
+<body>
+  <TopBar />
+  <Header />
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</body>
+</html>

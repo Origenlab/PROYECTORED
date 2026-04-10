@@ -1,0 +1,107 @@
+---
+/**
+ * TituloSeccion.astro
+ * Encabezado de sección en dos columnas: izquierda (eyebrow + h2 + sub opcional),
+ * derecha (slot — párrafos de contexto o descripción).
+ * CSS completamente scoped — no requiere clases externas.
+ *
+ * Props:
+ *   eyebrow  — etiqueta pequeña en rojo sobre el título
+ *   titulo   — texto del H2
+ *   sub      — párrafo corto bajo el título (columna izquierda)
+ *   mb       — margen inferior del bloque (default: 3.5rem)
+ *   dark     — true cuando la sección tiene fondo oscuro
+ */
+
+interface Props {
+  eyebrow?: string
+  titulo:   string
+  sub?:     string
+  mb?:      string
+  dark?:    boolean
+}
+
+const { eyebrow, titulo, sub, mb = '3.5rem', dark = false } = Astro.props
+---
+
+<div class:list={['ts', { 'ts--dark': dark }]} style={`--ts-mb: ${mb}`}>
+  <div class="ts__izq">
+    {eyebrow && <p class="ts__eyebrow">{eyebrow}</p>}
+    <h2 class="ts__h2">{titulo}</h2>
+    {sub && <p class="ts__sub">{sub}</p>}
+  </div>
+  <div class="ts__der">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* ── Base layout ─────────────────────────── */
+  .ts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: var(--ts-mb, 3.5rem);
+  }
+
+  /* ── Modo claro (default) ────────────────── */
+  .ts__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .ts__h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+    margin-bottom: 0;
+  }
+
+  .ts__sub {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin-top: 0.875rem;
+  }
+
+  .ts__der :global(p) {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 0.875rem;
+  }
+  .ts__der :global(p:last-child) { margin-bottom: 0; }
+  .ts__der :global(strong) {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+
+  /* ── Modo oscuro (dark={true}) ───────────── */
+  .ts--dark .ts__eyebrow {
+    color: rgba(var(--c-primary-rgb), 0.85);
+  }
+  .ts--dark .ts__h2 {
+    color: #fff;
+  }
+  .ts--dark .ts__sub {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .ts--dark .ts__der :global(p) {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .ts--dark .ts__der :global(strong) {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 900px) {
+    .ts { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>

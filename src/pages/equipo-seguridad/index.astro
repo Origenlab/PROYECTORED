@@ -1,0 +1,425 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBar from '../../components/CtaBar.astro';
+import FaqCotizacion from '../../components/FaqCotizacion.astro';
+import '../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const title = "Equipo de Seguridad Industrial EPP CDMX | NOM-017-STPS | Proyecto Red";
+const description = "Venta de EPP certificado NOM-017-STPS en CDMX: cascos, lentes, protección auditiva, respiradores, guantes, calzado de seguridad, arneses y ropa de protección. Análisis de riesgo y asesoría técnica incluidos.";
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Productos", href: "/productos/" },
+  { label: "Equipo de Seguridad Industrial" },
+];
+
+const metricas = [
+  { valor: "8", label: "Categorías de EPP" },
+  { valor: "NOM-017", label: "STPS · ANSI · EN" },
+  { valor: "$85", label: "Desde MXN/pieza" },
+  { valor: "STPS", label: "Asesoría de cumplimiento" },
+];
+
+const productos = [
+  {
+    nombre: "Protección Craneal",
+    desc: "Cascos clase E (riesgo eléctrico hasta 20,000 V) y clase G (impacto general). Suspensión de 4 a 8 puntos para absorción de impacto. Gorras antigolpes para trabajos con espacio reducido.",
+    href: "/equipo-seguridad/cascos/",
+    badge: "NOM-017-STPS",
+    specs: "Clase E · Clase G · ANSI Z89.1 · Suspensión 4-8 pts · Ajuste trinquete",
+  },
+  {
+    nombre: "Protección Visual",
+    desc: "Lentes de seguridad con y sin prescripción, goggles herméticos contra salpicaduras químicas, caretas faciales y filtros para soldadura. La vista es el riesgo más frecuente y el más fácil de proteger.",
+    href: "/equipo-seguridad/lentes/",
+    badge: "ANSI Z87.1",
+    specs: "Policarbonato · Anti-UV · Anti-rayadura · Goggle hermético · Careta facial",
+  },
+  {
+    nombre: "Protección Auditiva",
+    desc: "Tapones de inserción para uso continuo (NRR 29-33 dB), orejeras de copa para exposición intermitente (NRR 25-31 dB) y protectores electrónicos con atenuación selectiva para comunicación en zonas ruidosas.",
+    href: "/equipo-seguridad/auditiva/",
+    badge: "NOM-011-STPS",
+    specs: "NRR 25–33 dB · Desechable · Reutilizable · Electrónico · Copa y tapón",
+  },
+  {
+    nombre: "Protección Respiratoria",
+    desc: "Mascarillas desechables N95 para partículas, respiradores de media cara con cartucho intercambiable para vapores y gases, y equipos de cara completa para atmósferas contaminadas. El cartucho incorrecto no protege.",
+    href: "/equipo-seguridad/respiratoria/",
+    badge: "NIOSH · NOM-116",
+    specs: "N95 · Media cara · Cara completa · Cartuchos orgánicos/ácidos/HEPA",
+  },
+  {
+    nombre: "Protección de Manos",
+    desc: "Guantes de nitrilo para químicos, Kevlar para corte, cuero para soldadura, neopreno para aceites y caucho dieléctrico para trabajo eléctrico. El material del guante debe corresponder exactamente al tipo de riesgo.",
+    href: "/equipo-seguridad/guantes/",
+    badge: "EN 388 · EN 374",
+    specs: "Nitrilo · Kevlar · Cuero · Neopreno · Dieléctrico · Talla 7–11",
+  },
+  {
+    nombre: "Calzado de Seguridad",
+    desc: "Botas con casquillo de acero o composite (200 J de impacto), suela antiperforación, dieléctrica o resistente a hidrocarburos. Para construcción, industria química, eléctrica y manufactura.",
+    href: "/equipo-seguridad/calzado/",
+    badge: "NOM-113-STPS",
+    specs: "Casquillo acero · Composite · Suela dieléctrica · Antiperforación · 200 J",
+  },
+  {
+    nombre: "Arneses y Protección contra Caídas",
+    desc: "Arneses de cuerpo completo con punto de anclaje dorsal y pectoral, líneas de vida retráctiles, conectores y puntos de anclaje certificados. Para trabajos en altura según NOM-009-STPS — el equipo incompleto no cumple.",
+    href: "/equipo-seguridad/arneses/",
+    badge: "NOM-009-STPS",
+    specs: "Cuerpo completo · 140 kg · Línea retráctil · ANSI Z359 · Sistema completo",
+  },
+  {
+    nombre: "Ropa de Protección",
+    desc: "Overoles con propiedades específicas: ignífuga Nomex para soldadura y calor, antiestática para áreas con explosivos, química para manejo de sustancias corrosivas, y de alta visibilidad clase 2 y 3 para vialidad.",
+    href: "/equipo-seguridad/ropa/",
+    badge: "EN 11612 · EN 1149",
+    specs: "Nomex ignífugo · Antiestático · Alta visibilidad Cl.2/3 · Químico · Tallas S–4XL",
+  },
+];
+
+const guiaRiesgo = [
+  {
+    tipo: "Trabajo en alturas (2 m o más)",
+    norma: "NOM-009-STPS",
+    necesitas: "Arnés de cuerpo completo + línea de vida retráctil + punto de anclaje certificado + casco clase E",
+    porque: "La NOM-009-STPS exige sistema de protección contra caídas completo para cualquier trabajo a 1.8 m o más. El arnés solo no cumple — necesita el sistema completo: arnés + conector + punto de anclaje. STPS puede multar hasta $280,000 MXN por incumplimiento.",
+    href: "/equipo-seguridad/arneses/",
+  },
+  {
+    tipo: "Manejo de sustancias químicas",
+    norma: "NOM-010-STPS",
+    necesitas: "Guantes EN 374 compatibles con la sustancia + goggle hermético + respirador con cartucho específico + ropa química",
+    porque: "Cada sustancia tiene un guante compatible diferente. Un guante de nitrilo protege contra ácidos diluidos pero no contra cetonas. El cartucho del respirador debe coincidir exactamente con el tipo de vapores — un cartucho orgánico no protege contra gases ácidos.",
+    href: "/equipo-seguridad/guantes/",
+  },
+  {
+    tipo: "Trabajo eléctrico (baja y alta tensión)",
+    norma: "NOM-029-STPS",
+    necesitas: "Casco clase E + guantes dieléctricos clase 00-4 según voltaje + botas dieléctricas + ropa antiestática",
+    porque: "Los guantes dieléctricos tienen 6 clases según el voltaje máximo de trabajo: desde clase 00 para hasta 500 V hasta clase 4 para hasta 36,000 V. Usar la clase incorrecta equivale a no usar guante. La NOM-029-STPS exige EPP dieléctrico verificado anualmente.",
+    href: "/equipo-seguridad/guantes/",
+  },
+  {
+    tipo: "Soldadura y trabajos con calor",
+    norma: "NOM-017-STPS",
+    necesitas: "Careta de soldadura + guantes de cuero cromo + ropa Nomex ignífuga + botas de seguridad + protección auditiva",
+    porque: "La radiación UV de la soldadura daña la vista en segundos — el filtro de la careta debe tener el shade correcto para el proceso. La ropa Nomex no arde ni gotea cuando se contacta con llama, a diferencia del algodón tratado que tiene vida útil limitada.",
+    href: "/equipo-seguridad/ropa/",
+  },
+];
+
+const faqsEPP = [
+  {
+    pregunta: "¿Cuánto puede multar la STPS por no tener el EPP correcto?",
+    respuesta: "Las multas por incumplimiento de la <strong>NOM-017-STPS-2008</strong> van de <strong>50 a 500 días de salario mínimo por trabajador afectado</strong> — con el salario mínimo 2026 en CDMX, eso va de $7,400 a $74,000 MXN por trabajador. Si la empresa tiene 20 empleados sin EPP adecuado, la multa total puede superar <strong>$400,000 MXN</strong>. Además, el incumplimiento en caso de accidente puede derivar en responsabilidad penal para el patrón. Cotiza el EPP correcto — es considerablemente más barato que la multa."
+  },
+  {
+    pregunta: "¿Cómo sé qué EPP necesita cada puesto de trabajo?",
+    respuesta: "La <strong>NOM-017-STPS</strong> exige realizar un <strong>análisis de riesgos por puesto</strong> que identifique: riesgos presentes, nivel de exposición, EPP requerido y especificaciones técnicas. En Proyecto Red hacemos el análisis de riesgos contigo, identificamos el EPP correcto para cada puesto y generamos la <strong>documentación requerida por STPS</strong>. El servicio de asesoría es gratuito para pedidos de EPP. Mándanos tu lista de puestos de trabajo y te lo armamos."
+  },
+  {
+    pregunta: "¿Cuánto cuesta equipar a un trabajador completo?",
+    respuesta: "Depende del nivel de riesgo de su puesto. Un trabajador en <strong>oficina con riesgo bajo</strong>: $350–$600 MXN (lentes + zapato seguridad + tapones). Un <strong>trabajador de manufactura general</strong>: $1,200–$2,500 MXN (casco + lentes + tapones + guantes + calzado + ropa). Un <strong>trabajador en altura o químicos</strong>: $4,000–$12,000 MXN incluyendo arnés o traje especializado. Cotizamos por lote con precio de volumen desde 5 trabajadores."
+  },
+  {
+    pregunta: "¿Cada cuánto tiempo se debe reemplazar el EPP?",
+    respuesta: "Cada tipo tiene su ciclo. <strong>Cascos:</strong> 5 años desde fabricación o inmediatamente después de un impacto. <strong>Guantes dieléctricos:</strong> prueba eléctrica semestral obligatoria. <strong>Respiradores desechables N95:</strong> un turno de 8 horas o cuando se dificulte la respiración. <strong>Arneses:</strong> inspección antes de cada uso y retiro inmediato después de una caída. <strong>Lentes:</strong> cuando presenten rayaduras que afecten la visión. Te asesoramos el ciclo específico de cada EPP según tu operación."
+  },
+  {
+    pregunta: "¿La empresa puede entregar EPP genérico sin certificación?",
+    respuesta: "No. La <strong>NOM-017-STPS</strong> exige que el EPP esté <strong>certificado por organismo acreditado</strong> — no basta con que sea de marca conocida. El certificado debe especificar la norma cumplida (ANSI, EN, NOM) y el nivel de protección. Un casco sin certificado ANSI Z89.1 o NOM no cumple aunque se vea igual. En caso de accidente con EPP no certificado, el patrón asume responsabilidad total. Todo el EPP que vendemos incluye certificado original."
+  },
+  {
+    pregunta: "¿Qué diferencia hay entre guantes de nitrilo, látex y neopreno?",
+    respuesta: "<strong>Nitrilo:</strong> resistente a la mayoría de ácidos, aceites, gasolina y solventes no halogenados. Es el más versátil y el más común. <strong>Látex:</strong> excelente para ácidos concentrados y bases, pero muchos trabajadores son alérgicos — no se recomienda sin prueba previa. <strong>Neopreno:</strong> resistente a hidrocarburos clorados y algunos solventes que el nitrilo no aguanta. <strong>Cuero:</strong> para calor, abrasión y soldadura — no sirve para químicos. Te decimos exactamente cuál necesitas según la ficha de seguridad de tus sustancias."
+  },
+  {
+    pregunta: "¿Cómo se documenta la entrega de EPP ante STPS?",
+    respuesta: "La NOM-017-STPS exige <strong>registro escrito de entrega de EPP</strong> que incluya: nombre del trabajador, puesto, fecha de entrega, tipo de EPP entregado, talla, y firma de recepción. También debes conservar el <strong>análisis de riesgo</strong> del puesto y el <strong>programa de EPP</strong> de la empresa. En una auditoría de STPS, te piden estos documentos. Te proporcionamos plantillas de registro y el análisis de riesgo como parte de nuestro servicio de asesoría."
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+              {b.href
+                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
+                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          NOM-017-STPS · ANSI · EN · Asesoría incluida
+        </div>
+        <h1>Equipo de <span class="h1-accent">Seguridad</span><br>Industrial EPP</h1>
+        <p class="hero-sub">
+          Tu empresa tiene trabajadores en altura sin arnés certificado, operadores de química sin guante compatible y soldadores con ropa de algodón sin tratamiento ignífugo. Todo eso es incumplimiento de NOM-017-STPS — multa hasta $400,000 MXN por empresa. EPP certificado desde $85 MXN por pieza.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipo%20de%20protecci%C3%B3n%20personal%20EPP%20para%20mi%20empresa`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar EPP para mi empresa
+          </a>
+          <a href="#catalogo" class="btn-secondary">Ver las 8 categorías</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <p>La NOM-017-STPS-2008 obliga al patrón a entregar EPP certificado, específico para el riesgo de cada puesto, y a documentar la entrega con firma del trabajador. No basta con tener cascos en la bodega — el EPP debe ser el correcto para el tipo de riesgo y el trabajador debe estar capacitado en su uso.</p>
+        <p>En Proyecto Red hacemos el análisis de riesgos por puesto contigo, seleccionamos el EPP certificado que corresponde a cada actividad y generamos la documentación que STPS puede pedirte en una auditoría. Ocho categorías de protección en un solo proveedor: cráneo, visual, auditiva, respiratoria, manos, calzado, caídas y ropa. Sin tener que coordinar 5 proveedores distintos.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══════════════════════════════════════
+       MÉTRICAS
+  ══════════════════════════════════════ -->
+  <section class="metricas-section" aria-label="Equipo de seguridad industrial">
+    <div class="container">
+      <div class="metricas-grid">
+        {metricas.map(m => (
+          <div class="metrica-item">
+            <span class="metrica-valor">{m.valor}</span>
+            <span class="metrica-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CATÁLOGO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" id="catalogo">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/equipo-seguridad/epp-industrial-hero.jpg" alt="Equipo de protección personal EPP certificado NOM-017-STPS" loading="eager" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">NOM-017-STPS</span>
+            <h2>EPP Certificado</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">8 categorías de protección</span>
+            <span class="cat-badge-pill">Análisis de riesgo incluido</span>
+          </div>
+          <h2 class="cat-header__title">El EPP Correcto para Cada Riesgo — No el Más Barato</h2>
+          <p class="cat-header__desc">Un guante de nitrilo no protege contra todos los químicos. Un casco clase G no sirve para trabajo eléctrico. El EPP incorrecto es tan peligroso como no tener EPP — y legalmente equivale a incumplimiento de NOM-017. Te ayudamos a elegir el certificado correcto para cada puesto, desde $85 MXN.</p>
+          <div class="normas-row">
+            <span class="norma-tag">NOM-017-STPS</span>
+            <span class="norma-tag">NOM-009-STPS</span>
+            <span class="norma-tag">ANSI Z89.1</span>
+            <span class="norma-tag">EN 388</span>
+          </div>
+          <div class="cat-header__ctas">
+            <a href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20el%20EPP%20de%20mi%20empresa%20por%20puesto%20de%20trabajo`} class="btn-outline" target="_blank" rel="noopener noreferrer">Análisis de riesgo por puesto</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20EPP%20para%20varios%20trabajadores`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por lote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {productos.map(p => (
+          <a href={p.href} class="prod-card" aria-label={p.nombre}>
+            <div class="prod-card__top">
+              {p.badge && <span class="prod-badge">{p.badge}</span>}
+              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{p.nombre}</h3>
+              <p class="prod-card__sub">{p.desc}</p>
+              <p class="prod-card__specs">{p.specs}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Ver specs y cotizar
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20EPP%20completo%20para%20varios%20puestos%20de%20trabajo`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Cotizar EPP por lote"
+        >
+          <div class="prod-card-cta__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Equipo para múltiples puestos?</p>
+          <p class="prod-card-cta__sub">Análisis de riesgo por puesto + EPP certificado + documentación STPS incluida</p>
+          <span class="prod-card-cta__btn">Cotizar por lote →</span>
+        </a>
+
+        <a
+          href={`${WA_URL}?text=Hola%2C%20tengo%20una%20auditor%C3%ADa%20de%20STPS%20y%20necesito%20revisar%20el%20EPP%20de%20mi%20empresa`}
+          class="prod-card prod-card--cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Auditoría STPS"
+        >
+          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <p class="prod-card-cta__text">¿Auditoría de STPS próxima?</p>
+          <p class="prod-card-cta__sub">Revisamos tu EPP actual, identificamos brechas y te armamos el plan de corrección</p>
+          <span class="prod-card-cta__btn">Solicitar revisión →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       GUÍA POR TIPO DE RIESGO
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray">
+    <div class="container">
+
+      <div class="cat-header">
+        <div class="cat-header__img-wrap">
+          <img src="/imagenes/equipo-seguridad/epp-riesgo-guia.jpg" alt="Selección de EPP por tipo de riesgo laboral NOM-017-STPS" loading="lazy" width="640" height="400" />
+          <div class="cat-header__img-overlay"></div>
+          <div class="cat-header__img-content">
+            <span class="cat-norm-badge">Guía por riesgo</span>
+            <h2>¿Qué EPP Necesita tu Actividad?</h2>
+          </div>
+        </div>
+
+        <div class="cat-header__info">
+          <div class="cat-header__meta">
+            <span class="section-label">Configuración por tipo de riesgo</span>
+            <span class="cat-badge-pill">4 escenarios</span>
+          </div>
+          <h2 class="cat-header__title">Dime qué Hace el Trabajador y Te Digo qué EPP Necesita</h2>
+          <p class="cat-header__desc">El EPP no se elige por preferencia ni por precio — se elige por el riesgo específico de la tarea. Un trabajador de altura necesita un sistema completo, no solo el arnés. Un operador de química necesita el guante compatible con su sustancia exacta. Aquí te damos la lista completa por tipo de actividad.</p>
+          <div class="cat-header__ctas">
+            <a href="/servicios/#asesoria-tecnica" class="btn-outline">Solicitar análisis de riesgo</a>
+            <a
+              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20seleccionar%20el%20EPP%20correcto%20para%20mi%20empresa`}
+              class="cat-wa-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Asesoría gratuita
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="productos-grid">
+        {guiaRiesgo.map(g => (
+          <a href={g.href} class="prod-card" aria-label={g.tipo}>
+            <div class="prod-card__top">
+              <span class="prod-badge">{g.norma}</span>
+            </div>
+            <div class="prod-card__body">
+              <h3 class="prod-card__name">{g.tipo}</h3>
+              <p class="prod-card__specs">{g.necesitas}</p>
+              <p class="prod-card__sub">{g.porque}</p>
+            </div>
+            <div class="prod-card__footer">
+              <span class="prod-card__link">
+                Cotizar esta configuración
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ + COTIZACIÓN
+  ══════════════════════════════════════ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes sobre EPP y Seguridad Industrial"
+    subtitulo="Lo que la NOM-017-STPS exige y lo que tu proveedor de EPP debería explicarte — y probablemente no te explica"
+    pageId="equipo-seguridad"
+    bgGray={false}
+    faqs={faqsEPP}
+  />
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-final" aria-labelledby="cta-final-title">
+    <div class="container cta-final-inner">
+      <div class="cta-text">
+        <h2 id="cta-final-title">EPP incorrecto o sin certificar no es cumplimiento — es responsabilidad esperando a materializarse</h2>
+        <p>Mándanos tus puestos de trabajo y las actividades de riesgo. Te armamos el análisis por puesto, la lista de EPP certificado con norma específica y la documentación lista para STPS. Sin costo de asesoría en pedidos de 5+ trabajadores.</p>
+      </div>
+      <div class="cta-btns">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20EPP%20certificado%20NOM-017-STPS%20para%20mi%20empresa`}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+        <a href="/servicios/" class="btn-cta-ghost">Ver todos los servicios</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .prod-card__specs {
+    font-size: 0.75rem;
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+</style>
