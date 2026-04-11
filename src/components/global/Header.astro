@@ -1,6 +1,6 @@
 ---
-// Header.astro — Navegación principal con mega menú
-// Usa --c-primary (sistema viejo) para consistencia con todas las secciones del sitio
+// Header.astro — Navegación principal con mega menú profesional
+// Dropdowns controlados por JS (timer de gracia) — mobile con acordeón
 
 import { PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES, waUrl, WA_MESSAGES } from '../../config/site'
 
@@ -65,8 +65,8 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
       <img
         src="/imagenes/logos/logo-proyectored-201x60.png"
         alt="Proyecto Red — Equipos contra incendios"
-        width="134"
-        height="40"
+        width="174"
+        height="52"
         class="hdr-logo-img"
         loading="eager"
       />
@@ -77,7 +77,7 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
       <ul class="hdr-nav__list" role="list">
 
         <!-- Productos (mega menú) -->
-        <li class="hdr-nav__item hdr-nav__item--mega">
+        <li class="hdr-nav__item" data-dropdown="mega-productos">
           <a
             href="/productos/"
             class:list={['hdr-nav__link', {
@@ -92,93 +92,44 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
                 currentPath.startsWith('/primeros-auxilios') ||
                 currentPath.startsWith('/equipo-seguridad')
             }]}
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             Productos
             <svg class="hdr-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </a>
-
-          <div class="mega-dropdown" role="region" aria-label="Categorías de productos">
-            <div class="container mega-dropdown__inner">
-              <a href="/productos/" class="mega-dropdown__all">Ver catálogo completo →</a>
-              <ul class="mega-grid" role="list">
-                {PRODUCT_CATEGORIES.map((cat) => {
-                  const subs = MEGA_SUBCATEGORIES[cat.slug] ?? []
-                  return (
-                    <li class="mega-col">
-                      <a href={cat.href} class="mega-col__title">
-                        {cat.label}
-                        {cat.badge && <span class="mega-col__badge">{cat.badge}</span>}
-                      </a>
-                      {subs.length > 0 && (
-                        <ul class="mega-sub" role="list">
-                          {subs.map((sub) => (
-                            <li>
-                              <a href={`/${cat.slug}/${sub.slug}/`} class="mega-sub__link">
-                                {sub.label}
-                              </a>
-                            </li>
-                          ))}
-                          <li>
-                            <a href={cat.href} class="mega-sub__link mega-sub__link--ver-todos">
-                              Ver todos →
-                            </a>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
         </li>
 
         <!-- Servicios -->
-        <li class="hdr-nav__item hdr-nav__item--dropdown">
+        <li class="hdr-nav__item" data-dropdown="drop-servicios">
           <a
             href="/servicios/"
             class:list={['hdr-nav__link', { 'hdr-nav__link--active': currentPath.startsWith('/servicios') }]}
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             Servicios
             <svg class="hdr-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </a>
-          <ul class="hdr-dropdown" role="list" aria-label="Servicios">
-            <li class="hdr-dropdown__header">
-              <a href="/servicios/">Ver todos los servicios →</a>
-            </li>
-            {SERVICES.map((svc) => (
-              <li>
-                <a href={`/servicios/#${svc.id}`} class="hdr-dropdown__link">{svc.label}</a>
-              </li>
-            ))}
-          </ul>
         </li>
 
         <!-- Cobertura -->
-        <li class="hdr-nav__item hdr-nav__item--dropdown">
+        <li class="hdr-nav__item" data-dropdown="drop-cobertura">
           <a
             href="/empresas/"
             class:list={['hdr-nav__link', { 'hdr-nav__link--active': currentPath.startsWith('/empresas') }]}
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             Cobertura
             <svg class="hdr-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </a>
-          <ul class="hdr-dropdown" role="list" aria-label="Cobertura">
-            <li class="hdr-dropdown__header">
-              <a href="/empresas/">Ver toda la cobertura →</a>
-            </li>
-            {COVERAGE_STATES.map((state) => (
-              <li>
-                <a href={`/empresas/${state.slug}/`} class="hdr-dropdown__link">{state.label}</a>
-              </li>
-            ))}
-          </ul>
         </li>
 
         <!-- Blog -->
@@ -228,382 +179,785 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   </div>
 </header>
 
-<!-- Mobile nav overlay -->
+<!-- ══════════════════════════════════════════════════
+     MEGA MENÚ — Productos (panel full-width)
+══════════════════════════════════════════════════ -->
+<div class="mega-panel" id="mega-productos" role="region" aria-label="Categorías de productos" aria-hidden="true">
+  <div class="container mega-panel__inner">
+    <div class="mega-panel__top">
+      <span class="mega-panel__label">Categorías de Productos</span>
+      <a href="/productos/" class="mega-panel__all">Ver catálogo completo →</a>
+    </div>
+    <ul class="mega-grid" role="list">
+      {PRODUCT_CATEGORIES.map((cat) => {
+        const subs = MEGA_SUBCATEGORIES[cat.slug] ?? []
+        return (
+          <li class="mega-col">
+            <a href={cat.href} class="mega-col__title">
+              {cat.label}
+              {cat.badge && <span class="mega-col__badge">{cat.badge}</span>}
+            </a>
+            {subs.length > 0 && (
+              <ul class="mega-sub" role="list">
+                {subs.map((sub) => (
+                  <li>
+                    <a href={`/${cat.slug}/${sub.slug}/`} class="mega-sub__link">
+                      {sub.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a href={cat.href} class="mega-sub__link mega-sub__link--ver-todos">
+                    Ver todos →
+                  </a>
+                </li>
+              </ul>
+            )}
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DROPDOWN — Servicios
+══════════════════════════════════════════════════ -->
+<div class="drop-panel" id="drop-servicios" role="region" aria-label="Servicios" aria-hidden="true">
+  <div class="drop-panel__inner">
+    <a href="/servicios/" class="drop-panel__header">Ver todos los servicios →</a>
+    {SERVICES.map((svc) => (
+      <a href={`/servicios/#${svc.id}`} class="drop-panel__link">{svc.label}</a>
+    ))}
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DROPDOWN — Cobertura
+══════════════════════════════════════════════════ -->
+<div class="drop-panel" id="drop-cobertura" role="region" aria-label="Cobertura" aria-hidden="true">
+  <div class="drop-panel__inner">
+    <a href="/empresas/" class="drop-panel__header">Ver toda la cobertura →</a>
+    {COVERAGE_STATES.map((state) => (
+      <a href={`/empresas/${state.slug}/`} class="drop-panel__link">{state.label}</a>
+    ))}
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     OVERLAY (cierra al hacer clic fuera)
+══════════════════════════════════════════════════ -->
+<div class="hdr-overlay" id="hdr-overlay" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════
+     MOBILE NAV
+══════════════════════════════════════════════════ -->
 <div class="hdr-mobile-nav" id="hdr-mobile-nav" aria-hidden="true">
   <nav aria-label="Navegación móvil">
-    <a href="/productos/"   class="hdr-mobile-nav__link">Productos</a>
-    <a href="/servicios/"   class="hdr-mobile-nav__link">Servicios</a>
-    <a href="/empresas/"    class="hdr-mobile-nav__link">Cobertura</a>
-    <a href="/blog/"        class="hdr-mobile-nav__link">Blog</a>
-    <a href="/contacto/"    class="hdr-mobile-nav__link">Contacto</a>
+
+    <!-- Productos accordion -->
+    <div class="mob-item">
+      <button class="mob-item__trigger" aria-expanded="false">
+        <span>Productos</span>
+        <svg class="mob-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="mob-item__panel">
+        <a href="/productos/" class="mob-item__all">Ver catálogo completo</a>
+        {PRODUCT_CATEGORIES.map((cat) => (
+          <a href={cat.href} class="mob-item__link">{cat.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Servicios accordion -->
+    <div class="mob-item">
+      <button class="mob-item__trigger" aria-expanded="false">
+        <span>Servicios</span>
+        <svg class="mob-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="mob-item__panel">
+        <a href="/servicios/" class="mob-item__all">Ver todos los servicios</a>
+        {SERVICES.map((svc) => (
+          <a href={`/servicios/#${svc.id}`} class="mob-item__link">{svc.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Cobertura accordion -->
+    <div class="mob-item">
+      <button class="mob-item__trigger" aria-expanded="false">
+        <span>Cobertura</span>
+        <svg class="mob-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="mob-item__panel">
+        <a href="/empresas/" class="mob-item__all">Ver toda la cobertura</a>
+        {COVERAGE_STATES.map((state) => (
+          <a href={`/empresas/${state.slug}/`} class="mob-item__link">{state.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Links directos -->
+    <a href="/blog/"     class="mob-direct">Blog</a>
+    <a href="/contacto/" class="mob-direct">Contacto</a>
+
+    <!-- CTA -->
     <a
       href={waUrl(WA_MESSAGES.cotizacion)}
-      class="hdr-mobile-nav__cta"
+      class="mob-cta"
       target="_blank"
       rel="noopener noreferrer"
     >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
       Cotizar por WhatsApp
     </a>
   </nav>
 </div>
 
 <style>
-  /* ═══════════════════════════════════════════════════════
-     HEADER PRINCIPAL
-  ═══════════════════════════════════════════════════════ */
-  .site-header {
-    position: sticky;
-    top: var(--topbar-height, 36px);
-    z-index: 100;
-    background: var(--c-white);
-    border-bottom: 1px solid var(--c-border);
-    box-shadow: var(--shadow-sm);
-  }
+/* ═══════════════════════════════════════════════════════
+   HEADER BASE
+═══════════════════════════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: var(--topbar-height, 36px);
+  z-index: 500;
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 8px rgba(0,0,0,.04);
+}
 
-  .hdr-inner {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    height: var(--header-height, 88px);
-  }
+.hdr-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: var(--header-height, 80px);
+}
 
-  /* ─── Logo ─── */
-  .hdr-logo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    text-decoration: none;
-  }
+/* ─── Logo ─── */
+.hdr-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.hdr-logo-img {
+  height: 62px;
+  width: auto;
+  display: block;
+}
 
-  .hdr-logo-img {
-    height: 52px;
-    width: auto;
-    display: block;
-  }
+/* ═══════════════════════════════════════════════════════
+   NAVEGACIÓN DESKTOP
+═══════════════════════════════════════════════════════ */
+.hdr-nav { margin-left: auto; }
 
-  /* ═══════════════════════════════════════════════════════
-     NAVEGACIÓN DESKTOP
-  ═══════════════════════════════════════════════════════ */
-  .hdr-nav { margin-left: auto; }
+.hdr-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .hdr-nav__list {
-    display: flex;
-    align-items: center;
-    gap: 0.125rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+.hdr-nav__item { position: relative; }
 
-  .hdr-nav__item { position: relative; }
+.hdr-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-ink-2);
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
 
-  .hdr-nav__link {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--c-ink-2);
-    border-radius: 4px;
-    transition: color 0.18s, background 0.18s;
-    white-space: nowrap;
-    text-decoration: none;
-  }
+.hdr-nav__link:hover { color: var(--c-primary); background: var(--c-primary-light); }
 
-  .hdr-nav__link:hover,
-  .hdr-nav__link--active {
-    color: var(--c-primary);
-    background: var(--c-primary-light);
-  }
+.hdr-nav__link--active {
+  color: var(--c-primary);
+  background: var(--c-primary-light);
+  font-weight: 600;
+}
 
-  .hdr-chevron {
-    transition: transform 0.18s;
-    flex-shrink: 0;
-    opacity: 0.6;
-  }
+.hdr-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  opacity: 0.55;
+}
 
-  /* ─── Dropdown simple ─── */
-  .hdr-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 220px;
-    background: var(--c-white);
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    box-shadow: var(--shadow-lg);
-    padding: 0.5rem 0.375rem 0.375rem;
-    z-index: 200;
-    list-style: none;
-    margin: 0;
-    /* puente invisible: cubre el gap entre el link y el menú */
-    padding-top: 0.5rem;
-  }
+/* Rotar chevron cuando está activo */
+.hdr-nav__item.is-open .hdr-chevron { transform: rotate(180deg); }
+.hdr-nav__item.is-open .hdr-nav__link { color: var(--c-primary); background: var(--c-primary-light); }
 
-  /* Extensión invisible sobre el dropdown para no perder hover al bajar el cursor */
-  .hdr-dropdown::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-  }
+/* ═══════════════════════════════════════════════════════
+   MEGA PANEL — Productos (full-width, debajo del header)
+═══════════════════════════════════════════════════════ */
+.mega-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: calc(var(--topbar-height, 36px) + var(--header-height, 80px));
+  background: var(--c-white);
+  border-top: 2px solid var(--c-primary);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  z-index: 490;
+  padding-block: 1.75rem;
+  /* animación */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
 
-  .hdr-nav__item--dropdown:hover .hdr-dropdown,
-  .hdr-nav__item--dropdown:focus-within .hdr-dropdown { display: block; }
+.mega-panel.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
 
-  .hdr-nav__item--dropdown:hover .hdr-chevron { transform: rotate(180deg); }
+.mega-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--c-border);
+}
 
-  .hdr-dropdown__header {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    border-bottom: 1px solid var(--c-border);
-    margin-bottom: 0.25rem;
-  }
+.mega-panel__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
-  .hdr-dropdown__header a {
-    color: var(--c-primary);
-    text-decoration: none;
-  }
+.mega-panel__all {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mega-panel__all:hover { color: var(--c-primary-dark); }
 
-  .hdr-dropdown__link {
-    display: block;
-    padding: 0.4375rem 0.75rem;
-    font-size: 0.875rem;
-    color: var(--c-ink-2);
-    border-radius: 4px;
-    transition: background 0.15s, color 0.15s;
-    text-decoration: none;
-  }
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 1.5rem;
+  align-items: start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .hdr-dropdown__link:hover {
-    background: var(--c-primary-light);
-    color: var(--c-primary);
-  }
+.mega-col { display: flex; flex-direction: column; }
 
-  /* ═══════════════════════════════════════════════════════
-     MEGA MENÚ
-  ═══════════════════════════════════════════════════════ */
-  .mega-dropdown {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: var(--stack-height, 124px);
-    background: var(--c-white);
-    border-top: 2px solid var(--c-primary);
-    border-bottom: 1px solid var(--c-border);
-    box-shadow: var(--shadow-lg);
-    z-index: 200;
-    padding-block: 1.75rem;
-  }
+.mega-col__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4375rem 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  border-radius: 5px;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.mega-col__title:hover { background: var(--c-primary-light); color: var(--c-primary); }
 
-  .hdr-nav__item--mega:hover .mega-dropdown,
-  .hdr-nav__item--mega:focus-within .mega-dropdown { display: block; }
+.mega-col__badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  background: var(--c-primary-light);
+  border: 1px solid rgba(var(--c-primary-rgb, 220,38,38), 0.2);
+  padding: 0.1rem 0.4rem;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
 
-  .hdr-nav__item--mega:hover .hdr-chevron { transform: rotate(180deg); }
+.mega-sub {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--c-border);
+  list-style: none;
+  padding-left: 0;
+}
 
-  .mega-dropdown__all {
-    display: inline-block;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    text-decoration: none;
-  }
+.mega-sub__link {
+  display: block;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8125rem;
+  color: var(--c-muted);
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.mega-sub__link:hover { background: var(--c-primary-light); color: var(--c-primary); }
+.mega-sub__link--ver-todos { font-weight: 600; color: var(--c-primary); margin-top: 0.125rem; }
+.mega-sub__link--ver-todos:hover { color: var(--c-primary-dark); }
 
-  .mega-dropdown__all:hover { color: var(--c-primary-dark); }
+/* ═══════════════════════════════════════════════════════
+   DROP PANELS — Servicios / Cobertura
+═══════════════════════════════════════════════════════ */
+.drop-panel {
+  position: fixed;
+  z-index: 490;
+  /* se posiciona via JS según el trigger */
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+  min-width: 220px;
+  /* animación */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
 
-  .mega-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem 1.5rem;
-    align-items: start;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+.drop-panel.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
 
-  .mega-col {
-    display: flex;
-    flex-direction: column;
-  }
+.drop-panel__inner {
+  padding: 0.5rem 0.375rem;
+  display: flex;
+  flex-direction: column;
+}
 
-  .mega-col__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.4375rem 0.625rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--c-ink);
-    border-radius: 4px;
-    transition: background 0.15s, color 0.15s;
-    text-decoration: none;
-  }
+.drop-panel__header {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.drop-panel__header:hover { color: var(--c-primary-dark); }
 
-  .mega-col__title:hover {
-    background: var(--c-primary-light);
-    color: var(--c-primary);
-  }
+.drop-panel__link {
+  display: block;
+  padding: 0.4375rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--c-ink-2);
+  border-radius: 5px;
+  transition: background 0.12s, color 0.12s;
+  text-decoration: none;
+}
+.drop-panel__link:hover { background: var(--c-primary-light); color: var(--c-primary); }
 
-  .mega-col__badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--c-primary);
-    background: var(--c-primary-light);
-    border: 1px solid rgba(var(--c-primary-rgb), 0.2);
-    padding: 0.1rem 0.4rem;
-    border-radius: 100px;
-    flex-shrink: 0;
-  }
+/* ═══════════════════════════════════════════════════════
+   OVERLAY
+═══════════════════════════════════════════════════════ */
+.hdr-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 480;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(1px);
+}
+.hdr-overlay.is-visible { display: block; }
 
-  /* Subcategorías L4 */
-  .mega-sub {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.25rem;
-    padding-top: 0.25rem;
-    border-top: 1px solid var(--c-border);
-    list-style: none;
-    padding-left: 0;
-  }
+/* ═══════════════════════════════════════════════════════
+   CTA BOTÓN
+═══════════════════════════════════════════════════════ */
+.hdr-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.5625rem 1.25rem;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.15s;
+  flex-shrink: 0;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(var(--c-primary-rgb, 220,38,38),.3);
+}
+.hdr-cta:hover { background: var(--c-primary-dark); color: #fff; transform: translateY(-1px); }
+.hdr-cta:active { transform: translateY(0); }
 
-  .mega-sub__link {
-    display: block;
-    padding: 0.25rem 0.625rem;
-    font-size: 0.8125rem;
-    color: var(--c-muted);
-    border-radius: 4px;
-    transition: background 0.15s, color 0.15s;
-    text-decoration: none;
-    line-height: 1.4;
-  }
+/* ═══════════════════════════════════════════════════════
+   HAMBURGER
+═══════════════════════════════════════════════════════ */
+.hdr-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 0.5rem;
+  margin-left: auto;
+  cursor: pointer;
+  border: 1px solid var(--c-border);
+  background: none;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+}
+.hdr-burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--c-ink-2);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
 
-  .mega-sub__link:hover {
-    background: var(--c-primary-light);
-    color: var(--c-primary);
-  }
+/* Animación → X cuando está abierto */
+.hdr-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hdr-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hdr-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  .mega-sub__link--ver-todos {
-    font-weight: 600;
-    color: var(--c-primary);
-    margin-top: 0.125rem;
-  }
+/* ═══════════════════════════════════════════════════════
+   MOBILE NAV
+═══════════════════════════════════════════════════════ */
+.hdr-mobile-nav {
+  position: fixed;
+  top: calc(var(--topbar-height, 36px) + var(--header-height, 80px));
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--c-white);
+  z-index: 490;
+  overflow-y: auto;
+  border-top: 2px solid var(--c-primary);
+  /* slide-in desde arriba */
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.hdr-mobile-nav[aria-hidden="false"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
 
-  .mega-sub__link--ver-todos:hover { color: var(--c-primary-dark); }
+/* Accordion item */
+.mob-item {
+  border-bottom: 1px solid var(--c-border);
+}
 
-  /* ═══════════════════════════════════════════════════════
-     CTA BOTÓN
-  ═══════════════════════════════════════════════════════ */
-  .hdr-cta {
-    display: flex;
-    align-items: center;
-    gap: 0.4375rem;
-    padding: 0.5625rem 1.25rem;
-    background: var(--c-primary);
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border-radius: 4px;
-    white-space: nowrap;
-    transition: background 0.18s;
-    flex-shrink: 0;
-    text-decoration: none;
-  }
+.mob-item__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+.mob-item__trigger:hover { color: var(--c-primary); }
+.mob-item__trigger[aria-expanded="true"] { color: var(--c-primary); }
+.mob-item__trigger[aria-expanded="true"] .mob-chevron { transform: rotate(180deg); }
 
-  .hdr-cta:hover { background: var(--c-primary-dark); color: #fff; }
+.mob-chevron { transition: transform 0.2s ease; flex-shrink: 0; opacity: 0.6; }
 
-  /* ═══════════════════════════════════════════════════════
-     HAMBURGER MOBILE
-  ═══════════════════════════════════════════════════════ */
-  .hdr-burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    padding: 0.5rem;
-    margin-left: auto;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
+.mob-item__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+  overflow: hidden;
+}
+.mob-item__panel.is-open { grid-template-rows: 1fr; }
 
-  .hdr-burger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--c-ink-2);
-    border-radius: 2px;
-    transition: transform 0.25s, opacity 0.25s;
-  }
+.mob-item__panel > * {
+  /* hack: el contenido directo necesita min-height:0 para que grid-template-rows funcione */
+  min-height: 0;
+}
 
-  /* ═══════════════════════════════════════════════════════
-     MOBILE NAV OVERLAY
-  ═══════════════════════════════════════════════════════ */
-  .hdr-mobile-nav {
-    display: none;
-    position: fixed;
-    inset: 0;
-    top: var(--stack-height, 124px);
-    background: var(--c-white);
-    z-index: 99;
-    padding: 1.5rem;
-    overflow-y: auto;
-    border-top: 2px solid var(--c-primary);
-  }
+/* wrapper interno para el contenido del panel */
+.mob-item__panel-inner {
+  padding: 0.25rem 1.25rem 1rem;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
 
-  .hdr-mobile-nav[aria-hidden="false"] { display: block; }
+.mob-item__all {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 0.25rem;
+}
+.mob-item__all:hover { background: var(--c-primary-light); }
 
-  .hdr-mobile-nav__link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--c-ink);
-    border-bottom: 1px solid var(--c-border);
-    text-decoration: none;
-  }
+.mob-item__link {
+  display: block;
+  padding: 0.4375rem 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--c-ink-2);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.12s, color 0.12s;
+}
+.mob-item__link:hover { background: var(--c-primary-light); color: var(--c-primary); }
 
-  .hdr-mobile-nav__link:hover { color: var(--c-primary); }
+/* Links directos sin dropdown */
+.mob-direct {
+  display: block;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  border-bottom: 1px solid var(--c-border);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mob-direct:hover { color: var(--c-primary); }
 
-  .hdr-mobile-nav__cta {
-    display: block;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: var(--c-primary);
-    color: #fff;
-    font-size: 1.0625rem;
-    font-weight: 700;
-    text-align: center;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background 0.18s;
-  }
+/* CTA mobile */
+.mob-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem 1.25rem;
+  padding: 1rem 1.5rem;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(var(--c-primary-rgb, 220,38,38),.35);
+  transition: background 0.15s;
+}
+.mob-cta:hover { background: var(--c-primary-dark); color: #fff; }
 
-  .hdr-mobile-nav__cta:hover { background: var(--c-primary-dark); color: #fff; }
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hdr-nav  { display: none; }
+  .hdr-cta  { display: none; }
+  .hdr-burger { display: flex; }
+}
 
-  /* ═══════════════════════════════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════════════════════════════ */
-  @media (max-width: 1024px) {
-    .hdr-nav { display: none; }
-    .hdr-cta { display: none; }
-    .hdr-burger { display: flex; }
-  }
+@media (max-width: 480px) {
+  .hdr-inner { gap: 1rem; }
+  .hdr-logo-img { height: 52px; }
+}
 </style>
 
 <script>
-  const burgerBtn   = document.getElementById('hdr-burger-btn')
-  const mobileNav   = document.getElementById('hdr-mobile-nav')
+// ═══════════════════════════════════════════════════════
+//  HEADER — lógica de dropdowns profesional
+// ═══════════════════════════════════════════════════════
 
-  burgerBtn?.addEventListener('click', () => {
-    const isOpen = mobileNav?.getAttribute('aria-hidden') === 'false'
-    mobileNav?.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
-    burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true')
+(function () {
+  const CLOSE_DELAY = 120 // ms de gracia antes de cerrar
+
+  // ── referencias ──────────────────────────────────────
+  const overlay   = document.getElementById('hdr-overlay')!
+  const mobileNav = document.getElementById('hdr-mobile-nav')!
+  const burgerBtn = document.getElementById('hdr-burger-btn')!
+
+  // Cada ítem de nav con data-dropdown
+  type DropItem = {
+    trigger: HTMLElement
+    link: HTMLElement
+    panel: HTMLElement
+    isMega: boolean
+    timer: ReturnType<typeof setTimeout> | null
+  }
+
+  const items: DropItem[] = []
+
+  document.querySelectorAll<HTMLElement>('[data-dropdown]').forEach((trigger) => {
+    const panelId = trigger.dataset.dropdown!
+    const panel = document.getElementById(panelId)
+    if (!panel) return
+    const link = trigger.querySelector<HTMLElement>('.hdr-nav__link')!
+
+    items.push({ trigger, link, panel, isMega: panel.classList.contains('mega-panel'), timer: null })
   })
+
+  // ── posicionar drop-panels simples (no mega) ──────────
+  function positionPanel(item: DropItem) {
+    if (item.isMega) return
+    const rect = item.trigger.getBoundingClientRect()
+    const panel = item.panel as HTMLElement
+    panel.style.top  = `${rect.bottom + 6}px`
+    panel.style.left = `${rect.left}px`
+    // Evitar que se salga por la derecha
+    const pw = panel.offsetWidth || 220
+    if (rect.left + pw > window.innerWidth - 12) {
+      panel.style.left = `${window.innerWidth - pw - 12}px`
+    }
+  }
+
+  // ── abrir / cerrar ────────────────────────────────────
+  function openItem(item: DropItem) {
+    if (item.timer) { clearTimeout(item.timer); item.timer = null }
+    // Cerrar el resto
+    items.forEach(other => { if (other !== item) closeItemNow(other) })
+
+    positionPanel(item)
+    item.panel.classList.add('is-open')
+    item.panel.setAttribute('aria-hidden', 'false')
+    item.trigger.classList.add('is-open')
+    item.link.setAttribute('aria-expanded', 'true')
+    overlay?.classList.add('is-visible')
+  }
+
+  function scheduleClose(item: DropItem) {
+    item.timer = setTimeout(() => closeItemNow(item), CLOSE_DELAY)
+  }
+
+  function closeItemNow(item: DropItem) {
+    if (item.timer) { clearTimeout(item.timer); item.timer = null }
+    item.panel.classList.remove('is-open')
+    item.panel.setAttribute('aria-hidden', 'true')
+    item.trigger.classList.remove('is-open')
+    item.link.setAttribute('aria-expanded', 'false')
+    // Ocultar overlay solo si ningún panel está abierto
+    if (!items.some(i => i.panel.classList.contains('is-open'))) {
+      overlay?.classList.remove('is-visible')
+    }
+  }
+
+  function closeAll() {
+    items.forEach(item => closeItemNow(item))
+    overlay?.classList.remove('is-visible')
+  }
+
+  // ── eventos en triggers ───────────────────────────────
+  items.forEach(item => {
+    // Mouse enter en el trigger → abrir
+    item.trigger.addEventListener('mouseenter', () => openItem(item))
+    // Mouse leave en el trigger → iniciar timer de cierre
+    item.trigger.addEventListener('mouseleave', () => scheduleClose(item))
+
+    // Mouse enter en el panel → cancelar cierre
+    item.panel.addEventListener('mouseenter', () => {
+      if (item.timer) { clearTimeout(item.timer); item.timer = null }
+    })
+    // Mouse leave en el panel → iniciar timer de cierre
+    item.panel.addEventListener('mouseleave', () => scheduleClose(item))
+
+    // Click en el link del trigger → toggle (accesibilidad teclado/touch)
+    item.link.addEventListener('click', (e) => {
+      if (window.innerWidth > 1024) {
+        // Desktop: clic en el link navega normalmente (ya hover abrió)
+        // No hacemos nada especial aquí
+      }
+    })
+  })
+
+  // ── cerrar al hacer clic en el overlay ────────────────
+  overlay?.addEventListener('click', closeAll)
+
+  // ── cerrar con Escape ─────────────────────────────────
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll()
+  })
+
+  // ── cerrar al navegar (click en links internos) ───────
+  document.querySelectorAll('.mega-panel a, .drop-panel a').forEach(a => {
+    a.addEventListener('click', () => setTimeout(closeAll, 50))
+  })
+
+  // ── MOBILE: hamburger ─────────────────────────────────
+  function toggleMobileNav() {
+    const isOpen = mobileNav.getAttribute('aria-hidden') === 'false'
+    mobileNav.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true')
+    document.body.style.overflow = isOpen ? '' : 'hidden'
+  }
+
+  burgerBtn?.addEventListener('click', toggleMobileNav)
+
+  // ── MOBILE: acordeón ──────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.mob-item__trigger').forEach(btn => {
+    const mobItem = btn.closest<HTMLElement>('.mob-item')!
+    const panel = mobItem.querySelector<HTMLElement>('.mob-item__panel')!
+
+    // Wrap panel children in a div for grid animation
+    const inner = document.createElement('div')
+    inner.className = 'mob-item__panel-inner'
+    while (panel.firstChild) inner.appendChild(panel.firstChild)
+    panel.appendChild(inner)
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true'
+
+      // Cerrar otros acordeones
+      document.querySelectorAll<HTMLElement>('.mob-item__trigger').forEach(other => {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false')
+          const op = other.closest<HTMLElement>('.mob-item')!.querySelector<HTMLElement>('.mob-item__panel')!
+          op.classList.remove('is-open')
+        }
+      })
+
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true')
+      panel.classList.toggle('is-open', !isOpen)
+    })
+  })
+
+  // ── Cerrar mobile nav al hacer clic en links ──────────
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.setAttribute('aria-hidden', 'true')
+      burgerBtn.setAttribute('aria-expanded', 'false')
+      document.body.style.overflow = ''
+    })
+  })
+
+  // ── Ajustar posición de panels al redimensionar ───────
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1024) {
+      closeAll()
+      document.body.style.overflow = ''
+    }
+  })
+
+})()
 </script>
