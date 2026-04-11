@@ -2,9 +2,9 @@
 /**
  * BlogPreviewIndex.astro
  * Preview de últimos artículos del blog — 3 cards.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: SectionHeaderDuo (complemento aprobado).
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const articulos = [
   {
@@ -31,19 +31,16 @@ const articulos = [
 <section class="blog-preview-index" aria-labelledby="blog-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="Blog"
       titleLine1="Guías y recursos sobre"
       titleLine2="protección contra incendios"
-      align="left"
+      desc="Contenido escrito por especialistas en seguridad contra incendios."
+      bodyPara1="Artículos técnicos sobre normativa mexicana, selección de equipo, mantenimiento preventivo y preparación para inspecciones de Protección Civil y STPS."
+      bodyPara2="Publicamos guías prácticas para que tu empresa entienda qué equipo necesita, cómo mantenerlo y qué documentación presentar ante las autoridades competentes."
     />
 
-    <div class="blog-preview-index__cols">
-      <p>
-        Artículos técnicos sobre normativa mexicana, selección de equipo, mantenimiento
-        preventivo y preparación para inspecciones de Protección Civil y STPS. Contenido
-        escrito por especialistas en seguridad contra incendios.
-      </p>
+    <div class="blog-preview-index__cta">
       <a href="/blog/" class="btn-outline">Ver todos los artículos</a>
     </div>
 
@@ -71,21 +68,8 @@ const articulos = [
     border-top: 1px solid var(--c-border);
   }
 
-  .blog-preview-index__cols {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .blog-preview-index__cta {
     margin-bottom: 2.5rem;
-  }
-
-  .blog-preview-index__cols p {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-    max-width: 64ch;
-    flex: 1;
   }
 
   /* ── GRID ─────────────────────────────────────────────── */

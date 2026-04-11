@@ -15,13 +15,6 @@ const breadcrumbs = [
   { label: "Contacto" },
 ];
 
-const metricas = [
-  { valor: "<24h", label: "Tiempo de respuesta" },
-  { valor: "Gratis", label: "Cotización sin costo" },
-  { valor: "NOM", label: "Equipo certificado" },
-  { valor: "CDMX", label: "Entrega el mismo día" },
-];
-
 const canales = [
   {
     titulo: "WhatsApp",
@@ -127,22 +120,6 @@ const razones = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Datos de contacto">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CANALES DE CONTACTO

@@ -16,13 +16,6 @@ const breadcrumbs = [
   { label: "Equipo de Seguridad Industrial" },
 ];
 
-const metricas = [
-  { valor: "8", label: "Categorías de EPP" },
-  { valor: "NOM-017", label: "STPS · ANSI · EN" },
-  { valor: "$85", label: "Desde MXN/pieza" },
-  { valor: "STPS", label: "Asesoría de cumplimiento" },
-];
-
 const productos = [
   {
     nombre: "Protección Craneal",
@@ -197,22 +190,6 @@ const faqsEPP = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Equipo de seguridad industrial">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

@@ -45,12 +45,6 @@ const breadcrumbs = [
 ];
 
 // ── Métricas ─────────────────────────────────────────
-const metricas = [
-  { valor: `${totalPosts}`, label: "Artículos publicados" },
-  { valor: "NOM",    label: "Normativa actualizada" },
-  { valor: "STPS",   label: "Regulación laboral" },
-  { valor: "Gratis", label: "Contenido abierto" },
-];
 ---
 
 <Base title={title} description={description}>
@@ -124,10 +118,7 @@ const metricas = [
        MÉTRICAS — solo página 1
   ══════════════════════════════════════ -->
   {isFirstPage && (
-    <section class="metricas-section" aria-label="Blog stats">
       <div class="container">
-        <div class="metricas-grid">
-          {metricas.map(m => (
             <div class="metrica-item">
               <span class="metrica-valor">{m.valor}</span>
               <span class="metrica-label">{m.label}</span>
@@ -420,14 +411,6 @@ const metricas = [
     color: var(--c-muted);
   }
 
-  /* ── MÉTRICAS ─────────────────────────────────────── */
-  .metricas-section { background: var(--c-primary); padding: 2rem 0; }
-  .metricas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-  .metrica-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; border-right: 1px solid rgba(255,255,255,0.2); }
-  .metrica-item:last-child { border-right: none; }
-  .metrica-valor { font-size: 1.875rem; font-weight: 800; color: #fff; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.25rem; }
-  .metrica-label { font-size: 0.8125rem; color: rgba(255,255,255,0.7); font-weight: 500; line-height: 1.3; }
-
   /* ── NAVEGACIÓN ────────────────────────────────────── */
   .nav-cats { background: var(--c-white); border-bottom: 1px solid var(--c-border); padding: 0.875rem 0; position: sticky; top: var(--stack-height, 124px); z-index: 50; }
   .nav-cats__inner { display: flex; align-items: center; gap: 1rem; overflow-x: auto; scrollbar-width: none; }
@@ -581,8 +564,7 @@ const metricas = [
   @media (max-width: 1024px) {
     .cat-header { grid-template-columns: 1fr; gap: 2rem; }
     .cat-header__img-wrap { aspect-ratio: 16/9; }
-    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
-    .metrica-item:nth-child(2) { border-right: none; }
+    
     .metrica-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.2); }
     .productos-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -597,6 +579,5 @@ const metricas = [
   }
   @media (max-width: 480px) {
     .productos-grid { grid-template-columns: 1fr; }
-    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+    }
 </style>

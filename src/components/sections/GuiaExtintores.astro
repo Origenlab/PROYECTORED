@@ -2,9 +2,9 @@
 /**
  * GuiaExtintores.astro
  * Guía de selección por tipo de instalación — 4 escenarios críticos.
- * Usa SectionHeader.astro (complemento aprobado). Copy de alto impacto marketing.
+ * Usa SectionHeaderDuo (complemento título oficial). Copy de alto impacto marketing.
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { waUrl } from '../../config/site'
 
 const waHref = waUrl('Hola, necesito asesoría para elegir el extintor correcto para mi instalación')
@@ -48,20 +48,13 @@ const escenarios = [
 <section class="guia-extintores" id="guia-extintores" aria-labelledby="guia-ext-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="Selección por tipo de riesgo"
       titleLine1="El Extintor Incorrecto No Solo No Apaga —"
       titleLine2="Puede Agravar el Incendio"
       desc="Agua en fuego eléctrico = electrocución. PQS en freidora = reavivamiento del fuego. CO₂ en exterior = dispersión sin efectividad. Conoce la configuración correcta para tu instalación."
-      align="left"
+      bodyPara1="Elegir el tipo incorrecto de extintor no es solo un problema de cumplimiento normativo — es un riesgo operativo real. En una emergencia, el personal que intenta usar un extintor inadecuado puede agravar el incendio, sufrir un accidente o simplemente perder los segundos críticos que hacen la diferencia entre un conato controlado y una evacuación total. Asesoría técnica sin costo para que definas la configuración correcta por zona antes de comprar."
     />
-
-    <!-- Texto SEO adicional -->
-    <div class="guia-extintores__intro">
-      <p>
-        Elegir el tipo incorrecto de extintor no es solo un problema de cumplimiento normativo — es un riesgo operativo real. En una emergencia, el personal que intenta usar un extintor inadecuado puede agravar el incendio, sufrir un accidente o simplemente perder los segundos críticos que hacen la diferencia entre un conato controlado y una evacuación total. Asesoría técnica sin costo para que definas la configuración correcta por zona antes de comprar.
-      </p>
-    </div>
 
     <!-- Grid de escenarios -->
     <div class="guia-grid" role="list" aria-label="Guía de selección de extintores por tipo de instalación">
@@ -113,18 +106,6 @@ const escenarios = [
     padding: var(--section-py, 5rem) 0;
     background: var(--c-surface, #F4F4F5);
     border-top: 1px solid var(--c-border);
-  }
-
-  /* Intro text */
-  .guia-extintores__intro {
-    max-width: 80ch;
-    margin-bottom: 3rem;
-  }
-
-  .guia-extintores__intro p {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
   }
 
   /* ── GRID 2 COLUMNAS ─────────────────────────────────── */

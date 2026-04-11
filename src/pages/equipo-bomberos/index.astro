@@ -16,13 +16,6 @@ const breadcrumbs = [
   { label: "Equipo para Bomberos" },
 ];
 
-const metricas = [
-  { valor: "NFPA", label: "Certificación internacional" },
-  { valor: "5", label: "Categorías de equipo" },
-  { valor: "10 años", label: "Vida útil trajes (NFPA 1851)" },
-  { valor: "<48h", label: "Entrega zona metro" },
-];
-
 // ── Productos de esta categoría ──────────────────────
 const productos = [
   {
@@ -157,22 +150,6 @@ const faqsBomberos = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Equipo para bomberos">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO — cat-header + productos-grid

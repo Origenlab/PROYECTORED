@@ -2,6 +2,7 @@
 /**
  * CoberturaIndex.astro
  * Cobertura por estado — 2 columnas con links de empresa por estado.
+ * Encabezado: sidebar-header (clases compartidas en components.css).
  */
 
 const estados = [
@@ -19,12 +20,12 @@ const estados = [
 
     <!-- Izquierda: texto -->
     <div class="cobertura-index__left">
-      <p class="cob-eyebrow">Cobertura</p>
-      <h2 id="cobertura-heading" class="cob-titulo">
+      <p class="sidebar-header__eyebrow">Cobertura</p>
+      <h2 id="cobertura-heading" class="sidebar-header__title">
         Entrega directa en<br>
         <span>toda la República</span>
       </h2>
-      <p class="cob-desc">
+      <p class="sidebar-header__desc">
         Nuestro centro de operaciones está en la Ciudad de México. Entregamos el mismo día
         en la zona metropolitana y coordinamos envíos a todo el país para pedidos de volumen.
         Cobertura comercial activa en seis estados.
@@ -85,33 +86,6 @@ const estados = [
   }
 
   /* ── IZQUIERDA ────────────────────────────────────────── */
-  .cob-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 0.75rem;
-  }
-
-  .cob-titulo {
-    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
-    font-weight: 800;
-    letter-spacing: -.03em;
-    line-height: 1.1;
-    color: var(--c-ink);
-    margin-bottom: 1rem;
-  }
-
-  .cob-titulo span { color: var(--c-primary); }
-
-  .cob-desc {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
-  }
-
   .cob-badges {
     display: flex;
     flex-direction: column;

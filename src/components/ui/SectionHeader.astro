@@ -1,27 +1,17 @@
 ---
 // SectionHeader.astro
-// Encabezado de sección reutilizable — eyebrow + título (con acento rojo) + descripción
+// Encabezado de sección — columna única, centrado o izquierda.
+// CSS en: src/styles/components.css (.section-header)
 
 interface Props {
-  /** Texto pequeño sobre el título (en rojo, mayúsculas) */
   eyebrow?: string
-  /** Primera línea del título */
   titleLine1: string
-  /** Segunda línea del título — se renderiza en rojo */
   titleLine2?: string
-  /** Texto descriptivo debajo del título */
   desc?: string
-  /** Alineación horizontal (default: center) */
   align?: 'center' | 'left'
 }
 
-const {
-  eyebrow,
-  titleLine1,
-  titleLine2,
-  desc,
-  align = 'center',
-} = Astro.props
+const { eyebrow, titleLine1, titleLine2, desc, align = 'center' } = Astro.props
 ---
 
 <header class:list={['section-header', { 'section-header--left': align === 'left' }]}>
@@ -30,49 +20,10 @@ const {
     {titleLine1}
     {titleLine2 && (
       <>
-        <br /><span>{titleLine2}</span>
+        <br />
+        <span>{titleLine2}</span>
       </>
     )}
   </h2>
   {desc && <p class="section-header__desc">{desc}</p>}
 </header>
-
-<style>
-  .section-header {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto var(--sp-12);
-  }
-
-  .section-header--left {
-    text-align: left;
-    margin-left: 0;
-  }
-
-  .section-header__eyebrow {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    color: var(--color-red);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--sp-3);
-  }
-
-  .section-header__title {
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-black);
-    color: var(--color-gray-900);
-    line-height: var(--leading-tight);
-    margin-bottom: var(--sp-4);
-  }
-
-  .section-header__title span {
-    color: var(--color-red);
-  }
-
-  .section-header__desc {
-    font-size: var(--text-base);
-    color: var(--color-gray-500);
-    line-height: var(--leading-relaxed);
-  }
-</style>

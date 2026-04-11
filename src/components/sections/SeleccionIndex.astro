@@ -2,9 +2,9 @@
 /**
  * SeleccionIndex.astro
  * Tabla de guía de selección por nivel de riesgo.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: SectionHeaderDuo (complemento aprobado).
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { waUrl } from '../../config/site'
 
 const waHref = waUrl('Hola, necesito un diagnóstico de mi instalación')
@@ -13,24 +13,14 @@ const waHref = waUrl('Hola, necesito un diagnóstico de mi instalación')
 <section class="seleccion-index" aria-labelledby="seleccion-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="Guía de selección"
       titleLine1="¿Qué Equipo Necesitas"
       titleLine2="Según el Tipo de Riesgo?"
-      align="left"
+      desc="Recomendación base por clasificación de riesgo conforme a la normativa vigente."
+      bodyPara1="La selección correcta parte de identificar el nivel de exposición de tu inmueble y el tipo de fuego más probable según los materiales presentes. A mayor peligrosidad, mayor densidad de equipamiento y mayor complejidad del sistema requerido."
+      bodyPara2="Esta tabla resume el equipamiento mínimo y los complementos recomendados para cada nivel de riesgo. Un diagnóstico técnico presencial permite afinar la recomendación según la distribución específica de tu instalación."
     />
-
-    <div class="seleccion-index__cols">
-      <div class="seleccion-index__text">
-        <p>
-          La selección correcta parte de identificar el nivel de exposición de tu inmueble y
-          el tipo de fuego más probable según los materiales presentes.
-          A mayor peligrosidad, mayor densidad de equipamiento y mayor complejidad del sistema
-          requerido. Esta tabla resume la recomendación base por clasificación de riesgo
-          conforme a la normativa vigente.
-        </p>
-      </div>
-    </div>
 
     <div class="tabla-responsive">
       <table class="tabla-seo" role="table" aria-label="Guía de equipo según nivel de riesgo">
@@ -91,66 +81,8 @@ const waHref = waUrl('Hola, necesito un diagnóstico de mi instalación')
     background: var(--c-white);
   }
 
-  .seleccion-index__cols {
-    max-width: 70ch;
-    margin-bottom: 2rem;
-  }
 
-  .seleccion-index__cols p {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-  }
-
-  /* ── TABLA ────────────────────────────────────────────── */
-  .tabla-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 6px;
-    border: 1px solid var(--c-border);
-    margin-bottom: 1.5rem;
-  }
-
-  .tabla-seo {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-    min-width: 640px;
-  }
-
-  .tabla-seo thead {
-    background: var(--c-ink, #111111);
-    color: #fff;
-  }
-
-  .tabla-seo th {
-    padding: 0.875rem 1.25rem;
-    text-align: left;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .tabla-seo td {
-    padding: 0.875rem 1.25rem;
-    border-bottom: 1px solid var(--c-border);
-    color: var(--c-ink-2);
-    line-height: 1.5;
-    vertical-align: top;
-  }
-
-  .tabla-seo td strong {
-    color: var(--c-ink);
-    font-weight: 700;
-  }
-
-  .tabla-seo tbody tr:last-child td { border-bottom: none; }
-
-  .tabla-seo tbody tr:nth-child(even) {
-    background: var(--c-surface, #F4F4F5);
-  }
+  /* .tabla-seo y .tabla-responsive → components.css (compartidos) */
 
   /* ── FOOTER ───────────────────────────────────────────── */
   .seleccion-index__footer {

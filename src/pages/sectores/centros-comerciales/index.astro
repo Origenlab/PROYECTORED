@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaBar from '../../../components/CtaBar.astro';
 import FaqCotizacion from '../../../components/FaqCotizacion.astro';
 import '../../../styles/pages.css';
@@ -51,17 +52,11 @@ const faqs = [
 
 <Base title={title} description={description} canonical="https://proyectored.com.mx/sectores/centros-comerciales/">
 
-  <nav class="breadcrumb container" aria-label="Ruta de navegación">
-    {breadcrumbs.map((item, i) => (
-      <>
-        {i > 0 && <span class="breadcrumb__sep">›</span>}
-        {item.href
-          ? <a href={item.href} class="breadcrumb__link">{item.label}</a>
-          : <span class="breadcrumb__current">{item.label}</span>
-        }
-      </>
-    ))}
-  </nav>
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+    </div>
+  </div>
 
   <section class="hero">
     <div class="container">

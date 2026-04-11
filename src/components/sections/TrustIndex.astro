@@ -2,7 +2,7 @@
 /**
  * TrustIndex.astro
  * Sección "Por qué Proyecto Red" — 2 columnas: header izq + 4 cards razones.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: sidebar-header (clases compartidas en components.css).
  */
 import { waUrl, WA_MESSAGES } from '../../config/site'
 
@@ -37,12 +37,12 @@ const razones = [
 
     <!-- Columna izquierda: header + CTAs -->
     <div class="trust-index__header">
-      <p class="trust-eyebrow" aria-hidden="true">Por qué elegirnos</p>
-      <h2 id="trust-heading" class="trust-title">
+      <p class="sidebar-header__eyebrow" aria-hidden="true">Por qué elegirnos</p>
+      <h2 id="trust-heading" class="sidebar-header__title">
         Equipo Certificado.<br>
         <span>Entrega Directa.</span>
       </h2>
-      <p class="trust-desc">
+      <p class="sidebar-header__desc">
         Llevamos años equipando empresas en la CDMX y el Estado de México. Catálogo amplio,
         equipo certificado y alguien que responde cuando lo necesitas.
       </p>
@@ -88,34 +88,7 @@ const razones = [
     align-items: start;
   }
 
-  /* ── HEADER ───────────────────────────────────────────── */
-  .trust-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 0.75rem;
-  }
-
-  .trust-title {
-    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
-    font-weight: 800;
-    letter-spacing: -.03em;
-    line-height: 1.1;
-    color: var(--c-ink);
-    margin-bottom: 1rem;
-  }
-
-  .trust-title span { color: var(--c-primary); }
-
-  .trust-desc {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
-  }
-
+  /* ── CTAS ──────────────────────────────────────────────── */
   .trust-ctas {
     display: flex;
     flex-direction: column;

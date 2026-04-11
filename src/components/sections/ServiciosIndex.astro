@@ -2,7 +2,7 @@
 /**
  * ServiciosIndex.astro
  * Preview de los 8 servicios profesionales — 2 columnas.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: sidebar-header (clases compartidas en components.css).
  */
 
 const servicios = [
@@ -22,12 +22,12 @@ const servicios = [
 
     <!-- Columna izquierda -->
     <div class="servicios-index__left">
-      <p class="srv-eyebrow">Servicios profesionales</p>
-      <h2 id="servicios-heading" class="srv-titulo">
+      <p class="sidebar-header__eyebrow">Servicios profesionales</p>
+      <h2 id="servicios-heading" class="sidebar-header__title">
         Más que productos:<br>
         <span>protección integral contra el fuego</span>
       </h2>
-      <p class="srv-desc">
+      <p class="sidebar-header__desc">
         Venta, recarga, mantenimiento, instalación, capacitación y asesoría. Todo desde un
         solo proveedor para que tu empresa cumpla con la normativa vigente sin complicaciones.
       </p>
@@ -62,34 +62,6 @@ const servicios = [
     grid-template-columns: 340px 1fr;
     gap: 5rem;
     align-items: start;
-  }
-
-  /* ── COLUMNA IZQUIERDA ───────────────────────────────── */
-  .srv-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 0.75rem;
-  }
-
-  .srv-titulo {
-    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
-    font-weight: 800;
-    letter-spacing: -.03em;
-    line-height: 1.1;
-    color: var(--c-ink);
-    margin-bottom: 1rem;
-  }
-
-  .srv-titulo span { color: var(--c-primary); }
-
-  .srv-desc {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
   }
 
   /* ── GRID SERVICIOS ───────────────────────────────────── */

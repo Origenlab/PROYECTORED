@@ -2,9 +2,9 @@
 /**
  * FaqCotizacionIndex.astro
  * FAQ + Formulario de cotización con JS dinámico para WhatsApp.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: SectionHeaderDuo (complemento aprobado).
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { CONTACT } from '../../config/site'
 
 const faqs = [
@@ -46,11 +46,13 @@ const faqs = [
 <section class="faq-cot-index" id="cotizacion" aria-labelledby="faq-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="FAQ y Cotización"
       titleLine1="Preguntas Frecuentes y"
       titleLine2="Cotización Gratuita"
-      align="center"
+      desc="Resolvemos tus dudas y te cotizamos en menos de 24 horas."
+      bodyPara1="Las preguntas más comunes de nuestros clientes sobre precios, certificaciones, tiempos de entrega y servicios. Si no encuentras tu respuesta, mándanos un WhatsApp y te respondemos ese mismo día."
+      bodyPara2="También puedes solicitar tu cotización directamente desde esta página. Solo dinos qué necesitas y nuestro equipo técnico te prepara una propuesta con precios, disponibilidad y tiempos de entrega."
     />
 
     <div class="faq-cot-index__grid">

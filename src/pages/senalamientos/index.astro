@@ -17,12 +17,6 @@ const breadcrumbs = [
 ];
 
 // MEJORA vs anteriores: métricas con datos duros que generan urgencia
-const metricas = [
-  { valor: "4", label: "Categorías NOM" },
-  { valor: "8h+", label: "Visibilidad sin luz" },
-  { valor: "NOM-003", label: "SEGOB certificado" },
-  { valor: "$35", label: "Desde MXN/pieza" },
-];
 
 // ── Productos ────────────────────────────────────────
 const productos = [
@@ -176,22 +170,6 @@ const faqsSenalamientos = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Señalamientos">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

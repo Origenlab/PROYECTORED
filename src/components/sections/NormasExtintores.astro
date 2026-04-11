@@ -2,9 +2,9 @@
 /**
  * NormasExtintores.astro
  * Tabla de normas y certificaciones específicas para extintores.
- * Usa SectionHeader.astro (complemento aprobado). Patrón: NormasIndex.
+ * Usa SectionHeaderDuo (complemento título oficial). Patrón: NormasIndex.
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const normas = [
   {
@@ -43,22 +43,13 @@ const normas = [
 <section class="normas-extintores" aria-labelledby="normas-ext-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="Respaldo normativo"
       titleLine1="Normas que Regulan"
       titleLine2="la Venta y Uso de Extintores"
-      align="left"
+      desc="Certificaciones y estándares que validan cada extintor que distribuimos."
+      bodyPara1="En México, la validez de un extintor ante Protección Civil o la STPS no depende solo de que el cilindro funcione — depende de que cuente con la certificación de conformidad NOM vigente, la etiqueta de inspección actualizada y la prueba hidrostática al corriente. Durante una auditoría, la autoridad revisa los tres elementos. Si uno falta, el extintor no cuenta. Todos los equipos que distribuimos incluyen la documentación necesaria para tu expediente regulatorio."
     />
-
-    <div class="normas-extintores__intro">
-      <p>
-        En México, la validez de un extintor ante Protección Civil o la STPS no depende solo de que
-        el cilindro funcione — depende de que cuente con la <strong>certificación de conformidad NOM vigente</strong>,
-        la etiqueta de inspección actualizada y la prueba hidrostática al corriente. Durante una auditoría,
-        la autoridad revisa los tres elementos. Si uno falta, el extintor no cuenta. Todos los equipos
-        que distribuimos incluyen la documentación necesaria para tu expediente regulatorio.
-      </p>
-    </div>
 
     <div class="tabla-responsive">
       <table class="tabla-seo" role="table" aria-label="Normas y certificaciones que aplican a extintores contra incendios">
@@ -96,22 +87,6 @@ const normas = [
     padding: var(--section-py, 5rem) 0;
     background: var(--c-white);
     border-top: 1px solid var(--c-border);
-  }
-
-  .normas-extintores__intro {
-    max-width: 80ch;
-    margin-bottom: 2rem;
-  }
-
-  .normas-extintores__intro p {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-  }
-
-  .normas-extintores__intro strong {
-    color: var(--c-ink-2);
-    font-weight: 600;
   }
 
   /* ── TABLA ────────────────────────────────────────────── */

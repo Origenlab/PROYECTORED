@@ -9,6 +9,7 @@
 
 import Base              from '../../layouts/Base.astro'
 import CtaBar            from '../../components/CtaBar.astro'
+import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de extintores ───────────────────
 import HeroExtintores    from '../../components/sections/HeroExtintores.astro'
@@ -20,7 +21,7 @@ import FaqExtintores     from '../../components/sections/FaqExtintores.astro'
 // ── Secciones genéricas reutilizadas del index ────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
 import ServiciosIndex    from '../../components/sections/ServiciosIndex.astro'
-import ReviewsIndex      from '../../components/sections/ReviewsIndex.astro'
+// ReviewsIndex removido de esta página
 import CTAFinalIndex     from '../../components/sections/CTAFinalIndex.astro'
 
 // ── Datos para JSON-LD ────────────────────────────────────
@@ -254,6 +255,17 @@ const schemaWebPage = {
 >
 
   <!-- ── Secciones ────────────────────────────────────────── -->
+  <!-- Barra de migas de pan -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <Breadcrumb items={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Productos', href: '/productos/' },
+        { label: 'Extintores' }
+      ]} />
+    </div>
+  </div>
+
   <HeroExtintores />
   <CtaBar />
   <CatalogoExtintores />
@@ -261,7 +273,6 @@ const schemaWebPage = {
   <TrustIndex />
   <ServiciosIndex />
   <NormasExtintores />
-  <ReviewsIndex />
   <FaqExtintores />
   <CTAFinalIndex />
 

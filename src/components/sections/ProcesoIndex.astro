@@ -1,10 +1,10 @@
 ---
 /**
  * ProcesoIndex.astro
- * Cómo trabajamos — 5 pasos del proceso.
- * Usa SectionHeader.astro (complemento aprobado). Fondo oscuro.
+ * Cómo trabajamos — 5 pasos del proceso. Fondo oscuro.
+ * Encabezado: SectionHeaderDuo dark (complemento aprobado).
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const pasos = [
   {
@@ -38,19 +38,15 @@ const pasos = [
 <section class="proceso-index" aria-labelledby="proceso-heading">
   <div class="container">
 
-    <div class="proceso-index__header">
-      <SectionHeader
-        eyebrow="Cómo trabajamos"
-        titleLine1="De la Necesidad a la"
-        titleLine2="Protección Completa en 5 Pasos"
-        align="center"
-      />
-      <p class="proceso-index__sub">
-        Desde el primer contacto hasta la entrega con documentación en mano, cada paso lo
-        ejecuta un especialista técnico. Sin intermediarios, sin tiempos perdidos: diagnóstico,
-        recomendación, suministro, instalación y seguimiento en un solo proveedor.
-      </p>
-    </div>
+    <SectionHeaderDuo
+      eyebrow="Cómo trabajamos"
+      titleLine1="De la Necesidad a la"
+      titleLine2="Protección Completa en 5 Pasos"
+      desc="Cinco pasos con un solo proveedor — sin intermediarios, sin tiempos perdidos."
+      bodyPara1="Desde el primer contacto hasta la entrega con documentación en mano, cada paso lo ejecuta un especialista técnico. Diagnóstico, recomendación, suministro, instalación y seguimiento en un solo proveedor."
+      bodyPara2="Todo el proceso está diseñado para que tu empresa cumpla con la normativa vigente de la manera más rápida y eficiente: equipo certificado, documentación lista para auditorías y mantenimiento preventivo con seguimiento continuo."
+      dark
+    />
 
     <ol class="proceso-index__grid" aria-label="Proceso de trabajo de Proyecto Red">
       {pasos.map(p => (
@@ -72,29 +68,6 @@ const pasos = [
     padding: var(--section-py, 5rem) 0;
     background: var(--c-ink, #111111);
     color: #fff;
-  }
-
-  /* Override SectionHeader colors for dark bg */
-  .proceso-index :global(.section-header__title) {
-    color: #fff;
-  }
-
-  .proceso-index :global(.section-header__desc) {
-    color: rgba(255,255,255,.6);
-  }
-
-  .proceso-index__header {
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .proceso-index__sub {
-    font-size: 0.9375rem;
-    color: rgba(255,255,255,.55);
-    line-height: 1.7;
-    max-width: 64ch;
-    margin: 0 auto 3rem;
-    text-align: center;
   }
 
   /* ── GRID ─────────────────────────────────────────────── */

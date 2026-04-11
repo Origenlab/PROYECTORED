@@ -1,0 +1,285 @@
+/* ============================================================
+   PROYECTO RED — Component Styles
+   Estilos globales para componentes de UI reutilizables.
+   Importado en global.css → Base.astro.
+
+   Variables: --c-primary, --c-ink, --c-muted, --c-border, etc.
+   definidas en Base.astro is:global (fuente de verdad).
+
+   Los componentes que no tienen markup variable (SectionHeader,
+   SectionHeaderDuo, sidebar-header, tabla-seo) viven aquí.
+   Los componentes con markup complejo usan scoped <style>.
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION HEADER — Encabezado de sección, columna única
+   Usado en: SectionHeader.astro
+   Variante centrada (default) y alineada a la izquierda.
+   ══════════════════════════════════════════════════════════════ */
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.section-header--left {
+  text-align: left;
+  margin-left: 0;
+}
+
+.section-header__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.section-header__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--c-ink);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.section-header__title span {
+  color: var(--c-primary);
+}
+
+.section-header__desc {
+  font-size: 0.9375rem;
+  color: var(--c-muted);
+  line-height: 1.7;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   TITULO DUO — Encabezado en dos columnas
+   Usado en: SectionHeaderDuo.astro
+   Columna izq: eyebrow + título + desc
+   Columna der: dos párrafos editoriales / SEO
+   ══════════════════════════════════════════════════════════════ */
+
+.titulo-duo {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 0 4.5rem;
+  align-items: center;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* — Columna izquierda — */
+.titulo-duo__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 1rem;
+}
+
+.titulo-duo__eyebrow-bar {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--c-primary);
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.titulo-duo__title {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: var(--c-ink);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.titulo-duo__accent {
+  color: var(--c-primary);
+}
+
+.titulo-duo__desc {
+  font-size: 0.9375rem;
+  color: var(--c-muted);
+  line-height: 1.7;
+  max-width: 36ch;
+}
+
+/* — Columna derecha — */
+.titulo-duo__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-left: 4.5rem;
+  border-left: 1px solid var(--c-border);
+  padding-top: 0.2rem;
+}
+
+.titulo-duo__body {
+  font-size: 0.9375rem;
+  color: var(--c-muted);
+  line-height: 1.8;
+}
+
+/* — Variante dark — */
+.titulo-duo--dark .titulo-duo__title {
+  color: #fff;
+}
+
+.titulo-duo--dark .titulo-duo__desc,
+.titulo-duo--dark .titulo-duo__body {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.titulo-duo--dark .titulo-duo__right {
+  border-left-color: rgba(255, 255, 255, 0.15);
+}
+
+.titulo-duo--dark .titulo-duo__eyebrow-bar {
+  background: var(--c-primary);
+}
+
+.titulo-duo--dark {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SIDEBAR HEADER — Eyebrow + título + desc dentro de layout 2-col
+   Usado inline en: TrustIndex, ServiciosIndex, CoberturaIndex
+   Estas secciones integran el header con CTAs/badges en la misma
+   columna, por lo que no usan SectionHeader como componente.
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-header__eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-header__title {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  color: var(--c-ink);
+  margin-bottom: 1rem;
+}
+
+.sidebar-header__title span {
+  color: var(--c-primary);
+}
+
+.sidebar-header__desc {
+  font-size: 0.9375rem;
+  color: var(--c-muted);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   TABLA SEO — Tabla responsive con encabezado oscuro
+   Usado en: SeleccionIndex, NormasIndex y secciones con tablas
+   ══════════════════════════════════════════════════════════════ */
+
+.tabla-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 6px;
+  border: 1px solid var(--c-border);
+  margin-bottom: 1.5rem;
+}
+
+.tabla-seo {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 640px;
+}
+
+.tabla-seo thead {
+  background: var(--c-ink, #111111);
+  color: #fff;
+}
+
+.tabla-seo th {
+  padding: 0.875rem 1.25rem;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tabla-seo td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--c-border);
+  color: var(--c-ink-2);
+  line-height: 1.5;
+  vertical-align: top;
+}
+
+.tabla-seo td strong {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+.tabla-seo tbody tr:last-child td { border-bottom: none; }
+
+.tabla-seo tbody tr:nth-child(even) {
+  background: var(--c-surface, #F4F4F5);
+}
+
+
+/* — Responsive — */
+@media (max-width: 900px) {
+  .titulo-duo {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2.5rem;
+  }
+
+  .titulo-duo__right {
+    padding-left: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .titulo-duo {
+    grid-template-columns: 1fr;
+    gap: 2rem 0;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .titulo-duo__right {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--c-border);
+    padding-top: 1.5rem;
+  }
+
+  .titulo-duo__desc {
+    max-width: none;
+  }
+
+  .titulo-duo__title {
+    font-size: clamp(1.75rem, 6vw, 2rem);
+  }
+}

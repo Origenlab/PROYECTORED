@@ -1,335 +1,230 @@
 ---
 /**
  * CatalogoExtintores.astro
- * Catálogo de los 10 tipos de extintores — cards con badge + specs + CTA.
- * Usa SectionHeader.astro (complemento aprobado). Patrón visual: CatalogoIndex.
+ * Catálogo de los 10 tipos de extintores — patrón .ccard homologado con L1/L2.
+ * Usa SectionHeaderDuo (complemento título oficial) + .ccard con subcats.
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
 
 const waHref = waUrl('Hola, quiero cotizar extintores contra incendios')
 
 const extintores = [
   {
     nombre: 'Polvo Seco ABC (PQS)',
-    desc: 'El más utilizado en México. Combate fuegos clase A, B y C. Desde 1 kg hasta 50 kg rodante. Obligatorio en la mayoría de inmuebles según NOM-002-STPS.',
+    desc: 'El más utilizado en México. Combate fuegos clase A, B y C. Obligatorio en la mayoría de inmuebles según NOM-002-STPS.',
     href: '/extintores/polvo-seco/',
+    img: '/imagenes/extintores/polvo-seco.jpg',
     badge: 'Más vendido',
-    badgeColor: 'primary',
-    specs: '1, 2.5, 4.5, 6, 9, 12, 20, 50 kg · Fosfato monoamónico · NOM-154-SCFI',
+    ctaLabel: 'Ver polvo seco ABC',
+    subcats: [
+      { label: 'PQS 4.5 kg', href: '/extintores/polvo-seco/' },
+      { label: 'PQS 6 kg', href: '/extintores/polvo-seco/' },
+      { label: 'PQS 9 kg', href: '/extintores/polvo-seco/' },
+      { label: 'PQS 12 kg', href: '/extintores/polvo-seco/' },
+      { label: 'PQS 50 kg (carretilla)', href: '/extintores/polvo-seco/' },
+      { label: 'PQS 2.5 kg (vehículo)', href: '/extintores/polvo-seco/' },
+    ],
   },
   {
     nombre: 'CO₂ — Dióxido de Carbono',
-    desc: 'Descarga limpia sin residuos. Ideal para equipos eléctricos, servidores, laboratorios y salas de cómputo. No daña componentes electrónicos.',
+    desc: 'Descarga limpia sin residuos. Ideal para equipos eléctricos, servidores, laboratorios y salas de cómputo.',
     href: '/extintores/co2/',
+    img: '/imagenes/extintores/co2.jpg',
     badge: 'Electrónica',
-    badgeColor: 'blue',
-    specs: '2.3, 4.5, 6.8 kg · Clase B y C · 0 kV residuo · Manguera difusora',
+    ctaLabel: 'Ver CO₂',
+    subcats: [
+      { label: 'CO₂ 2.5 kg', href: '/extintores/co2/' },
+      { label: 'CO₂ 5 kg', href: '/extintores/co2/' },
+      { label: 'CO₂ 10 kg', href: '/extintores/co2/' },
+      { label: 'CO₂ 20 kg (carretilla)', href: '/extintores/co2/' },
+    ],
   },
   {
     nombre: 'AFFF — Espuma Mecánica',
-    desc: 'Espuma formadora de película acuosa para fuegos de líquidos inflamables: gasolina, aceites, solventes. Usado en gasolineras, talleres y plantas químicas.',
+    desc: 'Espuma formadora de película acuosa para líquidos inflamables: gasolina, aceites y solventes.',
     href: '/extintores/afff/',
+    img: '/imagenes/extintores/afff.jpg',
     badge: null,
-    badgeColor: null,
-    specs: '9, 20 L · Clase A y B · Película acuosa · Concentrado 3%–6%',
+    ctaLabel: 'Ver AFFF',
+    subcats: [
+      { label: 'AFFF 9 litros', href: '/extintores/afff/' },
+      { label: 'AFFF 20 litros', href: '/extintores/afff/' },
+      { label: 'AFFF 50 litros (carretilla)', href: '/extintores/afff/' },
+      { label: 'Espuma AR-AFFF', href: '/extintores/afff/' },
+    ],
   },
   {
     nombre: 'Tipo K — Cocinas Industriales',
-    desc: 'Especializado en aceites vegetales y grasas animales a alta temperatura. Obligatorio en restaurantes, cocinas industriales y dark kitchens con freidoras.',
+    desc: 'Especializado en aceites vegetales y grasas animales. Obligatorio en restaurantes y cocinas con freidoras.',
     href: '/extintores/tipo-k/',
+    img: '/imagenes/extintores/tipo-k.jpg',
     badge: 'Restaurantes',
-    badgeColor: 'amber',
-    specs: '6 L · Acetato de potasio · Clase K · Para freidoras y parrillas',
+    ctaLabel: 'Ver Tipo K',
+    subcats: [
+      { label: 'Tipo K 1.7 galones', href: '/extintores/tipo-k/' },
+      { label: 'Tipo K 3 galones', href: '/extintores/tipo-k/' },
+      { label: 'Tipo K 6 litros', href: '/extintores/tipo-k/' },
+      { label: 'Sistema fijo Tipo K', href: '/extintores/tipo-k/' },
+    ],
   },
   {
     nombre: 'Púrpura K — Bicarbonato de Potasio',
-    desc: 'Para fuegos clase B y C de alta intensidad. Mayor poder de extinción que el PQS en líquidos inflamables. Industria petroquímica y aeroportuaria.',
+    desc: 'Mayor poder de extinción que el PQS en fuegos clase B y C de alta intensidad. Industria petroquímica.',
     href: '/extintores/purpura-k/',
+    img: '/imagenes/extintores/purpura-k.jpg',
     badge: null,
-    badgeColor: null,
-    specs: '4.5, 9 kg · Bicarbonato de potasio · Clase B y C · Alta intensidad',
+    ctaLabel: 'Ver Púrpura K',
+    subcats: [
+      { label: 'Púrpura K 4.5 kg', href: '/extintores/purpura-k/' },
+      { label: 'Púrpura K 6 kg', href: '/extintores/purpura-k/' },
+      { label: 'Púrpura K 9 kg', href: '/extintores/purpura-k/' },
+    ],
   },
   {
     nombre: 'Agua a Presión',
-    desc: 'Solución ecológica para materiales sólidos: madera, papel, tela y textiles. Sin agentes químicos — menor impacto ambiental y costo de recarga.',
+    desc: 'Solución ecológica para materiales sólidos: madera, papel, tela y textiles. Sin agentes químicos.',
     href: '/extintores/agua-a-presion/',
+    img: '/imagenes/extintores/agua-a-presion.jpg',
     badge: null,
-    badgeColor: null,
-    specs: '9 L · Clase A · Sin agentes químicos · 12–15 m de alcance',
+    ctaLabel: 'Ver agua a presión',
+    subcats: [
+      { label: 'Agua 9 litros', href: '/extintores/agua-a-presion/' },
+      { label: 'Agua 20 litros', href: '/extintores/agua-a-presion/' },
+      { label: 'Agua desmineralizada', href: '/extintores/agua-a-presion/' },
+    ],
   },
   {
     nombre: 'Cold Fire — Enfriamiento Avanzado',
-    desc: 'Tecnología de enfriamiento rápido para incendios de alta temperatura. Reduce la temperatura del combustible sin dejar residuo tóxico. Recarga con agua.',
+    desc: 'Tecnología de enfriamiento rápido. Biodegradable, no tóxico y recargable con agua. Clase A, B, D y K.',
     href: '/extintores/cold-fire/',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
     badge: 'Innovación',
-    badgeColor: 'green',
-    specs: '9 L · Clase A, B, D, K · Biodegradable · No tóxico · Recarga con agua',
+    ctaLabel: 'Ver Cold Fire',
+    subcats: [
+      { label: 'Cold Fire 2.5 litros', href: '/extintores/cold-fire/' },
+      { label: 'Cold Fire 9 litros', href: '/extintores/cold-fire/' },
+      { label: 'Cold Fire 20 litros', href: '/extintores/cold-fire/' },
+      { label: 'Concentrado Cold Fire', href: '/extintores/cold-fire/' },
+    ],
   },
   {
-    nombre: 'Automáticos — Sin Intervención Humana',
-    desc: 'Activación autónoma por temperatura. Ideales para áreas desatendidas: cuartos de máquinas, servidores, bodegas. Se activan solos a 68°C o 93°C.',
+    nombre: 'Automáticos — Sin Intervención',
+    desc: 'Activación autónoma por temperatura a 68 °C o 93 °C. Ideales para áreas desatendidas.',
     href: '/extintores/automaticos/',
+    img: '/imagenes/extintores/automaticos.jpg',
     badge: null,
-    badgeColor: null,
-    specs: '1–6 kg PQS o Halón · Activación 68°C o 93°C · Sin cableado · Montaje techo',
+    ctaLabel: 'Ver automáticos',
+    subcats: [
+      { label: 'Automático PQS 1 kg', href: '/extintores/automaticos/' },
+      { label: 'Automático PQS 6 kg', href: '/extintores/automaticos/' },
+      { label: 'Automático PQS 12 kg', href: '/extintores/automaticos/' },
+      { label: 'Automático CO₂ 5 kg', href: '/extintores/automaticos/' },
+    ],
   },
   {
     nombre: 'ABC Multipropósito',
-    desc: 'El extintor más versátil: sólidos, líquidos y eléctricos. Requerido por norma en la mayoría de inmuebles comerciales e industriales en México.',
+    desc: 'El más versátil: sólidos, líquidos y eléctricos. Requerido por norma en la mayoría de inmuebles.',
     href: '/extintores/abc/',
+    img: '/imagenes/extintores/abc.jpg',
     badge: 'Obligatorio',
-    badgeColor: 'primary',
-    specs: '1, 2.5, 4.5, 6 kg · Clase A, B y C · Presión interna o nitrógeno',
+    ctaLabel: 'Ver ABC multipropósito',
+    subcats: [
+      { label: 'ABC 4.5 kg', href: '/extintores/abc/' },
+      { label: 'ABC 6 kg', href: '/extintores/abc/' },
+      { label: 'ABC 9 kg', href: '/extintores/abc/' },
+      { label: 'ABC 12 kg', href: '/extintores/abc/' },
+    ],
   },
   {
     nombre: 'Agente Limpio',
-    desc: 'Cero residuos, cero daño. Protege equipos electrónicos, archivos y materiales sensibles. Estándar premium para centros de datos y áreas de TI.',
+    desc: 'Cero residuos, cero daño. Protege equipos electrónicos, archivos y materiales sensibles.',
     href: '/extintores/agente-limpio/',
+    img: '/imagenes/extintores/agente-limpio.jpg',
     badge: 'Premium',
-    badgeColor: 'purple',
-    specs: '2–9 kg · FM-200 o Novec 1230 · Clase A, B y C · 0 residuo · UL Listed',
+    ctaLabel: 'Ver agente limpio',
+    subcats: [
+      { label: 'FE-36 — 2.5 kg', href: '/extintores/agente-limpio/' },
+      { label: 'FE-36 — 5 kg', href: '/extintores/agente-limpio/' },
+      { label: 'FE-36 — 10 kg', href: '/extintores/agente-limpio/' },
+      { label: 'Solkaflam / HFC-227ea', href: '/extintores/agente-limpio/' },
+    ],
   },
 ]
 ---
 
-<section class="catalogo-extintores" id="catalogo-extintores" aria-labelledby="catalogo-ext-heading">
+<section class="catalogo-extintores cat-section cat-section--white" id="catalogo-extintores" aria-labelledby="catalogo-ext-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="10 tipos certificados NOM"
       titleLine1="Catálogo de Extintores:"
       titleLine2="El Tipo Correcto para Cada Riesgo"
-      desc="Selecciona el extintor adecuado según el tipo de fuego de tu instalación. Todos incluyen certificado NOM-154-SCFI, ficha técnica y soporte de pared. Proveedor directo."
-      align="left"
+      desc="Selecciona el extintor adecuado según el tipo de fuego de tu instalación. Todos incluyen certificado NOM-154-SCFI, ficha técnica y soporte de pared."
+      bodyPara1="Un extintor no sirve de nada si el agente no es el correcto para el tipo de fuego que puede presentarse en tu instalación. La NOM-002-STPS exige que el extintor sea del tipo adecuado para el riesgo predominante de cada zona — no uno genérico para toda la planta. Te ayudamos a elegir exactamente lo que necesitas por zona, con la capacidad correcta y la documentación lista para tu expediente."
     />
 
-    <!-- Texto SEO columna descriptiva -->
-    <div class="catalogo-extintores__intro">
-      <p>
-        Un extintor no sirve de nada si el agente no es el correcto para el tipo de fuego que puede presentarse en tu instalación. La NOM-002-STPS exige que el extintor sea del <strong>tipo adecuado para el riesgo predominante</strong> de cada zona — no uno genérico para toda la planta. Te ayudamos a elegir exactamente lo que necesitas por zona, con la capacidad correcta y la documentación lista para tu expediente.
-      </p>
-    </div>
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2 -->
+    <div class="catidx-grid" role="list" aria-label="Tipos de extintores disponibles">
+      {extintores.map((ext, i) => (
+        <article class="ccard" role="listitem" aria-label={ext.nombre}>
+          <div class="ccard__header">
+            <img
+              src={ext.img}
+              alt={ext.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              width="640"
+              height="360"
+              decoding="async"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {ext.badge && <span class="ccard__badge">{ext.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{ext.nombre}</h3>
+            <p class="ccard__desc">{ext.desc}</p>
 
-    <!-- Grid de productos -->
-    <div class="ext-grid" role="list" aria-label="Tipos de extintores disponibles">
-      {extintores.map(ext => (
-        <a href={ext.href} class="ext-card" role="listitem" aria-label={ext.nombre}>
-          <div class="ext-card__top">
-            {ext.badge
-              ? <span class={`ext-badge ext-badge--${ext.badgeColor}`}>{ext.badge}</span>
-              : <span class="ext-badge ext-badge--ghost">Disponible</span>
-            }
-          </div>
-          <div class="ext-card__body">
-            <h3 class="ext-card__nombre">{ext.nombre}</h3>
-            <p class="ext-card__desc">{ext.desc}</p>
-            <p class="ext-card__specs">{ext.specs}</p>
-          </div>
-          <div class="ext-card__footer">
-            <span class="ext-card__link">
-              Ver detalles y cotizar
+            {ext.subcats && ext.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${ext.nombre}`}>
+                {ext.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={ext.href} class="ccard__cta">
+              {ext.ctaLabel || 'Ver detalles'}
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
+            </a>
           </div>
-        </a>
+        </article>
       ))}
 
       <!-- Card CTA WhatsApp -->
-      <a
-        href={waHref}
-        class="ext-card ext-card--cta"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Asesoría para elegir extintor"
-      >
-        <div class="ext-cta__icon" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </div>
-        <p class="ext-cta__texto">¿No sabes qué extintor necesitas?</p>
-        <p class="ext-cta__sub">Dinos tu tipo de instalación y los riesgos — te recomendamos el equipo correcto por zona, gratis.</p>
-        <span class="ext-cta__btn">Asesoría por WhatsApp →</span>
-      </a>
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir extintor">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿No sabes qué extintor necesitas?</p>
+          <p class="ccard--cta-wa__sub">Dinos tu tipo de instalación y los riesgos — te recomendamos el equipo correcto por zona, gratis.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
     </div>
 
   </div>
 </section>
-
-<style>
-  .catalogo-extintores {
-    padding: var(--section-py, 5rem) 0;
-    background: var(--c-white);
-    border-top: 1px solid var(--c-border);
-  }
-
-  /* Intro text */
-  .catalogo-extintores__intro {
-    max-width: 80ch;
-    margin-bottom: 3rem;
-  }
-
-  .catalogo-extintores__intro p {
-    font-size: 0.9375rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-  }
-
-  .catalogo-extintores__intro strong {
-    color: var(--c-ink-2);
-    font-weight: 600;
-  }
-
-  /* ── GRID 3 COLUMNAS ─────────────────────────────────── */
-  .ext-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  /* ── CARD ─────────────────────────────────────────────── */
-  .ext-card {
-    background: var(--c-white);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.2s, border-color 0.2s;
-    position: relative;
-  }
-
-  .ext-card:hover {
-    box-shadow: var(--shadow-md, 0 4px 16px rgba(196,30,36,.12));
-    border-color: var(--c-primary);
-  }
-
-  /* Top: badge */
-  .ext-card__top { min-height: 24px; }
-
-  /* Badge variants */
-  .ext-badge {
-    display: inline-block;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    padding: .2rem .625rem;
-    border-radius: 3px;
-  }
-
-  .ext-badge--primary   { background: var(--c-primary); color: #fff; }
-  .ext-badge--ghost     { background: var(--c-surface); color: var(--c-muted); border: 1px solid var(--c-border); }
-  .ext-badge--blue      { background: #EFF6FF; color: #1D4ED8; }
-  .ext-badge--amber     { background: #FFFBEB; color: #B45309; }
-  .ext-badge--green     { background: #F0FDF4; color: #15803D; }
-  .ext-badge--purple    { background: #F5F3FF; color: #6D28D9; }
-
-  /* Body */
-  .ext-card__nombre {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--c-ink);
-    letter-spacing: -.02em;
-    line-height: 1.25;
-  }
-
-  .ext-card__desc {
-    font-size: 0.875rem;
-    color: var(--c-muted);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .ext-card__specs {
-    font-size: 0.75rem;
-    color: var(--c-primary);
-    font-weight: 600;
-    letter-spacing: .02em;
-    line-height: 1.4;
-    opacity: 0.9;
-  }
-
-  /* Footer */
-  .ext-card__footer {
-    padding-top: 0.875rem;
-    border-top: 1px solid var(--c-border);
-  }
-
-  .ext-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    transition: gap 0.2s;
-  }
-
-  .ext-card:hover .ext-card__link { gap: 0.625rem; }
-
-  /* ── CARD CTA ─────────────────────────────────────────── */
-  .ext-card--cta {
-    background: var(--c-ink);
-    border-color: var(--c-ink);
-    align-items: center;
-    text-align: center;
-    padding: 2rem 1.5rem;
-  }
-
-  .ext-card--cta:hover {
-    border-color: var(--c-primary);
-    box-shadow: var(--shadow-md);
-  }
-
-  .ext-cta__icon {
-    width: 56px;
-    height: 56px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    margin: 0 auto 1rem;
-  }
-
-  .ext-cta__texto {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
-  }
-
-  .ext-cta__sub {
-    font-size: 0.875rem;
-    color: rgba(255,255,255,.6);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
-
-  .ext-cta__btn {
-    display: inline-block;
-    background: #25D366;
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 700;
-    padding: .625rem 1.25rem;
-    border-radius: 4px;
-    text-decoration: none;
-  }
-
-  /* ── RESPONSIVE ───────────────────────────────────────── */
-  @media (max-width: 1200px) {
-    .ext-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 640px) {
-    .ext-grid { grid-template-columns: 1fr; }
-  }
-</style>

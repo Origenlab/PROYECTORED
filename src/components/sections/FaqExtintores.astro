@@ -2,9 +2,9 @@
 /**
  * FaqExtintores.astro
  * FAQ específico de extintores + formulario de cotización sticky.
- * Usa SectionHeader.astro (complemento aprobado). Patrón: FaqCotizacionIndex.
+ * Usa SectionHeaderDuo (complemento título oficial). Patrón: FaqCotizacionIndex.
  */
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { CONTACT } from '../../config/site'
 
 const faqs = [
@@ -46,11 +46,12 @@ const faqs = [
 <section class="faq-extintores" id="faq-extintores" aria-labelledby="faq-ext-heading">
   <div class="container">
 
-    <SectionHeader
+    <SectionHeaderDuo
       eyebrow="Preguntas Frecuentes"
       titleLine1="Todo lo que Necesitas Saber"
       titleLine2="Antes de Comprar Extintores"
-      align="center"
+      desc="Resolvemos las dudas más comunes de nuestros clientes sobre tipos, normas, costos y mantenimiento de extintores."
+      bodyPara1="Si no encuentras respuesta a tu pregunta, escríbenos por WhatsApp — nuestro equipo técnico responde en menos de 24 horas y sin compromiso de compra."
     />
 
     <div class="faq-ext-grid">

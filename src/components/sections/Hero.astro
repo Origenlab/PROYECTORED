@@ -3,9 +3,6 @@
 // Hero section reutilizable — idéntico en todas las páginas de Nivel 2
 // Fondo oscuro, 2 columnas, badge, título con acento, 2 CTAs
 
-import Breadcrumb from '../ui/Breadcrumb.astro'
-import type { BreadcrumbItem } from '../../layouts/CategoryLayout.astro'
-
 interface HeroCTA {
   text: string
   href: string
@@ -20,10 +17,9 @@ interface Props {
   descRight: string[]     // Párrafos columna derecha
   cta1: HeroCTA
   cta2: HeroCTA
-  breadcrumb: BreadcrumbItem[]
 }
 
-const { badge, title, accent, subtitle, descRight, cta1, cta2, breadcrumb } = Astro.props
+const { badge, title, accent, subtitle, descRight, cta1, cta2 } = Astro.props
 ---
 
 <section class="hero section--dark">
@@ -31,8 +27,6 @@ const { badge, title, accent, subtitle, descRight, cta1, cta2, breadcrumb } = As
 
     <!-- Columna izquierda -->
     <div class="hero__left">
-      <Breadcrumb items={breadcrumb} />
-
       <span class="hero__badge">
         <span class="hero__badge-dot" aria-hidden="true"></span>
         {badge}

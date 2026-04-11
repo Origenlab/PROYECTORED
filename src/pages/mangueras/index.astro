@@ -17,12 +17,6 @@ const breadcrumbs = [
 ];
 
 // v5: métricas que cuentan la historia del sistema (no datos aislados)
-const metricas = [
-  { valor: "8", label: "Categorías de producto" },
-  { valor: '1.5"–4"', label: "Diámetros disponibles" },
-  { valor: "NFPA", label: "1961 · 1962 · 1964" },
-  { valor: "24h", label: "Entrega zona metro" },
-];
 
 // ── 8 productos con specs técnicos que importan ──────
 const productos = [
@@ -204,22 +198,6 @@ const faqsMangueras = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Mangueras">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

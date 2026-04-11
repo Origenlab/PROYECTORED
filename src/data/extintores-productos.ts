@@ -4,6 +4,15 @@
 // Fuente de verdad para src/pages/extintores/[producto].astro
 // ============================================================
 
+export interface VarianteExtintor {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string
+  img?: string
+  waText: string
+}
+
 export interface ProductoExtintorData {
   // SEO & meta
   metaTitle: string
@@ -16,8 +25,14 @@ export interface ProductoExtintorData {
   heroSubtitle: string
   heroDescRight: string[]
 
+  // Imagen principal del producto
+  img: string
+
   // Stats bar (4 ítems)
   stats: { value: string; label: string }[]
+
+  // Variantes por capacidad (L4 nuevo — patron .ccard)
+  variantes?: VarianteExtintor[]
 
   // Sección 1 — Características técnicas
   caracteristicas: {
@@ -25,6 +40,7 @@ export interface ProductoExtintorData {
     titleLine1: string
     titleLine2: string
     desc: string
+    bodyPara?: string
     items: { title: string; desc: string }[]
   }
 
@@ -34,6 +50,7 @@ export interface ProductoExtintorData {
     titleLine1: string
     titleLine2?: string
     desc: string
+    bodyPara?: string
     usos: { label: string; desc: string }[]
   }
 
@@ -93,11 +110,65 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',     label: 'Certificación'      },
     ],
 
+    img: '/imagenes/extintores/polvo-seco.jpg',
+
+    variantes: [
+      {
+        nombre: 'PQS 1 kg',
+        badge: 'Vehículos',
+        desc: 'Para cabina de camiones, motocicletas y vehículos de carga. Compacto y de fácil montaje. Reglamentario conforme a NOM-068-SCT-2 para transporte.',
+        specs: 'Polvo ABC · 1 kg · ~5 s descarga · 2–3 m alcance',
+        waText: 'Hola, quiero cotizar extintores PQS de 1 kg para vehículos',
+      },
+      {
+        nombre: 'PQS 2.5 kg',
+        badge: 'Compacto',
+        desc: 'Para locales pequeños, cajas de escalera y vehículos grandes. Cumple el mínimo de peso para locales de hasta 100 m².',
+        specs: 'Polvo ABC · 2.5 kg · ~8 s descarga · 3 m alcance',
+        waText: 'Hola, quiero cotizar extintores PQS de 2.5 kg',
+      },
+      {
+        nombre: 'PQS 4.5 kg',
+        badge: 'Más vendido',
+        desc: 'El más solicitado para oficinas, tiendas y locales comerciales. Cubre hasta 200 m². El mínimo que exige Protección Civil para cualquier inmueble con acceso al público.',
+        specs: 'Polvo ABC · 4.5 kg · ~10 s descarga · 3–4 m alcance · 60 bar · Manómetro',
+        waText: 'Hola, quiero cotizar extintores de polvo seco 4.5 kg',
+      },
+      {
+        nombre: 'PQS 6 kg',
+        desc: 'Estándar para talleres, bodegas pequeñas y plantas de manufactura ligera. Mayor carga de agente para áreas con mayor densidad de material combustible.',
+        specs: 'Polvo ABC · 6 kg · ~13 s descarga · 4–5 m alcance · Manguera con boquilla',
+        waText: 'Hola, quiero cotizar extintores de polvo seco 6 kg',
+      },
+      {
+        nombre: 'PQS 9 kg',
+        badge: 'Industrial',
+        desc: 'Para zonas de riesgo medio-alto: almacenes con mercancía, pasillos de carga, áreas de maquinaria. Requerido por NOM-002-STPS en industria.',
+        specs: 'Polvo ABC · 9 kg · ~18 s descarga · 4–5 m alcance · Soporte de pared incluido',
+        waText: 'Hola, quiero cotizar extintores de polvo seco 9 kg',
+      },
+      {
+        nombre: 'PQS 12 kg',
+        badge: 'Alta capacidad',
+        desc: 'Uso industrial intensivo: talleres de soldadura, montacargas, plantas con líquidos clase B. Para gabinete metálico visible. Inspección semestral recomendada.',
+        specs: 'Polvo ABC · 12 kg · ~22 s descarga · 5–6 m alcance · Para gabinete metálico',
+        waText: 'Hola, quiero cotizar extintores de polvo seco 12 kg',
+      },
+      {
+        nombre: 'PQS Rodante 25–50 kg',
+        badge: 'Gran capacidad',
+        desc: 'Plantas industriales, estacionamientos y zonas de almacenamiento de combustible. Ruedas neumáticas para cubrir puntos distantes rápidamente.',
+        specs: 'Polvo ABC · 25 / 35 / 50 kg · Rodante · Hasta 8 m alcance · Manguera 5 m',
+        waText: 'Hola, quiero cotizar extintor rodante de polvo seco',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del extintor',
       titleLine2: 'de polvo seco PQS',
       desc: 'El polvo seco PQS es el estándar de la industria en México. Conoce sus especificaciones clave para seleccionar el tamaño y modelo correcto para tu instalación.',
+      bodyPara: 'El monofosfato de amonio (PQS) es el agente más versátil para combustibles de clases A, B y C. Con certificación NOM-154-SCFI y operación probada en temperatura extrema, el polvo seco es la base de cualquier sistema de extinción mexicano — desde vehículos hasta planta industrial.',
       items: [
         {
           title: 'Agente extintor: PQS — monofosfato de amonio',
@@ -131,6 +202,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar el extintor',
       titleLine2: 'de polvo seco?',
       desc: 'El PQS cubre la mayor parte de los riesgos de incendio en instalaciones comerciales e industriales. Estos son los principales casos de uso.',
+      bodyPara: 'Su versatilidad triple (A–B–C) lo hace obligatorio en prácticamente toda instalación con acceso al público. Desde vehículos hasta industria pesada, el polvo seco es el referente de seguridad que Protección Civil y STPS exigen en México.',
       usos: [
         { label: 'Oficinas y áreas administrativas',  desc: 'El extintor de 4 kg es el recomendado para oficinas. La NOM-002-STPS exige al menos uno por cada 300 m² en áreas de trabajo.' },
         { label: 'Bodegas y almacenes',               desc: 'Se recomienda el modelo de 6 o 9 kg para bodegas con materiales combustibles. Colocar uno en cada acceso y cada 25 metros de pasillo.' },
@@ -205,11 +277,38 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',    label: 'Certificación'      },
     ],
 
+    img: '/imagenes/extintores/co2.jpg',
+
+    variantes: [
+      {
+        nombre: 'CO₂ 2.5 kg',
+        badge: 'Compacto',
+        desc: 'Para espacios pequeños con equipos electrónicos de valor medio: PCs de escritorio, impresoras, equipos de telecomunicaciones en oficinas. Fácil de transportar entre ubicaciones.',
+        specs: 'CO₂ gaseoso · 2.5 kg · ~5 s descarga · 1.5–2 m alcance · Boquilla corneta metálica',
+        waText: 'Hola, quiero cotizar extintores de CO₂ de 2.5 kg',
+      },
+      {
+        nombre: 'CO₂ 5 kg',
+        badge: 'Más vendido',
+        desc: 'El más solicitado para cuartos de servidores, UPS, laboratorios y áreas con equipos eléctricos sensibles. Cubre eficientemente espacios de hasta 20 m².',
+        specs: 'CO₂ gaseoso · 5 kg · ~7 s descarga · 2–2.5 m alcance · Presión 900 PSI · Pesaje requerido',
+        waText: 'Hola, quiero cotizar extintores de CO₂ de 5 kg',
+      },
+      {
+        nombre: 'CO₂ 10 kg',
+        badge: 'Industrial',
+        desc: 'Para cuartos eléctricos, subestaciones, generadores y plantas de mayor envergadura. Requiere montaje en carretilla por su peso.',
+        specs: 'CO₂ gaseoso · 10 kg · ~12 s descarga · 2.5–3 m alcance · Presión 900 PSI · Soporte de pared o carretilla',
+        waText: 'Hola, quiero cotizar extintores de CO₂ de 10 kg',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del',
       titleLine2: 'extintor de CO₂',
       desc: 'El CO₂ es único entre los agentes extintores porque trabaja por desplazamiento de oxígeno y enfriamiento, sin dejar rastro. Estas son sus especificaciones clave.',
+      bodyPara: 'Sin residuo, sin corrosión, sin riesgo de daño secundario al equipo — el CO₂ es el agente indicado cuando el activo que proteges no tolera contaminación química. Ideal para TI, laboratorios y centros de datos donde cero daño al equipo es requisito.',
       items: [
         {
           title: 'Agente extintor: CO₂ — dióxido de carbono',
@@ -243,6 +342,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar el extintor',
       titleLine2: 'de CO₂?',
       desc: 'El CO₂ es el agente indicado cuando el equipo protegido no puede tolerar contaminación por polvo o humedad. Estos son sus principales casos de uso.',
+      bodyPara: 'Es el agente recomendado por NFPA 2001 para proteger centros de datos, laboratorios, archivos y todo espacio donde la limpieza post-incendio del agente extintor impacte la continuidad de operaciones.',
       usos: [
         { label: 'Cuartos de servidores y centros de datos', desc: 'El agente estándar para TI. Sin residuo, sin corrosión, sin daño al equipo activo. Compatible con sistemas de supresión fija Novec, FM-200 y CO₂.' },
         { label: 'Laboratorios y equipos de medición',       desc: 'En laboratorios con instrumentación sensible, analizadores y equipos de cómputo industrial, el CO₂ protege sin contaminar el ambiente del proceso.' },
@@ -301,11 +401,38 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',    label: 'Certificación'          },
     ],
 
+    img: '/imagenes/extintores/afff.jpg',
+
+    variantes: [
+      {
+        nombre: 'AFFF 9 L',
+        badge: 'Portátil',
+        desc: 'Para operación manual en talleres mecánicos, pequeñas estaciones de servicio y zonas de almacenamiento de lubricantes. Fácil de transportar entre ubicaciones.',
+        specs: 'AFFF 3–6% · 9 litros · ~8 s descarga · 3–6 m alcance · Manguera con lanza atomizadora',
+        waText: 'Hola, quiero cotizar extintores AFFF de 9 litros',
+      },
+      {
+        nombre: 'AFFF 20 L',
+        badge: 'Carretilla',
+        desc: 'Para estaciones de servicio, plantas químicas y zonas de combustible de mediano volumen. Se instala sobre carretilla para movilidad dentro del sitio.',
+        specs: 'AFFF 3–6% · 20 litros · ~12 s descarga · 4–6 m alcance · Carretilla de acero · Manguera 5 m',
+        waText: 'Hola, quiero cotizar extintores AFFF de 20 litros',
+      },
+      {
+        nombre: 'AFFF 50 L',
+        badge: 'Industrial',
+        desc: 'Para plantas petroquímicas, parques de almacenamiento de combustible y zonas de alto riesgo de derrame. Capacidad máxima portátil.',
+        specs: 'AFFF 3–6% · 50 litros · ~18 s descarga · 5–8 m alcance · Carretilla reforzada · Manguera 8 m',
+        waText: 'Hola, quiero cotizar extintores AFFF de 50 litros',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'extintores AFFF',
       desc: 'La espuma AFFF tiene propiedades únicas que la diferencian de otros agentes para fuegos de líquidos inflamables. Conoce sus especificaciones clave.',
+      bodyPara: 'La película filmógena sobre el combustible es lo que diferencia al AFFF: sella el vapor y enfría simultáneamente, previniendo la re-ignición mucho mejor que agentes alternativos. El estándar en gasolineras, talleres y plantas con riesgo de derrames controlados.',
       items: [
         {
           title: 'Agente: espuma AFFF al 3% o 6%',
@@ -339,6 +466,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar extintores',
       titleLine2: 'AFFF de espuma?',
       desc: 'Los extintores AFFF son el estándar para instalaciones con riesgo de fuego en líquidos inflamables. Estos son los principales casos de uso.',
+      bodyPara: 'Su mecanismo de película filmógena lo hace especialmente efectivo en derrames de grandes volúmenes de combustible. Gasolineras, talleres y plantas químicas confían en AFFF porque controla tanto la llama como la prevención de re-ignición.',
       usos: [
         { label: 'Estaciones de servicio y gasolineras', desc: 'El AFFF es el agente preferido en áreas de despacho, pistas y bodega de almacenamiento de combustible por su capacidad de sellar derrames y evitar re-ignición.' },
         { label: 'Talleres mecánicos y hojalatería',     desc: 'Donde se trabaja con aceites, gasolina, solventes y desengrasantes inflamables. El AFFF controla derrames en piso mejor que el polvo seco.' },
@@ -397,11 +525,38 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'Obligatorio', label: 'En cocinas industriales' },
     ],
 
+    img: '/imagenes/extintores/tipo-k.jpg',
+
+    variantes: [
+      {
+        nombre: 'Tipo K 1.7 L',
+        badge: 'Food truck',
+        desc: 'Para food trucks, cocinas móviles y pequeñas freidoras independientes. Cumple requisitos legales de SEDEMA para vehículos con equipo de cocción.',
+        specs: 'Agente alcalino acuoso · 1.7 L · ~3 s descarga · Boquilla niebla fina · Bajo costo',
+        waText: 'Hola, quiero cotizar extintores Tipo K de 1.7 litros',
+      },
+      {
+        nombre: 'Tipo K 3 L',
+        badge: 'Más vendido - Restaurante',
+        desc: 'El más solicitado para restaurantes, cafeterías y comedores industriales. Cubre una zona de cocción estándar conforme a NFPA 17A.',
+        specs: 'Agente alcalino acuoso · 3 litros · ~5 s descarga · Boquilla niebla fina · Presión baja protegida',
+        waText: 'Hola, quiero cotizar extintores Tipo K de 3 litros',
+      },
+      {
+        nombre: 'Tipo K 6 L',
+        badge: 'Industrial',
+        desc: 'Para líneas de cocción extensas, freidoras industriales continuas y plantas de procesamiento de alimentos con alto volumen.',
+        specs: 'Agente alcalino acuoso · 6 litros · ~8 s descarga · Boquilla niebla fina de alta penetración · Soporte de montaje incluido',
+        waText: 'Hola, quiero cotizar extintores Tipo K de 6 litros',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del extintor',
       titleLine2: 'Tipo K',
       desc: 'El extintor Tipo K tiene un diseño específico para el riesgo de cocinas de alto rendimiento. Sus características lo hacen único entre todos los tipos de extintor.',
+      bodyPara: 'La saponificación — conversión de grasas en jabón — es el mecanismo único del Tipo K que lo hace efectivo en temperaturas de cocción donde otros agentes fallan. Es obligatorio en toda cocina industrial conforme a NFPA 17A y NOM-002-STPS.',
       items: [
         {
           title: 'Agente: solución alcalina acuosa (acetato o citrato de potasio)',
@@ -435,6 +590,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde es obligatorio el',
       titleLine2: 'extintor Tipo K?',
       desc: 'El Tipo K es el agente estándar de protección para todo riesgo de fuego en cocinas con aceites y grasas. Su instalación es obligatoria en los siguientes entornos.',
+      bodyPara: 'No es opcional — es obligatorio por NFPA 17A en toda instalación con equipo de cocción que use aceite a alta temperatura. Polvo seco o CO₂ no son sustitutos válidos en este tipo de riesgo.',
       usos: [
         { label: 'Restaurantes y cafeterías',              desc: 'Obligatorio conforme a NFPA 17A. Se coloca dentro de la cocina, a la salida hacia el comedor, visible y accesible. Uno por zona de cocción.' },
         { label: 'Hoteles y banquetes',                    desc: 'En cocinas de producción masiva con múltiples líneas de cocción, freidoras industriales y planchas. Se complementa con sistema automático de supresión en campana.' },
@@ -493,11 +649,38 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NFPA 17A',      label: 'Norma aplicable'       },
     ],
 
+    img: '/imagenes/extintores/purpura-k.jpg',
+
+    variantes: [
+      {
+        nombre: 'Púrpura K 1.7 L',
+        badge: 'Compact',
+        desc: 'Para freidoras independientes y cocinas compactas con bajo volumen de aceite. Ideal en espacios reducidos donde cada centímetro cuenta.',
+        specs: 'Acetato de potasio concentrado · 1.7 L · ~3 s descarga · Boquilla niebla ultrafina · Bajo perfil',
+        waText: 'Hola, quiero cotizar extintores Púrpura K de 1.7 litros',
+      },
+      {
+        nombre: 'Púrpura K 3 L',
+        badge: 'Estándar',
+        desc: 'Versión mejorada del Tipo K estándar para restaurantes con demanda moderada y operación continua. Mayor concentración = respuesta más rápida.',
+        specs: 'Acetato de potasio concentrado · 3 litros · ~5 s descarga · Boquilla niebla de alta penetración · Agente premium',
+        waText: 'Hola, quiero cotizar extintores Púrpura K de 3 litros',
+      },
+      {
+        nombre: 'Púrpura K 6 L',
+        badge: 'Alto volumen',
+        desc: 'Para cadenas de comida rápida, plantas procesadoras y cocinas con múltiples freidoras industriales operando continuamente. Compatibilidad confirmada con sistemas Ansul.',
+        specs: 'Acetato de potasio concentrado · 6 litros · ~8 s descarga · Niebla ultrafina de máxima cobertura · Compatible con Ansul R-102',
+        waText: 'Hola, quiero cotizar extintores Púrpura K de 6 litros',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del',
       titleLine2: 'extintor Púrpura K',
       desc: 'El Púrpura K es la evolución del Tipo K estándar para instalaciones de mayor demanda. Estas son las características que lo diferencian.',
+      bodyPara: 'Mayor concentración de potasio significa saponificación más rápida y efecto de enfriamiento superior en temperaturas extremas de cocción industrial. Es la opción para clientes que demandan máxima confiabilidad.',
       items: [
         {
           title: 'Agente: acetato de potasio concentrado',
@@ -531,6 +714,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Cuándo elegir el',
       titleLine2: 'Púrpura K sobre el Tipo K?',
       desc: 'El Púrpura K está recomendado en instalaciones donde la carga de aceite, la temperatura de operación o la continuidad del servicio exigen una respuesta más rápida y eficaz.',
+      bodyPara: 'Cuando la velocidad de control importa más que el costo, cuando operas a máxima capacidad de forma continua, o cuando certificaciones NFPA estrictas requieren el agente de mayor eficacia — Púrpura K es la respuesta.',
       usos: [
         { label: 'Cadenas de comida rápida',              desc: 'Freidoras de alta producción continua con aceite a 175-195 °C. El Púrpura K responde más rápido que el Tipo K convencional en este rango de temperatura.' },
         { label: 'Plantas procesadoras de alimentos',     desc: 'Fritadoras industriales de gran capacidad para papas, chicharrón, botanas y productos empanizados. Volúmenes de aceite de 50 a 300 litros por tanque.' },
@@ -585,11 +769,31 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',    label: 'Certificación'        },
     ],
 
+    img: '/imagenes/extintores/agua-a-presion.jpg',
+
+    variantes: [
+      {
+        nombre: 'Agua a Presión 9 L',
+        badge: 'Portátil',
+        desc: 'Para operación manual en almacenes de materiales combustibles, escuelas y comercios sin riesgo eléctrico. Fácil de transportar y económico de recargar.',
+        specs: 'Agua destilada · 9 litros · ~6 s descarga · 6–8 m alcance · Presión 50 bar · Sin corrosivo',
+        waText: 'Hola, quiero cotizar extintores de agua a presión de 9 litros',
+      },
+      {
+        nombre: 'Agua a Presión 20 L',
+        badge: 'Carretilla',
+        desc: 'Para bodegas de embalaje, depósitos de papel y plantas de alimentos. Se instala sobre carretilla para cubrir áreas extensas.',
+        specs: 'Agua destilada · 20 litros · ~10 s descarga · 6–8 m alcance · Carretilla de acero · Presión 50 bar',
+        waText: 'Hola, quiero cotizar extintores de agua a presión de 20 litros',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del extintor',
       titleLine2: 'de agua a presión',
       desc: 'El agua a presión es el agente extintor más simple y efectivo para materiales sólidos. Estas son sus especificaciones técnicas clave.',
+      bodyPara: 'Sin químicos, sin residuo corrosivo — el agua actúa por enfriamiento puro. Es el agente más seguro para archivos, alimentos y áreas con personal sensible a químicos. También el más económico de recargar y mantener.',
       items: [
         {
           title: 'Agente: agua desmineralizada a presión almacenada',
@@ -623,6 +827,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar extintores',
       titleLine2: 'de agua a presión?',
       desc: 'El extintor de agua a presión es el agente ideal cuando el riesgo es exclusivamente de materiales sólidos sin riesgo eléctrico. Estos son los principales entornos de uso.',
+      bodyPara: 'Es el agente ideal en almacenes de papel, mercados, escuelas y archivos documentales donde la ausencia de riesgo eléctrico y el bajo costo de recarga hacen del agua la opción más económica y efectiva.',
       usos: [
         { label: 'Almacenes de papel y embalaje',     desc: 'La alta carga de papel y cartón es el escenario ideal para el agua. El enfriamiento profundo evita la re-ignición en el interior de fardos y pilas de material.' },
         { label: 'Mercados y plazas comerciales',     desc: 'En zonas de puestos sin riesgo eléctrico significativo, el agua es el agente más seguro para el público y el menos dañino para la mercancía alrededor del fuego.' },
@@ -677,11 +882,38 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',       label: 'Certificación'          },
     ],
 
+    img: '/imagenes/extintores/cold-fire/galeria-1.jpg',
+
+    variantes: [
+      {
+        nombre: 'Cold Fire 2.5 L',
+        badge: 'Compacto',
+        desc: 'Para museos, guarderías y espacios donde la seguridad no-tóxica es prioritaria. Volumen reducido para áreas pequeñas sin sacrificar eficacia.',
+        specs: 'Agente orgánico · 2.5 litros · ~4 s descarga · 4–6 m alcance · No tóxico · Biodegradable',
+        waText: 'Hola, quiero cotizar extintores Cold Fire de 2.5 litros',
+      },
+      {
+        nombre: 'Cold Fire 9 L',
+        badge: 'Estándar',
+        desc: 'Para hospitales, escuelas y bodegas con materiales sensibles. El más equilibrado entre capacidad, portabilidad y costo.',
+        specs: 'Agente orgánico · 9 litros · ~6 s descarga · 5–8 m alcance · PFAS-free · ISO 14001',
+        waText: 'Hola, quiero cotizar extintores Cold Fire de 9 litros',
+      },
+      {
+        nombre: 'Cold Fire 20 L',
+        badge: 'Industrial',
+        desc: 'Para plantas con certificación ambiental y almacenes donde el daño colateral y la contaminación deben ser cero.',
+        specs: 'Agente orgánico · 20 litros · ~8 s descarga · 6–8 m alcance · Carretilla · Compatible LEED',
+        waText: 'Hola, quiero cotizar extintores Cold Fire de 20 litros',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características del agente',
       titleLine2: 'Cold Fire',
       desc: 'Cold Fire combina eficacia extintor con mínimo impacto ambiental. Estas son las características técnicas que lo distinguen de otros agentes.',
+      bodyPara: 'Sin fluorine, sin toxicidad para personas, completamente biodegradable — Cold Fire es la respuesta cuando proteges activos con certificación ambiental o cuando el daño colateral del agente es inaceptable.',
       items: [
         {
           title: 'Agente: agua con aditivos orgánicos encapsuladores',
@@ -715,6 +947,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar extintores',
       titleLine2: 'Cold Fire?',
       desc: 'Cold Fire es la elección correcta cuando la seguridad de las personas, el impacto ambiental o la protección del equipo son factores tan importantes como la eficacia extintor.',
+      bodyPara: 'Es la opción preferida en instituciones de salud, educación, patrimonio y empresas con ISO 14001 donde la seguridad humana y la responsabilidad ambiental se equiparan con la necesidad de extinción rápida.',
       usos: [
         { label: 'Empresas con ISO 14001 o LEED',          desc: 'El agente biodegradable sin fluorine es la única opción que cumple criterios de gestión ambiental en extinción de incendios. Documentamos el producto para tu auditoría.' },
         { label: 'Museos y sitios patrimoniales',           desc: 'El mínimo daño colateral del Cold Fire protege obras de arte, textiles históricos y documentos. Sin polvo ni corrosión que dañe el material cultural.' },
@@ -773,11 +1006,45 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: '24/7',        label: 'Protección continua'   },
     ],
 
+    img: '/imagenes/extintores/automaticos.jpg',
+
+    variantes: [
+      {
+        nombre: 'Automático PQS 1 kg',
+        badge: 'Cocina',
+        desc: 'Para freidoras domésticas o pequeños focos de riesgo de fuego clase A-B. Disparo a 70°C sin intervención.',
+        specs: 'Polvo ABC · 1 kg · Bulbo de cristal 70°C · Disparo automático · Montaje en pared o techo',
+        waText: 'Hola, quiero cotizar extintores automáticos PQS de 1 kg',
+      },
+      {
+        nombre: 'Automático PQS 6 kg',
+        badge: 'Bodega',
+        desc: 'Para bodegas, pasillos de carga y áreas de riesgo sin supervisión permanente. Protección 24/7 sin operador.',
+        specs: 'Polvo ABC · 6 kg · Bulbo de cristal 70°C · Área de protección ~50 m³ · Montaje en techo',
+        waText: 'Hola, quiero cotizar extintores automáticos PQS de 6 kg',
+      },
+      {
+        nombre: 'Automático CO₂ 2 kg',
+        badge: 'Eléctrico',
+        desc: 'Para cuartos eléctricos y equipos de cómputo sin residuo. Disparo inmediato ante arco o sobrecalentamiento.',
+        specs: 'CO₂ gaseoso · 2 kg · Bulbo de cristal 79°C · Sin daño a electrónica · Montaje directo en cuadro',
+        waText: 'Hola, quiero cotizar extintores automáticos CO₂ de 2 kg',
+      },
+      {
+        nombre: 'Automático CO₂ 5 kg',
+        badge: 'Servidores',
+        desc: 'Para racks de servidores y cuartos de comunicaciones. Máxima protección sin daño al equipo activo.',
+        specs: 'CO₂ gaseoso · 5 kg · Bulbo de cristal 79°C · Descarga automática inmediata · Compatible NFPA',
+        waText: 'Hola, quiero cotizar extintores automáticos CO₂ de 5 kg',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'extintores automáticos',
       desc: 'Los extintores automáticos incorporan un mecanismo de detección y disparo propio. Estas son las características que determinan su selección e instalación.',
+      bodyPara: 'Su gran ventaja es responder sin intervención humana en espacios sin supervisión o donde el tiempo de reacción es crítico. PQS para riesgos generales, CO₂ para equipo eléctrico — el agente se elige según el riesgo específico a proteger.',
       items: [
         {
           title: 'Mecanismo de activación: bulbo de cristal o fusible',
@@ -811,6 +1078,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde instalar extintores',
       titleLine2: 'automáticos?',
       desc: 'Los extintores automáticos son la primera línea de defensa en espacios donde no hay personal presente todo el tiempo o donde la velocidad de respuesta es crítica.',
+      bodyPara: 'Indispensables en cocinas de riesgo, cuartos eléctricos y espacios sin vigilancia permanente. Actúan en segundos sin esperar a que alguien detecte el fuego — la diferencia entre control y desastre.',
       usos: [
         { label: 'Cocinas con campana sin sistema Ansul',  desc: 'Para cocinas que no tienen sistema de supresión automática en la campana pero tienen freidoras o líneas de cocción de alto riesgo. El automático encima de la freidora actúa en segundos.' },
         { label: 'Cuartos eléctricos y tableros',          desc: 'Dentro del cuarto de tableros, el extintor automático de CO₂ o agente limpio actúa de inmediato ante un arco eléctrico o cortocircuito sin necesidad de operador.' },
@@ -869,11 +1137,66 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',      label: 'Certificación'        },
     ],
 
+    img: '/imagenes/extintores/abc.jpg',
+
+    variantes: [
+      {
+        nombre: 'ABC 1 kg',
+        badge: 'Vehículos',
+        desc: 'Para cabinas de vehículos comerciales y equipamiento básico de emergencia. Cumple NOM-068-SCT-2 para transporte.',
+        specs: 'Polvo ABC · 1 kg · ~5 s descarga · 2–3 m alcance · Compacto',
+        waText: 'Hola, quiero cotizar extintores ABC de 1 kg para vehículos',
+      },
+      {
+        nombre: 'ABC 2.5 kg',
+        badge: 'Compacto',
+        desc: 'Para espacios pequeños, cajas de escalera y pequeños comercios. Mínimo requerido para locales de hasta 100 m².',
+        specs: 'Polvo ABC · 2.5 kg · ~8 s descarga · 3 m alcance · Portátil',
+        waText: 'Hola, quiero cotizar extintores ABC de 2.5 kg',
+      },
+      {
+        nombre: 'ABC 4.5 kg',
+        badge: 'Más vendido',
+        desc: 'El estándar para oficinas, tiendas y comercios. Mínimo exigido por Protección Civil para cualquier local con acceso público.',
+        specs: 'Polvo ABC · 4.5 kg · ~10 s descarga · 3–4 m alcance · 60 bar · Manómetro',
+        waText: 'Hola, quiero cotizar extintores ABC de 4.5 kg',
+      },
+      {
+        nombre: 'ABC 6 kg',
+        badge: 'Estándar',
+        desc: 'Para talleres, bodegas pequeñas y plantas ligeras. Mayor capacidad sin aumentar demasiado el peso.',
+        specs: 'Polvo ABC · 6 kg · ~13 s descarga · 4–5 m alcance · Manguera con boquilla',
+        waText: 'Hola, quiero cotizar extintores ABC de 6 kg',
+      },
+      {
+        nombre: 'ABC 9 kg',
+        badge: 'Industrial',
+        desc: 'Para almacenes con mercancía mixta y plantas de riesgo bajo-medio. Cobertura extendida de área.',
+        specs: 'Polvo ABC · 9 kg · ~18 s descarga · 4–5 m alcance · Soporte de pared',
+        waText: 'Hola, quiero cotizar extintores ABC de 9 kg',
+      },
+      {
+        nombre: 'ABC 12 kg',
+        badge: 'Alta capacidad',
+        desc: 'Para plantas industriales con múltiples áreas de riesgo. Protección de bodegas y áreas de proceso.',
+        specs: 'Polvo ABC · 12 kg · ~22 s descarga · 5–6 m alcance · Para gabinete metálico',
+        waText: 'Hola, quiero cotizar extintores ABC de 12 kg',
+      },
+      {
+        nombre: 'ABC Rodante 25–50 kg',
+        badge: 'Gran capacidad',
+        desc: 'Para plantas industriales, estacionamientos y zonas extensas de almacenamiento. Ruedas para máxima movilidad.',
+        specs: 'Polvo ABC · 25 / 35 / 50 kg · Rodante · Hasta 8 m alcance · Manguera 5 m',
+        waText: 'Hola, quiero cotizar extintor rodante ABC',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Por qué el extintor ABC',
       titleLine2: 'es el más versátil',
       desc: 'El diseño del extintor ABC está optimizado para cubrir el mayor rango de riesgos con un solo equipo. Estas son sus características técnicas clave.',
+      bodyPara: 'Una sola solución para tres tipos de fuego — la máxima versatilidad operativa. ABC simplifica la gestión de extintores en instalaciones mixtas, reduciendo cantidad de equipos y complejidad de brigadas.',
       items: [
         {
           title: 'Cobertura clase A: materiales sólidos',
@@ -907,6 +1230,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Cuándo elegir el extintor',
       titleLine2: 'ABC multiusos?',
       desc: 'El extintor ABC es la elección correcta cuando la instalación tiene riesgos mixtos y se necesita un único tipo de extintor para cubrir todos los escenarios sin complicación operativa.',
+      bodyPara: 'ABC es la solución "de cabecera" en cualquier instalación: cubre casi el 90% de escenarios posibles con un solo agente. Se complementa con especializados (CO₂, Tipo K) solo en riesgos muy específicos.',
       usos: [
         { label: 'Oficinas administrativas',         desc: 'Riesgo mixto de papel, mobiliario y equipos de cómputo. Un extintor ABC de 4 kg por cada 300 m² cubre todos los escenarios posibles en oficina típica.' },
         { label: 'Locales comerciales mixtos',       desc: 'Tiendas con ropa, electrónica, alimentos y materiales variados. El ABC evita la necesidad de tener extintores especializados para cada tipo de mercancía.' },
@@ -965,11 +1289,45 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       { value: 'NOM-154',     label: 'Certificación'         },
     ],
 
+    img: '/imagenes/extintores/agente-limpio.jpg',
+
+    variantes: [
+      {
+        nombre: 'FM-200 2.5 kg',
+        badge: 'Compacto',
+        desc: 'Para espacios pequeños con equipos críticos: PCs de escritorio, mini-racks y equipamiento de valor moderado.',
+        specs: 'FM-200 (HFC-227ea) · 2.5 kg · ~5 s descarga · 0 residuo · Seguro en personas',
+        waText: 'Hola, quiero cotizar extintores de agente limpio FM-200 de 2.5 kg',
+      },
+      {
+        nombre: 'FM-200 5 kg',
+        badge: 'Servidores',
+        desc: 'El más solicitado para cuartos de servidores pequeños y archivos documentales críticos. Protección sin daño al activo.',
+        specs: 'FM-200 (HFC-227ea) · 5 kg · ~7 s descarga · Sin daño · Compatible NFPA 2001',
+        waText: 'Hola, quiero cotizar extintores de agente limpio FM-200 de 5 kg',
+      },
+      {
+        nombre: 'FM-200 10 kg',
+        badge: 'Data center',
+        desc: 'Para cuartos de servidores medianos y salas de telecomunicaciones. Cobertura máxima portátil.',
+        specs: 'FM-200 (HFC-227ea) · 10 kg · ~12 s descarga · Máxima capacidad · Estándar en TI',
+        waText: 'Hola, quiero cotizar extintores de agente limpio FM-200 de 10 kg',
+      },
+      {
+        nombre: 'FE-36 5 kg',
+        badge: 'Alternativa',
+        desc: 'Opción con ODP=0 para instalaciones con restricciones ambientales estrictas. Funcionalidad idéntica a FM-200.',
+        specs: 'FE-36 (HFC-236fa) · 5 kg · ~7 s descarga · Sin impacto ozono · Cero residuo',
+        waText: 'Hola, quiero cotizar extintores de agente limpio FE-36 de 5 kg',
+      },
+    ],
+
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'agentes limpios',
       desc: 'Los agentes limpios son la tecnología de mayor valor entre los agentes extintores para equipos y espacios sensibles. Estas son sus características clave.',
+      bodyPara: 'Cero residuo, cero daño, cero riesgo para personal — el agente limpio es la respuesta única cuando el activo que proteges no tolera ni una mota de contaminación post-incendio. Estándar internacional en TI y patrimonio cultural.',
       items: [
         {
           title: 'FM-200 (HFC-227ea): el más utilizado en extintores portátiles',
@@ -1003,6 +1361,7 @@ export const EXTINTOR_PAGES: Record<string, ProductoExtintorData> = {
       titleLine1: '¿Dónde usar agente',
       titleLine2: 'limpio?',
       desc: 'El agente limpio es la elección correcta cuando el daño post-incendio del agente extintor es inaceptable. Estos son los entornos donde es el estándar.',
+      bodyPara: 'Es obligatorio en centros de datos, archivos históricos, museos y quirófanos. La ausencia total de residuo hace que el agente limpio sea el único aceptable cuando la continuidad de operaciones o la preservación patrimonial están en juego.',
       usos: [
         { label: 'Cuartos de servidores y centros de datos', desc: 'El estándar de la industria TI. Sin residuo, sin corrosión, sin interrupción del equipo activo. El agente limpio permite reiniciar operaciones inmediatamente después del incidente.' },
         { label: 'Archivos históricos y notariales',          desc: 'Para acervos documentales irreemplazables. El agente limpio no moja, no mancha y no genera reacciones químicas con papel, tintas ni fotografías.' },

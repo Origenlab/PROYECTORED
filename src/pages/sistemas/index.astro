@@ -16,13 +16,6 @@ const breadcrumbs = [
   { label: "Sistemas Contra Incendio" },
 ];
 
-const metricas = [
-  { valor: "5", label: "Subsistemas integrados" },
-  { valor: "NFPA", label: "72 · 13 · 14 · 20" },
-  { valor: "1–3", label: "Semanas de instalación" },
-  { valor: "1 año", label: "Garantía en sistemas" },
-];
-
 const productos = [
   {
     nombre: "Alarmas Contra Incendio",
@@ -176,22 +169,6 @@ const faqsSistemas = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Sistemas contra incendio">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

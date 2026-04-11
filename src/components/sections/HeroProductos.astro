@@ -1,0 +1,120 @@
+---
+/**
+ * HeroProductos.astro
+ * Hero de la página de productos — mismo patrón visual que HeroIndex.
+ * Izq: badge + H1 / Der: párrafos descriptivos.
+ */
+---
+
+<section class="hero-productos" aria-label="Catálogo de equipos contra incendios">
+  <div class="container hero-productos__grid">
+
+    <!-- ── Columna izquierda ── -->
+    <div class="hero-productos__left">
+
+      <div class="hero-badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        Catálogo certificado NOM y NFPA
+      </div>
+
+      <h1 class="hero-productos__h1">
+        Catálogo de Equipos<br>
+        Contra <span class="h1-accent">Incendios</span>
+      </h1>
+
+      <p class="hero-productos__sub">
+        Más de 50 productos en 8 categorías. Todo certificado NOM y NFPA.
+        Entrega directa en CDMX y Estado de México con asesoría técnica incluida.
+      </p>
+
+    </div>
+
+    <!-- ── Columna derecha: dos párrafos ── -->
+    <div class="hero-productos__right">
+      <p>
+        En Proyecto Red somos proveedores directos de equipo contra incendios certificado
+        para empresas, plantas industriales, restaurantes, edificios y cuerpos de bomberos
+        en la Ciudad de México y el Estado de México.
+      </p>
+      <p>
+        Cada producto de nuestro catálogo cumple con las normas NOM y NFPA vigentes.
+        Entregamos con documentación completa: fichas técnicas, certificados de conformidad
+        y etiqueta de inspección lista para tu expediente de Protección Civil y STPS.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── HERO PRODUCTOS ────────────────────────────────── */
+  .hero-productos {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      radial-gradient(ellipse 55% 65% at 75% 50%, rgba(196,30,36,.13) 0%, transparent 65%),
+      linear-gradient(160deg, #0A0A0A 0%, #160A0A 50%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-productos::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-productos__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── TIPOGRAFÍA H1 ─────────────────────────────────── */
+  .hero-productos__h1 {
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── SUBTÍTULO ─────────────────────────────────────── */
+  .hero-productos__sub {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.65;
+    max-width: 50ch;
+  }
+
+  /* ── COLUMNA DERECHA ───────────────────────────────── */
+  .hero-productos__right p {
+    color: rgba(255,255,255,.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .hero-productos__right p:last-child { margin-bottom: 0; }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .hero-productos__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-productos { padding-top: 3rem; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-productos { padding-bottom: 3rem; }
+  }
+</style>

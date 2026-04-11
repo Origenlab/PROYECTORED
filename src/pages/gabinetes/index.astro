@@ -17,12 +17,6 @@ const breadcrumbs = [
 ];
 
 // v4: métricas que cuentan una progresión, no datos aislados
-const metricas = [
-  { valor: "4", label: "Tipos de gabinete" },
-  { valor: "Cal. 20", label: "Lámina de acero" },
-  { valor: "3", label: "Instalaciones: empotrado, sobrepuesto, pedestal" },
-  { valor: "24h", label: "Entrega zona metro" },
-];
 
 // ── Productos con specs técnicos reales ──────────────
 const productos = [
@@ -172,22 +166,6 @@ const faqsGabinetes = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Gabinetes">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

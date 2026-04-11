@@ -2,8 +2,9 @@
 /**
  * ReviewsIndex.astro
  * Reseñas verificadas de empresas clientes — grid con schema Review.
- * Usa SectionHeader.astro (complemento aprobado).
+ * Encabezado: SectionHeaderDuo (complemento aprobado).
  */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const reviews = [
   {
@@ -68,13 +69,14 @@ const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25
 <section class="reviews-index" aria-labelledby="reviews-heading">
   <div class="container">
 
-    <div class="reviews-index__top">
-      <p class="rev-eyebrow">Lo que dicen nuestros clientes</p>
-      <h2 id="reviews-heading" class="rev-titulo">
-        Empresas que confían<br>
-        <span>en Proyecto Red</span>
-      </h2>
-    </div>
+    <SectionHeaderDuo
+      eyebrow="Lo que dicen nuestros clientes"
+      titleLine1="Empresas que confían"
+      titleLine2="en Proyecto Red"
+      desc="Reseñas verificadas de empresas que trabajan con nosotros."
+      bodyPara1="Nuestros clientes son empresas de construcción, instaladores de elevadores, proveedores de seguridad industrial, compañías de energía solar y distribuidores de equipos contra incendio en toda la república."
+      bodyPara2="Lo que tienen en común: necesitan un proveedor que entregue rápido, con producto certificado y documentación lista para sus propios clientes y auditorías. Eso es exactamente lo que hacemos."
+    />
 
     <div class="reviews-grid" role="list" aria-label="Reseñas de clientes de Proyecto Red">
       {reviews.map(r => (
@@ -140,31 +142,6 @@ const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25
     padding: var(--section-py, 5rem) 0;
     background: var(--c-surface, #F4F4F5);
   }
-
-  /* ── TOP ──────────────────────────────────────────────── */
-  .reviews-index__top {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .rev-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--c-primary);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 0.75rem;
-  }
-
-  .rev-titulo {
-    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
-    font-weight: 800;
-    letter-spacing: -.03em;
-    line-height: 1.1;
-    color: var(--c-ink);
-  }
-
-  .rev-titulo span { color: var(--c-primary); }
 
   /* ── GRID ─────────────────────────────────────────────── */
   .reviews-grid {

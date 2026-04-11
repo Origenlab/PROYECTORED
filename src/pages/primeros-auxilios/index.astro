@@ -16,13 +16,6 @@ const breadcrumbs = [
   { label: "Primeros Auxilios" },
 ];
 
-const metricas = [
-  { valor: "5", label: "Categorías de equipo" },
-  { valor: "NOM-030", label: "STPS certificado" },
-  { valor: "$850", label: "Botiquín desde MXN" },
-  { valor: "DC-3", label: "Capacitación incluida" },
-];
-
 const productos = [
   {
     nombre: "Botiquines de Primeros Auxilios",
@@ -176,22 +169,6 @@ const faqsPrimeros = [
   </section>
 
   <CtaBar />
-
-  <!-- ══════════════════════════════════════
-       MÉTRICAS
-  ══════════════════════════════════════ -->
-  <section class="metricas-section" aria-label="Primeros auxilios">
-    <div class="container">
-      <div class="metricas-grid">
-        {metricas.map(m => (
-          <div class="metrica-item">
-            <span class="metrica-valor">{m.valor}</span>
-            <span class="metrica-label">{m.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════
        CATÁLOGO

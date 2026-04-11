@@ -1,0 +1,588 @@
+---
+/**
+ * CatalogoProductos.astro
+ * Catálogo completo de productos — navegación sticky + SectionHeaderDuo + 8 secciones.
+ * Sigue el patrón de secciones del index: componente autónomo con sus propios estilos.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const WA_URL = 'https://wa.me/525537238544'
+
+const categorias = [
+  {
+    id: 'extintores',
+    titulo: 'Extintores',
+    badge: 'NOM-154-SCFI',
+    desc: 'Primera línea de defensa para cualquier tipo de riesgo. Extintores certificados para todos los tipos de fuego.',
+    body: 'Cilindros portátiles de polvo seco ABC, CO₂, AFFF, Tipo K para cocinas, Púrpura K, agua a presión, Cold Fire, automáticos y agente limpio. Cada unidad cumple con la NOM-154-SCFI y se entrega con ficha técnica, certificado de conformidad, garantía y etiqueta de inspección — documentación lista para tu expediente ante Protección Civil y STPS.',
+    href: '/extintores/',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    productos: [
+      {
+        nombre: 'Polvo Seco ABC', sub: 'Multiusos — oficinas, bodegas, vehículos', href: '/extintores/polvo-seco/', badge: 'Más vendido', ctaLabel: 'Ver polvo seco',
+        subcats: [
+          { label: 'PQS 4.5 kg', href: '/extintores/polvo-seco/' },
+          { label: 'PQS 6 kg', href: '/extintores/polvo-seco/' },
+          { label: 'PQS 9 kg', href: '/extintores/polvo-seco/' },
+          { label: 'PQS 12 kg', href: '/extintores/polvo-seco/' },
+          { label: 'PQS 50 kg (carretilla)', href: '/extintores/polvo-seco/' },
+          { label: 'PQS 2.5 kg (vehículo)', href: '/extintores/polvo-seco/' },
+        ],
+      },
+      {
+        nombre: 'CO₂ Dióxido de Carbono', sub: 'Electrónica, servidores, laboratorios', href: '/extintores/co2/', ctaLabel: 'Ver CO₂',
+        subcats: [
+          { label: 'CO₂ 2.5 kg', href: '/extintores/co2/' },
+          { label: 'CO₂ 5 kg', href: '/extintores/co2/' },
+          { label: 'CO₂ 10 kg', href: '/extintores/co2/' },
+          { label: 'CO₂ 20 kg (carretilla)', href: '/extintores/co2/' },
+        ],
+      },
+      {
+        nombre: 'AFFF / Espuma', sub: 'Líquidos inflamables, gasolineras, talleres', href: '/extintores/afff/', ctaLabel: 'Ver AFFF',
+        subcats: [
+          { label: 'AFFF 9 litros', href: '/extintores/afff/' },
+          { label: 'AFFF 20 litros', href: '/extintores/afff/' },
+          { label: 'AFFF 50 litros (carretilla)', href: '/extintores/afff/' },
+          { label: 'Espuma AR-AFFF', href: '/extintores/afff/' },
+        ],
+      },
+      {
+        nombre: 'Tipo K — Cocinas', sub: 'Aceites vegetales, freidoras industriales', href: '/extintores/tipo-k/', badge: 'Restaurantes', ctaLabel: 'Ver Tipo K',
+        subcats: [
+          { label: 'Tipo K 1.7 galones', href: '/extintores/tipo-k/' },
+          { label: 'Tipo K 3 galones', href: '/extintores/tipo-k/' },
+          { label: 'Tipo K 6 litros', href: '/extintores/tipo-k/' },
+          { label: 'Sistema fijo Tipo K', href: '/extintores/tipo-k/' },
+        ],
+      },
+      {
+        nombre: 'Púrpura K', sub: 'Grasas animales, cocinas de alto volumen', href: '/extintores/purpura-k/', ctaLabel: 'Ver Púrpura K',
+        subcats: [
+          { label: 'Púrpura K 4.5 kg', href: '/extintores/purpura-k/' },
+          { label: 'Púrpura K 6 kg', href: '/extintores/purpura-k/' },
+          { label: 'Púrpura K 9 kg', href: '/extintores/purpura-k/' },
+        ],
+      },
+      {
+        nombre: 'Agua a Presión', sub: 'Materiales sólidos, papel, madera, textiles', href: '/extintores/agua-a-presion/', ctaLabel: 'Ver agua a presión',
+        subcats: [
+          { label: 'Agua 9 litros', href: '/extintores/agua-a-presion/' },
+          { label: 'Agua 20 litros', href: '/extintores/agua-a-presion/' },
+          { label: 'Agua desmineralizada', href: '/extintores/agua-a-presion/' },
+        ],
+      },
+      {
+        nombre: 'Cold Fire', sub: 'Supresión rápida con menor daño colateral', href: '/extintores/cold-fire/', ctaLabel: 'Ver Cold Fire',
+        subcats: [
+          { label: 'Cold Fire 2.5 litros', href: '/extintores/cold-fire/' },
+          { label: 'Cold Fire 9 litros', href: '/extintores/cold-fire/' },
+          { label: 'Cold Fire 20 litros', href: '/extintores/cold-fire/' },
+          { label: 'Concentrado Cold Fire', href: '/extintores/cold-fire/' },
+        ],
+      },
+      {
+        nombre: 'Automáticos', sub: 'Activación autónoma sin intervención humana', href: '/extintores/automaticos/', ctaLabel: 'Ver automáticos',
+        subcats: [
+          { label: 'Automático PQS 1 kg', href: '/extintores/automaticos/' },
+          { label: 'Automático PQS 6 kg', href: '/extintores/automaticos/' },
+          { label: 'Automático PQS 12 kg', href: '/extintores/automaticos/' },
+          { label: 'Automático CO₂ 5 kg', href: '/extintores/automaticos/' },
+        ],
+      },
+      {
+        nombre: 'ABC Multiusos', sub: 'Solución versátil para riesgos mixtos', href: '/extintores/abc/', ctaLabel: 'Ver ABC multiusos',
+        subcats: [
+          { label: 'ABC 4.5 kg', href: '/extintores/abc/' },
+          { label: 'ABC 6 kg', href: '/extintores/abc/' },
+          { label: 'ABC 9 kg', href: '/extintores/abc/' },
+          { label: 'ABC 12 kg', href: '/extintores/abc/' },
+        ],
+      },
+      {
+        nombre: 'Agente Limpio', sub: 'Centros de datos, archivos, equipos críticos', href: '/extintores/agente-limpio/', badge: 'Premium', ctaLabel: 'Ver agente limpio',
+        subcats: [
+          { label: 'FE-36 — 2.5 kg', href: '/extintores/agente-limpio/' },
+          { label: 'FE-36 — 5 kg', href: '/extintores/agente-limpio/' },
+          { label: 'FE-36 — 10 kg', href: '/extintores/agente-limpio/' },
+          { label: 'Solkaflam / HFC-227ea', href: '/extintores/agente-limpio/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'equipo-bomberos',
+    titulo: 'Equipo para Bomberos',
+    badge: 'NFPA 1971',
+    desc: 'Protección personal certificada NFPA para cuerpos de bomberos, brigadas industriales y equipos de respuesta.',
+    body: 'Trajes estructurales, cascos, guantes, botas, equipos de respiración autónoma (ERA), herramientas de rescate hidráulicas y arneses para trabajo en altura. Todo con certificación NFPA 1971 y documentación completa para integrar al expediente de tu cuerpo de emergencia o brigada industrial.',
+    href: '/equipo-bomberos/',
+    img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    productos: [
+      {
+        nombre: 'Trajes Estructurales', sub: 'Protección térmica y química certificada NFPA', href: '/equipo-bomberos/trajes/', badge: 'NFPA 1971', ctaLabel: 'Ver trajes',
+        subcats: [
+          { label: 'Traje 3 capas NFPA 1971', href: '/equipo-bomberos/trajes/' },
+          { label: 'Chaquetón estructural', href: '/equipo-bomberos/trajes/' },
+          { label: 'Pantalón estructural', href: '/equipo-bomberos/trajes/' },
+          { label: 'Traje de aproximación', href: '/equipo-bomberos/trajes/' },
+        ],
+      },
+      {
+        nombre: 'Complementos de Uniforme', sub: 'Casco, guantes, botas y capucha', href: '/equipo-bomberos/complementos/', ctaLabel: 'Ver complementos',
+        subcats: [
+          { label: 'Casco bombero NFPA', href: '/equipo-bomberos/complementos/' },
+          { label: 'Guantes estructurales', href: '/equipo-bomberos/complementos/' },
+          { label: 'Botas de hule / cuero', href: '/equipo-bomberos/complementos/' },
+          { label: 'Capucha Nomex / PBI', href: '/equipo-bomberos/complementos/' },
+          { label: 'Goggles antiempañantes', href: '/equipo-bomberos/complementos/' },
+        ],
+      },
+      {
+        nombre: 'ERA — Respiración Autónoma', sub: 'Equipos de aire autónomo para atmósferas peligrosas', href: '/equipo-bomberos/respiracion-autonoma/', badge: 'Esencial', ctaLabel: 'Ver ERA',
+        subcats: [
+          { label: 'ERA cilindro 30 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+          { label: 'ERA cilindro 45 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+          { label: 'ERA cilindro 60 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+          { label: 'Mascarilla panorámica', href: '/equipo-bomberos/respiracion-autonoma/' },
+          { label: 'Cilindros de repuesto', href: '/equipo-bomberos/respiracion-autonoma/' },
+        ],
+      },
+      {
+        nombre: 'Herramientas de Rescate', sub: 'Quijadas de vida, hachas, palancas', href: '/equipo-bomberos/herramientas/', ctaLabel: 'Ver herramientas',
+        subcats: [
+          { label: 'Quijadas de vida hidráulicas', href: '/equipo-bomberos/herramientas/' },
+          { label: 'Cortadores hidráulicos', href: '/equipo-bomberos/herramientas/' },
+          { label: 'Expansores y separadores', href: '/equipo-bomberos/herramientas/' },
+          { label: 'Hacha bombero / pico', href: '/equipo-bomberos/herramientas/' },
+          { label: 'Halligan bar', href: '/equipo-bomberos/herramientas/' },
+        ],
+      },
+      {
+        nombre: 'Arneses de Rescate', sub: 'Para trabajos en altura y rescate vertical', href: '/equipo-bomberos/arneses/', ctaLabel: 'Ver arneses',
+        subcats: [
+          { label: 'Arnés NFPA 1983 Clase II', href: '/equipo-bomberos/arneses/' },
+          { label: 'Arnés NFPA 1983 Clase III', href: '/equipo-bomberos/arneses/' },
+          { label: 'Cuerdas kernmantle', href: '/equipo-bomberos/arneses/' },
+          { label: 'Descensores y poleas', href: '/equipo-bomberos/arneses/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'senalamientos',
+    titulo: 'Señalamientos de Emergencia',
+    badge: 'NOM-003-SEGOB',
+    desc: 'Señalética fotoluminiscente visible en cortes de luz — indispensable para inspecciones de Protección Civil.',
+    body: 'Señales de prohibición, obligación, advertencia y evacuación fabricadas en acrílico, PVC y vinilo con tintas resistentes a UV. Conformes a NOM-003-SEGOB y NOM-026-STPS. Incluimos levantamiento del inmueble, recomendación de cantidades, ubicaciones y plano de señalización para tu expediente regulatorio.',
+    href: '/senalamientos/',
+    img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    productos: [
+      {
+        nombre: 'Señales de Prohibición', sub: 'No fumar, no paso, no usar en caso de incendio', href: '/senalamientos/prohibicion/', ctaLabel: 'Ver prohibición',
+        subcats: [
+          { label: 'No fumar', href: '/senalamientos/prohibicion/' },
+          { label: 'No encender fuego', href: '/senalamientos/prohibicion/' },
+          { label: 'No usar en caso de incendio', href: '/senalamientos/prohibicion/' },
+          { label: 'Prohibido el paso', href: '/senalamientos/prohibicion/' },
+        ],
+      },
+      {
+        nombre: 'Señales de Obligación', sub: 'Uso de EPP, acceso autorizado, equipo obligatorio', href: '/senalamientos/obligacion/', ctaLabel: 'Ver obligación',
+        subcats: [
+          { label: 'Uso obligatorio de casco', href: '/senalamientos/obligacion/' },
+          { label: 'Uso obligatorio de lentes', href: '/senalamientos/obligacion/' },
+          { label: 'Uso obligatorio de guantes', href: '/senalamientos/obligacion/' },
+          { label: 'Acceso solo personal autorizado', href: '/senalamientos/obligacion/' },
+        ],
+      },
+      {
+        nombre: 'Señales de Advertencia', sub: 'Riesgo eléctrico, material inflamable, piso resbaloso', href: '/senalamientos/advertencia/', ctaLabel: 'Ver advertencia',
+        subcats: [
+          { label: 'Riesgo eléctrico', href: '/senalamientos/advertencia/' },
+          { label: 'Material inflamable', href: '/senalamientos/advertencia/' },
+          { label: 'Piso resbaloso', href: '/senalamientos/advertencia/' },
+          { label: 'Sustancias tóxicas', href: '/senalamientos/advertencia/' },
+        ],
+      },
+      {
+        nombre: 'Señales de Salvación / Evacuación', sub: 'Salidas de emergencia, rutas, punto de reunión', href: '/senalamientos/salvacion/', badge: 'Obligatorio', ctaLabel: 'Ver evacuación',
+        subcats: [
+          { label: 'Salida de emergencia', href: '/senalamientos/salvacion/' },
+          { label: 'Ruta de evacuación', href: '/senalamientos/salvacion/' },
+          { label: 'Punto de reunión', href: '/senalamientos/salvacion/' },
+          { label: 'Extintor / hidrante', href: '/senalamientos/salvacion/' },
+          { label: 'Fotoluminiscentes NOM-003', href: '/senalamientos/salvacion/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'gabinetes',
+    titulo: 'Gabinetes y Porta Extintores',
+    badge: 'Infraestructura CI',
+    desc: 'Resguardo y acceso inmediato para equipo contra incendios en edificios, plantas y espacios comerciales.',
+    body: 'Gabinetes metálicos para extintor con y sin visor, porta extintores con cenicero, gabinetes para equipo de bombero y gabinetes para hidrante con espacio para manguera acoplada y válvula angular. Disponibles con o sin cerrojo de emergencia, en distintas medidas según el equipo a resguardar.',
+    href: '/gabinetes/',
+    img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    productos: [
+      {
+        nombre: 'Gabinete para Extintor', sub: 'Metálico, varios tamaños, con y sin visor', href: '/gabinetes/para-extintor/', badge: 'Más popular', ctaLabel: 'Ver gabinetes extintor',
+        subcats: [
+          { label: 'Gabinete con visor', href: '/gabinetes/para-extintor/' },
+          { label: 'Gabinete sin visor', href: '/gabinetes/para-extintor/' },
+          { label: 'Gabinete doble', href: '/gabinetes/para-extintor/' },
+          { label: 'Gabinete empotrable', href: '/gabinetes/para-extintor/' },
+        ],
+      },
+      {
+        nombre: 'Porta Extintor con Cenicero', sub: 'Para áreas de fumadores y accesos', href: '/gabinetes/porta-extintor-cenicero/', ctaLabel: 'Ver porta extintor',
+        subcats: [
+          { label: 'Porta extintor tubular', href: '/gabinetes/porta-extintor-cenicero/' },
+          { label: 'Porta extintor con cenicero', href: '/gabinetes/porta-extintor-cenicero/' },
+          { label: 'Soporte de pared', href: '/gabinetes/porta-extintor-cenicero/' },
+        ],
+      },
+      {
+        nombre: 'Gabinete para Bombero', sub: 'Almacén completo de equipo de respuesta', href: '/gabinetes/para-bombero/', ctaLabel: 'Ver gabinete bombero',
+        subcats: [
+          { label: 'Gabinete traje y ERA', href: '/gabinetes/para-bombero/' },
+          { label: 'Gabinete equipo completo', href: '/gabinetes/para-bombero/' },
+          { label: 'Gabinete con ventilación', href: '/gabinetes/para-bombero/' },
+        ],
+      },
+      {
+        nombre: 'Gabinete para Hidrante', sub: 'Resguardo de manguera y herrajes en edificios', href: '/gabinetes/para-hidrante/', ctaLabel: 'Ver gabinete hidrante',
+        subcats: [
+          { label: 'Gabinete manguera 30 m', href: '/gabinetes/para-hidrante/' },
+          { label: 'Gabinete válvula angular', href: '/gabinetes/para-hidrante/' },
+          { label: 'Gabinete empotrable hidrante', href: '/gabinetes/para-hidrante/' },
+          { label: 'Gabinete sobreponer hidrante', href: '/gabinetes/para-hidrante/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'mangueras',
+    titulo: 'Mangueras y Herrajes',
+    badge: 'Red hidráulica',
+    desc: 'Conducción de agua a alta presión para respuesta inmediata ante incendios en edificios e industria.',
+    body: 'Mangueras de fibra sintética para hidrante, chiflones de neblina y chorro directo, válvulas angulares y de control, adaptadores NST y Storz, carretes porta manguera, tomas siamesas para conexión de bomberos, llaves de herramienta y monitores contra incendio. Distribuidor autorizado Elkhart Brass.',
+    href: '/mangueras/',
+    img: '/imagenes/mangueras/mangueras-hero.jpg',
+    productos: [
+      {
+        nombre: 'Mangueras para Hidrante', sub: 'Fibra sintética, alta presión, varios diámetros', href: '/mangueras/para-hidrante/', badge: 'Indispensable', ctaLabel: 'Ver mangueras',
+        subcats: [
+          { label: '1½" × 15 m', href: '/mangueras/para-hidrante/' },
+          { label: '1½" × 30 m', href: '/mangueras/para-hidrante/' },
+          { label: '2½" × 15 m', href: '/mangueras/para-hidrante/' },
+          { label: '2½" × 30 m', href: '/mangueras/para-hidrante/' },
+        ],
+      },
+      {
+        nombre: 'Chiflones y Boquillas', sub: 'Neblina, chorro directo y combinados', href: '/mangueras/chiflones/', ctaLabel: 'Ver chiflones',
+        subcats: [
+          { label: 'Chiflón neblina 1½"', href: '/mangueras/chiflones/' },
+          { label: 'Chiflón neblina 2½"', href: '/mangueras/chiflones/' },
+          { label: 'Chiflón chorro directo', href: '/mangueras/chiflones/' },
+          { label: 'Chiflón combinado', href: '/mangueras/chiflones/' },
+        ],
+      },
+      {
+        nombre: 'Válvulas de Control', sub: 'Válvulas angulares, globo y de paso', href: '/mangueras/valvulas/', ctaLabel: 'Ver válvulas',
+        subcats: [
+          { label: 'Válvula angular 1½"', href: '/mangueras/valvulas/' },
+          { label: 'Válvula angular 2½"', href: '/mangueras/valvulas/' },
+          { label: 'Válvula de globo', href: '/mangueras/valvulas/' },
+          { label: 'Válvula check', href: '/mangueras/valvulas/' },
+        ],
+      },
+      {
+        nombre: 'Adaptadores y Uniones', sub: 'Conexiones NST, Storz y tipo bombero', href: '/mangueras/adaptadores/', ctaLabel: 'Ver adaptadores',
+        subcats: [
+          { label: 'Adaptador NST × Storz', href: '/mangueras/adaptadores/' },
+          { label: 'Reducción 2½" a 1½"', href: '/mangueras/adaptadores/' },
+          { label: 'Unión Storz simétrica', href: '/mangueras/adaptadores/' },
+          { label: 'Tapones y obturadores', href: '/mangueras/adaptadores/' },
+        ],
+      },
+      {
+        nombre: 'Carretes Porta Manguera', sub: 'Fijos y giratorios para edificios', href: '/mangueras/carretes/', ctaLabel: 'Ver carretes',
+        subcats: [
+          { label: 'Carrete 20 m × 1"', href: '/mangueras/carretes/' },
+          { label: 'Carrete 30 m × 1½"', href: '/mangueras/carretes/' },
+          { label: 'Carrete giratorio', href: '/mangueras/carretes/' },
+          { label: 'Carrete con gabinete', href: '/mangueras/carretes/' },
+        ],
+      },
+      {
+        nombre: 'Toma Siamesa', sub: 'Conexión exterior para bomberos', href: '/mangueras/toma-siamesa/', ctaLabel: 'Ver toma siamesa',
+        subcats: [
+          { label: 'Siamesa 2½" × 2½"', href: '/mangueras/toma-siamesa/' },
+          { label: 'Siamesa 4" × 2½"', href: '/mangueras/toma-siamesa/' },
+          { label: 'Siamesa empotrable', href: '/mangueras/toma-siamesa/' },
+          { label: 'Siamesa con check', href: '/mangueras/toma-siamesa/' },
+        ],
+      },
+      {
+        nombre: 'Llaves de Herramienta', sub: 'Para conexión y desconexión rápida de mangueras', href: '/mangueras/llaves/', ctaLabel: 'Ver llaves',
+        subcats: [
+          { label: 'Llave universal bombero', href: '/mangueras/llaves/' },
+          { label: 'Llave spanner NST', href: '/mangueras/llaves/' },
+          { label: 'Llave Storz', href: '/mangueras/llaves/' },
+        ],
+      },
+      {
+        nombre: 'Monitores', sub: 'Cañones de agua fijos y móviles para industria', href: '/mangueras/monitores/', ctaLabel: 'Ver monitores',
+        subcats: [
+          { label: 'Monitor 500 GPM', href: '/mangueras/monitores/' },
+          { label: 'Monitor 1000 GPM', href: '/mangueras/monitores/' },
+          { label: 'Monitor portátil', href: '/mangueras/monitores/' },
+          { label: 'Monitor Elkhart Brass', href: '/mangueras/monitores/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sistemas',
+    titulo: 'Sistemas Contra Incendio',
+    badge: 'NFPA 13/72',
+    desc: 'Detección, supresión y control automático para protección total de instalaciones.',
+    body: 'Alarmas convencionales y direccionables, detectores de humo y calor, rociadores automáticos húmedos y secos, tableros de control FACP, controladores de bombas NFPA 20 y redes hidráulicas completas. Sistemas llave en mano con ingeniería, instalación, certificación y monitoreo remoto conforme a NFPA 72 y NFPA 13.',
+    href: '/sistemas/',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    productos: [
+      {
+        nombre: 'Alarmas contra Incendio', sub: 'Convencionales y analógico-direccionables', href: '/sistemas/alarmas/', badge: 'NFPA 72', ctaLabel: 'Ver alarmas',
+        subcats: [
+          { label: 'Panel convencional 4 zonas', href: '/sistemas/alarmas/' },
+          { label: 'Panel convencional 8 zonas', href: '/sistemas/alarmas/' },
+          { label: 'Panel analógico direccionable', href: '/sistemas/alarmas/' },
+          { label: 'Estación manual de alarma', href: '/sistemas/alarmas/' },
+          { label: 'Sirena / estrobo', href: '/sistemas/alarmas/' },
+        ],
+      },
+      {
+        nombre: 'Detectores de Humo y Calor', sub: 'Iónicos, fotoeléctricos y termovelocimétricos', href: '/sistemas/detectores/', ctaLabel: 'Ver detectores',
+        subcats: [
+          { label: 'Detector fotoeléctrico', href: '/sistemas/detectores/' },
+          { label: 'Detector iónico', href: '/sistemas/detectores/' },
+          { label: 'Detector termovelocimétrico', href: '/sistemas/detectores/' },
+          { label: 'Detector de temperatura fija', href: '/sistemas/detectores/' },
+          { label: 'Detector de ductos', href: '/sistemas/detectores/' },
+        ],
+      },
+      {
+        nombre: 'Rociadores Automáticos', sub: 'Sistemas húmedos, secos y de diluvio', href: '/sistemas/rociadores/', badge: 'NFPA 13', ctaLabel: 'Ver rociadores',
+        subcats: [
+          { label: 'Rociador pendiente (pendent)', href: '/sistemas/rociadores/' },
+          { label: 'Rociador montante (upright)', href: '/sistemas/rociadores/' },
+          { label: 'Rociador lateral (sidewall)', href: '/sistemas/rociadores/' },
+          { label: 'Rociador oculto (concealed)', href: '/sistemas/rociadores/' },
+          { label: 'Válvula diluvio', href: '/sistemas/rociadores/' },
+        ],
+      },
+      {
+        nombre: 'Tableros de Control', sub: 'Paneles convencionales y analógicos con monitoreo', href: '/sistemas/tableros/', ctaLabel: 'Ver tableros',
+        subcats: [
+          { label: 'FACP convencional', href: '/sistemas/tableros/' },
+          { label: 'FACP direccionable', href: '/sistemas/tableros/' },
+          { label: 'Controlador de bomba NFPA 20', href: '/sistemas/tableros/' },
+          { label: 'Módulo de monitoreo remoto', href: '/sistemas/tableros/' },
+        ],
+      },
+      {
+        nombre: 'Redes Hidráulicas', sub: 'Diseño e instalación de redes para rociadores', href: '/sistemas/redes-hidraulicas/', ctaLabel: 'Ver redes hidráulicas',
+        subcats: [
+          { label: 'Diseño e ingeniería', href: '/sistemas/redes-hidraulicas/' },
+          { label: 'Tubería ranurada / Schedule 40', href: '/sistemas/redes-hidraulicas/' },
+          { label: 'Bombas contra incendio', href: '/sistemas/redes-hidraulicas/' },
+          { label: 'Tanque de almacenamiento', href: '/sistemas/redes-hidraulicas/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'primeros-auxilios',
+    titulo: 'Primeros Auxilios',
+    badge: 'NOM-005-STPS',
+    desc: 'Kits de respuesta inmediata conforme a normativa STPS para oficinas, plantas y vehículos.',
+    body: 'Botiquines tipo A (oficinas), tipo B (industria) y tipo C (vehículos), camillas rígidas y plegables, collarines cervicales ajustables, vendas, gasas, torniquetes y desinfectantes. Todo conforme a NOM-005-STPS con el contenido mínimo obligatorio para centros de trabajo.',
+    href: '/primeros-auxilios/',
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    productos: [
+      {
+        nombre: 'Botiquines STPS', sub: 'Tipo A (oficinas), Tipo B (industria), Tipo C (vehículos)', href: '/primeros-auxilios/', badge: 'NOM-005-STPS', ctaLabel: 'Ver botiquines',
+        subcats: [
+          { label: 'Botiquín Tipo A (1–50 trabajadores)', href: '/primeros-auxilios/' },
+          { label: 'Botiquín Tipo B (51–100)', href: '/primeros-auxilios/' },
+          { label: 'Botiquín Tipo C (vehículos)', href: '/primeros-auxilios/' },
+          { label: 'Botiquín industrial reforzado', href: '/primeros-auxilios/' },
+        ],
+      },
+      {
+        nombre: 'Camillas de Emergencia', sub: 'Rígidas, plegables y de rescate vertical', href: '/primeros-auxilios/', ctaLabel: 'Ver camillas',
+        subcats: [
+          { label: 'Camilla rígida (tabla espinal)', href: '/primeros-auxilios/' },
+          { label: 'Camilla plegable de lona', href: '/primeros-auxilios/' },
+          { label: 'Camilla tipo canasta (Stokes)', href: '/primeros-auxilios/' },
+          { label: 'Camilla scoop (tipo cuchara)', href: '/primeros-auxilios/' },
+        ],
+      },
+      {
+        nombre: 'Collarines Cervicales', sub: 'Tallas adulto y pediátrico, ajustables', href: '/primeros-auxilios/', ctaLabel: 'Ver collarines',
+        subcats: [
+          { label: 'Collarín Philadelphia', href: '/primeros-auxilios/' },
+          { label: 'Collarín ajustable adulto', href: '/primeros-auxilios/' },
+          { label: 'Collarín pediátrico', href: '/primeros-auxilios/' },
+          { label: 'Inmovilizador de cabeza', href: '/primeros-auxilios/' },
+        ],
+      },
+      {
+        nombre: 'Material de Curación', sub: 'Vendas, gasas, torniquetes, desinfectantes', href: '/primeros-auxilios/', ctaLabel: 'Ver material de curación',
+        subcats: [
+          { label: 'Vendas elásticas y de gasa', href: '/primeros-auxilios/' },
+          { label: 'Gasas estériles', href: '/primeros-auxilios/' },
+          { label: 'Torniquete táctico CAT', href: '/primeros-auxilios/' },
+          { label: 'Solución antiséptica', href: '/primeros-auxilios/' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'equipo-seguridad',
+    titulo: 'Equipo de Seguridad Industrial',
+    badge: 'NOM-017-STPS',
+    desc: 'EPP certificado para entornos industriales, comerciales y de construcción conforme a STPS.',
+    body: 'Cascos clase E y G, lentes con ventilación lateral, guantes de nitrilo, cuero y dieléctricos, chalecos reflectantes clase 2 y 3, protección auditiva SNR 27-33 dB y conos de señalización vial. Línea completa conforme a NOM-017-STPS-2008 con certificaciones ANSI, EN y CSA para ambientes de riesgo industrial.',
+    href: '/equipo-seguridad/',
+    img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    productos: [
+      {
+        nombre: 'Cascos de Seguridad', sub: 'Tipo I y II, clases E y G, varios colores', href: '/equipo-seguridad/', badge: 'NOM-115', ctaLabel: 'Ver cascos',
+        subcats: [
+          { label: 'Casco Tipo I Clase E', href: '/equipo-seguridad/' },
+          { label: 'Casco Tipo II Clase G', href: '/equipo-seguridad/' },
+          { label: 'Casco con suspensión Ratchet', href: '/equipo-seguridad/' },
+          { label: 'Casco dieléctrico', href: '/equipo-seguridad/' },
+        ],
+      },
+      {
+        nombre: 'Lentes de Protección', sub: 'Claros, oscuros, con ventilación lateral', href: '/equipo-seguridad/', ctaLabel: 'Ver lentes',
+        subcats: [
+          { label: 'Lente claro antiempañante', href: '/equipo-seguridad/' },
+          { label: 'Lente oscuro UV400', href: '/equipo-seguridad/' },
+          { label: 'Goggle ventilación indirecta', href: '/equipo-seguridad/' },
+          { label: 'Lente sobre lente (OTG)', href: '/equipo-seguridad/' },
+        ],
+      },
+      {
+        nombre: 'Guantes de Seguridad', sub: 'Nitrilo, cuero, anticorte y dieléctricos', href: '/equipo-seguridad/', ctaLabel: 'Ver guantes',
+        subcats: [
+          { label: 'Guante nitrilo desechable', href: '/equipo-seguridad/' },
+          { label: 'Guante anticorte nivel 5', href: '/equipo-seguridad/' },
+          { label: 'Guante de carnaza / cuero', href: '/equipo-seguridad/' },
+          { label: 'Guante dieléctrico clase 0', href: '/equipo-seguridad/' },
+        ],
+      },
+      {
+        nombre: 'Chalecos Reflectantes', sub: 'Clase 2 y 3, naranja y amarillo', href: '/equipo-seguridad/', ctaLabel: 'Ver chalecos',
+        subcats: [
+          { label: 'Chaleco Clase 2 naranja', href: '/equipo-seguridad/' },
+          { label: 'Chaleco Clase 3 amarillo', href: '/equipo-seguridad/' },
+          { label: 'Chaleco con bolsillos', href: '/equipo-seguridad/' },
+          { label: 'Chaleco tipo brigadista', href: '/equipo-seguridad/' },
+        ],
+      },
+      {
+        nombre: 'Tapones y Orejeras Auditivas', sub: 'SNR 27-33 dB para ruidos industriales', href: '/equipo-seguridad/', ctaLabel: 'Ver protección auditiva',
+        subcats: [
+          { label: 'Tapón reutilizable 27 dB', href: '/equipo-seguridad/' },
+          { label: 'Tapón desechable 33 dB', href: '/equipo-seguridad/' },
+          { label: 'Orejera tipo copa', href: '/equipo-seguridad/' },
+          { label: 'Orejera adaptable a casco', href: '/equipo-seguridad/' },
+        ],
+      },
+      {
+        nombre: 'Conos de Señalización', sub: '28", 36" y 42" con y sin banda reflectiva', href: '/equipo-seguridad/', ctaLabel: 'Ver conos',
+        subcats: [
+          { label: 'Cono 28" naranja', href: '/equipo-seguridad/' },
+          { label: 'Cono 36" reflejante', href: '/equipo-seguridad/' },
+          { label: 'Cono 42" alta visibilidad', href: '/equipo-seguridad/' },
+          { label: 'Barra cono-a-cono', href: '/equipo-seguridad/' },
+        ],
+      },
+    ],
+  },
+]
+---
+
+<!-- ══════════════════════════════════════
+     CATÁLOGO COMPLETO
+══════════════════════════════════════ -->
+<main id="catalogo">
+
+  {categorias.map((cat, idx) => (
+    <section
+      id={cat.id}
+      class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
+      aria-labelledby={`cat-title-${cat.id}`}
+    >
+      <div class="container">
+
+        <SectionHeaderDuo
+          eyebrow={cat.badge}
+          titleLine1={cat.titulo}
+          desc={cat.desc}
+          bodyPara1={cat.body}
+        />
+
+        {/* Grid de cards — mismo patrón que CategoriasIndex */}
+        <div class="catidx-grid">
+          {cat.productos.map((p, pi) => (
+            <article class="ccard" aria-label={p.nombre}>
+              <div class="ccard__header">
+                <img
+                  src={cat.img}
+                  alt={p.nombre}
+                  loading={pi < 4 ? 'eager' : 'lazy'}
+                  width="640"
+                  height="360"
+                  decoding="async"
+                />
+                <div class="ccard__header-overlay" aria-hidden="true"></div>
+                {p.badge && <span class="ccard__badge">{p.badge}</span>}
+              </div>
+              <div class="ccard__content">
+                <h3 class="ccard__title">{p.nombre}</h3>
+                <p class="ccard__desc">{p.sub}</p>
+
+                {p.subcats && p.subcats.length > 0 && (
+                  <ul class="ccard__list" aria-label={`Modelos de ${p.nombre}`}>
+                    {p.subcats.map(sub => (
+                      <li>
+                        <a href={sub.href} class="ccard__link-btn">
+                          {sub.label}
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <a href={p.href} class="ccard__cta">
+                  {p.ctaLabel || 'Ver detalles'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  ))}
+</main>

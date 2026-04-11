@@ -1,0 +1,45 @@
+---
+// SectionHeaderDuo.astro
+// Encabezado de sección en dos columnas.
+// CSS en: src/styles/components.css (.titulo-duo)
+
+interface Props {
+  eyebrow?: string
+  titleLine1: string
+  titleLine2?: string
+  desc?: string
+  bodyPara1: string
+  bodyPara2?: string
+  dark?: boolean
+}
+
+const { eyebrow, titleLine1, titleLine2, desc, bodyPara1, bodyPara2, dark = false } = Astro.props
+---
+
+<header class:list={['titulo-duo', { 'titulo-duo--dark': dark }]}>
+
+  <div class="titulo-duo__left">
+    {eyebrow && (
+      <p class="titulo-duo__eyebrow">
+        <span class="titulo-duo__eyebrow-bar" aria-hidden="true"></span>
+        {eyebrow}
+      </p>
+    )}
+    <h2 class="titulo-duo__title">
+      {titleLine1}
+      {titleLine2 && (
+        <>
+          <br />
+          <span class="titulo-duo__accent">{titleLine2}</span>
+        </>
+      )}
+    </h2>
+    {desc && <p class="titulo-duo__desc">{desc}</p>}
+  </div>
+
+  <div class="titulo-duo__right">
+    <p class="titulo-duo__body">{bodyPara1}</p>
+    {bodyPara2 && <p class="titulo-duo__body">{bodyPara2}</p>}
+  </div>
+
+</header>

@@ -1,12 +1,12 @@
 ---
 // CategoryLayout.astro
 // Layout para todas las páginas de Nivel 2
-// Incluye: Hero + QuickLinks + StatsBar + slot(contenido único) + CotizacionForm + FAQ + CTAFinal
+// Incluye: Hero + QuickLinks + slot(contenido único) + CotizacionForm + FAQ + CTAFinal
 
 import BaseLayout from './BaseLayout.astro'
+import Breadcrumb from '../components/ui/Breadcrumb.astro'
 import Hero from '../components/sections/Hero.astro'
-import QuickLinks from '../components/sections/QuickLinks.astro'
-import StatsBar from '../components/sections/StatsBar.astro'
+import CtaBar from '../components/CtaBar.astro'
 import CotizacionForm from '../components/sections/CotizacionForm.astro'
 import FAQ from '../components/sections/FAQ.astro'
 import CTAFinal from '../components/sections/CTAFinal.astro'
@@ -49,8 +49,8 @@ interface Props {
   cta2: HeroCTA
   breadcrumb: BreadcrumbItem[]
 
-  // Stats
-  stats: Stat[]
+  // Stats (opcional)
+  stats?: Stat[]
 
   // Secciones opcionales
   showForm?: boolean
@@ -130,6 +130,13 @@ const faqLd = faqItems && faqItems.length > 0
     )}
   </Fragment>
 
+  <!-- Barra de migas de pan (entre header y hero) -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <Breadcrumb items={breadcrumb} />
+    </div>
+  </div>
+
   <!-- Hero de página -->
   <Hero
     {badge}
@@ -139,14 +146,10 @@ const faqLd = faqItems && faqItems.length > 0
     descRight={heroDescRight}
     {cta1}
     {cta2}
-    {breadcrumb}
   />
 
-  <!-- Accesos rápidos (idéntico en todas las páginas) -->
-  <QuickLinks />
-
-  <!-- Barra de métricas -->
-  <StatsBar {stats} />
+  <!-- Barra de accesos rápidos (homologada con L1 / L3) -->
+  <CtaBar />
 
   <!-- Contenido único de cada página -->
   <slot />
