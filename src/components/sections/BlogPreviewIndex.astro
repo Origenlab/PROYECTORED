@@ -1,0 +1,171 @@
+---
+/**
+ * BlogPreviewIndex.astro
+ * Preview de últimos artículos del blog — 3 cards.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+
+const articulos = [
+  {
+    cat: 'Seguridad',
+    titulo: 'Prevención de incendios en restaurantes: guía práctica',
+    desc: 'Causas comunes, equipo necesario, estrategias de prevención y planes de emergencia para establecimientos de alimentos.',
+    href: '/blog/incendios-restaurantes/',
+  },
+  {
+    cat: 'Normativa',
+    titulo: 'Regulaciones de extintores para riesgos eléctricos',
+    desc: 'Qué tipo de extintor necesitas según la normativa mexicana para proteger equipos eléctricos y electrónicos.',
+    href: '/blog/regulaciones-extintores-electricos/',
+  },
+  {
+    cat: 'Guía',
+    titulo: 'Seguridad contra incendios en condominios',
+    desc: 'Todo lo que necesitas saber sobre protección contra incendios en edificios residenciales y condominios.',
+    href: '/blog/seguridad-condominios/',
+  },
+]
+---
+
+<section class="blog-preview-index" aria-labelledby="blog-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="Blog"
+      titleLine1="Guías y recursos sobre"
+      titleLine2="protección contra incendios"
+      align="left"
+    />
+
+    <div class="blog-preview-index__cols">
+      <p>
+        Artículos técnicos sobre normativa mexicana, selección de equipo, mantenimiento
+        preventivo y preparación para inspecciones de Protección Civil y STPS. Contenido
+        escrito por especialistas en seguridad contra incendios.
+      </p>
+      <a href="/blog/" class="btn-outline">Ver todos los artículos</a>
+    </div>
+
+    <div class="blog-preview-index__grid" role="list" aria-label="Artículos del blog de Proyecto Red">
+      {articulos.map(a => (
+        <a href={a.href} class="blog-card" role="listitem" aria-label={a.titulo}>
+          <span class="blog-card__cat">{a.cat}</span>
+          <h3 class="blog-card__titulo">{a.titulo}</h3>
+          <p class="blog-card__desc">{a.desc}</p>
+          <span class="blog-card__cta">
+            Leer artículo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .blog-preview-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .blog-preview-index__cols {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .blog-preview-index__cols p {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+    max-width: 64ch;
+    flex: 1;
+  }
+
+  /* ── GRID ─────────────────────────────────────────────── */
+  .blog-preview-index__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* ── CARD ─────────────────────────────────────────────── */
+  .blog-card {
+    background: var(--c-surface, #F4F4F5);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .blog-card:hover {
+    border-color: rgba(196,30,36,.3);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(196,30,36,.08));
+  }
+
+  .blog-card__cat {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .175rem .5rem;
+    border-radius: 3px;
+    width: fit-content;
+  }
+
+  .blog-card__titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.01em;
+    line-height: 1.35;
+  }
+
+  .blog-card:hover .blog-card__titulo { color: var(--c-primary); }
+
+  .blog-card__desc {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .blog-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--c-border);
+    transition: gap 0.2s;
+  }
+
+  .blog-card:hover .blog-card__cta { gap: 0.625rem; }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .blog-preview-index__grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .blog-preview-index__grid { grid-template-columns: 1fr; }
+    .blog-preview-index__cols { flex-direction: column; }
+  }
+</style>

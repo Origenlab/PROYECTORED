@@ -1,0 +1,179 @@
+---
+/**
+ * ServiciosIndex.astro
+ * Preview de los 8 servicios profesionales — 2 columnas.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+
+const servicios = [
+  { num: '01', titulo: 'Venta de Equipos',        sub: 'Catálogo completo certificado NOM y NFPA',             href: '/servicios/#venta-equipos' },
+  { num: '02', titulo: 'Recarga de Extintores',   sub: 'Todos los tipos de agente — collar de garantía incluido',        href: '/servicios/#recarga-extintores' },
+  { num: '03', titulo: 'Mantenimiento Preventivo',sub: 'Pólizas anuales con reportes para auditorías',         href: '/servicios/#mantenimiento-preventivo' },
+  { num: '04', titulo: 'Instalación de Sistemas', sub: 'Detección, alarma y supresión — llave en mano',          href: '/servicios/#instalacion-sistemas' },
+  { num: '05', titulo: 'Prueba Hidrostática',     sub: 'Obligatoria cada 5 años — NOM-154-SCFI',               href: '/servicios/#prueba-hidrostatica' },
+  { num: '06', titulo: 'Asesoría Técnica',        sub: 'Diagnóstico de tu instalación sin costo',              href: '/servicios/#asesoria-tecnica' },
+  { num: '07', titulo: 'Capacitación y Brigadas', sub: 'Constancias DC-3 válidas ante STPS',                   href: '/servicios/#capacitacion' },
+  { num: '08', titulo: 'Señalización Normativa',        sub: 'Levantamiento, instalación y plano para expediente',            href: '/servicios/#senalizacion' },
+]
+---
+
+<section class="servicios-index" aria-labelledby="servicios-heading">
+  <div class="container servicios-index__inner">
+
+    <!-- Columna izquierda -->
+    <div class="servicios-index__left">
+      <p class="srv-eyebrow">Servicios profesionales</p>
+      <h2 id="servicios-heading" class="srv-titulo">
+        Más que productos:<br>
+        <span>protección integral contra el fuego</span>
+      </h2>
+      <p class="srv-desc">
+        Venta, recarga, mantenimiento, instalación, capacitación y asesoría. Todo desde un
+        solo proveedor para que tu empresa cumpla con la normativa vigente sin complicaciones.
+      </p>
+      <a href="/servicios/" class="btn-outline">Ver todos los servicios</a>
+    </div>
+
+    <!-- Columna derecha: grid de 8 servicios -->
+    <div class="servicios-index__grid" role="list" aria-label="Servicios de Proyecto Red">
+      {servicios.map(s => (
+        <a href={s.href} class="srv-mini" role="listitem" aria-label={s.titulo}>
+          <span class="srv-mini__num" aria-hidden="true">{s.num}</span>
+          <div class="srv-mini__body">
+            <strong class="srv-mini__titulo">{s.titulo}</strong>
+            <span class="srv-mini__sub">{s.sub}</span>
+          </div>
+          <svg class="srv-mini__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .servicios-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+  }
+
+  .servicios-index__inner {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* ── COLUMNA IZQUIERDA ───────────────────────────────── */
+  .srv-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .srv-titulo {
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+    color: var(--c-ink);
+    margin-bottom: 1rem;
+  }
+
+  .srv-titulo span { color: var(--c-primary); }
+
+  .srv-desc {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  /* ── GRID SERVICIOS ───────────────────────────────────── */
+  .servicios-index__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .srv-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0;
+    text-decoration: none;
+    background: var(--c-white);
+    color: var(--c-ink);
+    margin: -1px 0 0 -1px; /* colapsar bordes */
+    transition: background 0.15s, color 0.15s;
+    position: relative;
+  }
+
+  .srv-mini:hover {
+    background: var(--c-primary-light, #F9E8E8);
+    z-index: 1;
+  }
+
+  .srv-mini__num {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--c-primary);
+    line-height: 1;
+    flex-shrink: 0;
+    padding-top: 2px;
+    min-width: 24px;
+  }
+
+  .srv-mini__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .srv-mini__titulo {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    line-height: 1.3;
+    letter-spacing: -.01em;
+  }
+
+  .srv-mini__sub {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    line-height: 1.4;
+  }
+
+  .srv-mini__arrow {
+    flex-shrink: 0;
+    color: var(--c-muted);
+    opacity: 0;
+    transition: opacity 0.15s, transform 0.15s;
+    margin-top: 2px;
+  }
+
+  .srv-mini:hover .srv-mini__arrow {
+    opacity: 1;
+    color: var(--c-primary);
+    transform: translateX(3px);
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .servicios-index__inner { grid-template-columns: 300px 1fr; gap: 3.5rem; }
+  }
+
+  @media (max-width: 1024px) {
+    .servicios-index__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .servicios-index__grid { grid-template-columns: 1fr; }
+  }
+</style>

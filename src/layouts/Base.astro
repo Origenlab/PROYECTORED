@@ -1,8 +1,9 @@
 ---
-import TopBar from '../components/TopBar.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import CTAWhatsApp from '../components/CTAWhatsApp.astro';
+import '../styles/global.css'
+import TopBar       from '../components/global/TopBar.astro'
+import Header       from '../components/global/Header.astro'
+import Footer       from '../components/global/Footer.astro'
+import WhatsAppButton from '../components/global/WhatsAppButton.astro'
 
 interface Props {
   title: string;
@@ -43,7 +44,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <slot />
   </main>
   <Footer />
-  <CTAWhatsApp />
+  <WhatsAppButton />
 </body>
 </html>
 

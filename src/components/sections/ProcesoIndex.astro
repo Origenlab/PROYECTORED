@@ -1,0 +1,168 @@
+---
+/**
+ * ProcesoIndex.astro
+ * Cómo trabajamos — 5 pasos del proceso.
+ * Usa SectionHeader.astro (complemento aprobado). Fondo oscuro.
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+
+const pasos = [
+  {
+    num: '01',
+    titulo: 'Diagnóstico técnico',
+    desc: 'Evaluamos tu instalación, el equipamiento existente y el tipo de riesgo al que está expuesta. Sin costo y sin compromiso.',
+  },
+  {
+    num: '02',
+    titulo: 'Cotización detallada',
+    desc: 'Productos, cantidades, precios unitarios, calendario de ejecución. Si el presupuesto es limitado, proponemos implementación por fases.',
+  },
+  {
+    num: '03',
+    titulo: 'Suministro e instalación',
+    desc: 'Entrega el mismo día en CDMX para pedidos estándar. Proyectos complejos con cronograma y supervisión técnica dedicada.',
+  },
+  {
+    num: '04',
+    titulo: 'Documentación y capacitación',
+    desc: 'Fichas técnicas, constancias DC-3 y reportes de instalación — todo listo para integrar a tu expediente ante la autoridad.',
+  },
+  {
+    num: '05',
+    titulo: 'Seguimiento continuo',
+    desc: 'Recordatorios de revisión anual, vencimiento de cargas y pruebas hidrostáticas. Mantenimiento preventivo con póliza anual disponible.',
+  },
+]
+---
+
+<section class="proceso-index" aria-labelledby="proceso-heading">
+  <div class="container">
+
+    <div class="proceso-index__header">
+      <SectionHeader
+        eyebrow="Cómo trabajamos"
+        titleLine1="De la Necesidad a la"
+        titleLine2="Protección Completa en 5 Pasos"
+        align="center"
+      />
+      <p class="proceso-index__sub">
+        Desde el primer contacto hasta la entrega con documentación en mano, cada paso lo
+        ejecuta un especialista técnico. Sin intermediarios, sin tiempos perdidos: diagnóstico,
+        recomendación, suministro, instalación y seguimiento en un solo proveedor.
+      </p>
+    </div>
+
+    <ol class="proceso-index__grid" aria-label="Proceso de trabajo de Proyecto Red">
+      {pasos.map(p => (
+        <li class="paso">
+          <span class="paso__num" aria-hidden="true">{p.num}</span>
+          <div class="paso__body">
+            <h3 class="paso__titulo">{p.titulo}</h3>
+            <p class="paso__desc">{p.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+  .proceso-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-ink, #111111);
+    color: #fff;
+  }
+
+  /* Override SectionHeader colors for dark bg */
+  .proceso-index :global(.section-header__title) {
+    color: #fff;
+  }
+
+  .proceso-index :global(.section-header__desc) {
+    color: rgba(255,255,255,.6);
+  }
+
+  .proceso-index__header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .proceso-index__sub {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,.55);
+    line-height: 1.7;
+    max-width: 64ch;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  /* ── GRID ─────────────────────────────────────────────── */
+  .proceso-index__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    list-style: none;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .paso {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .paso:last-child { border-right: none; }
+
+  .paso__num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--c-primary);
+    letter-spacing: -.04em;
+    line-height: 1;
+  }
+
+  .paso__titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  .paso__desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.65;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .proceso-index__grid { grid-template-columns: repeat(3, 1fr); }
+    .paso:nth-child(3) { border-right: none; }
+    .paso:nth-child(4),
+    .paso:nth-child(5) { border-top: 1px solid rgba(255,255,255,.08); }
+  }
+
+  @media (max-width: 768px) {
+    .proceso-index__grid { grid-template-columns: repeat(2, 1fr); }
+    .paso:nth-child(2) { border-right: none; }
+    .paso:nth-child(3),
+    .paso:nth-child(4),
+    .paso:nth-child(5) { border-top: 1px solid rgba(255,255,255,.08); }
+    .paso:nth-child(odd):not(:nth-child(1)) { border-right: none; }
+    .paso:nth-child(even) { border-right: none; }
+    .paso:nth-child(3) { border-right: 1px solid rgba(255,255,255,.08); }
+  }
+
+  @media (max-width: 480px) {
+    .proceso-index__grid { grid-template-columns: 1fr; }
+    .paso { border-right: none; border-top: 1px solid rgba(255,255,255,.08); }
+    .paso:first-child { border-top: none; }
+  }
+</style>

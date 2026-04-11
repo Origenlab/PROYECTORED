@@ -1,199 +1,697 @@
 ---
-// Footer.astro — Footer completo del sitio
-// Datos desde config/site.ts
+// Footer.astro — Footer profesional Proyecto Red
+// Datos centralizados desde config/site.ts
 
-import { SITE, CONTACT, PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES } from '../../config/site'
+import { SITE, CONTACT, PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES, waUrl, WA_MESSAGES } from '../../config/site'
 
 const currentYear = new Date().getFullYear()
+
+const waDefault = waUrl(WA_MESSAGES.cotizacion)
+
+const CERTIFICATIONS = [
+  { label: 'NOM-154-SCFI', title: 'Extintores certificados NOM' },
+  { label: 'NFPA 1971',    title: 'Equipo para bomberos NFPA' },
+  { label: 'NFPA 13/72',   title: 'Sistemas de detección y supresión' },
+  { label: 'NFPA 20',      title: 'Control de bombas CI' },
+  { label: 'NOM-003-SEGOB',title: 'Señalización de emergencia' },
+  { label: 'NOM-026-STPS', title: 'Señalización de seguridad laboral' },
+  { label: 'NOM-017-STPS', title: 'EPP industrial' },
+  { label: 'DC-3 STPS',    title: 'Constancias de capacitación' },
+]
 ---
 
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  FOOTER PRINCIPAL                                   ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
 <footer class="footer" role="contentinfo">
-  <div class="container footer__inner">
 
-    <!-- Columna marca -->
-    <div class="footer__brand">
-      <a href="/" class="footer__logo" aria-label="Proyecto Red inicio">
-        <img src="/logo.svg" alt="Proyecto Red" width="140" height="35" loading="lazy" />
-      </a>
-      <p class="footer__desc">
-        Venta de equipos contra incendios en CDMX y Estado de México.
-        Equipo certificado NOM y NFPA con entrega directa.
-      </p>
-      <div class="footer__contact">
-        <a href={`https://wa.me/${CONTACT.whatsapp}`} class="footer__contact-item" target="_blank" rel="noopener noreferrer">
-          {CONTACT.phone}
+  <!-- Línea de acento rojo superior -->
+  <div class="footer__accent-bar" aria-hidden="true"></div>
+
+  <!-- ── CUERPO PRINCIPAL ── -->
+  <div class="footer__body">
+    <div class="container footer__grid">
+
+      <!-- ── Columna MARCA ── -->
+      <div class="footer__brand">
+
+        <a href="/" class="footer__logo-link" aria-label="Proyecto Red — Ir al inicio">
+          <img
+            src="/imagenes/logos/logo-proyectored-201x60.png"
+            alt="Proyecto Red"
+            width="160"
+            height="48"
+            loading="lazy"
+            class="footer__logo-img"
+          />
         </a>
-        <a href={`mailto:${CONTACT.email}`} class="footer__contact-item">
-          {CONTACT.email}
-        </a>
-        <span class="footer__contact-item footer__contact-item--text">
-          {CONTACT.address}
-        </span>
-        <span class="footer__contact-item footer__contact-item--text">
-          {CONTACT.schedule.footer}
-        </span>
-      </div>
+
+        <p class="footer__brand-desc">
+          Proveedor directo de equipos contra incendios certificados NOM y NFPA.
+          Sin intermediarios. Con acompañamiento técnico real.
+        </p>
+
+        <!-- Bloque de contacto enriquecido -->
+        <address class="footer__contact" aria-label="Datos de contacto">
+
+          <!-- WhatsApp — CTA principal -->
+          <a
+            href={waDefault}
+            class="footer__contact-row footer__contact-row--cta"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir WhatsApp: 55 3723 8544"
+          >
+            <span class="footer__contact-icon footer__contact-icon--wa" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </span>
+            <span class="footer__contact-text">
+              <strong>{CONTACT.phone}</strong>
+              <em>WhatsApp — cotización inmediata</em>
+            </span>
+          </a>
+
+          <!-- Email -->
+          <a href={`mailto:${CONTACT.email}`} class="footer__contact-row">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </span>
+            <span class="footer__contact-text">
+              <strong>{CONTACT.email}</strong>
+            </span>
+          </a>
+
+          <!-- Dirección con link a Maps -->
+          <a
+            href={CONTACT.mapsUrl}
+            class="footer__contact-row"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver en Google Maps"
+          >
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <span class="footer__contact-text">{CONTACT.address}</span>
+          </a>
+
+          <!-- Horario completo -->
+          <div class="footer__contact-row footer__contact-row--schedule">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </span>
+            <div class="footer__schedule-grid">
+              <span class="footer__schedule-row">
+                <span class="footer__schedule-day">{CONTACT.schedule.weekdays.split('  ')[0]}</span>
+                <span class="footer__schedule-hours">{CONTACT.schedule.weekdays.split('  ')[1]}</span>
+              </span>
+              <span class="footer__schedule-row">
+                <span class="footer__schedule-day">{CONTACT.schedule.saturday.split('  ')[0]}</span>
+                <span class="footer__schedule-hours">{CONTACT.schedule.saturday.split('  ')[1]}</span>
+              </span>
+              <span class="footer__schedule-row">
+                <span class="footer__schedule-day">{CONTACT.schedule.sunday.split('  ')[0]}</span>
+                <span class="footer__schedule-hours footer__schedule-hours--dim">{CONTACT.schedule.sunday.split('  ')[1]}</span>
+              </span>
+            </div>
+          </div>
+
+        </address>
+      </div><!-- /footer__brand -->
+
+      <!-- ── Columna PRODUCTOS ── -->
+      <nav class="footer__col" aria-label="Productos">
+        <h3 class="footer__col-heading">
+          <span class="footer__col-heading-accent" aria-hidden="true"></span>
+          Productos
+        </h3>
+        <ul class="footer__nav-list" role="list">
+          <li>
+            <a href="/productos/" class="footer__nav-link footer__nav-link--all">
+              Ver catálogo completo
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </li>
+          {PRODUCT_CATEGORIES.map((cat) => (
+            <li>
+              <a href={cat.href} class="footer__nav-link">
+                {cat.label}
+                {cat.badge && <span class="footer__nav-badge">{cat.badge}</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- ── Columna SERVICIOS ── -->
+      <nav class="footer__col" aria-label="Servicios">
+        <h3 class="footer__col-heading">
+          <span class="footer__col-heading-accent" aria-hidden="true"></span>
+          Servicios
+        </h3>
+        <ul class="footer__nav-list" role="list">
+          {SERVICES.map((svc) => (
+            <li>
+              <a href={`/servicios/#${svc.id}`} class="footer__nav-link">
+                {svc.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- ── Columna COBERTURA + EMPRESA ── -->
+      <nav class="footer__col" aria-label="Cobertura y Empresa">
+
+        <h3 class="footer__col-heading">
+          <span class="footer__col-heading-accent" aria-hidden="true"></span>
+          Cobertura
+        </h3>
+        <ul class="footer__nav-list footer__coverage-list" role="list">
+          {COVERAGE_STATES.map((state) => (
+            <li>
+              <a href={`/empresas/${state.slug}/`} class="footer__nav-link">
+                {state.label}
+                <span class={`footer__coverage-badge footer__coverage-badge--${state.type}`}>
+                  {state.type === 'operativo' ? 'Operativo' : 'Comercial'}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="footer__col-heading footer__col-heading--mt">
+          <span class="footer__col-heading-accent" aria-hidden="true"></span>
+          Empresa
+        </h3>
+        <ul class="footer__nav-list" role="list">
+          <li><a href="/nosotros/"  class="footer__nav-link">Nosotros</a></li>
+          <li><a href="/servicios/" class="footer__nav-link">Todos los servicios</a></li>
+          <li><a href="/productos/" class="footer__nav-link">Catálogo de productos</a></li>
+          <li><a href="/blog/"      class="footer__nav-link">Blog técnico</a></li>
+          <li><a href="/contacto/"  class="footer__nav-link">Contacto y cotización</a></li>
+        </ul>
+
+      </nav>
+
+    </div><!-- /footer__grid -->
+  </div><!-- /footer__body -->
+
+  <!-- ── BANDA DE CERTIFICACIONES ── -->
+  <div class="footer__cert-band" aria-label="Normativas y certificaciones">
+    <div class="container footer__cert-inner">
+      <span class="footer__cert-label">Cumplimiento normativo:</span>
+      <ul class="footer__cert-list" role="list" aria-label="Normas que aplican">
+        {CERTIFICATIONS.map((cert) => (
+          <li>
+            <span class="footer__cert-item" title={cert.title} aria-label={cert.title}>
+              {cert.label}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
-
-    <!-- Columna productos -->
-    <nav class="footer__col" aria-label="Productos">
-      <h3 class="footer__heading">Productos</h3>
-      <ul class="footer__list" role="list">
-        <li><a href="/productos/" class="footer__link">Catálogo completo</a></li>
-        {PRODUCT_CATEGORIES.map((cat) => (
-          <li><a href={cat.href} class="footer__link">{cat.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <!-- Columna servicios -->
-    <nav class="footer__col" aria-label="Servicios">
-      <h3 class="footer__heading">Servicios</h3>
-      <ul class="footer__list" role="list">
-        {SERVICES.map((svc) => (
-          <li><a href={`/servicios/#${svc.id}`} class="footer__link">{svc.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <!-- Columna empresa -->
-    <nav class="footer__col" aria-label="Empresa">
-      <h3 class="footer__heading">Cobertura</h3>
-      <ul class="footer__list" role="list">
-        {COVERAGE_STATES.map((state) => (
-          <li><a href={`/empresas/${state.slug}/`} class="footer__link">{state.label}</a></li>
-        ))}
-      </ul>
-
-      <h3 class="footer__heading footer__heading--mt">Empresa</h3>
-      <ul class="footer__list" role="list">
-        <li><a href="/nosotros/"  class="footer__link">Nosotros</a></li>
-        <li><a href="/servicios/" class="footer__link">Todos los servicios</a></li>
-        <li><a href="/productos/" class="footer__link">Productos</a></li>
-        <li><a href="/blog/"      class="footer__link">Blog</a></li>
-        <li><a href="/contacto/"  class="footer__link">Contacto</a></li>
-      </ul>
-    </nav>
-
   </div>
 
-  <!-- Bottom bar -->
-  <div class="footer__bottom">
+  <!-- ── BOTTOM BAR ── -->
+  <div class="footer__bottom" role="contentinfo">
     <div class="container footer__bottom-inner">
+
       <p class="footer__copy">
         © {currentYear} {SITE.name}. Todos los derechos reservados.
       </p>
-      <p class="footer__seo-text">
-        Venta de equipos contra incendios en CDMX · NOM · NFPA · Protección Civil
+
+      <p class="footer__seo-tagline">
+        Equipos contra incendios certificados · CDMX y Estado de México · Venta · Instalación · Mantenimiento
       </p>
+
+      <!-- Acceso rápido WhatsApp en bottom bar -->
+      <a
+        href={waDefault}
+        class="footer__bottom-wa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        55 3723 8544
+      </a>
+
     </div>
   </div>
+
 </footer>
 
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  ESTILOS                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <style>
-  .footer {
-    background: var(--color-dark);
-    color: rgba(255,255,255,0.7);
-    padding-top: var(--sp-16);
+
+/* ─── Variables locales ─────────────────────────────────── */
+:root {
+  --ft-red:        #e61e2b;
+  --ft-red-dim:    rgba(230, 30, 43, 0.18);
+  --ft-white:      #ffffff;
+  --ft-text:       rgba(255, 255, 255, 0.60);
+  --ft-text-hover: rgba(255, 255, 255, 0.95);
+  --ft-bg:         #0d0d0d;
+  --ft-bg-cert:    #111111;
+  --ft-bg-bottom:  #000000;
+  --ft-border:     rgba(255, 255, 255, 0.07);
+  --ft-transition: 180ms ease;
+}
+
+/* ─── FOOTER CONTENEDOR ─────────────────────────────────── */
+.footer {
+  background: var(--ft-bg);
+  color: var(--ft-text);
+}
+
+/* Línea roja superior */
+.footer__accent-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--ft-red) 0%, transparent 80%);
+}
+
+/* ─── BODY / GRID ───────────────────────────────────────── */
+.footer__body {
+  padding: 3.5rem 0 3rem;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.5fr) 1fr 1fr 1fr;
+  gap: 3rem 2.5rem;
+  align-items: start;
+}
+
+/* ─── COLUMNA MARCA ─────────────────────────────────────── */
+.footer__logo-link {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.footer__logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 5px;
+  padding: 6px 12px;
+  transition: opacity var(--ft-transition);
+}
+.footer__logo-link:hover .footer__logo-img { opacity: 0.85; }
+
+.footer__brand-desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  max-width: 32ch;
+}
+
+/* ── Contacto ── */
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  font-style: normal;
+}
+
+.footer__contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  text-decoration: none;
+  color: var(--ft-text);
+  transition: color var(--ft-transition);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+a.footer__contact-row:hover {
+  color: var(--ft-text-hover);
+}
+
+/* Row CTA WhatsApp */
+.footer__contact-row--cta {
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.18);
+  border-radius: 6px;
+  padding: 0.625rem 0.75rem;
+  transition: background var(--ft-transition), border-color var(--ft-transition), color var(--ft-transition);
+}
+.footer__contact-row--cta:hover {
+  background: rgba(37, 211, 102, 0.14);
+  border-color: rgba(37, 211, 102, 0.35);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer__contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1px;
+}
+
+.footer__contact-icon--wa {
+  color: #25d366;
+  width: 28px;
+  height: 28px;
+}
+
+.footer__contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.footer__contact-text strong {
+  color: var(--ft-white);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.footer__contact-text em {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: rgba(37, 211, 102, 0.8);
+}
+
+/* Schedule */
+.footer__contact-row--schedule {
+  align-items: flex-start;
+}
+
+.footer__schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer__schedule-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer__schedule-day {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  min-width: 60px;
+}
+
+.footer__schedule-hours {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.footer__schedule-hours--dim {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ─── COLUMNAS NAV ──────────────────────────────────────── */
+.footer__col { }
+
+.footer__col-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ft-white);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
+}
+
+.footer__col-heading--mt {
+  margin-top: 2rem;
+}
+
+.footer__col-heading-accent {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: var(--ft-red);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Nav links */
+.footer__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.footer__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--ft-text);
+  text-decoration: none;
+  line-height: 1.4;
+  padding: 0.125rem 0;
+  transition: color var(--ft-transition), padding-left var(--ft-transition);
+  position: relative;
+}
+
+.footer__nav-link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--ft-red);
+  border-radius: 2px;
+  transition: height var(--ft-transition);
+}
+
+.footer__nav-link:hover {
+  color: var(--ft-text-hover);
+  padding-left: 6px;
+}
+
+.footer__nav-link:hover::before {
+  height: 14px;
+}
+
+/* Link "Ver catálogo completo" */
+.footer__nav-link--all {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8125rem;
+}
+.footer__nav-link--all svg {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--ft-transition), transform var(--ft-transition);
+}
+.footer__nav-link--all:hover svg {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Badges de norma */
+.footer__nav-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ft-red);
+  background: var(--ft-red-dim);
+  border: 1px solid rgba(230, 30, 43, 0.25);
+  border-radius: 3px;
+  padding: 1px 5px;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Badges de cobertura */
+.footer__coverage-badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 3px;
+  padding: 1px 5px;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.footer__coverage-badge--operativo {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.footer__coverage-badge--comercial {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── BANDA DE CERTIFICACIONES ──────────────────────────── */
+.footer__cert-band {
+  background: var(--ft-bg-cert);
+  border-top: 1px solid var(--ft-border);
+  border-bottom: 1px solid var(--ft-border);
+  padding: 1rem 0;
+}
+
+.footer__cert-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer__cert-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.footer__cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.footer__cert-item {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 3px 8px;
+  transition: color var(--ft-transition), border-color var(--ft-transition), background var(--ft-transition);
+  cursor: default;
+}
+
+.footer__cert-item:hover {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: var(--ft-red);
+  background: var(--ft-red-dim);
+}
+
+/* ─── BOTTOM BAR ────────────────────────────────────────── */
+.footer__bottom {
+  background: var(--ft-bg-bottom);
+  padding: 1.125rem 0;
+}
+
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer__copy,
+.footer__seo-tagline {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.5;
+}
+
+.footer__seo-tagline {
+  text-align: center;
+  flex: 1;
+}
+
+.footer__bottom-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(37, 211, 102, 0.7);
+  text-decoration: none;
+  transition: color var(--ft-transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.footer__bottom-wa:hover { color: #25d366; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+
+/* — Tablet — */
+@media (max-width: 1100px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 2rem;
   }
-
-  .footer__inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: var(--sp-10);
-    padding-bottom: var(--sp-12);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+  .footer__brand {
+    grid-column: 1 / -1;
+    max-width: 560px;
   }
+  .footer__brand-desc { max-width: 56ch; }
+}
 
-  /* Marca */
-  .footer__logo img {
-    filter: brightness(0) invert(1);
-    height: 32px;
-    width: auto;
-    margin-bottom: var(--sp-4);
+@media (max-width: 860px) {
+  .footer__seo-tagline { display: none; }
+}
+
+/* — Mobile — */
+@media (max-width: 640px) {
+  .footer__body { padding: 2.5rem 0 2rem; }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
+  .footer__brand { grid-column: 1; }
+  .footer__brand-desc { max-width: 100%; }
 
-  .footer__desc {
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--sp-5);
-    max-width: 30ch;
-  }
-
-  .footer__contact {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-
-  .footer__contact-item {
-    font-size: var(--text-sm);
-    transition: color var(--transition);
-  }
-
-  a.footer__contact-item:hover { color: var(--color-white); }
-
-  .footer__contact-item--text { cursor: default; }
-
-  /* Columnas */
-  .footer__col { }
-
-  .footer__heading {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    color: var(--color-white);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--sp-4);
-  }
-
-  .footer__heading--mt { margin-top: var(--sp-6); }
-
-  .footer__list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-
-  .footer__link {
-    font-size: var(--text-sm);
-    transition: color var(--transition);
-    line-height: var(--leading-snug);
-  }
-
-  .footer__link:hover { color: var(--color-white); }
-
-  /* Bottom */
-  .footer__bottom {
-    padding-block: var(--sp-5);
-    background: rgba(0,0,0,0.3);
-  }
+  .footer__cert-inner { gap: 0.875rem; }
+  .footer__cert-label { width: 100%; }
 
   .footer__bottom-inner {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-4);
-    flex-wrap: wrap;
+    text-align: center;
+    gap: 0.625rem;
   }
 
-  .footer__copy,
-  .footer__seo-text {
-    font-size: var(--text-xs);
-    color: rgba(255,255,255,0.4);
-  }
+  .footer__copy { order: 2; }
+  .footer__bottom-wa { order: 1; }
+}
 
-  @media (max-width: 1024px) {
-    .footer__inner {
-      grid-template-columns: 1fr 1fr;
-    }
-    .footer__brand { grid-column: 1 / -1; }
-  }
 
-  @media (max-width: 640px) {
-    .footer__inner {
-      grid-template-columns: 1fr;
-    }
-    .footer__bottom-inner { flex-direction: column; text-align: center; }
-  }
 </style>

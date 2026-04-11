@@ -1,0 +1,132 @@
+---
+/**
+ * QuesonIndex.astro
+ * Bloque editorial SEO: qué son los equipos CI y por qué los necesita la empresa.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+---
+
+<section class="queson-index" aria-labelledby="queson-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="Contexto y normativa"
+      titleLine1="¿Qué Son los Equipos Contra Incendios"
+      titleLine2="y Por Qué Tu Empresa los Necesita?"
+      align="left"
+    />
+
+    <div class="queson-index__body">
+
+      <div class="queson-index__intro">
+        <p>
+          Los equipos contra incendios abarcan el conjunto de dispositivos, sistemas y
+          herramientas diseñados para detectar, contener, controlar y extinguir un fuego antes
+          de que provoque pérdidas humanas o materiales. Van desde un cilindro portátil hasta
+          un sistema de rociadores automáticos con tablero de control centralizado, integrando equipos y sistemas de extinción de incendios en una misma red.
+        </p>
+      </div>
+
+      <div class="queson-index__cols">
+        <div class="queson-index__col">
+          <p>
+            La <strong>NOM-002-STPS-2010</strong> establece las condiciones de seguridad para
+            prevención y protección contra incendios en los centros de trabajo. Cumplir esta
+            norma oficial mexicana no solo evita multas de entre 50 y 5,000 UMA (más de
+            $540,000 MXN en 2026), sino que reduce el nivel de riesgo real al que están
+            expuestos tus colaboradores y tu patrimonio.
+          </p>
+          <p>
+            Según la Asociación Mexicana de Instituciones de Seguros, en 2024 se reportaron
+            más de 12,000 siniestros de fuego en establecimientos comerciales e industriales
+            en el país. El 65% pudieron haberse controlado en sus primeros minutos con equipo
+            funcional — desde un cilindro portátil hasta un sistema fijo con tubería y rociadores — y personal capacitado.
+          </p>
+        </div>
+        <div class="queson-index__col">
+          <p>
+            En Proyecto Red centralizamos todo lo que necesitas para cumplir con la normativa:
+            cilindros portátiles certificados, señalización conforme a norma, alarmas de incendio, sistemas de supresión de incendios, líneas de conducción de agua, estaciones de resguardo, equipo de protección personal y
+            capacitación con constancia DC-3. Un solo proveedor, un solo responsable.
+          </p>
+          <div class="queson-index__pills">
+            <span>NOM-002-STPS</span>
+            <span>NOM-154-SCFI</span>
+            <span>NOM-003-SEGOB</span>
+            <span>NOM-026-STPS</span>
+            <span>NFPA 72</span>
+            <span>NFPA 13</span>
+            <span>NFPA 20</span>
+            <span>DC-3 STPS</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .queson-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .queson-index__body {
+    max-width: 100%;
+  }
+
+  .queson-index__intro {
+    max-width: 80ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .queson-index__intro p {
+    font-size: 1.0625rem;
+    color: var(--c-ink-2);
+    line-height: 1.75;
+  }
+
+  .queson-index__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .queson-index__col p {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .queson-index__col strong {
+    color: var(--c-ink);
+    font-weight: 700;
+  }
+
+  .queson-index__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 1.25rem;
+  }
+
+  .queson-index__pills span {
+    display: inline-block;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: .2rem .625rem;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .queson-index__cols { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>

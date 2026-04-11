@@ -1,0 +1,400 @@
+---
+/**
+ * FaqCotizacionIndex.astro
+ * FAQ + Formulario de cotización con JS dinámico para WhatsApp.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+import { CONTACT } from '../../config/site'
+
+const faqs = [
+  {
+    q: '¿Cuánto cuesta un extintor certificado en CDMX?',
+    a: 'El precio varía según el tipo y capacidad del extintor. Un cilindro de polvo seco (PQS) de 4 kg para uso general parte desde $450 MXN. Los modelos de CO₂ para electrónica y los Tipo K para cocinas industriales tienen precios distintos según la capacidad. Escríbenos por WhatsApp con el tipo y cantidad que necesitas y te damos precio directo ese mismo día.',
+  },
+  {
+    q: '¿Qué extintores exige Protección Civil para mi empresa?',
+    a: 'Depende del tipo de riesgo y la superficie de tu instalación. La NOM-002-STPS establece una unidad por cada 300 m² de área, con un mínimo de uno por piso. Para oficinas se recomienda el ABC multipropósito; para cocinas, el Tipo K; para servidores o equipo electrónico, el CO₂ o agente limpio. Nuestro equipo te asesora sin costo.',
+  },
+  {
+    q: '¿Hacen entrega a domicilio en CDMX y Estado de México?',
+    a: 'Sí. Entregamos en toda la Ciudad de México y el Estado de México. Los pedidos confirmados antes de las 2 PM los entregamos el mismo día en la zona metropolitana. Para pedidos mayores o fuera de la zona metro, coordinamos la logística en la cotización. También enviamos al interior de la república para pedidos de volumen.',
+  },
+  {
+    q: '¿Los extintores incluyen certificado NOM?',
+    a: 'Sí. Todos nuestros equipos cumplen con la NOM-154-SCFI y vienen con la documentación necesaria para tu expediente de Protección Civil. Cada unidad incluye etiqueta de inspección, garantía y ficha técnica del fabricante. Si necesitas documentación adicional para aseguradoras o auditorías, te la proporcionamos sin costo extra.',
+  },
+  {
+    q: '¿También hacen mantenimiento y recarga de extintores?',
+    a: 'Sí. Ofrecemos servicio de mantenimiento preventivo, recarga y verificación de cilindros en tus instalaciones. El servicio incluye revisión del agente de extinción, presión, válvulas, manguera y etiqueta de inspección actualizada. Podemos programar visitas periódicas para que tu equipo siempre esté listo para cualquier inspección.',
+  },
+  {
+    q: '¿Qué señalamientos son obligatorios en una oficina o negocio?',
+    a: 'La NOM-003-SEGOB y la NOM-026-STPS exigen: rutas de evacuación, salidas de emergencia, ubicación del equipamiento, punto de reunión y señales de prohibición en áreas de riesgo. Distribuimos señalización fotoluminiscente que cumple la norma y es visible en cortes de luz, ideal para pasar inspecciones sin observaciones.',
+  },
+  {
+    q: '¿Manejan precios por volumen para empresas?',
+    a: 'Sí. Trabajamos con empresas que necesitan surtir múltiples sucursales, plantas o proyectos. A partir de ciertos volúmenes ofrecemos precios preferenciales, facturación consolidada y entregas programadas. Si tienes un proyecto grande o necesitas abastecimiento recurrente, contáctanos para diseñar un esquema a tu medida.',
+  },
+  {
+    q: '¿Cuánto tiempo tarda la instalación de un sistema contra incendio?',
+    a: 'Depende del tipo y alcance del sistema. La instalación de detectores y alarmas de incendio en una oficina mediana puede completarse en 1-2 días. Un sistema de rociadores para una planta industrial requiere diagnóstico previo y puede tomar de 1 a 3 semanas. En todos los casos hacemos visita técnica sin costo para darte tiempo y presupuesto exactos.',
+  },
+]
+---
+
+<section class="faq-cot-index" id="cotizacion" aria-labelledby="faq-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="FAQ y Cotización"
+      titleLine1="Preguntas Frecuentes y"
+      titleLine2="Cotización Gratuita"
+      align="center"
+    />
+
+    <div class="faq-cot-index__grid">
+
+      <!-- ── FAQ ── -->
+      <div class="faq-col" aria-labelledby="faq-col-heading">
+        <div class="faq-col__top">
+          <span class="faq-col__badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Preguntas Frecuentes
+          </span>
+          <h3 id="faq-col-heading">Lo que nuestros clientes preguntan</h3>
+          <p>¿No encuentras tu respuesta? Escríbenos al <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.phone}</a>.</p>
+        </div>
+
+        <div class="faq-items">
+          {faqs.map((f, i) => (
+            <details class="faq-item" itemscope itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.q}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── COTIZACIÓN ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+          <div class="cot-card__head">
+            <span class="cot-badge">Cotización Gratuita</span>
+            <h3>Solicita tu cotización</h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+          </div>
+
+          <div class="cot-card__body">
+            <div class="cot-field">
+              <label for="cot-nombre">Nombre completo *</label>
+              <input type="text" id="cot-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-tel">Teléfono *</label>
+              <input type="tel" id="cot-tel" name="tel" placeholder="55 1234 5678" autocomplete="tel" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-empresa">Empresa o negocio</label>
+              <input type="text" id="cot-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-servicio">¿Qué necesitas? *</label>
+              <select id="cot-servicio" name="servicio">
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <option>Extintores</option>
+                <option>Señalamientos de Emergencia</option>
+                <option>Equipo para Bomberos</option>
+                <option>Gabinetes y Porta Extintores</option>
+                <option>Mangueras y Herrajes</option>
+                <option>Sistemas Contra Incendio</option>
+                <option>Primeros Auxilios</option>
+                <option>Equipo de Seguridad Industrial</option>
+                <option>Varios / No estoy seguro</option>
+              </select>
+            </div>
+            <div class="cot-field">
+              <label for="cot-detalle">Cuéntanos más (opcional)</label>
+              <textarea id="cot-detalle" name="detalle" rows="3" placeholder="Tipo de instalación, cantidad aproximada, urgencia..."></textarea>
+            </div>
+          </div>
+
+          <div class="cot-card__footer">
+            <a
+              id="cot-wa-btn"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero una cotización de equipos contra incendios')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cot-btn"
+              role="button"
+              aria-label="Solicitar cotización por WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar Cotización por WhatsApp
+            </a>
+            <p class="cot-note">Cotización gratuita · Respuesta en menos de 24h · Equipo certificado NOM</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('cot-wa-btn')
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nombre   = (document.getElementById('cot-nombre') as HTMLInputElement)?.value.trim()
+    const tel      = (document.getElementById('cot-tel') as HTMLInputElement)?.value.trim()
+    const empresa  = (document.getElementById('cot-empresa') as HTMLInputElement)?.value.trim()
+    const servicio = (document.getElementById('cot-servicio') as HTMLSelectElement)?.value
+    const detalle  = (document.getElementById('cot-detalle') as HTMLTextAreaElement)?.value.trim()
+
+    let msg = 'Hola, quiero una cotización de equipos contra incendios.'
+    if (nombre)   msg += `\n\n👤 Nombre: ${nombre}`
+    if (tel)      msg += `\n📞 Teléfono: ${tel}`
+    if (empresa)  msg += `\n🏢 Empresa: ${empresa}`
+    if (servicio) msg += `\n📦 Necesito: ${servicio}`
+    if (detalle)  msg += `\n📝 Detalle: ${detalle}`
+
+    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+  })
+</script>
+
+<style>
+  .faq-cot-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+  }
+
+  .faq-cot-index__grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── FAQ COLUMN ───────────────────────────────────────── */
+  .faq-col__top {
+    margin-bottom: 2rem;
+  }
+
+  .faq-col__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: .3rem .75rem;
+    border-radius: 100px;
+    margin-bottom: 0.875rem;
+  }
+
+  .faq-col__top h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-col__top p {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+  }
+
+  .faq-col__top a {
+    color: var(--c-primary);
+    font-weight: 600;
+  }
+
+  /* ── FAQ ITEMS ────────────────────────────────────────── */
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.4;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary span { flex: 1; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--c-primary);
+  }
+
+  .faq-answer {
+    padding-bottom: 1.25rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  /* ── COTIZACIÓN COLUMN ────────────────────────────────── */
+  .cot-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--stack-height, 124px) + 1.5rem);
+  }
+
+  .cot-card__head {
+    background: var(--c-ink);
+    color: #fff;
+    padding: 1.5rem;
+  }
+
+  .cot-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2rem .625rem;
+    border-radius: 3px;
+    margin-bottom: 0.625rem;
+  }
+
+  .cot-card__head h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    margin-bottom: 0.375rem;
+  }
+
+  .cot-card__head p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .cot-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cot-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cot-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+
+  .cot-field input,
+  .cot-field select,
+  .cot-field textarea {
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background: var(--c-white);
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  .cot-field input:focus,
+  .cot-field select:focus,
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+  }
+
+  .cot-field textarea { resize: vertical; min-height: 80px; }
+
+  .cot-card__footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background: #25D366;
+    color: #fff;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cot-btn:hover { background: #1EBA57; color: #fff; }
+
+  .cot-note {
+    font-size: 0.75rem;
+    color: var(--c-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .faq-cot-index__grid { grid-template-columns: 1fr 380px; gap: 3rem; }
+  }
+
+  @media (max-width: 1024px) {
+    .faq-cot-index__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cot-card { position: static; }
+  }
+</style>

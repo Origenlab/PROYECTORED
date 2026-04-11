@@ -1,0 +1,179 @@
+---
+/**
+ * NormasIndex.astro
+ * Tabla de normas y certificaciones — NOM + NFPA.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+
+const normas = [
+  {
+    norma: 'NOM-002-STPS-2010',
+    alcance: 'Condiciones de seguridad y prevención contra incendio en centros de trabajo',
+    aplica: 'Todas las empresas con empleados en México',
+  },
+  {
+    norma: 'NOM-154-SCFI',
+    alcance: 'Requisitos de seguridad e información comercial para extintores portátiles',
+    aplica: 'Fabricantes, distribuidores y usuarios finales',
+  },
+  {
+    norma: 'NOM-003-SEGOB',
+    alcance: 'Señales y avisos para protección civil, colores, formas y símbolos',
+    aplica: 'Inmuebles públicos y privados con afluencia de personas',
+  },
+  {
+    norma: 'NOM-026-STPS',
+    alcance: 'Colores y señales de seguridad e higiene e identificación de riesgos',
+    aplica: 'Centros de trabajo con actividades industriales o comerciales',
+  },
+  {
+    norma: 'NFPA 72',
+    alcance: 'Código Nacional de Señalización y Alarma de Emergencia — detección y alarmas',
+    aplica: 'Sistemas de detección de humo, calor, monóxido y alarma',
+  },
+  {
+    norma: 'NFPA 13',
+    alcance: 'Estándar para instalación de sistemas de rociadores automáticos',
+    aplica: 'Redes de supresión automática en edificios e instalaciones',
+  },
+  {
+    norma: 'NFPA 20',
+    alcance: 'Estándar para instalación de bombas estacionarias de protección contra incendios',
+    aplica: 'Tableros de control de bombas CI y redes hidráulicas',
+  },
+  {
+    norma: 'NFPA 1971',
+    alcance: 'Norma de prendas de protección para operaciones de extinción de incendios',
+    aplica: 'Trajes estructurales y EPP para cuerpos de bomberos y brigadas',
+  },
+]
+---
+
+<section class="normas-index" aria-labelledby="normas-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="Respaldo normativo"
+      titleLine1="Normas y Certificaciones"
+      titleLine2="que Respaldan tu Equipamiento"
+      align="left"
+    />
+
+    <div class="normas-index__cols">
+      <p>
+        Contar con equipamiento no es suficiente si el producto no tiene la certificación
+        correspondiente. Durante una inspección de la autoridad competente, la autoridad
+        verifica no solo la presencia del equipo, sino la documentación de conformidad, vigencia
+        de mantenimiento y documentación soporte. Todos los productos que distribuimos cuentan
+        con certificación vigente.
+      </p>
+    </div>
+
+    <div class="tabla-responsive">
+      <table class="tabla-seo" role="table" aria-label="Normas y certificaciones de los equipos contra incendios">
+        <thead>
+          <tr>
+            <th scope="col">Norma / Estándar</th>
+            <th scope="col">Alcance</th>
+            <th scope="col">Aplica a</th>
+          </tr>
+        </thead>
+        <tbody>
+          {normas.map(n => (
+            <tr>
+              <td><strong>{n.norma}</strong></td>
+              <td>{n.alcance}</td>
+              <td>{n.aplica}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="normas-nota">
+      Cada entrega incluye ficha técnica, acreditación de conformidad y garantía del fabricante
+      — documentos listos para integrar a tu expediente ante la autoridad. Acompañamiento técnico incluido para
+      verificar qué normas aplican según el giro y tamaño de tu empresa.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .normas-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-index__cols {
+    max-width: 72ch;
+    margin-bottom: 2rem;
+  }
+
+  .normas-index__cols p {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  /* ── TABLA ────────────────────────────────────────────── */
+  .tabla-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 6px;
+    border: 1px solid var(--c-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .tabla-seo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 640px;
+  }
+
+  .tabla-seo thead {
+    background: var(--c-ink, #111111);
+    color: #fff;
+  }
+
+  .tabla-seo th {
+    padding: 0.875rem 1.25rem;
+    text-align: left;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .tabla-seo td {
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .tabla-seo td strong {
+    color: var(--c-primary);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .tabla-seo tbody tr:last-child td { border-bottom: none; }
+
+  .tabla-seo tbody tr:nth-child(even) {
+    background: var(--c-surface, #F4F4F5);
+  }
+
+  /* ── NOTA ─────────────────────────────────────────────── */
+  .normas-nota {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.65;
+    max-width: 72ch;
+  }
+</style>

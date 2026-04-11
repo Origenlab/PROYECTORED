@@ -1,0 +1,333 @@
+---
+/**
+ * CatalogoIndex.astro
+ * Catálogo completo expandido — cards con imagen + subcategorías en pills.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+
+const catalogo = [
+  {
+    titulo: 'Extintores',
+    desc: 'Primera línea de defensa para cualquier tipo de riesgo',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    alt: 'Extintores contra incendios certificados NOM-154-SCFI',
+    href: '/extintores/',
+    ctaLabel: 'Ver todos los extintores',
+    subcats: [
+      { label: 'Polvo Seco (PQS)', href: '/extintores/polvo-seco/' },
+      { label: 'CO₂', href: '/extintores/co2/' },
+      { label: 'AFFF / Espuma', href: '/extintores/afff/' },
+      { label: 'Tipo K — Cocinas', href: '/extintores/tipo-k/' },
+      { label: 'Púrpura K', href: '/extintores/purpura-k/' },
+      { label: 'Agua a Presión', href: '/extintores/agua-a-presion/' },
+      { label: 'Cold Fire', href: '/extintores/cold-fire/' },
+      { label: 'Automáticos', href: '/extintores/automaticos/' },
+      { label: 'ABC Multiuso', href: '/extintores/abc/' },
+      { label: 'Agente Limpio', href: '/extintores/agente-limpio/' },
+    ],
+  },
+  {
+    titulo: 'Equipo para Bomberos',
+    desc: 'Protección personal certificada NFPA para cuerpos de bomberos y brigadas',
+    img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    alt: 'Equipo para bomberos certificado NFPA 1971',
+    href: '/equipo-bomberos/',
+    ctaLabel: 'Ver equipo de bomberos',
+    subcats: [
+      { label: 'Trajes Estructurales', href: '/equipo-bomberos/trajes/' },
+      { label: 'Complementos de Uniforme', href: '/equipo-bomberos/complementos/' },
+      { label: 'Respiración Autónoma (ERA)', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'Herramientas de Rescate', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Arneses de Rescate', href: '/equipo-bomberos/arneses/' },
+    ],
+  },
+  {
+    titulo: 'Señalamientos de Emergencia',
+    desc: 'Señalética fotoluminiscente conforme a NOM-003-SEGOB y NOM-026-STPS',
+    img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    alt: 'Señalamientos de emergencia fotoluminiscentes NOM',
+    href: '/senalamientos/',
+    ctaLabel: 'Ver señalamientos',
+    subcats: [
+      { label: 'Prohibición', href: '/senalamientos/prohibicion/' },
+      { label: 'Obligación', href: '/senalamientos/obligacion/' },
+      { label: 'Advertencia', href: '/senalamientos/advertencia/' },
+      { label: 'Salvación / Evacuación', href: '/senalamientos/salvacion/' },
+    ],
+  },
+  {
+    titulo: 'Gabinetes y Porta Extintores',
+    desc: 'Resguardo y acceso inmediato para equipo contra incendios',
+    img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    alt: 'Gabinetes y porta extintores para empresas',
+    href: '/gabinetes/',
+    ctaLabel: 'Ver gabinetes',
+    subcats: [
+      { label: 'Para Extintor', href: '/gabinetes/para-extintor/' },
+      { label: 'Porta Extintor Cenicero', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Para Bombero', href: '/gabinetes/para-bombero/' },
+      { label: 'Para Hidrante', href: '/gabinetes/para-hidrante/' },
+    ],
+  },
+  {
+    titulo: 'Mangueras y Herrajes',
+    desc: 'Conducción de agua a alta presión para respuesta inmediata',
+    img: '/imagenes/mangueras/mangueras-hero.jpg',
+    alt: 'Mangueras contra incendio y herrajes para hidrantes',
+    href: '/mangueras/',
+    ctaLabel: 'Ver mangueras y herrajes',
+    subcats: [
+      { label: 'Para Hidrante', href: '/mangueras/para-hidrante/' },
+      { label: 'Chiflones', href: '/mangueras/chiflones/' },
+      { label: 'Válvulas', href: '/mangueras/valvulas/' },
+      { label: 'Adaptadores', href: '/mangueras/adaptadores/' },
+      { label: 'Carretes', href: '/mangueras/carretes/' },
+      { label: 'Toma Siamesa', href: '/mangueras/toma-siamesa/' },
+      { label: 'Llaves de Herramienta', href: '/mangueras/llaves/' },
+      { label: 'Monitores CI', href: '/mangueras/monitores/' },
+    ],
+  },
+  {
+    titulo: 'Sistemas Contra Incendio',
+    desc: 'Detección, supresión y control automático para protección total',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    alt: 'Sistemas contra incendio NFPA 13 y NFPA 72',
+    href: '/sistemas/',
+    ctaLabel: 'Ver sistemas CI',
+    subcats: [
+      { label: 'Alarmas y Detectores', href: '/sistemas/alarmas/' },
+      { label: 'Detectores de Humo', href: '/sistemas/detectores/' },
+      { label: 'Rociadores Automáticos', href: '/sistemas/rociadores/' },
+      { label: 'Tableros FACP / NFPA 72', href: '/sistemas/tableros/' },
+      { label: 'Redes Hidráulicas', href: '/sistemas/redes-hidraulicas/' },
+    ],
+  },
+  {
+    titulo: 'Primeros Auxilios',
+    desc: 'Kits de respuesta inmediata conforme a normativa STPS',
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    alt: 'Botiquines de primeros auxilios STPS para empresas',
+    href: '/primeros-auxilios/',
+    ctaLabel: 'Ver primeros auxilios',
+    subcats: [
+      { label: 'Botiquines STPS', href: '/primeros-auxilios/' },
+      { label: 'Camillas de Emergencia', href: '/primeros-auxilios/' },
+      { label: 'Collarines Cervicales', href: '/primeros-auxilios/' },
+      { label: 'Material de Curación', href: '/primeros-auxilios/' },
+    ],
+  },
+  {
+    titulo: 'Equipo de Seguridad Industrial',
+    desc: 'EPP certificado ANSI y NOM-017-STPS para entornos industriales',
+    img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    alt: 'Equipo de protección personal EPP industrial NOM-017-STPS',
+    href: '/equipo-seguridad/',
+    ctaLabel: 'Ver equipo de seguridad',
+    subcats: [
+      { label: 'Cascos de Seguridad', href: '/equipo-seguridad/' },
+      { label: 'Lentes de Protección', href: '/equipo-seguridad/' },
+      { label: 'Chalecos Reflectantes', href: '/equipo-seguridad/' },
+      { label: 'Protección Auditiva', href: '/equipo-seguridad/' },
+      { label: 'Conos de Señalización', href: '/equipo-seguridad/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-index" id="catalogo" aria-labelledby="catalogo-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="Catálogo completo"
+      titleLine1="Catálogo Completo:"
+      titleLine2="Todo en un Solo Proveedor"
+      align="left"
+    />
+
+    <!-- Texto SEO columna derecha del header -->
+    <div class="catalogo-index__intro">
+      <p>
+        Cilindros portátiles de todos los tipos, señalización fotoluminiscente, equipo profesional para brigadas de emergencia, estaciones de resguardo, líneas de conducción de agua y herrajes, sistemas de detección y supresión, botiquines y equipos de protección personal. Todo lo que necesitas para cumplir con la normativa vigente en la Ciudad de México y Estado de México.
+      </p>
+      <p>
+        Cada producto incluye ficha técnica, constancias de conformidad y asesoría para
+        elegir la solución correcta según el tipo de riesgo y tamaño de tu instalación. Sin intermediarios
+        — somos el proveedor directo.
+      </p>
+    </div>
+
+    <!-- Grid de cards por categoría -->
+    <div class="catalogo-index__grid">
+      {catalogo.map(cat => (
+        <article class="cat-v2" aria-label={cat.titulo}>
+          <div class="cat-v2__img">
+            <img
+              src={cat.img}
+              alt={cat.alt}
+              loading="lazy"
+              width="640"
+              height="360"
+              decoding="async"
+            />
+          </div>
+          <div class="cat-v2__body">
+            <h3 class="cat-v2__titulo">{cat.titulo}</h3>
+            <p class="cat-v2__desc">{cat.desc}</p>
+            <div class="cat-v2__pills" role="list" aria-label={`Subcategorías de ${cat.titulo}`}>
+              {cat.subcats.map(sub => (
+                <a href={sub.href} class="cat-v2__pill" role="listitem">{sub.label}</a>
+              ))}
+            </div>
+            <a href={cat.href} class="cat-v2__btn">
+              {cat.ctaLabel}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .catalogo-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+  }
+
+  /* Intro text */
+  .catalogo-index__intro {
+    max-width: 72ch;
+    margin-bottom: 3rem;
+  }
+
+  .catalogo-index__intro p {
+    font-size: 0.9375rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── GRID 2 COLUMNAS ─────────────────────────────────── */
+  .catalogo-index__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* ── CARD ─────────────────────────────────────────────── */
+  .cat-v2 {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+  }
+
+  .cat-v2:hover {
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(196,30,36,.12));
+  }
+
+  /* Imagen */
+  .cat-v2__img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--c-ink);
+  }
+
+  .cat-v2__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .cat-v2:hover .cat-v2__img img {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+
+  /* Body */
+  .cat-v2__body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cat-v2__titulo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.02em;
+    line-height: 1.2;
+  }
+
+  .cat-v2__desc {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.5;
+  }
+
+  /* Pills */
+  .cat-v2__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+  }
+
+  .cat-v2__pill {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    background: var(--c-surface, #F4F4F5);
+    border: 1px solid var(--c-border);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--c-ink-2);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .cat-v2__pill:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+    background: var(--c-primary-light, #F9E8E8);
+  }
+
+  /* CTA */
+  .cat-v2__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--c-border);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .cat-v2__btn:hover {
+    color: var(--c-primary-dark);
+    gap: 0.625rem;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .catalogo-index__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .cat-v2__pills { gap: 0.3rem; }
+  }
+</style>

@@ -1,0 +1,257 @@
+---
+/**
+ * CategoriasIndex.astro
+ * Grid asimétrico con imagen + badge por categoría.
+ * Usa SectionHeader.astro (complemento aprobado).
+ */
+import SectionHeader from '../ui/SectionHeader.astro'
+
+const categorias = [
+  {
+    titulo: 'Extintores',
+    sub: 'Polvo seco · CO₂ · AFFF · Tipo K · Agente Limpio',
+    href: '/extintores/',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    badge: '10 tipos',
+  },
+  {
+    titulo: 'Equipo para Bomberos',
+    sub: 'Trajes · ERA · Herramientas · Arneses',
+    href: '/equipo-bomberos/',
+    img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    badge: 'NFPA 1971',
+  },
+  {
+    titulo: 'Señalamientos',
+    sub: 'Prohibición · Obligación · Advertencia · Salvación',
+    href: '/senalamientos/',
+    img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    badge: 'NOM-003',
+  },
+  {
+    titulo: 'Gabinetes',
+    sub: 'Para extintor · Para manguera · Para bombero',
+    href: '/gabinetes/',
+    img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    badge: null,
+  },
+  {
+    titulo: 'Mangueras y Herrajes',
+    sub: 'Hidrantes · Chiflones · Válvulas · Adaptadores',
+    href: '/mangueras/',
+    img: '/imagenes/mangueras/mangueras-hero.jpg',
+    badge: null,
+  },
+  {
+    titulo: 'Sistemas contra Incendio',
+    sub: 'Alarmas · Detectores · Rociadores · Tableros',
+    href: '/sistemas/',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    badge: 'NFPA 13/72',
+  },
+  {
+    titulo: 'Primeros Auxilios',
+    sub: 'Botiquines · Camillas · Material de curación',
+    href: '/primeros-auxilios/',
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    badge: 'STPS',
+  },
+  {
+    titulo: 'Equipo de Seguridad',
+    sub: 'Cascos · Lentes · Guantes · Arneses · EPP',
+    href: '/equipo-seguridad/',
+    img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    badge: null,
+  },
+]
+---
+
+<section class="categorias-index" id="categorias" aria-labelledby="cat-heading">
+  <div class="container">
+
+    <SectionHeader
+      eyebrow="Catálogo completo"
+      titleLine1="Categorías de"
+      titleLine2="equipo contra incendios"
+      desc="Ocho líneas de producto organizadas por tipo de riesgo, instalación y requerimiento normativo."
+      align="center"
+    />
+
+    <div class="cat-grid">
+      {categorias.map((cat, i) => (
+        <a
+          href={cat.href}
+          class={`cat-card ${i === 0 ? 'cat-card--featured' : ''}`}
+          aria-label={`Ver productos: ${cat.titulo}`}
+        >
+          <div class="cat-img-wrap">
+            <img
+              src={cat.img}
+              alt={`${cat.titulo} — equipos contra incendios`}
+              loading={i < 3 ? 'eager' : 'lazy'}
+              width="600"
+              height="400"
+              decoding="async"
+            />
+            <div class="cat-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="cat-body">
+            {cat.badge && <span class="cat-badge">{cat.badge}</span>}
+            <h3 class="cat-titulo">{cat.titulo}</h3>
+            <p class="cat-sub">{cat.sub}</p>
+            <span class="cat-arrow">
+              Ver productos
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Texto SEO adicional bajo el grid -->
+    <p class="categorias-nota">
+      Desde cilindros portátiles certificados y señalización conforme a norma, hasta gabinetes industriales, líneas de conducción de agua, sistemas de detección y supresión, equipo profesional para brigadas, botiquines y equipos de protección personal — todo disponible en un solo proveedor con entrega en la zona metropolitana. Documentación y fichas técnicas incluidas para tu expediente regulatorio.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .categorias-index {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+  }
+
+  /* ── GRID ─────────────────────────────────────────────── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Card destacada ocupa 2 columnas */
+  .cat-card--featured {
+    grid-column: span 2;
+  }
+
+  /* ── CARD ─────────────────────────────────────────────── */
+  .cat-card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--c-ink);
+    min-height: 200px;
+  }
+
+  .cat-card--featured { min-height: 280px; }
+
+  /* Imagen */
+  .cat-img-wrap {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cat-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .cat-card:hover .cat-img-wrap img {
+    opacity: 0.55;
+    transform: scale(1.03);
+  }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+  }
+
+  /* Contenido */
+  .cat-body {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cat-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .175rem .5rem;
+    border-radius: 3px;
+    width: fit-content;
+    margin-bottom: 0.125rem;
+  }
+
+  .cat-titulo {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+  }
+
+  .cat-card--featured .cat-titulo { font-size: 1.25rem; }
+
+  .cat-sub {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.4;
+  }
+
+  .cat-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-primary);
+    margin-top: 0.375rem;
+    transition: gap 0.2s;
+  }
+
+  .cat-card:hover .cat-arrow { gap: 0.625rem; }
+
+  /* ── NOTA SEO ─────────────────────────────────────────── */
+  .categorias-nota {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+    text-align: center;
+    max-width: 80ch;
+    margin: 0 auto;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    .cat-card--featured { grid-column: span 1; min-height: 200px; }
+  }
+
+  @media (max-width: 768px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+</style>
