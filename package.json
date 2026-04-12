@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@rollup/rollup-linux-arm64-gnu": "^4.60.1",
     "astro": "^6.1.1",
     "typescript": "^5.9.3"
   }
