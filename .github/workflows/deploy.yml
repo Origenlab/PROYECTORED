@@ -26,6 +26,24 @@ jobs:
         with:
           node-version: 22
 
+      - name: Validate package.json (no platform-specific deps)
+        run: |
+          node -e "
+          const pkg = require('./package.json');
+          const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+          const bad = Object.keys(allDeps).filter(k =>
+            /@rollup\/rollup-(linux|darwin|win32|android)/.test(k) ||
+            /@esbuild\/(linux|darwin|win32|android)/.test(k)
+          );
+          if (bad.length > 0) {
+            console.error('ERROR: Paquetes de plataforma en dependencies:', bad.join(', '));
+            console.error('Estos paquetes son manejados internamente por rollup/vite.');
+            console.error('Eliminados con: npm uninstall ' + bad.join(' '));
+            process.exit(1);
+          }
+          console.log('package.json OK — sin paquetes de plataforma');
+          "
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
