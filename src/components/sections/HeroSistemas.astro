@@ -1,0 +1,176 @@
+---
+/**
+ * HeroSistemas.astro — v1
+ * Hero premium L2: badge + H1 + subtítulo izq / 2 párrafos SEO der.
+ * Patrón 100% homologado con HeroMangueras (L2 template aprobado).
+ */
+---
+
+<section class="hero-sis" aria-label="Sistemas contra incendio certificados NFPA en CDMX">
+
+  <div class="hero-sis__glow" aria-hidden="true"></div>
+  <div class="hero-sis__grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-sis__grid">
+
+    <!-- ═══ Columna izquierda ═══ -->
+    <div class="hero-sis__left">
+
+      <div class="hero-sis__badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        <span class="badge-pulse-ring"></span>
+        NFPA 72 · 13 · 14 · 20 · Ingenieros certificados
+      </div>
+
+      <h1 class="hero-sis__h1">
+        Sistemas Contra<br>
+        <span class="h1-accent">Incendio</span> NFPA
+      </h1>
+
+      <p class="hero-sis__sub">
+        Desde <strong>$45,000 MXN instalado</strong>. Detección, alarma, rociadores
+        y red hidráulica — diseño, instalación, cálculo hidráulico, planos para
+        Protección Civil y expediente completo. Un solo proveedor para todo el sistema.
+      </p>
+
+    </div>
+
+    <!-- ═══ Columna derecha: texto SEO ═══ -->
+    <div class="hero-sis__right">
+      <p>
+        Tu bodega tiene detectores del 2011. El tablero de alarma no está conectado
+        a monitoreo remoto. Cuando un rociador se activa, nadie sabe en qué zona.
+        Todo eso es observación de Protección Civil — y riesgo real para tu operación.
+        Un sistema contra incendio no depende de un solo componente: necesita detectores,
+        tablero, rociadores, red hidráulica y alarma trabajando juntos.
+      </p>
+      <p>
+        En Proyecto Red diseñamos, instalamos y damos mantenimiento a sistemas completos
+        conforme a NFPA 72, 13, 14 y 20. Hacemos el cálculo hidráulico, los planos
+        para Protección Civil, el comisionamiento y la documentación del expediente.
+        Desde el primer detector hasta la bomba de agua — en un solo proveedor.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-sis {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      linear-gradient(160deg, #080808 0%, #0D0D0D 40%, #131010 60%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-sis__glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: -20%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, rgba(196,30,36,0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .hero-sis__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-sis__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-sis__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: .01em;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-pulse-ring {
+    position: absolute;
+    left: 0.9375rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-sis__h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    margin-bottom: 1.25rem;
+  }
+
+  .h1-accent { color: var(--c-primary); }
+
+  .hero-sis__sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  .hero-sis__sub strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+  }
+
+  .hero-sis__right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sis__right p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    .hero-sis { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .hero-sis__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 768px) { .hero-sis { padding-bottom: 3rem; } }
+</style>

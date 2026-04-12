@@ -1,14 +1,13 @@
 ---
 // CategoryLayout.astro
 // Layout para todas las páginas de Nivel 2
-// Incluye: Hero + QuickLinks + slot(contenido único) + CotizacionForm + FAQ + CTAFinal
+// Incluye: Hero + QuickLinks + slot(contenido único) + FaqCotizacion + CTAFinal
 
 import BaseLayout from './BaseLayout.astro'
 import Breadcrumb from '../components/ui/Breadcrumb.astro'
 import Hero from '../components/sections/Hero.astro'
 import CtaBar from '../components/CtaBar.astro'
-import CotizacionForm from '../components/sections/CotizacionForm.astro'
-import FAQ from '../components/sections/FAQ.astro'
+import FaqCotizacionIndex from '../components/sections/FaqCotizacionIndex.astro'
 import CTAFinal from '../components/sections/CTAFinal.astro'
 
 // Tipos reutilizables
@@ -55,7 +54,6 @@ interface Props {
   // Secciones opcionales
   showForm?: boolean
   faqItems?: FAQItem[]
-  faqTitle?: string
 
   // CTA Final
   ctaTitle?: string
@@ -83,7 +81,6 @@ const {
   stats,
   showForm = true,
   faqItems,
-  faqTitle,
   ctaTitle = '¿Necesitas equipo contra incendios en CDMX?',
   ctaBody = 'Mándanos un WhatsApp con lo que necesitas. Te respondemos con precios, disponibilidad y tiempos de entrega.',
   ctaCTA1Text = 'Cotizar por WhatsApp',
@@ -131,11 +128,7 @@ const faqLd = faqItems && faqItems.length > 0
   </Fragment>
 
   <!-- Barra de migas de pan (entre header y hero) -->
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <Breadcrumb items={breadcrumb} />
-    </div>
-  </div>
+  <Breadcrumb items={breadcrumb} />
 
   <!-- Hero de página -->
   <Hero
@@ -148,19 +141,30 @@ const faqLd = faqItems && faqItems.length > 0
     {cta2}
   />
 
+  <!-- Stats bar (solo si se pasan stats) -->
+  {stats && stats.length > 0 && (
+    <div class="cat-stats section--red">
+      <div class="container">
+        <div class="cat-stats__grid">
+          {stats.map((s) => (
+            <div class="cat-stats__item">
+              <span class="cat-stats__value">{s.value}</span>
+              <span class="cat-stats__label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
   <!-- Barra de accesos rápidos (homologada con L1 / L3) -->
   <CtaBar />
 
   <!-- Contenido único de cada página -->
   <slot />
 
-  <!-- Formulario de cotización (opcional) -->
-  {showForm && <CotizacionForm />}
-
-  <!-- FAQ (opcional, si se pasan items) -->
-  {faqItems && faqItems.length > 0 && (
-    <FAQ items={faqItems} title={faqTitle} />
-  )}
+  <!-- FAQ + Cotización (mismo componente del index) -->
+  <FaqCotizacionIndex />
 
   <!-- CTA de cierre -->
   <CTAFinal

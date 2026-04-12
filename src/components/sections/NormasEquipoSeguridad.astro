@@ -1,0 +1,113 @@
+---
+/**
+ * NormasEquipoSeguridad.astro — v1
+ * Cards de normas para equipo de seguridad industrial (EPP).
+ * Patrón 100% homologado con NormasPrimerosAuxilios / NormasSistemas.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NOM-017-STPS',
+    tipo: 'Programa de EPP',
+    alcance: 'Equipo de protección personal — selección, uso y manejo en los centros de trabajo. Define la obligación de realizar análisis de riesgo por puesto de trabajo, seleccionar el EPP correcto para cada riesgo identificado y documentar el programa de EPP.',
+    aplica: 'Todo centro de trabajo con riesgos que requieran protección personal. La norma no solo exige el equipo — exige el proceso: identificación de riesgos, selección técnica, capacitación en uso correcto y registro de entrega a cada trabajador. Sin programa documentado no hay cumplimiento.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    norma: 'NOM-011-STPS',
+    tipo: 'Protección auditiva',
+    alcance: 'Condiciones de seguridad e higiene en los centros de trabajo donde se genere ruido — establece el límite de 85 dB ponderados en A para una jornada de 8 horas y la obligación de protección auditiva a partir de ese nivel. Define la medición y el tiempo de exposición permitido por nivel.',
+    aplica: 'Plantas con maquinaria ruidosa, compresores, bandas transportadoras, prensas y cualquier proceso con ruido continuo. Para cumplir necesitas la medición de ruido por puesto (dosimetría), el EPP seleccionado con NRR suficiente y registro de entrega y capacitación.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  },
+  {
+    norma: 'NOM-113-STPS',
+    tipo: 'Calzado de seguridad',
+    alcance: 'Calzado de protección — especificaciones de resistencia al impacto, antiperforación, resistencia eléctrica y propiedades antiderrapantes según el tipo de riesgo del puesto de trabajo. Define las marcas y valores de resistencia para cada clasificación.',
+    aplica: 'Áreas industriales con riesgo de caída de objetos, superficies perforantes, riesgo eléctrico o pisos resbalosos. El calzado EH (Electrical Hazard) es el único válido para trabajos eléctricos — el casquillo de acero es conductor y empeora el riesgo eléctrico si no tiene la clasificación correcta.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>`,
+  },
+  {
+    norma: 'NOM-009-STPS',
+    tipo: 'Trabajo en altura',
+    alcance: 'Condiciones de seguridad para trabajo en alturas — exige sistema anticaída completo (arnés + línea de vida + anclaje) para cualquier trabajo a más de 1.80 metros de altura. El arnés solo no es un sistema anticaída — requiere la línea de vida y el punto de anclaje certificado.',
+    aplica: 'Construcción, mantenimiento en estructuras, trabajo en andamios, techos, postes y cualquier elevación superior a 1.80 m. Exige además plan de rescate en caso de caída, que muchas empresas omiten — si el trabajador cae y queda suspendido, ¿cómo lo bajan sin agravar la lesión?',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+  },
+  {
+    norma: 'ANSI Z87.1',
+    tipo: 'Protección visual',
+    alcance: 'Práctica para protección de ojos y cara contra impacto, óptica y radiación — establece los requisitos de resistencia al impacto para lentes de seguridad (policarbonato), goggles y caretas. Diferencia entre impacto de alta y baja velocidad y salpicaduras de líquidos.',
+    aplica: 'Cualquier proceso con proyección de partículas, salpicaduras de líquidos, polvos o radiación UV. Los lentes de "seguridad" sin certificación ANSI Z87.1 no garantizan la protección que parece que dan — la diferencia está en la prueba de impacto estandarizada.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l14.14 14.14"/></svg>`,
+  },
+  {
+    norma: 'NOM-029-STPS',
+    tipo: 'Riesgo eléctrico',
+    alcance: 'Mantenimiento de instalaciones eléctricas en los centros de trabajo — incluye requisitos de EPP para trabajos con partes energizadas: casco clase E, guante dieléctrico, ropa FR y herramienta aislada. Complementada por NFPA 70E para arco eléctrico.',
+    aplica: 'Técnicos de mantenimiento eléctrico, electricistas y cualquier trabajador que interviene instalaciones de más de 50V en condición energizada. El EPP eléctrico no puede sustituirse con protección general — cada clase de guante dieléctrico tiene un voltaje máximo de trabajo.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+  },
+]
+---
+
+<section class="normas-es" id="normas-epp" aria-labelledby="normas-es-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="normas-es-heading"
+      eyebrow="Marco normativo STPS · ANSI · EN"
+      titleLine1="Normas que Rigen el EPP"
+      titleLine2="en Centros de Trabajo"
+      desc="NOM-017-STPS, NOM-011, NOM-113, NOM-009, ANSI Z87.1 y NOM-029 — cada tipo de riesgo tiene su norma. El EPP correcto es el que cumple con la norma específica."
+      bodyPara1="En México las normas de EPP combinan NOMs de la STPS con estándares internacionales: ANSI para protección visual, EN para guantes y ropa de protección, NIOSH para respiradores. Un producto importado que solo cumple EN puede no cumplir con la NOM aplicable a tu instalación — y viceversa."
+      bodyPara2="Entregamos cada producto con su ficha técnica, certificado de norma y especificación de la protección que ofrece. Si tu empresa está en proceso de implementar o actualizar el programa de EPP, hacemos el diagnóstico de riesgos por puesto y la selección técnica del equipo correcto para cada uno."
+    />
+
+    <div class="normas-es-grid" role="list" aria-label="Normas aplicables a equipo de protección personal">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" aria-hidden="true" set:html={n.icon} />
+            <div>
+              <span class="norma-card__codigo">{n.norma}</span>
+              <span class="norma-tipo">{n.tipo}</span>
+            </div>
+          </div>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-card__aplica-label">Aplica en</span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <svg class="normas-nota__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="normas-nota__text">
+        <strong>¿Programa de EPP para auditoría STPS?</strong> Hacemos el diagnóstico completo: análisis de riesgos por puesto, selección técnica del EPP correcto, especificación de normas aplicables y documentación para el programa formal de EPP — todo en un solo servicio antes de tu próxima inspección.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-es {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-es-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 1024px) { .normas-es-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .normas-es-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaBar from '../../components/CtaBar.astro';
 import FaqCotizacion from '../../components/FaqCotizacion.astro';
 import '../../styles/pages.css';
@@ -9,7 +10,7 @@ export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const allPosts = (await getCollection('blog')).sort(
     (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
-  return paginate(allPosts, { pageSize: 6 });
+  return paginate(allPosts, { pageSize: 12 });
 }
 
 const { page } = Astro.props as { page: any };
@@ -52,21 +53,12 @@ const breadcrumbs = [
   <!-- ══════════════════════════════════════
        HERO — solo en página 1
   ══════════════════════════════════════ -->
+  <Breadcrumb items={breadcrumbs} />
+
   {isFirstPage ? (
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-left">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            {breadcrumbs.map((b, i) => (
-              <>
-                {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-                {(b as any).href
-                  ? <a href={(b as any).href} class="breadcrumb__link">{b.label}</a>
-                  : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-                }
-              </>
-            ))}
-          </nav>
           <div class="hero-badge">
             <span class="badge-dot"></span>
             Guías técnicas y normativas
@@ -88,19 +80,9 @@ const breadcrumbs = [
     </section>
   ) : (
     <!-- MINI HEADER para páginas 2+ -->
+    <Breadcrumb items={breadcrumbs} />
     <section class="page-subhero">
       <div class="container">
-        <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb">
-          {breadcrumbs.map((b, i) => (
-            <>
-              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-              {(b as any).href
-                ? <a href={(b as any).href} class="breadcrumb__link">{b.label}</a>
-                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-              }
-            </>
-          ))}
-        </nav>
         <div class="page-subhero__inner">
           <div>
             <h1 class="page-subhero__title">Blog de Seguridad Contra Incendios</h1>
@@ -438,7 +420,7 @@ const breadcrumbs = [
   /* ── GRID DE ARTÍCULOS ─────────────────────────────── */
   .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 
-  .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); transition: border-color 0.2s, box-shadow 0.2s; }
+  .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); }
   .cat-section--gray .prod-card { background: var(--c-white); }
   .cat-section--white .prod-card { background: var(--c-surface); }
   .prod-card:hover { border-color: rgba(var(--c-primary-rgb), 0.4); box-shadow: 0 4px 20px rgba(var(--c-primary-rgb), 0.08); background: var(--c-white); }
@@ -488,7 +470,7 @@ const breadcrumbs = [
     color: var(--c-ink);
     text-decoration: none;
     background: var(--c-white);
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+
   }
   .pagination__btn:hover {
     border-color: var(--c-primary);
@@ -520,7 +502,7 @@ const breadcrumbs = [
     color: var(--c-ink);
     text-decoration: none;
     background: var(--c-white);
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+
   }
   .pagination__page:hover {
     border-color: var(--c-primary);

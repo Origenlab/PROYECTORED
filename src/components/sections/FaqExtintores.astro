@@ -47,6 +47,7 @@ const faqs = [
   <div class="container">
 
     <SectionHeaderDuo
+      id="faq-ext-heading"
       eyebrow="Preguntas Frecuentes"
       titleLine1="Todo lo que Necesitas Saber"
       titleLine2="Antes de Comprar Extintores"
@@ -233,8 +234,17 @@ const faqs = [
     background: var(--c-white);
   }
 
+  .faq-item:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
   .faq-item:last-child {
     border-bottom: 1px solid var(--c-border);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .faq-item:hover:not([open]) {
+    background: rgba(249,232,232,0.3);
   }
 
   .faq-item summary {
@@ -242,7 +252,7 @@ const faqs = [
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.125rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     cursor: pointer;
     list-style: none;
     font-size: 0.9375rem;
@@ -251,23 +261,29 @@ const faqs = [
     line-height: 1.4;
   }
 
+  .faq-item:hover summary { padding-left: 1.75rem; }
+
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item summary span { flex: 1; }
 
   .faq-chevron {
     flex-shrink: 0;
     color: var(--c-muted);
-    transition: transform 0.2s;
   }
 
-  .faq-item[open] > summary { background: var(--c-primary-light, #F9E8E8); }
+  .faq-item[open] > summary {
+    background: var(--c-primary-light, #F9E8E8);
+    border-left: 3px solid var(--c-primary);
+    padding-left: calc(1.5rem - 3px);
+  }
+
   .faq-item[open] .faq-chevron {
     transform: rotate(180deg);
     color: var(--c-primary);
   }
 
   .faq-answer {
-    padding: 0 1.25rem 1.25rem;
+    padding: 0 1.5rem 1.5rem;
   }
 
   .faq-answer p {
@@ -285,16 +301,35 @@ const faqs = [
   .cot-card {
     background: var(--c-white);
     border: 1px solid var(--c-border);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     position: sticky;
     top: calc(var(--stack-height, 124px) + 1.5rem);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .cot-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   }
 
   .cot-card__head {
-    background: var(--c-ink);
+    background: linear-gradient(135deg, var(--c-ink) 0%, #1a1a1a 100%);
     color: #fff;
-    padding: 1.5rem;
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cot-card__head::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
   }
 
   .cot-badge {
@@ -345,21 +380,24 @@ const faqs = [
   .cot-field input,
   .cot-field select,
   .cot-field textarea {
-    padding: 0.625rem 0.875rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--c-border);
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 0.9rem;
     font-family: var(--font-sans);
     color: var(--c-ink);
-    background: var(--c-white);
+    background: var(--c-surface, #F4F4F5);
     outline: none;
-    transition: border-color 0.15s;
     width: 100%;
   }
 
   .cot-field input:focus,
   .cot-field select:focus,
-  .cot-field textarea:focus { border-color: var(--c-primary); }
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+    background: var(--c-white);
+    box-shadow: 0 0 0 3px rgba(196,30,36,0.08);
+  }
 
   .cot-field textarea { resize: vertical; min-height: 80px; }
 

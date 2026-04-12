@@ -1,357 +1,246 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CtaBar from '../../components/CtaBar.astro';
-import FaqCotizacion from '../../components/FaqCotizacion.astro';
-import '../../styles/pages.css';
+/**
+ * equipo-bomberos/index.astro — Categoría L3: equipo para bomberos — Proyecto Red
+ * ─────────────────────────────────────────────────────────────────────────────────
+ * Orquestador limpio: importa secciones dedicadas y define SEO + JSON-LD técnico.
+ * Estructura homologada con extintores/index.astro (L3 template aprobado).
+ * Cada sección vive en src/components/sections/ con sus propios estilos.
+ */
 
-const WHATSAPP = "525537238544";
-const WA_URL = `https://wa.me/${WHATSAPP}`;
+import Base                from '../../layouts/Base.astro'
+import CtaBar              from '../../components/CtaBar.astro'
+import Breadcrumb          from '../../components/ui/Breadcrumb.astro'
 
-const title = "Equipo para Bomberos Certificado NFPA en México | Proyecto Red";
-const description = "Venta de equipo profesional para bomberos y brigadas: trajes estructurales NFPA 1971, ERA (respiración autónoma), herramientas de rescate, arneses y complementos. Proveedor directo en CDMX con asesoría técnica.";
+// ── Secciones específicas de equipo para bomberos ──────────
+import HeroBomberos        from '../../components/sections/HeroBomberos.astro'
+import CatalogoBomberos    from '../../components/sections/CatalogoBomberos.astro'
+import GuiaBomberos        from '../../components/sections/GuiaBomberos.astro'
+import NormasBomberos      from '../../components/sections/NormasBomberos.astro'
+import FaqBomberos         from '../../components/sections/FaqBomberos.astro'
 
-const breadcrumbs = [
-  { label: "Inicio", href: "/" },
-  { label: "Productos", href: "/productos/" },
-  { label: "Equipo para Bomberos" },
-];
+// ── Secciones genéricas reutilizadas del index ─────────────
+import TrustIndex          from '../../components/sections/TrustIndex.astro'
+import CTAFinalIndex       from '../../components/sections/CTAFinalIndex.astro'
 
-// ── Productos de esta categoría ──────────────────────
-const productos = [
-  {
-    nombre: "Trajes Estructurales NFPA 1971",
-    desc: "Protección multicapa contra temperaturas extremas, llamas directas y calor radiante. Fabricados en Nomex, PBI y Kevlar. Chaquetón + pantalón con tirantes, tallas estándar y sobre medida.",
-    href: "/equipo-bomberos/trajes/",
-    badge: "NFPA 1971",
-    specs: "Nomex · PBI · Kevlar · 3 capas · Chaquetón + Pantalón · S–4XL · Sobre medida disponible",
-  },
-  {
-    nombre: "Complementos de Uniforme",
-    desc: "Cascos con visor, guantes térmicos, botas certificadas, capuchas Nomex y gogles. Cada pieza diseñada para integrarse al ensemble completo de protección del bombero.",
-    href: "/equipo-bomberos/complementos/",
-    badge: null,
-    specs: "Casco NFPA 1971 · Guantes térmicos · Botas NFPA 1971 · Capucha Nomex · Gogles anti-flash",
-  },
-  {
-    nombre: "ERA — Respiración Autónoma",
-    desc: "Equipos SCBA con cilindros de aire comprimido, máscaras panorámicas y reguladores certificados NIOSH. Para atmósferas contaminadas con humo, gases tóxicos o deficiencia de oxígeno.",
-    href: "/equipo-bomberos/respiracion-autonoma/",
-    badge: "Esencial",
-    specs: "SCBA · NIOSH · Cilindro 30 / 45 / 60 min · Máscara panorámica · Alarma PASS integrada",
-  },
-  {
-    nombre: "Herramientas de Rescate",
-    desc: "Quijadas de vida, hachas, halligans, palancas, cortadores hidráulicos y herramientas de entrada forzada. Equipo para rescate vehicular, estructural y en espacios confinados.",
-    href: "/equipo-bomberos/herramientas/",
-    badge: null,
-    specs: "Manual · Hidráulica · Neumática · Eléctrica · Rescate vehicular · Espacios confinados",
-  },
-  {
-    nombre: "Arneses de Rescate",
-    desc: "Arneses certificados para trabajo en altura, rescate vertical y evacuación. Con puntos de anclaje dorsal y pectoral, diseñados para soportar cargas de hasta 140 kg en caída.",
-    href: "/equipo-bomberos/arneses/",
-    badge: null,
-    specs: "NFPA 1983 · NOM-009-STPS · Dorsal + Pectoral · Hasta 140 kg · Rescate vertical y evacuación",
-  },
-];
+// ── Datos para JSON-LD ─────────────────────────────────────
+import { SITE, CONTACT } from '../../config/site'
 
-// ── Guía por tipo de operación ───────────────────────
-const guia = [
-  {
-    tipo: "Combate estructural — Bomberos",
-    norma: "NFPA 1971 · NFPA 1851 · NFPA 1981",
-    necesitas: "Traje 3 capas + ERA SCBA + casco + guantes + botas + capucha Nomex",
-    porque: "El ensemble completo NFPA 1971 es obligatorio para entrada a estructuras en llamas. Cada componente debe estar certificado individualmente — no hay atajos.",
-    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20para%20combate%20estructural%20NFPA%201971`,
-  },
-  {
-    tipo: "HAZMAT — Materiales Peligrosos",
-    norma: "NFPA 1991 · NFPA 1992 · NFPA 1994",
-    necesitas: "Traje encapsulado Nivel A/B + ERA + detector multigas + traje de decontaminación",
-    porque: "Los incidentes químicos requieren protección contra vapores, líquidos y aerosoles tóxicos. La norma NFPA 1991 define los 4 niveles de protección según el agente.",
-    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20HAZMAT%20para%20materiales%20peligrosos`,
-  },
-  {
-    tipo: "Rescate en Altura y Espacios Confinados",
-    norma: "NFPA 1983 · NOM-009-STPS · NFPA 1670",
-    necesitas: "Arnés de rescate + cuerda técnica + sistema antícaída + trípode de espacios confinados",
-    porque: "El rescate vertical y en espacios confinados requiere equipo específico. Un arnés de construcción no es válido para rescate — los puntos de anclaje y la geometría son distintos.",
-    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20para%20rescate%20en%20altura%20y%20espacios%20confinados`,
-  },
-  {
-    tipo: "Aeronáutico y Zonas de Proximidad",
-    norma: "NFPA 1976 · NFPA 1975",
-    necesitas: "Traje aluminizado de proximidad + ERA + casco especializado + guantes aluminizados",
-    porque: "Los incendios aeronáuticos generan temperaturas de 500°C o más con combustible de aviación. La protección aluminizada es la única opción — los trajes estructurales no son suficientes.",
-    href: `${WA_URL}?text=Hola%2C%20necesito%20equipo%20aeronautico%20o%20de%20proximidad%20NFPA%201976`,
-  },
-];
+const siteUrl = SITE.url
+const pageUrl = `${siteUrl}/equipo-bomberos/`
+const ogImage = `${siteUrl}/imagenes/og/equipo-bomberos-og.jpg`
 
-// ── FAQs ─────────────────────────────────────────────
-const faqsBomberos = [
-  { pregunta: "¿Qué certificaciones debe tener un traje de bombero?", respuesta: "Un traje de bombero para combate estructural debe cumplir con la <strong>NFPA 1971</strong> (Standard on Protective Ensembles for Structural Fire Fighting). Esta norma exige tres capas: capa exterior resistente al fuego, barrera contra humedad y barrera térmica. Para bomberos forestales aplica la <strong>NFPA 1977</strong>, y para materiales peligrosos la <strong>NFPA 1991/1992</strong>. Todos los trajes que vendemos incluyen certificación original del fabricante." },
-  { pregunta: "¿Cuánto dura un traje de bombero?", respuesta: "La <strong>NFPA 1851</strong> establece una vida útil máxima de <strong>10 años</strong> desde la fecha de fabricación. Requiere inspecciones visuales después de cada uso, limpiezas avanzadas semestrales e inspecciones técnicas anuales. Un traje sin mantenimiento pierde sus propiedades protectoras. Te asesoramos sobre cuándo reemplazar equipo existente." },
-  { pregunta: "¿Qué es un equipo ERA y por qué es obligatorio?", respuesta: "ERA significa <strong>Equipo de Respiración Autónoma</strong> (SCBA en inglés). Es un sistema portátil de aire comprimido con máscara panorámica, regulador y cilindro que permite respirar en atmósferas contaminadas con humo, gases tóxicos o con deficiencia de oxígeno. Es <strong>obligatorio</strong> en cualquier operación de combate de incendios en interiores — sin ERA, un bombero no puede entrar a un edificio en llamas." },
-  { pregunta: "¿Venden equipo para brigadas industriales además de bomberos?", respuesta: "Sí. Equipamos tanto a <strong>cuerpos de bomberos profesionales</strong> como a <strong>brigadas de emergencia industriales</strong>. La diferencia está en el nivel de protección: una brigada industrial puede requerir trajes más ligeros y herramientas específicas para el tipo de riesgo de su planta. Te ayudamos a elegir el equipo correcto según tu <strong>análisis de riesgo y normativa STPS</strong> aplicable." },
-  { pregunta: "¿Manejan trajes sobre medida?", respuesta: "Sí. Además de tallas estándar, gestionamos <strong>trajes sobre medida</strong> con el fabricante. Esto incluye ajuste de chaquetón y pantalón a las medidas del usuario, personalización con <strong>bordado institucional</strong>, colores especiales y configuración de cintas reflectantes según los requerimientos de cada corporación." },
-  { pregunta: "¿Cuánto cuesta equipar un bombero completo?", respuesta: "El costo depende del nivel de equipo. Un <strong>ensemble básico</strong> (traje + casco + guantes + botas + capucha) parte desde rangos que varían según marca y certificación. El <strong>ERA</strong> se cotiza aparte por la complejidad del equipo. Escríbenos por WhatsApp con la cantidad de bomberos a equipar y el tipo de operación — te damos una cotización detallada con opciones por rango de presupuesto." },
-];
+// ── Schema: ItemList — 5 categorías de equipo ─────────────
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Equipo profesional para bomberos certificado NFPA — Proyecto Red",
+  "description": "Catálogo de equipo para bomberos y brigadas certificado NFPA: trajes estructurales NFPA 1971, ERA SCBA NIOSH, complementos de uniforme, herramientas de rescate y arneses NFPA 1983.",
+  "url": pageUrl,
+  "numberOfItems": 5,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Trajes Estructurales NFPA 1971",
+      "description": "Protección multicapa contra temperaturas extremas y llamas directas. Fabricados en Nomex, PBI y Kevlar. Chaquetón + pantalón con tirantes. Tallas S–4XL y sobre medida disponible.",
+      "url": `${siteUrl}/equipo-bomberos/trajes/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Complementos de Uniforme",
+      "description": "Cascos NFPA 1971 con visor, guantes térmicos, botas certificadas, capuchas Nomex y gogles anti-flash. Cada pieza diseñada para el ensemble completo de protección estructural.",
+      "url": `${siteUrl}/equipo-bomberos/complementos/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ERA — Respiración Autónoma (SCBA)",
+      "description": "Equipos SCBA certificados NIOSH con cilindros de 30, 45 y 60 minutos, máscaras panorámicas y alarma PASS integrada. Para atmósferas con humo, gases tóxicos o deficiencia de oxígeno.",
+      "url": `${siteUrl}/equipo-bomberos/respiracion-autonoma/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Herramientas de Rescate",
+      "description": "Quijadas de vida, hachas, halligans, cortadores hidráulicos y herramientas manuales, neumáticas y eléctricas. Para rescate vehicular, estructural y en espacios confinados.",
+      "url": `${siteUrl}/equipo-bomberos/herramientas/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Arneses de Rescate NFPA 1983",
+      "description": "Arneses clase II y III certificados NFPA 1983 para trabajo en altura, rescate vertical y evacuación. Con puntos de anclaje dorsal y pectoral, hasta 140 kg en caída libre.",
+      "url": `${siteUrl}/equipo-bomberos/arneses/`
+    }
+  ]
+}
+
+// ── Schema: FAQPage ────────────────────────────────────────
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué certificaciones debe tener un traje de bombero?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un traje para combate estructural debe cumplir con la NFPA 1971, que exige tres capas: capa exterior resistente al fuego, barrera contra humedad y barrera térmica. Para bomberos forestales aplica la NFPA 1977. Para materiales peligrosos, la NFPA 1991 o 1992 según el nivel. Todos los trajes que vendemos incluyen certificación original del fabricante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto dura un traje de bombero y cuándo hay que reemplazarlo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La NFPA 1851 establece una vida útil máxima de 10 años desde la fecha de fabricación. Requiere inspecciones visuales post-uso, limpiezas avanzadas semestrales e inspecciones técnicas anuales. Un traje que supera los 10 años debe retirarse del servicio independientemente de su estado aparente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el ERA y por qué es obligatorio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ERA (Equipo de Respiración Autónoma, SCBA en inglés) es un sistema portátil de aire comprimido con máscara panorámica y regulador NIOSH que permite respirar en atmósferas contaminadas. Es obligatorio en cualquier entrada a estructura en llamas — el humo de un incendio estructural contiene más de 100 compuestos tóxicos que incapacitan en segundos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Venden equipo para brigadas industriales además de cuerpos de bomberos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Equipamos tanto cuerpos de bomberos profesionales como brigadas industriales de plantas petroleras, petroquímicas, farmacéuticas y de manufactura. Ayudamos a definir el equipo correcto según el análisis de riesgo y las normas STPS aplicables a cada sector."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Manejan trajes sobre medida y con bordado institucional?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Además de tallas estándar S a 4XL, gestionamos trajes sobre medida con el fabricante, incluyendo bordado institucional con nombre, número o escudo de la corporación, colores especiales y configuración de cintas reflectantes según los requerimientos de cada corporación."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta equipar a un bombero completo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El costo depende del nivel de equipo y las marcas seleccionadas. Un ensemble básico certificado (traje + casco + guantes + botas + capucha) tiene rangos que varían según marca y especificaciones. El ERA se cotiza aparte. Escríbenos con la cantidad de personal, el tipo de operación y el presupuesto disponible para opciones reales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacen mantenimiento e inspección del equipo existente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Realizamos inspecciones técnicas anuales conforme a NFPA 1851 para trajes y NFPA 1981 para ERA. El servicio incluye inspección de costuras, membranas y capas del traje, verificación de máscara y cilindro, y emitimos un reporte técnico útil para el expediente de la corporación."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona la prueba hidrostática para los cilindros del ERA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los cilindros ERA deben someterse a prueba hidrostática periódica: cada 5 años para cilindros de acero y aluminio, cada 3 años para fibra de carbono. La prueba verifica la integridad estructural bajo presión controlada. Un cilindro fuera de fecha no debe llenarse — representa riesgo de explosión."
+      }
+    }
+  ]
+}
+
+// ── Schema: BreadcrumbList ─────────────────────────────────
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": `${siteUrl}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Productos",
+      "item": `${siteUrl}/productos/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Equipo para Bomberos",
+      "item": pageUrl
+    }
+  ]
+}
+
+// ── Schema: CollectionPage (WebPage) ──────────────────────
+const schemaWebPage = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Equipo para Bomberos Certificado NFPA en México — Trajes, ERA y Rescate | Proyecto Red",
+  "description": "Catálogo de equipo profesional para bomberos y brigadas certificado NFPA: trajes estructurales NFPA 1971, ERA SCBA NIOSH, complementos de uniforme, herramientas de rescate y arneses NFPA 1983. Proveedor directo en CDMX.",
+  "url": pageUrl,
+  "image": ogImage,
+  "inLanguage": "es-MX",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Proyecto Red",
+    "url": siteUrl
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+      { "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteUrl}/productos/` },
+      { "@type": "ListItem", "position": 3, "name": "Equipo para Bomberos", "item": pageUrl }
+    ]
+  },
+  "mainEntity": {
+    "@id": pageUrl + "#itemlist"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Proyecto Red",
+    "url": siteUrl,
+    "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
+    "telephone": `+52${CONTACT.phoneRaw}`,
+    "email": CONTACT.email
+  }
+}
 ---
 
 <Base
-  title={title}
-  description={description}
+  title="Equipo para Bomberos Certificado NFPA en México — Trajes, ERA y Rescate | Proyecto Red"
+  description="Catálogo de equipo profesional para bomberos y brigadas certificado NFPA: trajes estructurales NFPA 1971, ERA SCBA NIOSH, complementos, herramientas de rescate y arneses. Proveedor directo en CDMX. Asesoría técnica gratuita."
+  canonical={pageUrl}
+  ogImage={ogImage}
 >
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          {breadcrumbs.map((b, i) => (
-            <>
-              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-              {b.href
-                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
-                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-              }
-            </>
-          ))}
-        </nav>
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Certificación NFPA · Proveedor directo
-        </div>
-        <h1>Equipo para <span class="h1-accent">Bomberos</span><br>Certificado NFPA</h1>
-        <p class="hero-sub">
-          Tu brigada tiene trajes sin inspección NFPA 1851, el ERA lleva años sin prueba hidrostática y las herramientas no son certificadas — en una operación real eso pone vidas en riesgo. Ensemble completo desde $18,000 MXN. Certificaciones NFPA originales incluidas.
-        </p>
-        <div class="hero-ctas">
-          <a
-            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipo%20para%20bomberos`}
-            class="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Cotizar equipo
-          </a>
-          <a href="#catalogo" class="btn-secondary">Ver categorías</a>
-        </div>
-      </div>
+  <!-- ── Secciones ──────────────────────────────────────────── -->
 
-      <div class="hero-right">
-        <p>La vida de un bombero depende del equipo que porta. Un traje NFPA 1971 con las tres capas de protección correctas, un ERA con cilindro y máscara verificados, herramientas de rescate que no fallen a mitad de operación — cada componente tiene que funcionar cuando más importa. Proyecto Red es proveedor directo de equipo profesional para bomberos en México.</p>
-        <p>Trabajamos con cuerpos de bomberos municipales, brigadas industriales de empresas petroleras y petroquímicas, equipos de Protección Civil y cualquier organización que necesite equipar personal de respuesta a emergencias. Asesoría técnica para elegir el equipo correcto según tu tipo de riesgo, presupuesto y normativa aplicable.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Barra de migas de pan -->
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos/' },
+    { label: 'Equipo para Bomberos' }
+  ]} />
 
+  <HeroBomberos />
   <CtaBar />
+  <CatalogoBomberos />
+  <GuiaBomberos />
+  <TrustIndex />
+  <NormasBomberos />
+  <FaqBomberos />
+  <CTAFinalIndex />
 
-  <!-- ══════════════════════════════════════
-       CATÁLOGO — cat-header + productos-grid
-  ══════════════════════════════════════ -->
-  <section class="cat-section cat-section--white" id="catalogo">
-    <div class="container">
-
-      <div class="cat-header">
-        <div class="cat-header__img-wrap">
-          <img src="/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg" alt="Equipo profesional para bomberos certificado NFPA" loading="eager" width="640" height="400" />
-          <div class="cat-header__img-overlay"></div>
-          <div class="cat-header__img-content">
-            <span class="cat-norm-badge">NFPA 1971</span>
-            <h2>Equipo Profesional para Bomberos</h2>
-          </div>
-        </div>
-
-        <div class="cat-header__info">
-          <div class="cat-header__meta">
-            <span class="section-label">Catálogo de equipo</span>
-            <span class="cat-badge-pill">Certificado NFPA</span>
-          </div>
-          <h2 class="cat-header__title">Protección Certificada para Quienes Arriesgan su Vida</h2>
-          <p class="cat-header__desc">Cada pieza de equipo ha sido seleccionada por su rendimiento comprobado en condiciones reales de emergencia. Materiales de última generación: Nomex, PBI, Kevlar y Crosstech. Certificaciones originales del fabricante incluidas.</p>
-          <div class="normas-row">
-            <span class="norma-tag">NFPA 1971</span>
-            <span class="norma-tag">NFPA 1851</span>
-            <span class="norma-tag">NFPA 1981</span>
-            <span class="norma-tag">NIOSH</span>
-          </div>
-          <div class="cat-header__ctas">
-            <a href="/productos/" class="btn-outline">Ver catálogo completo</a>
-            <a
-              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20equipo%20de%20bomberos`}
-              class="cat-wa-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Asesoría técnica por WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grid de productos — 4 columnas -->
-      <div class="productos-grid">
-        {productos.map(p => (
-          <a href={p.href} class="prod-card" aria-label={p.nombre}>
-            <div class="prod-card__top">
-              {p.badge && <span class="prod-badge">{p.badge}</span>}
-              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
-            </div>
-            <div class="prod-card__body">
-              <h3 class="prod-card__name">{p.nombre}</h3>
-              <p class="prod-card__sub">{p.desc}</p>
-              <p class="prod-card__specs">{p.specs}</p>
-            </div>
-            <div class="prod-card__footer">
-              <span class="prod-card__link">
-                Ver detalles y cotizar
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-
-        <!-- Card CTA WhatsApp -->
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipo%20para%20bomberos`}
-          class="prod-card prod-card--cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Cotizar equipo para bomberos"
-        >
-          <div class="prod-card-cta__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </div>
-          <p class="prod-card-cta__text">¿Necesitas equipar una brigada completa?</p>
-          <p class="prod-card-cta__sub">Cotizamos lotes con documentación para licitaciones</p>
-          <span class="prod-card-cta__btn">Cotizar por WhatsApp →</span>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       GUÍA POR TIPO DE OPERACIÓN
-  ══════════════════════════════════════ -->
-  <section class="cat-section cat-section--gray">
-    <div class="container">
-
-      <div class="cat-header">
-        <div class="cat-header__img-wrap">
-          <img src="/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg" alt="Bomberos equipados con trajes NFPA en operación de rescate" loading="lazy" width="640" height="400" />
-          <div class="cat-header__img-overlay"></div>
-          <div class="cat-header__img-content">
-            <span class="cat-norm-badge">Por tipo de operación</span>
-            <h2>¿Qué Equipo Necesitas?</h2>
-          </div>
-        </div>
-
-        <div class="cat-header__info">
-          <div class="cat-header__meta">
-            <span class="section-label">Guía de equipo</span>
-            <span class="cat-badge-pill">NFPA por operación</span>
-          </div>
-          <h2 class="cat-header__title">El Equipo Correcto Depende de la Operación</h2>
-          <p class="cat-header__desc">Un traje estructural NFPA 1971 no es el mismo que un traje HAZMAT NFPA 1991. Un arnés de construcción no es un arnés de rescate NFPA 1983. Identifica tu tipo de operación para saber exactamente qué necesitas.</p>
-          <div class="cat-header__ctas">
-            <a href="/servicios/#asesoria-tecnica" class="btn-outline">Solicitar asesoría técnica</a>
-            <a
-              href={`${WA_URL}?text=Hola%2C%20necesito%20asesor%C3%ADa%20t%C3%A9cnica%20para%20equipo%20de%20emergencia`}
-              class="cat-wa-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Hablar con un asesor
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grid de guía por tipo de operación -->
-      <div class="productos-grid">
-        {guia.map(g => (
-          <a href={g.href} class="prod-card" target="_blank" rel="noopener noreferrer" aria-label={g.tipo}>
-            <div class="prod-card__top">
-              <span class="prod-badge prod-badge--norm">{g.norma}</span>
-            </div>
-            <div class="prod-card__body">
-              <h3 class="prod-card__name">{g.tipo}</h3>
-              <p class="prod-card__sub"><strong>Necesitas:</strong> {g.necesitas}</p>
-              <p class="prod-card__specs">{g.porque}</p>
-            </div>
-            <div class="prod-card__footer">
-              <span class="prod-card__link">
-                Cotizar para esta operación
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       FAQ + COTIZACIÓN
-  ══════════════════════════════════════ -->
-  <FaqCotizacion
-    titulo="Preguntas Frecuentes sobre Equipo para Bomberos"
-    subtitulo="Lo que debes saber antes de equipar a tu brigada o cuerpo de bomberos"
-    pageId="equipo-bomberos"
-    bgGray={false}
-    faqs={faqsBomberos}
-  />
-
-  <!-- ══════════════════════════════════════
-       CTA FINAL
-  ══════════════════════════════════════ -->
-  <section class="cta-final" aria-labelledby="cta-final-title">
-    <div class="container cta-final-inner">
-      <div class="cta-text">
-        <h2 id="cta-final-title">¿Necesitas equipar bomberos o brigadas de emergencia?</h2>
-        <p>Mándanos la lista de equipo que necesitas o dinos cuántos elementos vas a equipar. Te armamos una cotización detallada con opciones por nivel de certificación y presupuesto.</p>
-      </div>
-      <div class="cta-btns">
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20equipo%20profesional%20para%20bomberos`}
-          class="btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Cotizar por WhatsApp
-        </a>
-        <a href="/productos/" class="btn-cta-ghost">Ver catálogo completo</a>
-      </div>
-    </div>
-  </section>
+  <!-- ── Datos estructurados JSON-LD ────────────────────────
+       Inyectados al final del <body> para no bloquear render
+  ──────────────────────────────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaWebPage)} />
 
 </Base>
-
-<style>
-  .prod-card__specs {
-    font-size: 0.75rem;
-    color: var(--c-primary);
-    font-weight: 600;
-    margin-top: 0.5rem;
-    letter-spacing: 0.02em;
-    opacity: 0.85;
-  }
-  .prod-badge--norm {
-    background: var(--c-primary-light, #fee2e2);
-    color: var(--c-primary);
-    font-size: 0.65rem;
-    letter-spacing: 0.04em;
-    white-space: normal;
-    line-height: 1.3;
-  }
-</style>

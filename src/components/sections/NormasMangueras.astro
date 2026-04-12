@@ -1,0 +1,113 @@
+---
+/**
+ * NormasMangueras.astro — v1
+ * Cards de normas para mangueras y herrajes contra incendio.
+ * Patrón 100% homologado con NormasGabinetes / NormasSenalamientos.
+ * Usa SectionHeaderDuo + .norma-card global (pages.css).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NFPA 1961',
+    tipo: 'Mangueras',
+    alcance: 'Estándar para mangueras de ataque contra incendio — materiales, construcción, presión de prueba y marcado. Define los requisitos mínimos para mangueras de 1.5", 2.5" y 4".',
+    aplica: 'Todo sistema hidráulico contra incendio con mangueras en edificios, plantas y naves. Las mangueras certificadas NFPA 1961 son las únicas aceptadas por cuerpos de bomberos y para expedientes de Protección Civil.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22V12m0 0c0-4-4-8-4-8s4 1 4 8zm0 0c0-4 4-8 4-8s-4 1-4 8z"/><path d="M5 12H2M22 12h-3"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1962',
+    tipo: 'Mantenimiento',
+    alcance: 'Cuidado, uso, inspección, prueba y puesta fuera de servicio de mangueras contra incendio. Exige prueba hidrostática anual a la presión de servicio para verificar integridad.',
+    aplica: 'Propietarios e instaladores de sistemas con mangueras. Una manguera que falla la prueba se retira de servicio inmediatamente. Ofrecemos prueba hidrostática en instalaciones con certificado de conformidad.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1964',
+    tipo: 'Chiflones',
+    alcance: 'Sprinklers, chiflones y boquillas — especificaciones de descarga, compatibilidad con diámetros de manguera y patrones de flujo. Define combinación chorro/niebla para brigadas.',
+    aplica: 'Selección de chiflones para cada tipo de sistema. El chiflón incorrecto puede resultar en presión insuficiente o patrón inadecuado. Verificamos compatibilidad con la presión de tu red hidráulica.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+  },
+  {
+    norma: 'NFPA 14',
+    tipo: 'Sistemas standpipe',
+    alcance: 'Instalación de sistemas de tuberías verticales y mangueras — diseño, materiales, ubicación de tomas, tipo de mangueras y herrajes requeridos en edificios con red hidráulica.',
+    aplica: 'Edificios de más de 5 pisos o 15 metros de altura. Define el gabinete con manguera por piso, la válvula angular, la toma siamesa en fachada y el carrete o porta manguera requerido.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`,
+  },
+  {
+    norma: 'NFPA 24',
+    tipo: 'Redes externas',
+    alcance: 'Instalación de tuberías privadas de servicio a hidrantes — diseño de la red exterior que alimenta el sistema de hidrantes y la toma siamesa del edificio.',
+    aplica: 'Naves industriales, plantas y complejos con red hidráulica subterránea o exterior. Define materiales, prueba de la red y conexión a la red municipal o cisterna privada.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  },
+  {
+    norma: 'NOM-002-STPS',
+    tipo: 'Prevención',
+    alcance: 'Condiciones de seguridad — prevención y protección contra incendios en centros de trabajo. Exige que los sistemas de hidrantes estén operables, accesibles y con los componentes en buen estado.',
+    aplica: 'Todo centro de trabajo con sistema hidráulico. La STPS verifica en auditorías que mangueras, chiflones y válvulas estén en condición de uso. Un sistema con componentes deteriorados genera observación.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+]
+---
+
+<section class="normas-man" id="normas-mangueras" aria-labelledby="normas-man-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="normas-man-heading"
+      eyebrow="Marco normativo NFPA"
+      titleLine1="Normas que Rigen"
+      titleLine2="Mangueras y Sistemas Hidráulicos"
+      desc="NFPA 1961, 1962, 1964, 14 y 24 definen cada componente del sistema — desde la manguera hasta la toma siamesa."
+      bodyPara1="Los sistemas hidráulicos contra incendio están regidos principalmente por normas NFPA internacionales, no solo por NOM. En México, Protección Civil y los cuerpos de bomberos municipales exigen cumplimiento con NFPA 14 en edificios y con NFPA 1961 para la certificación de las mangueras. El incumplimiento no solo resulta en observaciones — un sistema no certificado puede fallar justo cuando más se necesita."
+    />
+
+    <div class="normas-man-grid" role="list" aria-label="Normas aplicables a mangueras contra incendio">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" aria-hidden="true" set:html={n.icon} />
+            <div>
+              <span class="norma-card__codigo">{n.norma}</span>
+              <span class="norma-tipo">{n.tipo}</span>
+            </div>
+          </div>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-card__aplica-label">Aplica en</span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <svg class="normas-nota__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="normas-nota__text">
+        <strong>¿Prueba hidrostática anual de tu sistema?</strong> NFPA 1962 exige prueba anual de cada manguera. Ofrecemos servicio de prueba en tus instalaciones con certificado de conformidad válido para expedientes de Protección Civil y STPS.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-man {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-man-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 1024px) { .normas-man-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .normas-man-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,136 @@
+---
+/**
+ * HeroBlog.astro
+ * Hero de la página de blog — mismo patrón visual que HeroProductos.
+ * Izq: badge + H1 + subtítulo + CTAs / Der: párrafos descriptivos.
+ */
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('blog')
+const totalArticulos = posts.length
+---
+
+<section class="hero-blog" aria-label="Blog de seguridad contra incendios">
+  <div class="container hero-blog__grid">
+
+    <!-- ── Columna izquierda ── -->
+    <div class="hero-blog__left">
+
+      <div class="hero-badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        Guías técnicas y normativas
+      </div>
+
+      <h1 class="hero-blog__h1">
+        Blog de Seguridad<br>
+        Contra <span class="h1-accent">Incendios</span>
+      </h1>
+
+      <p class="hero-blog__sub">
+        {totalArticulos} artículos técnicos sobre normativa mexicana, selección de equipo,
+        mantenimiento preventivo y cumplimiento ante Protección Civil y STPS.
+      </p>
+
+    </div>
+
+    <!-- ── Columna derecha: dos párrafos ── -->
+    <div class="hero-blog__right">
+      <p>
+        En Proyecto Red creamos contenido técnico real — no relleno genérico. Cada artículo
+        responde preguntas que nuestros clientes nos hacen todos los días: qué extintor necesitan,
+        qué exige Protección Civil, cómo pasar una auditoría STPS o qué norma aplica a su giro.
+      </p>
+      <p>
+        Si después de leer tienes dudas, escríbenos por WhatsApp. Nuestro equipo técnico te
+        asesora sin costo sobre el equipo y los servicios que tu empresa necesita.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── HERO BLOG ─────────────────────────────────── */
+  .hero-blog {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      radial-gradient(ellipse 55% 65% at 75% 50%, rgba(196,30,36,.13) 0%, transparent 65%),
+      linear-gradient(160deg, #0A0A0A 0%, #160A0A 50%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-blog::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .hero-blog__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-blog__h1 {
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-blog__sub {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.65;
+    max-width: 50ch;
+    margin-bottom: 2rem;
+  }
+
+  .hero-blog__ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-blog__right p {
+    color: rgba(255,255,255,.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .hero-blog__right p:last-child { margin-bottom: 0; }
+
+  /* ── RESPONSIVE ────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .hero-blog__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-blog { padding-top: 3rem; }
+    .hero-blog__right { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-blog { padding-bottom: 3rem; }
+  }
+</style>

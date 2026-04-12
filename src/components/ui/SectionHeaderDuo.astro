@@ -4,6 +4,7 @@
 // CSS en: src/styles/components.css (.titulo-duo)
 
 interface Props {
+  id?: string
   eyebrow?: string
   titleLine1: string
   titleLine2?: string
@@ -13,7 +14,7 @@ interface Props {
   dark?: boolean
 }
 
-const { eyebrow, titleLine1, titleLine2, desc, bodyPara1, bodyPara2, dark = false } = Astro.props
+const { id, eyebrow, titleLine1, titleLine2, desc, bodyPara1, bodyPara2, dark = false } = Astro.props
 ---
 
 <header class:list={['titulo-duo', { 'titulo-duo--dark': dark }]}>
@@ -25,7 +26,7 @@ const { eyebrow, titleLine1, titleLine2, desc, bodyPara1, bodyPara2, dark = fals
         {eyebrow}
       </p>
     )}
-    <h2 class="titulo-duo__title">
+    <h2 class="titulo-duo__title" id={id}>
       {titleLine1}
       {titleLine2 && (
         <>

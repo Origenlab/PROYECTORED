@@ -1,0 +1,52 @@
+---
+/**
+ * FaqEmpresas.astro
+ * FAQ + Cotización específica de cobertura y entregas.
+ * Wrapper de FaqCotizacion con preguntas de cobertura.
+ * Mismo patrón que FaqCotizacionIndex pero con FAQs de zona.
+ */
+import FaqCotizacion from '../FaqCotizacion.astro'
+
+const faqsCobertura = [
+  {
+    pregunta: '¿Entregan equipos contra incendios el mismo día en CDMX?',
+    respuesta: 'Sí. Pedidos confirmados <strong>antes de las 2 PM</strong> se entregan el mismo día en toda la Ciudad de México (16 alcaldías). Para el Estado de México, la entrega es en <strong>24-48 horas</strong> dependiendo del municipio. Todo con logística propia — sin depender de paqueterías.',
+  },
+  {
+    pregunta: '¿Tienen cobertura en todo el Estado de México?',
+    respuesta: 'Cubrimos directamente los municipios más industrializados: <strong>Naucalpan, Tlalnepantla, Ecatepec, Cuautitlán Izcalli, Toluca, Lerma, Atizapán, Texcoco y Huixquilucan</strong>. Para municipios fuera de esta lista coordinamos la entrega en la cotización — normalmente 48-72 horas.',
+  },
+  {
+    pregunta: '¿Hacen envíos a otros estados fuera de CDMX y EDOMEX?',
+    respuesta: 'Sí. Enviamos a <strong>Querétaro, Puebla, Aguascalientes, Baja California</strong> y al resto de la república para pedidos de volumen. Coordinamos logística con paqueterías certificadas (DHL, Estafeta, FedEx) e incluimos el costo de flete en la cotización. Para proyectos grandes podemos desplazar equipos de instalación.',
+  },
+  {
+    pregunta: '¿El equipo llega con documentación NOM completa?',
+    respuesta: 'Siempre. Todo equipo se entrega con <strong>ficha técnica, certificado de conformidad NOM, etiqueta de inspección</strong> y cualquier documentación adicional que tu expediente de Protección Civil requiera. No importa si la entrega es en CDMX o en Baja California — la documentación es la misma.',
+  },
+  {
+    pregunta: '¿Ofrecen instalación y capacitación fuera de CDMX?',
+    respuesta: 'Para <strong>CDMX y Estado de México</strong> incluimos instalación y capacitación presencial. Para otros estados lo evaluamos por proyecto: en pedidos de cierto volumen podemos desplazar un equipo técnico para instalación de sistemas CI, señalización y capacitación con constancias DC-3.',
+  },
+  {
+    pregunta: '¿Manejan inventario en otras ciudades o solo en CDMX?',
+    respuesta: 'Nuestro almacén y centro de operaciones están en la <strong>Ciudad de México</strong>. Todo se despacha desde aquí. Esto nos permite tener inventario permanente de más de 50 productos y garantizar disponibilidad inmediata para la zona metropolitana. Para otros estados coordinamos la logística según el volumen.',
+  },
+  {
+    pregunta: '¿Tienen precios diferentes según la zona de entrega?',
+    respuesta: 'El <strong>precio del equipo es el mismo</strong> sin importar el destino. Lo que varía es el costo de flete para envíos fuera de la zona metropolitana. En CDMX y EDOMEX la entrega es gratuita a partir de cierto monto. Te desglosamos el flete en la cotización para que no haya sorpresas.',
+  },
+  {
+    pregunta: '¿Pueden ser nuestro proveedor fijo para múltiples sucursales en diferentes estados?',
+    respuesta: 'Sí. Trabajamos con empresas que tienen <strong>sucursales en varios estados</strong> y necesitan un solo proveedor para todo. Ofrecemos facturación consolidada, entregas programadas por sucursal, precios preferenciales por volumen y un contacto único para todas tus ubicaciones.',
+  },
+]
+---
+
+<FaqCotizacion
+  titulo="Preguntas Frecuentes sobre Entrega y Cobertura"
+  subtitulo="Todo lo que necesitas saber sobre tiempos de entrega, zonas de cobertura y logística"
+  pageId="cobertura"
+  bgGray={true}
+  faqs={faqsCobertura}
+/>

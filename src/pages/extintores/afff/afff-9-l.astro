@@ -1,0 +1,553 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const seo = {
+  title: "Extintor AFFF 9 Litros — Espuma para Líquidos Inflamables | Proyecto Red",
+  description: "Extintor AFFF 9 L de espuma filmógena para gasolina, aceites y solventes. Clase B. Certif. NOM-154-SCFI. Para talleres, gasolineras y plantas. Entrega CDMX.",
+};
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "AFFF — Espuma", href: "/extintores/afff/" },
+  { label: "AFFF 9 Litros" },
+];
+
+const heroStats = [
+  { valor: "9 L",    label: "Capacidad" },
+  { valor: "A · B", label: "Clases de fuego" },
+  { valor: "3–6 m",  label: "Alcance" },
+];
+
+const specs = [
+  { label: "Agente extintor",       value: "Espuma AFFF al 3–6% (Aqueous Film Forming Foam)" },
+  { label: "Capacidad nominal",     value: "9 litros de solución" },
+  { label: "Clases de fuego",       value: "A (sólidos) · B (líquidos inflamables)" },
+  { label: "Mecanismo de acción",   value: "Película filmógena + enfriamiento dual" },
+  { label: "Tiempo de descarga",    value: "~8 segundos" },
+  { label: "Alcance de descarga",   value: "3–6 metros" },
+  { label: "Presión de trabajo",    value: "100 PSI (6.9 bar) — presión permanente" },
+  { label: "Gas propelente",        value: "Nitrógeno seco (N₂)" },
+  { label: "Temperatura operación", value: "+4 °C a +50 °C" },
+  { label: "Boquilla",              value: "Lanza atomizadora con válvula de corte" },
+  { label: "Manguera",              value: "Incluida — manguera reforzada flexible" },
+  { label: "Altura del cilindro",   value: "~60 cm" },
+  { label: "Peso total cargado",    value: "~12.5 kg" },
+  { label: "Material cilindro",     value: "Acero al carbón, pintura electrostática roja" },
+  { label: "Certificación",         value: "NOM-154-SCFI · NFPA 10 · UL 8" },
+  { label: "Incluye",               value: "Lanza, manguera, soporte de pared, etiqueta, collar de garantía" },
+  { label: "Vida útil cilindro",    value: "20 años (prueba hidrostática c/5)" },
+  { label: "Mantenimiento",         value: "Anual NOM-154-SCFI — inspección de solución y concentración" },
+];
+
+const caracteristicas = [
+  "Película filmógena que sella derrames y previene re-ignición",
+  "Doble acción: sofoca y enfría simultáneamente",
+  "Lanza atomizadora con válvula de corte para descarga controlada",
+  "Collar de garantía NOM-154-SCFI con fecha de próximo servicio",
+];
+
+const aplicaciones = [
+  "Estaciones de servicio y gasolineras",
+  "Talleres mecánicos y de hojalatería",
+  "Plantas químicas y farmacéuticas",
+  "Bodegas con aceites lubricantes o solventes",
+  "Plantas de pintura y acabados industriales",
+  "Helipuertos y zonas de aviación privada",
+];
+
+const categoriasNav = [
+  { label: "AFFF 9 L — Portátil",     href: "/extintores/afff/afff-9-l/", active: true },
+  { label: "AFFF 20 L — Carretilla",  href: "/extintores/afff/afff-20-l/" },
+  { label: "AFFF 50 L — Industrial",  href: "/extintores/afff/afff-50-l/" },
+];
+
+const productosRelacionados = [
+  { nombre: "AFFF 20 L — Carretilla", href: "/extintores/afff/afff-20-l/" },
+  { nombre: "AFFF 50 L — Industrial", href: "/extintores/afff/afff-50-l/" },
+  { nombre: "PQS 6 kg — Talleres",    href: "/extintores/polvo-seco/pqs-6-kg/" },
+  { nombre: "CO₂ 5 kg — Cuartos eléctricos", href: "/extintores/co2/co2-5-kg/" },
+];
+
+const otrosProductos = [
+  {
+    nombre: "AFFF 20 L — Carretilla",
+    desc: "Para estaciones de servicio y plantas químicas de mediano volumen. Sobre carretilla de acero para movilidad.",
+    specs: ["20 L", "~12 s", "4–6 m"],
+    href: "/extintores/afff/afff-20-l/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "AFFF 50 L — Industrial",
+    desc: "Para plantas petroquímicas y parques de almacenamiento de combustible. Máxima capacidad portátil.",
+    specs: ["50 L", "~18 s", "5–8 m"],
+    href: "/extintores/afff/afff-50-l/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "PQS 6 kg — Talleres",
+    desc: "Complemento clase A·B·C para las áreas del taller sin riesgo de derrame de combustible.",
+    specs: ["6 kg", "A·B·C", "NOM-154"],
+    href: "/extintores/polvo-seco/pqs-6-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "CO₂ 5 kg — Cuartos eléctricos",
+    desc: "Para tableros y cuartos eléctricos dentro del taller o planta. Sin residuo, sin daño al equipo.",
+    specs: ["5 kg", "B·C", "0 residuo"],
+    href: "/extintores/co2/co2-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1",
+  },
+];
+
+const faqs = [
+  {
+    pregunta: "¿Qué diferencia hay entre AFFF y espuma AR-AFFF?",
+    respuesta: "El AFFF estándar es eficaz en <strong>hidrocarburos</strong> (gasolina, diésel, aceites minerales). El <strong>AR-AFFF</strong> (Alcohol Resistant) agrega un polímero que también lo hace eficaz en <strong>solventes polares</strong> como alcoholes, cetonas y ésteres — los cuales disuelven la película del AFFF normal. Si tu instalación maneja alcoholes o solventes polares, debes especificar AR-AFFF al cotizar.",
+  },
+  {
+    pregunta: "¿El AFFF daña el medioambiente?",
+    respuesta: "Los AFFF tradicionales contienen <strong>PFAS</strong> (sustancias per y polifluoroalquiladas) que persisten en el ambiente. A nivel mundial se están sustituyendo por formulaciones <strong>fluorine-free (FFFP)</strong>. En Proyecto Red ofrecemos ambas opciones — si tienes restricciones ambientales, certificación ISO 14001 o políticas de sustentabilidad, cotizamos la versión libre de fluorine sin costo adicional en asesoría.",
+  },
+  {
+    pregunta: "¿El AFFF sirve para fuegos eléctricos?",
+    respuesta: "No. La espuma AFFF <strong>contiene agua y conduce electricidad</strong>. Nunca debe aplicarse sobre equipos eléctricos energizados. Si hay un fuego con componente eléctrico (clase C), usa primero CO₂ o agente limpio para apagar el fuego eléctrico, luego puedes aplicar AFFF sobre el derrame de combustible si persiste.",
+  },
+  {
+    pregunta: "¿Cómo se aplica correctamente la espuma AFFF?",
+    respuesta: "La técnica correcta es <strong>no apuntar directamente sobre el líquido</strong> en llamas — esto dispersa el derrame y extiende el fuego. Se dirige la lanza contra una pared o superficie adyacente para que la espuma caiga suavemente formando la película. En derrames al aire libre se aplica desde el borde más cercano barriendo hacia el opuesto.",
+  },
+  {
+    pregunta: "¿Qué capacidad de AFFF necesito en mi estación de servicio?",
+    respuesta: "La distribución estándar para una gasolinera es: <strong>al menos 2 extintores de 9 litros por isla de despacho</strong>, más uno de 20 litros en el área de compresores y toma de combustible. La distribución exacta depende del layout, número de pistolas y volumen de despacho. Te hacemos el levantamiento sin costo.",
+  },
+  {
+    pregunta: "¿Proyecto Red recarga y mantiene extintores AFFF?",
+    respuesta: "Sí. Recargamos extintores AFFF de cualquier marca. El mantenimiento anual incluye verificación de la <strong>concentración de la solución</strong>, inspección de la lanza y manguera, revisión del manómetro y collar de garantía con reporte para auditorías. La solución AFFF puede degradarse — la NOM-154-SCFI exige revisión anual obligatoria.",
+  },
+];
+---
+<Base title={seo.title} description={seo.description}>
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Espuma Filmógena · Clase A y B · NOM-154-SCFI
+        </div>
+        <h1>Extintor AFFF<br><span class="h1-accent">9 Litros</span></h1>
+        <p class="hero-sub">
+          Extintor de espuma AFFF portátil de 9 litros. Forma una película filmógena sobre el combustible que sella los vapores y previene la re-ignición — el estándar para gasolina, aceites, solventes y cualquier líquido inflamable clase B. Alcance de 3 a 6 metros.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20AFFF%20de%209%20litros`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Cotización
+          </a>
+          <a href="/extintores/afff/" class="btn-secondary">Ver Catálogo AFFF</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p>El extintor AFFF de 9 litros es el más solicitado para operación manual en talleres mecánicos, gasolineras y áreas con riesgo de derrame de combustible. Portátil y de fácil transporte entre ubicaciones.</p>
+        <p>La espuma AFFF actúa por doble mecanismo: forma una <strong>película filmógena</strong> sobre la superficie del líquido que sella el vapor combustible y enfría simultáneamente la zona del fuego. Esta doble acción la hace especialmente eficiente contra re-ignición. Cada unidad se entrega con lanza atomizadora, collar de garantía NOM-154-SCFI y documentación para expediente de Protección Civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══ MAIN LAYOUT: 2 COLUMNAS ══ -->
+  <div class="pp-layout container">
+
+    <!-- ─── COLUMNA PRINCIPAL ─── -->
+    <main class="pp-main">
+
+      <!-- Galería de imágenes -->
+      <div class="pp-gallery">
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1" alt="Extintor AFFF 9 litros - Vista frontal con lanza atomizadora" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1" alt="Extintor AFFF 9 litros - Detalle lanza y válvula de corte" width="400" height="300" loading="eager" />
+        </div>
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1" alt="Extintor AFFF 9 litros - Instalación en estación de servicio" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/afff.jpg?strip=all&lossy=1" alt="Extintor AFFF 9 litros - Placa NOM-154-SCFI y collar de garantía" width="400" height="300" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="pp-desc">
+        <p>El extintor AFFF de 9 litros actúa generando una <strong>película acuosa (Aqueous Film Forming Foam)</strong> sobre la superficie del líquido inflamable. Esta película sella los vapores combustibles e impide que alcancen el punto de re-ignición — incluso después de terminada la descarga.</p>
+        <p>La solución AFFF al <strong>3 o 6%</strong> se mezcla con agua y se descarga como espuma expansible a través de la lanza atomizadora con válvula de corte. Actúa eficientemente sobre fuegos clase A (sólidos) y clase B (líquidos inflamables). <strong>No usar en fuegos eléctricos</strong> (clase C).</p>
+        <p><strong>Capacidad:</strong> 9 L. <strong>Clases:</strong> A y B. <strong>Certificación:</strong> NOM-154-SCFI, NFPA 10, UL 8.</p>
+      </div>
+
+      <!-- Especificaciones Técnicas -->
+      <section class="pp-block">
+        <h2>Especificaciones Técnicas</h2>
+        <table class="pp-table">
+          <tbody>
+            {specs.map(s => (
+              <tr>
+                <td class="pp-table__label">{s.label}</td>
+                <td class="pp-table__value">{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Características Destacadas -->
+      <section class="pp-block">
+        <h2>Características Destacadas</h2>
+        <ul class="pp-features">
+          <li><strong>Película filmógena anti-re-ignición</strong> — La capa de espuma sobre el combustible persiste después de la descarga, evitando que los vapores reinicien la combustión. Ventaja clave frente al polvo seco que no previene re-ignición en derrames de combustible.</li>
+          <li><strong>Doble mecanismo de acción — sofoca y enfría</strong> — El sofocamiento por la capa filmógena se combina con el enfriamiento del agua en la solución. Esto lo hace el agente más efectivo para fuegos clase B en derrames controlados.</li>
+          <li><strong>Lanza atomizadora con válvula de corte</strong> — Permite iniciar y detener la descarga sin agotar el agente. La técnica correcta es aplicar en ráfagas cortas sobre la superficie adyacente al derrame para que la espuma caiga suavemente sin dispersar el líquido.</li>
+          <li><strong>Portátil y de fácil reubicación</strong> — Con 12.5 kg de peso total, el modelo de 9 litros es manejable por un solo operador. Ideal para instalaciones donde se necesita mover el extintor entre distintos puntos de riesgo.</li>
+          <li><strong>Documentación completa para expediente</strong> — Cada unidad se entrega con ficha técnica, certificado de conformidad NOM-154-SCFI, collar de garantía y etiqueta de inspección para integrarse al expediente de Protección Civil y STPS.</li>
+        </ul>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="pp-block">
+        <h2>Aplicaciones</h2>
+        <ul class="pp-app-list">
+          <li>Estaciones de servicio y gasolineras (pistas de despacho)</li>
+          <li>Talleres mecánicos, hojalatería y pintura automotriz</li>
+          <li>Plantas químicas y farmacéuticas con solventes</li>
+          <li>Bodegas con aceites lubricantes o combustibles</li>
+          <li>Plantas de pintura y acabados industriales</li>
+          <li>Helipuertos y zonas de aviación ligera o privada</li>
+        </ul>
+      </section>
+
+      <!-- Instalación -->
+      <section class="pp-block">
+        <h2>Instalación y Ubicación</h2>
+        <p>El extintor AFFF de 9 litros se instala en soporte de pared a una altura de <strong>manija entre 1.0 y 1.5 metros</strong> conforme a NOM-002-STPS. En gasolineras: uno en cada extremo de la isla de despacho, a no más de <strong>10 metros del riesgo</strong> que protege. En talleres: en el acceso al área de trabajo, visible y despejado en todo momento.</p>
+        <p>Importante: no instalar en zonas donde la temperatura supere los 50 °C de manera habitual (cerca de fuentes de calor intenso). La solución AFFF puede degradarse a temperaturas extremas. El extintor debe estar <strong>al alcance antes de llegar al fuego</strong>, nunca al fondo del área de riesgo.</p>
+      </section>
+
+      <!-- Normativa -->
+      <section class="pp-block">
+        <h2>Cumplimiento Normativo</h2>
+        <p>Cumple con <strong>NOM-154-SCFI</strong> para mantenimiento y recarga anual. La <strong>NFPA 10</strong> establece la selección, instalación y mantenimiento de extintores portátiles. La <strong>UL 8</strong> certifica extintores de espuma bajo estándares Underwriters Laboratories. La <strong>NOM-002-STPS</strong> regula la prevención y combate de incendios en centros de trabajo. Documentación completa para cumplimiento de Protección Civil y STPS.</p>
+      </section>
+
+      <!-- Specs resumidas bottom -->
+      <section class="pp-block">
+        <h2>Resumen de Especificaciones</h2>
+        <div class="pp-specs-mini">
+          <div class="pp-specs-mini__item"><span>Capacidad</span><span>9 litros</span></div>
+          <div class="pp-specs-mini__item"><span>Clases de fuego</span><span>A · B</span></div>
+          <div class="pp-specs-mini__item"><span>Certificación</span><span>NOM-154-SCFI, NFPA 10</span></div>
+          <div class="pp-specs-mini__item"><span>Descarga</span><span>~8 segundos</span></div>
+          <div class="pp-specs-mini__item"><span>Categoría</span><span>Extintores AFFF Espuma</span></div>
+          <div class="pp-specs-mini__item"><span>Alcance</span><span>3–6 metros</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sb">
+
+      <!-- 1. Navegación de categorías -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Extintores AFFF</h3></div>
+        <nav class="sb__nav" aria-label="Capacidades de extintores AFFF">
+          <ul>
+            {categoriasNav.map(c => (
+              <li><a href={c.href} class={c.active ? 'sb__nav-active' : ''}>{c.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a href="/extintores/afff/" class="sb__back">← Ver todo el catálogo AFFF</a>
+      </div>
+
+      <!-- 2. Cotización Rápida -->
+      <div class="sb__widget sb__widget--cta">
+        <h3>Cotización Rápida</h3>
+        <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
+        <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20AFFF%20de%209%20litros`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
+        <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+
+      <!-- 3. Características Clave -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Características Clave</h3></div>
+        <ul class="sb__checks">
+          {caracteristicas.map(c => (
+            <li><span class="sb__check-icon">✓</span><span>{c}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 4. Certificaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Certificaciones Disponibles</h3></div>
+        <div class="sb__certs">
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-154-SCFI</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-002-STPS</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 10</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">UL</span><span class="sb__cert-name">UL 8 — Foam Extinguishers</span></div>
+        </div>
+      </div>
+
+      <!-- 5. Marcas -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Marcas que Manejamos</h3></div>
+        <ul class="sb__brands">
+          <li>Proyecto Red — Marca propia</li>
+          <li>Extintores certificados NOM</li>
+        </ul>
+        <p class="sb__note">Pregunta por otras marcas</p>
+      </div>
+
+      <!-- 6. Aplicaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Aplicaciones</h3></div>
+        <ul class="sb__app-list">
+          {aplicaciones.map(a => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 7. Productos Relacionados -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Productos Relacionados</h3></div>
+        <ul class="sb__products">
+          {productosRelacionados.map(p => (
+            <li><a href={p.href}>{p.nombre}</a></li>
+          ))}
+          <li><a href="/extintores/tipo-k/">Extintores Tipo K</a></li>
+          <li><a href="/extintores/polvo-seco/">Extintores PQS Polvo Seco</a></li>
+        </ul>
+      </div>
+
+      <!-- 8. Servicios -->
+      <div class="sb__widget sb__widget--services">
+        <div class="sb__header"><h3>Servicios Proyecto Red</h3></div>
+        <p class="sb__services-desc">Complementa tu compra con mantenimiento y capacitación profesional.</p>
+        <ul class="sb__services">
+          <li><a href="/servicios/recarga-extintores/">Recarga de extintores</a></li>
+          <li><a href="/servicios/mantenimiento-preventivo/">Mantenimiento preventivo</a></li>
+          <li><a href="/servicios/prueba-hidrostatica/">Prueba hidrostática</a></li>
+          <li><a href="/servicios/capacitacion-brigadas/">Capacitación DC-3</a></li>
+        </ul>
+        <a href="/servicios/" class="sb__services-link">¿Necesitas más servicios? Ver todos →</a>
+      </div>
+
+    </aside>
+  </div><!-- /pp-layout -->
+
+  <!-- ══ OTROS EXTINTORES AFFF ══ -->
+  <section class="pp-otros">
+    <div class="container">
+      <h2 class="pp-otros__title">Otros Extintores en Nuestra Línea</h2>
+      <p class="pp-otros__sub">Explora más opciones según tu aplicación específica</p>
+      <a href="/extintores/afff/" class="pp-otros__link">Ver todo el catálogo AFFF →</a>
+      <div class="pp-otros__grid">
+        {otrosProductos.map(p => (
+          <a href={p.href} class="pp-otros__card">
+            <div class="pp-otros__img">
+              <img src={p.img} alt={p.nombre} width="400" height="220" loading="lazy" />
+            </div>
+            <div class="pp-otros__body">
+              <h3 class="pp-otros__name">{p.nombre}</h3>
+              <p class="pp-otros__desc">{p.desc}</p>
+              <ul class="pp-otros__specs">
+                {p.specs.map(s => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <span class="pp-otros__cta">
+                {p.nombre.split(' — ')[0]}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COTIZACIÓN ══ -->
+  <section class="pp-cotizar" id="cotizar">
+    <div class="container pp-cotizar__inner">
+      <div class="pp-cotizar__info">
+        <h2>Cotiza Extintor AFFF 9 Litros</h2>
+        <p class="pp-cotizar__sub">Precio y disponibilidad en menos de 24 horas</p>
+        <ul class="pp-cotizar__perks">
+          <li>Asesoría técnica sin costo</li>
+          <li>Entrega el mismo día en CDMX</li>
+          <li>Factura electrónica disponible</li>
+        </ul>
+      </div>
+      <div class="pp-cotizar__form">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20AFFF%209%20litros.%20Mi%20nombre%20es%3A`}
+          class="btn-primary"
+          style="background:#25D366;font-size:0.95rem;padding:0.85rem 1.8rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+        <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
+        <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQs ══ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes"
+    subtitulo="Todo sobre el extintor AFFF de espuma 9 litros"
+    pageId="afff-9-l"
+    bgGray={false}
+    faqs={faqs}
+  />
+
+</Base>
+<style>
+  .pp-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 3rem; align-items: start; }
+  .pp-main { min-width: 0; }
+  .pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.75rem; border-radius: 10px; overflow: hidden; }
+  .pp-gallery__col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-gallery img { width: 100%; height: 200px; object-fit: cover; display: block; background: #f5f5f5; border-radius: 6px; }
+
+  .pp-desc { margin-bottom: 2rem; }
+  .pp-desc p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 0.75rem; }
+  .pp-desc strong { color: #111; }
+
+  .pp-block { margin-bottom: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+  .pp-block:last-child { border-bottom: none; }
+  .pp-block h2 { font-size: 1.15rem; font-weight: 800; color: #111; margin: 0 0 1rem; }
+  .pp-block p { font-size: 0.85rem; color: #555; line-height: 1.65; margin: 0 0 0.5rem; }
+
+  .pp-table { width: 100%; border-collapse: collapse; }
+  .pp-table tr { border-bottom: 1px solid #f0f0f0; }
+  .pp-table td { padding: 0.65rem 0; font-size: 0.82rem; vertical-align: top; }
+  .pp-table__label { color: #888; font-weight: 600; width: 35%; padding-right: 1rem; }
+  .pp-table__value { color: #222; font-weight: 500; }
+
+  .pp-features { list-style: none; padding: 0; margin: 0; }
+  .pp-features li { position: relative; padding: 0.6rem 0 0.6rem 1.5rem; font-size: 0.84rem; color: #444; line-height: 1.55; border-bottom: 1px solid #f5f5f5; }
+  .pp-features li::before { content: "✓"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; }
+  .pp-features li strong { color: #111; }
+  .pp-app-list { list-style: none; padding: 0; margin: 0; }
+  .pp-app-list li { padding: 0.45rem 0 0.45rem 1.3rem; position: relative; font-size: 0.84rem; color: #444; }
+  .pp-app-list li::before { content: "•"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; font-size: 1.1rem; line-height: 1; top: 0.45rem; }
+
+  .pp-specs-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pp-specs-mini__item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .pp-specs-mini__item span:first-child { color: #888; font-weight: 600; }
+  .pp-specs-mini__item span:last-child { color: #222; font-weight: 500; text-align: right; }
+  .pp-specs-mini__item:nth-child(odd) { padding-right: 1rem; }
+  .pp-specs-mini__item:nth-child(even) { padding-left: 1rem; border-left: 1px solid #f0f0f0; }
+
+  .sb { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .sb__widget { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+  .sb__header { margin-bottom: 12px; }
+  .sb__header h3 { font-size: 0.85rem; font-weight: 700; color: #111; margin: 0; letter-spacing: -0.01em; }
+
+  .sb__nav ul { list-style: none; padding: 0; margin: 0; }
+  .sb__nav li { border-bottom: 1px solid #f3f3f3; }
+  .sb__nav li:last-child { border-bottom: none; }
+  .sb__nav a { display: flex; align-items: center; gap: 6px; padding: 8px 10px; font-size: 0.8rem; color: #555; text-decoration: none; border-radius: 6px; font-weight: 500; }
+  .sb__nav a:hover { background: #f7f7f7; color: #111; }
+  .sb__nav-active { background: #fef2f2 !important; color: var(--c-primary, #C41E24) !important; font-weight: 700 !important; }
+  .sb__back { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); text-decoration: none; font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+
+  .sb__widget--cta { background: linear-gradient(135deg, #1a1a2e 0%, #1a365d 100%); border: none; color: #fff; }
+  .sb__widget--cta h3 { color: #fff; font-size: 0.9rem; font-weight: 700; margin: 0 0 6px; }
+  .sb__cta-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin: 0 0 14px; line-height: 1.5; }
+  .sb__btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 8px 20px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; }
+  .sb__btn--solid { background: var(--c-primary, #C41E24); color: #fff; border: 2px solid var(--c-primary, #C41E24); margin-bottom: 8px; }
+  .sb__btn--outline { background: transparent; color: var(--c-primary, #C41E24); border: 2px solid var(--c-primary, #C41E24); }
+  .sb__tel { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 10px 0 0; text-align: center; }
+  .sb__tel a { color: #fff; font-weight: 600; text-decoration: none; }
+
+  .sb__checks { list-style: none; padding: 0; margin: 0; }
+  .sb__checks li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 0.78rem; color: #444; line-height: 1.45; }
+  .sb__check-icon { color: #22c55e; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+
+  .sb__certs { display: flex; flex-direction: column; gap: 8px; }
+  .sb__cert { display: flex; align-items: center; gap: 10px; }
+  .sb__cert-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 0.6rem; font-weight: 800; color: #555; flex-shrink: 0; }
+  .sb__cert-name { font-size: 0.78rem; color: #333; font-weight: 500; }
+
+  .sb__brands { list-style: none; padding: 0; margin: 0; }
+  .sb__brands li { padding: 5px 0; font-size: 0.8rem; color: #333; font-weight: 600; border-bottom: 1px solid #f3f3f3; }
+  .sb__brands li:last-child { border-bottom: none; }
+  .sb__note { font-size: 0.72rem; color: #999; font-style: italic; margin: 8px 0 0; }
+
+  .sb__app-list { list-style: none; padding: 0; margin: 0; }
+  .sb__app-list li { padding: 5px 0 5px 14px; position: relative; font-size: 0.78rem; color: #555; border-bottom: 1px solid #f5f5f5; }
+  .sb__app-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--c-primary, #C41E24); border-radius: 50%; }
+  .sb__app-list li:last-child { border-bottom: none; }
+
+  .sb__products { list-style: none; padding: 0; margin: 0; }
+  .sb__products li { border-bottom: 1px solid #f3f3f3; }
+  .sb__products li:last-child { border-bottom: none; }
+  .sb__products a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__products a:hover { color: var(--c-primary, #C41E24); }
+
+  .sb__widget--services { background: #fafafa; }
+  .sb__services-desc { font-size: 0.75rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+  .sb__services { list-style: none; padding: 0; margin: 0; }
+  .sb__services li { border-bottom: 1px solid #eee; }
+  .sb__services li:last-child { border-bottom: none; }
+  .sb__services a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__services a:hover { color: var(--c-primary, #C41E24); }
+  .sb__services-link { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); font-weight: 600; text-decoration: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+
+  .pp-otros { padding: 3rem 0; background: #f9f9f9; border-top: 1px solid #eee; }
+  .pp-otros__title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 0.25rem; }
+  .pp-otros__sub { font-size: 0.85rem; color: #666; margin: 0 0 0.35rem; }
+  .pp-otros__link { font-size: 0.8rem; color: var(--c-primary, #C41E24); font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .pp-otros__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pp-otros__card { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .pp-otros__card:hover { border-color: var(--c-primary, #C41E24); }
+  .pp-otros__img { height: 160px; overflow: hidden; background: #1a1010; }
+  .pp-otros__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+  .pp-otros__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .pp-otros__name { font-size: 0.88rem; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }
+  .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+  .pp-otros__card:hover .pp-otros__cta { gap: 0.55rem; }
+
+  .pp-cotizar { padding: 3.5rem 0; background: #111; }
+  .pp-cotizar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .pp-cotizar h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem; }
+  .pp-cotizar__sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 1.2rem; }
+  .pp-cotizar__perks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-cotizar__perks li { font-size: 0.82rem; color: rgba(255,255,255,0.75); padding-left: 1.2rem; position: relative; }
+  .pp-cotizar__perks li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+  .pp-cotizar__form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .pp-cotizar__note { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: center; margin: 0; }
+  .pp-cotizar__alt { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-align: center; margin: 0; }
+  .pp-cotizar__alt a { color: #fff; font-weight: 600; text-decoration: none; }
+</style>

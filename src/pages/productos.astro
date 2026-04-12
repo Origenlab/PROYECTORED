@@ -73,50 +73,50 @@ const schemaFAQ = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Cuánto cuesta un extintor certificado en CDMX?",
+      "name": "¿Cuánto cuesta un extintor certificado en la Ciudad de México?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El precio varía según el tipo y capacidad. Un cilindro de polvo seco (PQS) de 4 kg para uso general parte desde $450 MXN. Los modelos de CO₂ para electrónica y los Tipo K para cocinas industriales tienen precios distintos. Contáctanos por WhatsApp para precio directo ese mismo día."
+        "text": "Depende del tipo de agente y la capacidad. Un extintor de polvo seco ABC de 4.5 kg parte desde $450 MXN aproximadamente. Los de CO₂ para equipos electrónicos y los Tipo K para cocinas industriales tienen otro rango de precio según la capacidad. Escríbenos por WhatsApp con lo que necesitas y te mandamos cotización el mismo día."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué extintores exige Protección Civil para mi empresa?",
+      "name": "¿Qué extintores me pide Protección Civil para mi negocio?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Depende del tipo de riesgo y superficie. La NOM-002-STPS establece una unidad por cada 300 m² de área, mínimo uno por piso. Para oficinas se recomienda el ABC multipropósito; para cocinas, el Tipo K; para servidores, el CO₂ o agente limpio. Realizamos diagnóstico técnico sin costo."
+        "text": "Eso lo define el tipo de riesgo y la superficie de tu local o planta. Como referencia general, la NOM-002-STPS pide al menos un extintor por cada 300 m², con mínimo uno por piso. Para oficinas conviene el ABC multipropósito, para cocinas el Tipo K, y para cuartos de servidores el CO₂ o agente limpio. Si quieres, hacemos un diagnóstico técnico sin costo para decirte exactamente qué te piden."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Hacen entrega a domicilio en CDMX y Estado de México?",
+      "name": "¿Entregan el mismo día en CDMX y Estado de México?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Entregamos en toda la Ciudad de México y el Estado de México. Los pedidos confirmados antes de las 2 PM los entregamos el mismo día en la zona metropolitana. También coordinamos envíos al interior de la república para pedidos de volumen."
+        "text": "Sí. Si confirmas tu pedido antes de las 2 PM, lo entregamos ese mismo día en toda la zona metropolitana de la Ciudad de México y el Estado de México. Para pedidos grandes o envíos al interior de la república, coordinamos la logística directamente contigo en la cotización."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Los extintores incluyen certificado NOM?",
+      "name": "¿Los equipos traen certificado NOM para mi expediente?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Todos nuestros equipos cumplen con la NOM-154-SCFI y vienen con la documentación necesaria para tu expediente regulatorio: etiqueta de inspección, garantía y ficha técnica del fabricante."
+        "text": "Todos. Cada extintor que vendemos cumple con la NOM-154-SCFI y se entrega con etiqueta de inspección, ficha técnica del fabricante y garantía. Si necesitas documentación adicional para aseguradoras o auditorías internas, también te la proporcionamos sin costo extra."
       }
     },
     {
       "@type": "Question",
-      "name": "¿También hacen mantenimiento y recarga de extintores?",
+      "name": "¿También hacen recarga y mantenimiento de extintores?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Ofrecemos mantenimiento preventivo, recarga y verificación en tus instalaciones. El servicio incluye revisión del agente de extinción, presión, válvulas, manguera y etiqueta de inspección actualizada."
+        "text": "Sí. Vamos a tus instalaciones a hacer la recarga, el mantenimiento preventivo y la verificación de todos tus cilindros. Revisamos agente extintor, presión, válvulas, manguera y actualizamos la etiqueta de inspección. También ofrecemos pólizas anuales con visitas programadas para que siempre estés al día."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Manejan precios por volumen para empresas?",
+      "name": "¿Tienen precios especiales para empresas con varias sucursales?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Ofrecemos precios preferenciales, facturación consolidada y entregas programadas para empresas con múltiples sucursales, plantas o proyectos. Contáctanos para un esquema de suministro a tu medida."
+        "text": "Claro. Trabajamos con empresas que necesitan surtir varias ubicaciones, plantas o proyectos al mismo tiempo. Ofrecemos precios por volumen, facturación consolidada y entregas programadas. Cuéntanos tu necesidad y te armamos un esquema de suministro a la medida."
       }
     }
   ]
@@ -124,21 +124,17 @@ const schemaFAQ = {
 ---
 
 <Base
-  title="Catálogo de Productos Contra Incendios CDMX | Proyecto Red"
-  description="Catálogo completo de equipos contra incendios certificados: extintores, señalamientos NOM, equipo para bomberos, gabinetes, mangueras, sistemas CI, primeros auxilios y EPP. Entrega en CDMX y Estado de México."
+  title="Equipos Contra Incendios Certificados en CDMX | Catálogo Proyecto Red"
+  description="Más de 50 equipos contra incendios certificados NOM y NFPA con entrega el mismo día en Ciudad de México y Estado de México. Extintores, señalamientos, sistemas CI, equipo para bomberos, gabinetes, mangueras, primeros auxilios y EPP. Proveedor directo con asesoría técnica gratuita."
   canonical={pageUrl}
   ogImage={ogImage}
 >
 
   <!-- ── Barra de migas de pan ────────────────────────────── -->
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <Breadcrumb items={[
-        { label: 'Inicio', href: '/' },
-        { label: 'Productos' }
-      ]} />
-    </div>
-  </div>
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos' }
+  ]} />
 
   <!-- ── Secciones ──────────────────────────────────────── -->
   <HeroProductos />

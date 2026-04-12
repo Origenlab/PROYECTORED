@@ -1,0 +1,554 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const seo = {
+  title: "Extintor Tipo K 3 Litros — Cocinas Industriales y Restaurantes | Proyecto Red",
+  description: "Extintor Tipo K 3 L para aceites y grasas en restaurantes, hoteles y comedores. Obligatorio NFPA 17A y NOM-002-STPS. Descarga tipo niebla fina. Entrega CDMX.",
+};
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Tipo K — Cocinas", href: "/extintores/tipo-k/" },
+  { label: "Tipo K 3 Litros" },
+];
+
+const heroStats = [
+  { valor: "3 L",       label: "Capacidad" },
+  { valor: "Clase K",   label: "Aceites y grasas" },
+  { valor: "NFPA 17A", label: "Norma aplicable" },
+];
+
+const specs = [
+  { label: "Agente extintor",       value: "Solución alcalina acuosa (acetato o citrato de potasio)" },
+  { label: "Capacidad nominal",     value: "3 litros" },
+  { label: "Clase de fuego",        value: "K — aceites y grasas de cocción a alta temperatura" },
+  { label: "Mecanismo de acción",   value: "Saponificación (convierte grasas en jabón) + enfriamiento" },
+  { label: "Tiempo de descarga",    value: "~5 segundos" },
+  { label: "Tipo de descarga",      value: "Niebla fina de baja presión" },
+  { label: "Presión de trabajo",    value: "Baja presión — sin salpicado del aceite caliente" },
+  { label: "Gas propelente",        value: "Nitrógeno seco (N₂)" },
+  { label: "Temperatura operación", value: "+4 °C a +50 °C" },
+  { label: "Boquilla",              value: "Boquilla de niebla fina de alta penetración" },
+  { label: "Altura del cilindro",   value: "~50 cm" },
+  { label: "Peso total cargado",    value: "~5 kg" },
+  { label: "Material cilindro",     value: "Acero inoxidable o aluminio, pintura electrostática plateada/roja" },
+  { label: "Montaje",               value: "Soporte de pared — en trayectoria de salida del operador" },
+  { label: "Distancia al riesgo",   value: "Máximo 10 metros del equipo de cocción (NFPA 17A)" },
+  { label: "Certificación",         value: "NFPA 17A · NOM-154-SCFI · UL 299" },
+  { label: "Incluye",               value: "Soporte de pared, etiqueta de inspección, collar de garantía" },
+  { label: "Vida útil cilindro",    value: "12 años (prueba hidrostática c/6 años según fabricante)" },
+  { label: "Mantenimiento",         value: "Anual NOM-154-SCFI — inspección de pH del agente" },
+];
+
+const caracteristicas = [
+  "Saponificación: convierte el aceite caliente en jabón inerte e incombustible",
+  "Niebla fina de baja presión — sin riesgo de salpicado del aceite",
+  "El único agente certificado para fuegos clase K en cocinas industriales",
+  "Collar de garantía NOM-154-SCFI — documentación para Protección Civil",
+];
+
+const aplicaciones = [
+  "Restaurantes y cafeterías con equipo de cocción de aceite",
+  "Hoteles con cocina de banquetes y producción intensiva",
+  "Comedores industriales de plantas con más de 50 trabajadores",
+  "Panaderías y repostería industrial con freidoras",
+  "Hospitales y centros de salud con cocina propia",
+  "Cadenas de comida rápida con freidoras de alto volumen",
+];
+
+const categoriasNav = [
+  { label: "Tipo K 1.7 L — Food truck",     href: "/extintores/tipo-k/tipo-k-1-7-l/" },
+  { label: "Tipo K 3 L — Más vendido",       href: "/extintores/tipo-k/tipo-k-3-l/", active: true },
+  { label: "Tipo K 6 L — Industrial",        href: "/extintores/tipo-k/tipo-k-6-l/" },
+];
+
+const productosRelacionados = [
+  { nombre: "Tipo K 1.7 L — Food truck",     href: "/extintores/tipo-k/tipo-k-1-7-l/" },
+  { nombre: "Tipo K 6 L — Industrial",        href: "/extintores/tipo-k/tipo-k-6-l/" },
+  { nombre: "PQS 4.5 kg — Área de salón",    href: "/extintores/polvo-seco/pqs-4-5-kg/" },
+  { nombre: "Sistema Ansul para campana",     href: "/sistemas-contra-incendio/" },
+];
+
+const otrosProductos = [
+  {
+    nombre: "Tipo K 1.7 L — Food truck",
+    desc: "Para cocinas móviles y freidoras pequeñas independientes. Cumple requerimientos SEDEMA para vehículos con cocción.",
+    specs: ["1.7 L", "~3 s", "Clase K"],
+    href: "/extintores/tipo-k/tipo-k-1-7-l/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "Tipo K 6 L — Industrial",
+    desc: "Para líneas de cocción extensas, freidoras industriales continuas y plantas procesadoras de alimentos.",
+    specs: ["6 L", "~8 s", "Alto volumen"],
+    href: "/extintores/tipo-k/tipo-k-6-l/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "PQS 4.5 kg — Portátil",
+    desc: "Complemento clase A·B·C para el área de salón, bodegas y zonas sin riesgo de clase K.",
+    specs: ["4.5 kg", "A·B·C", "NOM-154"],
+    href: "/extintores/polvo-seco/pqs-4-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "CO₂ 5 kg — Cuartos eléctricos",
+    desc: "Para el cuarto de máquinas y tableros eléctricos de la cocina. Descarga limpia sin daño al equipo.",
+    specs: ["5 kg", "B·C", "0 residuo"],
+    href: "/extintores/co2/co2-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1",
+  },
+];
+
+const faqs = [
+  {
+    pregunta: "¿El extintor Tipo K reemplaza al polvo seco ABC en mi cocina?",
+    respuesta: "No. El Tipo K protege <strong>únicamente el riesgo de aceites y grasas</strong> (clase K). En la cocina también hay materiales sólidos (madera, cartón, papel) y equipos eléctricos que requieren un extintor ABC. La <strong>NOM-002-STPS</strong> exige ambos: uno Tipo K en la zona de cocción y uno ABC para el resto del espacio. Te asesoramos sobre la distribución correcta.",
+  },
+  {
+    pregunta: "¿Cuántos extintores Tipo K necesito en mi restaurante?",
+    respuesta: "La <strong>NFPA 17A</strong> establece que cada extintor Tipo K debe proteger cualquier equipo de cocción a no más de <strong>10 metros de distancia</strong>. Para una cocina pequeña con una línea de fuego, es suficiente uno de 3 litros. Para cocinas con freidoras múltiples o líneas separadas, el cálculo es por zona. Te hacemos el levantamiento sin costo.",
+  },
+  {
+    pregunta: "¿Por qué el polvo seco no sirve en incendios de aceite de cocina?",
+    respuesta: "Los aceites vegetales y grasas animales en freidoras superan los <strong>360 °C</strong> — una temperatura a la que el polvo seco <strong>no puede suprimir los vapores</strong> de forma permanente. El PQS controla momentáneamente la llama pero el aceite sigue generando vapores combustibles que re-ignitan casi inmediatamente. El Tipo K saponifica el aceite (lo convierte en jabón), una reacción química que elimina la fuente del vapor.",
+  },
+  {
+    pregunta: "¿El extintor Tipo K daña el equipo de cocción?",
+    respuesta: "El agente alcalino acuoso puede ser <strong>corrosivo en aluminio no anodizado</strong>. Los equipos de <strong>acero inoxidable 304 o 316</strong> no se dañan. Después de usar el extintor es obligatorio limpiar con abundante agua fría y verificar el equipo antes de reiniciar la cocción. Avisamos de esta condición al entregar el extintor.",
+  },
+  {
+    pregunta: "¿Existe sistema automático de supresión para campanas en cocinas?",
+    respuesta: "Sí. Los sistemas de supresión automática para campanas — como <strong>Ansul R-102</strong> o Amerex KP — se instalan directamente en la campana de extracción y se activan sin intervención humana al detectar temperatura crítica. Son obligatorios en cocinas con más de <strong>3 freidoras industriales</strong> o más de 500 cubiertos por turno. En Proyecto Red los instalamos e integramos con tu extintor Tipo K portátil.",
+  },
+  {
+    pregunta: "¿Proyecto Red recarga y mantiene extintores Tipo K?",
+    respuesta: "Sí. Recargamos y mantenemos extintores Tipo K de cualquier marca. El mantenimiento anual incluye verificación del <strong>pH del agente alcalino</strong> (que puede perder concentración), inspección del sello de seguridad, collar de garantía con reporte para auditorías de STPS y Protección Civil. Podemos coordinar un programa de servicio anual para tu cocina.",
+  },
+];
+---
+<Base title={seo.title} description={seo.description}>
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Clase K · NFPA 17A · Obligatorio en Cocinas
+        </div>
+        <h1>Extintor Tipo K<br><span class="h1-accent">3 Litros</span></h1>
+        <p class="hero-sub">
+          El extintor Tipo K de 3 litros es el estándar para restaurantes, cafeterías y comedores industriales. Único agente certificado para fuegos clase K en aceites y grasas a alta temperatura. Obligatorio en toda cocina industrial conforme a NFPA 17A y NOM-002-STPS.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20Tipo%20K%20de%203%20litros%20para%20cocina`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Cotización
+          </a>
+          <a href="/extintores/tipo-k/" class="btn-secondary">Ver Catálogo Tipo K</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p>El extintor Tipo K actúa por <strong>saponificación</strong>: su agente alcalino reacciona con los ácidos grasos del aceite caliente convirtiéndolos en jabón. Esta reacción química enfría el aceite y forma una barrera que impide la re-ignición de vapores a temperaturas superiores a los 360 °C.</p>
+        <p>El polvo seco ABC no puede suprimir permanentemente este tipo de fuego — el calor del aceite re-ignita casi inmediatamente. El Tipo K es el <strong>único agente que resuelve el riesgo de clase K</strong>. Se entrega con soporte de pared, collar de garantía NOM-154-SCFI y documentación completa para expediente de Protección Civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══ MAIN LAYOUT: 2 COLUMNAS ══ -->
+  <div class="pp-layout container">
+
+    <!-- ─── COLUMNA PRINCIPAL ─── -->
+    <main class="pp-main">
+
+      <!-- Galería de imágenes -->
+      <div class="pp-gallery">
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1" alt="Extintor Tipo K 3 litros - Vista frontal" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1" alt="Extintor Tipo K 3 litros - Boquilla niebla fina" width="400" height="300" loading="eager" />
+        </div>
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1" alt="Extintor Tipo K 3 litros - Instalación en cocina de restaurante" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/tipo-k.jpg?strip=all&lossy=1" alt="Extintor Tipo K 3 litros - Collar de garantía y etiqueta NOM" width="400" height="300" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="pp-desc">
+        <p>El extintor Tipo K de 3 litros contiene una <strong>solución alcalina acuosa</strong> (acetato o citrato de potasio) que reacciona con los ácidos grasos del aceite caliente en una reacción de saponificación. El resultado es la formación de jabón sobre la superficie del aceite — un compuesto inerte, no combustible, que sella los vapores y enfría el aceite por debajo de su punto de auto-ignición.</p>
+        <p>La descarga es tipo <strong>niebla fina de baja presión</strong> para evitar salpicado del aceite caliente — lo que podría extender el incendio. Es el extintor obligatorio en toda instalación con equipo de cocción de aceite conforme a <strong>NFPA 17A</strong> y <strong>NOM-002-STPS</strong>.</p>
+        <p><strong>Capacidad:</strong> 3 L. <strong>Clase:</strong> K. <strong>Certificación:</strong> NFPA 17A, NOM-154-SCFI, UL 299.</p>
+      </div>
+
+      <!-- Especificaciones Técnicas -->
+      <section class="pp-block">
+        <h2>Especificaciones Técnicas</h2>
+        <table class="pp-table">
+          <tbody>
+            {specs.map(s => (
+              <tr>
+                <td class="pp-table__label">{s.label}</td>
+                <td class="pp-table__value">{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Características Destacadas -->
+      <section class="pp-block">
+        <h2>Características Destacadas</h2>
+        <ul class="pp-features">
+          <li><strong>Saponificación — mecanismo único para clase K</strong> — La solución alcalina reacciona con los ácidos grasos convirtiéndolos en jabón. Esta reacción química hace que el aceite deje de ser combustible y que la barrera de jabón selle los vapores re-ignitivos permanentemente.</li>
+          <li><strong>Niebla fina de baja presión — sin salpicado</strong> — El diseño de la boquilla atomiza el agente en partículas muy finas que caen suavemente sobre el aceite sin perturbarlo. En freidoras industriales una descarga de alta presión podría disparar aceite caliente, extendiendo el fuego.</li>
+          <li><strong>Obligatorio en toda cocina industrial — cumplimiento NFPA 17A</strong> — No es una opción ni un extra. La NFPA 17A y NOM-002-STPS lo establecen como requisito en cualquier instalación con freidoras, líneas de cocción o planchas de aceite. Su ausencia genera multas en inspecciones de Protección Civil y STPS.</li>
+          <li><strong>Complemento del sistema de protección total</strong> — El Tipo K protege la zona de cocción. Siempre debe acompañarse de un extintor ABC para el resto de la cocina (área de preparación, bodegas, zona de personal) y, en instalaciones mayores, de un sistema automático de supresión en campana.</li>
+          <li><strong>Documentación completa para expediente</strong> — Ficha técnica, certificado de conformidad, collar de garantía NOM-154-SCFI y etiqueta de inspección. Todo lo que necesitas para Protección Civil, STPS y certificaciones de calidad como NOM-251-SSA1.</li>
+        </ul>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="pp-block">
+        <h2>¿Dónde es Obligatorio?</h2>
+        <ul class="pp-app-list">
+          <li>Restaurantes y cafeterías con freidoras o línea de fuego de aceite</li>
+          <li>Hoteles con cocina de banquetes y producción intensiva</li>
+          <li>Comedores industriales de empresas con más de 50 trabajadores</li>
+          <li>Panaderías y repostería industrial con freidoras de donas o rosquillas</li>
+          <li>Hospitales y centros de salud con cocina de producción</li>
+          <li>Cadenas de comida rápida con freidoras de alto volumen continuo</li>
+        </ul>
+      </section>
+
+      <!-- Instalación -->
+      <section class="pp-block">
+        <h2>Instalación y Ubicación</h2>
+        <p>La <strong>NFPA 17A</strong> establece que el extintor Tipo K debe instalarse a <strong>no más de 10 metros del riesgo</strong> que protege. La posición correcta es en la <strong>trayectoria de salida del operador</strong> — el cocinero debe poder agarrarlo sin cruzar la zona de fuego. Nunca al fondo de la cocina ni detrás del equipo de cocción.</p>
+        <p>El soporte de pared debe instalarse a una altura de manija entre 1.0 y 1.5 metros. En cocinas con campana de extracción, se recomienda instalar el extintor visible desde la línea de cocción. El Tipo K se usa junto con el extintor ABC — no en lugar de él.</p>
+      </section>
+
+      <!-- Normativa -->
+      <section class="pp-block">
+        <h2>Cumplimiento Normativo</h2>
+        <p>La <strong>NFPA 17A</strong> (Standard for Wet Chemical Extinguishing Systems) es la norma de referencia para agentes húmedos en cocinas industriales. La <strong>NOM-002-STPS</strong> establece los requisitos de extintores en centros de trabajo y considera a las cocinas como zona de riesgo clase K. La <strong>NOM-154-SCFI</strong> regula el mantenimiento anual. La <strong>UL 299</strong> certifica extintores de químico húmedo bajo estándares Underwriters Laboratories. Incluimos toda la documentación para expediente de Protección Civil y STPS.</p>
+      </section>
+
+      <!-- Specs resumidas bottom -->
+      <section class="pp-block">
+        <h2>Resumen de Especificaciones</h2>
+        <div class="pp-specs-mini">
+          <div class="pp-specs-mini__item"><span>Capacidad</span><span>3 litros</span></div>
+          <div class="pp-specs-mini__item"><span>Clase de fuego</span><span>K (aceites y grasas)</span></div>
+          <div class="pp-specs-mini__item"><span>Certificación</span><span>NFPA 17A, NOM-154-SCFI</span></div>
+          <div class="pp-specs-mini__item"><span>Descarga</span><span>~5 segundos</span></div>
+          <div class="pp-specs-mini__item"><span>Categoría</span><span>Extintores Tipo K</span></div>
+          <div class="pp-specs-mini__item"><span>Distancia</span><span>Máx. 10 m del riesgo</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sb">
+
+      <!-- 1. Navegación de categorías -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Extintores Tipo K</h3></div>
+        <nav class="sb__nav" aria-label="Capacidades de extintores Tipo K">
+          <ul>
+            {categoriasNav.map(c => (
+              <li><a href={c.href} class={c.active ? 'sb__nav-active' : ''}>{c.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a href="/extintores/tipo-k/" class="sb__back">← Ver todo el catálogo Tipo K</a>
+      </div>
+
+      <!-- 2. Cotización Rápida -->
+      <div class="sb__widget sb__widget--cta">
+        <h3>Cotización Rápida</h3>
+        <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
+        <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20Tipo%20K%20de%203%20litros`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
+        <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+
+      <!-- 3. Características Clave -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Características Clave</h3></div>
+        <ul class="sb__checks">
+          {caracteristicas.map(c => (
+            <li><span class="sb__check-icon">✓</span><span>{c}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 4. Certificaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Certificaciones Disponibles</h3></div>
+        <div class="sb__certs">
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 17A</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-154-SCFI</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-002-STPS</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">UL</span><span class="sb__cert-name">UL 299 — Wet Chemical</span></div>
+        </div>
+      </div>
+
+      <!-- 5. Marcas -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Marcas que Manejamos</h3></div>
+        <ul class="sb__brands">
+          <li>Proyecto Red — Marca propia</li>
+          <li>Amerex — Tipo K certificado</li>
+        </ul>
+        <p class="sb__note">Pregunta por otras marcas</p>
+      </div>
+
+      <!-- 6. Aplicaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Aplicaciones</h3></div>
+        <ul class="sb__app-list">
+          {aplicaciones.map(a => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 7. Productos Relacionados -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Productos Relacionados</h3></div>
+        <ul class="sb__products">
+          {productosRelacionados.map(p => (
+            <li><a href={p.href}>{p.nombre}</a></li>
+          ))}
+          <li><a href="/extintores/polvo-seco/">Extintores PQS Polvo Seco</a></li>
+          <li><a href="/extintores/co2/">Extintores CO₂</a></li>
+        </ul>
+      </div>
+
+      <!-- 8. Servicios -->
+      <div class="sb__widget sb__widget--services">
+        <div class="sb__header"><h3>Servicios Proyecto Red</h3></div>
+        <p class="sb__services-desc">Complementa tu compra con mantenimiento y capacitación profesional.</p>
+        <ul class="sb__services">
+          <li><a href="/servicios/recarga-extintores/">Recarga de extintores</a></li>
+          <li><a href="/servicios/mantenimiento-preventivo/">Mantenimiento preventivo</a></li>
+          <li><a href="/servicios/prueba-hidrostatica/">Prueba hidrostática</a></li>
+          <li><a href="/servicios/capacitacion-brigadas/">Capacitación DC-3</a></li>
+        </ul>
+        <a href="/servicios/" class="sb__services-link">¿Necesitas más servicios? Ver todos →</a>
+      </div>
+
+    </aside>
+  </div><!-- /pp-layout -->
+
+  <!-- ══ OTROS EXTINTORES TIPO K ══ -->
+  <section class="pp-otros">
+    <div class="container">
+      <h2 class="pp-otros__title">Otros Extintores en Nuestra Línea</h2>
+      <p class="pp-otros__sub">Explora más opciones según tu aplicación específica</p>
+      <a href="/extintores/tipo-k/" class="pp-otros__link">Ver todo el catálogo Tipo K →</a>
+      <div class="pp-otros__grid">
+        {otrosProductos.map(p => (
+          <a href={p.href} class="pp-otros__card">
+            <div class="pp-otros__img">
+              <img src={p.img} alt={p.nombre} width="400" height="220" loading="lazy" />
+            </div>
+            <div class="pp-otros__body">
+              <h3 class="pp-otros__name">{p.nombre}</h3>
+              <p class="pp-otros__desc">{p.desc}</p>
+              <ul class="pp-otros__specs">
+                {p.specs.map(s => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <span class="pp-otros__cta">
+                {p.nombre.split(' — ')[0]}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COTIZACIÓN ══ -->
+  <section class="pp-cotizar" id="cotizar">
+    <div class="container pp-cotizar__inner">
+      <div class="pp-cotizar__info">
+        <h2>Cotiza Extintor Tipo K 3 Litros</h2>
+        <p class="pp-cotizar__sub">Precio y disponibilidad en menos de 24 horas</p>
+        <ul class="pp-cotizar__perks">
+          <li>Asesoría técnica sin costo</li>
+          <li>Entrega el mismo día en CDMX</li>
+          <li>Factura electrónica disponible</li>
+        </ul>
+      </div>
+      <div class="pp-cotizar__form">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20Tipo%20K%203%20litros%20para%20cocina.%20Mi%20nombre%20es%3A`}
+          class="btn-primary"
+          style="background:#25D366;font-size:0.95rem;padding:0.85rem 1.8rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+        <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
+        <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQs ══ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes"
+    subtitulo="Todo sobre el extintor Tipo K para cocinas industriales"
+    pageId="tipo-k-3-l"
+    bgGray={false}
+    faqs={faqs}
+  />
+
+</Base>
+<style>
+  .pp-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 3rem; align-items: start; }
+  .pp-main { min-width: 0; }
+  .pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.75rem; border-radius: 10px; overflow: hidden; }
+  .pp-gallery__col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-gallery img { width: 100%; height: 200px; object-fit: cover; display: block; background: #f5f5f5; border-radius: 6px; }
+
+  .pp-desc { margin-bottom: 2rem; }
+  .pp-desc p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 0.75rem; }
+  .pp-desc strong { color: #111; }
+
+  .pp-block { margin-bottom: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+  .pp-block:last-child { border-bottom: none; }
+  .pp-block h2 { font-size: 1.15rem; font-weight: 800; color: #111; margin: 0 0 1rem; }
+  .pp-block p { font-size: 0.85rem; color: #555; line-height: 1.65; margin: 0 0 0.5rem; }
+
+  .pp-table { width: 100%; border-collapse: collapse; }
+  .pp-table tr { border-bottom: 1px solid #f0f0f0; }
+  .pp-table td { padding: 0.65rem 0; font-size: 0.82rem; vertical-align: top; }
+  .pp-table__label { color: #888; font-weight: 600; width: 35%; padding-right: 1rem; }
+  .pp-table__value { color: #222; font-weight: 500; }
+
+  .pp-features { list-style: none; padding: 0; margin: 0; }
+  .pp-features li { position: relative; padding: 0.6rem 0 0.6rem 1.5rem; font-size: 0.84rem; color: #444; line-height: 1.55; border-bottom: 1px solid #f5f5f5; }
+  .pp-features li::before { content: "✓"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; }
+  .pp-features li strong { color: #111; }
+  .pp-app-list { list-style: none; padding: 0; margin: 0; }
+  .pp-app-list li { padding: 0.45rem 0 0.45rem 1.3rem; position: relative; font-size: 0.84rem; color: #444; }
+  .pp-app-list li::before { content: "•"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; font-size: 1.1rem; line-height: 1; top: 0.45rem; }
+
+  .pp-specs-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pp-specs-mini__item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .pp-specs-mini__item span:first-child { color: #888; font-weight: 600; }
+  .pp-specs-mini__item span:last-child { color: #222; font-weight: 500; text-align: right; }
+  .pp-specs-mini__item:nth-child(odd) { padding-right: 1rem; }
+  .pp-specs-mini__item:nth-child(even) { padding-left: 1rem; border-left: 1px solid #f0f0f0; }
+
+  .sb { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .sb__widget { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+  .sb__header { margin-bottom: 12px; }
+  .sb__header h3 { font-size: 0.85rem; font-weight: 700; color: #111; margin: 0; letter-spacing: -0.01em; }
+
+  .sb__nav ul { list-style: none; padding: 0; margin: 0; }
+  .sb__nav li { border-bottom: 1px solid #f3f3f3; }
+  .sb__nav li:last-child { border-bottom: none; }
+  .sb__nav a { display: flex; align-items: center; gap: 6px; padding: 8px 10px; font-size: 0.8rem; color: #555; text-decoration: none; border-radius: 6px; font-weight: 500; }
+  .sb__nav a:hover { background: #f7f7f7; color: #111; }
+  .sb__nav-active { background: #fef2f2 !important; color: var(--c-primary, #C41E24) !important; font-weight: 700 !important; }
+  .sb__back { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); text-decoration: none; font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+
+  .sb__widget--cta { background: linear-gradient(135deg, #1a1a2e 0%, #1a365d 100%); border: none; color: #fff; }
+  .sb__widget--cta h3 { color: #fff; font-size: 0.9rem; font-weight: 700; margin: 0 0 6px; }
+  .sb__cta-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin: 0 0 14px; line-height: 1.5; }
+  .sb__btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 8px 20px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; }
+  .sb__btn--solid { background: var(--c-primary, #C41E24); color: #fff; border: 2px solid var(--c-primary, #C41E24); margin-bottom: 8px; }
+  .sb__btn--outline { background: transparent; color: var(--c-primary, #C41E24); border: 2px solid var(--c-primary, #C41E24); }
+  .sb__tel { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 10px 0 0; text-align: center; }
+  .sb__tel a { color: #fff; font-weight: 600; text-decoration: none; }
+
+  .sb__checks { list-style: none; padding: 0; margin: 0; }
+  .sb__checks li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 0.78rem; color: #444; line-height: 1.45; }
+  .sb__check-icon { color: #22c55e; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+
+  .sb__certs { display: flex; flex-direction: column; gap: 8px; }
+  .sb__cert { display: flex; align-items: center; gap: 10px; }
+  .sb__cert-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 0.6rem; font-weight: 800; color: #555; flex-shrink: 0; }
+  .sb__cert-name { font-size: 0.78rem; color: #333; font-weight: 500; }
+
+  .sb__brands { list-style: none; padding: 0; margin: 0; }
+  .sb__brands li { padding: 5px 0; font-size: 0.8rem; color: #333; font-weight: 600; border-bottom: 1px solid #f3f3f3; }
+  .sb__brands li:last-child { border-bottom: none; }
+  .sb__note { font-size: 0.72rem; color: #999; font-style: italic; margin: 8px 0 0; }
+
+  .sb__app-list { list-style: none; padding: 0; margin: 0; }
+  .sb__app-list li { padding: 5px 0 5px 14px; position: relative; font-size: 0.78rem; color: #555; border-bottom: 1px solid #f5f5f5; }
+  .sb__app-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--c-primary, #C41E24); border-radius: 50%; }
+  .sb__app-list li:last-child { border-bottom: none; }
+
+  .sb__products { list-style: none; padding: 0; margin: 0; }
+  .sb__products li { border-bottom: 1px solid #f3f3f3; }
+  .sb__products li:last-child { border-bottom: none; }
+  .sb__products a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__products a:hover { color: var(--c-primary, #C41E24); }
+
+  .sb__widget--services { background: #fafafa; }
+  .sb__services-desc { font-size: 0.75rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+  .sb__services { list-style: none; padding: 0; margin: 0; }
+  .sb__services li { border-bottom: 1px solid #eee; }
+  .sb__services li:last-child { border-bottom: none; }
+  .sb__services a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__services a:hover { color: var(--c-primary, #C41E24); }
+  .sb__services-link { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); font-weight: 600; text-decoration: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+
+  .pp-otros { padding: 3rem 0; background: #f9f9f9; border-top: 1px solid #eee; }
+  .pp-otros__title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 0.25rem; }
+  .pp-otros__sub { font-size: 0.85rem; color: #666; margin: 0 0 0.35rem; }
+  .pp-otros__link { font-size: 0.8rem; color: var(--c-primary, #C41E24); font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .pp-otros__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pp-otros__card { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .pp-otros__card:hover { border-color: var(--c-primary, #C41E24); }
+  .pp-otros__img { height: 160px; overflow: hidden; background: #1a1010; }
+  .pp-otros__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+  .pp-otros__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .pp-otros__name { font-size: 0.88rem; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }
+  .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+  .pp-otros__card:hover .pp-otros__cta { gap: 0.55rem; }
+
+  .pp-cotizar { padding: 3.5rem 0; background: #111; }
+  .pp-cotizar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .pp-cotizar h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem; }
+  .pp-cotizar__sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 1.2rem; }
+  .pp-cotizar__perks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-cotizar__perks li { font-size: 0.82rem; color: rgba(255,255,255,0.75); padding-left: 1.2rem; position: relative; }
+  .pp-cotizar__perks li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+  .pp-cotizar__form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .pp-cotizar__note { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: center; margin: 0; }
+  .pp-cotizar__alt { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-align: center; margin: 0; }
+  .pp-cotizar__alt a { color: #fff; font-weight: 600; text-decoration: none; }
+</style>

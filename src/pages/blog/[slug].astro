@@ -1,117 +1,171 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+/**
+ * blog/[slug].astro — Artículo individual del blog (L3 de blog)
+ * ───────────────────────────────────────────────────────────────
+ * Layout: Hero simple + contenido + sidebar interlinking.
+ * Incluye artículos relacionados, CTA WhatsApp y breadcrumb.
+ */
+import Base from '../../layouts/Base.astro'
+import Breadcrumb from '../../components/ui/Breadcrumb.astro'
+import BlogSidebar from '../../components/sections/BlogSidebar.astro'
+import CTAFinalIndex from '../../components/sections/CTAFinalIndex.astro'
+import { getCollection, render } from 'astro:content'
+import { SITE, waUrl, WA_MESSAGES } from '../../config/site'
+import '../../styles/pages.css'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog')
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
-  }));
+  }))
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
----
-<Base title={`${post.data.title} | Proyecto Red`} description={post.data.description}>
-  <article class="blog-post">
-    <div class="container">
-      <div class="post-header">
-        <span class="post-category">{post.data.category}</span>
-        <h1>{post.data.title}</h1>
+const { post } = Astro.props
+const { Content } = await render(post)
 
-      </div>
-      <div class="post-content">
-        <Content />
-      </div>
-      <div class="post-cta">
-        <p>¿Necesitas equipos contra incendios? <a href="https://wa.me/525537238544?text=Hola%2C%20quiero%20información">Contáctanos por WhatsApp</a></p>
+const PAGE_WA = waUrl(WA_MESSAGES.blog)
+
+// Artículos relacionados (misma categoría o recientes)
+const allPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+const related = allPosts
+  .filter(p => p.id !== post.id)
+  .filter(p => p.data.category === post.data.category)
+  .slice(0, 6)
+
+// Si no hay suficientes de la misma categoría, completar con recientes
+const relatedPosts = related.length >= 6
+  ? related
+  : [
+      ...related,
+      ...allPosts
+        .filter(p => p.id !== post.id && !related.find(r => r.id === p.id))
+        .slice(0, 6 - related.length),
+    ]
+
+// JSON-LD
+const siteUrl = SITE.url
+const pageUrl = `${siteUrl}/blog/${post.id}/`
+
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${siteUrl}/blog/` },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": pageUrl },
+  ]
+}
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "url": pageUrl,
+  "datePublished": post.data.pubDate.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": post.data.author ?? "Proyecto Red",
+    "url": siteUrl,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": SITE.name,
+    "url": siteUrl,
+  },
+  ...(post.data.image ? { "image": post.data.image.startsWith('/') ? `${siteUrl}${post.data.image}` : post.data.image } : {}),
+}
+---
+
+<Base
+  title={`${post.data.title} | Proyecto Red`}
+  description={post.data.description}
+  canonical={pageUrl}
+>
+
+  <!-- ── Breadcrumb ────────────────────────────────────── -->
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Blog', href: '/blog/' },
+    { label: post.data.title },
+  ]} />
+
+  <!-- ── Contenido principal ───────────────────────────── -->
+  <section class="cat-section cat-section--white" style="padding-top: 3rem;">
+    <div class="container">
+      <div class="blog-post-layout">
+
+        <!-- ═══ ARTÍCULO ═══════════════════════════════ -->
+        <article class="blog-post-layout__main">
+
+          <!-- Header -->
+          <header class="blog-post__header">
+            {post.data.category && (
+              <span class="blog-post__cat">{post.data.category}</span>
+            )}
+            <h1 class="blog-post__h1">{post.data.title}</h1>
+            <div class="blog-post__meta">
+              <span class="blog-post__author">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                {post.data.author ?? 'Proyecto Red'}
+              </span>
+            </div>
+          </header>
+
+          <!-- Contenido Markdown -->
+          <div class="blog-post__content">
+            <Content />
+          </div>
+
+          <!-- CTA inline -->
+          <div class="blog-post__cta">
+            <div class="blog-post__cta-text">
+              <p>¿Necesitas equipos o asesoría técnica?</p>
+              <span>Nuestro equipo te responde en menos de 24 horas.</span>
+            </div>
+            <a href={PAGE_WA} class="blog-post__cta-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Contactar por WhatsApp
+            </a>
+          </div>
+
+          <!-- Artículos relacionados -->
+          {relatedPosts.length > 0 && (
+            <div class="blog-related">
+              <h2 class="blog-related__title">Artículos relacionados</h2>
+              <div class="blog-related__grid">
+                {relatedPosts.map(rp => (
+                  <a href={`/blog/${rp.id}/`} class="blog-related__card">
+                    {rp.data.category && (
+                      <span class="blog-related__card-cat">{rp.data.category}</span>
+                    )}
+                    <h3 class="blog-related__card-title">{rp.data.title}</h3>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </article>
+
+        <!-- ═══ SIDEBAR ════════════════════════════════ -->
+        <BlogSidebar
+          activeCategory={post.data.category}
+          currentSlug={post.id}
+        />
+
       </div>
     </div>
-  </article>
+  </section>
+
+  <!-- ── CTA Final ─────────────────────────────────────── -->
+  <CTAFinalIndex />
+
+  <!-- ── JSON-LD ───────────────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaArticle)} />
+
 </Base>
-
-<style>
-  .blog-post {
-    padding: calc(var(--header-height, 80px) + 2rem) 0 3rem;
-  }
-
-  .post-header {
-    max-width: 720px;
-    margin-bottom: 2rem;
-  }
-
-  .post-category {
-    display: inline-block;
-    background: var(--color-primary);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  .post-header h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 0.75rem;
-  }
-
-  .post-header time {
-    color: var(--color-gray);
-    font-size: 0.9rem;
-  }
-
-  .post-content {
-    max-width: 720px;
-    line-height: 1.8;
-    font-size: 1.05rem;
-  }
-
-  .post-content :global(h2) {
-    font-size: 1.5rem;
-    margin: 2rem 0 1rem;
-    font-weight: 700;
-  }
-
-  .post-content :global(h3) {
-    font-size: 1.25rem;
-    margin: 1.5rem 0 0.75rem;
-    font-weight: 600;
-  }
-
-  .post-content :global(p) {
-    margin-bottom: 1.25rem;
-  }
-
-  .post-content :global(ul), .post-content :global(ol) {
-    margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
-  }
-
-  .post-content :global(li) {
-    margin-bottom: 0.4rem;
-  }
-
-  .post-cta {
-    max-width: 720px;
-    margin-top: 3rem;
-    padding: 1.5rem;
-    background: #f9fafb;
-    border-radius: 12px;
-    text-align: center;
-  }
-
-  .post-cta a {
-    font-weight: 600;
-  }
-
-  @media (max-width: 768px) {
-    .post-header h1 {
-      font-size: 1.5rem;
-    }
-  }
-</style>

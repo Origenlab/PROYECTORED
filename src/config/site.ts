@@ -11,6 +11,48 @@ export const SITE = {
   locale: 'es_MX',
 } as const
 
+// ============================================================
+// ExactDN / EWWW.io — CDN de optimización de imágenes
+// Convierte automáticamente a WebP/AVIF, comprime y sirve desde edge.
+// ============================================================
+export const CDN = {
+  enabled: true,
+  host: 'ewvydcs5uyw.exactdn.com',
+  origin: 'proyectored.com.mx',
+} as const
+
+/**
+ * Reescribe una ruta local de imagen a la URL de ExactDN.
+ * Si CDN está desactivado o estamos en desarrollo, devuelve la ruta original.
+ *
+ * @param path  — ruta relativa desde /public (ej. '/imagenes/extintores/co2.jpg')
+ * @param opts  — parámetros opcionales de ExactDN
+ */
+interface CdnOpts {
+  w?: number
+  h?: number
+  quality?: number
+  strip?: 'all'
+  lossy?: 1
+}
+
+export function cdnUrl(path: string, opts: CdnOpts = {}): string {
+  // Desactivar CDN en desarrollo local para que carguen archivos nuevos no subidos aún
+  if (!CDN.enabled || import.meta.env.DEV) return path
+
+  // Construir query params de ExactDN
+  const params = new URLSearchParams()
+  if (opts.w)       params.set('w', String(opts.w))
+  if (opts.h)       params.set('h', String(opts.h))
+  if (opts.quality)  params.set('quality', String(opts.quality))
+  if (opts.strip)   params.set('strip', opts.strip)
+  if (opts.lossy)   params.set('lossy', '1')
+
+  const qs = params.toString()
+  const cleanPath = path.startsWith('/') ? path : `/${path}`
+  return `https://${CDN.host}${cleanPath}${qs ? `?${qs}` : ''}`
+}
+
 export const CONTACT = {
   phone: '55 3723 8544',
   phoneRaw: '5537238544',

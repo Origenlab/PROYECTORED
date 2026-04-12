@@ -1,0 +1,169 @@
+---
+/**
+ * CatalogoBomberos.astro
+ * Catálogo de las 5 categorías de equipo para bomberos — patrón .ccard homologado con L1/L2/L3.
+ * Usa SectionHeaderDuo (complemento título oficial) + .ccard con subcats + Img.astro (CDN).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, quiero cotizar equipo profesional para bomberos')
+
+const productos = [
+  {
+    nombre: 'Trajes Estructurales NFPA 1971',
+    desc: 'Protección multicapa contra temperaturas extremas, llamas directas y calor radiante. Fabricados con materiales de alta performance: Nomex, PBI y Kevlar. Chaquetón + pantalón con tirantes.',
+    href: '/equipo-bomberos/trajes/',
+    img: '/imagenes/equipo-bomberos/trajes-estructurales-nfpa-1971.avif',
+    badge: 'NFPA 1971',
+    ctaLabel: 'Ver trajes estructurales',
+    subcats: [
+      { label: 'Traje 3 capas — Nomex', href: '/equipo-bomberos/trajes/' },
+      { label: 'Traje PBI / Kevlar', href: '/equipo-bomberos/trajes/' },
+      { label: 'Chaquetón individual', href: '/equipo-bomberos/trajes/' },
+      { label: 'Pantalón con tirantes', href: '/equipo-bomberos/trajes/' },
+      { label: 'Tallas S–4XL', href: '/equipo-bomberos/trajes/' },
+      { label: 'Sobre medida disponible', href: '/equipo-bomberos/trajes/' },
+    ],
+  },
+  {
+    nombre: 'Complementos de Uniforme',
+    desc: 'Cascos con visor certificados, guantes térmicos, botas NFPA 1971, capuchas Nomex y gogles anti-flash. Cada pieza diseñada para integrarse al ensemble completo de protección.',
+    href: '/equipo-bomberos/complementos/',
+    img: '/imagenes/equipo-bomberos/complementos-uniforme-bombero.avif',
+    badge: null,
+    ctaLabel: 'Ver complementos',
+    subcats: [
+      { label: 'Casco NFPA 1971', href: '/equipo-bomberos/complementos/' },
+      { label: 'Guantes térmicos', href: '/equipo-bomberos/complementos/' },
+      { label: 'Botas certificadas', href: '/equipo-bomberos/complementos/' },
+      { label: 'Capucha Nomex', href: '/equipo-bomberos/complementos/' },
+      { label: 'Gogles anti-flash', href: '/equipo-bomberos/complementos/' },
+    ],
+  },
+  {
+    nombre: 'ERA — Respiración Autónoma (SCBA)',
+    desc: 'Equipos SCBA con cilindros de aire comprimido, máscaras panorámicas y reguladores certificados NIOSH. Para atmósferas contaminadas con humo, gases tóxicos o deficiencia de oxígeno.',
+    href: '/equipo-bomberos/respiracion-autonoma/',
+    img: '/imagenes/equipo-bomberos/era-scba-respiracion-autonoma.avif',
+    badge: 'Esencial',
+    ctaLabel: 'Ver ERA / SCBA',
+    subcats: [
+      { label: 'SCBA 30 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'SCBA 45 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'SCBA 60 min', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'Máscara panorámica', href: '/equipo-bomberos/respiracion-autonoma/' },
+      { label: 'Alarma PASS integrada', href: '/equipo-bomberos/respiracion-autonoma/' },
+    ],
+  },
+  {
+    nombre: 'Herramientas de Rescate',
+    desc: 'Quijadas de vida, hachas, halligans, cortadores hidráulicos y herramientas de entrada forzada. Equipo para rescate vehicular, estructural y en espacios confinados bajo condiciones extremas.',
+    href: '/equipo-bomberos/herramientas/',
+    img: '/imagenes/equipo-bomberos/herramientas-rescate-bombero.avif',
+    badge: null,
+    ctaLabel: 'Ver herramientas',
+    subcats: [
+      { label: 'Herramientas manuales', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Hidráulicas', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Neumáticas', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Eléctricas / batería', href: '/equipo-bomberos/herramientas/' },
+      { label: 'Kit rescate vehicular', href: '/equipo-bomberos/herramientas/' },
+    ],
+  },
+  {
+    nombre: 'Arneses de Rescate',
+    desc: 'Arneses certificados NFPA 1983 para trabajo en altura, rescate vertical y evacuación. Puntos de anclaje dorsal y pectoral, diseñados para soportar cargas de hasta 140 kg en caída libre.',
+    href: '/equipo-bomberos/arneses/',
+    img: '/imagenes/equipo-bomberos/arneses-rescate-altura.avif',
+    badge: 'NFPA 1983',
+    ctaLabel: 'Ver arneses',
+    subcats: [
+      { label: 'Arnés clase II — dorsal', href: '/equipo-bomberos/arneses/' },
+      { label: 'Arnés clase III — full body', href: '/equipo-bomberos/arneses/' },
+      { label: 'Cuerdas técnicas', href: '/equipo-bomberos/arneses/' },
+      { label: 'Sistema antícaída', href: '/equipo-bomberos/arneses/' },
+      { label: 'Trípode espacios confinados', href: '/equipo-bomberos/arneses/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-bomb cat-section cat-section--white" id="catalogo-bomberos" aria-labelledby="catalogo-bomb-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-bomb-heading"
+      eyebrow="5 categorías certificadas NFPA"
+      titleLine1="Catálogo de Equipo para Bomberos:"
+      titleLine2="Protección Real para Condiciones Extremas"
+      desc="Equipo profesional con certificaciones NFPA originales del fabricante. Cada componente ha sido seleccionado por su rendimiento comprobado en operaciones reales de emergencia."
+      bodyPara1="Un bombero solo puede entrar a una estructura en llamas con el ensemble completo correcto: traje de 3 capas, ERA operativo, casco con visor, guantes térmicos, botas y capucha Nomex. Cada componente debe estar individualmente certificado — no hay atajos. Un solo elemento fuera de norma invalida la protección del conjunto. Asesoría técnica sin costo para armar el ensemble completo según tu tipo de operación y presupuesto."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2/L3 -->
+    <div class="catidx-grid" role="list" aria-label="Categorías de equipo para bomberos disponibles">
+      {productos.map((prod, i) => (
+        <article class="ccard" role="listitem" aria-label={prod.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={prod.img}
+              alt={prod.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {prod.badge && <span class="ccard__badge">{prod.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{prod.nombre}</h3>
+            <p class="ccard__desc">{prod.desc}</p>
+
+            {prod.subcats && prod.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${prod.nombre}`}>
+                {prod.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={prod.href} class="ccard__cta">
+              {prod.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para equipar brigada completa">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿Necesitas equipar una brigada completa?</p>
+          <p class="ccard--cta-wa__sub">Cotizamos lotes para corporaciones con documentación para licitaciones y proceso de compra institucional.</p>
+          <span class="ccard--cta-wa__btn">Cotización institucional →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>

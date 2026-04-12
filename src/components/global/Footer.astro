@@ -37,11 +37,12 @@ const CERTIFICATIONS = [
 
         <a href="/" class="footer__logo-link" aria-label="Proyecto Red — Ir al inicio">
           <img
-            src="/imagenes/logos/logo-proyectored-201x60.png"
+            src="https://ewvydcs5uyw.exactdn.com/imagenes/logos/logo-proyectored-201x60.png?strip=all&lossy=1"
             alt="Proyecto Red"
             width="160"
             height="48"
             loading="lazy"
+            decoding="async"
             class="footer__logo-img"
           />
         </a>
@@ -273,7 +274,6 @@ const CERTIFICATIONS = [
   --ft-bg-cert:    #111111;
   --ft-bg-bottom:  #000000;
   --ft-border:     rgba(255, 255, 255, 0.07);
-  --ft-transition: 180ms ease;
 }
 
 /* ─── FOOTER CONTENEDOR ─────────────────────────────────── */
@@ -313,7 +313,6 @@ const CERTIFICATIONS = [
   background: rgba(255, 255, 255, 0.92);
   border-radius: 5px;
   padding: 6px 12px;
-  transition: opacity var(--ft-transition);
 }
 .footer__logo-link:hover .footer__logo-img { opacity: 0.85; }
 
@@ -339,7 +338,6 @@ const CERTIFICATIONS = [
   gap: 0.625rem;
   text-decoration: none;
   color: var(--ft-text);
-  transition: color var(--ft-transition);
   font-size: 0.8125rem;
   line-height: 1.45;
 }
@@ -353,7 +351,6 @@ a.footer__contact-row:hover {
   border: 1px solid rgba(37, 211, 102, 0.18);
   border-radius: 6px;
   padding: 0.625rem 0.75rem;
-  transition: background var(--ft-transition), border-color var(--ft-transition), color var(--ft-transition);
 }
 .footer__contact-row--cta:hover {
   background: rgba(37, 211, 102, 0.14);
@@ -474,7 +471,6 @@ a.footer__contact-row:hover {
   text-decoration: none;
   line-height: 1.4;
   padding: 0.125rem 0;
-  transition: color var(--ft-transition), padding-left var(--ft-transition);
   position: relative;
 }
 
@@ -489,7 +485,6 @@ a.footer__contact-row:hover {
   height: 0;
   background: var(--ft-red);
   border-radius: 2px;
-  transition: height var(--ft-transition);
 }
 
 .footer__nav-link:hover {
@@ -510,7 +505,6 @@ a.footer__contact-row:hover {
 .footer__nav-link--all svg {
   opacity: 0;
   transform: translateX(-4px);
-  transition: opacity var(--ft-transition), transform var(--ft-transition);
 }
 .footer__nav-link--all:hover svg {
   opacity: 1;
@@ -598,7 +592,6 @@ a.footer__contact-row:hover {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   padding: 3px 8px;
-  transition: color var(--ft-transition), border-color var(--ft-transition), background var(--ft-transition);
   cursor: default;
 }
 
@@ -642,7 +635,6 @@ a.footer__contact-row:hover {
   font-weight: 600;
   color: rgba(37, 211, 102, 0.7);
   text-decoration: none;
-  transition: color var(--ft-transition);
   white-space: nowrap;
   flex-shrink: 0;
 }

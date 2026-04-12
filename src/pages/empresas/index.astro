@@ -1,333 +1,155 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CtaBar from '../../components/CtaBar.astro';
-import FaqCotizacion from '../../components/FaqCotizacion.astro';
-import '../../styles/pages.css';
+/**
+ * empresas/index.astro — Página de cobertura de Proyecto Red
+ * ─────────────────────────────────────────────────────
+ * Orquestador limpio: importa secciones dedicadas y define SEO.
+ * Mismo patrón que productos.astro y servicios.astro —
+ * cada sección es un componente autónomo.
+ */
 
-const WHATSAPP = "525537238544";
-const WA_URL = `https://wa.me/${WHATSAPP}`;
+import Base                from '../../layouts/Base.astro'
+import Breadcrumb          from '../../components/ui/Breadcrumb.astro'
+import CtaBar              from '../../components/CtaBar.astro'
 
-// ── SEO ─────────────────────────────────────────────
-const title = "Cobertura — Equipos Contra Incendios en CDMX, EDOMEX y República | Proyecto Red";
-const description = "Entrega directa de equipos contra incendios certificados en Ciudad de México, Estado de México, Querétaro, Puebla, Aguascalientes y Baja California. Proveedor directo con logística propia y envíos nacionales.";
+// ── Secciones de Empresas / Cobertura ──────────────
+import HeroEmpresas        from '../../components/sections/HeroEmpresas.astro'
+import CatalogoEmpresas    from '../../components/sections/CatalogoEmpresas.astro'
+import SeleccionIndex      from '../../components/sections/SeleccionIndex.astro'
+import NormasIndex         from '../../components/sections/NormasIndex.astro'
+import ProcesoIndex        from '../../components/sections/ProcesoIndex.astro'
+import FaqEmpresas         from '../../components/sections/FaqEmpresas.astro'
+import CTAFinalIndex       from '../../components/sections/CTAFinalIndex.astro'
 
-// ── Breadcrumb ───────────────────────────────────────
-const breadcrumbs = [
-  { label: "Inicio", href: "/" },
-  { label: "Cobertura" },
-];
+// ── Datos para JSON-LD ──────────────────────────────
+import { SITE, CONTACT } from '../../config/site'
 
-// ── Métricas ─────────────────────────────────────────
+const siteUrl   = SITE.url
+const pageUrl   = `${siteUrl}/empresas/`
+const ogImage   = `${siteUrl}/imagenes/og/proyectored-og.jpg`
 
-// ── Zonas principales ────────────────────────────────
-const zonas = [
-  {
-    id: "cdmx",
-    titulo: "Ciudad de México",
-    badge: "Sede principal",
-    desc: "Cobertura total en las 16 alcaldías de la Ciudad de México. Entrega el mismo día para pedidos confirmados antes de las 2 PM. Centro de operaciones, almacén e inventario permanente. Proveedor registrado ante Protección Civil CDMX.",
-    href: "/empresas/cdmx/",
-    img: "/imagenes/extintores/extintores-contra-incendios.jpg",
-    detalles: [
-      { nombre: "Cuauhtémoc / Centro Histórico", sub: "Oficinas, restaurantes, hoteles, comercio" },
-      { nombre: "Miguel Hidalgo / Polanco", sub: "Corporativos, embajadas, edificios premium" },
-      { nombre: "Benito Juárez / Del Valle", sub: "Pymes, consultorios, coworkings" },
-      { nombre: "Álvaro Obregón / Santa Fe", sub: "Torres corporativas, centros comerciales" },
-      { nombre: "Azcapotzalco / Industrial Vallejo", sub: "Plantas industriales, bodegas, distribuidoras" },
-      { nombre: "Gustavo A. Madero / Indios Verdes", sub: "Manufactura, comercio, almacenes" },
-      { nombre: "Iztapalapa / Central de Abasto", sub: "Mercados, bodegas, industria alimentaria" },
-      { nombre: "Tlalpan / Coyoacán / Sur", sub: "Hospitales, universidades, residencial comercial" },
-    ],
-    normas: ["Protección Civil CDMX", "NOM-002-STPS"],
-  },
-  {
-    id: "edomex",
-    titulo: "Estado de México",
-    badge: "Zona metropolitana",
-    desc: "Cobertura directa en los municipios más industrializados del Estado de México. Entrega en 24-48 horas. Atención a parques industriales, plantas de manufactura, distribuidoras y centros logísticos de la zona metropolitana.",
-    href: "/empresas/edomex/",
-    img: "/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg",
-    detalles: [
-      { nombre: "Naucalpan de Juárez", sub: "Parques industriales, Alce Blanco, Satélite" },
-      { nombre: "Tlalnepantla de Baz", sub: "Zona industrial, bodegas, manufactura" },
-      { nombre: "Ecatepec de Morelos", sub: "Industria, comercio, centros de distribución" },
-      { nombre: "Cuautitlán Izcalli", sub: "Parques logísticos, nearshoring, manufactura" },
-      { nombre: "Toluca / Lerma", sub: "Corredor industrial, plantas automotrices" },
-      { nombre: "Atizapán / Nicolás Romero", sub: "Manufactura, almacenes, distribución norte" },
-      { nombre: "Texcoco / Chimalhuacán", sub: "Zona oriente, proyectos en expansión" },
-      { nombre: "Huixquilucan / Interlomas", sub: "Corporativos, plazas, residencial premium" },
-    ],
-    normas: ["Protección Civil EDOMEX", "NOM-002-STPS"],
-  },
-  {
-    id: "queretaro",
-    titulo: "Querétaro",
-    badge: "Corredor industrial",
-    desc: "Atendemos el corredor industrial de Querétaro con envío directo desde CDMX. Plantas automotrices, aeronáuticas, alimentarias y centros logísticos. Entrega coordinada en 48-72 horas con documentación NOM completa.",
-    href: "/empresas/queretaro/",
-    img: "/imagenes/sistemas/alarmas.jpg",
-    detalles: [
-      { nombre: "Parque Industrial Querétaro", sub: "Zona norte, manufactura de exportación" },
-      { nombre: "El Marqués / Aeropuerto", sub: "Logística, distribución, e-commerce" },
-      { nombre: "San Juan del Río", sub: "Industria automotriz y alimentaria" },
-      { nombre: "Zona Centro / Juriquilla", sub: "Corporativos, universidades, hospitales" },
-    ],
-    normas: ["NOM-002-STPS", "Protección Civil QRO"],
-  },
-  {
-    id: "puebla",
-    titulo: "Puebla",
-    badge: "Industria automotriz",
-    desc: "Cobertura para la zona industrial de Puebla y Tlaxcala. Plantas automotrices, textileras, alimentarias y centros de distribución. Envío desde CDMX con logística coordinada.",
-    href: "/empresas/puebla/",
-    img: "/imagenes/senalamientos/senalamientos-hero.jpg",
-    detalles: [
-      { nombre: "Zona industrial Puebla", sub: "Plantas VW, Audi, proveedores Tier 1" },
-      { nombre: "Cholula / Atlixco", sub: "Industria alimentaria, turismo, hospitales" },
-      { nombre: "San Martín Texmelucan", sub: "Industria textil, manufactura, bodegas" },
-      { nombre: "Corredor Puebla-Tlaxcala", sub: "Distribución, logística, comercio" },
-    ],
-    normas: ["NOM-002-STPS", "Protección Civil PUE"],
-  },
-  {
-    id: "aguascalientes",
-    titulo: "Aguascalientes",
-    badge: "Industria automotriz",
-    desc: "Abastecimiento para el corredor industrial de Aguascalientes. Plantas Nissan, proveedores automotrices, manufactura de exportación y centros logísticos. Envío coordinado con paquetería certificada.",
-    href: "/empresas/aguascalientes/",
-    img: "/imagenes/gabinetes/gabinetes-extintores.jpg",
-    detalles: [
-      { nombre: "Parque Industrial Aguascalientes", sub: "Automotriz, electrónica, manufactura" },
-      { nombre: "Zona centro y comercial", sub: "Plazas, hoteles, hospitales, oficinas" },
-      { nombre: "Corredor logístico Ags-SLP", sub: "Distribución centro-norte del país" },
-    ],
-    normas: ["NOM-002-STPS"],
-  },
-  {
-    id: "baja-california",
-    titulo: "Baja California",
-    badge: "Maquiladoras",
-    desc: "Atendemos el corredor maquilador de Baja California: Tijuana, Mexicali y Ensenada. Plantas de exportación, maquiladoras, centros logísticos fronterizos y comercio. Envío desde CDMX con logística especializada.",
-    href: "/empresas/baja-california/",
-    img: "/imagenes/mangueras/mangueras-hero.jpg",
-    detalles: [
-      { nombre: "Tijuana / Zona industrial Otay", sub: "Maquiladoras, electrónica, aeroespacial" },
-      { nombre: "Mexicali", sub: "Industria, agricultura tecnificada, comercio" },
-      { nombre: "Ensenada", sub: "Vinícolas, turismo, industria pesquera" },
-      { nombre: "Rosarito / Tecate", sub: "Manufactura, comercio transfronterizo" },
-    ],
-    normas: ["NOM-002-STPS"],
-  },
-];
+// ── Schema: BreadcrumbList ──────────────────────────
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cobertura",
+      "item": pageUrl
+    }
+  ]
+}
 
-// ── FAQs específicas de cobertura ─────────────────────
-const faqsCobertura = [
-  { pregunta: "¿Entregan equipos contra incendios el mismo día en CDMX?", respuesta: "Sí. Pedidos confirmados <strong>antes de las 2 PM</strong> se entregan el mismo día en toda la Ciudad de México (16 alcaldías). Para el Estado de México, la entrega es en <strong>24-48 horas</strong> dependiendo del municipio. Todo con logística propia — sin depender de paqueterías." },
-  { pregunta: "¿Tienen cobertura en todo el Estado de México?", respuesta: "Cubrimos directamente los municipios más industrializados: <strong>Naucalpan, Tlalnepantla, Ecatepec, Cuautitlán Izcalli, Toluca, Lerma, Atizapán, Texcoco y Huixquilucan</strong>. Para municipios fuera de esta lista coordinamos la entrega en la cotización — normalmente 48-72 horas." },
-  { pregunta: "¿Hacen envíos a otros estados fuera de CDMX y EDOMEX?", respuesta: "Sí. Enviamos a <strong>Querétaro, Puebla, Aguascalientes, Baja California</strong> y al resto de la república para pedidos de volumen. Coordinamos logística con paqueterías certificadas (DHL, Estafeta, FedEx) e incluimos el costo de flete en la cotización. Para proyectos grandes podemos desplazar equipos de instalación." },
-  { pregunta: "¿El equipo llega con documentación NOM completa?", respuesta: "Siempre. Todo equipo se entrega con <strong>ficha técnica, certificado de conformidad NOM, etiqueta de inspección</strong> y cualquier documentación adicional que tu expediente de Protección Civil requiera. No importa si la entrega es en CDMX o en Baja California — la documentación es la misma." },
-  { pregunta: "¿Ofrecen instalación y capacitación fuera de CDMX?", respuesta: "Para <strong>CDMX y Estado de México</strong> incluimos instalación y capacitación presencial. Para otros estados lo evaluamos por proyecto: en pedidos de cierto volumen podemos desplazar un equipo técnico para instalación de sistemas CI, señalización y capacitación con constancias DC-3." },
-  { pregunta: "¿Manejan inventario en otras ciudades o solo en CDMX?", respuesta: "Nuestro almacén y centro de operaciones están en la <strong>Ciudad de México</strong>. Todo se despacha desde aquí. Esto nos permite tener inventario permanente de más de 50 productos y garantizar disponibilidad inmediata para la zona metropolitana. Para otros estados coordinamos la logística según el volumen." },
-  { pregunta: "¿Tienen precios diferentes según la zona de entrega?", respuesta: "El <strong>precio del equipo es el mismo</strong> sin importar el destino. Lo que varía es el costo de flete para envíos fuera de la zona metropolitana. En CDMX y EDOMEX la entrega es gratuita a partir de cierto monto. Te desglosamos el flete en la cotización para que no haya sorpresas." },
-  { pregunta: "¿Pueden ser nuestro proveedor fijo para múltiples sucursales en diferentes estados?", respuesta: "Sí. Trabajamos con empresas que tienen <strong>sucursales en varios estados</strong> y necesitan un solo proveedor para todo. Ofrecemos facturación consolidada, entregas programadas por sucursal, precios preferenciales por volumen y un contacto único para todas tus ubicaciones." },
-];
+// ── Schema: OfferCatalog (zonas de cobertura) ───────
+const schemaOfferCatalog = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "name": "Zonas de Cobertura — Equipos Contra Incendios | Proyecto Red",
+  "description": "Entrega directa de equipos contra incendios certificados en Ciudad de México, Estado de México, Querétaro, Puebla, Aguascalientes y Baja California. Proveedor directo con logística propia y envíos nacionales.",
+  "url": pageUrl,
+  "numberOfItems": 6,
+  "itemListElement": [
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Ciudad de México — Sede principal, entrega el mismo día", "url": `${siteUrl}/empresas/cdmx/` },
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Estado de México — Zona metropolitana, 24-48 hrs", "url": `${siteUrl}/empresas/edomex/` },
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Querétaro — Corredor industrial, 48-72 hrs", "url": `${siteUrl}/empresas/queretaro/` },
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Puebla — Industria automotriz, envío coordinado", "url": `${siteUrl}/empresas/puebla/` },
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Aguascalientes — Corredor automotriz", "url": `${siteUrl}/empresas/aguascalientes/` },
+    { "@type": "OfferCatalog", "name": "Equipos Contra Incendios en Baja California — Maquiladoras y zona fronteriza", "url": `${siteUrl}/empresas/baja-california/` },
+  ]
+}
+
+// ── Schema: FAQPage ─────────────────────────────────
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Entregan equipos contra incendios el mismo día en CDMX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Pedidos confirmados antes de las 2 PM se entregan el mismo día en toda la Ciudad de México (16 alcaldías). Para el Estado de México, la entrega es en 24-48 horas dependiendo del municipio. Todo con logística propia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen cobertura en todo el Estado de México?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cubrimos directamente los municipios más industrializados: Naucalpan, Tlalnepantla, Ecatepec, Cuautitlán Izcalli, Toluca, Lerma, Atizapán, Texcoco y Huixquilucan. Para municipios fuera de esta lista coordinamos la entrega en la cotización."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacen envíos a otros estados fuera de CDMX y EDOMEX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Enviamos a Querétaro, Puebla, Aguascalientes, Baja California y al resto de la república para pedidos de volumen. Coordinamos logística con paqueterías certificadas e incluimos el costo de flete en la cotización."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El equipo llega con documentación NOM completa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Siempre. Todo equipo se entrega con ficha técnica, certificado de conformidad NOM, etiqueta de inspección y cualquier documentación adicional que tu expediente de Protección Civil requiera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Ofrecen instalación y capacitación fuera de CDMX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para CDMX y Estado de México incluimos instalación y capacitación presencial. Para otros estados lo evaluamos por proyecto: en pedidos de cierto volumen podemos desplazar un equipo técnico para instalación de sistemas CI, señalización y capacitación con constancias DC-3."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Pueden ser nuestro proveedor fijo para múltiples sucursales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Trabajamos con empresas que tienen sucursales en varios estados y necesitan un solo proveedor. Ofrecemos facturación consolidada, entregas programadas por sucursal, precios preferenciales por volumen y un contacto único para todas tus ubicaciones."
+      }
+    }
+  ]
+}
 ---
 
 <Base
-  title={title}
-  description={description}
+  title="Cobertura — Equipos Contra Incendios en CDMX, EDOMEX y República | Proyecto Red"
+  description="Entrega directa de equipos contra incendios certificados en Ciudad de México, Estado de México, Querétaro, Puebla, Aguascalientes y Baja California. Proveedor directo con logística propia y envíos nacionales."
+  canonical={pageUrl}
+  ogImage={ogImage}
 >
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          {breadcrumbs.map((b, i) => (
-            <>
-              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-              {b.href
-                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
-                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-              }
-            </>
-          ))}
-        </nav>
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Entrega directa — logística propia
-        </div>
-        <h1>Cobertura de Entrega<br>en Todo <span class="h1-accent">México</span></h1>
-        <p class="hero-sub">
-          Entrega el mismo día en CDMX, 24-48 hrs en Estado de México y envíos coordinados a Querétaro, Puebla, Aguascalientes, Baja California y toda la república. Equipo certificado NOM con documentación completa.
-        </p>
-        <div class="hero-ctas">
-          <a
-            href={`${WA_URL}?text=Hola%2C%20necesito%20entrega%20de%20equipos%20contra%20incendios`}
-            class="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Solicitar cotización
-          </a>
-          <a href="#catalogo" class="btn-secondary">Ver zonas de cobertura</a>
-        </div>
-      </div>
+  <!-- ── Barra de migas de pan ────────────────────────────── -->
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Cobertura' }
+  ]} />
 
-      <div class="hero-right">
-        <p>En Proyecto Red operamos desde la Ciudad de México con almacén propio, inventario permanente y logística dedicada. No dependemos de distribuidores ni intermediarios — nosotros controlamos cada entrega de principio a fin.</p>
-        <p>Para la zona metropolitana (CDMX y EDOMEX) entregamos con flota propia. Para el resto de la república coordinamos envíos con paqueterías certificadas. El equipo siempre llega con documentación NOM completa lista para tu expediente de Protección Civil.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- ── Secciones ──────────────────────────────────────── -->
+  <HeroEmpresas />
   <CtaBar />
+  <CatalogoEmpresas />
+  <SeleccionIndex />
+  <NormasIndex />
+  <ProcesoIndex />
+  <FaqEmpresas />
+  <CTAFinalIndex />
 
-  <!-- ══════════════════════════════════════
-       NAVEGACIÓN RÁPIDA
-  ══════════════════════════════════════ -->
-  <section class="nav-cats" aria-label="Navegación por zona">
-    <div class="container">
-      <div class="nav-cats__inner">
-        <span class="nav-cats__label">Ir a zona:</span>
-        <div class="nav-cats__links">
-          {zonas.map(z => (
-            <a href={`#${z.id}`} class="nav-cat-pill">{z.titulo}</a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       CATÁLOGO DE ZONAS
-  ══════════════════════════════════════ -->
-  <main id="catalogo">
-    {zonas.map((zona, idx) => (
-      <section
-        id={zona.id}
-        class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
-        aria-labelledby={`zona-title-${zona.id}`}
-      >
-        <div class="container">
-
-          <div class="cat-header">
-            <div class="cat-header__img-wrap">
-              <img
-                src={zona.img}
-                alt={`Equipos contra incendios en ${zona.titulo}`}
-                loading={idx === 0 ? 'eager' : 'lazy'}
-                width="640"
-                height="400"
-              />
-              <div class="cat-header__img-overlay"></div>
-              <div class="cat-header__img-content">
-                <span class="cat-norm-badge">{zona.badge}</span>
-                <h2 id={`zona-title-${zona.id}`}>{zona.titulo}</h2>
-              </div>
-            </div>
-
-            <div class="cat-header__info">
-              <div class="cat-header__meta">
-                <span class="section-label">Zona de cobertura</span>
-                <span class="cat-badge-pill">{zona.badge}</span>
-              </div>
-              <h2 class="cat-header__title">Equipos Contra Incendios en {zona.titulo}</h2>
-              <p class="cat-header__desc">{zona.desc}</p>
-
-              <div class="normas-row">
-                {zona.normas.map(n => (
-                  <span class="norma-tag">{n}</span>
-                ))}
-              </div>
-
-              <div class="cat-header__ctas">
-                <a href={zona.href} class="btn-outline">Ver detalle de {zona.titulo}</a>
-                <a
-                  href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(zona.titulo)}`}
-                  class="cat-wa-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Cotizar envío
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="productos-grid">
-            {zona.detalles.map(d => (
-              <a href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(d.nombre)}`} class="prod-card" target="_blank" rel="noopener noreferrer">
-                <div class="prod-card__body">
-                  <h3 class="prod-card__name">{d.nombre}</h3>
-                  <p class="prod-card__sub">{d.sub}</p>
-                </div>
-                <div class="prod-card__footer">
-                  <span class="prod-card__link">
-                    Cotizar entrega
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </span>
-                </div>
-              </a>
-            ))}
-
-            <a
-              href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20en%20${encodeURIComponent(zona.titulo)}`}
-              class="prod-card prod-card--cta"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="prod-card-cta__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              </div>
-              <p class="prod-card-cta__text">¿Necesitas entrega en {zona.titulo}?</p>
-              <p class="prod-card-cta__sub">Cotiza por WhatsApp — te confirmamos disponibilidad y flete</p>
-              <span class="prod-card-cta__btn">Escribir al WhatsApp →</span>
-            </a>
-          </div>
-
-        </div>
-      </section>
-    ))}
-  </main>
-
-  <!-- ══════════════════════════════════════
-       FAQ + COTIZACIÓN
-  ══════════════════════════════════════ -->
-  <FaqCotizacion
-    titulo="Preguntas Frecuentes sobre Entrega y Cobertura"
-    subtitulo="Todo lo que necesitas saber sobre tiempos de entrega, zonas de cobertura y logística"
-    pageId="cobertura"
-    bgGray={true}
-    faqs={faqsCobertura}
-  />
-
-  <!-- ══════════════════════════════════════
-       CTA FINAL
-  ══════════════════════════════════════ -->
-  <section class="cta-final" aria-labelledby="cta-final-title">
-    <div class="container cta-final-inner">
-      <div class="cta-text">
-        <h2 id="cta-final-title">¿Necesitas equipo contra incendios en tu zona?</h2>
-        <p>Escríbenos con tu ubicación y lo que necesitas. Te confirmamos disponibilidad, tiempo de entrega y costo de flete en menos de 24 horas.</p>
-      </div>
-      <div class="cta-btns">
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20equipos%20contra%20incendios%20y%20quiero%20saber%20si%20cubren%20mi%20zona`}
-          class="btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Cotizar por WhatsApp
-        </a>
-        <a href="/productos/" class="btn-cta-ghost">Ver catálogo de productos</a>
-      </div>
-    </div>
-  </section>
+  <!-- ── Datos estructurados JSON-LD ──────────────────────
+       Inyectados al final del <body> para no bloquear render
+  ─────────────────────────────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaOfferCatalog)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
 
 </Base>

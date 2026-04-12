@@ -1,0 +1,339 @@
+---
+/**
+ * CatalogoBlog.astro
+ * Sección principal del blog L2 — SectionHeaderDuo + layout 2 columnas
+ * (grid artículos con paginación + sidebar interlinking).
+ * Patrón homologado con CatalogoProductos.
+ * CSS en: src/styles/pages.css (.blog-catalogo, .blog-layout)
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import BlogSidebar from './BlogSidebar.astro'
+import { getCollection } from 'astro:content'
+
+const POSTS_PER_PAGE = 9
+
+// Obtener todos los artículos ordenados por fecha
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+
+// Mapa de iconos SVG por categoría
+const categoryIcons: Record<string, string> = {
+  'Extintores':              'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z',
+  'Recarga de Extintores':   'M17 1l-4 4-4-4-4 4 4 4-4 4 4 4 4-4 4 4 4-4-4-4 4-4z',
+  'Mantenimiento':           'M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z',
+  'Mantenimiento Preventivo':'M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z',
+  'Sistemas CI':             'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z',
+  'Sistemas':                'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z',
+  'Venta de Equipos':        'M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2z',
+  'Señalamiento':            'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+  'Señalización':            'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+  'Equipo Bomberos':         'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+  'Protección Civil':        'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z',
+  'Capacitación':            'M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z',
+  'Asesoría Técnica':        'M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z',
+  'Prueba Hidrostática':     'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 014 12z',
+  'Instalación de Sistemas': 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z',
+  'Seguridad':               'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z',
+}
+
+const defaultIcon = 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'
+
+function getIcon(category: string | undefined): string {
+  if (!category) return defaultIcon
+  return categoryIcons[category] ?? defaultIcon
+}
+
+// Gradientes por categoría
+const categoryGradients: Record<string, string> = {
+  'Extintores':              'linear-gradient(135deg, #1a0505 0%, #3d0f0f 40%, #1a1a2e 100%)',
+  'Recarga de Extintores':   'linear-gradient(135deg, #0f1a0f 0%, #1a2e1a 40%, #0f0f1a 100%)',
+  'Mantenimiento':           'linear-gradient(135deg, #1a1a0f 0%, #2e2e1a 40%, #1a0f0f 100%)',
+  'Mantenimiento Preventivo':'linear-gradient(135deg, #1a1a0f 0%, #2e2e1a 40%, #1a0f0f 100%)',
+  'Sistemas CI':             'linear-gradient(135deg, #0f0f1a 0%, #1a1a3d 40%, #0f1a1a 100%)',
+  'Sistemas':                'linear-gradient(135deg, #0f0f1a 0%, #1a1a3d 40%, #0f1a1a 100%)',
+  'Venta de Equipos':        'linear-gradient(135deg, #1a0f1a 0%, #2e1a2e 40%, #1a1a0f 100%)',
+  'Señalamiento':            'linear-gradient(135deg, #1a1a0f 0%, #3d3d0f 40%, #1a0f0f 100%)',
+  'Señalización':            'linear-gradient(135deg, #1a1a0f 0%, #3d3d0f 40%, #1a0f0f 100%)',
+  'Equipo Bomberos':         'linear-gradient(135deg, #1a0505 0%, #3d1515 40%, #1a0f1a 100%)',
+  'Protección Civil':        'linear-gradient(135deg, #0f1a1a 0%, #1a3d3d 40%, #0f0f1a 100%)',
+  'Capacitación':            'linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 40%, #1a0f1a 100%)',
+  'Asesoría Técnica':        'linear-gradient(135deg, #0f1a0f 0%, #1a2e1a 40%, #0f1a1a 100%)',
+  'Prueba Hidrostática':     'linear-gradient(135deg, #0f1a1a 0%, #1a2e3d 40%, #0f0f1a 100%)',
+  'Instalación de Sistemas': 'linear-gradient(135deg, #1a0f0f 0%, #2e1a1a 40%, #0f0f1a 100%)',
+  'Seguridad':               'linear-gradient(135deg, #1a0505 0%, #2e0f0f 40%, #1a1a1a 100%)',
+}
+
+const defaultGradient = 'linear-gradient(135deg, #1a1a1a 0%, #2d1515 40%, #0f0f1a 100%)'
+
+function getGradient(category: string | undefined): string {
+  if (!category) return defaultGradient
+  return categoryGradients[category] ?? defaultGradient
+}
+
+// ── Mapa slug → imagen por artículo ──────────────────────────────────────────
+// Cuando el frontmatter no tiene `image`, se usa esta imagen según el slug.
+const slugImages: Record<string, string> = {
+  // ── Extintores ──────────────────────────────────────────────────────────────
+  'como-elegir-extintor-segun-riesgo':           '/imagenes/extintores/extintores-contra-incendios.jpg',
+  'extintor-tipo-k-cocinas-comerciales':         '/imagenes/extintores/tipo-k.jpg',
+  'extintor-pared-instalacion-correcta':         '/imagenes/extintores/extintores.jpg',
+  'extintor-portatil-tipo-k-ventajas':           '/imagenes/extintores/tipo-k.jpg',
+  'extintor-acero-inoxidable-cocina-industrial': '/imagenes/extintores/tipo-k.jpg',
+  'como-funciona-agente-humedo-clase-k':         '/imagenes/extintores/tipo-k.jpg',
+  'higiene-cocina-comercial-equipo-seguridad':   '/imagenes/escenarios/cocina.png',
+  'regulaciones-extintores-electricos':          '/imagenes/extintores/co2.jpg',
+  'donde-colocar-extintor-restaurante':          '/imagenes/escenarios/cocina.png',
+  'norma-extintores-cocinas-restaurantes':       '/imagenes/escenarios/cocina.png',
+  'que-extintor-necesita-mi-empresa':            '/imagenes/extintores/extintores-para-incendios.jpg',
+  'guia-proteccion-pymes':                       '/imagenes/extintores/equipo-contra-incendios.jpg',
+  'incendios-restaurantes':                      '/imagenes/escenarios/cocina.png',
+  'seguridad-condominios':                       '/imagenes/extintores/extintores.jpg',
+  'como-usar-extintor-correctamente':            '/imagenes/extintores/extintores-contra-incendios.jpg',
+
+  // ── Mantenimiento y Recarga ─────────────────────────────────────────────────
+  'mantenimiento-preventivo-extintores-empresa': '/imagenes/extintores/extintores.jpg',
+  'cada-cuanto-se-recarga-un-extintor':          '/imagenes/extintores/extintor.jpg',
+  'recarga-extintor-precio-cdmx':                '/imagenes/extintores/venta-de-extintores.jpg',
+  'bitacora-extintores-auditoria':               '/imagenes/extintores/extintores-mexico.jpg',
+  'prueba-hidrostatica-extintor-cuando':         '/imagenes/extintores/extintores-de-agua.jpg',
+  'extintor-falla-prueba-hidrostatica':          '/imagenes/extintores/extintores-de-agua.jpg',
+
+  // ── Sistemas Contra Incendio ────────────────────────────────────────────────
+  'instalacion-sistema-contra-incendio-cdmx':          '/imagenes/sistemas/redes-hidraulicas.jpg',
+  'sistema-deteccion-incendio-que-incluye':            '/imagenes/sistemas/detectores.jpg',
+  'cuantos-detectores-incendio-necesita-empresa':      '/imagenes/sistemas/tableros-detectores.jpg',
+  'panel-deteccion-incendio-zonas':                    '/imagenes/sistemas/tablero-incendios.jpg',
+  'sistema-bombeo-contra-incendio-presion':            '/imagenes/sistemas/red-hidraulica-1.jpg',
+  'nfpa-20-bomba-incendio-edificios-mexico':           '/imagenes/sistemas/red-hidraulica-2.jpg',
+  'arranque-automatico-bomba-incendio':                '/imagenes/sistemas/tablero-control.jpg',
+  'materiales-red-hidraulica-contra-incendio':         '/imagenes/mangueras/mangueras-hero.jpg',
+  'tuberia-pvc-red-hidraulica-incendio':               '/imagenes/sistemas/tuberia-hidraulica.jpg',
+  'supresion-incendio-campana-cocina-industrial':      '/imagenes/escenarios/cocina.png',
+  'tuberia-sistema-tipo-k-campana-instalacion':        '/imagenes/sistemas/tuberia-hidraulica.jpg',
+  'tablero-control-sistema-incendio':                  '/imagenes/sistemas/tableros.jpg',
+  'detector-gas-lel-como-funciona':                    '/imagenes/sistemas/detectores.jpg',
+  'detector-gas-combustible-fijo-instalaciones':       '/imagenes/sistemas/detectores.jpg',
+  'detector-multigas-espacios-confinados':             '/imagenes/escenarios/industrial.png',
+  'gases-peligrosos-industria-h2s-co':                 '/imagenes/escenarios/industrial.png',
+  'prevencion-atmosferas-explosivas-industria':        '/imagenes/escenarios/industrial.png',
+  'alarma-fuga-gas-empresas-protocolo':                '/imagenes/sistemas/alarmas.jpg',
+  'limpieza-campanas':                                 '/imagenes/escenarios/cocina.png',
+  'sistema-contra-incendio-nfpa-que-necesita-mi-edificio': '/imagenes/sistemas/rociadores.jpg',
+  'analisis-riesgo-incendio-instalaciones':            '/imagenes/home/sistemas-contra-incendios.jpg',
+
+  // ── Señalización y Evacuación ───────────────────────────────────────────────
+  'senalizacion-emergencia-nom-003':            '/imagenes/senalamientos/senalamientos-hero.jpg',
+  'señalizacion-extintores-auditorias':         '/imagenes/senalamientos/letrero-extintor.jpg',
+  'rutas-evacuacion-empresa-como-disenarlas':   '/imagenes/senalamientos/salida-emergencia.jpg',
+  'salidas-emergencia-obligatorias-norma':      '/imagenes/senalamientos/salida-emergencia.jpg',
+  'letrero-extintor-fotoluminiscente':          '/imagenes/senalamientos/letrero-extintor.jpg',
+  'señal-extintor-pvc-rigido':                  '/imagenes/senalamientos/letrero-extintor.jpg',
+  'señalamiento-escaleras-evacuacion':          '/imagenes/senalamientos/escaleras-emergencia.jpg',
+  'evacuacion-vertical-edificios-multiples-pisos': '/imagenes/senalamientos/escaleras-emergencia.jpg',
+  'punto-reunion-evacuacion-empresa':           '/imagenes/senalamientos/punto-reunion.jpg',
+  'diferencia-salida-emergencia-salida-regular':'/imagenes/senalamientos/salida-emergencia.jpg',
+  'materiales-señalizacion-emergencia-tipos':   '/imagenes/senalamientos/senalamientos-hero.jpg',
+  'mantas-ignifugas-inspecciones':              '/imagenes/senalamientos/advertencia.jpg',
+  'simulacro-evacuacion-empresa-como-hacerlo':  '/imagenes/senalamientos/senalamientos-hero.jpg',
+
+  // ── Protección Civil y Cumplimiento ────────────────────────────────────────
+  'como-pasar-inspeccion-proteccion-civil':     '/imagenes/extintores/extintores-mexico.jpg',
+  'asesoria-tecnica-proteccion-civil':          '/imagenes/home/equipos-contra-incendios.jpg',
+  'equipamiento-proteccion-civil-empresa':      '/imagenes/extintores/extintores-para-incendios.jpg',
+  'capacitacion-brigadas-incendio-dc3':         '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+
+  // ── Equipo Bomberos ─────────────────────────────────────────────────────────
+  'equipo-herramientas-bomberos-empresa':       '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+  'colores-cascos-bombero':                     '/imagenes/equipo-seguridad/cascos.jpg',
+  'equipo-extincion-bomberos':                  '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+  'hacha-rescate-bomberos-uso':                 '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+  'barra-halligan-rescate-forzamiento':         '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+  'linternas-para-bomberos':                    '/imagenes/equipo-bomberos/complementos-traje.jpg',
+  'herramientas-rescate-brigada-emergencias':   '/imagenes/equipo-bomberos/herramientas-bombero.jpg',
+}
+
+// Imágenes por defecto por categoría (tercer fallback)
+const categoryImages: Record<string, string> = {
+  'Extintores':              '/imagenes/extintores/extintores.jpg',
+  'Recarga de Extintores':   '/imagenes/extintores/venta-de-extintores.jpg',
+  'Mantenimiento':           '/imagenes/extintores/extintores.jpg',
+  'Mantenimiento Preventivo':'/imagenes/extintores/extintores.jpg',
+  'Sistemas':                '/imagenes/sistemas/redes-hidraulicas.jpg',
+  'Sistemas CI':             '/imagenes/sistemas/rociadores.jpg',
+  'Señalamiento':            '/imagenes/senalamientos/senalamientos-hero.jpg',
+  'Señalización':            '/imagenes/senalamientos/senalamientos-hero.jpg',
+  'Equipo Bomberos':         '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+  'Protección Civil':        '/imagenes/home/equipos-contra-incendios.jpg',
+  'Capacitación':            '/imagenes/extintores/extintores-contra-incendios.jpg',
+  'Asesoría Técnica':        '/imagenes/home/equipos-contra-incendios.jpg',
+  'Prueba Hidrostática':     '/imagenes/extintores/extintores-de-agua.jpg',
+  'Instalación de Sistemas': '/imagenes/sistemas/redes-hidraulicas.jpg',
+  'Seguridad':               '/imagenes/extintores/equipo-contra-incendios.jpg',
+  'Venta de Equipos':        '/imagenes/extintores/venta-de-extintores.jpg',
+}
+
+// Devuelve la URL CDN lista para usar en el src de <img>
+function getPostImageCdn(slug: string, frontmatterImage: string | undefined, category: string | undefined): string {
+  const raw = frontmatterImage ?? slugImages[slug] ?? (category ? categoryImages[category] : undefined) ?? ''
+  if (!raw) return ''
+  if (raw.startsWith('/imagenes/')) {
+    return `https://ewvydcs5uyw.exactdn.com${raw}?strip=all&lossy=1&w=480`
+  }
+  return raw
+}
+---
+
+<section id="articulos" class="blog-catalogo cat-section cat-section--white" aria-labelledby="blog-catalogo-heading">
+  <div class="container">
+
+    <!-- ── Encabezado SectionHeaderDuo (homologado) ── -->
+    <SectionHeaderDuo
+      id="blog-catalogo-heading"
+      eyebrow="Blog"
+      titleLine1="Guías y recursos sobre"
+      titleLine2="protección contra incendios"
+      desc="Contenido escrito por especialistas en seguridad contra incendios."
+      bodyPara1="Artículos técnicos sobre normativa mexicana, selección de equipo, mantenimiento preventivo y preparación para inspecciones de Protección Civil y STPS."
+      bodyPara2="Publicamos guías prácticas para que tu empresa entienda qué equipo necesita, cómo mantenerlo y qué documentación presentar ante las autoridades competentes."
+    />
+
+    <!-- ── Layout 2 columnas: contenido + sidebar ── -->
+    <div class="blog-layout">
+
+      <!-- ═══ COLUMNA PRINCIPAL ═══════════════════════ -->
+      <div class="blog-layout__main">
+
+        <!-- Contador de resultados -->
+        <div class="blog-results-bar">
+          <span class="blog-results-bar__count">{posts.length} artículos disponibles</span>
+        </div>
+
+        <!-- Grid de artículos (todas las cards, JS controla paginación) -->
+        <div class="blog-grid" id="blogGrid">
+          {posts.map((post, i) => (
+            <a
+              href={`/blog/${post.id}/`}
+              class="blogcard"
+              data-index={i}
+              style={i >= POSTS_PER_PAGE ? 'display:none' : ''}
+            >
+              <!-- Imagen principal (siempre presente) -->
+              <div class="blogcard__visual" style={`background: ${getGradient(post.data.category)}`}>
+                <img
+                  src={getPostImageCdn(post.id, post.data.image, post.data.category)}
+                  alt={post.data.title}
+                  width="480"
+                  height="260"
+                  loading={i < POSTS_PER_PAGE ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="blogcard__img"
+                />
+                {post.data.category && (
+                  <span class="blogcard__badge">{post.data.category}</span>
+                )}
+              </div>
+
+              <!-- Contenido -->
+              <div class="blogcard__content">
+                <h3 class="blogcard__title">{post.data.title}</h3>
+                <p class="blogcard__desc">{post.data.description}</p>
+                <span class="blogcard__cta">
+                  Leer artículo
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- Paginación -->
+        {totalPages > 1 && (
+          <nav class="blog-pagination" id="blogPagination" aria-label="Paginación del blog">
+            <button class="blog-pagination__btn blog-pagination__prev" id="blogPrev" disabled aria-label="Página anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              Anterior
+            </button>
+
+            <div class="blog-pagination__pages" id="blogPages">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  class:list={['blog-pagination__page', { 'blog-pagination__page--active': i === 0 }]}
+                  data-page={i}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+
+            <button class="blog-pagination__btn blog-pagination__next" id="blogNext" aria-label="Página siguiente">
+              Siguiente
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </nav>
+        )}
+
+      </div>
+
+      <!-- ═══ SIDEBAR ════════════════════════════════ -->
+      <BlogSidebar />
+
+    </div>
+
+  </div>
+</section>
+
+<script define:vars={{ POSTS_PER_PAGE, totalPages }}>
+  // Paginación client-side
+  const grid = document.getElementById('blogGrid')
+  const cards = grid ? Array.from(grid.querySelectorAll('.blogcard')) : []
+  const prevBtn = document.getElementById('blogPrev')
+  const nextBtn = document.getElementById('blogNext')
+  const pagesBtns = document.querySelectorAll('.blog-pagination__page')
+
+  let currentPage = 0
+
+  function showPage(page) {
+    currentPage = page
+    const start = page * POSTS_PER_PAGE
+    const end = start + POSTS_PER_PAGE
+
+    cards.forEach((card, i) => {
+      card.style.display = (i >= start && i < end) ? '' : 'none'
+    })
+
+    // Actualizar botones
+    pagesBtns.forEach((btn) => {
+      const p = parseInt(btn.dataset.page)
+      btn.classList.toggle('blog-pagination__page--active', p === page)
+    })
+
+    if (prevBtn) prevBtn.disabled = page === 0
+    if (nextBtn) nextBtn.disabled = page === totalPages - 1
+
+    // Scroll suave al grid
+    const section = document.getElementById('articulos')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) showPage(currentPage - 1)
+    })
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages - 1) showPage(currentPage + 1)
+    })
+  }
+
+  pagesBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      showPage(parseInt(btn.dataset.page))
+    })
+  })
+</script>

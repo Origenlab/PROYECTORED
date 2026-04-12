@@ -1,0 +1,113 @@
+---
+/**
+ * NormasPrimerosAuxilios.astro — v1
+ * Cards de normas para equipo de primeros auxilios.
+ * Patrón 100% homologado con NormasSistemas / NormasMangueras.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NOM-030-STPS',
+    tipo: 'Botiquines y brigadas',
+    alcance: 'Servicios preventivos de seguridad y salud en el trabajo — define el tipo de botiquín (A, B o C) según el número de trabajadores, el contenido mínimo de cada tipo y la obligación de tener brigadas de primeros auxilios capacitadas.',
+    aplica: 'Todo centro de trabajo con al menos 5 trabajadores. La STPS verifica en auditorías que el botiquín tenga el contenido completo y vigente, que esté visible y accesible, y que el personal de brigada tenga constancia de capacitación DC-3.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22V12m0 0c0-4-4-8-4-8s4 1 4 8zm0 0c0-4 4-8 4-8s-4 1-4 8z"/><path d="M5 12H2M22 12h-3"/></svg>`,
+  },
+  {
+    norma: 'NOM-006-STPS',
+    tipo: 'Manejo de materiales',
+    alcance: 'Manejo y almacenamiento de materiales — establece requisitos de equipo de primeros auxilios en zonas de carga y descarga, almacenes y áreas con riesgo de golpes, aplastamiento y caídas.',
+    aplica: 'Empresas con almacenes, patios de carga, naves con montacargas y cualquier área donde se manipulen materiales pesados. Define que el botiquín debe estar a no más de 5 metros del área de riesgo y que el personal de turno conoce su ubicación.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>`,
+  },
+  {
+    norma: 'NOM-034-STPS',
+    tipo: 'Condiciones ergonómicas',
+    alcance: 'Condiciones ergonómicas en los centros de trabajo — incluye requerimientos de primeros auxilios para manejo de lesiones musculoesqueléticas relacionadas con posturas forzadas, sobreesfuerzo y movimientos repetitivos.',
+    aplica: 'Empresas con trabajadores en líneas de producción, trabajo en postura forzada o manejo manual de cargas. Los inmovilizadores y collarines son parte del equipo recomendado para estas condiciones de riesgo.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+  },
+  {
+    norma: 'NOM-017-STPS',
+    tipo: 'Equipo de protección',
+    alcance: 'Equipo de protección personal — relacionado con primeros auxilios en cuanto al equipo de protección de los propios brigadistas: guantes de nitrilo (barrera frente a fluidos), lentes de seguridad y mascarillas de RCP.',
+    aplica: 'Cualquier brigada de primeros auxilios. El brigadista que atiende a un lesionado sin guantes o sin barrera de RCP está expuesto a riesgo biológico. Los kits de brigada deben incluir EPP de atención además del material de curación.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    norma: 'NOM-009-STPS',
+    tipo: 'Trabajo en altura',
+    alcance: 'Condiciones de seguridad para trabajo en alturas — incluye requerimientos específicos de primeros auxilios para caídas: camillas de inmovilización, collarines cervicales y protocolo de atención a trauma de columna.',
+    aplica: 'Empresas con trabajos en techos, andamios, líneas de producción en altura o mantenimiento en estructuras elevadas. La camilla tipo Stokes y los collarines son parte del equipo de respuesta obligatorio en estas instalaciones.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+  },
+  {
+    norma: 'NOM-002-STPS',
+    tipo: 'Prevención de incendios',
+    alcance: 'Condiciones de seguridad y prevención de incendios — vincula los primeros auxilios con el plan de emergencias del centro de trabajo. La brigada de primeros auxilios debe estar coordinada con la brigada contra incendio.',
+    aplica: 'Todo centro de trabajo con plan de emergencias. Los brigadistas de primeros auxilios deben estar integrados en el plan general de respuesta a emergencias y su equipo debe estar disponible junto al área de reunión de emergencias.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>`,
+  },
+]
+---
+
+<section class="normas-pa" id="normas-primeros-auxilios" aria-labelledby="normas-pa-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="normas-pa-heading"
+      eyebrow="Marco normativo STPS"
+      titleLine1="Normas que Rigen"
+      titleLine2="los Primeros Auxilios en el Trabajo"
+      desc="NOM-030-STPS, NOM-006, NOM-017 y NOM-002 — cada entorno de trabajo tiene requisitos específicos de equipo y capacitación."
+      bodyPara1="El equipo de primeros auxilios no es opcional en México. La NOM-030-STPS establece la obligación, pero no es la única norma relevante: dependiendo del tipo de actividad de tu empresa, hay requisitos adicionales para manejo de materiales, trabajo en alturas, líneas de producción o instalaciones con riesgo de incendio. La STPS verifica cumplimiento de todas ellas en una sola inspección."
+      bodyPara2="El incumplimiento no se resuelve solo con tener el botiquín — la norma también exige que el personal sepa dónde está, que la brigada esté capacitada con constancia DC-3 y que el botiquín tenga el contenido vigente. Proveemos el equipo, la documentación de cumplimiento y la capacitación en un solo servicio."
+    />
+
+    <div class="normas-pa-grid" role="list" aria-label="Normas aplicables a primeros auxilios en el trabajo">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" aria-hidden="true" set:html={n.icon} />
+            <div>
+              <span class="norma-card__codigo">{n.norma}</span>
+              <span class="norma-tipo">{n.tipo}</span>
+            </div>
+          </div>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-card__aplica-label">Aplica en</span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <svg class="normas-nota__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="normas-nota__text">
+        <strong>¿Capacitación con constancia DC-3?</strong> Ofrecemos cursos de primeros auxilios para brigadas con constancia DC-3 válida ante STPS — el mismo día que entregamos e instalamos el equipo en tu empresa. Sin necesidad de contratar un capacitador externo por separado.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-pa {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-pa-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 1024px) { .normas-pa-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .normas-pa-grid { grid-template-columns: 1fr; } }
+</style>

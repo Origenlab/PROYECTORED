@@ -1,0 +1,142 @@
+---
+/**
+ * GuiaBomberos.astro — v1
+ * Guía de equipo por tipo de operación — 4 escenarios críticos.
+ * Cards con imagen superior (patrón .ccard), colores del sitio únicamente.
+ * Patrón 100% homologado con GuiaExtintores (L3 template aprobado).
+ * Usa SectionHeaderDuo (complemento título oficial) + Img.astro (CDN).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+
+const waHref = waUrl('Hola, necesito asesoría técnica para equipo de emergencia')
+
+const escenarios = [
+  {
+    num: '01',
+    tipo: 'Combate estructural — Bomberos profesionales',
+    norma: 'NFPA 1971 · 1851 · 1981',
+    necesitas: 'Traje 3 capas NFPA 1971 + ERA SCBA NIOSH + casco con visor + guantes térmicos + botas certificadas + capucha Nomex',
+    porque: 'El ensemble completo NFPA 1971 es obligatorio para entrar a estructuras en llamas. No hay atajos: cada componente debe estar individualmente certificado. Un solo elemento fuera de norma — aunque sea la capucha — invalida la protección del conjunto y expone al operador a quemaduras de segundo y tercer grado.',
+    href: waUrl('Hola, necesito equipo para combate estructural NFPA 1971'),
+    img: '/imagenes/escenarios-bomberos/combate-estructural.avif',
+    imgAlt: 'Bombero equipado con traje NFPA 1971 y ERA en combate estructural',
+  },
+  {
+    num: '02',
+    tipo: 'HAZMAT — Materiales peligrosos',
+    norma: 'NFPA 1991 · 1992 · 1994',
+    necesitas: 'Traje encapsulado Nivel A (gases) o Nivel B (líquidos) + ERA + detector multigas portátil + traje de descontaminación + zona de decon establecida',
+    porque: 'Los incidentes con materiales peligrosos requieren protección específica por nivel de riesgo: un traje Nivel A para vapores tóxicos no es el mismo que un Nivel B para salpicaduras de líquidos. Un traje estructural NFPA 1971 no protege contra agentes químicos — los absorbe. La clasificación correcta define si el operador sobrevive o no.',
+    href: waUrl('Hola, necesito equipo HAZMAT para materiales peligrosos'),
+    img: '/imagenes/escenarios-bomberos/hazmat-materiales-peligrosos.avif',
+    imgAlt: 'Equipo HAZMAT Nivel A para incidentes con materiales peligrosos',
+  },
+  {
+    num: '03',
+    tipo: 'Rescate en altura y espacios confinados',
+    norma: 'NFPA 1983 · NOM-009-STPS · NFPA 1670',
+    necesitas: 'Arnés clase III NFPA 1983 + cuerda técnica de rescate + sistema antícaída + trípode de entrada a espacios confinados + equipo de monitoreo de atmósfera',
+    porque: 'Un arnés de construcción convencional no es válido para rescate — los puntos de anclaje y la geometría de carga en caída son distintos. En NFPA 1983, un arnés clase III debe aguantar 3,000 lbf en caída libre desde 6 pies. La diferencia entre los certificados puede ser la diferencia entre una evacuación controlada y una fatalidad adicional.',
+    href: waUrl('Hola, necesito equipo para rescate en altura y espacios confinados'),
+    img: '/imagenes/escenarios-bomberos/rescate-altura-confinados.avif',
+    imgAlt: 'Equipo de rescate en altura con arneses NFPA 1983 certificados',
+  },
+  {
+    num: '04',
+    tipo: 'Aeronáutico y zonas de proximidad',
+    norma: 'NFPA 1976 · NFPA 1975',
+    necesitas: 'Traje aluminizado de proximidad NFPA 1976 + ERA + casco especializado con visor de oro + guantes aluminizados + botas de proximidad',
+    porque: 'Los incendios aeronáuticos con combustible JET-A generan temperaturas de 500°C o más en pocos segundos. Un traje estructural NFPA 1971 no está diseñado para calor radiante de esa intensidad — solo dura segundos antes de perder sus propiedades. El aluminizado NFPA 1976 refleja hasta el 95% del calor radiante y es la única opción válida para operaciones de primera respuesta en aeropuertos.',
+    href: waUrl('Hola, necesito equipo aeronáutico o de proximidad NFPA 1976'),
+    img: '/imagenes/escenarios-bomberos/aeronautico-proximidad.avif',
+    imgAlt: 'Traje aluminizado de proximidad NFPA 1976 para incendios aeronáuticos',
+  },
+]
+---
+
+<section class="guia-bomb" id="guia-operaciones" aria-labelledby="guia-bomb-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      eyebrow="Guía por tipo de operación"
+      titleLine1="El Equipo Incorrecto No es Solo una Falla —"
+      titleLine2="Es un Riesgo de Vida para el Operador"
+      desc="Traje estructural en HAZMAT = exposición química. Arnés de construcción en rescate = falla en caída. Identifica tu operación antes de elegir."
+      bodyPara1="Cada tipo de operación de emergencia tiene requerimientos de equipo específicos definidos por norma. Un traje NFPA 1971 no reemplaza un traje HAZMAT NFPA 1991. Un arnés de seguridad industrial no es válido para rescate NFPA 1983. Seleccionar el equipo incorrecto no solo genera incumplimiento normativo — expone al operador a condiciones para las que su equipo no fue diseñado. Te ayudamos a identificar exactamente lo que necesitas según tu tipo de riesgo."
+    />
+
+    <!-- Grid de escenarios — patrón homologado con GuiaExtintores -->
+    <div class="guia-grid" role="list" aria-label="Guía de equipo para bomberos por tipo de operación">
+      {escenarios.map((esc, i) => (
+        <article class="guia-card" role="listitem">
+          {/* Imagen superior */}
+          <div class="guia-card__header">
+            <Img
+              src={esc.img}
+              alt={esc.imgAlt}
+              width={640}
+              height={360}
+              loading={i < 2 ? 'eager' : 'lazy'}
+              class="guia-card__img"
+            />
+            <span class="guia-card__badge">{esc.norma}</span>
+            <span class="guia-card__num">{esc.num}</span>
+          </div>
+
+          {/* Contenido */}
+          <div class="guia-card__body">
+            <h3 class="guia-card__tipo">{esc.tipo}</h3>
+
+            <div class="guia-card__block">
+              <span class="guia-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                Qué necesitas
+              </span>
+              <p>{esc.necesitas}</p>
+            </div>
+
+            <div class="guia-card__block guia-card__block--muted">
+              <span class="guia-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Por qué
+              </span>
+              <p>{esc.porque}</p>
+            </div>
+
+            <a href={esc.href} class="guia-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar para esta operación
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA asesoría -->
+    <div class="guia-cta-bar">
+      <div class="guia-cta-bar__left">
+        <div class="guia-cta-bar__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="guia-cta-bar__text">
+          <strong>¿Tu operación tiene múltiples tipos de riesgo o equipas a una corporación completa?</strong>
+          <span>Diagnóstico técnico sin costo — definimos el ensemble correcto por tipo de operación y presupuesto disponible.</span>
+        </div>
+      </div>
+      <a
+        href={waHref}
+        class="btn-primary guia-cta-bar__btn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Asesoría técnica gratuita
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Estilos en pages.css (global) — sección EQUIPO PARA BOMBEROS -->

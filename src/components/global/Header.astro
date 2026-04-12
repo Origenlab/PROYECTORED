@@ -63,12 +63,13 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
     <!-- Logo -->
     <a href="/" class="hdr-logo" aria-label="Proyecto Red — Inicio">
       <img
-        src="/imagenes/logos/logo-proyectored-201x60.png"
+        src="https://ewvydcs5uyw.exactdn.com/imagenes/logos/logo-proyectored-201x60.png?strip=all&lossy=1"
         alt="Proyecto Red — Equipos contra incendios"
         width="174"
         height="52"
         class="hdr-logo-img"
         loading="eager"
+        fetchpriority="high"
       />
     </a>
 
@@ -380,7 +381,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   font-weight: 500;
   color: var(--c-ink-2);
   border-radius: 6px;
-  transition: color 0.15s, background 0.15s;
   white-space: nowrap;
   text-decoration: none;
   letter-spacing: 0.01em;
@@ -395,7 +395,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
 }
 
 .hdr-chevron {
-  transition: transform 0.2s ease;
   flex-shrink: 0;
   opacity: 0.55;
 }
@@ -422,7 +421,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .mega-panel.is-open {
@@ -453,7 +451,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   font-weight: 600;
   color: var(--c-primary);
   text-decoration: none;
-  transition: color 0.15s;
 }
 .mega-panel__all:hover { color: var(--c-primary-dark); }
 
@@ -478,7 +475,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   font-weight: 600;
   color: var(--c-ink);
   border-radius: 5px;
-  transition: background 0.15s, color 0.15s;
   text-decoration: none;
 }
 .mega-col__title:hover { background: var(--c-primary-light); color: var(--c-primary); }
@@ -510,7 +506,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   font-size: 0.8125rem;
   color: var(--c-muted);
   border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
   text-decoration: none;
   line-height: 1.5;
 }
@@ -534,7 +529,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
-  transition: opacity 0.16s ease, transform 0.16s ease;
 }
 
 .drop-panel.is-open {
@@ -569,7 +563,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   font-size: 0.875rem;
   color: var(--c-ink-2);
   border-radius: 5px;
-  transition: background 0.12s, color 0.12s;
   text-decoration: none;
 }
 .drop-panel__link:hover { background: var(--c-primary-light); color: var(--c-primary); }
@@ -685,7 +678,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   border: none;
   cursor: pointer;
   text-align: left;
-  transition: color 0.15s;
 }
 .mob-item__trigger:hover { color: var(--c-primary); }
 .mob-item__trigger[aria-expanded="true"] { color: var(--c-primary); }
@@ -734,7 +726,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   color: var(--c-ink-2);
   text-decoration: none;
   border-radius: 5px;
-  transition: background 0.12s, color 0.12s;
 }
 .mob-item__link:hover { background: var(--c-primary-light); color: var(--c-primary); }
 
@@ -747,7 +738,6 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   color: var(--c-ink);
   border-bottom: 1px solid var(--c-border);
   text-decoration: none;
-  transition: color 0.15s;
 }
 .mob-direct:hover { color: var(--c-primary); }
 

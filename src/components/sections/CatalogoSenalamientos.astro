@@ -1,0 +1,184 @@
+---
+/**
+ * CatalogoSenalamientos.astro
+ * Catálogo de 6 categorías de señalamientos — patrón .ccard homologado con L1/L2.
+ * Usa SectionHeaderDuo (complemento título oficial) + .ccard con subcats.
+ * Estructura 100% homologada con CatalogoExtintores (L3 template autorizado).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, quiero cotizar señalamientos de emergencia para mi inmueble')
+
+const senalamientos = [
+  {
+    nombre: 'Evacuación y Salvamento',
+    desc: 'Rutas de evacuación, salidas de emergencia, punto de reunión y ubicación de extintores. Sin ellas no hay dictamen favorable de Protección Civil.',
+    href: '/senalamientos/evacuacion/',
+    img: '/imagenes/senalamientos/senalamiento-evacuacion-salida-emergencia.avif',
+    badge: 'Obligatorio',
+    ctaLabel: 'Ver evacuación y salvamento',
+    subcats: [
+      { label: 'Salida de emergencia', href: '/senalamientos/evacuacion/' },
+      { label: 'Ruta de evacuación', href: '/senalamientos/evacuacion/' },
+      { label: 'Punto de reunión', href: '/senalamientos/evacuacion/' },
+      { label: 'Ubicación de extintor', href: '/senalamientos/evacuacion/' },
+      { label: 'Rompe vidrio', href: '/senalamientos/evacuacion/' },
+    ],
+  },
+  {
+    nombre: 'Señales de Prohibición',
+    desc: 'Círculo rojo con diagonal. No fumar, no paso, prohibido fuego abierto. Indican acciones prohibidas en zonas de riesgo.',
+    href: '/senalamientos/prohibicion/',
+    img: '/imagenes/senalamientos/senalamiento-prohibicion-no-fumar.avif',
+    badge: 'NOM-003',
+    ctaLabel: 'Ver prohibición',
+    subcats: [
+      { label: 'No fumar', href: '/senalamientos/prohibicion/' },
+      { label: 'No paso', href: '/senalamientos/prohibicion/' },
+      { label: 'Prohibido fuego abierto', href: '/senalamientos/prohibicion/' },
+      { label: 'No usar elevador en incendio', href: '/senalamientos/prohibicion/' },
+      { label: 'No obstruir salida', href: '/senalamientos/prohibicion/' },
+    ],
+  },
+  {
+    nombre: 'Señales de Advertencia',
+    desc: 'Triángulo amarillo. Riesgo eléctrico, material inflamable, piso resbaloso. Alertan sobre peligros presentes en el área de trabajo.',
+    href: '/senalamientos/advertencia/',
+    img: '/imagenes/senalamientos/senalamiento-advertencia-riesgo-electrico.avif',
+    badge: 'NOM-026',
+    ctaLabel: 'Ver advertencia',
+    subcats: [
+      { label: 'Riesgo eléctrico', href: '/senalamientos/advertencia/' },
+      { label: 'Material inflamable', href: '/senalamientos/advertencia/' },
+      { label: 'Piso resbaloso', href: '/senalamientos/advertencia/' },
+      { label: 'Caída de objetos', href: '/senalamientos/advertencia/' },
+      { label: 'Material corrosivo', href: '/senalamientos/advertencia/' },
+    ],
+  },
+  {
+    nombre: 'Señales de Obligación EPP',
+    desc: 'Círculo azul. Uso obligatorio de casco, lentes, guantes, calzado de seguridad y protección auditiva. Verificadas por STPS en auditorías.',
+    href: '/senalamientos/obligacion/',
+    img: '/imagenes/senalamientos/senalamiento-obligacion-uso-casco.avif',
+    badge: 'NOM-017',
+    ctaLabel: 'Ver obligación EPP',
+    subcats: [
+      { label: 'Casco obligatorio', href: '/senalamientos/obligacion/' },
+      { label: 'Lentes de seguridad', href: '/senalamientos/obligacion/' },
+      { label: 'Guantes obligatorios', href: '/senalamientos/obligacion/' },
+      { label: 'Protección auditiva', href: '/senalamientos/obligacion/' },
+      { label: 'Calzado de seguridad', href: '/senalamientos/obligacion/' },
+    ],
+  },
+  {
+    nombre: 'Fotoluminiscentes',
+    desc: 'Brillan 8+ horas sin electricidad ni baterías. El estándar NOM-003-SEGOB para rutas de evacuación y salidas de emergencia.',
+    href: '/senalamientos/fotoluminiscentes/',
+    img: '/imagenes/senalamientos/senalamiento-fotoluminiscente-oscuridad.avif',
+    badge: '8h+ sin luz',
+    ctaLabel: 'Ver fotoluminiscentes',
+    subcats: [
+      { label: 'Salida de emergencia fotoluminiscente', href: '/senalamientos/fotoluminiscentes/' },
+      { label: 'Ruta de evacuación fotoluminiscente', href: '/senalamientos/fotoluminiscentes/' },
+      { label: 'Punto de reunión fotoluminiscente', href: '/senalamientos/fotoluminiscentes/' },
+      { label: 'Extintor fotoluminiscente', href: '/senalamientos/fotoluminiscentes/' },
+      { label: 'Kit completo por piso', href: '/senalamientos/fotoluminiscentes/' },
+    ],
+  },
+  {
+    nombre: 'Señalización Personalizada',
+    desc: 'Señales a medida para riesgos específicos. Pictograma NOM, texto personalizado, medidas especiales y materiales de alto rendimiento.',
+    href: '/senalamientos/personalizados/',
+    img: '/imagenes/senalamientos/senalamiento-personalizado-a-medida.avif',
+    badge: null,
+    ctaLabel: 'Ver personalizados',
+    subcats: [
+      { label: 'Con nombre de empresa', href: '/senalamientos/personalizados/' },
+      { label: 'Para riesgos específicos', href: '/senalamientos/personalizados/' },
+      { label: 'Formatos grandes (naves)', href: '/senalamientos/personalizados/' },
+      { label: 'Bilingüe español / inglés', href: '/senalamientos/personalizados/' },
+      { label: 'Diseño con verificación NOM', href: '/senalamientos/personalizados/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-senalamientos cat-section cat-section--white" id="catalogo-senalamientos" aria-labelledby="catalogo-sen-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-sen-heading"
+      eyebrow="6 categorías certificadas NOM"
+      titleLine1="Catálogo de Señalamientos:"
+      titleLine2="La Señal Correcta para Cada Zona"
+      desc="Cada espacio requiere señales distintas. Fotoluminiscentes, prohibición, advertencia, obligación, evacuación y personalizados. Todos incluyen número de norma impreso y tintas UV-resistentes."
+      bodyPara1="La señalización no es decoración — es un sistema de prevención y respuesta. Cada categoría tiene una forma, un color y un pictograma definido por norma. Mezclar colores o usar señales genéricas sin respaldo NOM puede resultar en dictamen desfavorable o multa. Te ayudamos a elegir exactamente lo que necesitas por zona, con el servicio completo: levantamiento → plano → instalación → expediente para Protección Civil."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2 -->
+    <div class="catidx-grid" role="list" aria-label="Tipos de señalamientos disponibles">
+      {senalamientos.map((s, i) => (
+        <article class="ccard" role="listitem" aria-label={s.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={s.img}
+              alt={s.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {s.badge && <span class="ccard__badge">{s.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{s.nombre}</h3>
+            <p class="ccard__desc">{s.desc}</p>
+
+            {s.subcats && s.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${s.nombre}`}>
+                {s.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={s.href} class="ccard__cta">
+              {s.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir señalamientos">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿No sabes qué señalamientos necesitas?</p>
+          <p class="ccard--cta-wa__sub">Levantamiento gratuito con plano de ubicación — el documento que necesitas para tu expediente de Protección Civil.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>

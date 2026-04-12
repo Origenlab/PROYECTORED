@@ -1,0 +1,557 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const seo = {
+  title: "Extintor Agente Limpio FM-200 5 kg — Servidores y Centros de Datos | Proyecto Red",
+  description: "Extintor de agente limpio FM-200 5 kg. Sin residuo, sin daño al equipo, seguro para personas. Para centros de datos, servidores y archivos críticos. NOM-154-SCFI. CDMX.",
+};
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Agente Limpio", href: "/extintores/agente-limpio/" },
+  { label: "FM-200 5 kg" },
+];
+
+const heroStats = [
+  { valor: "5 kg",    label: "Capacidad" },
+  { valor: "A·B·C",  label: "Clases de fuego" },
+  { valor: "0 daño",  label: "Al equipo" },
+];
+
+const specs = [
+  { label: "Agente extintor",        value: "FM-200 — HFC-227ea (heptafluoropropano)" },
+  { label: "Capacidad nominal",      value: "5 kg" },
+  { label: "Clases de fuego",        value: "A · B · C" },
+  { label: "Mecanismo de acción",    value: "Absorción de calor de reacción (enfriamiento molecular)" },
+  { label: "Tiempo de descarga",     value: "~7 segundos" },
+  { label: "Alcance de descarga",    value: "1.5–3 metros" },
+  { label: "Presión de trabajo",     value: "360–420 PSI (25–29 bar) — nitrógeno como propelente" },
+  { label: "Estado en cilindro",     value: "Líquido — se descarga como gas a temperatura ambiente" },
+  { label: "Temperatura operación",  value: "-20 °C a +55 °C" },
+  { label: "ODP (potencial ozono)",  value: "0 — no daña la capa de ozono" },
+  { label: "GWP (potencial calent)", value: "3,220 (menos que el CO₂ en extintores)" },
+  { label: "Concentración diseño",   value: "7–8.5% en volumen (segura para personas)" },
+  { label: "Boquilla",               value: "Difusor de descarga gaseosa directional" },
+  { label: "Altura del cilindro",    value: "~52 cm" },
+  { label: "Peso total cargado",     value: "~9 kg" },
+  { label: "Material cilindro",      value: "Acero de alta resistencia, pintura electrostática roja" },
+  { label: "Verificación de carga",  value: "Pesaje obligatorio (manómetro indicativo solamente)" },
+  { label: "Certificación",          value: "NOM-154-SCFI · NFPA 2001 · UL 2166" },
+  { label: "Incluye",                value: "Soporte de pared, etiqueta de inspección, collar de garantía" },
+  { label: "Vida útil cilindro",     value: "25 años (prueba hidrostática c/5)" },
+  { label: "Mantenimiento",          value: "Anual NOM-154-SCFI — pesaje para verificar carga" },
+];
+
+const caracteristicas = [
+  "Cero residuo — el equipo puede operar inmediatamente después de la descarga",
+  "Seguro para personas en espacios ocupados — concentración de diseño 7–8.5%",
+  "Eficaz en clases A, B y C — actúa sobre equipos eléctricos activos sin daño",
+  "Collar de garantía NOM-154-SCFI con fecha de próximo servicio",
+];
+
+const aplicaciones = [
+  "Cuartos de servidores y centros de datos",
+  "Archivos históricos, notariales y acervos documentales",
+  "Museos y galerías con obras de arte originales",
+  "Equipos de telecomunicaciones y racks de fibra óptica",
+  "Laboratorios de alta precisión e instrumentación analítica",
+  "Quirófanos y salas de procedimientos con equipo crítico",
+];
+
+const categoriasNav = [
+  { label: "FM-200 2.5 kg — Compacto",  href: "/extintores/agente-limpio/agente-limpio-fm200-2-5-kg/" },
+  { label: "FM-200 5 kg — Servidores",  href: "/extintores/agente-limpio/agente-limpio-fm200-5-kg/", active: true },
+  { label: "FM-200 10 kg — Data center", href: "/extintores/agente-limpio/agente-limpio-fm200-10-kg/" },
+  { label: "FE-36 5 kg — Bajo impacto",  href: "/extintores/agente-limpio/agente-limpio-fe36-5-kg/" },
+];
+
+const productosRelacionados = [
+  { nombre: "FM-200 2.5 kg — Compacto",    href: "/extintores/agente-limpio/agente-limpio-fm200-2-5-kg/" },
+  { nombre: "FM-200 10 kg — Data center",  href: "/extintores/agente-limpio/agente-limpio-fm200-10-kg/" },
+  { nombre: "FE-36 5 kg — Bajo impacto",   href: "/extintores/agente-limpio/agente-limpio-fe36-5-kg/" },
+  { nombre: "CO₂ 5 kg — Complemento",      href: "/extintores/co2/co2-5-kg/" },
+];
+
+const otrosProductos = [
+  {
+    nombre: "FM-200 2.5 kg — Compacto",
+    desc: "Para equipos críticos en espacios pequeños: PCs, mini-racks y equipamiento de valor moderado.",
+    specs: ["2.5 kg", "~5 s", "0 residuo"],
+    href: "/extintores/agente-limpio/agente-limpio-fm200-2-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "FM-200 10 kg — Data center",
+    desc: "Para cuartos de servidores medianos y salas de telecomunicaciones. Máxima cobertura portátil.",
+    specs: ["10 kg", "~12 s", "NFPA 2001"],
+    href: "/extintores/agente-limpio/agente-limpio-fm200-10-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "FE-36 5 kg — Bajo impacto",
+    desc: "Alternativa con ODP=0 para instalaciones con restricciones ambientales estrictas. Funcionalidad idéntica a FM-200.",
+    specs: ["5 kg", "ODP=0", "FE-36"],
+    href: "/extintores/agente-limpio/agente-limpio-fe36-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "CO₂ 5 kg — Complemento",
+    desc: "Alternativa más económica para cuartos eléctricos. Sin residuo pero con restricciones en espacios pequeños.",
+    specs: ["5 kg", "B·C", "0 residuo"],
+    href: "/extintores/co2/co2-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1",
+  },
+];
+
+const faqs = [
+  {
+    pregunta: "¿Qué diferencia hay entre FM-200 y CO₂ para proteger servidores?",
+    respuesta: "Ambos son agentes limpios sin residuo, pero hay diferencias importantes: el <strong>FM-200 es más seguro para las personas</strong> en espacios confinados (concentración de diseño del 7–8.5% vs el CO₂ que desplaza el oxígeno). El FM-200 actúa sobre fuegos clase A, B y C, mientras el CO₂ es limitado en clase A. El <strong>FM-200 es más costoso</strong> pero es el estándar recomendado por NFPA 2001 para cuartos de servidores con presencia de personal.",
+  },
+  {
+    pregunta: "¿El FM-200 daña los equipos electrónicos?",
+    respuesta: "No. El FM-200 se descarga como gas sin residuo sólido, líquido ni corrosivo. No afecta circuitos, discos duros, unidades ópticas, conectores ni componentes electrónicos de ningún tipo. En la mayoría de los casos, el equipo puede <strong>reiniciarse inmediatamente</strong> después de la descarga sin necesidad de limpieza.",
+  },
+  {
+    pregunta: "¿El FM-200 es peligroso para las personas?",
+    respuesta: "En la concentración de diseño del 7–8.5%, el FM-200 es considerado <strong>seguro para exposición breve</strong>. Sin embargo, el protocolo correcto siempre es desalojar antes de la descarga o inmediatamente después. A concentraciones muy superiores al diseño puede generar efectos cardíacos. En ningún caso debe permanecer en el espacio durante varios minutos después de la descarga.",
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre FM-200 y Novec 1230?",
+    respuesta: "Ambos son agentes limpios eficaces, pero el <strong>Novec 1230</strong> tiene un potencial de calentamiento global (GWP) de solo 1 vs 3,220 del FM-200. El Novec es la opción para instalaciones con compromisos de sustentabilidad extrema o certificaciones como LEED o ISO 14064. El <strong>FM-200 es más económico</strong> y más disponible en extintores portátiles. Para sistemas fijos en data centers grandes, el Novec es la tendencia actual.",
+  },
+  {
+    pregunta: "¿Se puede usar el FM-200 en una cocina industrial?",
+    respuesta: "No. El FM-200 no es eficaz contra fuegos clase K (aceites y grasas de cocción a alta temperatura). El calor del aceite es tan intenso que supera la capacidad de absorción del agente. Para cocinas industriales, el extintor correcto es el <strong>Tipo K</strong> con solución alcalina. El FM-200 es el agente para TI, archivos y laboratorios — no para áreas de cocción.",
+  },
+  {
+    pregunta: "¿Proyecto Red instala sistemas fijos de agente limpio?",
+    respuesta: "Sí. Además de los extintores portátiles de FM-200, instalamos <strong>sistemas fijos de supresión total</strong> con FM-200 y Novec 1230 para cuartos de servidores, data centers y archivos críticos. Los sistemas fijos se activan automáticamente y están integrados con la alarma contra incendio. Incluimos diseño, instalación, comisionamiento y mantenimiento del sistema.",
+  },
+];
+---
+<Base title={seo.title} description={seo.description}>
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          FM-200 · Sin Residuo · Seguro en Personas · NOM-154-SCFI
+        </div>
+        <h1>Agente Limpio<br><span class="h1-accent">FM-200 5 kg</span></h1>
+        <p class="hero-sub">
+          El extintor de agente limpio FM-200 de 5 kg es el estándar para cuartos de servidores, centros de datos y archivos críticos. Descarga gaseosa que extingue el fuego sin residuo, sin daño al equipo y con concentración de diseño segura para personas.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20de%20agente%20limpio%20FM-200%205%20kg`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Cotización
+          </a>
+          <a href="/extintores/agente-limpio/" class="btn-secondary">Ver Catálogo Agente Limpio</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p>El FM-200 (HFC-227ea) actúa absorbiendo el calor de la reacción de combustión a nivel molecular — no por desplazamiento de oxígeno como el CO₂. Se almacena como líquido y se descarga como gas en menos de 10 segundos, sin dejar ningún residuo sólido, líquido ni corrosivo sobre el equipo.</p>
+        <p>Es la evolución directa del Halón 1211 (prohibido desde 1994). Supera al CO₂ en seguridad para las personas y actúa en las tres clases de fuego (A, B y C). Cada unidad se entrega con collar de garantía NOM-154-SCFI, etiqueta de inspección y documentación para expediente de Protección Civil y STPS.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══ MAIN LAYOUT: 2 COLUMNAS ══ -->
+  <div class="pp-layout container">
+
+    <!-- ─── COLUMNA PRINCIPAL ─── -->
+    <main class="pp-main">
+
+      <!-- Galería de imágenes -->
+      <div class="pp-gallery">
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1" alt="Extintor Agente Limpio FM-200 5 kg - Vista frontal" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1" alt="Extintor FM-200 5 kg - Detalle boquilla y manómetro" width="400" height="300" loading="eager" />
+        </div>
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1" alt="Extintor FM-200 5 kg - Instalación en cuarto de servidores" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1" alt="Extintor FM-200 5 kg - Placa NOM-154-SCFI y collar de garantía" width="400" height="300" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="pp-desc">
+        <p>El FM-200 (HFC-227ea) pertenece a la familia de los <strong>agentes limpios halogenados</strong>. Su mecanismo de extinción es la absorción de calor de la reacción de combustión — no sofoca por desplazamiento de oxígeno. Al descargarse, pasa de estado líquido a gaseoso instantáneamente y cubre la zona del fuego sin dejar rastro.</p>
+        <p>A diferencia del CO₂, el FM-200 no desplaza el oxígeno del ambiente y tiene una <strong>concentración de diseño del 7–8.5%</strong> en volumen, considerada segura para personas. Es el agente limpio portátil más utilizado en México para protección de equipos electrónicos críticos.</p>
+        <p><strong>Capacidad:</strong> 5 kg. <strong>Clases:</strong> A, B y C. <strong>Certificación:</strong> NOM-154-SCFI, NFPA 2001, UL 2166.</p>
+      </div>
+
+      <!-- Especificaciones Técnicas -->
+      <section class="pp-block">
+        <h2>Especificaciones Técnicas</h2>
+        <table class="pp-table">
+          <tbody>
+            {specs.map(s => (
+              <tr>
+                <td class="pp-table__label">{s.label}</td>
+                <td class="pp-table__value">{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Características Destacadas -->
+      <section class="pp-block">
+        <h2>Características Destacadas</h2>
+        <ul class="pp-features">
+          <li><strong>Cero residuo — reinicio inmediato del equipo</strong> — El FM-200 se descarga como gas y se evapora completamente. No deja polvo, humedad ni compuestos corrosivos. En la mayoría de los casos el equipo puede encenderse inmediatamente sin necesidad de limpieza post-incendio.</li>
+          <li><strong>Concentración segura para personas — NFPA 2001</strong> — Con una concentración de diseño del 7–8.5% (por debajo del nivel de efecto fisiológico del 9%), el FM-200 puede usarse en espacios ocasionalmente ocupados. Siempre se recomienda desalojar, pero no genera riesgo inmediato por exposición breve.</li>
+          <li><strong>Eficaz en clases A, B y C — incluye fuegos eléctricos</strong> — Actúa sobre materiales sólidos (A), líquidos inflamables (B) y equipos eléctricos activos (C). Puede aplicarse directamente sobre racks de servidores, UPS y tableros energizados sin riesgo de conducción eléctrica ni daño al hardware.</li>
+          <li><strong>Sustituto directo del Halón 1211</strong> — El Halón 1211 fue prohibido en México en 1994 por destruir la capa de ozono. El FM-200 ofrece la misma eficacia y rapidez de acción con ODP=0 y sin impacto sobre el ozono estratosférico.</li>
+          <li><strong>Documentación completa para expediente</strong> — Ficha técnica, certificado de conformidad NOM-154-SCFI, collar de garantía y etiqueta de inspección. Para expedientes de Protección Civil, STPS y certificaciones de calidad TI como Tier I-IV.</li>
+        </ul>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="pp-block">
+        <h2>Aplicaciones</h2>
+        <ul class="pp-app-list">
+          <li>Cuartos de servidores y centros de datos Tier I a IV</li>
+          <li>Archivos históricos, notariales y acervos documentales irreemplazables</li>
+          <li>Museos y galerías con obras de arte originales</li>
+          <li>Equipos de telecomunicaciones, racks y fibra óptica</li>
+          <li>Laboratorios de alta precisión e instrumentación analítica</li>
+          <li>Quirófanos y salas de procedimientos con equipo médico crítico</li>
+        </ul>
+      </section>
+
+      <!-- Instalación -->
+      <section class="pp-block">
+        <h2>Instalación y Ubicación</h2>
+        <p>El extintor de FM-200 se instala en soporte de pared a <strong>manija entre 1.0 y 1.5 metros</strong> desde el piso. En cuartos de servidores: colocar en la puerta de acceso o junto a la salida de emergencia — accesible antes de entrar al área de fuego. La cobertura efectiva de un extintor de 5 kg es de <strong>1.5 a 3 metros de alcance</strong>.</p>
+        <p>Para cuartos mayores de 15 m³, se recomienda complementar con un sistema fijo de supresión total de FM-200 o Novec 1230. Los extintores portátiles son el primer respondedor — los sistemas fijos son la protección completa. Proyecta Red instala ambas soluciones.</p>
+      </section>
+
+      <!-- Normativa -->
+      <section class="pp-block">
+        <h2>Cumplimiento Normativo</h2>
+        <p>La <strong>NFPA 2001</strong> (Standard on Clean Agent Fire Extinguishing Systems) es la norma internacional de referencia para el uso de agentes limpios. La <strong>NOM-154-SCFI</strong> regula el mantenimiento anual de extintores portátiles en México. La <strong>UL 2166</strong> certifica extintores de agente limpio bajo estándares Underwriters Laboratories. El <strong>Protocolo de Montreal</strong> establece la prohibición del Halón y la sustitución por agentes con ODP=0 — el FM-200 cumple este requerimiento. Incluimos toda la documentación para Protección Civil, STPS y certificaciones TI.</p>
+      </section>
+
+      <!-- Specs resumidas bottom -->
+      <section class="pp-block">
+        <h2>Resumen de Especificaciones</h2>
+        <div class="pp-specs-mini">
+          <div class="pp-specs-mini__item"><span>Capacidad</span><span>5 kg FM-200</span></div>
+          <div class="pp-specs-mini__item"><span>Clases de fuego</span><span>A · B · C</span></div>
+          <div class="pp-specs-mini__item"><span>Certificación</span><span>NOM-154-SCFI, NFPA 2001</span></div>
+          <div class="pp-specs-mini__item"><span>Descarga</span><span>~7 segundos</span></div>
+          <div class="pp-specs-mini__item"><span>Residuo</span><span>Cero — equipo reinicia</span></div>
+          <div class="pp-specs-mini__item"><span>Seguro personas</span><span>Sí — conc. 7–8.5%</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sb">
+
+      <!-- 1. Navegación de categorías -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Agentes Limpios</h3></div>
+        <nav class="sb__nav" aria-label="Tipos de agente limpio">
+          <ul>
+            {categoriasNav.map(c => (
+              <li><a href={c.href} class={c.active ? 'sb__nav-active' : ''}>{c.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a href="/extintores/agente-limpio/" class="sb__back">← Ver catálogo Agente Limpio</a>
+      </div>
+
+      <!-- 2. Cotización Rápida -->
+      <div class="sb__widget sb__widget--cta">
+        <h3>Cotización Rápida</h3>
+        <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
+        <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20FM-200%205%20kg`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
+        <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+
+      <!-- 3. Características Clave -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Características Clave</h3></div>
+        <ul class="sb__checks">
+          {caracteristicas.map(c => (
+            <li><span class="sb__check-icon">✓</span><span>{c}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 4. Certificaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Certificaciones Disponibles</h3></div>
+        <div class="sb__certs">
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-154-SCFI</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 2001</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">UL</span><span class="sb__cert-name">UL 2166 — Clean Agent</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-002-STPS</span></div>
+        </div>
+      </div>
+
+      <!-- 5. Marcas -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Marcas que Manejamos</h3></div>
+        <ul class="sb__brands">
+          <li>Proyecto Red — Marca propia</li>
+          <li>Amerex — FM-200 certificado</li>
+        </ul>
+        <p class="sb__note">Pregunta por Novec 1230</p>
+      </div>
+
+      <!-- 6. Aplicaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Aplicaciones</h3></div>
+        <ul class="sb__app-list">
+          {aplicaciones.map(a => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 7. Productos Relacionados -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Productos Relacionados</h3></div>
+        <ul class="sb__products">
+          {productosRelacionados.map(p => (
+            <li><a href={p.href}>{p.nombre}</a></li>
+          ))}
+          <li><a href="/extintores/polvo-seco/">Extintores PQS Polvo Seco</a></li>
+          <li><a href="/sistemas-contra-incendio/">Sistemas Fijos de Supresión</a></li>
+        </ul>
+      </div>
+
+      <!-- 8. Servicios -->
+      <div class="sb__widget sb__widget--services">
+        <div class="sb__header"><h3>Servicios Proyecto Red</h3></div>
+        <p class="sb__services-desc">Complementa con sistemas fijos y mantenimiento profesional.</p>
+        <ul class="sb__services">
+          <li><a href="/servicios/recarga-extintores/">Recarga de extintores</a></li>
+          <li><a href="/servicios/mantenimiento-preventivo/">Mantenimiento preventivo</a></li>
+          <li><a href="/servicios/prueba-hidrostatica/">Prueba hidrostática</a></li>
+          <li><a href="/servicios/capacitacion-brigadas/">Capacitación DC-3</a></li>
+        </ul>
+        <a href="/servicios/" class="sb__services-link">¿Necesitas más servicios? Ver todos →</a>
+      </div>
+
+    </aside>
+  </div><!-- /pp-layout -->
+
+  <!-- ══ OTROS AGENTES LIMPIOS ══ -->
+  <section class="pp-otros">
+    <div class="container">
+      <h2 class="pp-otros__title">Otros Extintores en Nuestra Línea</h2>
+      <p class="pp-otros__sub">Explora más opciones según tu aplicación específica</p>
+      <a href="/extintores/agente-limpio/" class="pp-otros__link">Ver todo el catálogo Agente Limpio →</a>
+      <div class="pp-otros__grid">
+        {otrosProductos.map(p => (
+          <a href={p.href} class="pp-otros__card">
+            <div class="pp-otros__img">
+              <img src={p.img} alt={p.nombre} width="400" height="220" loading="lazy" />
+            </div>
+            <div class="pp-otros__body">
+              <h3 class="pp-otros__name">{p.nombre}</h3>
+              <p class="pp-otros__desc">{p.desc}</p>
+              <ul class="pp-otros__specs">
+                {p.specs.map(s => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <span class="pp-otros__cta">
+                {p.nombre.split(' — ')[0]}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COTIZACIÓN ══ -->
+  <section class="pp-cotizar" id="cotizar">
+    <div class="container pp-cotizar__inner">
+      <div class="pp-cotizar__info">
+        <h2>Cotiza Extintor FM-200 5 kg</h2>
+        <p class="pp-cotizar__sub">Precio y disponibilidad en menos de 24 horas</p>
+        <ul class="pp-cotizar__perks">
+          <li>Asesoría técnica sin costo</li>
+          <li>Entrega el mismo día en CDMX</li>
+          <li>Factura electrónica disponible</li>
+        </ul>
+      </div>
+      <div class="pp-cotizar__form">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20FM-200%205%20kg.%20Mi%20nombre%20es%3A`}
+          class="btn-primary"
+          style="background:#25D366;font-size:0.95rem;padding:0.85rem 1.8rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+        <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
+        <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQs ══ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes"
+    subtitulo="Todo sobre el extintor de agente limpio FM-200 5 kg"
+    pageId="agente-limpio-fm200-5-kg"
+    bgGray={false}
+    faqs={faqs}
+  />
+
+</Base>
+<style>
+  .pp-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 3rem; align-items: start; }
+  .pp-main { min-width: 0; }
+  .pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.75rem; border-radius: 10px; overflow: hidden; }
+  .pp-gallery__col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-gallery img { width: 100%; height: 200px; object-fit: cover; display: block; background: #f5f5f5; border-radius: 6px; }
+
+  .pp-desc { margin-bottom: 2rem; }
+  .pp-desc p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 0.75rem; }
+  .pp-desc strong { color: #111; }
+
+  .pp-block { margin-bottom: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+  .pp-block:last-child { border-bottom: none; }
+  .pp-block h2 { font-size: 1.15rem; font-weight: 800; color: #111; margin: 0 0 1rem; }
+  .pp-block p { font-size: 0.85rem; color: #555; line-height: 1.65; margin: 0 0 0.5rem; }
+
+  .pp-table { width: 100%; border-collapse: collapse; }
+  .pp-table tr { border-bottom: 1px solid #f0f0f0; }
+  .pp-table td { padding: 0.65rem 0; font-size: 0.82rem; vertical-align: top; }
+  .pp-table__label { color: #888; font-weight: 600; width: 35%; padding-right: 1rem; }
+  .pp-table__value { color: #222; font-weight: 500; }
+
+  .pp-features { list-style: none; padding: 0; margin: 0; }
+  .pp-features li { position: relative; padding: 0.6rem 0 0.6rem 1.5rem; font-size: 0.84rem; color: #444; line-height: 1.55; border-bottom: 1px solid #f5f5f5; }
+  .pp-features li::before { content: "✓"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; }
+  .pp-features li strong { color: #111; }
+  .pp-app-list { list-style: none; padding: 0; margin: 0; }
+  .pp-app-list li { padding: 0.45rem 0 0.45rem 1.3rem; position: relative; font-size: 0.84rem; color: #444; }
+  .pp-app-list li::before { content: "•"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; font-size: 1.1rem; line-height: 1; top: 0.45rem; }
+
+  .pp-specs-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pp-specs-mini__item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .pp-specs-mini__item span:first-child { color: #888; font-weight: 600; }
+  .pp-specs-mini__item span:last-child { color: #222; font-weight: 500; text-align: right; }
+  .pp-specs-mini__item:nth-child(odd) { padding-right: 1rem; }
+  .pp-specs-mini__item:nth-child(even) { padding-left: 1rem; border-left: 1px solid #f0f0f0; }
+
+  .sb { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .sb__widget { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+  .sb__header { margin-bottom: 12px; }
+  .sb__header h3 { font-size: 0.85rem; font-weight: 700; color: #111; margin: 0; letter-spacing: -0.01em; }
+
+  .sb__nav ul { list-style: none; padding: 0; margin: 0; }
+  .sb__nav li { border-bottom: 1px solid #f3f3f3; }
+  .sb__nav li:last-child { border-bottom: none; }
+  .sb__nav a { display: flex; align-items: center; gap: 6px; padding: 8px 10px; font-size: 0.8rem; color: #555; text-decoration: none; border-radius: 6px; font-weight: 500; }
+  .sb__nav a:hover { background: #f7f7f7; color: #111; }
+  .sb__nav-active { background: #fef2f2 !important; color: var(--c-primary, #C41E24) !important; font-weight: 700 !important; }
+  .sb__back { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); text-decoration: none; font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+
+  .sb__widget--cta { background: linear-gradient(135deg, #1a1a2e 0%, #1a365d 100%); border: none; color: #fff; }
+  .sb__widget--cta h3 { color: #fff; font-size: 0.9rem; font-weight: 700; margin: 0 0 6px; }
+  .sb__cta-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin: 0 0 14px; line-height: 1.5; }
+  .sb__btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 8px 20px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; }
+  .sb__btn--solid { background: var(--c-primary, #C41E24); color: #fff; border: 2px solid var(--c-primary, #C41E24); margin-bottom: 8px; }
+  .sb__btn--outline { background: transparent; color: var(--c-primary, #C41E24); border: 2px solid var(--c-primary, #C41E24); }
+  .sb__tel { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 10px 0 0; text-align: center; }
+  .sb__tel a { color: #fff; font-weight: 600; text-decoration: none; }
+
+  .sb__checks { list-style: none; padding: 0; margin: 0; }
+  .sb__checks li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 0.78rem; color: #444; line-height: 1.45; }
+  .sb__check-icon { color: #22c55e; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+
+  .sb__certs { display: flex; flex-direction: column; gap: 8px; }
+  .sb__cert { display: flex; align-items: center; gap: 10px; }
+  .sb__cert-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 0.6rem; font-weight: 800; color: #555; flex-shrink: 0; }
+  .sb__cert-name { font-size: 0.78rem; color: #333; font-weight: 500; }
+
+  .sb__brands { list-style: none; padding: 0; margin: 0; }
+  .sb__brands li { padding: 5px 0; font-size: 0.8rem; color: #333; font-weight: 600; border-bottom: 1px solid #f3f3f3; }
+  .sb__brands li:last-child { border-bottom: none; }
+  .sb__note { font-size: 0.72rem; color: #999; font-style: italic; margin: 8px 0 0; }
+
+  .sb__app-list { list-style: none; padding: 0; margin: 0; }
+  .sb__app-list li { padding: 5px 0 5px 14px; position: relative; font-size: 0.78rem; color: #555; border-bottom: 1px solid #f5f5f5; }
+  .sb__app-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--c-primary, #C41E24); border-radius: 50%; }
+  .sb__app-list li:last-child { border-bottom: none; }
+
+  .sb__products { list-style: none; padding: 0; margin: 0; }
+  .sb__products li { border-bottom: 1px solid #f3f3f3; }
+  .sb__products li:last-child { border-bottom: none; }
+  .sb__products a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__products a:hover { color: var(--c-primary, #C41E24); }
+
+  .sb__widget--services { background: #fafafa; }
+  .sb__services-desc { font-size: 0.75rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+  .sb__services { list-style: none; padding: 0; margin: 0; }
+  .sb__services li { border-bottom: 1px solid #eee; }
+  .sb__services li:last-child { border-bottom: none; }
+  .sb__services a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__services a:hover { color: var(--c-primary, #C41E24); }
+  .sb__services-link { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); font-weight: 600; text-decoration: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+
+  .pp-otros { padding: 3rem 0; background: #f9f9f9; border-top: 1px solid #eee; }
+  .pp-otros__title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 0.25rem; }
+  .pp-otros__sub { font-size: 0.85rem; color: #666; margin: 0 0 0.35rem; }
+  .pp-otros__link { font-size: 0.8rem; color: var(--c-primary, #C41E24); font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .pp-otros__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pp-otros__card { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .pp-otros__card:hover { border-color: var(--c-primary, #C41E24); }
+  .pp-otros__img { height: 160px; overflow: hidden; background: #1a1010; }
+  .pp-otros__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+  .pp-otros__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .pp-otros__name { font-size: 0.88rem; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }
+  .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+  .pp-otros__card:hover .pp-otros__cta { gap: 0.55rem; }
+
+  .pp-cotizar { padding: 3.5rem 0; background: #111; }
+  .pp-cotizar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .pp-cotizar h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem; }
+  .pp-cotizar__sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 1.2rem; }
+  .pp-cotizar__perks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-cotizar__perks li { font-size: 0.82rem; color: rgba(255,255,255,0.75); padding-left: 1.2rem; position: relative; }
+  .pp-cotizar__perks li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+  .pp-cotizar__form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .pp-cotizar__note { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: center; margin: 0; }
+  .pp-cotizar__alt { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-align: center; margin: 0; }
+  .pp-cotizar__alt a { color: #fff; font-weight: 600; text-decoration: none; }
+</style>

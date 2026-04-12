@@ -1,0 +1,177 @@
+---
+/**
+ * HeroPrimerosAuxilios.astro — v1
+ * Hero premium L2: badge + H1 + subtítulo izq / 2 párrafos SEO der.
+ * Patrón 100% homologado con HeroSistemas (L2 template aprobado).
+ */
+---
+
+<section class="hero-pa" aria-label="Equipo de primeros auxilios certificado NOM en CDMX">
+
+  <div class="hero-pa__glow" aria-hidden="true"></div>
+  <div class="hero-pa__grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-pa__grid">
+
+    <!-- ═══ Columna izquierda ═══ -->
+    <div class="hero-pa__left">
+
+      <div class="hero-pa__badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        <span class="badge-pulse-ring"></span>
+        NOM-030-STPS · 5 líneas · Resurtido · Capacitación DC-3
+      </div>
+
+      <h1 class="hero-pa__h1">
+        Equipo de<br>
+        <span class="h1-accent">Primeros Auxilios</span>
+      </h1>
+
+      <p class="hero-pa__sub">
+        Botiquines <strong>NOM-030-STPS certificados</strong>, desfibriladores DEA,
+        camillas, collarines y material de curación — suministro para empresas,
+        plantas, restaurantes y brigadas. Resurtido periódico y capacitación con
+        constancia DC-3 válida ante STPS.
+      </p>
+
+    </div>
+
+    <!-- ═══ Columna derecha: texto SEO ═══ -->
+    <div class="hero-pa__right">
+      <p>
+        Una empresa con el botiquín vacío o vencido, sin DEA accesible o sin personal
+        capacitado tiene el mismo riesgo que una sin extintores — con la diferencia de
+        que la STPS lo verifica en cada auditoría. La NOM-030-STPS exige botiquín con
+        contenido certificado tipo A, B o C según el número de trabajadores, visible
+        y accesible en todo momento.
+      </p>
+      <p>
+        En Proyecto Red suministramos el equipo completo: botiquines con contenido NOM,
+        DEA con instrucciones en español para uso por personal sin entrenamiento médico,
+        camillas y collarines para brigadas. Y si necesitas que tu equipo esté realmente
+        preparado, ofrecemos capacitación con constancia DC-3 válida ante STPS.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-pa {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      linear-gradient(160deg, #080808 0%, #0D0D0D 40%, #131010 60%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-pa__glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: -20%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, rgba(196,30,36,0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .hero-pa__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-pa__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-pa__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: .01em;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-pulse-ring {
+    position: absolute;
+    left: 0.9375rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-pa__h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    margin-bottom: 1.25rem;
+  }
+
+  .h1-accent { color: var(--c-primary); }
+
+  .hero-pa__sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  .hero-pa__sub strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+  }
+
+  .hero-pa__right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .hero-pa__right p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    .hero-pa { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .hero-pa__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 768px) { .hero-pa { padding-bottom: 3rem; } }
+</style>

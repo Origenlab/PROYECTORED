@@ -31,17 +31,42 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Proyecto Red" />
   {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta property="og:locale" content="es_MX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- TruConversion for proyectored.com.mx -->
+  <script type="text/javascript" is:inline>
+    var _tip = _tip || [];
+    (function(d,s,id){
+        var js, tjs = d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.async = true;
+        js.src = d.location.protocol + '//app.truconversion.com/ti-js/62910/efa5e.js';
+        tjs.parentNode.insertBefore(js, tjs);
+    }(document, 'script', 'ti-js'));
+  </script>
 </head>
 <body>
   <TopBar />
   <Header />
   <main>
+    <!--
+      REGLA DE LAYOUT — válida para todas las páginas del sitio:
+      ─────────────────────────────────────────────────────────
+      Entre el componente Hero y el CtaBar NO va ninguna sección.
+      El orden siempre es:  breadcrumb-bar → <Hero> → <CtaBar> → resto de secciones.
+      No insertar StatsBar, banners ni ningún otro bloque entre ambos.
+    -->
     <slot />
   </main>
   <Footer />
@@ -180,6 +205,20 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     white-space: nowrap;
   }
   .btn-outline:hover { background: var(--c-primary); color: #fff; }
+
+  /* Focus visible — accesibilidad teclado */
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .btn-outline:focus-visible {
+    outline: 2px solid var(--c-primary);
+    outline-offset: 2px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--c-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 
   /* ══════════════════════════════════════════════════
      Estilos de páginas → src/styles/pages.css

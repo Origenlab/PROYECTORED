@@ -99,6 +99,10 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+  <!-- Preconnect CDN de imágenes (ExactDN / EWWW.io) -->
+  <link rel="preconnect" href="https://ewvydcs5uyw.exactdn.com" crossorigin />
+  <link rel="dns-prefetch" href="https://ewvydcs5uyw.exactdn.com" />
+
   <!-- Preload fuente -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,6 +124,19 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString
 
   <!-- Slot para JSON-LD adicional y otros head tags por página -->
   <slot name="head" />
+
+  <!-- TruConversion for proyectored.com.mx -->
+  <script type="text/javascript" is:inline>
+    var _tip = _tip || [];
+    (function(d,s,id){
+        var js, tjs = d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.async = true;
+        js.src = d.location.protocol + '//app.truconversion.com/ti-js/62910/efa5e.js';
+        tjs.parentNode.insertBefore(js, tjs);
+    }(document, 'script', 'ti-js'));
+  </script>
 </head>
 <body>
   <TopBar />

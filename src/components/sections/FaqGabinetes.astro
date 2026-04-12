@@ -1,0 +1,438 @@
+---
+/**
+ * FaqGabinetes.astro
+ * FAQ específico de gabinetes contra incendio + formulario de cotización sticky.
+ * Usa SectionHeaderDuo (complemento título oficial). Patrón: FaqExtintores.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { CONTACT } from '../../config/site'
+
+const faqs = [
+  {
+    q: '¿Es obligatorio tener gabinete o basta con el soporte de pared?',
+    a: 'Depende del contexto. El <strong>soporte de pared (bracket)</strong> es suficiente para oficinas pequeñas donde el extintor está en área protegida y de bajo tráfico. Pero en <strong>pasillos de alto tráfico, plantas industriales, estacionamientos y exteriores</strong>, Protección Civil puede exigir gabinete — el extintor necesita protección contra polvo, humedad y vandalismo. Para edificios con <strong>sistema de hidrantes</strong>, el gabinete con manguera es obligatorio según NFPA 14. Regla práctica: si el extintor se ensucia, se golpea o alguien podría moverse de su lugar — necesitas gabinete.',
+  },
+  {
+    q: '¿Qué medidas de gabinete necesito para mi extintor?',
+    a: 'Las medidas varían según la capacidad. Para un <strong>PQS de 4.5 kg</strong> (el más común): gabinete de 60×35×20 cm. Para <strong>6-9 kg</strong>: 70×35×25 cm. Para <strong>CO₂ de 4.5 kg</strong> (más alto que PQS): 80×35×25 cm. Los gabinetes de <strong>hidrante</strong> son distintos: 80×60×20 cm con espacio para la manguera enrollada. Mándanos foto del extintor y te confirmamos el gabinete exacto — sin costo.',
+  },
+  {
+    q: '¿Gabinete empotrado, sobrepuesto o pedestal — cuál elijo?',
+    a: '<strong>Empotrado:</strong> se mete dentro del muro. Limpio visualmente, ideal para construcciones nuevas o remodelaciones. Necesita muro con cavidad disponible. <strong>Sobrepuesto:</strong> se atornilla sobre la superficie del muro. El más práctico para inmuebles existentes — no requiere obra. <strong>Pedestal:</strong> con base contrapesada, portátil. Para zonas donde no puedes perforar muros o necesitas flexibilidad. Te asesoramos según tu tipo de muro y lo que permita el dictamen del inmueble.',
+  },
+  {
+    q: '¿Los gabinetes incluyen el extintor o se venden por separado?',
+    a: 'Se venden <strong>por separado</strong> — esto es deliberado. Cada inmueble tiene extintores de distintos tipos y capacidades, y el gabinete debe ajustarse a lo que ya tienes. Si compras <strong>extintor + gabinete juntos</strong>, garantizamos compatibilidad de medidas y te damos <strong>precio de paquete</strong>. La excepción son los gabinetes para hidrante, que incluyen manguera y válvula porque funcionan como sistema completo.',
+  },
+  {
+    q: '¿Cuánto cuesta un gabinete contra incendio?',
+    a: 'Un gabinete <strong>sobrepuesto para extintor 4.5-6 kg</strong> parte desde $650 MXN. El <strong>porta extintor con cenicero</strong> desde $850 MXN. Los gabinetes <strong>para bombero</strong> (manguera + hacha + extintor) desde $2,800 MXN. Los de <strong>hidrante con manguera y válvula</strong> desde $4,500 MXN. Precios directos de proveedor sin intermediarios. Para pedidos de <strong>5+ gabinetes</strong> aplicamos precio por volumen.',
+  },
+  {
+    q: '¿Instalan los gabinetes o solo los venden?',
+    a: 'Los dos. Vendemos gabinetes sueltos para quien ya sabe qué necesita y tiene instalador propio. Y también ofrecemos el <strong>servicio completo</strong>: suministro + instalación a la altura correcta según norma, con el material de fijación adecuado para cada tipo de muro — tornillo expansivo en concreto, taquete en tablaroca, base contrapesada para pedestal. La instalación incluye señalamiento del gabinete.',
+  },
+  {
+    q: '¿Qué pasa si Protección Civil rechaza mi gabinete?',
+    a: 'Si compraste con nosotros y seguiste nuestra recomendación de tipo e instalación, <strong>eso no va a pasar</strong>. Nuestros gabinetes cumplen NOM-002-STPS y están instalados a la altura y con los accesorios correctos. Si por alguna razón el inspector hace una observación, <strong>la resolvemos sin costo adicional</strong>. Es nuestro compromiso de servicio.',
+  },
+]
+---
+
+<section class="faq-gabinetes" id="faq-gabinetes" aria-labelledby="faq-gab-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="faq-gab-heading"
+      eyebrow="Preguntas Frecuentes"
+      titleLine1="Todo lo que Necesitas Saber"
+      titleLine2="Antes de Comprar un Gabinete"
+      desc="Medidas, tipos de instalación, precios y qué exige Protección Civil según tu tipo de inmueble."
+      bodyPara1="Si no encuentras respuesta a tu pregunta, mándanos foto del extintor o del espacio por WhatsApp — respondemos en menos de 24 horas con la recomendación técnica sin compromiso de compra."
+    />
+
+    <div class="faq-gab-grid">
+
+      <!-- ── Columna FAQ ── -->
+      <div class="faq-col" aria-labelledby="faq-col-heading">
+        <div class="faq-col__top">
+          <span class="faq-col__badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Gabinetes — FAQ
+          </span>
+          <h3 id="faq-col-heading">Lo que preguntan nuestros clientes</h3>
+          <p>¿Tienes una duda específica? Escríbenos al <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.phone}</a> — respondemos en menos de 24 horas.</p>
+        </div>
+
+        <div class="faq-items">
+          {faqs.map(f => (
+            <details class="faq-item" itemscope itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.q}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text" set:html={f.a}></p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Columna Cotización ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+          <div class="cot-card__head">
+            <span class="cot-badge">Cotización Gratuita</span>
+            <h3>Solicita tu cotización</h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+          </div>
+
+          <div class="cot-card__body">
+            <div class="cot-field">
+              <label for="cot-gab-nombre">Nombre completo *</label>
+              <input type="text" id="cot-gab-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-gab-tel">Teléfono *</label>
+              <input type="tel" id="cot-gab-tel" name="tel" placeholder="55 1234 5678" autocomplete="tel" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-gab-empresa">Empresa o negocio</label>
+              <input type="text" id="cot-gab-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-gab-tipo">Tipo de gabinete *</label>
+              <select id="cot-gab-tipo" name="tipo">
+                <option value="" disabled selected>Selecciona un tipo</option>
+                <option>Gabinete Empotrado para Extintor</option>
+                <option>Gabinete Sobrepuesto para Extintor</option>
+                <option>Pedestal para Extintor</option>
+                <option>Gabinete para Bombero (Manguera + Hacha)</option>
+                <option>Gabinete para Hidrante con Manguera</option>
+                <option>Porta Extintor con Cenicero</option>
+                <option>No sé — necesito asesoría</option>
+              </select>
+            </div>
+            <div class="cot-field">
+              <label for="cot-gab-detalle">Cuéntanos más (opcional)</label>
+              <textarea id="cot-gab-detalle" name="detalle" rows="3" placeholder="Tipo de instalación, m², cantidad aproximada, urgencia..."></textarea>
+            </div>
+          </div>
+
+          <div class="cot-card__footer">
+            <a
+              id="cot-gab-wa-btn"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero cotizar gabinetes contra incendio')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cot-btn"
+              role="button"
+              aria-label="Solicitar cotización de gabinetes por WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar gabinetes por WhatsApp
+            </a>
+            <p class="cot-note">Cotización gratuita · Compatibilidad garantizada · Respuesta en menos de 24 h</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('cot-gab-wa-btn')
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nombre  = (document.getElementById('cot-gab-nombre')  as HTMLInputElement)?.value.trim()
+    const tel     = (document.getElementById('cot-gab-tel')     as HTMLInputElement)?.value.trim()
+    const empresa = (document.getElementById('cot-gab-empresa') as HTMLInputElement)?.value.trim()
+    const tipo    = (document.getElementById('cot-gab-tipo')    as HTMLSelectElement)?.value
+    const detalle = (document.getElementById('cot-gab-detalle') as HTMLTextAreaElement)?.value.trim()
+
+    let msg = 'Hola, quiero cotizar gabinetes contra incendio.'
+    if (nombre)  msg += `\n\n👤 Nombre: ${nombre}`
+    if (tel)     msg += `\n📞 Teléfono: ${tel}`
+    if (empresa) msg += `\n🏢 Empresa: ${empresa}`
+    if (tipo)    msg += `\n📦 Tipo de gabinete: ${tipo}`
+    if (detalle) msg += `\n📝 Detalle: ${detalle}`
+
+    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+  })
+</script>
+
+<style>
+  .faq-gabinetes {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-gab-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── FAQ COLUMN ───────────────────────────────────────── */
+  .faq-col__top {
+    margin-bottom: 2rem;
+  }
+
+  .faq-col__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: .3rem .75rem;
+    border-radius: 100px;
+    margin-bottom: 0.875rem;
+  }
+
+  .faq-col__top h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-col__top p {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+  }
+
+  .faq-col__top a {
+    color: var(--c-primary);
+    font-weight: 600;
+  }
+
+  /* ── FAQ ITEMS ────────────────────────────────────────── */
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--c-border);
+    background: var(--c-white);
+  }
+
+  .faq-item:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--c-border);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .faq-item:hover:not([open]) {
+    background: rgba(249,232,232,0.3);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.4;
+  }
+
+  .faq-item:hover summary { padding-left: 1.75rem; }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary span { flex: 1; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+  }
+
+  .faq-item[open] > summary {
+    background: var(--c-primary-light, #F9E8E8);
+    border-left: 3px solid var(--c-primary);
+    padding-left: calc(1.5rem - 3px);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--c-primary);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  .faq-answer strong {
+    color: var(--c-ink-2);
+    font-weight: 600;
+  }
+
+  /* ── COTIZACIÓN COLUMN ────────────────────────────────── */
+  .cot-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--stack-height, 124px) + 1.5rem);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .cot-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .cot-card__head {
+    background: linear-gradient(135deg, var(--c-ink) 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cot-card__head::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cot-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2rem .625rem;
+    border-radius: 3px;
+    margin-bottom: 0.625rem;
+  }
+
+  .cot-card__head h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    margin-bottom: 0.375rem;
+  }
+
+  .cot-card__head p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .cot-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cot-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cot-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+
+  .cot-field input,
+  .cot-field select,
+  .cot-field textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background: var(--c-surface, #F4F4F5);
+    outline: none;
+    width: 100%;
+  }
+
+  .cot-field input:focus,
+  .cot-field select:focus,
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+    background: var(--c-white);
+    box-shadow: 0 0 0 3px rgba(196,30,36,0.08);
+  }
+
+  .cot-field textarea { resize: vertical; min-height: 80px; }
+
+  .cot-card__footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background: #25D366;
+    color: #fff;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cot-btn:hover { background: #1EBA57; }
+
+  .cot-note {
+    font-size: 0.75rem;
+    color: var(--c-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .faq-gab-grid { grid-template-columns: 1fr 380px; gap: 3rem; }
+  }
+
+  @media (max-width: 1024px) {
+    .faq-gab-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cot-card { position: static; }
+  }
+</style>

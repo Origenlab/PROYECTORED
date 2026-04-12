@@ -47,6 +47,7 @@ const faqs = [
   <div class="container">
 
     <SectionHeaderDuo
+      id="faq-heading"
       eyebrow="FAQ y Cotización"
       titleLine1="Preguntas Frecuentes y"
       titleLine2="Cotización Gratuita"
@@ -129,6 +130,7 @@ const faqs = [
           <div class="cot-card__footer">
             <a
               id="cot-wa-btn"
+              data-wa={CONTACT.whatsapp}
               href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero una cotización de equipos contra incendios')}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -167,236 +169,11 @@ const faqs = [
     if (servicio) msg += `\n📦 Necesito: ${servicio}`
     if (detalle)  msg += `\n📝 Detalle: ${detalle}`
 
-    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+    const waNum = btn?.dataset.wa || '525537238544'
+    window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank')
   })
 </script>
 
 <style>
-  .faq-cot-index {
-    padding: var(--section-py, 5rem) 0;
-    background: var(--c-white);
-  }
-
-  .faq-cot-index__grid {
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  /* ── FAQ COLUMN ───────────────────────────────────────── */
-  .faq-col__top {
-    margin-bottom: 2rem;
-  }
-
-  .faq-col__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    color: var(--c-ink-2);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: .3rem .75rem;
-    border-radius: 100px;
-    margin-bottom: 0.875rem;
-  }
-
-  .faq-col__top h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--c-ink);
-    letter-spacing: -.02em;
-    margin-bottom: 0.5rem;
-  }
-
-  .faq-col__top p {
-    font-size: 0.875rem;
-    color: var(--c-muted);
-  }
-
-  .faq-col__top a {
-    color: var(--c-primary);
-    font-weight: 600;
-  }
-
-  /* ── FAQ ITEMS ────────────────────────────────────────── */
-  .faq-items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .faq-item {
-    border-top: 1px solid var(--c-border);
-  }
-
-  .faq-item:last-child {
-    border-bottom: 1px solid var(--c-border);
-  }
-
-  .faq-item summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.125rem 0;
-    cursor: pointer;
-    list-style: none;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--c-ink);
-    line-height: 1.4;
-  }
-
-  .faq-item summary::-webkit-details-marker { display: none; }
-
-  .faq-item summary span { flex: 1; }
-
-  .faq-chevron {
-    flex-shrink: 0;
-    color: var(--c-muted);
-    transition: transform 0.2s;
-  }
-
-  .faq-item[open] .faq-chevron {
-    transform: rotate(180deg);
-    color: var(--c-primary);
-  }
-
-  .faq-answer {
-    padding-bottom: 1.25rem;
-  }
-
-  .faq-answer p {
-    font-size: 0.9rem;
-    color: var(--c-muted);
-    line-height: 1.7;
-  }
-
-  /* ── COTIZACIÓN COLUMN ────────────────────────────────── */
-  .cot-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    overflow: hidden;
-    position: sticky;
-    top: calc(var(--stack-height, 124px) + 1.5rem);
-  }
-
-  .cot-card__head {
-    background: var(--c-ink);
-    color: #fff;
-    padding: 1.5rem;
-  }
-
-  .cot-badge {
-    display: inline-block;
-    background: var(--c-primary);
-    color: #fff;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    padding: .2rem .625rem;
-    border-radius: 3px;
-    margin-bottom: 0.625rem;
-  }
-
-  .cot-card__head h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -.02em;
-    margin-bottom: 0.375rem;
-  }
-
-  .cot-card__head p {
-    font-size: 0.875rem;
-    color: rgba(255,255,255,.6);
-  }
-
-  .cot-card__body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .cot-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .cot-field label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--c-ink-2);
-  }
-
-  .cot-field input,
-  .cot-field select,
-  .cot-field textarea {
-    padding: 0.625rem 0.875rem;
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-family: var(--font-sans);
-    color: var(--c-ink);
-    background: var(--c-white);
-    outline: none;
-    transition: border-color 0.15s;
-    width: 100%;
-  }
-
-  .cot-field input:focus,
-  .cot-field select:focus,
-  .cot-field textarea:focus {
-    border-color: var(--c-primary);
-  }
-
-  .cot-field textarea { resize: vertical; min-height: 80px; }
-
-  .cot-card__footer {
-    padding: 1.25rem 1.5rem;
-    border-top: 1px solid var(--c-border);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .cot-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    background: #25D366;
-    color: #fff;
-    padding: 0.875rem 1.5rem;
-    border-radius: 4px;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .cot-btn:hover { background: #1EBA57; color: #fff; }
-
-  .cot-note {
-    font-size: 0.75rem;
-    color: var(--c-muted);
-    text-align: center;
-    line-height: 1.5;
-  }
-
-  /* ── RESPONSIVE ───────────────────────────────────────── */
-  @media (max-width: 1200px) {
-    .faq-cot-index__grid { grid-template-columns: 1fr 380px; gap: 3rem; }
-  }
-
-  @media (max-width: 1024px) {
-    .faq-cot-index__grid { grid-template-columns: 1fr; gap: 3rem; }
-    .cot-card { position: static; }
-  }
+  /* Estilos principales en src/styles/faq-cotizacion-index.css (cargado vía global.css) */
 </style>

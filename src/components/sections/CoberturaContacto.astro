@@ -1,0 +1,210 @@
+---
+/**
+ * CoberturaContacto.astro
+ * Horario de atención + cobertura geográfica — patrón ProcesoIndex (fondo oscuro).
+ * Encabezado: SectionHeaderDuo dark.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { CONTACT, COVERAGE_STATES } from '../../config/site'
+---
+
+<section class="cobertura-contacto" aria-labelledby="cobertura-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="cobertura-heading"
+      eyebrow="Horario y cobertura"
+      titleLine1="Estamos Disponibles"
+      titleLine2="Cuando Nos Necesitas"
+      desc="WhatsApp y teléfono en horario de atención — cotizaciones las 24 horas por formulario."
+      bodyPara1="Nuestro equipo técnico-comercial atiende de lunes a sábado en horario extendido. Fuera de horario, deja tu solicitud en el formulario o envía un WhatsApp y te respondemos al siguiente día hábil."
+      bodyPara2="Operamos desde la Ciudad de México con entrega directa en toda la zona metropolitana. Para estados con cobertura comercial coordinamos envíos y damos soporte remoto en asesoría técnica y cotización."
+      dark
+    />
+
+    <!-- ── HORARIO ── -->
+    <div class="cobertura-grid">
+      <div class="cobertura-card">
+        <span class="cobertura-card__num">L–V</span>
+        <div class="cobertura-card__body">
+          <h3 class="cobertura-card__titulo">Lunes a Viernes</h3>
+          <p class="cobertura-card__desc">8:00 AM – 6:00 PM. Atención completa: cotizaciones, asesoría técnica, entregas y servicio en campo.</p>
+        </div>
+      </div>
+      <div class="cobertura-card">
+        <span class="cobertura-card__num">Sáb</span>
+        <div class="cobertura-card__body">
+          <h3 class="cobertura-card__titulo">Sábados</h3>
+          <p class="cobertura-card__desc">8:00 AM – 2:00 PM. Entregas programadas, cotizaciones y atención por WhatsApp y teléfono.</p>
+        </div>
+      </div>
+      <div class="cobertura-card">
+        <span class="cobertura-card__num">Dom</span>
+        <div class="cobertura-card__body">
+          <h3 class="cobertura-card__titulo">Domingos</h3>
+          <p class="cobertura-card__desc">Solo urgencias. Déjanos un mensaje por WhatsApp y lo atendemos al siguiente día hábil.</p>
+        </div>
+      </div>
+      <div class="cobertura-card">
+        <span class="cobertura-card__num">24h</span>
+        <div class="cobertura-card__body">
+          <h3 class="cobertura-card__titulo">Formulario web</h3>
+          <p class="cobertura-card__desc">Envía tu solicitud desde el formulario a cualquier hora. Respuesta garantizada en el siguiente horario hábil.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COBERTURA GEOGRÁFICA ── -->
+    <div class="cobertura-estados">
+      <div class="cobertura-estados__header">
+        <h3>Cobertura geográfica</h3>
+        <p>Entrega directa en zona metropolitana · Envío coordinado al interior de la república</p>
+      </div>
+      <div class="cobertura-estados__grid">
+        {COVERAGE_STATES.map(s => (
+          <div class:list={['estado-pill', { 'estado-pill--operativo': s.type === 'operativo' }]}>
+            <span class="estado-pill__dot"></span>
+            <span class="estado-pill__label">{s.label}</span>
+            <span class="estado-pill__type">{s.type === 'operativo' ? 'Operativo' : 'Comercial'}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cobertura-contacto {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-ink, #111111);
+    color: #fff;
+  }
+
+  /* ── HORARIO GRID ──────────────────────────────────── */
+  .cobertura-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .cobertura-card {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .cobertura-card:last-child { border-right: none; }
+
+  .cobertura-card__num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--c-primary);
+    letter-spacing: -.04em;
+    line-height: 1;
+  }
+
+  .cobertura-card__titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  .cobertura-card__desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.65;
+  }
+
+  /* ── COBERTURA ESTADOS ─────────────────────────────── */
+  .cobertura-estados {
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    padding: 2rem;
+  }
+
+  .cobertura-estados__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .cobertura-estados__header h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.375rem;
+  }
+
+  .cobertura-estados__header p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.5);
+  }
+
+  .cobertura-estados__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .estado-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 100px;
+  }
+
+  .estado-pill__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    flex-shrink: 0;
+  }
+
+  .estado-pill--operativo .estado-pill__dot {
+    background: #25D366;
+  }
+
+  .estado-pill__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .estado-pill__type {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(255,255,255,.4);
+  }
+
+  .estado-pill--operativo .estado-pill__type {
+    color: #25D366;
+  }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .cobertura-grid { grid-template-columns: repeat(2, 1fr); }
+    .cobertura-card:nth-child(2) { border-right: none; }
+    .cobertura-card:nth-child(3),
+    .cobertura-card:nth-child(4) { border-top: 1px solid rgba(255,255,255,.08); }
+  }
+
+  @media (max-width: 640px) {
+    .cobertura-grid { grid-template-columns: 1fr; }
+    .cobertura-card { border-right: none; border-top: 1px solid rgba(255,255,255,.08); }
+    .cobertura-card:first-child { border-top: none; }
+    .cobertura-estados { padding: 1.25rem; }
+  }
+</style>

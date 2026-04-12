@@ -1,0 +1,70 @@
+---
+/**
+ * Img.astro - VERSIÓN ULTRA-RESILIENTE (Fix de Visibilidad)
+ */
+import { cdnUrl } from '../../config/site'
+
+interface Props {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  loading?: 'eager' | 'lazy'
+  decoding?: 'async' | 'sync' | 'auto'
+  fetchpriority?: 'high' | 'low' | 'auto'
+  sizes?: string
+  class?: string
+  [key: string]: any
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
+  class: className,
+  ...rest
+} = Astro.props
+
+// FORZAMOS MODO DESARROLLO para asegurar que lea archivos locales ahora mismo
+const isDev = true 
+
+// Calculamos rutas
+const isAvif = src.endsWith('.avif')
+const avifPath = isAvif ? src : src.replace(/\.(png|jpg|jpeg)$/, '.avif')
+const pngPath = isAvif ? src.replace('.avif', '.jpg') : src
+
+// En desarrollo usamos rutas directas sin CDN
+const finalAvif = avifPath
+const finalPng = pngPath
+---
+
+<picture class={className}>
+  <source srcset={finalAvif} type="image/avif" />
+  <img
+    src={finalPng}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    style="display: block; width: 100%; height: 100%; object-fit: cover; opacity: 1 !important; visibility: visible !important;"
+    {...rest}
+  />
+</picture>
+
+<style>
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    background-color: #f3f4f6; /* Placeholder gris suave si falla todo */
+  }
+</style>

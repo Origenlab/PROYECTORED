@@ -1,0 +1,440 @@
+---
+/**
+ * FaqEquipoSeguridad.astro
+ * FAQ específico de equipo de seguridad industrial (EPP) + formulario de cotización sticky.
+ * Usa SectionHeaderDuo (complemento título oficial). Patrón: FaqExtintores.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { CONTACT } from '../../config/site'
+
+const faqs = [
+  {
+    q: '¿Qué diferencia hay entre EPP certificado NOM y el que no lo tiene?',
+    a: 'La diferencia más importante es la prueba de desempeño. Un casco con certificación <strong>NOM-017-STPS</strong> ha pasado pruebas de impacto, penetración y resistencia eléctrica definidas en la norma. Un casco sin certificación puede verse igual pero no ha pasado ninguna prueba estandarizada — su desempeño ante un impacto real es desconocido. La STPS en una inspección puede pedir la hoja técnica del EPP y la certificación — si el producto no la tiene, la empresa tiene una observación aunque el equipo esté siendo usado.',
+  },
+  {
+    q: '¿Cómo sé qué tipo de guante necesita cada puesto de trabajo?',
+    a: 'Depende del riesgo identificado en el puesto: <strong>corte y abrasión</strong> → guante anticorte EN 388 con nivel A4 o superior; <strong>productos químicos</strong> → guante de nitrilo o neopreno certificado EN 374 según el químico específico; <strong>calor</strong> → guante EN 407 con temperatura de contacto certificada; <strong>electricidad</strong> → guante dieléctrico ASTM D120 clase 00 a 4 según el voltaje. El guante de cuero multiusos no cubre ninguna de estas categorías de manera técnica — aunque es el más común en plantas industriales. Mándanos el listado de materiales con los que trabaja el operador y te recomendamos el guante correcto.',
+  },
+  {
+    q: '¿El respirador N95 protege contra vapores orgánicos?',
+    a: 'No. Esta es la confusión más peligrosa en protección respiratoria. Una <strong>mascarilla N95</strong> filtra partículas sólidas y líquidas (polvos, aerosoles, bacterias) pero NO filtra vapores ni gases — el vapor orgánico pasa a través del filtro de partículas. Para vapores orgánicos se requiere un <strong>respirador de media cara con cartucho OV</strong> (Organic Vapor). Para ambos, el cartucho <strong>OV/P100 combinado</strong>. El respirador incorrecto da falsa sensación de protección — el trabajador inhala el vapor convencido de que está protegido.',
+  },
+  {
+    q: '¿Cada cuánto hay que reemplazar el EPP?',
+    a: 'Varía por tipo: <strong>Cascos:</strong> máximo 5 años desde manufactura, 2-3 si hubo impacto. Revisar la fecha estampada en el interior. <strong>Arneses:</strong> máximo 10 años desde manufactura, retirar inmediatamente si absorbió una caída. <strong>Guantes dieléctricos:</strong> prueba cada 6 meses. <strong>Tapones auditivos desechables:</strong> un solo uso. <strong>Respiradores:</strong> cambiar cartuchos según indicaciones del fabricante (generalmente 40 horas de exposición o cuando se percibe olor a través). La fecha de manufactura está marcada en el producto — si no la encuentras, ya superó su vida útil.',
+  },
+  {
+    q: '¿La empresa puede exigir que el trabajador use EPP que le resulta incómodo?',
+    a: 'Sí, dentro de los límites de razonabilidad. La NOM-017-STPS da al trabajador el derecho de reportar EPP que no cumple con las especificaciones — pero no le da el derecho de rechazarlo por incomodidad. La obligación de la empresa es seleccionar el EPP técnicamente correcto <strong>y</strong> adecuado en talla y condiciones de uso para el puesto. Si el trabajador reporta que el EPP interfiere con sus funciones, la empresa debe evaluar si hay alternativas certificadas más cómodas — no simplemente excusar el no uso.',
+  },
+  {
+    q: '¿Qué pasa si un trabajador se lesiona y no usaba el EPP asignado?',
+    a: 'La empresa puede tener responsabilidad parcial o total dependiendo de las circunstancias. Si la empresa <strong>documentó la entrega del EPP</strong>, capacitó al trabajador en su uso correcto y tiene evidencia de que el trabajador eligió no usarlo, la responsabilidad puede trasladarse al trabajador. Sin evidencia documental, la empresa puede ser considerada responsable aunque haya entregado el equipo verbalmente. Por eso el <strong>registro de entrega firmado por el trabajador</strong> es parte crítica del programa de EPP — no solo el equipo.',
+  },
+  {
+    q: '¿Cuánto cuesta equipar a un trabajador con EPP completo?',
+    a: 'Depende de la industria y los riesgos. Un equipo básico para construcción (casco + lentes + tapones + guantes + calzado) puede ir de <strong>$800 a $1,800 MXN</strong> por trabajador. Un equipo completo para mantenimiento eléctrico (añadiendo casco clase E, guante dieléctrico, calzado EH y ropa FR) puede ir de <strong>$3,500 a $8,000 MXN</strong> por persona. Para plantas industriales con múltiples puestos, cotizamos por paquete de puesto de trabajo — más económico que cotizar pieza por pieza.',
+  },
+]
+---
+
+<section class="faq-equipo-seguridad" id="faq-equipo-seguridad" aria-labelledby="faq-es-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="faq-es-heading"
+      eyebrow="Preguntas Frecuentes"
+      titleLine1="Todo sobre EPP, Normas"
+      titleLine2="y Programas de Seguridad"
+      desc="Certificaciones, selección técnica, vida útil, responsabilidad legal y costos — las preguntas más frecuentes con respuesta directa y técnica."
+      bodyPara1="Si tienes dudas sobre qué EPP necesita un puesto específico, mándanos el nombre del puesto y los materiales o procesos con los que trabaja por WhatsApp — te respondemos con la especificación técnica en menos de 24 horas."
+    />
+
+    <div class="faq-es-grid">
+
+      <!-- ── Columna FAQ ── -->
+      <div class="faq-col" aria-labelledby="faq-col-heading">
+        <div class="faq-col__top">
+          <span class="faq-col__badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Equipo de Seguridad — FAQ
+          </span>
+          <h3 id="faq-col-heading">Lo que preguntan nuestros clientes</h3>
+          <p>¿Tienes una duda específica? Escríbenos al <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.phone}</a> — respondemos en menos de 24 horas.</p>
+        </div>
+
+        <div class="faq-items">
+          {faqs.map(f => (
+            <details class="faq-item" itemscope itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.q}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text" set:html={f.a}></p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Columna Cotización ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+          <div class="cot-card__head">
+            <span class="cot-badge">Cotización Gratuita</span>
+            <h3>Solicita tu cotización</h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+          </div>
+
+          <div class="cot-card__body">
+            <div class="cot-field">
+              <label for="cot-es-nombre">Nombre completo *</label>
+              <input type="text" id="cot-es-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-es-tel">Teléfono *</label>
+              <input type="tel" id="cot-es-tel" name="tel" placeholder="55 1234 5678" autocomplete="tel" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-es-empresa">Empresa o negocio</label>
+              <input type="text" id="cot-es-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-es-tipo">Tipo de EPP requerido *</label>
+              <select id="cot-es-tipo" name="tipo">
+                <option value="" disabled selected>Selecciona un tipo</option>
+                <option>Cascos de Seguridad NOM-017-STPS</option>
+                <option>Lentes de Protección (Estándar, Soldadura, Químicos)</option>
+                <option>Guantes Anticorte, Dieléctricos, Térmicos</option>
+                <option>Botas de Seguridad (EH, Conductivas, Punteras)</option>
+                <option>Arneses y Equipos de Caída (Clase A, C)</option>
+                <option>Respiradores (N95, Media Cara, Cartuchos)</option>
+                <option>Protección Auditiva (Tapones, Diademas)</option>
+                <option>Equipo Completo para Puesto Específico</option>
+                <option>No sé — necesito diagnóstico de riesgo</option>
+              </select>
+            </div>
+            <div class="cot-field">
+              <label for="cot-es-detalle">Cuéntanos más (opcional)</label>
+              <textarea id="cot-es-detalle" name="detalle" rows="3" placeholder="Tipo de industria, puestos de trabajo, materiales o procesos, número de empleados..."></textarea>
+            </div>
+          </div>
+
+          <div class="cot-card__footer">
+            <a
+              id="cot-es-wa-btn"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero cotizar EPP certificado NOM-017-STPS')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cot-btn"
+              role="button"
+              aria-label="Solicitar cotización de EPP por WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar EPP por WhatsApp
+            </a>
+            <p class="cot-note">Cotización gratuita · NOM-017-STPS · Respuesta en menos de 24 h</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('cot-es-wa-btn')
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nombre  = (document.getElementById('cot-es-nombre')  as HTMLInputElement)?.value.trim()
+    const tel     = (document.getElementById('cot-es-tel')     as HTMLInputElement)?.value.trim()
+    const empresa = (document.getElementById('cot-es-empresa') as HTMLInputElement)?.value.trim()
+    const tipo    = (document.getElementById('cot-es-tipo')    as HTMLSelectElement)?.value
+    const detalle = (document.getElementById('cot-es-detalle') as HTMLTextAreaElement)?.value.trim()
+
+    let msg = 'Hola, quiero cotizar EPP certificado NOM-017-STPS.'
+    if (nombre)  msg += `\n\n👤 Nombre: ${nombre}`
+    if (tel)     msg += `\n📞 Teléfono: ${tel}`
+    if (empresa) msg += `\n🏢 Empresa: ${empresa}`
+    if (tipo)    msg += `\n🛡️ Tipo de EPP: ${tipo}`
+    if (detalle) msg += `\n📝 Detalle: ${detalle}`
+
+    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+  })
+</script>
+
+<style>
+  .faq-equipo-seguridad {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-es-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── FAQ COLUMN ───────────────────────────────────────── */
+  .faq-col__top {
+    margin-bottom: 2rem;
+  }
+
+  .faq-col__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: .3rem .75rem;
+    border-radius: 100px;
+    margin-bottom: 0.875rem;
+  }
+
+  .faq-col__top h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-col__top p {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+  }
+
+  .faq-col__top a {
+    color: var(--c-primary);
+    font-weight: 600;
+  }
+
+  /* ── FAQ ITEMS ────────────────────────────────────────── */
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--c-border);
+    background: var(--c-white);
+  }
+
+  .faq-item:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--c-border);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .faq-item:hover:not([open]) {
+    background: rgba(249,232,232,0.3);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.4;
+  }
+
+  .faq-item:hover summary { padding-left: 1.75rem; }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary span { flex: 1; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+  }
+
+  .faq-item[open] > summary {
+    background: var(--c-primary-light, #F9E8E8);
+    border-left: 3px solid var(--c-primary);
+    padding-left: calc(1.5rem - 3px);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--c-primary);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  .faq-answer strong {
+    color: var(--c-ink-2);
+    font-weight: 600;
+  }
+
+  /* ── COTIZACIÓN COLUMN ────────────────────────────────── */
+  .cot-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--stack-height, 124px) + 1.5rem);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .cot-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .cot-card__head {
+    background: linear-gradient(135deg, var(--c-ink) 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cot-card__head::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cot-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2rem .625rem;
+    border-radius: 3px;
+    margin-bottom: 0.625rem;
+  }
+
+  .cot-card__head h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    margin-bottom: 0.375rem;
+  }
+
+  .cot-card__head p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .cot-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cot-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cot-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+
+  .cot-field input,
+  .cot-field select,
+  .cot-field textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background: var(--c-surface, #F4F4F5);
+    outline: none;
+    width: 100%;
+  }
+
+  .cot-field input:focus,
+  .cot-field select:focus,
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+    background: var(--c-white);
+    box-shadow: 0 0 0 3px rgba(196,30,36,0.08);
+  }
+
+  .cot-field textarea { resize: vertical; min-height: 80px; }
+
+  .cot-card__footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background: #25D366;
+    color: #fff;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cot-btn:hover { background: #1EBA57; }
+
+  .cot-note {
+    font-size: 0.75rem;
+    color: var(--c-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .faq-es-grid { grid-template-columns: 1fr 380px; gap: 3rem; }
+  }
+
+  @media (max-width: 1024px) {
+    .faq-es-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cot-card { position: static; }
+  }
+</style>

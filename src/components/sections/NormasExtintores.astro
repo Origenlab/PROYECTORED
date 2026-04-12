@@ -1,46 +1,59 @@
 ---
 /**
- * NormasExtintores.astro
- * Tabla de normas y certificaciones específicas para extintores.
- * Usa SectionHeaderDuo (complemento título oficial). Patrón: NormasIndex.
+ * NormasExtintores.astro — REDISEÑO v2
+ * Cards de normas premium con iconos y colores por tipo.
+ * Usado en: L3 (/extintores/), L4 (/extintores/[producto]/)
+ * Usa SectionHeaderDuo (complemento título oficial).
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const normas = [
   {
     norma: 'NOM-154-SCFI',
+    tipo: 'Obligatoria',
     alcance: 'Extintores de polvo químico seco, CO₂, agentes limpios y espuma — requisitos de seguridad, pruebas e información comercial',
     aplica: 'Todo extintor portátil vendido en México. Sin este sello, el equipo no es válido ante Protección Civil ni STPS.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
   },
   {
     norma: 'NOM-002-STPS-2010',
-    alcance: 'Condiciones de seguridad y prevención de incendio en centros de trabajo. Establece tipo, cantidad, ubicación y distancia máxima de los extintores',
-    aplica: 'Toda empresa con trabajadores. Define la obligación de 1 extintor por cada 300 m² mínimo, del tipo adecuado para el riesgo de cada zona.',
+    tipo: 'Laboral',
+    alcance: 'Condiciones de seguridad y prevención de incendio en centros de trabajo. Tipo, cantidad, ubicación y distancia máxima de extintores',
+    aplica: 'Toda empresa con trabajadores. Define la obligación de 1 extintor por cada 300 m² mínimo, del tipo adecuado para cada zona.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
   },
   {
-    norma: 'NOM-100-STPS-1994',
-    alcance: 'Seguridad — extintores contra incendio a base de polvo químico seco con presión contenida. Especificaciones y métodos de prueba',
-    aplica: 'Fabricantes y distribuidores de extintores PQS. Define los parámetros de presión, agente y rendimiento que debe cumplir el cilindro.',
+    norma: 'NOM-100-STPS',
+    tipo: 'Técnica',
+    alcance: 'Extintores a base de polvo químico seco con presión contenida — especificaciones y métodos de prueba',
+    aplica: 'Fabricantes y distribuidores de extintores PQS. Define parámetros de presión, agente y rendimiento del cilindro.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>`,
   },
   {
-    norma: 'NOM-101-STPS-1994',
-    alcance: 'Seguridad — extintores a base de CO₂. Especificaciones, pruebas y comportamiento en operación',
-    aplica: 'Extintores de dióxido de carbono. Aplica en entornos con equipos electrónicos, laboratorios y áreas sensibles a residuos.',
+    norma: 'NOM-101-STPS',
+    tipo: 'Técnica',
+    alcance: 'Extintores a base de CO₂ — especificaciones, pruebas y comportamiento en operación',
+    aplica: 'Extintores de dióxido de carbono. Aplica en entornos con equipos electrónicos, laboratorios y áreas sensibles.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>`,
   },
   {
     norma: 'NFPA 10',
-    alcance: 'Estándar para extintores portátiles contra incendio. Clasifica tipos de fuego (A, B, C, D, K) y define criterios de selección, instalación y mantenimiento',
-    aplica: 'Proyectos con clientes o aseguradoras que exigen estándar internacional, centros de datos y plantas con certificación OSHA/ISO.',
+    tipo: 'Internacional',
+    alcance: 'Estándar para extintores portátiles — clasifica tipos de fuego (A, B, C, D, K) y criterios de selección e instalación',
+    aplica: 'Proyectos con estándar internacional, centros de datos y plantas con certificación OSHA/ISO.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
   },
   {
-    norma: 'Prueba Hidrostática (NOM-154-SCFI)',
-    alcance: 'Verificación estructural del cilindro cada 5 años. Prueba de presión interna para detectar corrosión, fisuras o deformaciones',
-    aplica: 'Todos los cilindros de extintores portátiles con más de 5 años desde su fabricación o desde la última prueba. Obligatoria — sin ella, el cilindro no está en norma.',
+    norma: 'Prueba Hidrostática',
+    tipo: 'Periódica',
+    alcance: 'Verificación estructural del cilindro cada 5 años — prueba de presión para detectar corrosión, fisuras o deformaciones',
+    aplica: 'Todos los cilindros con +5 años desde fabricación o última prueba. Obligatoria — sin ella, el cilindro no está en norma.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>`,
   },
 ]
 ---
 
-<section class="normas-extintores" aria-labelledby="normas-ext-heading">
+<section class="normas-ext" aria-labelledby="normas-ext-heading">
   <div class="container">
 
     <SectionHeaderDuo
@@ -48,103 +61,41 @@ const normas = [
       titleLine1="Normas que Regulan"
       titleLine2="la Venta y Uso de Extintores"
       desc="Certificaciones y estándares que validan cada extintor que distribuimos."
-      bodyPara1="En México, la validez de un extintor ante Protección Civil o la STPS no depende solo de que el cilindro funcione — depende de que cuente con la certificación de conformidad NOM vigente, la etiqueta de inspección actualizada y la prueba hidrostática al corriente. Durante una auditoría, la autoridad revisa los tres elementos. Si uno falta, el extintor no cuenta. Todos los equipos que distribuimos incluyen la documentación necesaria para tu expediente regulatorio."
+      bodyPara1="En México, la validez de un extintor ante Protección Civil o la STPS no depende solo de que funcione — depende de que cuente con certificación NOM vigente, etiqueta de inspección actualizada y prueba hidrostática al corriente. Durante una auditoría, la autoridad revisa los tres. Si uno falta, el extintor no cuenta. Todos nuestros equipos incluyen la documentación necesaria para tu expediente."
     />
 
-    <div class="tabla-responsive">
-      <table class="tabla-seo" role="table" aria-label="Normas y certificaciones que aplican a extintores contra incendios">
-        <thead>
-          <tr>
-            <th scope="col">Norma / Estándar</th>
-            <th scope="col">Alcance</th>
-            <th scope="col">Por qué importa</th>
-          </tr>
-        </thead>
-        <tbody>
-          {normas.map(n => (
-            <tr>
-              <td><strong>{n.norma}</strong></td>
-              <td>{n.alcance}</td>
-              <td>{n.aplica}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <!-- Grid de normas como cards -->
+    <div class="normas-grid" role="list" aria-label="Normas y certificaciones para extintores">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" set:html={n.icon} />
+            <span class="norma-tipo">{n.tipo}</span>
+          </div>
+          <h3 class="norma-card__nombre">{n.norma}</h3>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-aplica-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Aplica
+            </span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
     </div>
 
-    <p class="normas-nota">
-      Cada extintor que vendemos sale con su ficha técnica, certificado de conformidad NOM, etiqueta de
-      inspección y garantía del fabricante — los cuatro documentos que solicita la autoridad en una
-      inspección. Asesoramos sin costo sobre qué documentación adicional puede requerir tu aseguradora o
-      el área de Protección Civil de tu alcaldía o municipio.
-    </p>
+    <div class="normas-nota">
+      <div class="normas-nota__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <p>
+        Cada extintor que vendemos incluye <strong>ficha técnica</strong>, <strong>certificado de conformidad NOM</strong>,
+        <strong>etiqueta de inspección</strong> y <strong>garantía del fabricante</strong> — los cuatro documentos que solicita
+        la autoridad competente. Asesoría sin costo sobre documentación adicional para tu aseguradora o Protección Civil.
+      </p>
+    </div>
 
   </div>
 </section>
-
-<style>
-  .normas-extintores {
-    padding: var(--section-py, 5rem) 0;
-    background: var(--c-white);
-    border-top: 1px solid var(--c-border);
-  }
-
-  /* ── TABLA ────────────────────────────────────────────── */
-  .tabla-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 6px;
-    border: 1px solid var(--c-border);
-    margin-bottom: 1.5rem;
-  }
-
-  .tabla-seo {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-    min-width: 640px;
-  }
-
-  .tabla-seo thead {
-    background: var(--c-ink, #111111);
-    color: #fff;
-  }
-
-  .tabla-seo th {
-    padding: 0.875rem 1.25rem;
-    text-align: left;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .tabla-seo td {
-    padding: 0.875rem 1.25rem;
-    border-bottom: 1px solid var(--c-border);
-    color: var(--c-ink-2);
-    line-height: 1.55;
-    vertical-align: top;
-  }
-
-  .tabla-seo td strong {
-    color: var(--c-primary);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .tabla-seo tbody tr:last-child td { border-bottom: none; }
-
-  .tabla-seo tbody tr:nth-child(even) {
-    background: var(--c-surface, #F4F4F5);
-  }
-
-  /* ── NOTA ─────────────────────────────────────────────── */
-  .normas-nota {
-    font-size: 0.875rem;
-    color: var(--c-muted);
-    line-height: 1.65;
-    max-width: 80ch;
-  }
-</style>
+<!-- Estilos en src/styles/pages.css (global, compartido L3/L4) -->

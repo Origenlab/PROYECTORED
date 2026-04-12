@@ -1,0 +1,185 @@
+---
+/**
+ * HeroSenalamientos.astro — v1
+ * Hero premium L2: badge + H1 + subtítulo izq / 2 párrafos SEO der.
+ * Patrón 100% homologado con HeroExtintores (L2 template aprobado).
+ * Gradiente oscuro, glow rojo, grid sutil de fondo.
+ */
+---
+
+<section class="hero-sen" aria-label="Señalamientos de emergencia certificados NOM en CDMX">
+
+  <div class="hero-sen__glow" aria-hidden="true"></div>
+  <div class="hero-sen__grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-sen__grid">
+
+    <!-- ═══ Columna izquierda ═══ -->
+    <div class="hero-sen__left">
+
+      <div class="hero-sen__badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        <span class="badge-pulse-ring"></span>
+        6 categorías · NOM-003-SEGOB · Fotoluminiscentes
+      </div>
+
+      <h1 class="hero-sen__h1">
+        Señalamientos de<br>
+        <span class="h1-accent">Emergencia</span> Certificados
+      </h1>
+
+      <p class="hero-sen__sub">
+        Desde <strong>$35 MXN por pieza</strong>. Señalética fotoluminiscente que brilla
+        8+ horas sin electricidad — lo que Protección Civil exige para darte dictamen
+        favorable. Levantamiento gratuito de tu inmueble con plano de señalización incluido.
+      </p>
+
+    </div>
+
+    <!-- ═══ Columna derecha: texto SEO ═══ -->
+    <div class="hero-sen__right">
+      <p>
+        Protección Civil no da dictamen favorable sin señalización completa.
+        La NOM-003-SEGOB exige señalamientos fotoluminiscentes en todas las rutas de
+        evacuación y salidas de emergencia — visibles durante 8 horas o más en oscuridad
+        total, sin electricidad, sin baterías. Si tus señales son calcomanías impresas que
+        no brillan en la oscuridad, no pasan la inspección.
+      </p>
+      <p>
+        En Proyecto Red suministramos señalamientos fabricados en acrílico, PVC y vinilo
+        con tintas UV-resistentes. Seis categorías: prohibición, obligación, advertencia,
+        evacuación, fotoluminiscentes y personalizados. También hacemos el levantamiento
+        del inmueble y el plano de señalización para que sepas exactamente qué necesitas
+        y dónde va cada señal — sin adivinar, sin exceso, sin faltantes.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ═══════════════════════════════════════════════════════
+     HERO SEÑALAMIENTOS — v1 (patrón HeroExtintores)
+     ═══════════════════════════════════════════════════════ */
+
+  .hero-sen {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      linear-gradient(160deg, #080808 0%, #0D0D0D 40%, #131010 60%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-sen__glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: -20%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, rgba(196,30,36,0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .hero-sen__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-sen__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-sen__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: .01em;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .badge-pulse-ring {
+    position: absolute;
+    left: 0.9375rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-sen__h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    margin-bottom: 1.25rem;
+  }
+
+  .h1-accent { color: var(--c-primary); }
+
+  .hero-sen__sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  .hero-sen__sub strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+  }
+
+  .hero-sen__right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sen__right p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    .hero-sen { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .hero-sen__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-sen { padding-bottom: 3rem; }
+  }
+</style>

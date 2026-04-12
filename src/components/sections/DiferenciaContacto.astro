@@ -1,0 +1,166 @@
+---
+/**
+ * DiferenciaContacto.astro
+ * Por qué elegir Proyecto Red — 6 razones con SectionHeaderDuo.
+ * Fondo gris para alternar con sección blanca anterior.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { waUrl } from '../../config/site'
+
+const waHref = waUrl('Hola, necesito cotizar equipos contra incendios')
+
+const razones = [
+  {
+    num: '01',
+    titulo: 'Proveedor directo sin intermediarios',
+    desc: 'Compramos a fábrica y vendemos sin cadena de distribución. Eso significa mejores precios, tiempos más cortos y control total sobre la calidad del producto que recibes.',
+  },
+  {
+    num: '02',
+    titulo: 'Equipo certificado NOM y NFPA',
+    desc: 'Cada producto viene con documentación completa: ficha técnica, certificado de conformidad, garantía y etiqueta de inspección. Todo listo para tu expediente ante Protección Civil y STPS.',
+  },
+  {
+    num: '03',
+    titulo: 'Entrega en CDMX el mismo día',
+    desc: 'Pedidos confirmados antes de las 2 PM se entregan ese mismo día en la zona metropolitana. Para proyectos grandes, coordinamos calendario de entregas programadas.',
+  },
+  {
+    num: '04',
+    titulo: 'Asesoría técnica sin costo',
+    desc: 'No adivinamos qué necesitas — te decimos exactamente qué equipo va según tu tipo de riesgo, superficie y normativa aplicable. Diagnóstico presencial incluido.',
+  },
+  {
+    num: '05',
+    titulo: 'Más de 50 productos en catálogo',
+    desc: 'Extintores, señalamientos, gabinetes, mangueras, sistemas CI, equipo para bomberos, primeros auxilios y EPP. Todo en un solo proveedor, una sola factura.',
+  },
+  {
+    num: '06',
+    titulo: 'Factura electrónica y crédito',
+    desc: 'CFDI automático en cada pedido. Crédito a 30 días para empresas con volumen recurrente. Facturación consolidada para múltiples sucursales o proyectos.',
+  },
+]
+---
+
+<section class="diferencia-contacto" aria-labelledby="diferencia-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="diferencia-heading"
+      eyebrow="Nuestra diferencia"
+      titleLine1="Por Qué Elegir a"
+      titleLine2="Proyecto Red como tu Proveedor"
+      desc="No somos el único proveedor de equipos contra incendios en CDMX — pero sí el que responde rápido, da precio directo y entrega con documentación completa."
+      bodyPara1="Proyecto Red funciona como un integrador técnico-comercial. No solo vendemos equipo: diagnosticamos tu instalación, recomendamos el equipamiento correcto según norma, entregamos con documentación lista y damos seguimiento preventivo para que nunca tengas una sorpresa en una inspección."
+      bodyPara2="Atendemos desde una necesidad puntual — un extintor, un gabinete, una recarga — hasta proyectos completos que incluyen señalización, sistemas de detección, instalación y capacitación con constancias DC-3."
+    />
+
+    <div class="diferencia-grid">
+      {razones.map(r => (
+        <div class="diferencia-card">
+          <span class="diferencia-card__num" aria-hidden="true">{r.num}</span>
+          <h3 class="diferencia-card__titulo">{r.titulo}</h3>
+          <p class="diferencia-card__desc">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="diferencia-footer">
+      <p class="diferencia-nota">
+        <strong>¿Tienes un proyecto o necesitas reabastecer tu equipo?</strong> Mándanos un WhatsApp
+        con lo que necesitas y te respondemos con precio directo, disponibilidad y tiempo de entrega.
+      </p>
+      <a
+        href={waHref}
+        class="btn-outline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Solicitar cotización
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .diferencia-contacto {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface);
+    border-top: 1px solid var(--c-border);
+  }
+
+  /* ── GRID ─────────────────────────────────────────── */
+  .diferencia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .diferencia-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .diferencia-card:hover {
+    border-color: var(--c-primary);
+    box-shadow: 0 2px 12px rgba(196,30,36,.06);
+  }
+
+  .diferencia-card__num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--c-primary);
+    letter-spacing: -.04em;
+    line-height: 1;
+  }
+
+  .diferencia-card__titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  .diferencia-card__desc {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.65;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────── */
+  .diferencia-footer {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .diferencia-nota {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.65;
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .diferencia-nota strong { color: var(--c-ink); }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .diferencia-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .diferencia-grid { grid-template-columns: 1fr; }
+    .diferencia-footer { flex-direction: column; }
+  }
+</style>

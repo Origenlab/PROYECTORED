@@ -1,0 +1,102 @@
+---
+/**
+ * NormasBomberos.astro — v1
+ * Cards de normas NFPA premium con iconos y colores por tipo.
+ * Patrón 100% homologado con NormasExtintores (L3 template aprobado).
+ * Usa SectionHeaderDuo (complemento título oficial).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NFPA 1971',
+    tipo: 'Obligatoria',
+    alcance: 'Ensemble de protección estructural para combate de incendios — traje, casco, guantes, botas y capucha. Define las tres capas requeridas: capa exterior, barrera contra humedad y barrera térmica.',
+    aplica: 'Todo bombero que realice entrada a estructuras en llamas. Sin certificación NFPA 1971, el ensemble no es válido en ninguna corporación seria.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1851',
+    tipo: 'Mantenimiento',
+    alcance: 'Selección, cuidado y mantenimiento de ensembles de protección estructural. Define vida útil de 10 años, inspecciones post-uso, limpiezas avanzadas semestrales e inspecciones técnicas anuales.',
+    aplica: 'Toda corporación con trajes NFPA 1971. Un traje sin programa de mantenimiento NFPA 1851 pierde gradualmente sus propiedades protectoras — sin que sea visible desde afuera.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M20 12h-2M6 12H4M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1981',
+    tipo: 'Respiración',
+    alcance: 'Aparatos de respiración de circuito abierto para servicios de emergencia (SCBA). Define requerimientos de la máscara panorámica, regulador, alarma PASS y cilindro de aire comprimido.',
+    aplica: 'Equipos ERA / SCBA para bomberos. El cilindro debe estar verificado con prueba hidrostática periódica. Una máscara sin sello NFPA 1981 no es válida para entrada a atmósferas inmediatamente peligrosas para la vida.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12a4 4 0 008 0M8.56 8.56l6.88 6.88"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1983',
+    tipo: 'Rescate',
+    alcance: 'Equipo de cuerda de vida para rescate — arneses, cuerdas técnicas y dispositivos de descenso para servicios de emergencia. Clase I (torso), Clase II (general) y Clase III (full body).',
+    aplica: 'Operaciones de rescate en altura, rapel, evacuación y entrada a espacios confinados. Un arnés industrial no cumple NFPA 1983 — las cargas en caída son distintas y los puntos de anclaje no equivalen.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
+  },
+  {
+    norma: 'NFPA 1991',
+    tipo: 'HAZMAT',
+    alcance: 'Trajes de protección química encapsulados Nivel A y B para incidentes con gases y vapores tóxicos. El más alto nivel de protección personal contra agentes HAZMAT.',
+    aplica: 'Primera respuesta a incidentes con materiales peligrosos: derrames químicos, gases tóxicos, agentes biológicos. Un traje estructural NFPA 1971 no protege contra HAZMAT — los absorbe.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  },
+  {
+    norma: 'NIOSH / SCBA',
+    tipo: 'Internacional',
+    alcance: 'National Institute for Occupational Safety and Health — certificación federal estadounidense para equipos de respiración autónoma. Define aprobación del SCBA completo (máscara + regulador + cilindro).',
+    aplica: 'Todo equipo ERA para uso en operaciones de combate de incendios. El NIOSH es el estándar de referencia reconocido por la NFPA 1981. Sin aprobación NIOSH, el equipo no es apto para atmósferas IDLH.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  },
+]
+---
+
+<section class="normas-bomb" aria-labelledby="normas-bomb-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      eyebrow="Respaldo normativo NFPA"
+      titleLine1="Normas que Validan"
+      titleLine2="el Equipo de Cada Bombero"
+      desc="Las certificaciones NFPA no son opcionales — son la diferencia entre equipo que protege y equipo que parece proteger."
+      bodyPara1="En México, cualquier corporación de bomberos seria y cualquier brigada industrial bien organizada exige que el equipo de sus operadores cuente con certificaciones NFPA vigentes. No basta con que el traje parezca de calidad — debe estar certificado individualmente por un laboratorio de pruebas autorizado. Un componente sin certificación original invalida la responsabilidad del fabricante y deja al operador sin respaldo legal ante un accidente. Todos los equipos que distribuimos incluyen las certificaciones originales del fabricante, no copias ni equivalencias."
+    />
+
+    <!-- Grid de normas como cards -->
+    <div class="normas-grid" role="list" aria-label="Normas NFPA para equipo de bomberos">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" set:html={n.icon} />
+            <span class="norma-tipo">{n.tipo}</span>
+          </div>
+          <h3 class="norma-card__nombre">{n.norma}</h3>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-aplica-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Aplica
+            </span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <div class="normas-nota__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <p>
+        Todo el equipo que distribuimos incluye <strong>certificado NFPA original del fabricante</strong>,
+        <strong>ficha técnica</strong> y <strong>garantía</strong> — los documentos que exigen las
+        corporaciones serias en sus procesos de adquisición. Para licitaciones públicas,
+        gestionamos la documentación complementaria que requiera el proceso.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- Estilos reutilizan .normas-grid, .norma-card, .normas-nota de pages.css (global, compartido L3) -->

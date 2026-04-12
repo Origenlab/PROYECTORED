@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaBar from '../../../components/CtaBar.astro';
 import FaqCotizacion from '../../../components/FaqCotizacion.astro';
 import '../../../styles/pages.css';
@@ -110,21 +111,12 @@ const faqs = [
 ---
 <Base title={seo.title} description={seo.description}>
 
+  <Breadcrumb items={breadcrumbs} />
+
   <!-- ══ HERO ══ -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-left">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          {breadcrumbs.map((b, i) => (
-            <>
-              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-              {b.href
-                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
-                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-              }
-            </>
-          ))}
-        </nav>
         <div class="hero-badge">
           <span class="badge-dot"></span>
           Automático · Activación Térmica · NOM-154-SCFI
@@ -164,12 +156,12 @@ const faqs = [
       <!-- Galería de imágenes -->
       <div class="pp-gallery">
         <div class="pp-gallery__col">
-          <img src="/imagenes/extintores/polvo-seco.jpg" alt="Extintor PQS Automático 4.5 kg - Vista frontal" width="400" height="300" loading="eager" />
-          <img src="/imagenes/extintores/polvo-seco.jpg" alt="Extintor PQS Automático 4.5 kg - Detalle bulbo térmico" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1" alt="Extintor PQS Automático 4.5 kg - Vista frontal" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1" alt="Extintor PQS Automático 4.5 kg - Detalle bulbo térmico" width="400" height="300" loading="eager" />
         </div>
         <div class="pp-gallery__col">
-          <img src="/imagenes/extintores/polvo-seco.jpg" alt="Extintor PQS Automático 4.5 kg - Soporte de techo" width="400" height="300" loading="eager" />
-          <img src="/imagenes/extintores/polvo-seco.jpg" alt="Extintor PQS Automático 4.5 kg - Instalación en bodega" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1" alt="Extintor PQS Automático 4.5 kg - Soporte de techo" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1" alt="Extintor PQS Automático 4.5 kg - Instalación en bodega" width="400" height="300" loading="eager" />
         </div>
       </div>
 
@@ -508,8 +500,8 @@ const faqs = [
   .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
-  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; transition: gap 0.25s ease; }
-  .pp-otros__cta svg { transition: transform 0.25s ease; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+
   .pp-otros__card:hover .pp-otros__cta { gap: 0.55rem; }
   .pp-otros__card:hover .pp-otros__cta svg { transform: translateX(3px); }
 

@@ -1,0 +1,215 @@
+---
+/**
+ * CatalogoEquipoSeguridad.astro — v1
+ * Catálogo de 8 líneas de EPP — patrón .ccard estándar.
+ * Nav sticky + SectionHeaderDuo + .ccard grid 4-col (2 filas de 4).
+ * 100% homologado con CatalogoPrimerosAuxilios / CatalogoMangueras.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, necesito cotizar equipo de protección personal (EPP) certificado NOM-017-STPS para mi empresa')
+
+const productos = [
+  {
+    nombre: 'Protección Craneal',
+    desc: 'Cascos de seguridad clase E (eléctrico), G (general) y C (conductor). Suspensión de 4 y 6 puntos. Con y sin ventilación. Para construcción, plantas industriales y trabajo en áreas eléctricas. Cada casco especifica la clase y el voltaje de protección.',
+    img: '/imagenes/equipo-seguridad/cascos.jpg',
+    badge: 'NOM-017-STPS',
+    href: '/equipo-seguridad/cascos/',
+    ctaLabel: 'Ver protección craneal',
+    subcats: [
+      { label: 'Clase E — protección eléctrica hasta 20,000V', href: '/equipo-seguridad/cascos/' },
+      { label: 'Clase G — uso general en construcción', href: '/equipo-seguridad/cascos/' },
+      { label: 'Con ventilación — áreas de alto calor', href: '/equipo-seguridad/cascos/' },
+      { label: 'Con rachet — ajuste sin quitar el casco', href: '/equipo-seguridad/cascos/' },
+      { label: 'Porta accesorios — visor, audífono, barbiquejo', href: '/equipo-seguridad/cascos/' },
+    ],
+  },
+  {
+    nombre: 'Protección Visual',
+    desc: 'Lentes de seguridad para impacto, soldadura y productos químicos. Policarbonato ANSI Z87.1. Lentes con protección UV, antiempañante y antirayadura. Para trabajo con proyección de partículas, salpicaduras químicas o radiación ultravioleta.',
+    img: '/imagenes/equipo-seguridad/lentes.jpg',
+    badge: 'ANSI Z87.1',
+    href: '/equipo-seguridad/lentes/',
+    ctaLabel: 'Ver protección visual',
+    subcats: [
+      { label: 'Lentes de seguridad — antiimpacto ANSI Z87', href: '/equipo-seguridad/lentes/' },
+      { label: 'Goggles de sello — contra vapores y líquidos', href: '/equipo-seguridad/lentes/' },
+      { label: 'Careta facial — protección total de cara', href: '/equipo-seguridad/lentes/' },
+      { label: 'Visor de soldadura — sombras 5–14', href: '/equipo-seguridad/lentes/' },
+      { label: 'Antiempañante · UV400 · Policarbonato', href: '/equipo-seguridad/lentes/' },
+    ],
+  },
+  {
+    nombre: 'Protección Auditiva',
+    desc: 'Tapones auditivos espuma y preformados con NRR certificado. Orejeras con atenuación 25–33 dB. Para ambientes industriales con ruido superior a 85 dB — límite a partir del cual la NOM-011-STPS exige protección. La selección depende del nivel de ruido medido en el puesto.',
+    img: '/imagenes/equipo-seguridad/tapones-auditivos.jpg',
+    badge: 'NOM-011-STPS',
+    href: '/equipo-seguridad/auditiva/',
+    ctaLabel: 'Ver protección auditiva',
+    subcats: [
+      { label: 'Tapones espuma NRR 29–33 dB desechables', href: '/equipo-seguridad/auditiva/' },
+      { label: 'Tapones preformados reutilizables con cordón', href: '/equipo-seguridad/auditiva/' },
+      { label: 'Orejeras NRR 25–31 dB — bandas ajustables', href: '/equipo-seguridad/auditiva/' },
+      { label: 'Orejeras para casco — montaje en riel', href: '/equipo-seguridad/auditiva/' },
+      { label: 'Medición NRR certificada para expediente STPS', href: '/equipo-seguridad/auditiva/' },
+    ],
+  },
+  {
+    nombre: 'Protección Respiratoria',
+    desc: 'Respiradores de media cara y cara completa para partículas, vapores orgánicos, ácidos y gases. Máscaras desechables N95 para polvos. La norma NIOSH distingue entre filtros para partículas (P100), vapores orgánicos (OV) y múltiples amenazas (OV/P100). El respirador incorrecto no protege aunque lo uses.',
+    img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
+    badge: 'NIOSH · NOM-116',
+    href: '/equipo-seguridad/respiratoria/',
+    ctaLabel: 'Ver protección respiratoria',
+    subcats: [
+      { label: 'N95 desechable — polvos y partículas finas', href: '/equipo-seguridad/respiratoria/' },
+      { label: 'Media cara con filtro OV — vapores orgánicos', href: '/equipo-seguridad/respiratoria/' },
+      { label: 'Media cara con filtro P100 — partículas finas', href: '/equipo-seguridad/respiratoria/' },
+      { label: 'Cara completa — protección visual + respiratoria', href: '/equipo-seguridad/respiratoria/' },
+      { label: 'Filtros de repuesto · OV/P100 combinado', href: '/equipo-seguridad/respiratoria/' },
+    ],
+  },
+  {
+    nombre: 'Protección de Manos',
+    desc: 'Guantes para corte, impacto, productos químicos, calor, soldadura y electricidad. La norma EN 388 certifica resistencia a corte y abrasión; EN 374 para productos químicos; EN 407 para calor. El guante de cuero multiusos no es el correcto para manipular ácidos ni para soldar.',
+    img: '/imagenes/equipo-seguridad/conos.jpg',
+    badge: 'EN 388 · EN 374',
+    href: '/equipo-seguridad/guantes/',
+    ctaLabel: 'Ver protección de manos',
+    subcats: [
+      { label: 'Guante anticorte nivel A4–A9', href: '/equipo-seguridad/guantes/' },
+      { label: 'Guante químico nitrilo — ácidos y solventes', href: '/equipo-seguridad/guantes/' },
+      { label: 'Guante de soldador — cuero vaqueta split', href: '/equipo-seguridad/guantes/' },
+      { label: 'Guante dieléctrico clase 0–4 para electricidad', href: '/equipo-seguridad/guantes/' },
+      { label: 'Guante resistente al calor hasta 250°C', href: '/equipo-seguridad/guantes/' },
+    ],
+  },
+  {
+    nombre: 'Calzado de Seguridad',
+    desc: 'Zapatos y botas con casquillo de acero o composite, suela antiperforación, plantilla ergonómica y clasificación de riesgo eléctrico. La NOM-113-STPS especifica los requisitos por tipo de industria. Para zonas con riesgo eléctrico se requiere calzado EH (Electrical Hazard), no solo casquillo.',
+    img: '/imagenes/equipo-seguridad/cascos.jpg',
+    badge: 'NOM-113-STPS',
+    href: '/equipo-seguridad/calzado/',
+    ctaLabel: 'Ver calzado de seguridad',
+    subcats: [
+      { label: 'Zapato industrial casquillo acero', href: '/equipo-seguridad/calzado/' },
+      { label: 'Bota de seguridad con antiperforación', href: '/equipo-seguridad/calzado/' },
+      { label: 'Calzado EH — riesgo eléctrico', href: '/equipo-seguridad/calzado/' },
+      { label: 'Bota larga para químicos y zonas húmedas', href: '/equipo-seguridad/calzado/' },
+      { label: 'Casquillo composite — sin conducción eléctrica', href: '/equipo-seguridad/calzado/' },
+    ],
+  },
+  {
+    nombre: 'Arneses y Protección contra Caídas',
+    desc: 'Arneses de cuerpo completo tipo I, II y III, líneas de vida retráctiles y de longitud fija, anclajes y mosquetones certificados. La NOM-009-STPS obliga el sistema anticaída completo (arnés + línea + anclaje) para trabajo a más de 1.80 m de altura. El arnés solo no es un sistema anticaída.',
+    img: '/imagenes/equipo-seguridad/chalecos.jpg',
+    badge: 'NOM-009-STPS',
+    href: '/equipo-seguridad/arneses/',
+    ctaLabel: 'Ver arneses y protección',
+    subcats: [
+      { label: 'Arnés cuerpo completo tipo III — uso general', href: '/equipo-seguridad/arneses/' },
+      { label: 'Línea de vida retráctil — 3 a 30 m', href: '/equipo-seguridad/arneses/' },
+      { label: 'Línea de vida doble — acceso a través de obstáculos', href: '/equipo-seguridad/arneses/' },
+      { label: 'Anclaje portátil para estructura tubular', href: '/equipo-seguridad/arneses/' },
+      { label: 'Sistema de posicionamiento — trabajo en postes', href: '/equipo-seguridad/arneses/' },
+    ],
+  },
+  {
+    nombre: 'Ropa de Protección',
+    desc: 'Overoles, chalecos, trajes y ropa especial para riesgos de fuego, arco eléctrico, productos químicos y alta visibilidad. La norma EN 11612 certifica protección contra calor y llama; EN 1149 contra electricidad estática. La ropa de alta visibilidad clase 2 y 3 sigue la norma ANSI 107 para zonas de tráfico.',
+    img: '/imagenes/equipo-seguridad/chalecos.jpg',
+    badge: 'EN 11612 · ANSI 107',
+    href: '/equipo-seguridad/ropa/',
+    ctaLabel: 'Ver ropa de protección',
+    subcats: [
+      { label: 'Overall FR — protección llama y arco eléctrico', href: '/equipo-seguridad/ropa/' },
+      { label: 'Chaleco alta visibilidad clase 2 y 3', href: '/equipo-seguridad/ropa/' },
+      { label: 'Traje para químicos tipo 3 y 4', href: '/equipo-seguridad/ropa/' },
+      { label: 'Overall antiestático para zonas ATEX', href: '/equipo-seguridad/ropa/' },
+      { label: 'Ropa desechable para áreas de riesgo biológico', href: '/equipo-seguridad/ropa/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-equipo-seguridad cat-section cat-section--white" id="catalogo-equipo-seguridad" aria-labelledby="catalogo-es-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-es-heading"
+      eyebrow="NOM-017-STPS certificado"
+      titleLine1="8 Líneas de EPP para Cada"
+      titleLine2="Tipo de Riesgo Industrial"
+      desc="Cascos, lentes, auditiva, respiratoria, guantes, calzado, arneses y ropa — el equipo correcto para el riesgo específico de cada puesto de trabajo."
+      bodyPara1="La NOM-017-STPS no solo exige que los trabajadores usen EPP — exige que sea el EPP correcto para el riesgo específico de cada puesto. Una empresa que da cascos genéricos a todos sus trabajadores sin análisis de riesgo por puesto puede tener una infracción STPS igual que si no diera ningún equipo. La certificación y la selección técnica son parte del cumplimiento."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2/L3 -->
+    <div class="catidx-grid" role="list" aria-label="Líneas de equipo de protección personal disponibles">
+      {productos.map((p, i) => (
+        <article class="ccard" role="listitem" aria-label={p.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={p.img}
+              alt={p.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {p.badge && <span class="ccard__badge">{p.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{p.nombre}</h3>
+            <p class="ccard__desc">{p.desc}</p>
+
+            {p.subcats && p.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${p.nombre}`}>
+                {p.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={p.href} class="ccard__cta">
+              {p.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para programa de EPP">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿Necesitas EPP para tu empresa con programa documentado?</p>
+          <p class="ccard--cta-wa__sub">Hacemos diagnóstico por puesto de trabajo, te recomendamos el equipo correcto según el riesgo y entregamos la documentación para tu programa de EPP ante STPS.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>
+

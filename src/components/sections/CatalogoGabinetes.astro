@@ -1,0 +1,155 @@
+---
+/**
+ * CatalogoGabinetes.astro — v1
+ * Catálogo de 4 tipos de gabinetes contra incendio — patrón .ccard estándar.
+ * Nav sticky + SectionHeaderDuo + .ccard grid (4 cols / 2 tablet).
+ * 100% homologado con CatalogoExtintores / CatalogoBomberos.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, quiero cotizar gabinetes contra incendio para mi inmueble')
+
+const gabinetes = [
+  {
+    nombre: 'Gabinete para Extintor',
+    desc: 'Resguarda extintores de 4.5 a 12 kg contra polvo, humedad y vandalismo. Puerta con vidrio templado o acrílico que permite ver el estado del extintor sin abrirlo.',
+    img: '/imagenes/gabinetes/extintor/galeria-1.jpg',
+    badge: 'Más vendido',
+    href: '/gabinetes/para-extintor/',
+    ctaLabel: 'Ver gabinete para extintor',
+    subcats: [
+      { label: 'Sobrepuesto — atornillado al muro', href: '/gabinetes/para-extintor/' },
+      { label: 'Empotrado — enrasado con la pared', href: '/gabinetes/para-extintor/' },
+      { label: 'Vidrio templado 4 mm', href: '/gabinetes/para-extintor/' },
+      { label: 'Break-glass de emergencia', href: '/gabinetes/para-extintor/' },
+      { label: 'Con señalamiento incluido', href: '/gabinetes/para-extintor/' },
+    ],
+  },
+  {
+    nombre: 'Porta Extintor con Cenicero',
+    desc: 'Pedestal metálico que combina soporte para extintor con cenicero integrado. Para lobbies, accesos de edificios y áreas de recepción donde el extintor debe lucir presentable.',
+    img: '/imagenes/gabinetes/cenicero/galeria-1.jpg',
+    badge: 'Lobbies',
+    href: '/gabinetes/porta-extintor-cenicero/',
+    ctaLabel: 'Ver porta extintor',
+    subcats: [
+      { label: 'Acero al carbón con acabado cromado', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Base contrapesada — no se voltea', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Versión rojo y versión cromado', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Para extintores de 4.5 a 9 kg', href: '/gabinetes/porta-extintor-cenicero/' },
+      { label: 'Sin perforar muros', href: '/gabinetes/porta-extintor-cenicero/' },
+    ],
+  },
+  {
+    nombre: 'Gabinete para Bombero',
+    desc: 'Espacio para manguera de 30 m, extintor, hacha y llave de hidrante en un solo punto de acceso. Para edificios y plantas que requieren equipo de respuesta rápida en cada piso.',
+    img: '/imagenes/gabinetes/bombero/galeria-1.jpg',
+    badge: 'Edificios',
+    href: '/gabinetes/para-bombero/',
+    ctaLabel: 'Ver gabinete para bombero',
+    subcats: [
+      { label: 'Manguera 30 m preinstalada', href: '/gabinetes/para-bombero/' },
+      { label: 'Espacio para extintor + hacha + llave', href: '/gabinetes/para-bombero/' },
+      { label: '90×60×25 cm — puerta abatible', href: '/gabinetes/para-bombero/' },
+      { label: 'Break-glass opcional', href: '/gabinetes/para-bombero/' },
+      { label: 'Señalamiento de gabinete para bombero', href: '/gabinetes/para-bombero/' },
+    ],
+  },
+  {
+    nombre: 'Gabinete para Hidrante',
+    desc: 'Gabinete con manguera pre-conectada y válvula angular para conexión directa al sistema hidráulico. Listo para operar en segundos conforme a NFPA 14.',
+    img: '/imagenes/gabinetes/hidrante/galeria-1.jpg',
+    badge: 'NFPA 14',
+    href: '/gabinetes/para-hidrante/',
+    ctaLabel: 'Ver gabinete para hidrante',
+    subcats: [
+      { label: 'Válvula angular 2½" incluida', href: '/gabinetes/para-hidrante/' },
+      { label: 'Manguera 30 m pre-conectada', href: '/gabinetes/para-hidrante/' },
+      { label: '80×60×20 cm — acceso inmediato', href: '/gabinetes/para-hidrante/' },
+      { label: 'Compatible con tomas NFPA 14', href: '/gabinetes/para-hidrante/' },
+      { label: 'Para edificios con red hidráulica', href: '/gabinetes/para-hidrante/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-gabinetes cat-section cat-section--white" id="catalogo-gabinetes" aria-labelledby="catalogo-gab-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-gab-heading"
+      eyebrow="Gabinetes certificados NOM · NFPA 14"
+      titleLine1="4 Tipos de Gabinetes"
+      titleLine2="Para Cada Situación"
+      desc="Extintor, porta extintor, bombero e hidrante. Cada uno tiene una función distinta — elegir el correcto evita observaciones de Protección Civil."
+      bodyPara1="El gabinete correcto depende de dónde está tu extintor, qué tipo de sistema tiene tu edificio y qué exige tu inspector. Un soporte de pared es suficiente para muchos casos — pero cuando el extintor está en pasillo de alto tráfico, exterior o zona industrial, el gabinete protege el equipo y resguarda tu dictamen."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2/L3 -->
+    <div class="catidx-grid" role="list" aria-label="Tipos de gabinetes disponibles">
+      {gabinetes.map((g, i) => (
+        <article class="ccard" role="listitem" aria-label={g.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={g.img}
+              alt={g.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {g.badge && <span class="ccard__badge">{g.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{g.nombre}</h3>
+            <p class="ccard__desc">{g.desc}</p>
+
+            {g.subcats && g.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${g.nombre}`}>
+                {g.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={g.href} class="ccard__cta">
+              {g.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir gabinete">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿Extintores existentes o compra nueva?</p>
+          <p class="ccard--cta-wa__sub">Mándanos foto — te cotizamos gabinete exacto con compatibilidad garantizada. Precio de paquete extintor + gabinete si compras junto.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>
+

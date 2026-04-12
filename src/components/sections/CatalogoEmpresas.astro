@@ -1,0 +1,196 @@
+---
+/**
+ * CatalogoEmpresas.astro
+ * Catálogo de zonas de cobertura — SectionHeaderDuo + .ccard por zona.
+ * Sigue el mismo patrón que CatalogoProductos y CatalogoServicios:
+ * componente autónomo con datos inline.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const zonas = [
+  {
+    id: 'cdmx',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Ciudad de México',
+    badge: 'Sede principal',
+    desc: 'Cobertura total en las 16 alcaldías. Entrega el mismo día para pedidos antes de las 2 PM.',
+    body: 'Centro de operaciones, almacén e inventario permanente. Entrega con flota propia en toda la Ciudad de México. Proveedor registrado ante Protección Civil CDMX. Sin intermediarios — del almacén a tu puerta el mismo día.',
+    href: '/empresas/cdmx/',
+    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    detalles: [
+      { nombre: 'Cuauhtémoc / Centro Histórico', sub: 'Extintores, señalamientos y sistemas contra incendio para oficinas, restaurantes, hoteles y locales comerciales del primer cuadro de la ciudad' },
+      { nombre: 'Miguel Hidalgo / Polanco', sub: 'Proveedor directo de equipos certificados NOM para corporativos, embajadas, torres premium y edificios de alta seguridad' },
+      { nombre: 'Benito Juárez / Del Valle', sub: 'Recarga, mantenimiento y venta de extintores para pymes, consultorios médicos, coworkings y edificios de uso mixto' },
+      { nombre: 'Álvaro Obregón / Santa Fe', sub: 'Suministro de gabinetes, mangueras y sistemas CI para torres corporativas, centros comerciales y desarrollos inmobiliarios' },
+      { nombre: 'Azcapotzalco / Industrial Vallejo', sub: 'Equipamiento completo contra incendios para plantas industriales, bodegas de almacenaje y centros de distribución' },
+      { nombre: 'Gustavo A. Madero / Indios Verdes', sub: 'Extintores PQS, CO₂ y señalización NOM para naves de manufactura, talleres mecánicos y almacenes logísticos' },
+      { nombre: 'Iztapalapa / Central de Abasto', sub: 'Protección contra incendios para mercados, bodegas frigoríficas, industria alimentaria y centros de acopio' },
+      { nombre: 'Tlalpan / Coyoacán / Sur', sub: 'Equipos contra incendio y capacitación DC-3 para hospitales, universidades, laboratorios y complejos residenciales' },
+    ],
+  },
+  {
+    id: 'edomex',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Estado de México',
+    badge: 'Zona metropolitana',
+    desc: 'Cobertura directa en los municipios más industrializados. Entrega en 24-48 horas.',
+    body: 'Atención a parques industriales, plantas de manufactura, distribuidoras y centros logísticos de la zona metropolitana. Logística coordinada con flota propia para entregas frecuentes y contratos de suministro.',
+    href: '/empresas/edomex/',
+    img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
+    detalles: [
+      { nombre: 'Naucalpan de Juárez', sub: 'Extintores certificados y sistemas de detección para parques industriales de Alce Blanco, zona Satélite y corredor Naucalpan' },
+      { nombre: 'Tlalnepantla de Baz', sub: 'Equipamiento contra incendio para la zona industrial más grande del EDOMEX — bodegas, plantas de manufactura y centros de distribución' },
+      { nombre: 'Ecatepec de Morelos', sub: 'Venta y recarga de extintores para industrias, centros comerciales y desarrollos habitacionales del municipio más poblado del estado' },
+      { nombre: 'Cuautitlán Izcalli', sub: 'Proveedor directo de equipos NOM para parques logísticos, naves de nearshoring y plantas de manufactura de exportación' },
+      { nombre: 'Toluca / Lerma', sub: 'Sistemas contra incendio NFPA y señalización para el corredor industrial Toluca-Lerma — plantas automotrices y alimentarias' },
+      { nombre: 'Atizapán / Nicolás Romero', sub: 'Extintores, gabinetes y mantenimiento preventivo para plantas de manufactura y centros de distribución zona norte' },
+      { nombre: 'Texcoco / Chimalhuacán', sub: 'Equipos contra incendio certificados para proyectos en expansión, bodegas y centros de producción de la zona oriente' },
+      { nombre: 'Huixquilucan / Interlomas', sub: 'Gabinetes para hidrante, señalización de emergencia y capacitación de brigadas para corporativos y plazas comerciales premium' },
+    ],
+  },
+  {
+    id: 'queretaro',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Querétaro',
+    badge: 'Corredor industrial',
+    desc: 'Envío directo desde CDMX al corredor industrial de Querétaro. Entrega en 48-72 horas.',
+    body: 'Plantas automotrices, aeronáuticas, alimentarias y centros logísticos. Entrega coordinada con documentación NOM completa. Para proyectos de volumen desplazamos equipos de instalación y capacitación.',
+    href: '/empresas/queretaro/',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    detalles: [
+      { nombre: 'Parque Industrial Querétaro', sub: 'Extintores, rociadores y tableros de alarma NFPA para plantas de manufactura de exportación en la zona norte del estado' },
+      { nombre: 'El Marqués / Aeropuerto', sub: 'Equipos contra incendio con documentación NOM para centros logísticos, distribuidoras y naves de e-commerce cerca del aeropuerto' },
+      { nombre: 'San Juan del Río', sub: 'Sistemas de detección, extintores y señalización para plantas automotrices, alimentarias y proveedores Tier 1 del corredor sur' },
+      { nombre: 'Zona Centro / Juriquilla', sub: 'Suministro de extintores certificados y capacitación DC-3 para corporativos, universidades y hospitales de la zona urbana' },
+    ],
+  },
+  {
+    id: 'puebla',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Puebla',
+    badge: 'Industria automotriz',
+    desc: 'Cobertura para la zona industrial de Puebla y Tlaxcala. Envío desde CDMX.',
+    body: 'Plantas automotrices, textileras, alimentarias y centros de distribución. Logística coordinada con paqueterías certificadas. El equipo llega con documentación NOM completa para tu expediente de Protección Civil.',
+    href: '/empresas/puebla/',
+    img: '/imagenes/senalamientos/senalamientos-hero.jpg',
+    detalles: [
+      { nombre: 'Zona industrial Puebla', sub: 'Equipamiento completo contra incendios para plantas VW, Audi y proveedores automotrices Tier 1 con certificación NOM y NFPA' },
+      { nombre: 'Cholula / Atlixco', sub: 'Extintores, botiquines STPS y señalización de emergencia para industria alimentaria, hoteles turísticos y hospitales regionales' },
+      { nombre: 'San Martín Texmelucan', sub: 'Venta y mantenimiento de extintores para fábricas textiles, naves de manufactura y bodegas del corredor industrial centro' },
+      { nombre: 'Corredor Puebla-Tlaxcala', sub: 'Suministro de equipos certificados y prueba hidrostática para centros de distribución, parques logísticos y plantas de ensamble' },
+    ],
+  },
+  {
+    id: 'aguascalientes',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Aguascalientes',
+    badge: 'Industria automotriz',
+    desc: 'Abastecimiento para el corredor industrial de Aguascalientes. Envío coordinado.',
+    body: 'Plantas Nissan, proveedores automotrices, manufactura de exportación y centros logísticos. Envío coordinado con paquetería certificada e inventario disponible en CDMX para despacho inmediato.',
+    href: '/empresas/aguascalientes/',
+    img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
+    detalles: [
+      { nombre: 'Parque Industrial Aguascalientes', sub: 'Extintores, sistemas de alarma y rociadores NFPA para plantas Nissan, electrónica de exportación y manufactura automotriz' },
+      { nombre: 'Zona centro y comercial', sub: 'Equipos contra incendio certificados, recarga de extintores y señalización NOM para plazas comerciales, hoteles y hospitales' },
+      { nombre: 'Corredor logístico Ags-SLP', sub: 'Suministro de gabinetes, mangueras y equipo CI con entrega coordinada para centros de distribución del corredor centro-norte' },
+    ],
+  },
+  {
+    id: 'baja-california',
+    titulo: 'Equipos Contra Incendios en',
+    titleLine2: 'Baja California',
+    badge: 'Maquiladoras',
+    desc: 'Corredor maquilador de Tijuana, Mexicali y Ensenada. Logística especializada desde CDMX.',
+    body: 'Plantas de exportación, maquiladoras, centros logísticos fronterizos y comercio. Envío con paquetería certificada y documentación NOM completa. Para proyectos de volumen coordinamos instalación presencial.',
+    href: '/empresas/baja-california/',
+    img: '/imagenes/mangueras/mangueras-hero.jpg',
+    detalles: [
+      { nombre: 'Tijuana / Zona industrial Otay', sub: 'Equipamiento contra incendios para maquiladoras, plantas aeroespaciales y centros de electrónica con documentación NOM lista para auditoría' },
+      { nombre: 'Mexicali', sub: 'Extintores certificados, señalización de emergencia y sistemas de detección para industria manufacturera y agricultura tecnificada' },
+      { nombre: 'Ensenada', sub: 'Suministro de extintores, gabinetes y equipo de seguridad para vinícolas, empresas turísticas e industria pesquera del puerto' },
+      { nombre: 'Rosarito / Tecate', sub: 'Venta y recarga de extintores para plantas de manufactura y comercio transfronterizo — entrega con paquetería certificada' },
+    ],
+  },
+]
+---
+
+<!-- ══════════════════════════════════════
+     CATÁLOGO DE ZONAS
+══════════════════════════════════════ -->
+<main id="catalogo">
+
+  {zonas.map((zona, idx) => (
+    <section
+      id={zona.id}
+      class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
+      aria-labelledby={`zona-title-${zona.id}`}
+    >
+      <div class="container">
+
+        <SectionHeaderDuo
+          id={`zona-title-${zona.id}`}
+          eyebrow={zona.badge}
+          titleLine1={zona.titulo}
+          titleLine2={zona.titleLine2}
+          desc={zona.desc}
+          bodyPara1={zona.body}
+        />
+
+        {/* Grid de cards — mismo patrón que CatalogoProductos/CatalogoServicios */}
+        <div class="catidx-grid">
+          {zona.detalles.map((d, di) => (
+            <article class="ccard" aria-label={d.nombre}>
+              <div class="ccard__header">
+                <Img
+                  src={zona.img}
+                  alt={`Equipos contra incendios en ${d.nombre}`}
+                  loading={di < 4 && idx === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={di === 0 && idx === 0 ? 'high' : undefined}
+                  width={640}
+                  height={360}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+                />
+                <div class="ccard__header-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="ccard__content">
+                <h3 class="ccard__title">{d.nombre}</h3>
+                <p class="ccard__desc">{d.sub}</p>
+
+                <a
+                  href={waUrl(`Hola, necesito equipos contra incendios en ${d.nombre}`)}
+                  class="ccard__cta"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Cotizar entrega
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+
+          {/* Card CTA WhatsApp — usa clases globales de pages.css */}
+          <article class="ccard ccard--cta-wa" aria-label="Cotizar envío por WhatsApp">
+            <a
+              href={waUrl(`Hola, necesito equipos contra incendios en ${zona.titleLine2}`)}
+              class="ccard--cta-wa__inner"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="ccard--cta-wa__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p class="ccard--cta-wa__title">¿Necesitas entrega en {zona.titleLine2}?</p>
+              <p class="ccard--cta-wa__sub">Cotiza por WhatsApp — te confirmamos disponibilidad y flete</p>
+              <span class="ccard--cta-wa__btn">Escribir al WhatsApp →</span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+  ))}
+</main>

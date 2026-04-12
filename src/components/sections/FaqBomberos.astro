@@ -1,0 +1,174 @@
+---
+/**
+ * FaqBomberos.astro — v1
+ * FAQ específico de equipo para bomberos + formulario de cotización sticky.
+ * Patrón 100% homologado con FaqExtintores (L3 template aprobado).
+ * Usa SectionHeaderDuo (complemento título oficial).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { CONTACT } from '../../config/site'
+
+const faqs = [
+  {
+    q: '¿Qué certificaciones debe tener un traje de bombero?',
+    a: 'Un traje para combate estructural debe cumplir con la <strong>NFPA 1971</strong>, que exige tres capas: capa exterior resistente al fuego, barrera contra humedad y barrera térmica. Para bomberos forestales aplica la <strong>NFPA 1977</strong>. Para materiales peligrosos, la <strong>NFPA 1991 o 1992</strong> según el nivel de protección. Todos los trajes que vendemos incluyen certificación original del fabricante — no copias ni equivalencias informales.',
+  },
+  {
+    q: '¿Cuánto dura un traje de bombero y cuándo hay que reemplazarlo?',
+    a: 'La <strong>NFPA 1851</strong> establece una vida útil máxima de <strong>10 años</strong> desde la fecha de fabricación, independientemente del estado aparente del traje. Requiere inspecciones visuales después de cada uso, limpiezas avanzadas semestrales e inspecciones técnicas anuales por un técnico certificado. Un traje que supera los 10 años o que ha sido sometido a condiciones extremas debe retirarse del servicio. Te asesoramos sin costo sobre cuándo reemplazar tu equipo actual.',
+  },
+  {
+    q: '¿Qué es el ERA y por qué es obligatorio para combate de incendios?',
+    a: 'ERA significa <strong>Equipo de Respiración Autónoma</strong> (SCBA en inglés). Es un sistema portátil de aire comprimido con máscara panorámica, regulador certificado NIOSH y cilindro que permite respirar en atmósferas contaminadas o con deficiencia de oxígeno. Es <strong>obligatorio</strong> en cualquier entrada a estructura en llamas — el humo de un incendio estructural contiene más de 100 compuestos tóxicos que incapacitan en segundos. Sin ERA, un bombero no puede entrar al edificio bajo ninguna justificación.',
+  },
+  {
+    q: '¿Venden equipo para brigadas industriales además de cuerpos de bomberos?',
+    a: 'Sí. Equipamos tanto <strong>cuerpos de bomberos profesionales</strong> como <strong>brigadas industriales</strong> de plantas petroleras, petroquímicas, farmacéuticas, textiles y de manufactura. La diferencia está en el nivel de protección y el tipo de riesgo: una brigada en una planta con solventes necesita equipo distinto a una brigada en un edificio corporativo. Te ayudamos a definir el equipo correcto según tu <strong>análisis de riesgo y las normas STPS</strong> aplicables a tu sector.',
+  },
+  {
+    q: '¿Manejan trajes sobre medida y con bordado institucional?',
+    a: 'Sí. Además de tallas estándar (S a 4XL), gestionamos <strong>trajes sobre medida</strong> con el fabricante. Incluye ajuste preciso de chaquetón y pantalón a las medidas del usuario, <strong>bordado institucional</strong> con nombre, número de empleado o escudo de la corporación, colores especiales y configuración de cintas reflectantes según los requerimientos de tu corporación. Los tiempos de fabricación dependen del fabricante — consultamos disponibilidad antes de comprometer fechas.',
+  },
+  {
+    q: '¿Cuánto cuesta equipar a un bombero completo?',
+    a: 'El costo depende del nivel de equipo y las marcas seleccionadas. Un <strong>ensemble básico certificado</strong> (traje + casco + guantes + botas + capucha) tiene rangos que varían según marca, materiales y especificaciones. El <strong>ERA</strong> se cotiza aparte por su complejidad técnica y el tipo de cilindro. El precio por bombero también varía significativamente si se compra en volumen para una brigada completa. Escríbenos con la cantidad de personal, el tipo de operación y el presupuesto disponible — te armamos opciones reales.',
+  },
+  {
+    q: '¿Hacen mantenimiento e inspección del equipo existente?',
+    a: 'Sí. Realizamos <strong>inspecciones técnicas anuales</strong> de equipo existente conforme a NFPA 1851 para trajes y NFPA 1981 para ERA. El servicio incluye inspección visual completa de costuras, membranas y capas del traje, verificación de la máscara, presión del cilindro y funcionamiento del regulador. Emitimos un <strong>reporte técnico</strong> útil para el expediente de tu corporación o brigada. Si el equipo requiere reparación o sustitución, te lo decimos con claridad.',
+  },
+  {
+    q: '¿Cómo funciona la prueba hidrostática para los cilindros del ERA?',
+    a: 'Los cilindros de los ERA deben someterse a <strong>prueba hidrostática</strong> de forma periódica (cada 5 años para cilindros de acero y aluminio, cada 3 años para cilindros de fibra de carbono) según las regulaciones de la Secretaría de Comunicaciones y Transportes (SCT) y las guías del fabricante. La prueba verifica la integridad estructural del cilindro bajo presión hidráulica controlada. Un cilindro que no esté al corriente en su prueba hidrostática no debe llenarse — es un riesgo de explosión.',
+  },
+]
+---
+
+<section class="faq-bomberos" id="faq-bomberos" aria-labelledby="faq-bomb-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="faq-bomb-heading"
+      eyebrow="Preguntas Frecuentes"
+      titleLine1="Todo lo que Necesitas Saber"
+      titleLine2="Antes de Equipar tu Brigada"
+      desc="Resolvemos las dudas más comunes sobre certificaciones NFPA, vida útil del equipo, costos y mantenimiento."
+      bodyPara1="Si no encuentras respuesta a tu pregunta, escríbenos por WhatsApp — nuestro equipo técnico responde en menos de 24 horas con información real y sin compromiso de compra."
+    />
+
+    <div class="faq-bomberos-grid">
+
+      <!-- ── Columna FAQ ── -->
+      <div class="faq-col" aria-labelledby="faq-col-heading">
+        <div class="faq-col__top">
+          <span class="faq-col__badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Equipo para Bomberos — FAQ
+          </span>
+          <h3 id="faq-col-heading">Lo que preguntan las corporaciones y brigadas</h3>
+          <p>¿Tienes una duda específica sobre equipo, certificaciones o licitaciones? Escríbenos al <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.phone}</a>.</p>
+        </div>
+
+        <div class="faq-items">
+          {faqs.map(f => (
+            <details class="faq-item" itemscope itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.q}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text" set:html={f.a}></p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Columna Cotización ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+          <div class="cot-card__head">
+            <span class="cot-badge">Cotización Gratuita</span>
+            <h3>Solicita tu cotización</h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+          </div>
+
+          <div class="cot-card__body">
+            <div class="cot-field">
+              <label for="cot-bomb-nombre">Nombre completo *</label>
+              <input type="text" id="cot-bomb-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-bomb-tel">Teléfono *</label>
+              <input type="tel" id="cot-bomb-tel" name="tel" placeholder="55 1234 5678" autocomplete="tel" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-bomb-empresa">Corporación o empresa</label>
+              <input type="text" id="cot-bomb-empresa" name="empresa" placeholder="Nombre de tu corporación o empresa" autocomplete="organization" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-bomb-tipo">Tipo de equipo *</label>
+              <select id="cot-bomb-tipo" name="tipo">
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <option>Trajes estructurales NFPA 1971</option>
+                <option>Complementos de uniforme (casco, guantes, botas)</option>
+                <option>ERA — Respiración autónoma (SCBA)</option>
+                <option>Herramientas de rescate</option>
+                <option>Arneses NFPA 1983</option>
+                <option>Ensemble completo (todo lo anterior)</option>
+                <option>Mantenimiento e inspección de equipo existente</option>
+                <option>No sé — necesito asesoría</option>
+              </select>
+            </div>
+            <div class="cot-field">
+              <label for="cot-bomb-detalle">Información adicional (opcional)</label>
+              <textarea id="cot-bomb-detalle" name="detalle" rows="3" placeholder="Tipo de operación, especificaciones, licitación, presupuesto disponible..."></textarea>
+            </div>
+          </div>
+
+          <div class="cot-card__footer">
+            <a
+              id="cot-bomb-wa-btn"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero cotizar equipo profesional para bomberos')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cot-btn"
+              role="button"
+              aria-label="Solicitar cotización de equipo para bomberos por WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar equipo por WhatsApp
+            </a>
+            <p class="cot-note">Cotización gratuita · Certificaciones NFPA incluidas · Respuesta en menos de 24 h</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('cot-bomb-wa-btn')
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nombre  = (document.getElementById('cot-bomb-nombre')   as HTMLInputElement)?.value.trim()
+    const tel     = (document.getElementById('cot-bomb-tel')      as HTMLInputElement)?.value.trim()
+    const empresa = (document.getElementById('cot-bomb-empresa')  as HTMLInputElement)?.value.trim()
+    const tipo    = (document.getElementById('cot-bomb-tipo')     as HTMLSelectElement)?.value
+    const detalle = (document.getElementById('cot-bomb-detalle')  as HTMLTextAreaElement)?.value.trim()
+
+    let msg = 'Hola, quiero cotizar equipo profesional para bomberos.'
+    if (nombre)  msg += `\n\n👤 Nombre: ${nombre}`
+    if (tel)     msg += `\n📞 Teléfono: ${tel}`
+    if (empresa) msg += `\n🏛️ Corporación: ${empresa}`
+    if (tipo)    msg += `\n🛡️ Tipo de equipo: ${tipo}`
+    if (detalle) msg += `\n📝 Detalle: ${detalle}`
+
+    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+  })
+</script>
+
+<!-- Estilos en pages.css (global) — sección EQUIPO PARA BOMBEROS -->

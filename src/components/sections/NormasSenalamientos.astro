@@ -1,0 +1,120 @@
+---
+/**
+ * NormasSenalamientos.astro — v1
+ * Cards de normas para señalamientos de emergencia.
+ * Patrón 100% homologado con NormasExtintores.
+ * Usa SectionHeaderDuo (complemento título oficial).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NOM-003-SEGOB',
+    tipo: 'Protección Civil',
+    alcance: 'Señales y avisos para protección civil — colores, formas, símbolos e iluminación. Define señalamientos de evacuación, salida de emergencia y punto de reunión.',
+    aplica: 'Todo inmueble con acceso al público. Sin señalamientos NOM-003-SEGOB no hay dictamen favorable de Protección Civil. Los fotoluminiscentes son obligatorios en rutas de evacuación.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    norma: 'NOM-026-STPS',
+    tipo: 'Laboral',
+    alcance: 'Colores y señales de seguridad e higiene — identifica peligros, define colores de advertencia (amarillo), prohibición (rojo) y obligación (azul) en centros de trabajo.',
+    aplica: 'Toda empresa con trabajadores. La STPS verifica señalización de EPP obligatorio por área (casco, lentes, guantes) y advertencias de riesgo eléctrico o químico.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
+  },
+  {
+    norma: 'NOM-002-STPS',
+    tipo: 'Prevención',
+    alcance: 'Condiciones de seguridad y prevención de incendio — exige señalamiento de la ubicación de cada extintor, la ruta de evacuación y las salidas de emergencia en centros de trabajo.',
+    aplica: 'Centros de trabajo con riesgo de incendio. Cada extintor debe tener señal fotoluminiscente de ubicación a la altura correcta. Verificado durante inspecciones STPS.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>`,
+  },
+  {
+    norma: 'NOM-017-STPS',
+    tipo: 'EPP',
+    alcance: 'Equipo de protección personal — selección, uso y mantenimiento. Define la obligación de señalar con pictogramas azules (obligación) las zonas donde cada tipo de EPP es mandatorio.',
+    aplica: 'Plantas industriales, talleres y almacenes. Cada zona de riesgo debe tener la señal de obligación de EPP correspondiente (casco, lentes, calzado de seguridad, protección auditiva).',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>`,
+  },
+  {
+    norma: 'NFPA 101',
+    tipo: 'Internacional',
+    alcance: 'Código de seguridad humana — especifica requerimientos de señalización de salidas de emergencia, medios de egreso y señalización fotoluminiscente en edificios.',
+    aplica: 'Edificios corporativos, hoteles y desarrollos con estándar internacional. Complementa la NOM-003-SEGOB en proyectos con auditorías internacionales o certificaciones LEED.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  },
+  {
+    norma: 'Fotoluminiscencia',
+    tipo: 'Material',
+    alcance: 'Los señalamientos fotoluminiscentes deben absorber luz suficiente para ser visibles durante al menos 60 minutos en oscuridad — mínimo en la norma; los nuestros mantienen visibilidad 8+ horas.',
+    aplica: 'Rutas de evacuación, salidas de emergencia y escaleras de emergencia. Son el único sistema de guía que funciona en un corte de luz total sin baterías ni mantenimiento.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`,
+  },
+]
+---
+
+<section class="normas-sen" aria-labelledby="normas-sen-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="normas-sen-heading"
+      eyebrow="Respaldo normativo"
+      titleLine1="Las Normas que Regulan"
+      titleLine2="la Señalización de Emergencia"
+      desc="Sin señalamientos certificados NOM no hay dictamen favorable de Protección Civil ni cumplimiento STPS."
+      bodyPara1="En México, Protección Civil y la STPS verifican señalización durante cada inspección. Un señalamiento decolorado, roto o sin certificación NOM puede significar dictamen desfavorable, multa o suspensión de actividades. Todos nuestros señalamientos incluyen el respaldo normativo que la autoridad solicita — y te entregamos la documentación útil para tu expediente de seguridad."
+    />
+
+    <div class="normas-sen-grid" role="list" aria-label="Normas para señalamientos de emergencia">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" set:html={n.icon} />
+            <span class="norma-tipo">{n.tipo}</span>
+          </div>
+          <h3 class="norma-card__nombre">{n.norma}</h3>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-aplica-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Aplica
+            </span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <div class="normas-nota__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <p>
+        Cada señalamiento que suministramos incluye el <strong>número de norma</strong> impreso,
+        <strong>materiales certificados</strong> y, para el servicio completo, un <strong>plano de
+        señalización</strong> útil para tu expediente de Protección Civil. La señalización sin
+        plano de respaldo no protege ante una observación de inspector — nosotros te entregamos
+        los dos.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-sen {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-sen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 1024px) { .normas-sen-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .normas-sen-grid { grid-template-columns: 1fr; } }
+</style>

@@ -2,6 +2,7 @@
 /**
  * TrustIndex.astro
  * Sección "Por qué Proyecto Red" — 2 columnas: header izq + 4 cards razones.
+ * Usado en: L1 (/), L3 (/extintores/), L4 (/extintores/[producto]/)
  * Encabezado: sidebar-header (clases compartidas en components.css).
  */
 import { waUrl, WA_MESSAGES } from '../../config/site'
@@ -73,100 +74,4 @@ const razones = [
 
   </div>
 </section>
-
-<style>
-  .trust-index {
-    padding: var(--section-py, 5rem) 0;
-    background: var(--c-white);
-    border-top: 1px solid var(--c-border);
-  }
-
-  .trust-index__inner {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  /* ── CTAS ──────────────────────────────────────────────── */
-  .trust-ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: 2px solid rgba(196,30,36,.2);
-    color: var(--c-muted);
-    padding: 0.8125rem 1.75rem;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--c-primary);
-    color: var(--c-primary);
-  }
-
-  /* ── GRID RAZONES ─────────────────────────────────────── */
-  .trust-index__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .trust-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .trust-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--c-primary-light, #F9E8E8);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--c-primary);
-    flex-shrink: 0;
-    margin-bottom: 0.25rem;
-  }
-
-  .trust-item__titulo {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--c-ink);
-    letter-spacing: -.01em;
-    line-height: 1.3;
-  }
-
-  .trust-item__desc {
-    font-size: 0.875rem;
-    color: var(--c-muted);
-    line-height: 1.65;
-  }
-
-  /* ── RESPONSIVE ───────────────────────────────────────── */
-  @media (max-width: 1200px) {
-    .trust-index__inner { grid-template-columns: 320px 1fr; gap: 3.5rem; }
-  }
-
-  @media (max-width: 1024px) {
-    .trust-index__inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .trust-index__grid { grid-template-columns: repeat(2, 1fr); }
-    .trust-ctas { flex-direction: row; flex-wrap: wrap; }
-  }
-
-  @media (max-width: 600px) {
-    .trust-index__grid { grid-template-columns: 1fr; }
-    .trust-ctas { flex-direction: column; }
-  }
-</style>
+<!-- Estilos en src/styles/pages.css (global, compartido L1/L3/L4) -->

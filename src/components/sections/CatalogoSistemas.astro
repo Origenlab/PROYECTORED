@@ -1,0 +1,170 @@
+---
+/**
+ * CatalogoSistemas.astro — v1
+ * Catálogo de 5 subsistemas contra incendio — patrón .ccard estándar.
+ * Nav sticky + SectionHeaderDuo + .ccard grid.
+ * 100% homologado con CatalogoMangueras / CatalogoGabinetes.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, necesito cotizar un sistema contra incendio certificado NFPA para mi inmueble')
+
+const sistemas = [
+  {
+    nombre: 'Alarmas Contra Incendio',
+    desc: 'Paneles convencionales para espacios simples y sistemas direccionables para edificios complejos con identificación exacta de zona. Batería de respaldo para operación sin electricidad.',
+    img: '/imagenes/sistemas/alarmas.jpg',
+    badge: 'NFPA 72',
+    href: '/sistemas/alarmas/',
+    ctaLabel: 'Ver alarmas contra incendio',
+    subcats: [
+      { label: 'Convencional — hasta 10 zonas', href: '/sistemas/alarmas/' },
+      { label: 'Direccionable — identificación exacta de detector', href: '/sistemas/alarmas/' },
+      { label: 'Monitoreo remoto 24/7', href: '/sistemas/alarmas/' },
+      { label: 'Sirenas, strobes y estaciones de jalar', href: '/sistemas/alarmas/' },
+      { label: 'UL Listed · batería respaldo 24h', href: '/sistemas/alarmas/' },
+    ],
+  },
+  {
+    nombre: 'Detectores de Humo e Incendio',
+    desc: 'Fotoeléctrico para fuegos lentos, iónico para combustión rápida, calor fijo para cocinas. La selección incorrecta genera falsas alarmas o detección tardía.',
+    img: '/imagenes/sistemas/detectores.jpg',
+    badge: 'NFPA 72',
+    href: '/sistemas/detectores/',
+    ctaLabel: 'Ver detectores de humo e incendio',
+    subcats: [
+      { label: 'Fotoeléctrico — humo visible fuegos lentos', href: '/sistemas/detectores/' },
+      { label: 'Iónico — partículas fuegos rápidos', href: '/sistemas/detectores/' },
+      { label: 'Calor fijo — cocinas y zonas con polvo', href: '/sistemas/detectores/' },
+      { label: 'VESDA — detección muy temprana', href: '/sistemas/detectores/' },
+      { label: 'Direccionable · IP42–IP55', href: '/sistemas/detectores/' },
+    ],
+  },
+  {
+    nombre: 'Rociadores Automáticos',
+    desc: 'Se activan individualmente solo en la zona del incendio. Cada cabeza responde a temperatura específica: 57°C para áreas normales, 93°C para cocinas, 141°C para zonas de alto calor.',
+    img: '/imagenes/sistemas/rociadores.jpg',
+    badge: 'NFPA 13',
+    href: '/sistemas/rociadores/',
+    ctaLabel: 'Ver rociadores automáticos',
+    subcats: [
+      { label: 'Colgante — instalación en cielo raso', href: '/sistemas/rociadores/' },
+      { label: 'Montante — instalación en piso', href: '/sistemas/rociadores/' },
+      { label: 'Lateral — paredes y espacios sin plafón', href: '/sistemas/rociadores/' },
+      { label: 'Temperatura 57°C, 93°C y 141°C', href: '/sistemas/rociadores/' },
+      { label: 'Sistema tubo húmedo o seco', href: '/sistemas/rociadores/' },
+    ],
+  },
+  {
+    nombre: 'Tableros de Control (FACP)',
+    desc: 'El cerebro del sistema: recibe señales de detectores, activa alarmas, controla supresión y envía alertas remotas. Un tablero mal configurado puede silenciar una alarma real.',
+    img: '/imagenes/sistemas/tablero-control.jpg',
+    badge: 'NFPA 72',
+    href: '/sistemas/tableros/',
+    ctaLabel: 'Ver tableros de control',
+    subcats: [
+      { label: 'Convencional — espacios simples', href: '/sistemas/tableros/' },
+      { label: 'Analógico-direccionable — edificios complejos', href: '/sistemas/tableros/' },
+      { label: 'UL864 — certificado para life-safety', href: '/sistemas/tableros/' },
+      { label: '2 a 2048 puntos de detección', href: '/sistemas/tableros/' },
+      { label: 'Monitoreo remoto y notificación', href: '/sistemas/tableros/' },
+    ],
+  },
+  {
+    nombre: 'Redes Hidráulicas',
+    desc: 'La tubería, la bomba y los accesorios que llevan agua bajo presión hasta cada rociador e hidrante. El cálculo hidráulico determina el diámetro, presión y capacidad de bomba requeridos.',
+    img: '/imagenes/sistemas/redes-hidraulicas.jpg',
+    badge: 'NFPA 14 · 20',
+    href: '/sistemas/redes-hidraulicas/',
+    ctaLabel: 'Ver redes hidráulicas',
+    subcats: [
+      { label: 'Tubería CPVC — para rociadores', href: '/sistemas/redes-hidraulicas/' },
+      { label: 'Acero negro Schedule 40 — redes principales', href: '/sistemas/redes-hidraulicas/' },
+      { label: 'Bomba eléctrica + diésel NFPA 20', href: '/sistemas/redes-hidraulicas/' },
+      { label: 'Bomba jockey de mantenimiento', href: '/sistemas/redes-hidraulicas/' },
+      { label: 'Cálculo hidráulico y planos incluidos', href: '/sistemas/redes-hidraulicas/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-sistemas cat-section cat-section--white" id="catalogo-sistemas" aria-labelledby="catalogo-sis-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-sis-heading"
+      eyebrow="Sistemas NFPA certificados"
+      titleLine1="5 Subsistemas que Integran"
+      titleLine2="la Protección Completa"
+      desc="Detección, alarma, supresión, control y red hidráulica. Cada uno cumple una función — los cinco juntos protegen el inmueble completo."
+      bodyPara1="Un sistema contra incendio profesional no es solo un detector o solo un rociador. Es la integración de cinco subsistemas que trabajan en cadena: detección identifica el fuego, el tablero procesa la señal, la alarma evacúa el personal, los rociadores suprimen el fuego y la red hidráulica provee el agua bajo la presión correcta."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2/L3 — 5 items: 3 col -->
+    <div class="catidx-grid" role="list" aria-label="Subsistemas de protección contra incendio disponibles">
+      {sistemas.map((s, i) => (
+        <article class="ccard" role="listitem" aria-label={s.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={s.img}
+              alt={s.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {s.badge && <span class="ccard__badge">{s.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{s.nombre}</h3>
+            <p class="ccard__desc">{s.desc}</p>
+
+            {s.subcats && s.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${s.nombre}`}>
+                {s.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={s.href} class="ccard__cta">
+              {s.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para diagnóstico de sistema">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿Diagnóstico gratuito de tu sistema actual?</p>
+          <p class="ccard--cta-wa__sub">Evaluamos el estado de tu sistema existente y te decimos qué actualizar, qué reemplazar y qué falta — con cotización detallada sin compromiso.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>
+

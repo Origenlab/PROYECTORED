@@ -1,0 +1,439 @@
+---
+/**
+ * FaqPrimerosAuxilios.astro
+ * FAQ específico de equipo de primeros auxilios + formulario de cotización sticky.
+ * Usa SectionHeaderDuo (complemento título oficial). Patrón: FaqExtintores.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import { CONTACT } from '../../config/site'
+
+const faqs = [
+  {
+    q: '¿Qué tipo de botiquín necesita mi empresa según la NOM-030-STPS?',
+    a: 'Depende del número de trabajadores. <strong>Tipo A:</strong> hasta 25 trabajadores — incluye material de curación básico, guantes y medicamentos de libre venta. <strong>Tipo B:</strong> de 26 a 100 trabajadores — contenido más amplio con material para múltiples lesiones simultáneas. <strong>Tipo C:</strong> más de 100 trabajadores — contenido completo incluyendo material para quemaduras, material de inmovilización e insumos para atención de múltiples lesionados. La NOM también establece que debe haber al menos un botiquín por piso y por área de riesgo diferenciada, no solo uno en toda la empresa.',
+  },
+  {
+    q: '¿El desfibrilador DEA es obligatorio en mi empresa?',
+    a: 'La NOM-030-STPS no obliga explícitamente el DEA para todas las empresas, pero la <strong>realidad estadística</strong> lo justifica en cualquier empresa con más de 25 trabajadores: el paro cardíaco puede ocurrirle a cualquier persona en cualquier momento, sin síntomas previos, y la tasa de supervivencia cae un 10% por cada minuto sin desfibrilación. En edificios públicos con alto flujo de personas (centros comerciales, aeropuertos, estadios) ya es obligatorio por reglamento local. Para empresas medianas y grandes, el DEA es una decisión de responsabilidad — no esperar a que la ley lo obligue.',
+  },
+  {
+    q: '¿Cada cuánto hay que resurtir el botiquín?',
+    a: 'Dos variables determinan el resurtido: <strong>uso</strong> (cada vez que se usa material hay que reponerlo) y <strong>caducidad</strong> (los medicamentos y algunos materiales tienen fecha de vencimiento). La NOM-030-STPS exige revisión periódica sin fijar un intervalo exacto — en la práctica, se recomienda revisión <strong>mensual</strong> de inventario y resurtido <strong>semestral o anual</strong> según el uso. Ofrecemos servicio de resurtido periódico: revisamos el botiquín, retiramos lo caducado, reponemos lo usado y entregamos lista de inventario actualizada.',
+  },
+  {
+    q: '¿La capacitación de primeros auxilios es obligatoria?',
+    a: 'Sí. La NOM-030-STPS obliga a las empresas a formar brigadas de primeros auxilios con capacitación documentada. La constancia de capacitación que acepta la STPS es la <strong>DC-3</strong> — el formato oficial del Servicio Nacional de Empleo. Sin constancia DC-3, la brigada no está validada ante la STPS, aunque el personal esté realmente capacitado. Ofrecemos cursos de primeros auxilios con constancia DC-3 válida — coordinados el mismo día que entregamos el equipo para que el proceso sea completo.',
+  },
+  {
+    q: '¿Cuánto cuesta equipar una empresa con primeros auxilios completos?',
+    a: 'Depende del tamaño y tipo de empresa. <strong>Empresa pequeña (hasta 25 personas):</strong> botiquín tipo A + soporte mural + capacitación básica desde $1,800 MXN. <strong>Empresa mediana (26–100 personas):</strong> botiquín tipo B + DEA + gabinete + capacitación DC-3 desde $12,000 MXN. <strong>Empresa grande (+100 personas):</strong> múltiples botiquines tipo C + DEA por piso + camillas + capacitación completa — cotización a medida. Para auditorías de STPS próximas, también hacemos diagnóstico urgente del estado actual y plan de regularización.',
+  },
+  {
+    q: '¿Qué pasa si la STPS encuentra mi botiquín incompleto o vencido?',
+    a: 'La STPS puede emitir una <strong>acta de infracción</strong> con multa desde 250 hasta 5000 veces el salario mínimo diario, dependiendo de la gravedad. En la práctica, en una primera visita pueden dar un plazo para regularización — pero si ya habían notificado antes o si el inspector considera riesgo inminente, la multa puede ser inmediata. El costo de un botiquín completo siempre es menor que el costo de la multa. Además del tema legal, un botiquín incompleto en una emergencia real puede costar una vida.',
+  },
+  {
+    q: '¿Puedo comprar solo el resurtido sin el botiquín completo?',
+    a: 'Sí. Vendemos todo el material de curación por separado: gasas, vendas, antisépticos, guantes, torniquetes, apósitos para quemaduras y cualquier insumo que necesites reponer. Si mandas foto del inventario actual de tu botiquín por WhatsApp, te decimos exactamente qué falta según el tipo NOM que le corresponde a tu empresa — y lo enviamos el mismo día para pedidos antes de las 2 pm en CDMX.',
+  },
+]
+---
+
+<section class="faq-primeros-auxilios" id="faq-primeros-auxilios" aria-labelledby="faq-pa-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="faq-pa-heading"
+      eyebrow="Preguntas Frecuentes"
+      titleLine1="Todo sobre Botiquines,"
+      titleLine2="DEA y Brigadas de Primeros Auxilios"
+      desc="Tipo de botiquín por empresa, DEA, resurtido, capacitación DC-3 y cumplimiento NOM-030-STPS — las preguntas más frecuentes con respuesta directa."
+      bodyPara1="Si tienes una auditoría de STPS próxima o no estás seguro de si tu empresa cumple con NOM-030-STPS, mándanos tu número de trabajadores y tipo de actividad por WhatsApp — te respondemos con el diagnóstico completo en menos de 24 horas."
+    />
+
+    <div class="faq-pa-grid">
+
+      <!-- ── Columna FAQ ── -->
+      <div class="faq-col" aria-labelledby="faq-col-heading">
+        <div class="faq-col__top">
+          <span class="faq-col__badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Primeros Auxilios — FAQ
+          </span>
+          <h3 id="faq-col-heading">Lo que preguntan nuestros clientes</h3>
+          <p>¿Tienes una duda específica? Escríbenos al <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.phone}</a> — respondemos en menos de 24 horas.</p>
+        </div>
+
+        <div class="faq-items">
+          {faqs.map(f => (
+            <details class="faq-item" itemscope itemtype="https://schema.org/Question">
+              <summary>
+                <span itemprop="name">{f.q}</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text" set:html={f.a}></p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Columna Cotización ── -->
+      <div class="cot-col">
+        <div class="cot-card">
+          <div class="cot-card__head">
+            <span class="cot-badge">Cotización Gratuita</span>
+            <h3>Solicita tu cotización</h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+          </div>
+
+          <div class="cot-card__body">
+            <div class="cot-field">
+              <label for="cot-pa-nombre">Nombre completo *</label>
+              <input type="text" id="cot-pa-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-pa-tel">Teléfono *</label>
+              <input type="tel" id="cot-pa-tel" name="tel" placeholder="55 1234 5678" autocomplete="tel" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-pa-empresa">Empresa o negocio</label>
+              <input type="text" id="cot-pa-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization" />
+            </div>
+            <div class="cot-field">
+              <label for="cot-pa-tipo">Equipo requerido *</label>
+              <select id="cot-pa-tipo" name="tipo">
+                <option value="" disabled selected>Selecciona un tipo</option>
+                <option>Botiquín Tipo A (hasta 25 trabajadores)</option>
+                <option>Botiquín Tipo B (26-100 trabajadores)</option>
+                <option>Botiquín Tipo C (más de 100 trabajadores)</option>
+                <option>DEA (Desfibrilador Automático)</option>
+                <option>Botiquín + DEA Completo</option>
+                <option>Resurtido de Material</option>
+                <option>Capacitación DC-3</option>
+                <option>No sé — necesito asesoría NOM-030-STPS</option>
+              </select>
+            </div>
+            <div class="cot-field">
+              <label for="cot-pa-detalle">Cuéntanos más (opcional)</label>
+              <textarea id="cot-pa-detalle" name="detalle" rows="3" placeholder="Número de empleados, tipo de actividad, auditoría próxima, urgencia..."></textarea>
+            </div>
+          </div>
+
+          <div class="cot-card__footer">
+            <a
+              id="cot-pa-wa-btn"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hola, quiero cotizar equipo de primeros auxilios NOM-030-STPS')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cot-btn"
+              role="button"
+              aria-label="Solicitar cotización de primeros auxilios por WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar primeros auxilios por WhatsApp
+            </a>
+            <p class="cot-note">Cotización gratuita · NOM-030-STPS incluida · Respuesta en menos de 24 h</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('cot-pa-wa-btn')
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nombre  = (document.getElementById('cot-pa-nombre')  as HTMLInputElement)?.value.trim()
+    const tel     = (document.getElementById('cot-pa-tel')     as HTMLInputElement)?.value.trim()
+    const empresa = (document.getElementById('cot-pa-empresa') as HTMLInputElement)?.value.trim()
+    const tipo    = (document.getElementById('cot-pa-tipo')    as HTMLSelectElement)?.value
+    const detalle = (document.getElementById('cot-pa-detalle') as HTMLTextAreaElement)?.value.trim()
+
+    let msg = 'Hola, quiero cotizar equipo de primeros auxilios NOM-030-STPS.'
+    if (nombre)  msg += `\n\n👤 Nombre: ${nombre}`
+    if (tel)     msg += `\n📞 Teléfono: ${tel}`
+    if (empresa) msg += `\n🏢 Empresa: ${empresa}`
+    if (tipo)    msg += `\n🏥 Equipo requerido: ${tipo}`
+    if (detalle) msg += `\n📝 Detalle: ${detalle}`
+
+    window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank')
+  })
+</script>
+
+<style>
+  .faq-primeros-auxilios {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-surface, #F4F4F5);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .faq-pa-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── FAQ COLUMN ───────────────────────────────────────── */
+  .faq-col__top {
+    margin-bottom: 2rem;
+  }
+
+  .faq-col__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    color: var(--c-ink-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: .3rem .75rem;
+    border-radius: 100px;
+    margin-bottom: 0.875rem;
+  }
+
+  .faq-col__top h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    letter-spacing: -.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-col__top p {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+  }
+
+  .faq-col__top a {
+    color: var(--c-primary);
+    font-weight: 600;
+  }
+
+  /* ── FAQ ITEMS ────────────────────────────────────────── */
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--c-border);
+    background: var(--c-white);
+  }
+
+  .faq-item:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--c-border);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .faq-item:hover:not([open]) {
+    background: rgba(249,232,232,0.3);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.4;
+  }
+
+  .faq-item:hover summary { padding-left: 1.75rem; }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary span { flex: 1; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+  }
+
+  .faq-item[open] > summary {
+    background: var(--c-primary-light, #F9E8E8);
+    border-left: 3px solid var(--c-primary);
+    padding-left: calc(1.5rem - 3px);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--c-primary);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  .faq-answer strong {
+    color: var(--c-ink-2);
+    font-weight: 600;
+  }
+
+  /* ── COTIZACIÓN COLUMN ────────────────────────────────── */
+  .cot-card {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--stack-height, 124px) + 1.5rem);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .cot-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .cot-card__head {
+    background: linear-gradient(135deg, var(--c-ink) 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cot-card__head::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cot-badge {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2rem .625rem;
+    border-radius: 3px;
+    margin-bottom: 0.625rem;
+  }
+
+  .cot-card__head h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    margin-bottom: 0.375rem;
+  }
+
+  .cot-card__head p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .cot-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cot-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cot-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+
+  .cot-field input,
+  .cot-field select,
+  .cot-field textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background: var(--c-surface, #F4F4F5);
+    outline: none;
+    width: 100%;
+  }
+
+  .cot-field input:focus,
+  .cot-field select:focus,
+  .cot-field textarea:focus {
+    border-color: var(--c-primary);
+    background: var(--c-white);
+    box-shadow: 0 0 0 3px rgba(196,30,36,0.08);
+  }
+
+  .cot-field textarea { resize: vertical; min-height: 80px; }
+
+  .cot-card__footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background: #25D366;
+    color: #fff;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cot-btn:hover { background: #1EBA57; }
+
+  .cot-note {
+    font-size: 0.75rem;
+    color: var(--c-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .faq-pa-grid { grid-template-columns: 1fr 380px; gap: 3rem; }
+  }
+
+  @media (max-width: 1024px) {
+    .faq-pa-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cot-card { position: static; }
+  }
+</style>

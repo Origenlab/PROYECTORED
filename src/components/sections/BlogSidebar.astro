@@ -1,0 +1,160 @@
+---
+/**
+ * BlogSidebar.astro
+ * Sidebar para interlinking en páginas de blog (L2 index y [slug]).
+ * Secciones: Categorías, Artículos populares, Servicios, CTA WhatsApp.
+ * CSS en: src/styles/pages.css (.blog-sidebar)
+ */
+import { getCollection } from 'astro:content'
+import { PRODUCT_CATEGORIES, SERVICES, waUrl, WA_MESSAGES } from '../../config/site'
+
+interface Props {
+  /** Categoría activa (para highlight en sidebar) */
+  activeCategory?: string
+  /** Slug del artículo actual (para excluirlo de populares) */
+  currentSlug?: string
+}
+
+const { activeCategory, currentSlug } = Astro.props
+
+// ── Datos dinámicos ──────────────────────────────────
+const allPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+// Categorías con conteo
+const categoryMap = new Map<string, number>()
+allPosts.forEach(p => {
+  const cat = p.data.category
+  if (cat) categoryMap.set(cat, (categoryMap.get(cat) ?? 0) + 1)
+})
+const categories = [...categoryMap.entries()]
+  .sort((a, b) => b[1] - a[1])
+
+// Artículos recientes (excluir el actual si aplica)
+const recentPosts = allPosts
+  .filter(p => p.id !== currentSlug)
+  .slice(0, 5)
+
+// Servicios clave para interlinking
+const serviciosDestacados = SERVICES.slice(0, 6)
+
+// Categorías de producto para interlinking
+const productosDestacados = PRODUCT_CATEGORIES.slice(0, 6)
+
+const PAGE_WA = waUrl(WA_MESSAGES.blog)
+---
+
+<aside class="blog-sidebar" aria-label="Navegación del blog">
+
+  <!-- ══ CATEGORÍAS ══════════════════════════════════ -->
+  <div class="sidebar-block">
+    <h3 class="sidebar-block__title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+      Categorías
+    </h3>
+    <ul class="sidebar-cats" role="list">
+      <li>
+        <a
+          href="/blog/"
+          class:list={['sidebar-cat-link', { 'sidebar-cat-link--active': !activeCategory }]}
+        >
+          <span>Todas</span>
+          <span class="sidebar-cat-count">{allPosts.length}</span>
+        </a>
+      </li>
+      {categories.map(([cat, count]) => (
+        <li>
+          <a
+            href={`/blog/?cat=${encodeURIComponent(cat)}`}
+            class:list={['sidebar-cat-link', { 'sidebar-cat-link--active': activeCategory === cat }]}
+          >
+            <span>{cat}</span>
+            <span class="sidebar-cat-count">{count}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- ══ ARTÍCULOS RECIENTES ═════════════════════════ -->
+  <div class="sidebar-block">
+    <h3 class="sidebar-block__title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+      Artículos recientes
+    </h3>
+    <ul class="sidebar-recent" role="list">
+      {recentPosts.map((post, i) => (
+        <li>
+          <a href={`/blog/${post.id}/`} class="sidebar-recent__link">
+            <span class="sidebar-recent__num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="sidebar-recent__info">
+              <span class="sidebar-recent__title">{post.data.title}</span>
+              {post.data.category && (
+                <span class="sidebar-recent__cat">{post.data.category}</span>
+              )}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- ══ PRODUCTOS RELACIONADOS ══════════════════════ -->
+  <div class="sidebar-block">
+    <h3 class="sidebar-block__title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      Productos
+    </h3>
+    <ul class="sidebar-links" role="list">
+      {productosDestacados.map(cat => (
+        <li>
+          <a href={cat.href} class="sidebar-link">
+            <span>{cat.label}</span>
+            {cat.badge && <span class="sidebar-link__badge">{cat.badge}</span>}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="/productos/" class="sidebar-link sidebar-link--all">
+          Ver catálogo completo →
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ SERVICIOS ═══════════════════════════════════ -->
+  <div class="sidebar-block">
+    <h3 class="sidebar-block__title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      Servicios
+    </h3>
+    <ul class="sidebar-links" role="list">
+      {serviciosDestacados.map(svc => (
+        <li>
+          <a href="/servicios/" class="sidebar-link">
+            <span>{svc.label}</span>
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="/servicios/" class="sidebar-link sidebar-link--all">
+          Ver todos los servicios →
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ CTA WHATSAPP ════════════════════════════════ -->
+  <div class="sidebar-cta">
+    <div class="sidebar-cta__icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+    <p class="sidebar-cta__title">¿Tienes dudas?</p>
+    <p class="sidebar-cta__desc">Nuestro equipo técnico te asesora sin costo por WhatsApp.</p>
+    <a href={PAGE_WA} class="sidebar-cta__btn" target="_blank" rel="noopener noreferrer">
+      Preguntar por WhatsApp
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</aside>

@@ -71,16 +71,16 @@ export interface ProductoExtintorData {
 // Usados para generar el nav de subcategorías relacionadas
 // ============================================================
 export const EXTINTOR_PRODUCTS = [
-  { slug: 'polvo-seco',      label: 'Polvo Seco PQS',          badge: 'Clase A·B·C' },
-  { slug: 'co2',             label: 'CO₂',                     badge: 'Sin residuo'  },
-  { slug: 'afff',            label: 'AFFF — Espuma',           badge: 'Clase B'      },
-  { slug: 'tipo-k',          label: 'Tipo K',                  badge: 'Cocinas'      },
-  { slug: 'purpura-k',       label: 'Púrpura K',               badge: 'Clase K'      },
-  { slug: 'agua-a-presion',  label: 'Agua a Presión',          badge: 'Clase A'      },
-  { slug: 'cold-fire',       label: 'Cold Fire',               badge: 'Ecológico'    },
-  { slug: 'automaticos',     label: 'Automáticos',             badge: 'Sin activación' },
-  { slug: 'abc',             label: 'ABC Multiusos',           badge: 'Universal'    },
-  { slug: 'agente-limpio',   label: 'Agente Limpio',           badge: 'Datos · TI'   },
+  { slug: 'polvo-seco',      label: 'Polvo Seco PQS',    badge: 'Clase A·B·C',    img: '/imagenes/extintores/polvo-seco.jpg',      desc: 'El más versátil y exigido por Protección Civil. Cubre fuegos clase A, B y C en oficinas, bodegas e industria.' },
+  { slug: 'co2',             label: 'CO₂',               badge: 'Sin residuo',     img: '/imagenes/extintores/co2.jpg',             desc: 'Dióxido de carbono para equipos eléctricos y electrónicos sensibles. No deja residuos ni daña componentes.' },
+  { slug: 'afff',            label: 'AFFF — Espuma',     badge: 'Clase B',         img: '/imagenes/extintores/afff.jpg',            desc: 'Espuma mecánica para líquidos inflamables. Sofoca y enfría simultáneamente evitando la re-ignición.' },
+  { slug: 'tipo-k',          label: 'Tipo K',             badge: 'Cocinas',         img: '/imagenes/extintores/tipo-k.jpg',          desc: 'Diseñado para aceites y grasas de cocinas industriales y restaurantes. Obligatorio según NOM-002-STPS.' },
+  { slug: 'purpura-k',       label: 'Púrpura K',         badge: 'Clase K',         img: '/imagenes/extintores/purpura-k.jpg',       desc: 'Bicarbonato de potasio para fuegos clase B y C en ambientes industriales de alto riesgo.' },
+  { slug: 'agua-a-presion',  label: 'Agua a Presión',    badge: 'Clase A',         img: '/imagenes/extintores/agua-a-presion.jpg',  desc: 'Extintor de agua para materiales sólidos como madera, papel y textiles. Enfriamiento rápido clase A.' },
+  { slug: 'cold-fire',       label: 'Cold Fire',          badge: 'Ecológico',       img: '/imagenes/extintores/cold-fire.jpg',       desc: 'Agente ecológico de enfriamiento rápido. Biodegradable, no tóxico, ideal para zonas con restricciones ambientales.' },
+  { slug: 'automaticos',     label: 'Automáticos',        badge: 'Sin activación',  img: '/imagenes/extintores/automaticos.jpg',     desc: 'Se activan sin intervención humana al detectar calor. Ideales para áreas sin personal permanente.' },
+  { slug: 'abc',             label: 'ABC Multiusos',      badge: 'Universal',       img: '/imagenes/extintores/abc.jpg',             desc: 'Cobertura universal para las tres clases de fuego más comunes. Solución estándar multipropósito.' },
+  { slug: 'agente-limpio',   label: 'Agente Limpio',      badge: 'Datos · TI',     img: '/imagenes/extintores/agente-limpio.jpg',   desc: 'FE-36 sin residuos para centros de datos, servidores y equipos de TI. No interrumpe operaciones.' },
 ] as const
 
 // ============================================================

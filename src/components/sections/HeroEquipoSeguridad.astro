@@ -1,0 +1,179 @@
+---
+/**
+ * HeroEquipoSeguridad.astro — v1
+ * Hero premium L2: badge + H1 + subtítulo izq / 2 párrafos SEO der.
+ * Patrón 100% homologado con HeroPrimerosAuxilios (L2 template aprobado).
+ */
+---
+
+<section class="hero-es" aria-label="Equipo de protección personal y seguridad industrial en CDMX">
+
+  <div class="hero-es__glow" aria-hidden="true"></div>
+  <div class="hero-es__grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-es__grid">
+
+    <!-- ═══ Columna izquierda ═══ -->
+    <div class="hero-es__left">
+
+      <div class="hero-es__badge" aria-hidden="true">
+        <span class="badge-pulse"></span>
+        <span class="badge-pulse-ring"></span>
+        NOM-017-STPS · ANSI · EN · 8 líneas de EPP
+      </div>
+
+      <h1 class="hero-es__h1">
+        Equipo de<br>
+        <span class="h1-accent">Seguridad Industrial</span>
+      </h1>
+
+      <p class="hero-es__sub">
+        Cascos, lentes, tapones auditivos, respiradores, guantes, calzado, arneses
+        y ropa de protección — <strong>EPP certificado NOM-017-STPS</strong>
+        para plantas industriales, construcción, brigadas y empresas. Selección
+        técnica por tipo de riesgo, no solo por precio.
+      </p>
+
+    </div>
+
+    <!-- ═══ Columna derecha: texto SEO ═══ -->
+    <div class="hero-es__right">
+      <p>
+        Comprar EPP sin verificar la norma aplicable es comprar protección
+        en papel. Un casco sin certificación NOM puede verse igual que uno
+        certificado pero no absorber el impacto correcto. Un respirador del
+        tipo incorrecto puede filtrar partículas pero no vapores orgánicos.
+        La NOM-017-STPS exige no solo que el EPP esté disponible, sino que
+        sea el correcto para el riesgo específico de cada puesto de trabajo.
+      </p>
+      <p>
+        En Proyecto Red hacemos la selección técnica por tipo de riesgo y
+        puesto de trabajo — no vendemos el casco más barato sino el que cumple
+        con la norma para tu aplicación. Entregamos ficha técnica, certificado
+        de norma y especificación de cumplimiento para tus expedientes de STPS
+        y el programa de EPP de tu empresa.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-es {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background:
+      linear-gradient(160deg, #080808 0%, #0D0D0D 40%, #131010 60%, #0A0A0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-es__glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: -20%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(196,30,36,0.15) 0%, rgba(196,30,36,0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .hero-es__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-es__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-es__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(196,30,36,0.4);
+    background: rgba(196,30,36,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: .01em;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-pulse-ring {
+    position: absolute;
+    left: 0.9375rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-es__h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    margin-bottom: 1.25rem;
+  }
+
+  .h1-accent { color: var(--c-primary); }
+
+  .hero-es__sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  .hero-es__sub strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+  }
+
+  .hero-es__right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .hero-es__right p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    .hero-es { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .hero-es__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 768px) { .hero-es { padding-bottom: 3rem; } }
+</style>

@@ -5,6 +5,7 @@
  * Usa SectionHeaderDuo (complemento título oficial) + .ccard con subcats.
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
 import { waUrl } from '../../config/site'
 import '../../styles/pages.css'
 
@@ -15,7 +16,7 @@ const extintores = [
     nombre: 'Polvo Seco ABC (PQS)',
     desc: 'El más utilizado en México. Combate fuegos clase A, B y C. Obligatorio en la mayoría de inmuebles según NOM-002-STPS.',
     href: '/extintores/polvo-seco/',
-    img: '/imagenes/extintores/polvo-seco.jpg',
+    img: '/imagenes/extintores/venta-extintor-pqs-abc-certificado-nom-mexico.avif',
     badge: 'Más vendido',
     ctaLabel: 'Ver polvo seco ABC',
     subcats: [
@@ -31,7 +32,7 @@ const extintores = [
     nombre: 'CO₂ — Dióxido de Carbono',
     desc: 'Descarga limpia sin residuos. Ideal para equipos eléctricos, servidores, laboratorios y salas de cómputo.',
     href: '/extintores/co2/',
-    img: '/imagenes/extintores/co2.jpg',
+    img: '/imagenes/extintores/extintor-co2-dioxido-carbono-equipo-electrico-cdmx.avif',
     badge: 'Electrónica',
     ctaLabel: 'Ver CO₂',
     subcats: [
@@ -45,7 +46,7 @@ const extintores = [
     nombre: 'AFFF — Espuma Mecánica',
     desc: 'Espuma formadora de película acuosa para líquidos inflamables: gasolina, aceites y solventes.',
     href: '/extintores/afff/',
-    img: '/imagenes/extintores/afff.jpg',
+    img: '/imagenes/extintores/extintor-afff-espuma-mecanica-liquidos-inflamables.avif',
     badge: null,
     ctaLabel: 'Ver AFFF',
     subcats: [
@@ -59,7 +60,7 @@ const extintores = [
     nombre: 'Tipo K — Cocinas Industriales',
     desc: 'Especializado en aceites vegetales y grasas animales. Obligatorio en restaurantes y cocinas con freidoras.',
     href: '/extintores/tipo-k/',
-    img: '/imagenes/extintores/tipo-k.jpg',
+    img: '/imagenes/extintores/extintor-tipo-k-cocina-industrial-restaurante.avif',
     badge: 'Restaurantes',
     ctaLabel: 'Ver Tipo K',
     subcats: [
@@ -73,7 +74,7 @@ const extintores = [
     nombre: 'Púrpura K — Bicarbonato de Potasio',
     desc: 'Mayor poder de extinción que el PQS en fuegos clase B y C de alta intensidad. Industria petroquímica.',
     href: '/extintores/purpura-k/',
-    img: '/imagenes/extintores/purpura-k.jpg',
+    img: '/imagenes/extintores/extintor-purpura-k-bicarbonato-potasio-industrial.avif',
     badge: null,
     ctaLabel: 'Ver Púrpura K',
     subcats: [
@@ -86,7 +87,7 @@ const extintores = [
     nombre: 'Agua a Presión',
     desc: 'Solución ecológica para materiales sólidos: madera, papel, tela y textiles. Sin agentes químicos.',
     href: '/extintores/agua-a-presion/',
-    img: '/imagenes/extintores/agua-a-presion.jpg',
+    img: '/imagenes/extintores/extintor-agua-a-presion-fuegos-clase-a.avif',
     badge: null,
     ctaLabel: 'Ver agua a presión',
     subcats: [
@@ -99,7 +100,7 @@ const extintores = [
     nombre: 'Cold Fire — Enfriamiento Avanzado',
     desc: 'Tecnología de enfriamiento rápido. Biodegradable, no tóxico y recargable con agua. Clase A, B, D y K.',
     href: '/extintores/cold-fire/',
-    img: '/imagenes/extintores/extintores-contra-incendios.jpg',
+    img: '/imagenes/extintores/extintor-cold-fire-agente-enfriamiento-rapido.avif',
     badge: 'Innovación',
     ctaLabel: 'Ver Cold Fire',
     subcats: [
@@ -113,7 +114,7 @@ const extintores = [
     nombre: 'Automáticos — Sin Intervención',
     desc: 'Activación autónoma por temperatura a 68 °C o 93 °C. Ideales para áreas desatendidas.',
     href: '/extintores/automaticos/',
-    img: '/imagenes/extintores/automaticos.jpg',
+    img: '/imagenes/extintores/extintor-automatico-proteccion-areas-desatendidas.avif',
     badge: null,
     ctaLabel: 'Ver automáticos',
     subcats: [
@@ -127,7 +128,7 @@ const extintores = [
     nombre: 'ABC Multipropósito',
     desc: 'El más versátil: sólidos, líquidos y eléctricos. Requerido por norma en la mayoría de inmuebles.',
     href: '/extintores/abc/',
-    img: '/imagenes/extintores/abc.jpg',
+    img: '/imagenes/extintores/extintor-abc-multiproposito-comercio-industria.avif',
     badge: 'Obligatorio',
     ctaLabel: 'Ver ABC multipropósito',
     subcats: [
@@ -141,7 +142,7 @@ const extintores = [
     nombre: 'Agente Limpio',
     desc: 'Cero residuos, cero daño. Protege equipos electrónicos, archivos y materiales sensibles.',
     href: '/extintores/agente-limpio/',
-    img: '/imagenes/extintores/agente-limpio.jpg',
+    img: '/imagenes/extintores/extintor-agente-limpio-fe36-sin-residuos.avif',
     badge: 'Premium',
     ctaLabel: 'Ver agente limpio',
     subcats: [
@@ -158,6 +159,7 @@ const extintores = [
   <div class="container">
 
     <SectionHeaderDuo
+      id="catalogo-ext-heading"
       eyebrow="10 tipos certificados NOM"
       titleLine1="Catálogo de Extintores:"
       titleLine2="El Tipo Correcto para Cada Riesgo"
@@ -170,13 +172,14 @@ const extintores = [
       {extintores.map((ext, i) => (
         <article class="ccard" role="listitem" aria-label={ext.nombre}>
           <div class="ccard__header">
-            <img
+            <Img
               src={ext.img}
               alt={ext.nombre}
               loading={i < 4 ? 'eager' : 'lazy'}
-              width="640"
-              height="360"
-              decoding="async"
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
             />
             <div class="ccard__header-overlay" aria-hidden="true"></div>
             {ext.badge && <span class="ccard__badge">{ext.badge}</span>}

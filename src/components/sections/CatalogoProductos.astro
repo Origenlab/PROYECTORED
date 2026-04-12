@@ -5,6 +5,7 @@
  * Sigue el patrón de secciones del index: componente autónomo con sus propios estilos.
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
 import { waUrl } from '../../config/site'
 import '../../styles/pages.css'
 
@@ -15,8 +16,8 @@ const categorias = [
     id: 'extintores',
     titulo: 'Extintores',
     badge: 'NOM-154-SCFI',
-    desc: 'Primera línea de defensa para cualquier tipo de riesgo. Extintores certificados para todos los tipos de fuego.',
-    body: 'Cilindros portátiles de polvo seco ABC, CO₂, AFFF, Tipo K para cocinas, Púrpura K, agua a presión, Cold Fire, automáticos y agente limpio. Cada unidad cumple con la NOM-154-SCFI y se entrega con ficha técnica, certificado de conformidad, garantía y etiqueta de inspección — documentación lista para tu expediente ante Protección Civil y STPS.',
+    desc: 'Cuando Protección Civil toca la puerta, tu extintor tiene que estar vigente, en su lugar y con papeles en regla. Nosotros nos encargamos de eso.',
+    body: 'Trabajamos con polvo seco ABC para oficinas y bodegas, CO₂ para servidores y laboratorios, AFFF para talleres y gasolineras, Tipo K para cocinas de restaurantes, Púrpura K, agua a presión, Cold Fire, automáticos y agente limpio para centros de datos. Cada extintor que sale de aquí lleva su ficha técnica, certificado NOM-154-SCFI y etiqueta de inspección actualizada — lo que necesitas para que tu expediente pase sin observaciones. Entrega el mismo día en CDMX y zona metropolitana.',
     href: '/extintores/',
     img: '/imagenes/extintores/extintores-contra-incendios.jpg',
     productos: [
@@ -116,8 +117,8 @@ const categorias = [
     id: 'equipo-bomberos',
     titulo: 'Equipo para Bomberos',
     badge: 'NFPA 1971',
-    desc: 'Protección personal certificada NFPA para cuerpos de bomberos, brigadas industriales y equipos de respuesta.',
-    body: 'Trajes estructurales, cascos, guantes, botas, equipos de respiración autónoma (ERA), herramientas de rescate hidráulicas y arneses para trabajo en altura. Todo con certificación NFPA 1971 y documentación completa para integrar al expediente de tu cuerpo de emergencia o brigada industrial.',
+    desc: 'Tu brigada o cuerpo de bomberos necesita equipo que funcione cuando la temperatura supera los 200 °C. Aquí no vendemos genéricos: todo es NFPA.',
+    body: 'Trajes estructurales de 3 capas, cascos con visor, guantes térmicos, botas de intervención, equipos de respiración autónoma (ERA) con cilindros de 30 a 60 minutos, herramientas de rescate hidráulicas tipo quijadas de vida, y arneses certificados para rescate vertical. Cada pieza cumple NFPA 1971 y viene con la documentación que tu cuerpo de emergencia o brigada industrial necesita para operar en regla. Asesoramos en la selección según el tipo de intervención que realizan.',
     href: '/equipo-bomberos/',
     img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
     productos: [
@@ -175,8 +176,8 @@ const categorias = [
     id: 'senalamientos',
     titulo: 'Señalamientos de Emergencia',
     badge: 'NOM-003-SEGOB',
-    desc: 'Señalética fotoluminiscente visible en cortes de luz — indispensable para inspecciones de Protección Civil.',
-    body: 'Señales de prohibición, obligación, advertencia y evacuación fabricadas en acrílico, PVC y vinilo con tintas resistentes a UV. Conformes a NOM-003-SEGOB y NOM-026-STPS. Incluimos levantamiento del inmueble, recomendación de cantidades, ubicaciones y plano de señalización para tu expediente regulatorio.',
+    desc: 'Una señal mal colocada o descolorida puede costarte una observación en la inspección. Nosotros te entregamos la señalización completa y el plano listo para tu expediente.',
+    body: 'Fabricamos e instalamos señales de prohibición, obligación, advertencia y rutas de evacuación en acrílico, PVC y vinilo con tintas UV que no se degradan con el sol. Todas cumplen NOM-003-SEGOB y NOM-026-STPS, incluidas las versiones fotoluminiscentes que siguen visibles cuando se va la luz. Además del producto, hacemos el levantamiento de tu inmueble, te decimos cuántas necesitas, dónde van y te generamos el plano de señalización que Protección Civil pide en la revisión.',
     href: '/senalamientos/',
     img: '/imagenes/senalamientos/senalamientos-hero.jpg',
     productos: [
@@ -223,8 +224,8 @@ const categorias = [
     id: 'gabinetes',
     titulo: 'Gabinetes y Porta Extintores',
     badge: 'Infraestructura CI',
-    desc: 'Resguardo y acceso inmediato para equipo contra incendios en edificios, plantas y espacios comerciales.',
-    body: 'Gabinetes metálicos para extintor con y sin visor, porta extintores con cenicero, gabinetes para equipo de bombero y gabinetes para hidrante con espacio para manguera acoplada y válvula angular. Disponibles con o sin cerrojo de emergencia, en distintas medidas según el equipo a resguardar.',
+    desc: 'De nada sirve tener el mejor extintor si nadie lo encuentra en una emergencia. El gabinete correcto protege tu equipo y garantiza acceso inmediato.',
+    body: 'Gabinetes metálicos con y sin visor para extintores de todos los tamaños, porta extintores con cenicero para lobbies y accesos, gabinetes completos para equipo de bombero, y gabinetes para hidrante con espacio para manguera acoplada y válvula angular. Los fabricamos con cerrojo de emergencia y en las medidas exactas para el equipo que necesitas resguardar. Ideales para edificios corporativos, plantas industriales y centros comerciales en la Ciudad de México y zona metropolitana.',
     href: '/gabinetes/',
     img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
     productos: [
@@ -268,8 +269,8 @@ const categorias = [
     id: 'mangueras',
     titulo: 'Mangueras y Herrajes',
     badge: 'Red hidráulica',
-    desc: 'Conducción de agua a alta presión para respuesta inmediata ante incendios en edificios e industria.',
-    body: 'Mangueras de fibra sintética para hidrante, chiflones de neblina y chorro directo, válvulas angulares y de control, adaptadores NST y Storz, carretes porta manguera, tomas siamesas para conexión de bomberos, llaves de herramienta y monitores contra incendio. Distribuidor autorizado Elkhart Brass.',
+    desc: 'La red hidráulica de tu edificio necesita componentes que funcionen a la primera, sin fugas y con la presión correcta. Somos distribuidores autorizados Elkhart Brass.',
+    body: 'Mangueras de fibra sintética para hidrante en varios diámetros, chiflones de neblina y chorro directo, válvulas angulares y de control, adaptadores NST y Storz, carretes porta manguera fijos y giratorios, tomas siamesas para conexión de bomberos, llaves spanner y monitores de alto flujo. Como distribuidores autorizados de Elkhart Brass en México, garantizamos componentes originales con respaldo de fábrica. Instalación y asesoría técnica para edificios, naves industriales y complejos comerciales en CDMX y Estado de México.',
     href: '/mangueras/',
     img: '/imagenes/mangueras/mangueras-hero.jpg',
     productos: [
@@ -350,8 +351,8 @@ const categorias = [
     id: 'sistemas',
     titulo: 'Sistemas Contra Incendio',
     badge: 'NFPA 13/72',
-    desc: 'Detección, supresión y control automático para protección total de instalaciones.',
-    body: 'Alarmas convencionales y direccionables, detectores de humo y calor, rociadores automáticos húmedos y secos, tableros de control FACP, controladores de bombas NFPA 20 y redes hidráulicas completas. Sistemas llave en mano con ingeniería, instalación, certificación y monitoreo remoto conforme a NFPA 72 y NFPA 13.',
+    desc: 'Un detector que falla o un rociador que no activa puede significar la diferencia entre un conato controlado y una pérdida total. Diseñamos, instalamos y certificamos sistemas completos.',
+    body: 'Alarmas convencionales y direccionables, detectores de humo fotoeléctricos y termovelocimétricos, rociadores automáticos húmedos y secos, tableros de control FACP, controladores de bombas conforme a NFPA 20 y redes hidráulicas con ingeniería de detalle. Entregamos proyectos llave en mano: desde el diseño hasta la certificación y el monitoreo remoto, todo bajo NFPA 72 y NFPA 13. Si tu aseguradora o tu administración te pide un sistema profesional de detección y supresión en CDMX, este es el lugar.',
     href: '/sistemas/',
     img: '/imagenes/sistemas/alarmas.jpg',
     productos: [
@@ -409,8 +410,8 @@ const categorias = [
     id: 'primeros-auxilios',
     titulo: 'Primeros Auxilios',
     badge: 'NOM-005-STPS',
-    desc: 'Kits de respuesta inmediata conforme a normativa STPS para oficinas, plantas y vehículos.',
-    body: 'Botiquines tipo A (oficinas), tipo B (industria) y tipo C (vehículos), camillas rígidas y plegables, collarines cervicales ajustables, vendas, gasas, torniquetes y desinfectantes. Todo conforme a NOM-005-STPS con el contenido mínimo obligatorio para centros de trabajo.',
+    desc: 'Cuando alguien se lastima en tu planta o tu oficina, los primeros 5 minutos definen todo. Un botiquín completo y accesible no es opcional — es obligatorio por la STPS.',
+    body: 'Botiquines Tipo A para oficinas de hasta 50 trabajadores, Tipo B para plantas industriales de hasta 100, y Tipo C para vehículos de servicio. También camillas rígidas y plegables, collarines cervicales ajustables, vendas, gasas estériles, torniquetes tácticos y soluciones antisépticas. Todo armado conforme a NOM-005-STPS con el contenido mínimo que la norma exige para centros de trabajo. Te entregamos el botiquín listo para colgar, con inventario documentado para tu próxima auditoría.',
     href: '/primeros-auxilios/',
     img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
     productos: [
@@ -455,9 +456,9 @@ const categorias = [
   {
     id: 'equipo-seguridad',
     titulo: 'Equipo de Seguridad Industrial',
-    badge: 'NOM-017-STPS',
-    desc: 'EPP certificado para entornos industriales, comerciales y de construcción conforme a STPS.',
-    body: 'Cascos clase E y G, lentes con ventilación lateral, guantes de nitrilo, cuero y dieléctricos, chalecos reflectantes clase 2 y 3, protección auditiva SNR 27-33 dB y conos de señalización vial. Línea completa conforme a NOM-017-STPS-2008 con certificaciones ANSI, EN y CSA para ambientes de riesgo industrial.',
+    badge: 'NOM-017-STPS-2008',
+    desc: 'Un accidente laboral cuesta más que todo el EPP de tu planta junto. Equipar bien a tu gente es la inversión más rentable en seguridad que puedes hacer.',
+    body: 'Cascos clase E y G con suspensión Ratchet, lentes antiempañantes con protección lateral, guantes de nitrilo, carnaza, anticorte y dieléctricos, chalecos reflectantes clase 2 y 3, protección auditiva de 27 a 33 dB y conos de señalización vial. Todo cumple NOM-017-STPS-2008 y cuenta con certificaciones ANSI, EN y CSA. Surtimos desde pedidos unitarios hasta dotaciones completas para plantas industriales, obras de construcción y empresas con múltiples sucursales en CDMX y el Estado de México.',
     href: '/equipo-seguridad/',
     img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
     productos: [
@@ -534,6 +535,7 @@ const categorias = [
       <div class="container">
 
         <SectionHeaderDuo
+          id={`cat-title-${cat.id}`}
           eyebrow={cat.badge}
           titleLine1={cat.titulo}
           desc={cat.desc}
@@ -545,13 +547,14 @@ const categorias = [
           {cat.productos.map((p, pi) => (
             <article class="ccard" aria-label={p.nombre}>
               <div class="ccard__header">
-                <img
+                <Img
                   src={cat.img}
                   alt={p.nombre}
                   loading={pi < 4 ? 'eager' : 'lazy'}
-                  width="640"
-                  height="360"
-                  decoding="async"
+                  fetchpriority={pi === 0 ? 'high' : undefined}
+                  width={640}
+                  height={360}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
                 />
                 <div class="ccard__header-overlay" aria-hidden="true"></div>
                 {p.badge && <span class="ccard__badge">{p.badge}</span>}

@@ -12,11 +12,11 @@ import CtaBar            from '../../components/CtaBar.astro'
 import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de extintores ───────────────────
-import HeroExtintores    from '../../components/sections/HeroExtintores.astro'
-import CatalogoExtintores from '../../components/sections/CatalogoExtintores.astro'
-import GuiaExtintores    from '../../components/sections/GuiaExtintores.astro'
-import NormasExtintores  from '../../components/sections/NormasExtintores.astro'
-import FaqExtintores     from '../../components/sections/FaqExtintores.astro'
+import HeroExtintores      from '../../components/sections/HeroExtintores.astro'
+import CatalogoExtintores  from '../../components/sections/CatalogoExtintores.astro'
+import GuiaExtintores      from '../../components/sections/GuiaExtintores.astro'
+import NormasExtintores    from '../../components/sections/NormasExtintores.astro'
+import FaqExtintores       from '../../components/sections/FaqExtintores.astro'
 
 // ── Secciones genéricas reutilizadas del index ────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
@@ -256,15 +256,11 @@ const schemaWebPage = {
 
   <!-- ── Secciones ────────────────────────────────────────── -->
   <!-- Barra de migas de pan -->
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <Breadcrumb items={[
-        { label: 'Inicio', href: '/' },
-        { label: 'Productos', href: '/productos/' },
-        { label: 'Extintores' }
-      ]} />
-    </div>
-  </div>
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos/' },
+    { label: 'Extintores' }
+  ]} />
 
   <HeroExtintores />
   <CtaBar />

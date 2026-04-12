@@ -1,420 +1,218 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CtaBar from '../../components/CtaBar.astro';
-import FaqCotizacion from '../../components/FaqCotizacion.astro';
-import '../../styles/pages.css';
+/**
+ * mangueras/index.astro — L3 Mangueras y Herrajes Contra Incendio
+ * ─────────────────────────────────────────────────────────────────
+ * Orquestador limpio: importa secciones dedicadas y define SEO + JSON-LD de nivel técnico.
+ * Estructura 100% homologada con extintores/index.astro (L3 template autorizado).
+ * Cada sección vive en src/components/sections/ con sus propios estilos.
+ */
 
-const WHATSAPP = "525537238544";
-const WA_URL = `https://wa.me/${WHATSAPP}`;
+import Base              from '../../layouts/Base.astro'
+import CtaBar            from '../../components/CtaBar.astro'
+import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
-const title = "Mangueras y Herrajes Contra Incendio CDMX | Proyecto Red";
-const description = "Venta de mangueras contra incendio NFPA 1961, chiflones, válvulas, adaptadores NST/Storz, carretes, toma siamesa y monitores. Diámetros 1.5\" a 4\". Proveedor directo en CDMX y Estado de México.";
+// ── Secciones específicas de mangueras ─────────────────────
+import HeroMangueras     from '../../components/sections/HeroMangueras.astro'
+import CatalogoMangueras from '../../components/sections/CatalogoMangueras.astro'
+import GuiaMangueras     from '../../components/sections/GuiaMangueras.astro'
+import NormasMangueras   from '../../components/sections/NormasMangueras.astro'
+import FaqMangueras      from '../../components/sections/FaqMangueras.astro'
 
-const breadcrumbs = [
-  { label: "Inicio", href: "/" },
-  { label: "Productos", href: "/productos/" },
-  { label: "Mangueras y Herrajes" },
-];
+// ── Secciones genéricas reutilizadas ───────────────────────
+import TrustIndex        from '../../components/sections/TrustIndex.astro'
+import CTAFinalIndex     from '../../components/sections/CTAFinalIndex.astro'
 
-// v5: métricas que cuentan la historia del sistema (no datos aislados)
+// ── Datos para JSON-LD ─────────────────────────────────────
+import { SITE, CONTACT } from '../../config/site'
 
-// ── 8 productos con specs técnicos que importan ──────
-const productos = [
-  {
-    nombre: "Mangueras para Hidrante",
-    desc: "Fibra sintética con forro interior de hule. Para sistemas de hidrantes en edificios, plantas y naves industriales. Presión de trabajo hasta 300 PSI. Probadas hidrostáticamente antes de entrega.",
-    href: "/mangueras/para-hidrante/",
-    badge: "NFPA 1961",
-    specs: '1.5", 2.5" y 4" · 15, 20, 30 m · Jacket doble · 300 PSI',
-  },
-  {
-    nombre: "Chiflones y Boquillas",
-    desc: "Controlan el patrón de descarga: chorro directo para penetración, niebla para protección personal y combinado para versatilidad. Todo chiflón necesita ser compatible con el diámetro de tu manguera.",
-    href: "/mangueras/chiflones/",
-    badge: "NFPA 1964",
-    specs: '1.5" y 2.5" · Aluminio y bronce · 95-250 GPM',
-  },
-  {
-    nombre: "Válvulas de Control",
-    desc: "Regulan y dirigen el flujo de agua en el sistema hidráulico. Válvulas angulares de 2½\" para gabinetes, de compuerta para redes principales, check para evitar retorno y de alivio para proteger la tubería.",
-    href: "/mangueras/valvulas/",
-    badge: null,
-    specs: 'Angular 2½" · Compuerta · Check · Alivio · Bronce/hierro',
-  },
-  {
-    nombre: "Adaptadores y Conexiones",
-    desc: "Acoplan mangueras de diferente diámetro o diferente rosca entre sí. Indispensables cuando el equipo de bomberos llega con acoples diferentes al de tu sistema. NST y Storz son los estándares en México.",
-    href: "/mangueras/adaptadores/",
-    badge: null,
-    specs: 'NST · Storz · Reducciones · Aluminio y bronce · Fundición',
-  },
-  {
-    nombre: "Carretes Porta Manguera",
-    desc: "Enrollan y protegen la manguera para acceso inmediato. De pared (fijos), pivotantes (giro 180°) y con gabinete integrado. Cada piso de un edificio con hidrantes necesita uno.",
-    href: "/mangueras/carretes/",
-    badge: null,
-    specs: 'Pared · Pivotante · Con gabinete · Para 30 m de manguera',
-  },
-  {
-    nombre: "Toma Siamesa",
-    desc: "La conexión exterior que permite a los bomberos alimentar tu sistema hidráulico desde su camión cisterna. Obligatoria en edificios con sistema de rociadores o red de hidrantes. Se instala en la fachada.",
-    href: "/mangueras/toma-siamesa/",
-    badge: "Obligatoria",
-    specs: '2×2½" NST · Hierro fundido · Válvulas check · Tapones con cadena',
-  },
-  {
-    nombre: "Llaves Spanner",
-    desc: "Herramientas para conectar y desconectar acoples rápidamente bajo presión. Cada gabinete de manguera debe tener una. Sin llave, el bombero pierde segundos críticos manipulando la conexión a mano.",
-    href: "/mangueras/llaves/",
-    badge: null,
-    specs: 'Universal · Aluminio forjado · Para NST 1.5" y 2.5"',
-  },
-  {
-    nombre: "Monitores Contra Incendio",
-    desc: "Cañones fijos o portátiles para descarga masiva de agua. Para patio de tanques, estacionamientos industriales y zonas de alto riesgo donde la manguera manual no tiene el alcance ni el caudal suficiente.",
-    href: "/mangueras/monitores/",
-    badge: "Industrial",
-    specs: '500-2000 GPM · Fijo o portátil · Bronce o acero inoxidable',
-  },
-];
+const siteUrl = SITE.url
+const pageUrl = `${siteUrl}/mangueras/`
+const ogImage = `${siteUrl}/imagenes/og/mangueras-og.jpg`
 
-// v5: guía de decisión por tipo de instalación — no por producto
-// (evolución de v4: el criterio de decisión es TU EDIFICIO, no el catálogo)
-const guiaInstalacion = [
-  {
-    tipo: "Edificio de oficinas (5+ pisos)",
-    necesitas: "Manguera 2.5\" + gabinete + válvula angular + toma siamesa + carrete por piso",
-    porque: "La NOM-002-STPS y el código de edificación exigen sistema de hidrantes standpipe en edificios altos. Cada piso necesita un gabinete con manguera pre-conectada a la red. Los bomberos alimentan tu sistema desde la toma siamesa en planta baja.",
-    href: "/mangueras/para-hidrante/",
-    norma: "NFPA 14",
-  },
-  {
-    tipo: "Nave industrial o bodega",
-    necesitas: "Manguera 2.5\" + chiflón combinado + monitores fijos + válvulas de zona",
-    porque: "El volumen del espacio y la carga de fuego en bodegas exigen caudal alto. Los monitores cubren áreas que una manguera manual no alcanza. Las válvulas de zona permiten aislar secciones sin apagar todo el sistema.",
-    href: "/mangueras/monitores/",
-    norma: "NFPA 24",
-  },
-  {
-    tipo: "Edificio residencial o condominio",
-    necesitas: "Manguera 1.5\" + carrete con gabinete + toma siamesa + llave spanner",
-    porque: "Protección Civil exige hidrantes en edificios residenciales de más de 5 pisos o 25 metros de altura. La manguera de 1.5\" es más manejable para brigadas no profesionales. El carrete con gabinete integrado ahorra espacio en áreas comunes.",
-    href: "/mangueras/carretes/",
-    norma: "NOM-002-STPS",
-  },
-  {
-    tipo: "Planta petroquímica o zona de alto riesgo",
-    necesitas: "Manguera 4\" + monitores de alto caudal + adaptadores Storz + válvulas de diluvio",
-    porque: "El riesgo de incendio con líquidos inflamables exige capacidad de descarga masiva. Las conexiones Storz permiten acople instantáneo sin rosca. Los monitores de 1000+ GPM cubren áreas de tanques y patios de almacenamiento.",
-    href: "/mangueras/para-hidrante/",
-    norma: "NFPA 15 / 24",
-  },
-];
+// ── Schema: ItemList — 8 productos ────────────────────────
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Mangueras y herrajes contra incendio — Proyecto Red",
+  "description": "Catálogo de mangueras NFPA 1961 y herrajes para sistemas hidráulicos: mangueras de hidrante, chiflones, válvulas, adaptadores NST/Storz, carretes, toma siamesa, llaves y monitores.",
+  "url": pageUrl,
+  "numberOfItems": 8,
+  "itemListElement": [
+    {
+      "@type": "ListItem", "position": 1,
+      "name": "Mangueras para Hidrante",
+      "description": "NFPA 1961. Diámetros 1.5\", 2.5\" y 4\". Longitudes 15, 20 y 30 m. Jacket doble, 300 PSI. Prueba hidrostática incluida.",
+      "url": `${siteUrl}/mangueras/para-hidrante/`
+    },
+    {
+      "@type": "ListItem", "position": 2,
+      "name": "Chiflones y Boquillas",
+      "description": "NFPA 1964. Chorro directo, niebla y combinado. Aluminio y bronce. Para 1.5\" y 2.5\". 95-250 GPM.",
+      "url": `${siteUrl}/mangueras/chiflones/`
+    },
+    {
+      "@type": "ListItem", "position": 3,
+      "name": "Válvulas de Control",
+      "description": "Angular 2½\" para gabinetes, compuerta para redes, check anti-retorno y alivio. Bronce e hierro dúctil.",
+      "url": `${siteUrl}/mangueras/valvulas/`
+    },
+    {
+      "@type": "ListItem", "position": 4,
+      "name": "Adaptadores y Conexiones",
+      "description": "NST, Storz, reducciones de diámetro. Aluminio, bronce y fundición. Compatibilidad entre sistemas de diferente rosca.",
+      "url": `${siteUrl}/mangueras/adaptadores/`
+    },
+    {
+      "@type": "ListItem", "position": 5,
+      "name": "Carretes Porta Manguera",
+      "description": "De pared, pivotante y con gabinete integrado. Capacidad para 30 m de manguera en 1.5\" y 2.5\".",
+      "url": `${siteUrl}/mangueras/carretes/`
+    },
+    {
+      "@type": "ListItem", "position": 6,
+      "name": "Toma Siamesa",
+      "description": "2×2½\" NST. Hierro fundido rojo. Válvulas check integradas. Tapones con cadena. Obligatoria en edificios con red de hidrantes.",
+      "url": `${siteUrl}/mangueras/toma-siamesa/`
+    },
+    {
+      "@type": "ListItem", "position": 7,
+      "name": "Llaves Spanner",
+      "description": "Universal para NST 1.5\" y 2.5\". Aluminio forjado. Para conectar y desconectar acoples rápidamente bajo presión.",
+      "url": `${siteUrl}/mangueras/llaves/`
+    },
+    {
+      "@type": "ListItem", "position": 8,
+      "name": "Monitores Contra Incendio",
+      "description": "500-2000 GPM. Fijo en estructura o portátil. Bronce o acero inoxidable. Distribuidor Elkhart Brass. Para patios industriales de alto riesgo.",
+      "url": `${siteUrl}/mangueras/monitores/`
+    }
+  ]
+}
 
-// v5: FAQ con la mejor estructura hasta ahora
-const faqsMangueras = [
-  {
-    pregunta: "¿Qué diámetro de manguera necesito para mi edificio?",
-    respuesta: "Depende del tipo de instalación. <strong>1.5\"</strong> es para edificios residenciales y oficinas donde la brigada no es profesional — más ligera y manejable. <strong>2.5\"</strong> es el estándar para edificios comerciales, naves industriales y cualquier sistema de hidrantes standpipe. <strong>4\"</strong> es para bomberos profesionales y suministro de alto caudal en plantas industriales. Si tu edificio ya tiene red de hidrantes, el diámetro lo determina la tubería existente."
+// ── Schema: FAQPage ────────────────────────────────────────
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué diámetro de manguera necesito para mi edificio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1.5\" para residencial y brigadas no profesionales. 2.5\" para edificios comerciales e industriales con sistema standpipe. 4\" para bomberos profesionales y plantas industriales de alto caudal. Si ya hay red de hidrantes, el diámetro lo determina la tubería existente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre acoples NST y Storz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NST es rosca estándar en México — requiere varios giros para acoplar. Storz es acople simétrico de cuarto de giro sin rosca, más rápido pero menos común en instalaciones existentes. Vendemos adaptadores NST-Storz para compatibilidad entre ambos sistemas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La toma siamesa es obligatoria en mi edificio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, si el edificio tiene sistema de rociadores automáticos o red de hidrantes. Se instala en fachada exterior a máximo 30 metros de donde se estaciona el camión de bomberos. Sin ella, Protección Civil hace observación al expediente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cada cuánto se deben probar las mangueras contra incendio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NFPA 1962 exige prueba hidrostática anual. Una manguera que falla se retira de servicio inmediatamente. Ofrecemos servicio de prueba hidrostática en instalaciones con certificado de conformidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta un sistema de manguera completo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gabinete con manguera 30 m, válvula y chiflón por piso desde $6,500 MXN. Toma siamesa desde $3,200 MXN. Carretes desde $2,800 MXN. Para edificios de 10 pisos el sistema completo puede ir de $75,000 a $150,000 MXN según configuración."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo comprar solo los herrajes sin la manguera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Vendemos todo por separado: chiflones, válvulas, adaptadores, llaves, carretes y tomas siamesas como piezas individuales. Para sistema nuevo completo cotizamos paquete con precio preferencial y verificamos compatibilidad de todos los componentes."
+      }
+    }
+  ]
+}
+
+// ── Schema: BreadcrumbList ─────────────────────────────────
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+    { "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteUrl}/productos/` },
+    { "@type": "ListItem", "position": 3, "name": "Mangueras y Herrajes", "item": pageUrl }
+  ]
+}
+
+// ── Schema: CollectionPage ─────────────────────────────────
+const schemaWebPage = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Mangueras y Herrajes Contra Incendio NFPA en CDMX | Proyecto Red",
+  "description": "Venta de mangueras NFPA 1961 y herrajes para sistemas hidráulicos: chiflones, válvulas, adaptadores NST/Storz, carretes, toma siamesa y monitores. Sistema completo por piso desde $6,500 MXN. Entrega en CDMX.",
+  "url": pageUrl,
+  "image": ogImage,
+  "inLanguage": "es-MX",
+  "isPartOf": { "@type": "WebSite", "name": "Proyecto Red", "url": siteUrl },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+      { "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteUrl}/productos/` },
+      { "@type": "ListItem", "position": 3, "name": "Mangueras", "item": pageUrl }
+    ]
   },
-  {
-    pregunta: "¿Cuál es la diferencia entre acoples NST y Storz?",
-    respuesta: "<strong>NST (National Standard Thread)</strong> es rosca estándar en México — necesita giros para acoplar. <strong>Storz</strong> es acople simétrico alemán — se conecta con un cuarto de giro sin importar la orientación. Storz es más rápido pero menos común en instalaciones existentes. La mayoría de edificios en CDMX usan NST. Vendemos adaptadores NST-Storz para compatibilidad entre ambos sistemas."
+  "mainEntity": {
+    "@id": pageUrl + "#itemlist"
   },
-  {
-    pregunta: "¿La toma siamesa es obligatoria en mi edificio?",
-    respuesta: "Sí, si tu edificio tiene <strong>sistema de rociadores automáticos o red de hidrantes</strong>. La toma siamesa es la conexión que los bomberos usan para alimentar tu sistema con la presión de su camión cisterna cuando la presión municipal no es suficiente. Se instala en la <strong>fachada exterior</strong> a máximo 30 metros de donde se estaciona el camión de bomberos. Si tu edificio no la tiene y el sistema lo requiere, Protección Civil va a observarlo."
-  },
-  {
-    pregunta: "¿Cada cuánto se deben probar las mangueras contra incendio?",
-    respuesta: "La <strong>NFPA 1962</strong> exige prueba hidrostática <strong>anual</strong>. Se prueba cada manguera a la presión de servicio para verificar que no tenga fugas, daño en el forro o debilitamiento del tejido. Una manguera que falla la prueba se <strong>retira de servicio inmediatamente</strong>. Ofrecemos servicio de prueba hidrostática en tus instalaciones con certificado de conformidad para tu expediente."
-  },
-  {
-    pregunta: "¿Puedo comprar solo los herrajes sin la manguera?",
-    respuesta: "Sí. Vendemos todo por separado: chiflones, válvulas, adaptadores, llaves, carretes y tomas siamesas como <strong>piezas individuales</strong> para reemplazo o ampliación de sistemas existentes. Si necesitas un sistema nuevo completo (manguera + herrajes + gabinete), te cotizamos el <strong>paquete con precio preferencial</strong> y verificamos la compatibilidad de todos los componentes."
-  },
-  {
-    pregunta: "¿Cuánto cuesta un sistema de manguera completo para un edificio?",
-    respuesta: "Un <strong>gabinete con manguera de 30 m, válvula y chiflón</strong> para un piso de edificio parte desde $6,500 MXN. La <strong>toma siamesa</strong> desde $3,200 MXN. Los <strong>carretes</strong> desde $2,800 MXN. Para un edificio completo de 10 pisos, el sistema de hidrantes (sin red hidráulica) puede ir de $75,000 a $150,000 MXN dependiendo de la configuración. Te hacemos cotización detallada piso por piso."
-  },
-  {
-    pregunta: "¿Qué pasa si mi sistema tiene componentes de diferentes marcas o diámetros?",
-    respuesta: "Es más común de lo que piensas — sobre todo en edificios que han tenido varios proveedores a lo largo de los años. Vendemos <strong>adaptadores y reducciones</strong> que hacen compatible cualquier combinación de diámetros y tipos de rosca. Mándanos fotos de tus conexiones actuales por WhatsApp y te decimos exactamente qué adaptadores necesitas para que todo funcione como un solo sistema. Si nos compraste y algo no conecta, <strong>lo cambiamos sin costo</strong>."
-  },
-];
+  "publisher": {
+    "@type": "Organization",
+    "name": "Proyecto Red",
+    "url": siteUrl,
+    "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
+    "telephone": `+52${CONTACT.phoneRaw}`,
+    "email": CONTACT.email
+  }
+}
 ---
 
 <Base
-  title={title}
-  description={description}
+  title="Mangueras y Herrajes Contra Incendio NFPA en CDMX | Proyecto Red"
+  description="Venta de mangueras NFPA 1961 y herrajes para sistemas hidráulicos: chiflones, válvulas, adaptadores NST/Storz, carretes, toma siamesa y monitores. Sistema completo por piso desde $6,500 MXN. Entrega directa en CDMX."
+  canonical={pageUrl}
+  ogImage={ogImage}
 >
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          {breadcrumbs.map((b, i) => (
-            <>
-              {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
-              {b.href
-                ? <a href={b.href} class="breadcrumb__link">{b.label}</a>
-                : <span class="breadcrumb__current" aria-current="page">{b.label}</span>
-              }
-            </>
-          ))}
-        </nav>
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          NFPA 1961 · 1.5" a 4" · Proveedor directo
-        </div>
-        <h1>Mangueras y <span class="h1-accent">Herrajes</span><br>Contra Incendio</h1>
-        <!-- v5: escenario + consecuencia + precio -->
-        <p class="hero-sub">
-          Tu edificio tiene hidrantes pero la manguera lleva 8 años sin prueba hidrostática. Los adaptadores no coinciden. El chiflón está oxidado. Todo eso es observación de Protección Civil. Sistema completo por piso desde $6,500 MXN.
-        </p>
-        <div class="hero-ctas">
-          <a
-            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20mangueras%20y%20herrajes%20contra%20incendio`}
-            class="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Cotizar sistema completo
-          </a>
-          <a href="#catalogo" class="btn-secondary">Ver las 8 categorías</a>
-        </div>
-      </div>
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos/' },
+    { label: 'Mangueras y Herrajes' }
+  ]} />
 
-      <!-- v5: hero-right = narrativa de sistema, no lista de productos -->
-      <div class="hero-right">
-        <p>Una manguera no funciona sola. Necesita un chiflón que controle la descarga, una válvula que regule el flujo, un adaptador que conecte con la toma del hidrante, un carrete que la mantenga enrollada y lista, y una toma siamesa en la fachada para que los bomberos alimenten tu sistema cuando lleguen. Si falta una pieza, el sistema no sirve.</p>
-        <p>En Proyecto Red vendemos cada componente por separado para reemplazo, y también armamos sistemas completos por piso con compatibilidad garantizada. Mangueras certificadas NFPA 1961 en diámetros de 1.5" a 4", herrajes de aluminio y bronce, prueba hidrostática incluida en mangueras nuevas. Un solo proveedor para todo el sistema — sin tener que coordinar 5 proveedores diferentes.</p>
-      </div>
-    </div>
-  </section>
-
+  <HeroMangueras />
   <CtaBar />
+  <CatalogoMangueras />
+  <GuiaMangueras />
+  <TrustIndex />
+  <NormasMangueras />
+  <FaqMangueras />
+  <CTAFinalIndex />
 
-  <!-- ══════════════════════════════════════
-       CATÁLOGO
-  ══════════════════════════════════════ -->
-  <section class="cat-section cat-section--white" id="catalogo">
-    <div class="container">
-
-      <div class="cat-header">
-        <div class="cat-header__img-wrap">
-          <img src="/imagenes/mangueras/mangueras-hero.jpg" alt="Mangueras contra incendio y herrajes certificados NFPA" loading="eager" width="640" height="400" />
-          <div class="cat-header__img-overlay"></div>
-          <div class="cat-header__img-content">
-            <span class="cat-norm-badge">NFPA 1961</span>
-            <h2>Mangueras y Herrajes</h2>
-          </div>
-        </div>
-
-        <div class="cat-header__info">
-          <div class="cat-header__meta">
-            <span class="section-label">Sistema hidráulico completo</span>
-            <span class="cat-badge-pill">8 categorías</span>
-          </div>
-          <!-- v5: título = perspectiva de sistema, no de producto individual -->
-          <h2 class="cat-header__title">8 Componentes que Funcionan como un Solo Sistema</h2>
-          <p class="cat-header__desc">Cada pieza tiene que ser compatible con las demás: diámetro de manguera con chiflón, tipo de rosca con adaptador, presión de válvula con capacidad de la red. Te vendemos componentes sueltos para reemplazo o el sistema completo por piso desde $6,500 MXN con compatibilidad verificada.</p>
-          <div class="normas-row">
-            <span class="norma-tag">NFPA 1961</span>
-            <span class="norma-tag">NFPA 1962</span>
-            <span class="norma-tag">NFPA 1964</span>
-            <span class="norma-tag">NFPA 14</span>
-          </div>
-          <div class="cat-header__ctas">
-            <!-- v5: CTA principal = sistema completo (no solo "ver catálogo") -->
-            <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20un%20sistema%20de%20mangueras%20completo%20para%20mi%20edificio`} class="btn-outline" target="_blank" rel="noopener noreferrer">Cotizar sistema por piso</a>
-            <a
-              href={`${WA_URL}?text=Hola%2C%20necesito%20reemplazar%20piezas%20de%20mi%20sistema%20de%20mangueras`}
-              class="cat-wa-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Solo piezas de reemplazo
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="productos-grid">
-        {productos.map(p => (
-          <a href={p.href} class="prod-card" aria-label={p.nombre}>
-            <div class="prod-card__top">
-              {p.badge && <span class="prod-badge">{p.badge}</span>}
-              {!p.badge && <span class="prod-badge prod-badge--ghost">Disponible</span>}
-            </div>
-            <div class="prod-card__body">
-              <h3 class="prod-card__name">{p.nombre}</h3>
-              <p class="prod-card__sub">{p.desc}</p>
-              <p class="prod-card__specs">{p.specs}</p>
-            </div>
-            <div class="prod-card__footer">
-              <span class="prod-card__link">
-                Ver specs y cotizar
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-
-        <!-- v5: cards CTA por flujo — sistema nuevo vs mantenimiento -->
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20armar%20un%20sistema%20de%20mangueras%20nuevo%20para%20mi%20edificio`}
-          class="prod-card prod-card--cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Sistema nuevo"
-        >
-          <div class="prod-card-cta__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </div>
-          <p class="prod-card-cta__text">¿Armando un sistema nuevo?</p>
-          <p class="prod-card-cta__sub">Cotizamos por piso con compatibilidad garantizada entre todos los componentes</p>
-          <span class="prod-card-cta__btn">Cotizar sistema completo →</span>
-        </a>
-
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20reemplazar%20piezas%20de%20mi%20sistema%20de%20mangueras.%20Les%20mando%20fotos.`}
-          class="prod-card prod-card--cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Piezas de reemplazo"
-        >
-          <div class="prod-card-cta__icon prod-card-cta__icon--muted">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
-          <p class="prod-card-cta__text">¿Reemplazando piezas existentes?</p>
-          <p class="prod-card-cta__sub">Foto de la conexión actual → te decimos la pieza exacta y compatible</p>
-          <span class="prod-card-cta__btn">Enviar foto por WhatsApp →</span>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       GUÍA POR TIPO DE INSTALACIÓN
-       v5: evolución de la guía de decisión de v4.
-       En v4 la pregunta era "¿tienes X?" (sí/no).
-       En v5 la pregunta es "¿QUÉ TIPO DE EDIFICIO tienes?"
-       — un nivel de abstracción más arriba que resuelve
-       TODO el sistema de una vez, no producto por producto.
-  ══════════════════════════════════════ -->
-  <section class="cat-section cat-section--gray">
-    <div class="container">
-
-      <div class="cat-header">
-        <div class="cat-header__img-wrap">
-          <img src="/imagenes/mangueras/carrete-manguera.jpg" alt="Carrete de manguera contra incendio instalado en edificio" loading="lazy" width="640" height="400" />
-          <div class="cat-header__img-overlay"></div>
-          <div class="cat-header__img-content">
-            <span class="cat-norm-badge">Guía por instalación</span>
-            <h2>¿Qué Sistema Necesitas?</h2>
-          </div>
-        </div>
-
-        <div class="cat-header__info">
-          <div class="cat-header__meta">
-            <span class="section-label">Configuración por tipo de edificio</span>
-            <span class="cat-badge-pill">4 escenarios</span>
-          </div>
-          <h2 class="cat-header__title">Dime Qué Edificio Tienes y Te Digo Qué Sistema Necesitas</h2>
-          <p class="cat-header__desc">Un edificio de oficinas, una nave industrial, un condominio y una planta petroquímica necesitan configuraciones completamente diferentes de mangueras y herrajes. Aquí te damos la lista exacta de componentes según tu instalación — con la norma que los exige.</p>
-          <div class="cat-header__ctas">
-            <!-- v5: cross-sell natural → gabinetes (producto complementario directo) -->
-            <a href="/gabinetes/para-hidrante/" class="btn-outline">Ver gabinetes para hidrante</a>
-            <a
-              href={`${WA_URL}?text=Hola%2C%20tengo%20un%20edificio%20y%20necesito%20asesoría%20para%20el%20sistema%20de%20mangueras`}
-              class="cat-wa-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Asesoría técnica
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- v5: guía por tipo de instalación — cada card = un tipo de edificio → componentes → norma -->
-      <div class="productos-grid">
-        {guiaInstalacion.map(g => (
-          <a href={g.href} class="prod-card" aria-label={g.tipo}>
-            <div class="prod-card__top">
-              <span class="prod-badge">{g.norma}</span>
-            </div>
-            <div class="prod-card__body">
-              <h3 class="prod-card__name">{g.tipo}</h3>
-              <p class="prod-card__specs">{g.necesitas}</p>
-              <p class="prod-card__sub">{g.porque}</p>
-            </div>
-            <div class="prod-card__footer">
-              <span class="prod-card__link">
-                Cotizar esta configuración
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       FAQ + COTIZACIÓN
-  ══════════════════════════════════════ -->
-  <FaqCotizacion
-    titulo="Preguntas Frecuentes sobre Mangueras y Herrajes"
-    subtitulo="Las respuestas que tu instalador hidráulico debería darte — y probablemente no te da"
-    pageId="mangueras"
-    bgGray={false}
-    faqs={faqsMangueras}
-  />
-
-  <!-- ══════════════════════════════════════
-       CTA FINAL
-  ══════════════════════════════════════ -->
-  <section class="cta-final" aria-labelledby="cta-final-title">
-    <div class="container cta-final-inner">
-      <div class="cta-text">
-        <h2 id="cta-final-title">Un sistema de mangueras con piezas incompatibles no es un sistema — es decoración</h2>
-        <p>Mándanos el tipo de edificio y la cantidad de pisos. Te regresamos la lista de componentes exactos, las normas que los exigen y el precio del sistema completo con compatibilidad verificada.</p>
-      </div>
-      <div class="cta-btns">
-        <a
-          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20sistema%20de%20mangueras%20y%20herrajes%20contra%20incendio`}
-          class="btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Cotizar por WhatsApp
-        </a>
-        <a href="/gabinetes/para-hidrante/" class="btn-cta-ghost">Ver gabinetes para hidrante</a>
-      </div>
-    </div>
-  </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaWebPage)} />
 
 </Base>
-
-<style>
-  .prod-card__specs {
-    font-size: 0.75rem;
-    color: var(--c-primary);
-    font-weight: 600;
-    margin-top: 0.5rem;
-    letter-spacing: 0.02em;
-    opacity: 0.85;
-    line-height: 1.4;
-  }
-</style>

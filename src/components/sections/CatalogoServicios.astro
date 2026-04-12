@@ -1,0 +1,238 @@
+---
+/**
+ * CatalogoServicios.astro
+ * Catálogo completo de servicios — navegación sticky + SectionHeaderDuo + 8 secciones.
+ * Sigue el mismo patrón que CatalogoProductos: componente autónomo con datos inline.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const servicios = [
+  {
+    id: 'venta-equipos',
+    navLabel: 'Venta de Equipos',
+    titulo: 'Venta de Equipos',
+    titleLine2: 'Contra Incendios',
+    badge: 'Catálogo completo',
+    desc: 'Más de 50 productos certificados NOM y NFPA para empresas, plantas y edificios en CDMX.',
+    body: 'Proveedor directo de extintores de todos los tipos, señalamientos fotoluminiscentes, equipo para bomberos, gabinetes, mangueras, sistemas de detección y EPP. Sin intermediarios — mejores precios y tiempos de entrega que cualquier distribuidor. Cada producto incluye documentación para tu expediente de Protección Civil y STPS.',
+    href: '/productos/',
+    img: '/imagenes/servicios/venta-equipo-contra-incendio-certificado-cdmx.avif',
+    detalles: [
+      { nombre: 'Extintores certificados NOM-154', sub: 'Más de 10 tipos disponibles: PQS, CO₂, AFFF, Tipo K, agente limpio y Cold Fire — con ficha técnica y certificado incluidos', href: '/extintores/' },
+      { nombre: 'Señalamientos fotoluminiscentes', sub: 'Visibles sin electricidad, fabricados conforme a NOM-003-SEGOB y NOM-026-STPS para rutas de evacuación y zonas de riesgo', href: '/senalamientos/' },
+      { nombre: 'Equipo profesional para bomberos', sub: 'Trajes estructurales NFPA 1971, equipos de respiración autónoma y herramientas de rescate hidráulico certificadas', href: '/equipo-bomberos/' },
+      { nombre: 'Gabinetes contra incendio', sub: 'Gabinetes para extintor, hidrante y bombero en acero al carbón — acceso rápido en emergencias conforme a normativa vigente', href: '/gabinetes/' },
+      { nombre: 'Mangueras y accesorios hidráulicos', sub: 'Chiflones, válvulas angulares, carretes, tomas siamesas y monitores Elkhart Brass para redes contra incendio', href: '/mangueras/' },
+      { nombre: 'Sistemas de detección y supresión', sub: 'Alarmas NFPA 72, detectores de humo, rociadores automáticos y tableros de control con monitoreo remoto', href: '/sistemas/' },
+    ],
+  },
+  {
+    id: 'recarga-extintores',
+    navLabel: 'Recarga',
+    titulo: 'Recarga de',
+    titleLine2: 'Extintores',
+    badge: 'NOM-154-SCFI',
+    desc: 'Recarga certificada con agentes de alta calidad para todos los tipos de extintor.',
+    body: 'Servicio a domicilio en CDMX y Estado de México. Incluye inspección completa del equipo, prueba de presión, reemplazo de sellos y collar de garantía. Préstamo de extintores durante el proceso para que tu empresa nunca esté sin protección — la recarga cumple con NOM-154-SCFI y la documentación es aceptada por Protección Civil sin observaciones.',
+    img: '/imagenes/servicios/recarga-extintores-nom-154-servicio-domicilio.avif',
+    detalles: [
+      { nombre: 'Recarga de extintor PQS / ABC', sub: 'El agente más utilizado en México — ideal para oficinas, bodegas, comercios y vehículos con collar de garantía incluido', href: '/extintores/polvo-seco/' },
+      { nombre: 'Recarga de extintor CO₂', sub: 'Protección sin residuos para servidores, laboratorios y equipos electrónicos sensibles — no daña componentes', href: '/extintores/co2/' },
+      { nombre: 'Recarga de extintor AFFF / Espuma', sub: 'Agente filmógeno para líquidos inflamables en talleres, gasolineras y plantas industriales', href: '/extintores/afff/' },
+      { nombre: 'Recarga de extintor Tipo K', sub: 'Formulado para aceites de cocina y freidoras — obligatorio en restaurantes y cocinas industriales por norma', href: '/extintores/tipo-k/' },
+      { nombre: 'Recarga de extintor agente limpio', sub: 'Protección certificada para centros de datos, archivos históricos y salas con equipos de alto valor', href: '/extintores/agente-limpio/' },
+      { nombre: 'Recarga de extintores automáticos', sub: 'Sistemas de activación autónoma que responden sin intervención humana — ideales para áreas desatendidas', href: '/extintores/automaticos/' },
+    ],
+  },
+  {
+    id: 'mantenimiento-preventivo',
+    navLabel: 'Mantenimiento',
+    titulo: 'Mantenimiento',
+    titleLine2: 'Preventivo',
+    badge: 'Pólizas anuales',
+    desc: 'Programa de inspección periódica para que tu equipo siempre esté listo para auditorías.',
+    body: 'Revisión completa de presión, agente extintor, válvulas y manguera con reporte técnico documentado. Pólizas anuales con precio preferencial, frecuencia adaptada a tu tipo de instalación y actualización de etiquetas y bitácoras. Detectamos fallas antes de que se conviertan en observaciones durante una inspección de Protección Civil.',
+    img: '/imagenes/servicios/mantenimiento-preventivo-extintores-poliza-anual.avif',
+    detalles: [
+      { nombre: 'Inspección periódica programada', sub: 'Visitas mensuales o trimestrales adaptadas al nivel de riesgo y tipo de instalación — nunca pierdas una fecha límite' },
+      { nombre: 'Verificación de presión y agente', sub: 'Revisión profesional de manómetro, peso del agente extintor y estado de válvulas para garantizar operación inmediata' },
+      { nombre: 'Actualización de etiquetas NOM', sub: 'Renovación de etiquetas de inspección, bitácoras y registros exigidos por Protección Civil y STPS' },
+      { nombre: 'Reportes técnicos documentados', sub: 'Informes detallados con hallazgos, recomendaciones y evidencia fotográfica — listos para cualquier auditoría' },
+      { nombre: 'Diagnóstico preventivo de fallas', sub: 'Detectamos corrosión, fugas y desgaste antes de que se conviertan en observaciones durante inspecciones oficiales' },
+      { nombre: 'Pólizas anuales de mantenimiento', sub: 'Contratos con precio preferencial, cobertura integral y prioridad de atención — la opción más rentable para empresas' },
+    ],
+  },
+  {
+    id: 'instalacion-sistemas',
+    navLabel: 'Instalación Sistemas CI',
+    titulo: 'Instalación de Sistemas',
+    titleLine2: 'Contra Incendio',
+    badge: 'NFPA 13/72',
+    desc: 'Diseño e instalación llave en mano de sistemas completos de detección, alarma y supresión.',
+    body: 'Desde detectores de humo para oficinas hasta rociadores automáticos para plantas industriales — con ingeniería, instalación y certificación incluidas. Cada proyecto inicia con una visita técnica gratuita donde determinamos el alcance, el presupuesto y el cronograma antes de que firmes cualquier contrato.',
+    img: '/imagenes/servicios/instalacion-sistemas-contra-incendio-deteccion-alarmas.avif',
+    detalles: [
+      { nombre: 'Instalación de alarmas contra incendio', sub: 'Sistemas convencionales y analógico-direccionables con programación, cableado y puesta en marcha certificada NFPA 72', href: '/sistemas/' },
+      { nombre: 'Instalación de detectores de humo', sub: 'Detectores iónicos, fotoeléctricos y termovelocimétricos — selección técnica según el tipo de riesgo de cada zona', href: '/sistemas/' },
+      { nombre: 'Rociadores automáticos NFPA 13', sub: 'Diseño e instalación de sistemas húmedos, secos y de diluvio para naves industriales, bodegas y edificios comerciales', href: '/sistemas/' },
+      { nombre: 'Redes hidráulicas contra incendio', sub: 'Ingeniería, tendido de tubería y pruebas de presión para redes de rociadores y gabinetes de hidrante', href: '/sistemas/' },
+      { nombre: 'Tableros de control y monitoreo', sub: 'Paneles FACP y controladores de bomba NFPA 20 con supervisión remota, diagnóstico en tiempo real y respaldo', href: '/sistemas/' },
+      { nombre: 'Visita técnica sin costo', sub: 'Un ingeniero evalúa tu instalación, define el alcance del proyecto y te entrega presupuesto detallado sin compromiso' },
+    ],
+  },
+  {
+    id: 'prueba-hidrostatica',
+    navLabel: 'Prueba Hidrostática',
+    titulo: 'Prueba',
+    titleLine2: 'Hidrostática',
+    badge: 'Obligatoria cada 5 años',
+    desc: 'Verificación de la integridad estructural del cilindro del extintor conforme a NOM-154-SCFI.',
+    body: 'Detecta corrosión interna, deformaciones y fallas invisibles a simple vista. Si el cilindro no pasa, te ofrecemos reemplazo inmediato. El certificado oficial de prueba se integra a tu expediente de Protección Civil — la NOM-154-SCFI exige esta prueba cada 5 años para todos los tipos de extintor.',
+    img: '/imagenes/servicios/prueba-hidrostatica-extintores-nom-154-certificado.avif',
+    detalles: [
+      { nombre: 'Prueba de presión NOM-154-SCFI', sub: 'Ensayo hidrostático certificado que verifica la resistencia estructural del cilindro a presión superior a la de servicio' },
+      { nombre: 'Detección de corrosión interna', sub: 'Identificamos daño oculto, micro-fisuras y debilitamiento del metal que una inspección visual no puede detectar' },
+      { nombre: 'Certificado oficial para expediente', sub: 'Documento con número de folio, resultados y firma del técnico responsable — aceptado por Protección Civil sin observaciones' },
+      { nombre: 'Cobertura para todos los agentes', sub: 'PQS, CO₂, AFFF, Tipo K y agente limpio — cada tipo de extintor requiere esta prueba obligatoria cada 5 años' },
+      { nombre: 'Dictamen técnico fundamentado', sub: 'Reporte detallado con resultado aprobatorio o rechazo documentado con causa técnica y recomendación de reemplazo' },
+      { nombre: 'Reemplazo inmediato garantizado', sub: 'Si el cilindro no supera la prueba, te ofrecemos un extintor nuevo al momento — tu empresa nunca queda desprotegida' },
+    ],
+  },
+  {
+    id: 'asesoria-tecnica',
+    navLabel: 'Asesoría Técnica',
+    titulo: 'Asesoría Técnica',
+    titleLine2: 'y Dictamen',
+    badge: 'Sin costo',
+    desc: 'Análisis de riesgo de tu instalación para determinar el equipo exacto que necesitas.',
+    body: 'Evaluamos tipo de riesgo, superficie y normativas aplicables. Te entregamos un plan de equipamiento con prioridades y presupuesto por etapas — sin costo y sin compromiso. Ideal para empresas que necesitan ponerse al día con Protección Civil o que están abriendo una nueva sucursal, planta o local comercial.',
+    img: '/imagenes/servicios/asesoria-tecnica-proteccion-civil-dictamen-seguridad.avif',
+    detalles: [
+      { nombre: 'Evaluación de riesgo NOM-002-STPS', sub: 'Clasificamos tu instalación como riesgo bajo, medio u ordinario para determinar el equipo y las medidas exactas que requieres' },
+      { nombre: 'Recomendación técnica de extintores', sub: 'Definimos tipo de agente, capacidad, cantidad y ubicación óptima por cada zona de tu inmueble según normativa vigente' },
+      { nombre: 'Diagnóstico de señalización NOM-003', sub: 'Identificamos señalamientos faltantes o mal ubicados y te entregamos un plano con las correcciones necesarias' },
+      { nombre: 'Preparación para inspecciones', sub: 'Revisamos tu expediente completo de seguridad para que pases la visita de Protección Civil sin observaciones ni multas' },
+      { nombre: 'Plan de equipamiento por etapas', sub: 'Presupuesto priorizado que te permite regularizarte de forma gradual — primero lo urgente, después lo complementario' },
+      { nombre: 'Expediente técnico integrado', sub: 'Documentación profesional con fichas, certificados y planos listos para entregar ante cualquier autoridad regulatoria' },
+    ],
+  },
+  {
+    id: 'capacitacion',
+    navLabel: 'Capacitación',
+    titulo: 'Capacitación y',
+    titleLine2: 'Formación de Brigadas',
+    badge: 'Constancias DC-3',
+    desc: 'Cursos prácticos de prevención y combate de incendios con constancias DC-3 STPS.',
+    body: 'Uso correcto de extintores con fuego real, formación de brigadas internas de emergencia, simulacros de evacuación con cronometraje y primeros auxilios básicos. Se imparten en tus instalaciones con tu equipo real — no solo teoría. Las constancias DC-3 tienen validez oficial ante la STPS para auditorías laborales.',
+    img: '/imagenes/servicios/capacitacion-brigadas-contra-incendio-constancia-dc3.avif',
+    detalles: [
+      { nombre: 'Curso de uso y manejo de extintores', sub: 'Práctica con fuego real supervisada por instructores certificados — tu personal aprende a actuar en los primeros 60 segundos críticos' },
+      { nombre: 'Formación de brigadas de emergencia', sub: 'Programa integral para brigadas contra incendio, evacuación y primeros auxilios con roles definidos y protocolos claros' },
+      { nombre: 'Simulacros de evacuación cronometrados', sub: 'Escenarios reales con medición de tiempos, identificación de cuellos de botella y reporte de mejoras para tu plan interno' },
+      { nombre: 'Constancias DC-3 con validez STPS', sub: 'Documentos oficiales que acreditan la capacitación de tu personal — requisito obligatorio en auditorías laborales' },
+      { nombre: 'Capacitación en primeros auxilios', sub: 'Protocolos de atención inicial, uso de botiquín STPS, inmovilización y técnicas de reanimación para emergencias reales' },
+      { nombre: 'Cursos impartidos en tus instalaciones', sub: 'El instructor trabaja directamente con tu equipo y tus extintores — capacitación práctica, no solo teoría de aula' },
+    ],
+  },
+  {
+    id: 'senalizacion',
+    navLabel: 'Señalización NOM',
+    titulo: 'Señalización e',
+    titleLine2: 'Instalación NOM',
+    badge: 'NOM-003-SEGOB',
+    desc: 'Venta e instalación profesional de señalamientos fotoluminiscentes para rutas de evacuación.',
+    body: 'Material visible sin energía eléctrica — aprobado por Protección Civil. Rutas de evacuación, salidas de emergencia, ubicación de extintores, punto de reunión y señales de prohibición. Te entregamos el plano de señalización con la ubicación de cada señal, listo para anexar a tu expediente regulatorio.',
+    img: '/imagenes/servicios/instalacion-senalamientos-fotoluminiscentes-norma-oficial.avif',
+    detalles: [
+      { nombre: 'Señalización de rutas de evacuación', sub: 'Flechas y letreros fotoluminiscentes que guían al personal hacia las salidas incluso en cortes de energía eléctrica', href: '/senalamientos/' },
+      { nombre: 'Señales de ubicación de extintores', sub: 'Señalamientos de salvación en acrílico o PVC que identifican cada punto de equipo contra incendio en tu inmueble', href: '/senalamientos/' },
+      { nombre: 'Señales de prohibición NOM-026', sub: 'No fumar, no paso, no encender fuego y restricciones específicas — fabricadas con tintas resistentes a UV', href: '/senalamientos/' },
+      { nombre: 'Señales de advertencia de riesgo', sub: 'Riesgo eléctrico, material inflamable, sustancias peligrosas y más — visibilidad inmediata en zonas críticas', href: '/senalamientos/' },
+      { nombre: 'Instalación conforme a norma oficial', sub: 'Colocación a la altura, distancia y ubicación exactas que exigen NOM-003-SEGOB y NOM-026-STPS vigentes' },
+      { nombre: 'Plano de señalización para expediente', sub: 'Levantamiento completo de tu inmueble con ubicación de cada señal — documento listo para Protección Civil' },
+    ],
+  },
+]
+---
+
+<!-- ══════════════════════════════════════
+     CATÁLOGO COMPLETO DE SERVICIOS
+══════════════════════════════════════ -->
+<main id="catalogo">
+
+  {servicios.map((srv, idx) => (
+    <section
+      id={srv.id}
+      class={`cat-section ${idx % 2 === 0 ? 'cat-section--white' : 'cat-section--gray'}`}
+      aria-labelledby={`srv-title-${srv.id}`}
+    >
+      <div class="container">
+
+        <SectionHeaderDuo
+          id={`srv-title-${srv.id}`}
+          eyebrow={srv.badge}
+          titleLine1={srv.titulo}
+          titleLine2={srv.titleLine2}
+          desc={srv.desc}
+          bodyPara1={srv.body}
+        />
+
+        {/* Grid de cards — mismo patrón que CatalogoProductos */}
+        <div class="catidx-grid">
+          {srv.detalles.map((d, di) => (
+            <article class="ccard" aria-label={d.nombre}>
+              <div class="ccard__header">
+                <Img
+                  src={srv.img}
+                  alt={d.nombre}
+                  loading={di < 4 ? 'eager' : 'lazy'}
+                  fetchpriority={di === 0 && idx === 0 ? 'high' : undefined}
+                  width={640}
+                  height={360}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+                />
+                <div class="ccard__header-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="ccard__content">
+                <h3 class="ccard__title">{d.nombre}</h3>
+                <p class="ccard__desc">{d.sub}</p>
+
+                <a
+                  href={d.href || waUrl(`Hola, necesito información sobre ${d.nombre}`)}
+                  class="ccard__cta"
+                  target={d.href ? undefined : '_blank'}
+                  rel={d.href ? undefined : 'noopener noreferrer'}
+                >
+                  {d.href ? 'Ver detalles' : 'Cotizar servicio'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+
+          {/* Card CTA WhatsApp — usa clases globales de pages.css */}
+          <article class="ccard ccard--cta-wa" aria-label="Cotizar servicio por WhatsApp">
+            <a
+              href={waUrl(`Hola, quiero cotizar ${srv.titulo} ${srv.titleLine2 || ''}`)}
+              class="ccard--cta-wa__inner"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="ccard--cta-wa__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p class="ccard--cta-wa__title">¿Necesitas este servicio?</p>
+              <p class="ccard--cta-wa__sub">Cotiza por WhatsApp — respondemos en menos de 24 horas</p>
+              <span class="ccard--cta-wa__btn">Escribir al WhatsApp →</span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+  ))}
+</main>
+

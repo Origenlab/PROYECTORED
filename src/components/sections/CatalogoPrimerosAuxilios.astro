@@ -1,0 +1,170 @@
+---
+/**
+ * CatalogoPrimerosAuxilios.astro — v1
+ * Catálogo de 5 líneas de primeros auxilios — patrón .ccard estándar.
+ * Nav sticky + SectionHeaderDuo + .ccard grid.
+ * 100% homologado con CatalogoMangueras / CatalogoGabinetes.
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import Img from '../ui/Img.astro'
+import { waUrl } from '../../config/site'
+import '../../styles/pages.css'
+
+const waHref = waUrl('Hola, necesito cotizar equipo de primeros auxilios certificado NOM-030-STPS para mi empresa')
+
+const productos = [
+  {
+    nombre: 'Botiquines de Primeros Auxilios',
+    desc: 'Tipo A para hasta 25 trabajadores, tipo B para 26–100, tipo C para más de 100. Cada tipo incluye exactamente el contenido especificado por NOM-030-STPS. Resurtido periódico para mantenerlos completos y con material vigente.',
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    badge: 'NOM-030-STPS',
+    href: '/primeros-auxilios/botiquines/',
+    ctaLabel: 'Ver botiquines de primeros auxilios',
+    subcats: [
+      { label: 'Tipo A — hasta 25 trabajadores', href: '/primeros-auxilios/botiquines/' },
+      { label: 'Tipo B — 26 a 100 trabajadores', href: '/primeros-auxilios/botiquines/' },
+      { label: 'Tipo C — más de 100 trabajadores', href: '/primeros-auxilios/botiquines/' },
+      { label: 'Botiquín portátil de brigada', href: '/primeros-auxilios/botiquines/' },
+      { label: 'Resurtido periódico con revisión', href: '/primeros-auxilios/botiquines/' },
+    ],
+  },
+  {
+    nombre: 'Desfibriladores Externos (DEA)',
+    desc: 'El paro cardíaco tiene tasa de supervivencia del 70% si se desfibrilá en los primeros 3 minutos. Cada minuto sin DEA reduce la supervivencia un 10%. Equipos con instrucciones en español y voz guía para uso por personal sin entrenamiento médico.',
+    img: '/imagenes/primeros-auxilios/botiquin.jpg',
+    badge: 'DEA · AED',
+    href: '/primeros-auxilios/desfibriladores/',
+    ctaLabel: 'Ver desfibriladores externos',
+    subcats: [
+      { label: 'DEA automático — uso por cualquier persona', href: '/primeros-auxilios/desfibriladores/' },
+      { label: 'DEA semiautomático — para brigadas capacitadas', href: '/primeros-auxilios/desfibriladores/' },
+      { label: 'Electrodos adulto y pediátrico incluidos', href: '/primeros-auxilios/desfibriladores/' },
+      { label: 'IPX4 — resistente a salpicaduras', href: '/primeros-auxilios/desfibriladores/' },
+      { label: 'Gabinete mural con alarma de apertura', href: '/primeros-auxilios/desfibriladores/' },
+    ],
+  },
+  {
+    nombre: 'Camillas de Emergencia',
+    desc: 'Camillas rígidas tipo Miller para inmovilización espinal, plegables de aluminio para traslado, tipo Stokes para rescate en altura y de vacío para inmovilización de trauma con sospecha de fractura de columna.',
+    img: '/imagenes/primeros-auxilios/camillas.jpg',
+    badge: 'Rescate',
+    href: '/primeros-auxilios/camillas/',
+    ctaLabel: 'Ver camillas de emergencia',
+    subcats: [
+      { label: 'Camilla rígida — inmovilización espinal', href: '/primeros-auxilios/camillas/' },
+      { label: 'Camilla plegable — traslado rápido', href: '/primeros-auxilios/camillas/' },
+      { label: 'Camilla Stokes — rescate en altura', href: '/primeros-auxilios/camillas/' },
+      { label: 'Camilla de vacío — trauma de columna', href: '/primeros-auxilios/camillas/' },
+      { label: 'Aluminio reforzado — hasta 180 kg', href: '/primeros-auxilios/camillas/' },
+    ],
+  },
+  {
+    nombre: 'Inmovilizadores y Collarines',
+    desc: 'Collarines cervicales en tallas S, M, L y XL para inmovilización de cuello en trauma. Inmovilizadores de cabeza para camillas de vacío. Férulas de extremidades para fractura de brazo, pierna, muñeca y tobillo.',
+    img: '/imagenes/primeros-auxilios/collarin.jpg',
+    badge: 'Trauma',
+    href: '/primeros-auxilios/inmovilizadores/',
+    ctaLabel: 'Ver inmovilizadores y collarines',
+    subcats: [
+      { label: 'Collarín cervical tallas S · M · L · XL', href: '/primeros-auxilios/inmovilizadores/' },
+      { label: 'Inmovilizador de cabeza para camilla', href: '/primeros-auxilios/inmovilizadores/' },
+      { label: 'Férulas de extremidades superiores', href: '/primeros-auxilios/inmovilizadores/' },
+      { label: 'Férulas de extremidades inferiores', href: '/primeros-auxilios/inmovilizadores/' },
+      { label: 'Compatible con camillas tipo Miller', href: '/primeros-auxilios/inmovilizadores/' },
+    ],
+  },
+  {
+    nombre: 'Material de Curación y Resurtido',
+    desc: 'Gasas, vendas, antisépticos, guantes de nitrilo, torniquetes y material de curación certificado para reponer el botiquín según NOM-030-STPS. Servicio de resurtido periódico con revisión de fechas de caducidad y listado de inventario.',
+    img: '/imagenes/primeros-auxilios/camilla.jpg',
+    badge: 'Resurtido',
+    href: '/primeros-auxilios/material-curacion/',
+    ctaLabel: 'Ver material de curación',
+    subcats: [
+      { label: 'Gasas y vendas estériles', href: '/primeros-auxilios/material-curacion/' },
+      { label: 'Antisépticos y apósitos', href: '/primeros-auxilios/material-curacion/' },
+      { label: 'Guantes nitrilo sin látex', href: '/primeros-auxilios/material-curacion/' },
+      { label: 'Torniquetes CAT y SOFT-T', href: '/primeros-auxilios/material-curacion/' },
+      { label: 'Resurtido periódico con inventario', href: '/primeros-auxilios/material-curacion/' },
+    ],
+  },
+]
+---
+
+<section class="catalogo-primeros-auxilios cat-section cat-section--white" id="catalogo-primeros-auxilios" aria-labelledby="catalogo-pa-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="catalogo-pa-heading"
+      eyebrow="NOM-030-STPS certificado"
+      titleLine1="5 Líneas de Equipo para"
+      titleLine2="tu Brigada y tu Empresa"
+      desc="Botiquines tipo A/B/C, DEA, camillas, collarines y material de curación — todo certificado para cumplir con NOM-030-STPS y responder en una emergencia real."
+      bodyPara1="Un botiquín vacío o vencido tiene el mismo efecto que no tener botiquín. La NOM-030-STPS especifica exactamente qué debe contener cada tipo según el número de trabajadores, y la STPS lo verifica en auditorías. El problema más común no es que las empresas no tengan el equipo — es que lo tienen incompleto, vencido o inaccesible."
+    />
+
+    <!-- Grid de cards — patrón .ccard homologado con L1/L2/L3 — 5 items: 3 col -->
+    <div class="catidx-grid" role="list" aria-label="Líneas de equipo de primeros auxilios disponibles">
+      {productos.map((p, i) => (
+        <article class="ccard" role="listitem" aria-label={p.nombre}>
+          <div class="ccard__header">
+            <Img
+              src={p.img}
+              alt={p.nombre}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            />
+            <div class="ccard__header-overlay" aria-hidden="true"></div>
+            {p.badge && <span class="ccard__badge">{p.badge}</span>}
+          </div>
+          <div class="ccard__content">
+            <h3 class="ccard__title">{p.nombre}</h3>
+            <p class="ccard__desc">{p.desc}</p>
+
+            {p.subcats && p.subcats.length > 0 && (
+              <ul class="ccard__list" aria-label={`Modelos de ${p.nombre}`}>
+                {p.subcats.map(sub => (
+                  <li>
+                    <a href={sub.href} class="ccard__link-btn">
+                      {sub.label}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={p.href} class="ccard__cta">
+              {p.ctaLabel || 'Ver detalles'}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- Card CTA WhatsApp -->
+      <article class="ccard ccard--cta-wa" aria-label="Asesoría para evaluar equipo requerido">
+        <a
+          href={waHref}
+          class="ccard--cta-wa__inner"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="ccard--cta-wa__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <p class="ccard--cta-wa__title">¿Cuántos botiquines necesita tu empresa?</p>
+          <p class="ccard--cta-wa__sub">Evaluamos el número de trabajadores, áreas y riesgos de tu instalación y te decimos exactamente qué tipo y cantidad de botiquines exige la NOM — sin compromiso.</p>
+          <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+        </a>
+      </article>
+    </div>
+
+  </div>
+</section>
+

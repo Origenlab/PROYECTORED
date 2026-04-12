@@ -32,6 +32,7 @@ const articulos = [
   <div class="container">
 
     <SectionHeaderDuo
+      id="blog-heading"
       eyebrow="Blog"
       titleLine1="Guías y recursos sobre"
       titleLine2="protección contra incendios"
@@ -90,7 +91,6 @@ const articulos = [
     gap: 0.75rem;
     text-decoration: none;
     color: var(--c-ink);
-    transition: border-color 0.2s, box-shadow 0.2s;
   }
 
   .blog-card:hover {
@@ -138,7 +138,6 @@ const articulos = [
     margin-top: auto;
     padding-top: 0.75rem;
     border-top: 1px solid var(--c-border);
-    transition: gap 0.2s;
   }
 
   .blog-card:hover .blog-card__cta { gap: 0.625rem; }

@@ -1,0 +1,114 @@
+---
+/**
+ * NormasSistemas.astro — v1
+ * Cards de normas para sistemas contra incendio.
+ * Patrón 100% homologado con NormasMangueras / NormasGabinetes.
+ * Usa SectionHeaderDuo + .norma-card global (pages.css).
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+
+const normas = [
+  {
+    norma: 'NFPA 72',
+    tipo: 'Alarma y detección',
+    alcance: 'Código Nacional de Alarma Contra Incendio y Señalización — diseño, instalación, puesta en servicio, prueba y mantenimiento de sistemas de alarma, detectores y notificación. La norma más exigente para tableros FACP y redes de detección.',
+    aplica: 'Cualquier edificio con sistema de alarma o detectores. Define los tipos de detector por zona de riesgo, la capacidad de la batería de respaldo, los requisitos de monitoreo remoto y la señalización de evacuación vinculada al tablero.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>`,
+  },
+  {
+    norma: 'NFPA 13',
+    tipo: 'Rociadores automáticos',
+    alcance: 'Instalación de sistemas de rociadores automáticos — clasificación de riesgo (ligero, ordinario, extra), densidad de aplicación, área de operación de diseño, selección de temperatura del bulbo y tipo de rociador (colgante, montante, lateral).',
+    aplica: 'Bodegas, naves industriales, centros comerciales, hoteles y edificios de altura. El cálculo hidráulico es obligatorio conforme a NFPA 13 — define diámetros de tubería, presión mínima en el rociador más desfavorable y capacidad de la bomba.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
+  },
+  {
+    norma: 'NFPA 14',
+    tipo: 'Sistemas standpipe',
+    alcance: 'Instalación de sistemas de tuberías verticales y mangueras en edificios — diseño de redes de hidrantes interiores, ubicación de válvulas angulares por piso, presión mínima en el hidrante más desfavorable y toma siamesa en fachada.',
+    aplica: 'Edificios de más de 5 pisos o 15 metros de altura. Define los gabinetes con manguera, la presión mínima de 100 PSI en el punto más desfavorable y la integración con la red de rociadores cuando ambos sistemas comparten la misma fuente de agua.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`,
+  },
+  {
+    norma: 'NFPA 20',
+    tipo: 'Bombas contra incendio',
+    alcance: 'Instalación de bombas estacionarias contra incendio — requisitos para bomba principal eléctrica, bomba de reserva diésel, bomba jockey de mantenimiento de presión, tablero de control y prueba de aceptación.',
+    aplica: 'Cualquier sistema que requiera presión mayor a la disponible en la red municipal. La bomba diésel es obligatoria cuando hay riesgo de corte eléctrico durante un incendio. El tablero NFPA 20 debe ser independiente del sistema eléctrico general del edificio.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+  },
+  {
+    norma: 'NFPA 96',
+    tipo: 'Campanas de cocina',
+    alcance: 'Ventilación y protección contra incendio en instalaciones de cocina comercial — sistema de supresión química bajo campana, interlock con válvulas de gas, limpieza de ductos y prueba semestral del sistema.',
+    aplica: 'Restaurantes, cafeterías, hoteles y cualquier cocina con equipo de cocción de alto calor (freidoras, planchas, parrillas). Sin sistema NFPA 96, Protección Civil no expide la licencia de operación para cocinas comerciales en CDMX.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path d="M3 10h18"/></svg>`,
+  },
+  {
+    norma: 'NOM-002-STPS',
+    tipo: 'Centros de trabajo',
+    alcance: 'Condiciones de seguridad y prevención de incendios en centros de trabajo — exige que los sistemas de detección, alarma y supresión estén operables, accesibles y con mantenimiento documentado conforme a la norma aplicable.',
+    aplica: 'Todo centro de trabajo con más de 5 trabajadores o más de 100 m² de área. La STPS verifica en auditorías que el sistema esté instalado, funcionando y con bitácora de mantenimiento. Un sistema sin mantenimiento documentado genera multa.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+]
+---
+
+<section class="normas-sis" id="normas-sistemas" aria-labelledby="normas-sis-heading">
+  <div class="container">
+
+    <SectionHeaderDuo
+      id="normas-sis-heading"
+      eyebrow="Marco normativo NFPA"
+      titleLine1="Normas que Rigen"
+      titleLine2="los Sistemas Contra Incendio"
+      desc="NFPA 72, 13, 14, 20, 96 y NOM-002-STPS — cada subsistema tiene su norma. Instalamos en cumplimiento total con entrega de expediente."
+      bodyPara1="En México, los sistemas contra incendio se rigen por normas NFPA internacionales adoptadas por Protección Civil y la STPS. Esto significa que un sistema instalado sin seguir NFPA puede ser rechazado en inspección incluso si está físicamente funcionando — porque la memoria de cálculo, los planos y la documentación de comisionamiento no cumplen el estándar requerido."
+      bodyPara2="Entregamos el expediente completo: planos en AutoCAD, memoria de cálculo hidráulico, certificados de los equipos, bitácora de comisionamiento y manual de operación — todo lo que Protección Civil y la STPS requieren para el dictamen técnico."
+    />
+
+    <div class="normas-sis-grid" role="list" aria-label="Normas aplicables a sistemas contra incendio">
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" aria-hidden="true" set:html={n.icon} />
+            <div>
+              <span class="norma-card__codigo">{n.norma}</span>
+              <span class="norma-tipo">{n.tipo}</span>
+            </div>
+          </div>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-card__aplica-label">Aplica en</span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <svg class="normas-nota__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="normas-nota__text">
+        <strong>¿Tienes sistema instalado pero sin expediente?</strong> Hacemos auditoría del sistema existente, revisamos qué cumple y qué no, y te entregamos el expediente técnico para regularización ante Protección Civil — sin necesidad de reinstalar todo.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-sis {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  .normas-sis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 1024px) { .normas-sis-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .normas-sis-grid { grid-template-columns: 1fr; } }
+</style>

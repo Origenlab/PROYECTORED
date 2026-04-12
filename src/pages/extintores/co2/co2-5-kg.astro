@@ -1,0 +1,553 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const seo = {
+  title: "Extintor CO₂ 5 kg — Para Servidores y Equipos Eléctricos | Proyecto Red",
+  description: "Extintor de CO₂ 5 kg. Descarga limpia sin residuo para cuartos de servidores, UPS, tableros y laboratorios. Certif. NOM-154-SCFI. Entrega el mismo día CDMX.",
+};
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "CO₂ — Dióxido de Carbono", href: "/extintores/co2/" },
+  { label: "CO₂ 5 kg" },
+];
+
+const heroStats = [
+  { valor: "5 kg",    label: "Capacidad" },
+  { valor: "B · C",  label: "Clases de fuego" },
+  { valor: "0 residuo", label: "Descarga limpia" },
+];
+
+const specs = [
+  { label: "Agente extintor",       value: "CO₂ — dióxido de carbono puro" },
+  { label: "Capacidad nominal",     value: "5 kg" },
+  { label: "Clases de fuego",       value: "B · C (no clase A en profundidad)" },
+  { label: "Presión interna",       value: "850–900 PSI (58–62 bar)" },
+  { label: "Propelente",            value: "CO₂ líquido autoexpandiente (sin gas adicional)" },
+  { label: "Tiempo de descarga",    value: "~7 segundos" },
+  { label: "Alcance de descarga",   value: "1.5–2.5 metros" },
+  { label: "Temperatura operación", value: "-20 °C a +55 °C" },
+  { label: "Boquilla",              value: "Corneta metálica difusora" },
+  { label: "Verificación de carga", value: "Pesaje obligatorio (sin manómetro)" },
+  { label: "Altura del cilindro",   value: "~55 cm" },
+  { label: "Peso total cargado",    value: "~10 kg" },
+  { label: "Material cilindro",     value: "Acero de alta resistencia (sin soldadura)" },
+  { label: "Montaje",               value: "Soporte de pared o carretilla" },
+  { label: "Certificación",         value: "NOM-154-SCFI · NFPA 10 · NFPA 2001" },
+  { label: "Incluye",               value: "Corneta, soporte de pared, etiqueta, collar de garantía" },
+  { label: "Vida útil cilindro",    value: "25 años (prueba hidrostática c/5)" },
+  { label: "Mantenimiento",         value: "Anual obligatorio NOM-154-SCFI (con pesaje)" },
+];
+
+const caracteristicas = [
+  "Descarga 100% limpia — sin polvo, sin humedad, sin residuo corrosivo",
+  "No deja residuo sobre equipos electrónicos activos",
+  "Seguro en corrientes eléctricas activas hasta 1,000 V (35 kV en prueba)",
+  "Collar de garantía NOM-154-SCFI con fecha de próximo servicio",
+];
+
+const aplicaciones = [
+  "Cuartos de servidores y centros de datos",
+  "Tableros de distribución eléctrica y equipos UPS",
+  "Laboratorios con instrumentación de precisión",
+  "Archivos, acervos documentales y notarías",
+  "Cuartos de generadores y subestaciones de baja tensión",
+  "Bares, estudios y zonas con electrónica de valor",
+];
+
+const categoriasNav = [
+  { label: "CO₂ 2.5 kg — Compacto",  href: "/extintores/co2/co2-2-5-kg/" },
+  { label: "CO₂ 5 kg — Más vendido", href: "/extintores/co2/co2-5-kg/", active: true },
+  { label: "CO₂ 10 kg — Industrial", href: "/extintores/co2/co2-10-kg/" },
+];
+
+const productosRelacionados = [
+  { nombre: "CO₂ 2.5 kg — Compacto",    href: "/extintores/co2/co2-2-5-kg/" },
+  { nombre: "CO₂ 10 kg — Industrial",   href: "/extintores/co2/co2-10-kg/" },
+  { nombre: "Agente Limpio 2.3 kg",      href: "/extintores/agente-limpio/agente-limpio-2-3-kg/" },
+  { nombre: "PQS 4.5 kg — Portátil",    href: "/extintores/polvo-seco/pqs-4-5-kg/" },
+];
+
+const otrosProductos = [
+  {
+    nombre: "CO₂ 2.5 kg — Compacto",
+    desc: "Para espacios pequeños con PCs, impresoras y equipos de telecomunicaciones. Fácil de reubicar.",
+    specs: ["2.5 kg", "~5 s", "1.5–2 m"],
+    href: "/extintores/co2/co2-2-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "CO₂ 10 kg — Industrial",
+    desc: "Para cuartos eléctricos, subestaciones y generadores. Requiere carretilla por su peso.",
+    specs: ["10 kg", "~12 s", "2.5–3 m"],
+    href: "/extintores/co2/co2-10-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "Agente Limpio 2.3 kg",
+    desc: "FE-36 sin residuo para centros de datos críticos donde el CO₂ representa riesgo para el personal.",
+    specs: ["2.3 kg", "Sin O₂", "FM-200"],
+    href: "/extintores/agente-limpio/agente-limpio-2-3-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/agente-limpio.jpg?strip=all&lossy=1",
+  },
+  {
+    nombre: "PQS 4.5 kg — Portátil",
+    desc: "Complementa el CO₂ en áreas con materiales sólidos (clase A). El más solicitado para oficinas.",
+    specs: ["4.5 kg", "A·B·C", "NOM-154"],
+    href: "/extintores/polvo-seco/pqs-4-5-kg/",
+    img: "https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco.jpg?strip=all&lossy=1",
+  },
+];
+
+const faqs = [
+  {
+    pregunta: "¿Por qué el extintor de CO₂ no tiene manómetro?",
+    respuesta: "El CO₂ se almacena en estado <strong>líquido a alta presión</strong>. La presión del gas sobre el líquido es constante hasta que el agente se agota, por lo que un manómetro mostraría la misma lectura aun cuando el cilindro estuviera casi vacío. La única forma de verificar que está lleno es <strong>pesarlo</strong> y compararlo con el peso grabado en el cilindro. Por eso el mantenimiento anual con pesaje es obligatorio conforme a NOM-154-SCFI.",
+  },
+  {
+    pregunta: "¿El CO₂ es peligroso para las personas?",
+    respuesta: "En espacios confinados sin ventilación, una descarga completa puede desplazar el oxígeno lo suficiente para generar dificultad respiratoria. Los extintores portátiles de 5 kg no alcanzan esa concentración en espacios normales, pero en cuartos sellados de menos de 10 m³ se debe desalojar antes de usarlo. Para instalaciones grandes con riesgo de personal, se prefieren <strong>agentes limpios</strong> como FM-200 o Novec con concentraciones de diseño menores.",
+  },
+  {
+    pregunta: "¿El CO₂ puede usarse en equipos eléctricos vivos?",
+    respuesta: "Sí. El CO₂ es un gas dieléctrico — no conduce electricidad. Es seguro para descarga sobre equipos energizados hasta <strong>1,000 V</strong> a la distancia de uso normal (más de 1 metro). Las normas UL 711 y NFPA 10 avalan su uso en fuegos clase C. No tocar la corneta metálica durante la descarga ya que puede alcanzar -79 °C.",
+  },
+  {
+    pregunta: "¿El CO₂ apaga fuegos en madera o papel?",
+    respuesta: "Es efectivo en fuegos superficiales de materiales sólidos (clase A), pero <strong>no penetra en la masa</strong> del material para apagar brasas internas. Si hay posibilidad de re-ignición en papel o madera, se debe complementar con polvo seco ABC. En cuartos de servidores el riesgo real casi siempre es eléctrico (clase C), donde el CO₂ es el agente óptimo.",
+  },
+  {
+    pregunta: "¿Cuántos extintores de CO₂ necesito en mi cuarto de servidores?",
+    respuesta: "La regla general es <strong>1 extintor de 5 kg por cada 10–15 m²</strong> de cuarto de servidores. Para cuartos mayores de 30 m² se recomienda un sistema de supresión fija (FM-200, Novec o CO₂ total flooding). Los extintores portátiles son el complemento de primera respuesta — no reemplazan a un sistema automático en instalaciones críticas. Te hacemos la evaluación sin costo.",
+  },
+  {
+    pregunta: "¿Proyecto Red realiza el mantenimiento y recarga del CO₂?",
+    respuesta: "Sí. Recargamos y mantenemos extintores de CO₂ de cualquier marca. El servicio incluye <strong>pesaje del cilindro</strong>, revisión de la válvula y sello, inspección de la corneta y manguera, y prueba hidrostática cada 5 años. Emitimos reporte firmado válido para auditorías de STPS y Protección Civil.",
+  },
+];
+---
+<Base title={seo.title} description={seo.description}>
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Sin Residuo · Clase B y C · NOM-154-SCFI
+        </div>
+        <h1>Extintor CO₂<br><span class="h1-accent">5 kg</span></h1>
+        <p class="hero-sub">
+          Extintor de dióxido de carbono de 5 kg. Descarga completamente limpia sin polvo, humedad ni residuo químico — la opción indicada para cuartos de servidores, tableros eléctricos, laboratorios y cualquier espacio donde el equipo activo no puede tolerar contaminación.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20CO%E2%82%82%205%20kg`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Cotización
+          </a>
+          <a href="/extintores/co2/" class="btn-secondary">Ver Catálogo CO₂</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p>El extintor de CO₂ de 5 kg es el más solicitado para protección de equipos eléctricos y electrónicos de valor. Con 5 kg de dióxido de carbono, cubre eficientemente espacios de hasta 20 m² con descarga de ~7 segundos y alcance de hasta 2.5 metros.</p>
+        <p>A diferencia del polvo seco, el CO₂ no deja rastro sobre los equipos protegidos — no requiere limpieza post-incendio del agente, lo que minimiza el tiempo de interrupción operativa. Cada unidad se entrega con collar de garantía NOM-154-SCFI, etiqueta de inspección y documentación para expediente de Protección Civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══ MAIN LAYOUT: 2 COLUMNAS ══ -->
+  <div class="pp-layout container">
+
+    <!-- ─── COLUMNA PRINCIPAL ─── -->
+    <main class="pp-main">
+
+      <!-- Galería de imágenes -->
+      <div class="pp-gallery">
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1" alt="Extintor CO₂ 5 kg - Vista frontal con corneta metálica" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1" alt="Extintor CO₂ 5 kg - Detalle boquilla corneta" width="400" height="300" loading="eager" />
+        </div>
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1" alt="Extintor CO₂ 5 kg - Instalación en cuarto de servidores" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/co2.jpg?strip=all&lossy=1" alt="Extintor CO₂ 5 kg - Placa de certificación NOM-154-SCFI" width="400" height="300" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="pp-desc">
+        <p>El extintor de CO₂ 5 kg actúa por <strong>desplazamiento de oxígeno y enfriamiento súbito</strong> en la zona del fuego. Al descargarse, el dióxido de carbono gaseoso a -79 °C sofoca la llama sin dejar polvo, humedad ni residuo químico de ningún tipo.</p>
+        <p>Su boquilla tipo <strong>corneta metálica difusora</strong> permite dirigir el cono de descarga con precisión a la base del fuego. Actúa de forma segura sobre corrientes eléctricas activas (clase C) y sobre líquidos inflamables (clase B).</p>
+        <p><strong>Capacidad:</strong> 5 kg. <strong>Clases:</strong> B y C. <strong>Certificación:</strong> NOM-154-SCFI, NFPA 10, NFPA 2001.</p>
+      </div>
+
+      <!-- Especificaciones Técnicas -->
+      <section class="pp-block">
+        <h2>Especificaciones Técnicas</h2>
+        <table class="pp-table">
+          <tbody>
+            {specs.map(s => (
+              <tr>
+                <td class="pp-table__label">{s.label}</td>
+                <td class="pp-table__value">{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Características Destacadas -->
+      <section class="pp-block">
+        <h2>Características Destacadas</h2>
+        <ul class="pp-features">
+          <li><strong>Descarga 100% limpia — cero daño secundario</strong> — El CO₂ se evapora completamente sin dejar rastro sobre PCBs, discos duros, pantallas ni instrumentación de laboratorio. No requiere limpieza post-descarga del agente.</li>
+          <li><strong>Corneta metálica difusora</strong> — La boquilla en forma de corneta produce un cono de descarga amplio y controlado. Permite apuntar con precisión a la base de la llama desde una distancia segura. Temperatura de salida: -79 °C — no sostener directamente.</li>
+          <li><strong>Sin manómetro — verificación por pesaje</strong> — El CO₂ se almacena en estado líquido a presión constante. El mantenimiento anual obligatorio incluye pesaje del cilindro para verificar que la carga no ha disminuido. Cada visita genera reporte con peso registrado.</li>
+          <li><strong>Seguro en equipos eléctricos activos</strong> — Avalado por UL 711 y NFPA 10 para uso en corrientes eléctricas hasta 1,000 V a distancia normal de operación (≥ 1 m). Sin riesgo de conducción eléctrica durante la descarga.</li>
+          <li><strong>Documentación completa para expediente</strong> — Entregamos ficha técnica, certificado de conformidad NOM-154-SCFI, collar de garantía y etiqueta de inspección. Todo lo necesario para tu expediente de Protección Civil y STPS.</li>
+        </ul>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="pp-block">
+        <h2>Aplicaciones</h2>
+        <ul class="pp-app-list">
+          <li>Cuartos de servidores y centros de datos</li>
+          <li>Tableros de distribución eléctrica y equipos UPS</li>
+          <li>Laboratorios con instrumentación de precisión y análisis</li>
+          <li>Archivos, acervos documentales y notarías</li>
+          <li>Cuartos de generadores y subestaciones de baja tensión</li>
+          <li>Bares, estudios de grabación y zonas con electrónica de valor</li>
+        </ul>
+      </section>
+
+      <!-- Instalación -->
+      <section class="pp-block">
+        <h2>Instalación y Ubicación</h2>
+        <p>El extintor de CO₂ 5 kg se instala en soporte de pared a una altura de <strong>manija entre 1.0 y 1.5 metros</strong> desde el piso, conforme a NOM-002-STPS. La ubicación recomendada es <strong>a la salida del área protegida</strong>, nunca al fondo — el operador debe poder alcanzarlo antes de estar frente al fuego.</p>
+        <p>En cuartos de servidores: colocar en la puerta de acceso, visible y despejado. En zonas de tableros: uno en cada extremo del pasillo. No instalar en espacios donde la temperatura supere los 55 °C de manera habitual.</p>
+      </section>
+
+      <!-- Normativa -->
+      <section class="pp-block">
+        <h2>Cumplimiento Normativo</h2>
+        <p>Cumple con <strong>NOM-154-SCFI</strong> para mantenimiento y recarga anual de extintores portátiles. La <strong>NFPA 10</strong> regula la selección, instalación y mantenimiento de extintores portátiles. La <strong>NFPA 2001</strong> aplica para sistemas de agente limpio (CO₂, FM-200, Novec) en instalaciones fijas. La <strong>NOM-002-STPS</strong> establece la prevención, protección y combate de incendios en centros de trabajo. El extintor se entrega con toda la documentación para cumplimiento de Protección Civil y STPS.</p>
+      </section>
+
+      <!-- Specs resumidas bottom -->
+      <section class="pp-block">
+        <h2>Resumen de Especificaciones</h2>
+        <div class="pp-specs-mini">
+          <div class="pp-specs-mini__item"><span>Capacidad</span><span>5 kg</span></div>
+          <div class="pp-specs-mini__item"><span>Clases de fuego</span><span>B · C</span></div>
+          <div class="pp-specs-mini__item"><span>Certificación</span><span>NOM-154-SCFI, NFPA 10</span></div>
+          <div class="pp-specs-mini__item"><span>Descarga</span><span>~7 segundos</span></div>
+          <div class="pp-specs-mini__item"><span>Categoría</span><span>Extintores CO₂</span></div>
+          <div class="pp-specs-mini__item"><span>Alcance</span><span>1.5–2.5 metros</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sb">
+
+      <!-- 1. Navegación de categorías -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Extintores CO₂</h3></div>
+        <nav class="sb__nav" aria-label="Capacidades de extintores CO₂">
+          <ul>
+            {categoriasNav.map(c => (
+              <li><a href={c.href} class={c.active ? 'sb__nav-active' : ''}>{c.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a href="/extintores/co2/" class="sb__back">← Ver todo el catálogo CO₂</a>
+      </div>
+
+      <!-- 2. Cotización Rápida -->
+      <div class="sb__widget sb__widget--cta">
+        <h3>Cotización Rápida</h3>
+        <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
+        <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20CO%E2%82%82%205%20kg`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
+        <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+
+      <!-- 3. Características Clave -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Características Clave</h3></div>
+        <ul class="sb__checks">
+          {caracteristicas.map(c => (
+            <li><span class="sb__check-icon">✓</span><span>{c}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 4. Certificaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Certificaciones Disponibles</h3></div>
+        <div class="sb__certs">
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-154-SCFI</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-002-STPS</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 10</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 2001</span></div>
+        </div>
+      </div>
+
+      <!-- 5. Marcas -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Marcas que Manejamos</h3></div>
+        <ul class="sb__brands">
+          <li>Proyecto Red — Marca propia</li>
+          <li>Extintores certificados NOM</li>
+        </ul>
+        <p class="sb__note">Pregunta por otras marcas</p>
+      </div>
+
+      <!-- 6. Aplicaciones -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Aplicaciones</h3></div>
+        <ul class="sb__app-list">
+          {aplicaciones.map(a => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 7. Productos Relacionados -->
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Productos Relacionados</h3></div>
+        <ul class="sb__products">
+          {productosRelacionados.map(p => (
+            <li><a href={p.href}>{p.nombre}</a></li>
+          ))}
+          <li><a href="/extintores/polvo-seco/">Extintores PQS Polvo Seco</a></li>
+          <li><a href="/extintores/tipo-k/">Extintores Tipo K</a></li>
+        </ul>
+      </div>
+
+      <!-- 8. Servicios -->
+      <div class="sb__widget sb__widget--services">
+        <div class="sb__header"><h3>Servicios Proyecto Red</h3></div>
+        <p class="sb__services-desc">Complementa tu compra con mantenimiento y capacitación profesional.</p>
+        <ul class="sb__services">
+          <li><a href="/servicios/recarga-extintores/">Recarga de extintores</a></li>
+          <li><a href="/servicios/mantenimiento-preventivo/">Mantenimiento preventivo</a></li>
+          <li><a href="/servicios/prueba-hidrostatica/">Prueba hidrostática</a></li>
+          <li><a href="/servicios/capacitacion-brigadas/">Capacitación DC-3</a></li>
+        </ul>
+        <a href="/servicios/" class="sb__services-link">¿Necesitas más servicios? Ver todos →</a>
+      </div>
+
+    </aside>
+  </div><!-- /pp-layout -->
+
+  <!-- ══ OTROS EXTINTORES CO₂ ══ -->
+  <section class="pp-otros">
+    <div class="container">
+      <h2 class="pp-otros__title">Otros Extintores en Nuestra Línea</h2>
+      <p class="pp-otros__sub">Explora más opciones según tu aplicación específica</p>
+      <a href="/extintores/co2/" class="pp-otros__link">Ver todo el catálogo CO₂ →</a>
+      <div class="pp-otros__grid">
+        {otrosProductos.map(p => (
+          <a href={p.href} class="pp-otros__card">
+            <div class="pp-otros__img">
+              <img src={p.img} alt={p.nombre} width="400" height="220" loading="lazy" />
+            </div>
+            <div class="pp-otros__body">
+              <h3 class="pp-otros__name">{p.nombre}</h3>
+              <p class="pp-otros__desc">{p.desc}</p>
+              <ul class="pp-otros__specs">
+                {p.specs.map(s => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <span class="pp-otros__cta">
+                {p.nombre.split(' — ')[0]}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COTIZACIÓN ══ -->
+  <section class="pp-cotizar" id="cotizar">
+    <div class="container pp-cotizar__inner">
+      <div class="pp-cotizar__info">
+        <h2>Cotiza Extintor CO₂ 5 kg</h2>
+        <p class="pp-cotizar__sub">Precio y disponibilidad en menos de 24 horas</p>
+        <ul class="pp-cotizar__perks">
+          <li>Asesoría técnica sin costo</li>
+          <li>Entrega el mismo día en CDMX</li>
+          <li>Factura electrónica disponible</li>
+        </ul>
+      </div>
+      <div class="pp-cotizar__form">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20CO%E2%82%82%205%20kg.%20Mi%20nombre%20es%3A`}
+          class="btn-primary"
+          style="background:#25D366;font-size:0.95rem;padding:0.85rem 1.8rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+        <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
+        <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQs ══ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes"
+    subtitulo="Todo sobre el extintor de CO₂ 5 kg"
+    pageId="co2-5-kg"
+    bgGray={false}
+    faqs={faqs}
+  />
+
+</Base>
+<style>
+  .pp-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 3rem; align-items: start; }
+  .pp-main { min-width: 0; }
+  .pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.75rem; border-radius: 10px; overflow: hidden; }
+  .pp-gallery__col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-gallery img { width: 100%; height: 200px; object-fit: cover; display: block; background: #f5f5f5; border-radius: 6px; }
+
+  .pp-desc { margin-bottom: 2rem; }
+  .pp-desc p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 0.75rem; }
+  .pp-desc strong { color: #111; }
+
+  .pp-block { margin-bottom: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+  .pp-block:last-child { border-bottom: none; }
+  .pp-block h2 { font-size: 1.15rem; font-weight: 800; color: #111; margin: 0 0 1rem; }
+  .pp-block p { font-size: 0.85rem; color: #555; line-height: 1.65; margin: 0 0 0.5rem; }
+
+  .pp-table { width: 100%; border-collapse: collapse; }
+  .pp-table tr { border-bottom: 1px solid #f0f0f0; }
+  .pp-table td { padding: 0.65rem 0; font-size: 0.82rem; vertical-align: top; }
+  .pp-table__label { color: #888; font-weight: 600; width: 35%; padding-right: 1rem; }
+  .pp-table__value { color: #222; font-weight: 500; }
+
+  .pp-features { list-style: none; padding: 0; margin: 0; }
+  .pp-features li { position: relative; padding: 0.6rem 0 0.6rem 1.5rem; font-size: 0.84rem; color: #444; line-height: 1.55; border-bottom: 1px solid #f5f5f5; }
+  .pp-features li::before { content: "✓"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; }
+  .pp-features li strong { color: #111; }
+  .pp-app-list { list-style: none; padding: 0; margin: 0; }
+  .pp-app-list li { padding: 0.45rem 0 0.45rem 1.3rem; position: relative; font-size: 0.84rem; color: #444; }
+  .pp-app-list li::before { content: "•"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; font-size: 1.1rem; line-height: 1; top: 0.45rem; }
+
+  .pp-specs-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pp-specs-mini__item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .pp-specs-mini__item span:first-child { color: #888; font-weight: 600; }
+  .pp-specs-mini__item span:last-child { color: #222; font-weight: 500; text-align: right; }
+  .pp-specs-mini__item:nth-child(odd) { padding-right: 1rem; }
+  .pp-specs-mini__item:nth-child(even) { padding-left: 1rem; border-left: 1px solid #f0f0f0; }
+
+  .sb { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .sb__widget { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+  .sb__header { margin-bottom: 12px; }
+  .sb__header h3 { font-size: 0.85rem; font-weight: 700; color: #111; margin: 0; letter-spacing: -0.01em; }
+
+  .sb__nav ul { list-style: none; padding: 0; margin: 0; }
+  .sb__nav li { border-bottom: 1px solid #f3f3f3; }
+  .sb__nav li:last-child { border-bottom: none; }
+  .sb__nav a { display: flex; align-items: center; gap: 6px; padding: 8px 10px; font-size: 0.8rem; color: #555; text-decoration: none; border-radius: 6px; font-weight: 500; }
+  .sb__nav a:hover { background: #f7f7f7; color: #111; }
+  .sb__nav-active { background: #fef2f2 !important; color: var(--c-primary, #C41E24) !important; font-weight: 700 !important; }
+  .sb__back { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); text-decoration: none; font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+
+  .sb__widget--cta { background: linear-gradient(135deg, #1a1a2e 0%, #1a365d 100%); border: none; color: #fff; }
+  .sb__widget--cta h3 { color: #fff; font-size: 0.9rem; font-weight: 700; margin: 0 0 6px; }
+  .sb__cta-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin: 0 0 14px; line-height: 1.5; }
+  .sb__btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 8px 20px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; }
+  .sb__btn--solid { background: var(--c-primary, #C41E24); color: #fff; border: 2px solid var(--c-primary, #C41E24); margin-bottom: 8px; }
+  .sb__btn--outline { background: transparent; color: var(--c-primary, #C41E24); border: 2px solid var(--c-primary, #C41E24); }
+  .sb__tel { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 10px 0 0; text-align: center; }
+  .sb__tel a { color: #fff; font-weight: 600; text-decoration: none; }
+
+  .sb__checks { list-style: none; padding: 0; margin: 0; }
+  .sb__checks li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 0.78rem; color: #444; line-height: 1.45; }
+  .sb__check-icon { color: #22c55e; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+
+  .sb__certs { display: flex; flex-direction: column; gap: 8px; }
+  .sb__cert { display: flex; align-items: center; gap: 10px; }
+  .sb__cert-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 0.6rem; font-weight: 800; color: #555; flex-shrink: 0; }
+  .sb__cert-name { font-size: 0.78rem; color: #333; font-weight: 500; }
+
+  .sb__brands { list-style: none; padding: 0; margin: 0; }
+  .sb__brands li { padding: 5px 0; font-size: 0.8rem; color: #333; font-weight: 600; border-bottom: 1px solid #f3f3f3; }
+  .sb__brands li:last-child { border-bottom: none; }
+  .sb__note { font-size: 0.72rem; color: #999; font-style: italic; margin: 8px 0 0; }
+
+  .sb__app-list { list-style: none; padding: 0; margin: 0; }
+  .sb__app-list li { padding: 5px 0 5px 14px; position: relative; font-size: 0.78rem; color: #555; border-bottom: 1px solid #f5f5f5; }
+  .sb__app-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--c-primary, #C41E24); border-radius: 50%; }
+  .sb__app-list li:last-child { border-bottom: none; }
+
+  .sb__products { list-style: none; padding: 0; margin: 0; }
+  .sb__products li { border-bottom: 1px solid #f3f3f3; }
+  .sb__products li:last-child { border-bottom: none; }
+  .sb__products a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__products a:hover { color: var(--c-primary, #C41E24); }
+
+  .sb__widget--services { background: #fafafa; }
+  .sb__services-desc { font-size: 0.75rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+  .sb__services { list-style: none; padding: 0; margin: 0; }
+  .sb__services li { border-bottom: 1px solid #eee; }
+  .sb__services li:last-child { border-bottom: none; }
+  .sb__services a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__services a:hover { color: var(--c-primary, #C41E24); }
+  .sb__services-link { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); font-weight: 600; text-decoration: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+
+  .pp-otros { padding: 3rem 0; background: #f9f9f9; border-top: 1px solid #eee; }
+  .pp-otros__title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 0.25rem; }
+  .pp-otros__sub { font-size: 0.85rem; color: #666; margin: 0 0 0.35rem; }
+  .pp-otros__link { font-size: 0.8rem; color: var(--c-primary, #C41E24); font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .pp-otros__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pp-otros__card { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .pp-otros__card:hover { border-color: var(--c-primary, #C41E24); }
+  .pp-otros__img { height: 160px; overflow: hidden; background: #1a1010; }
+  .pp-otros__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+  .pp-otros__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .pp-otros__name { font-size: 0.88rem; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }
+  .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+  .pp-otros__card:hover .pp-otros__cta { gap: 0.55rem; }
+
+  .pp-cotizar { padding: 3.5rem 0; background: #111; }
+  .pp-cotizar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .pp-cotizar h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem; }
+  .pp-cotizar__sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 1.2rem; }
+  .pp-cotizar__perks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-cotizar__perks li { font-size: 0.82rem; color: rgba(255,255,255,0.75); padding-left: 1.2rem; position: relative; }
+  .pp-cotizar__perks li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+  .pp-cotizar__form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .pp-cotizar__note { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: center; margin: 0; }
+  .pp-cotizar__alt { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-align: center; margin: 0; }
+  .pp-cotizar__alt a { color: #fff; font-weight: 600; text-decoration: none; }
+</style>
