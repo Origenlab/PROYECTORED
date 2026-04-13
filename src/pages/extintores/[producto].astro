@@ -98,19 +98,35 @@ const getVariantesBodyPara = () => {
         <div class="catidx-grid" role="list" aria-label={`Capacidades de ${data.heroAccent}`}>
           {data.variantes.map((v, i) => (
             <article class="ccard" role="listitem" aria-label={v.nombre}>
-              <div class="ccard__header">
-                <Img
-                  src={data.img}
-                  alt={v.nombre}
-                  loading={i < 4 ? 'eager' : 'lazy'}
-                  fetchpriority={i === 0 ? 'high' : undefined}
-                  width={640}
-                  height={360}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
-                />
-                <div class="ccard__header-overlay" aria-hidden="true"></div>
-                {v.badge && <span class="ccard__badge">{v.badge}</span>}
-              </div>
+              {(() => {
+                const imgSrc = v.img ?? data.img
+                return (
+                  <div class:list={['ccard__header', !imgSrc && 'ccard__header--placeholder']}>
+                    {imgSrc ? (
+                      <Img
+                        src={imgSrc}
+                        alt={v.nombre}
+                        loading={i < 4 ? 'eager' : 'lazy'}
+                        fetchpriority={i === 0 ? 'high' : undefined}
+                        width={640}
+                        height={360}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+                      />
+                    ) : (
+                      <div class="ccard__placeholder-icon" aria-hidden="true">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="ccard__placeholder-label">Imagen próximamente</span>
+                      </div>
+                    )}
+                    {imgSrc && <div class="ccard__header-overlay" aria-hidden="true"></div>}
+                    {v.badge && <span class="ccard__badge">{v.badge}</span>}
+                  </div>
+                )
+              })()}
               <div class="ccard__content">
                 <h3 class="ccard__title">{v.nombre}</h3>
                 <p class="ccard__desc">{v.desc}</p>

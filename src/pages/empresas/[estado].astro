@@ -10,7 +10,6 @@ const estadoData: Record<string, {
   badge: string
   heroSubtitle: string
   heroDescRight: string[]
-  stats: { value: string; label: string }[]
   delivery: { label: string; desc: string }[]
   zones?: string[]
   ctaBody: string
@@ -23,13 +22,7 @@ const estadoData: Record<string, {
       'Nuestro almacén central está ubicado en la Colonia Juárez, CDMX. Operamos con flota propia en toda la Ciudad de México, lo que nos permite entregar sin depender de paqueterías externas y garantizar tiempos precisos.',
       'La Ciudad de México es nuestra zona de mayor cobertura: extintores, señalamientos, gabinetes, sistemas CI y cualquier equipo de nuestro catálogo disponible para entrega el mismo día en cualquier alcaldía.',
     ],
-    stats: [
-      { value: '16',    label: 'Alcaldías cubiertas' },
-      { value: 'Mismo día', label: 'Entrega local' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Entrega el mismo día', desc: 'Pedidos confirmados antes de las 2 PM se entregan ese mismo día en cualquier alcaldía.' },
       { label: 'Flota propia', desc: 'Sin paqueterías intermedias — nosotros controlamos cada entrega de principio a fin.' },
       { label: 'Instalación en sitio', desc: 'Instalamos sistemas CI, señalamientos y gabinetes directamente en tus instalaciones.' },
@@ -46,13 +39,7 @@ const estadoData: Record<string, {
       'El Estado de México forma parte de nuestra zona de operación directa. Cubrimos los municipios de la zona conurbada con flota propia y los demás municipios del estado con paquetería certificada.',
       'Entregamos con documentación NOM completa lista para tu expediente de Protección Civil, igual que en la Ciudad de México. Un solo proveedor para toda la zona metropolitana.',
     ],
-    stats: [
-      { value: '25+',  label: 'Municipios cubiertos' },
-      { value: '24–48h', label: 'Tiempo de entrega' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Zona conurbada — 24 horas', desc: 'Naucalpan, Tlalnepantla, Ecatepec, Nezahualcóyotl, Chimalhuacán y municipios cercanos.' },
       { label: 'Interior del estado — 48 horas', desc: 'Toluca, Metepec, Atlacomulco, Texcoco y todos los demás municipios.' },
       { label: 'Documentación completa', desc: 'Fichas técnicas, certificados NOM y etiqueta de inspección en cada entrega.' },
@@ -69,13 +56,7 @@ const estadoData: Record<string, {
       'Atendemos a plantas industriales, empresas y contratistas en Querétaro con equipo certificado enviado desde nuestro almacén en la Ciudad de México. El tiempo de entrega es de 2–4 días hábiles según el tipo de producto.',
       'Cada envío incluye documentación NOM completa: ficha técnica, certificado de conformidad y etiqueta de inspección. Todo listo para tu expediente de Protección Civil local.',
     ],
-    stats: [
-      { value: '2–4 días', label: 'Tiempo de entrega' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'NFPA', label: 'Certificación internacional' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Querétaro ciudad', desc: 'Entrega en 2–3 días hábiles a domicilio en Querétaro, Corregidora y El Marqués.' },
       { label: 'Zona industrial', desc: 'Parques industriales de Querétaro: tiempo de entrega y disponibilidad según inventario.' },
       { label: 'Paquetería certificada', desc: 'Enviamos con paquetería especializada para equipo de seguridad.' },
@@ -91,13 +72,7 @@ const estadoData: Record<string, {
       'Atendemos a empresas, plantas industriales y contratistas en Puebla con todo nuestro catálogo de equipos contra incendios. Enviamos desde nuestra bodega en CDMX con paquetería certificada para equipos de seguridad.',
       'Documentación completa incluida en cada pedido: fichas técnicas, certificados NOM, garantía y etiqueta de inspección. Todo lo que necesitas para tu expediente de Protección Civil Puebla.',
     ],
-    stats: [
-      { value: '2–4 días', label: 'Tiempo de entrega' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'NFPA', label: 'Certificación internacional' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Puebla capital', desc: 'Entrega en 2–3 días hábiles a domicilio en Puebla, Cholula y San Andrés Cholula.' },
       { label: 'Zona industrial', desc: 'Parques industriales de Puebla y Tlaxcala: tiempo estimado según disponibilidad.' },
       { label: 'Todo el catálogo disponible', desc: 'Extintores, señalamientos, gabinetes, sistemas CI y más.' },
@@ -113,13 +88,7 @@ const estadoData: Record<string, {
       'Enviamos desde nuestra bodega en CDMX a toda la zona industrial y empresarial de Aguascalientes. Coordinamos tiempos de entrega con paquetería especializada en equipos de seguridad.',
       'Toda la documentación NOM incluida: fichas técnicas, certificados de conformidad y etiqueta de inspección. Para pedidos grandes coordinamos directamente con logística dedicada.',
     ],
-    stats: [
-      { value: '3–5 días', label: 'Tiempo de entrega' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'NFPA', label: 'Certificación internacional' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Aguascalientes capital', desc: 'Tiempo estimado de 3–4 días hábiles para la zona metropolitana.' },
       { label: 'Parques industriales', desc: 'Coordinamos entregas para plantas y parques industriales del estado.' },
       { label: 'Logística dedicada para volumen', desc: 'Pedidos grandes con flota dedicada y cronograma confirmado.' },
@@ -135,13 +104,7 @@ const estadoData: Record<string, {
       'Atendemos a empresas en Baja California con equipo certificado enviado por paquetería especializada. Documentación completa para cumplir con Protección Civil local y con normativa de zonas de exportación y maquiladoras.',
       'Para plantas que requieren certificaciones adicionales (como las aplicables en zonas de exportación), podemos acompañarte con la selección del equipo más adecuado y la documentación necesaria.',
     ],
-    stats: [
-      { value: '4–6 días', label: 'Tiempo de entrega' },
-      { value: 'NOM', label: 'Documentación incluida' },
-      { value: 'NFPA', label: 'Certificación internacional' },
-      { value: 'Gratis', label: 'Asesoría técnica' },
-    ],
-    delivery: [
+delivery: [
       { label: 'Tijuana y Tecate', desc: 'Parques industriales y empresas. Entrega estimada en 4–5 días hábiles.' },
       { label: 'Mexicali', desc: 'Zona industrial y maquiladoras. Tiempo estimado 4–5 días hábiles.' },
       { label: 'Ensenada', desc: 'Entrega en 5–6 días hábiles. Coordinamos según tipo de equipo.' },
@@ -180,7 +143,6 @@ const PAGE_WA = waUrl(`Hola, necesito información sobre cobertura en ${data.tit
     { label: 'Cobertura', href: '/empresas/' },
     { label: data.title },
   ]}
-  stats={data.stats}
   showForm={true}
   ctaTitle={`¿Necesitas equipo en ${data.title}?`}
   ctaBody={data.ctaBody}

@@ -67,7 +67,7 @@ const escenarios = [
       bodyPara1="No todos los inmuebles necesitan gabinete. La regla práctica: si el extintor se ensucia, se golpea, alguien podría llevárselo o está en una zona donde Protección Civil exige protección — necesitas gabinete. Si está en un área protegida, seca y de bajo tráfico, el soporte de pared puede ser suficiente. Te asesoramos sin costo para elegir la solución correcta."
     />
 
-    <div class="guia-gab-grid" role="list" aria-label="Guía de gabinetes por tipo de inmueble">
+    <div class="guia-grid" role="list" aria-label="Guía de gabinetes por tipo de inmueble">
       {escenarios.map((esc, i) => (
         <article class="guia-card" role="listitem">
           <div class="guia-card__header">
@@ -132,13 +132,4 @@ const escenarios = [
     background: var(--c-surface, #F4F4F5);
     border-top: 1px solid var(--c-border);
   }
-
-  .guia-gab-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: 640px) { .guia-gab-grid { grid-template-columns: 1fr; } }
 </style>

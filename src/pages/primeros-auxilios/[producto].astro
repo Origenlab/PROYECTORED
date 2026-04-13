@@ -6,14 +6,21 @@
 //         /primeros-auxilios/desfibrilador/,
 //         /primeros-auxilios/oxigeno-emergencia/,
 //         /primeros-auxilios/material-curacion/
+//
+// Patrón 100% homologado con mangueras/[producto].astro (referencia canónica L4 v2).
+// Secciones: Características → Cuándo usar → Servicios →
+//            TrustIndex → NormasPrimerosAuxilios → Otros productos
 
 import CategoryLayout from '../../layouts/CategoryLayout.astro'
-import SectionHeader from '../../components/ui/SectionHeader.astro'
+import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
+import TrustIndex from '../../components/sections/TrustIndex.astro'
+import NormasPrimerosAuxilios from '../../components/sections/NormasPrimerosAuxilios.astro'
 import { waUrl, SERVICES } from '../../config/site'
 import { PRIMEROS_AUXILIOS_PAGES, PRIMEROS_AUXILIOS_PRODUCTS } from '../../data/primeros-auxilios-productos'
 import '../../styles/product-page.css'
+import '../../styles/pages.css'
 
-// Servicios más relevantes para esta categoría
+// Servicios más relevantes para primeros auxilios
 const RELATED_SERVICES = SERVICES.filter((s) =>
   ['capacitacion', 'asesoria-tecnica', 'venta-equipos'].includes(s.id)
 )
@@ -33,6 +40,13 @@ if (!data) {
   return Astro.redirect('/primeros-auxilios/')
 }
 
+// Variables para la sección de variantes
+const hasVariantes = Boolean(data.variantes && data.variantes.length > 0)
+const getVariantesDesc = (): string => {
+  const n = data.variantes?.length ?? 0
+  return `${n} opciones disponibles de ${data.heroAccent} con stock permanente y entrega inmediata en CDMX.`
+}
+
 // Productos relacionados (los demás, excluyendo el actual)
 const related = PRIMEROS_AUXILIOS_PRODUCTS.filter((p) => p.slug !== producto)
 
@@ -50,12 +64,11 @@ const PAGE_WA = waUrl(data.waMessage)
   cta1={{ text: 'Cotizar por WhatsApp', href: PAGE_WA }}
   cta2={{ text: 'Ver todo el equipo de primeros auxilios', href: '/primeros-auxilios/' }}
   breadcrumb={[
-    { label: 'Inicio',           href: '/'                    },
-    { label: 'Productos',        href: '/productos/'           },
-    { label: 'Primeros Auxilios', href: '/primeros-auxilios/' },
+    { label: 'Inicio',             href: '/'                    },
+    { label: 'Productos',          href: '/productos/'           },
+    { label: 'Primeros Auxilios',  href: '/primeros-auxilios/'  },
     { label: data.heroAccent },
   ]}
-  stats={data.stats}
   showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
@@ -67,29 +80,73 @@ const PAGE_WA = waUrl(data.waMessage)
 >
 
   <!-- ===========================================================
-       BLOQUE 1 — Características técnicas
+       SECCIÓN 0 — Variantes (OPCIONAL)
+       Si hay variantes: blanco · Si no: se salta y sección 1 es blanco
        =========================================================== -->
-  <section class="prod-section section" id="caracteristicas">
+  {hasVariantes && (
+    <section class="cat-section cat-section--white" id="variantes">
+      <div class="container">
+        <SectionHeaderDuo
+          eyebrow={data.variantesEyebrow ?? 'Opciones disponibles'}
+          titleLine1={data.variantesTitleLine1 ?? 'Modelos disponibles'}
+          titleLine2={data.variantesTitleLine2}
+          desc={getVariantesDesc()}
+          bodyPara1={data.variantesBodyPara ?? 'Todos los equipos cumplen con la normatividad vigente y se entregan con documentación técnica completa para tu expediente de Protección Civil y STPS.'}
+        />
+        <div class="catidx-grid" role="list" aria-label={`Opciones de ${data.heroAccent}`}>
+          {data.variantes?.map((v, i) => (
+            <article class="ccard ccard--tipo" role="listitem" aria-label={v.nombre}>
+              <div class="ccard__content">
+                {v.badge && <span class="ccard__badge ccard__badge--top">{v.badge}</span>}
+                <h3 class="ccard__title">{v.nombre}</h3>
+                <p class="ccard__desc">{v.desc}</p>
+                {v.specs && <p class="ccard__specs">{v.specs}</p>}
+                <a href={waUrl(v.waText)} class="ccard__cta" target="_blank" rel="noopener noreferrer">
+                  Cotizar este equipo
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+          <!-- CTA Card WhatsApp -->
+          <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir equipo">
+            <a href={PAGE_WA} class="ccard--cta-wa__inner" target="_blank" rel="noopener noreferrer">
+              <div class="ccard--cta-wa__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p class="ccard--cta-wa__title">¿No encuentras lo que necesitas?</p>
+              <p class="ccard--cta-wa__sub">Cotiza directo por WhatsApp — te asesoramos sin costo.</p>
+              <span class="ccard--cta-wa__btn">Enviar mensaje →</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ===========================================================
+       SECCIÓN 1 — Características técnicas
+       Con variantes → fondo --gray
+       Sin variantes → fondo --white
+       =========================================================== -->
+  <section class={`cat-section ${hasVariantes ? 'cat-section--gray' : 'cat-section--white'}`} id="caracteristicas">
     <div class="container">
 
-      <SectionHeader
+      <SectionHeaderDuo
         eyebrow={data.caracteristicas.eyebrow}
         titleLine1={data.caracteristicas.titleLine1}
         titleLine2={data.caracteristicas.titleLine2}
         desc={data.caracteristicas.desc}
+        bodyPara1="Nuestro equipo técnico verifica la dotación correcta según el número de trabajadores, el nivel de riesgo y la norma aplicable antes de la entrega. Suministro con factura electrónica, ficha técnica de contenido y asesoría incluida en CDMX y Estado de México."
       />
 
-      <div class="features-grid">
-        {data.caracteristicas.items.map((item) => (
-          <div class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <div class="feature-card__body">
-              <h3 class="feature-card__title">{item.title}</h3>
-              <p class="feature-card__desc">{item.desc}</p>
+      <div class="l4-svc-grid" role="list" aria-label="Características técnicas">
+        {data.caracteristicas.items.map((item, idx) => (
+          <div class="srv-mini" role="listitem" aria-label={item.title}>
+            <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+            <div class="srv-mini__body">
+              <strong class="srv-mini__titulo">{item.title}</strong>
+              <span class="srv-mini__sub">{item.desc}</span>
             </div>
           </div>
         ))}
@@ -97,7 +154,9 @@ const PAGE_WA = waUrl(data.waMessage)
 
       <!-- CTA inline -->
       <div class="inline-cta">
-        <p class="inline-cta__text">¿Tienes dudas sobre la dotación correcta para tu número de trabajadores? Te asesoramos.</p>
+        <p class="inline-cta__text">
+          ¿Tienes dudas sobre la dotación correcta para tu empresa? Te asesoramos sin costo.
+        </p>
         <a
           href={PAGE_WA}
           class="btn btn--red"
@@ -112,72 +171,179 @@ const PAGE_WA = waUrl(data.waMessage)
   </section>
 
   <!-- ===========================================================
-       BLOQUE 2 — ¿Cuándo usar?
+       SECCIÓN 2 — ¿Cuándo usar? / Aplicaciones
+       Con variantes → fondo --white
+       Sin variantes → fondo --gray
        =========================================================== -->
-  <section class="prod-section prod-section--light section--sm" id="cuando-usar">
+  <section class={`cat-section ${hasVariantes ? 'cat-section--white' : 'cat-section--gray'}`} id="cuando-usar">
     <div class="container">
 
-      <SectionHeader
+      <SectionHeaderDuo
         eyebrow={data.cuandoUsar.eyebrow}
         titleLine1={data.cuandoUsar.titleLine1}
         titleLine2={data.cuandoUsar.titleLine2}
         desc={data.cuandoUsar.desc}
+        bodyPara1="¿Tu tipo de instalación no está en la lista? Cuéntanos el número de trabajadores, el tipo de riesgo y la norma que debes cumplir — te proponemos el equipo correcto con documentación para Protección Civil y STPS, sin costo."
       />
 
-      <div class="usos-grid">
-        {data.cuandoUsar.usos.map((uso) => (
-          <div class="uso-item">
-            <div class="uso-item__dot" aria-hidden="true"></div>
-            <div class="uso-item__body">
-              <h3 class="uso-item__label">{uso.label}</h3>
-              <p class="uso-item__desc">{uso.desc}</p>
+      <div class="l4-svc-grid" role="list" aria-label="Aplicaciones e instalaciones recomendadas">
+        {data.cuandoUsar.usos.map((uso, idx) => (
+          <div class="srv-mini" role="listitem" aria-label={uso.label}>
+            <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+            <div class="srv-mini__body">
+              <strong class="srv-mini__titulo">{uso.label}</strong>
+              <span class="srv-mini__sub">{uso.desc}</span>
             </div>
           </div>
         ))}
       </div>
 
+      <!-- CTA inline -->
+      <div class="inline-cta">
+        <p class="inline-cta__text">
+          ¿No estás seguro del equipo que necesitas? Te hacemos el diagnóstico sin costo.
+        </p>
+        <a
+          href={PAGE_WA}
+          class="btn btn--red"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Solicitar diagnóstico
+        </a>
+      </div>
+
     </div>
   </section>
 
   <!-- ===========================================================
-       BLOQUE 3 — Servicios relacionados
+       SECCIÓN 3 — Servicios relacionados (patrón srv-mini de L1)
+       Con variantes → fondo --gray
+       Sin variantes → fondo --white
+       Servicios: capacitación, asesoría técnica, venta de equipos.
        =========================================================== -->
-  <section class="prod-section section--sm" id="servicios-primeros-auxilios">
+  <section class={`cat-section ${hasVariantes ? 'cat-section--gray' : 'cat-section--white'}`} id="servicios-primeros-auxilios">
     <div class="container">
-      <div class="svc-header">
-        <p class="svc-header__label">Servicios de apoyo disponibles</p>
-        <a href="/servicios/" class="svc-header__link">Ver todos los servicios →</a>
-      </div>
-      <div class="svc-grid">
-        {RELATED_SERVICES.map((svc) => (
-          <a href={`/servicios/#${svc.id}`} class="svc-card">
-            <span class="svc-card__name">{svc.label}</span>
-            <span class="svc-card__desc">{svc.desc}</span>
-            <span class="svc-card__arrow" aria-hidden="true">→</span>
-          </a>
-        ))}
-      </div>
+
+      <SectionHeaderDuo
+        eyebrow="Servicios disponibles"
+        titleLine1="Más que producto:"
+        titleLine2="equipo, capacitación y cumplimiento"
+        desc="No solo suministramos el equipo — capacitamos a tu brigada, entregamos la constancia DC-3 y documentamos el cumplimiento para STPS y Protección Civil."
+        bodyPara1="Un botiquín completo, una camilla correcta y un DEA funcionando no sirven si nadie sabe usarlos. Por eso integramos en un solo servicio: selección del equipo correcto, suministro con factura, instalación y señalización conforme a norma, capacitación con constancia DC-3 válida ante STPS y entrega del expediente de cumplimiento. Todo sin necesidad de contratar múltiples proveedores."
+      />
+
+      {RELATED_SERVICES.length > 0 && (
+        <div class="l4-svc-grid" role="list" aria-label="Servicios disponibles para primeros auxilios">
+          {RELATED_SERVICES.map((svc, idx) => (
+            <a
+              href={`/servicios/#${svc.id}`}
+              class="srv-mini"
+              role="listitem"
+              aria-label={svc.label}
+            >
+              <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+              <div class="srv-mini__body">
+                <strong class="srv-mini__titulo">{svc.label}</strong>
+                <span class="srv-mini__sub">{svc.desc}</span>
+              </div>
+              <svg
+                class="srv-mini__arrow"
+                width="16" height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
+
     </div>
   </section>
 
   <!-- ===========================================================
-       BLOQUE 4 — Otros equipos de primeros auxilios
+       SECCIÓN 4 — Por qué Proyecto Red (homologado con L1/L3/L4)
+       TrustIndex tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
-  <section class="prod-section section--sm">
+  <TrustIndex />
+
+  <!-- ===========================================================
+       SECCIÓN 5 — Normas aplicables (NOM-030-STPS, NOM-017, NOM-002, etc.)
+       NormasPrimerosAuxilios tiene su propio fondo — no interrumpe la alternancia.
+       =========================================================== -->
+  <NormasPrimerosAuxilios />
+
+  <!-- ===========================================================
+       SECCIÓN 6 — Otros productos de primeros auxilios
+       Siempre --white (después de secciones con fondo propio).
+       Cards .ccard--text + .catidx-grid--compact (sin imagen).
+       =========================================================== -->
+  <section class="cat-section cat-section--white" id="otros-primeros-auxilios">
     <div class="container">
 
-      <div class="related-header">
-        <p class="related-header__label">{data.relatedTitle}:</p>
-        <a href="/primeros-auxilios/" class="related-header__link">Ver todo el equipo →</a>
-      </div>
+      <SectionHeaderDuo
+        eyebrow="Más opciones"
+        titleLine1={data.relatedTitle}
+        desc="El equipo de primeros auxilios es un sistema: botiquín, camilla, DEA, oxígeno y material de curación deben estar disponibles y listos para usarse juntos en una emergencia."
+        bodyPara1="Explora el resto del catálogo de primeros auxilios para complementar tu dotación: desde el botiquín conforme a NOM-005-STPS hasta el DEA con gabinete de pared. Te asesoramos en la selección correcta según el tamaño de tu empresa, el tipo de riesgo y los requisitos de Protección Civil o STPS."
+      />
 
-      <div class="related-grid">
+      <div class="catidx-grid catidx-grid--compact" role="list" aria-label="Otros productos de primeros auxilios">
         {related.map((r) => (
-          <a href={`/primeros-auxilios/${r.slug}/`} class="related-card">
-            <span class="related-card__label">{r.label}</span>
-            <span class="related-card__badge">{r.badge}</span>
-          </a>
+          <article class="ccard ccard--text" role="listitem" aria-label={r.label}>
+            <div class="ccard__content">
+              <span class="ccard__badge ccard__badge--top">{r.badge}</span>
+              <h3 class="ccard__title">{r.label}</h3>
+              <a
+                href={`/primeros-auxilios/${r.slug}/`}
+                class="ccard__cta"
+                aria-label={`Ver detalles de ${r.label}`}
+              >
+                Ver detalles
+                <svg
+                  width="13" height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
         ))}
+
+        <!-- CTA Card WhatsApp — siempre última tarjeta -->
+        <article class="ccard ccard--cta-wa" aria-label="Asesoría para equipo de primeros auxilios">
+          <a
+            href={PAGE_WA}
+            class="ccard--cta-wa__inner"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="ccard--cta-wa__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            <p class="ccard--cta-wa__title">¿No sabes qué equipo necesitas?</p>
+            <p class="ccard--cta-wa__sub">
+              Cuéntanos el número de trabajadores, el tipo de riesgo y la norma aplicable — te recomendamos la solución correcta sin costo.
+            </p>
+            <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+          </a>
+        </article>
       </div>
 
     </div>
@@ -185,4 +351,128 @@ const PAGE_WA = waUrl(data.waMessage)
 
 </CategoryLayout>
 
-<!-- Estilos compartidos en src/styles/product-page.css (importado en frontmatter) -->
+<!-- ─────────────────────────────────────────────────────────────
+     Estilos compartidos (importados en el frontmatter):
+     · product-page.css → .l4-svc-grid, .srv-mini, .inline-cta
+     · pages.css        → .catidx-grid, .ccard, .ccard--cta-wa, .cat-section
+
+     Estilos scoped solo para variantes específicas de esta página:
+     · .ccard--text          → card sin imagen para S6 "Otros productos"
+     · .ccard__badge--top    → badge norma pequeño arriba del título
+     · .catidx-grid--compact → más columnas para cards sin imagen
+     ───────────────────────────────────────────────────────────── -->
+
+<style>
+  /* ── Card sin imagen — usada en S6 "Otros productos" ─────── */
+  .ccard--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--c-bg-alt, #F8F8F8);
+    border: 1px solid var(--c-border, #E4E4E7);
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 140px;
+  }
+
+  .ccard--text .ccard__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  /* ── Badge superior pequeño en .ccard--text ──────────────── */
+  .ccard__badge--top {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--c-primary, #C41E24);
+    background: rgba(196, 30, 36, 0.06);
+    border: 1px solid rgba(196, 30, 36, 0.18);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    align-self: flex-start;
+    line-height: 1.4;
+  }
+
+  /* ── Grid compacto: más columnas para cards sin imagen ────── */
+  .catidx-grid--compact {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    .catidx-grid--compact {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Card de variante/tipo sin imagen — usada en S0 "Variantes" */
+  .ccard--tipo {
+    display: flex;
+    flex-direction: column;
+    background: var(--c-bg-alt, #F8F8F8);
+    border: 1px solid var(--c-border, #E4E4E7);
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 200px;
+  }
+
+  .ccard--tipo .ccard__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  /* Título de variante */
+  .ccard--tipo .ccard__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-text, #1a1a1a);
+    line-height: 1.4;
+  }
+
+  /* Descripción de variante */
+  .ccard--tipo .ccard__desc {
+    font-size: 0.875rem;
+    color: var(--c-text-secondary, #666);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  /* Specs de variante: monoespaciadas, pequeñas */
+  .ccard--tipo .ccard__specs {
+    font-size: 0.75rem;
+    color: var(--c-text-secondary, #999);
+    font-family: 'Monaco', 'Courier New', monospace;
+    line-height: 1.4;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 0.75rem;
+    margin-top: auto;
+  }
+
+  /* CTA dentro de variante */
+  .ccard--tipo .ccard__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-primary, #C41E24);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-top: 1rem;
+  }
+
+  .ccard--tipo .ccard__cta:hover {
+    color: var(--c-primary-dark, #8b1619);
+  }
+
+  .ccard--tipo .ccard__cta svg {
+    flex-shrink: 0;
+  }
+</style>

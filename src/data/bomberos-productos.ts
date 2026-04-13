@@ -4,6 +4,20 @@
 // Fuente de verdad para src/pages/equipo-bomberos/[producto].astro
 // ============================================================
 
+// ============================================================
+// Variante / modelo disponible por producto
+// Equivalente a VarianteExtintor pero para equipo de bomberos.
+// Aparece en la sección 0 (antes de Características), igual
+// que en extintores/[producto].astro.
+// ============================================================
+export interface VarianteBombero {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string        // Línea monoespaciada: material · norma · tallas
+  waText: string       // Mensaje pre-llenado para WhatsApp
+}
+
 export interface ProductoBomberoData {
   // SEO & meta
   metaTitle: string
@@ -16,8 +30,15 @@ export interface ProductoBomberoData {
   heroSubtitle: string
   heroDescRight: string[]
 
-  // Stats bar (4 ítems)
-  stats: { value: string; label: string }[]
+  // Imagen principal del producto (usada en las tarjetas de variantes)
+  img?: string
+
+  // Sección 0 — Modelos / opciones disponibles (opcional)
+  variantes?: VarianteBombero[]
+  variantesEyebrow?: string
+  variantesTitleLine1?: string
+  variantesTitleLine2?: string
+  variantesBodyPara?: string
 
   // Sección 1 — Características técnicas
   caracteristicas: {
@@ -77,16 +98,38 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
     badge: 'NFPA 1971 · Combate estructural · Certificado',
     heroTitle: 'Trajes Estructurales',
     heroAccent: 'NFPA 1971',
+    img: '/imagenes/equipo-bomberos/trajes-estructurales-nfpa-1971.avif',
     heroSubtitle: 'El traje estructural es el equipo de protección personal más crítico para el combate de incendios. Nuestros trajes están certificados NFPA 1971 con sistema de tres capas: exterior resistente a llama, barrera de humedad e interior térmico.',
     heroDescRight: [
       'Un traje estructural certificado NFPA 1971 es la diferencia entre la vida y la muerte en una operación de combate de incendios. La certificación exige pruebas estrictas de resistencia al calor, a la llama, a la penetración de líquidos y a la resistencia mecánica de cada capa y de las costuras.',
       'En Proyecto Red suministramos trajes estructurales completos (chaqueta y pantalón) en las tallas requeridas por el cuerpo, con documentación de certificación de origen, ficha técnica y especificaciones de fabricante. Trabajamos con cuerpos municipales de bomberos, brigadas de Protección Civil y plantas industriales con brigada propia.',
     ],
-    stats: [
-      { value: 'NFPA 1971',  label: 'Certificación'         },
-      { value: '3 capas',    label: 'Sistema de protección' },
-      { value: 'Nomex®',     label: 'Fibra exterior'         },
-      { value: 'Gratis',     label: 'Asesoría técnica'       },
+variantesEyebrow:    'Opciones disponibles',
+    variantesTitleLine1: 'Selecciona el sistema',
+    variantesTitleLine2: 'de protección correcto',
+    variantesBodyPara:   'Todos los trajes se entregan con documentación NFPA 1971 de origen, ficha técnica del fabricante y certificado de conformidad. Cotiza la talla, la cantidad y el sistema para tu cuerpo o brigada.',
+    variantes: [
+      {
+        nombre: 'Traje Nomex® III — Dotación municipal',
+        badge:  'Nomex III · NFPA 1971',
+        desc:   'Chaquetón + pantalón de Nomex® III con barrera de humedad Crosstech® y forro térmico Caldura®. La opción más utilizada en cuerpos municipales de bomberos por su relación precio/desempeño. Disponible en tallas S a 4XL.',
+        specs:  'Exterior: Nomex® III · Barrera: Crosstech® · Tallas: S – 4XL',
+        waText: 'Hola, necesito cotizar trajes estructurales NFPA 1971 sistema Nomex III para mi cuerpo o brigada. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Traje PBI Matrix — Alta performance',
+        badge:  'PBI Matrix · Máxima protección',
+        desc:   'Chaquetón + pantalón de PBI Matrix con barrera Gore-Tex® PTB y forro Aralite®. Mayor resistencia al calor y a la llama que el Nomex III. El estándar en cuerpos de alta demanda operativa y brigadas industriales de alto riesgo.',
+        specs:  'Exterior: PBI Matrix · Barrera: Gore-Tex® PTB · Tallas: S – 4XL',
+        waText: 'Hola, necesito cotizar trajes estructurales NFPA 1971 sistema PBI Matrix para mi cuerpo o brigada. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Dotación completa — Traje + Casco + Guantes + Capucha',
+        badge:  'EPP completo · 5 elementos',
+        desc:   'Traje estructural NFPA 1971 + casco estructural + guantes de combate + capucha Nomex® + PASS individual. Dotación completa para incorporación de personal nuevo o actualización de certificación. Documentación por elemento incluida.',
+        specs:  '5 elementos · Certificados NFPA 1971/1851 · Doc. de origen',
+        waText: 'Hola, necesito cotizar una dotación completa de EPP (traje + casco + guantes + capucha) NFPA 1971. ¿Pueden asesorarme?',
+      },
     ],
 
     caracteristicas: {
@@ -173,16 +216,38 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
     badge: 'NFPA 1981 · SCBA · Atmósferas IDLH',
     heroTitle: 'ERA — Equipos de',
     heroAccent: 'Respiración Autónoma',
+    img: '/imagenes/equipo-bomberos/era-scba-respiracion-autonoma.avif',
     heroSubtitle: 'Los equipos de respiración autónoma (ERA o SCBA) protegen al bombero o brigadista en atmósferas peligrosas para la vida (IDLH): humo, gases tóxicos, deficiencia de oxígeno y atmósferas inmediatamente peligrosas para la salud. Certificados NFPA 1981.',
     heroDescRight: [
       'Un ERA de circuito abierto proporciona aire respirable limpio desde un cilindro de alta presión (300 bar) a través de un regulador de demanda conectado a una máscara facial de presión positiva. La presión positiva garantiza que ningún contaminante exterior ingrese a la máscara incluso si hay una fuga leve en el sellado.',
       'En Proyecto Red suministramos ERA completos (arnés, cilindro, regulador, máscara y sistema PASS), con documentación NFPA 1981, ficha técnica del fabricante y capacitación de uso incluida. Disponibles en duración de 30 y 45 minutos para diferentes perfiles operativos.',
     ],
-    stats: [
-      { value: 'NFPA 1981',  label: 'Certificación'             },
-      { value: '30 / 45 min', label: 'Duración del cilindro'    },
-      { value: '300 bar',    label: 'Presión de carga'          },
-      { value: 'PASS',       label: 'Alarma personal integrada' },
+variantesEyebrow:    'Opciones disponibles',
+    variantesTitleLine1: 'Selecciona la autonomía',
+    variantesTitleLine2: 'y el servicio que necesitas',
+    variantesBodyPara:   'Todos los ERA se entregan con documentación NFPA 1981/NIOSH, capacitación de uso incluida y soporte para recarga y mantenimiento. Cotiza el número de equipos y el perfil operativo de tu cuerpo o brigada.',
+    variantes: [
+      {
+        nombre: 'ERA 30 minutos — Cilindro 6.8 L / 300 bar',
+        badge:  'NFPA 1981 · 30 min',
+        desc:   'ERA completo: arnés ergonómico, cilindro de fibra de carbono 6.8 L/300 bar, regulador de presión positiva, máscara panorámica de silicón y PASS integrado. Duración efectiva de 15–20 minutos en combate interior con trabajo intenso.',
+        specs:  'Cilindro: 6.8 L / 300 bar · Duración: ~30 min · Peso: ~12 kg',
+        waText: 'Hola, necesito cotizar ERA (equipo de respiración autónoma) de 30 minutos NFPA 1981. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'ERA 45 minutos — Cilindro 9 L / 300 bar',
+        badge:  'NFPA 1981 · 45 min',
+        desc:   'Mayor autonomía para brigadas industriales con largas distancias al riesgo o para cuerpos que atienden instalaciones de gran superficie. Compatible en arnés y máscara con la plataforma de 30 min para intercambiabilidad de componentes.',
+        specs:  'Cilindro: 9 L / 300 bar · Duración: ~45 min · Peso: ~14 kg',
+        waText: 'Hola, necesito cotizar ERA (equipo de respiración autónoma) de 45 minutos NFPA 1981. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Recarga de cilindros y mantenimiento ERA',
+        badge:  'Servicio · DOT / CGA C-6',
+        desc:   'Recarga de cilindros de ERA con aire respirable NIOSH, prueba hidrostática periódica conforme a DOT/CGA C-6 y revisión completa de regulador, PASS y máscara. Entrega el mismo día en CDMX para recargas urgentes.',
+        specs:  'Aire NIOSH · Hidrostática cada 3–5 años · Collar de garantía',
+        waText: 'Hola, necesito el servicio de recarga y mantenimiento de cilindros ERA. ¿Pueden asesorarme?',
+      },
     ],
 
     caracteristicas: {
@@ -269,16 +334,38 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
     badge: 'Rescate vehicular · Hidráulico · Hurst · Holmatro',
     heroTitle: 'Herramientas de',
     heroAccent: 'Rescate Hidráulico',
+    img: '/imagenes/equipo-bomberos/herramientas-rescate-bombero.avif',
     heroSubtitle: 'Las herramientas de rescate hidráulico son el estándar mundial para extricación de víctimas en accidentes vehiculares. Quijadas de vida, cortadoras y esparcidores operados por unidad de poder hidráulica para acceso y liberación en condiciones extremas.',
     heroDescRight: [
       'Un sistema de rescate hidráulico completo incluye una unidad de poder (a gasolina o eléctrica), mangueras de alta presión y las herramientas de trabajo: cortadora para vigas y postes, esparcidor para abrir puertas y columnas, quijadas combinadas (corta/esparce), y herramientas de extensión lineal para levantamiento de estructuras.',
       'En Proyecto Red distribuimos equipos de las marcas líderes en rescate técnico. Cada equipo se entrega con manual de operación en español, accesorios de inicio y capacitación de uso básico. Gestionamos el mantenimiento preventivo y las refacciones originales.',
     ],
-    stats: [
-      { value: '60+ kN',     label: 'Fuerza de apertura'      },
-      { value: 'Gas · Elec', label: 'Unidades de poder'       },
-      { value: '360°',       label: 'Rotación de herramienta' },
-      { value: 'Gratis',     label: 'Capacitación básica'     },
+variantesEyebrow:    'Sistemas disponibles',
+    variantesTitleLine1: 'Selecciona el sistema de',
+    variantesTitleLine2: 'rescate para tu operación',
+    variantesBodyPara:   'Todos los sistemas se entregan con manual de operación en español, capacitación de uso básico incluida y soporte para mantenimiento preventivo y refacciones originales.',
+    variantes: [
+      {
+        nombre: 'Sistema hidráulico a gasolina — Kit completo',
+        badge:  'Hidráulico · Gas · Kit completo',
+        desc:   'Unidad de poder a gasolina (15–20 CV) + cortadora para columnas HLE + esparcidor 500 mm + ram telescópico + mangueras 10 m. El estándar mundial para extricación vehicular. Máxima fuerza para vehículos de cualquier generación.',
+        specs:  'UP gasolina · Corte: 400–600 kN · Apertura: 500 mm · HLE',
+        waText: 'Hola, necesito cotizar un sistema completo de rescate hidráulico a gasolina (cortadora + esparcidor + ram). ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Sistema eléctrico eDRAULIC — Sin cables',
+        badge:  'Batería · IP67 · Sin gases',
+        desc:   'Cortadora eléctrica + esparcidor o quijadas con batería de litio 52V intercambiable. Sin unidad de poder, sin tender mangueras. Despliegue en menos de 90 segundos. Apto en espacios confinados, zonas eléctricas y áreas techadas sin ventilación.',
+        specs:  'Batería 52V / 900 Wh · Fuerza: 60–80 kN · IP67 · UHSS',
+        waText: 'Hola, necesito cotizar herramientas de rescate eléctrico (eDRAULIC / batería). ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Quijadas combinadas (combi-tool)',
+        badge:  'Combi-tool · Corta + Esparce',
+        desc:   'Una sola herramienta que corta y esparce. La solución más eficiente para equipos con un operador o para complementar un sistema existente. Disponible en versión hidráulica o eléctrica. Compatible con acero HLE y UHSS de vehículos modernos.',
+        specs:  'Doble función: corta + esparce · HLE/UHSS · Gas o eléctrica',
+        waText: 'Hola, necesito cotizar quijadas combinadas (combi-tool) para rescate vehicular. ¿Pueden asesorarme?',
+      },
     ],
 
     caracteristicas: {
@@ -370,14 +457,50 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
       'El principio de los cojines neumáticos es sencillo pero poderoso: un cojín de neopreno reforzado se introduce en un espacio mínimo de 15 mm y al inflarse con aire comprimido (8–12 bar) puede levantar hasta 70 toneladas. Son las herramientas de elección cuando el espacio es insuficiente para las herramientas hidráulicas o cuando hay riesgo de chispa o corriente eléctrica.',
       'En Proyecto Red suministramos sistemas completos de cojines neumáticos en capacidades desde 8 hasta 70 toneladas, incluyendo reguladores de presión, mangueras y controladores. Para el rescate completo también suministramos cuñas, apuntaladores y herramientas manuales de apertura para complementar el sistema.',
     ],
-    stats: [
-      { value: 'Hasta 70 T', label: 'Capacidad de levante'  },
-      { value: '15 mm',      label: 'Espacio mínimo'        },
-      { value: '8–12 bar',   label: 'Presión de operación'  },
-      { value: 'Sin chispa', label: 'Seguro en zonas eléctricas' },
+
+    variantesEyebrow: 'Equipos disponibles',
+    variantesTitleLine1: 'Sistemas de rescate',
+    variantesTitleLine2: 'neumático según capacidad',
+    variantesBodyPara: 'Cada variante incluye cojines de neopreno reforzado, regulador de presión, controlador con panel dual y mangueras de conexión. Los kits completos incluyen cuñas, apuntaladores y herramientas manuales. Operación con aire comprimido de 8–12 bar sin riesgo eléctrico.',
+    variantes: [
+      {
+        nombre: 'Cojín de Levantamiento Alta Presión (1 bar)',
+        badge: 'Estándar',
+        desc: 'Cojines de baja presión (0.5–1 bar) para cargas livianas o sensibles. Uso en rescate de personas aplastadas donde se requiere control progresivo sin golpes de presión. Operación con regulador de baja presión incorporado.',
+        specs: 'Capacidad 8–15 T · Presión 0.5–1 bar · Neopreno reforzado · Tamaño 30×30 cm',
+        waText: 'Hola, necesito cotizar cojines neumáticos de baja presión para rescate sensible. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Cojín de Levantamiento Baja Presión (0.5 bar)',
+        badge: 'Rescate sensible',
+        desc: 'Para operaciones donde la víctima está en contacto directo con la carga y se requiere máximo control de velocidad de elevación. Presión ultrabaja para levantar estructuras frágiles sin provocar movimientos bruscos que amplifiquen el daño.',
+        specs: 'Capacidad 5–10 T · Presión 0.5 bar · Control lento y progresivo · 30×30 cm',
+        waText: 'Hola, necesito cojines de ultrabajaión para rescate con víctima debajo. ¿Pueden cotizar?',
+      },
+      {
+        nombre: 'Set de Cojines Escalonados',
+        badge: 'Versátil',
+        desc: 'Combinación de tres cojines de diferentes capacidades (20T, 40T, 70T) para cubrir la mayoría de operaciones de rescate. Permite seleccionar el cojín adecuado según la carga sin exceso de potencia que reduce control.',
+        specs: 'Cojines 20T + 40T + 70T · Presión 8–12 bar · Controlador triple · Mangueras incluidas',
+        waText: 'Hola, necesito un set de cojines neumáticos escalonados para mi cuerpo. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Equipo de Calzado Neumático',
+        badge: 'Estabilización',
+        desc: 'Cojines de gran formato (60×60 a 90×90 cm) para estabilización lateral y vertical de cargas masivas. Se usan bajo vehículos volcados o entre fragmentos estructurales para asegurar que no se desmoronen durante rescate prolongado.',
+        specs: 'Cojín 60×60 o 90×90 cm · Capacidad 40–70 T · Presión 8–12 bar · Apuntalador incluido',
+        waText: 'Hola, necesito cojines de estabilización para rescate de vehículos pesados. ¿Pueden cotizar?',
+      },
+      {
+        nombre: 'Kit Neumático Completo (Cojines + Regulador + Mangueras)',
+        badge: 'Kit completo',
+        desc: 'Sistema integrado de dos cojines de 40 toneladas, regulador de presión de doble panel, 20 metros de manguera de conexión, cuñas de polipropileno y herramientas de apertura manual. Listo para operación inmediata en el vehículo de rescate.',
+        specs: 'Cojines 2×40T · Regulador dual · Manguera 20m · Cuñas · Herramientas · Bolsa de transporte',
+        waText: 'Hola, necesito un kit completo de rescate neumático para mi brigada. ¿Pueden asesorarme?',
+      },
     ],
 
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Componentes y características',
       titleLine2: 'del sistema neumático',
@@ -462,14 +585,50 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
       'La última generación de herramientas de extricación eléctrica utiliza motores de alto rendimiento con baterías de iones de litio intercambiables en segundos. Un operador puede llevar una cortadora o quijadas completas sin cables ni mangueras, desplegándose en cualquier ángulo y posición sin restricción de longitud de manguera.',
       'En Proyecto Red distribuimos herramientas de rescate eléctrico de las marcas líderes. La compatibilidad de baterías entre herramientas del mismo fabricante permite que una sola batería cargada opere cortadora, esparcidor y quijadas de manera secuencial.',
     ],
-    stats: [
-      { value: 'Sin cables',  label: 'Despliegue inmediato'    },
-      { value: '52V Li-ion',  label: 'Plataforma de batería'   },
-      { value: '≤60 seg',     label: 'Primera apertura'        },
-      { value: '0 gases',     label: 'Apto espacios confinados' },
+
+    variantesEyebrow: 'Herramientas disponibles',
+    variantesTitleLine1: 'Tipos de herramientas',
+    variantesTitleLine2: 'de rescate eléctrico',
+    variantesBodyPara: 'Todas operan con baterías de litio 52V intercambiables en segundos. Fuerzas comparables a sistemas hidráulicos con ventajas de despliegue rápido, operación silenciosa y cero emisiones. Certificadas para acero UHSS de vehículos 2015+.',
+    variantes: [
+      {
+        nombre: 'Separador Eléctrico a Batería',
+        badge: 'Portátil',
+        desc: 'Herramienta para separar, esparcir o forzar. Abre puertas de vehículos, separa columnas deterioradas y crea espacio para rescate. Peso 7–10 kg, operación con una sola mano. Fuerza de 60–80 kN comparable a quijadas hidráulicas.',
+        specs: 'Batería 52V / 900 Wh · Fuerza 60–80 kN · Peso 8 kg · Despliegue 90 seg · Ciclos 40–60/carga',
+        waText: 'Hola, necesito cotizar un separador eléctrico de rescate para mi cuerpo. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Cortador Eléctrico a Batería',
+        badge: 'Hilos y tubos',
+        desc: 'Corta acero estructural, vigas de columnas y carrocería de vehículos con precisión. Especialmente efectivo en vehículos modernos con UHSS. Despliegue en cualquier ángulo sin limitación de manguera. Fuerza de corte 400–500 kN.',
+        specs: 'Batería 52V / 900 Wh · Fuerza 400–500 kN · Peso 12 kg · Ciclos 2–3 rescates/carga',
+        waText: 'Hola, necesito cotizar un cortador eléctrico para rescate vehicular. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Herramienta Combinada (Corte + Separación)',
+        badge: 'Más versátil',
+        desc: 'Única herramienta que combina corte y separación en una plataforma. Ideal para brigadas con presupuesto limitado que requieren versatilidad sin cargar dos herramientas separadas. Permite completar rescates complejos con un solo equipo.',
+        specs: 'Batería 52V · Funciones corte + separación · Peso 11 kg · Versátil · Compatible con acero UHSS',
+        waText: 'Hola, necesito una herramienta combinada de rescate (corte+separación) eléctrica. ¿Pueden cotizar?',
+      },
+      {
+        nombre: 'Cilindro de Extensión Eléctrico',
+        badge: 'Levante modular',
+        desc: 'Extensión de cilindro hidráulico que puede operarse con energía eléctrica de la batería. Para aplicaciones donde se necesita levante progresivo sin riesgo de movimiento brusco. Se apila con otros cilindros para mayor altura de levante.',
+        specs: 'Batería compatible 52V · Velocidad 50 mm/s · Carga hasta 80 T · Modular · Peso 9 kg',
+        waText: 'Hola, necesito un cilindro de extensión eléctrico para rescate. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Kit de Rescate Eléctrico Completo',
+        badge: 'Kit completo',
+        desc: 'Sistema integrado con cortadora, esparcidor, dos baterías intercambiables, cargador rápido a bordo y bolsa de transporte. Listo para operación en vehículos de rescate de cuerpos municipales e industriales.',
+        specs: 'Cortadora + esparcidor · 2 baterías 52V · Cargador rápido 30 min · Bolsa + manuales · Despliegue 90 seg',
+        waText: 'Hola, necesito cotizar un kit completo de rescate eléctrico para mi brigada. ¿Pueden asesorarme?',
+      },
     ],
 
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Ventajas y características de las',
       titleLine2: 'herramientas eléctricas de rescate',
@@ -549,16 +708,38 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
     badge: 'NFPA 1983 · EN 1891 · Rescate en altura · USAR',
     heroTitle: 'Arneses y',
     heroAccent: 'Rescate en Altura',
+    img: '/imagenes/equipo-bomberos/arneses-rescate-altura.avif',
     heroSubtitle: 'Los sistemas de rescate en altura incluyen arneses, cuerdas técnicas, descensores, bloqueadores y sistemas de polipasto para operaciones de búsqueda y rescate urbano (USAR), rescate en acantilados, pozos y espacios confinados verticales.',
     heroDescRight: [
       'El rescate en altura es una de las disciplinas técnicas más demandantes para los cuerpos de emergencia. Involucra sistemas de cuerdas de dos vías (sistema principal + línea de seguridad), con arneses de cuerpo completo certificados NFPA 1983 y equipo de control de descenso y ascenso capaz de operar con víctimas de hasta 150 kg.',
       'En Proyecto Red suministramos sistemas de rescate en altura completos para cuerpos de bomberos, brigadas USAR, Protección Civil y brigadas industriales con trabajo en alturas. Incluimos capacitación en técnicas básicas y avanzadas de rescate en cuerda.',
     ],
-    stats: [
-      { value: 'NFPA 1983',  label: 'Certificación'         },
-      { value: 'EN 1891',    label: 'Estándar europeo'       },
-      { value: '50 kN',      label: 'Resistencia mínima'    },
-      { value: '2 líneas',   label: 'Sistema principal + seguridad' },
+variantesEyebrow:    'Opciones disponibles',
+    variantesTitleLine1: 'Selecciona el nivel',
+    variantesTitleLine2: 'de sistema que necesitas',
+    variantesBodyPara:   'Todos los equipos están certificados NFPA 1983 y/o EN 1891. Incluimos capacitación en técnicas básicas de descenso y anclaje. Para operaciones de rescate real se recomienda la certificación NFPA 1006 Nivel I.',
+    variantes: [
+      {
+        nombre: 'Arnés de cuerpo completo NFPA 1983 Clase II',
+        badge:  'Clase II · NFPA 1983',
+        desc:   'Arnés de cuerpo completo para rescate en altura con puntos de conexión dorsal y frontal certificados a 22 kN. Ajuste rápido con una sola mano. Para rescatistas y para asegurar víctimas durante el rescate. Tallas S/M y L/XL.',
+        specs:  'Clase: II · Puntos: dorsal + frontal · 22 kN · Tallas: S/M – L/XL',
+        waText: 'Hola, necesito cotizar arneses de rescate en altura NFPA 1983 Clase II. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Kit rescate en altura — Sistema de dos cuerdas 50 m',
+        badge:  'Kit completo · 50 m',
+        desc:   'Arnés Clase III + 2 cuerdas estáticas de kernmantle 10.5 mm × 50 m + descensor de auto-bloqueo I\'D + bloqueadores Jumar + poleas de redireccionamiento + mosquetones HMS. Sistema listo para despliegue en rescate de fachadas, pozos y USAR.',
+        specs:  '2 cuerdas 50 m · NFPA 1983 · EN 1891 · Bolsa organizada',
+        waText: 'Hola, necesito cotizar un kit completo de rescate en altura (arnés + cuerdas + descensor + bloqueadores). ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Sistema de polipasto 6:1 — Elevación de víctimas',
+        badge:  'Polipasto 6:1 · 150 kg',
+        desc:   'Sistema de ventaja mecánica 6:1 para elevación de víctimas hasta 150 kg. Dos rescatistas pueden elevar la carga con esfuerzo moderado. Incluye cuerdas técnicas, poleas dobles, bloqueadores Prusik y mosquetones certificados. Peso total del kit: menos de 5 kg.',
+        specs:  'Razón mecánica: 6:1 · Carga máx: 150 kg · Peso kit: < 5 kg',
+        waText: 'Hola, necesito cotizar un sistema de polipasto para rescate en altura (elevación de víctimas). ¿Pueden asesorarme?',
+      },
     ],
 
     caracteristicas: {
@@ -646,14 +827,57 @@ export const BOMBERO_PAGES: Record<string, ProductoBomberoData> = {
       'Un traje estructural NFPA 1971 protege el tronco y las extremidades, pero el sistema de protección personal incluye también el casco para proteger la cabeza y el cuello, los guantes para las manos, las botas para los pies y la capucha para el cuello y la cabeza debajo del casco. Todos deben ser certificados NFPA.',
       'En Proyecto Red suministramos cada componente del EPP de bombero de manera individual o como dotación completa. Trabajamos con cuerpos que están equipando a personal nuevo, reemplazando equipo dañado o actualizando la certificación de equipo que ha llegado al final de su vida útil.',
     ],
-    stats: [
-      { value: 'NFPA 1971',  label: 'Certificación del sistema'  },
-      { value: '5 elementos', label: 'EPP completo'               },
-      { value: 'Nomex®',      label: 'Material estándar'          },
-      { value: 'Gratis',      label: 'Asesoría de dotación'       },
+
+    variantesEyebrow: 'Componentes individuales',
+    variantesTitleLine1: 'Complementos de uniforme',
+    variantesTitleLine2: 'según especialidad',
+    variantesBodyPara: 'Cada complemento se comercializa de manera independiente para permitir reemplazo progresivo o actualización de certificación. Todos certificados NFPA 1971/1851. Disponibles en tallas S a 4XL y en materiales Nomex®, PBI Matrix y accesorios compatibles.',
+    variantes: [
+      {
+        nombre: 'Bota Estructural NFPA 1971',
+        badge: 'NFPA',
+        desc: 'Protección para los pies con plantilla reforzada antiperforación, puntera de seguridad, planta resistente al calor por conducción y suela antideslizante. Disponible en goma (intervención general) o piel de alta temperatura (combate intensivo). Tallas 5 a 15 US.',
+        specs: 'Material goma o piel · Puntera acero/compuesto · Plantilla antiperforación · Tallas 5–15 · NFPA 1971',
+        waText: 'Hola, necesito cotizar botas estructurales NFPA 1971 para bomberos. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Guante Estructural NFPA 1971',
+        badge: 'Destreza',
+        desc: 'Guantes con capas de protección térmica de Nomex®, palma reforzada de piel de elk o cabra para agarre en superficies calientes, y barrera de humedad. Balance entre protección térmica máxima y destreza táctil para operaciones de rescate. Tallas S a XXL.',
+        specs: 'Exterior Nomex® · Palma piel elk/cabra · Barrera humedad · Tallas S–XXL · NFPA 1971',
+        waText: 'Hola, necesito cotizar guantes estructurales NFPA 1971 para mi cuerpo. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Capucha Balaclava NFPA 1971',
+        badge: 'Más vendido',
+        desc: 'Cubre el cuello, mejillas, frente y parte trasera de cabeza — área no cubierta por casco o máscara ERA. Protección térmica de Nomex® idéntica al traje para garantizar protección integral. Se ajusta bajo la barboquera del casco sin crear puntos de presión incómodos.',
+        specs: 'Material Nomex III o PBI · Protección cuello/cabeza · Ajustable · NFPA 1971 · Una talla única',
+        waText: 'Hola, necesito capuchas Nomex NFPA 1971 para mi brigada. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Casco de Bombero con Visor',
+        badge: 'NFPA 1972',
+        desc: 'Casco estructural certificado NFPA 1972 con visera integrada, protector de cuello ajustable, cintas reflectantes, soporte para linterna frontal y compatible con máscara ERA. Materiales de polimida o fibra de vidrio. Colores rojo, amarillo y blanco disponibles.',
+        specs: 'Material polimida/fibra vidrio · Visera integrada · Cubreoquello · Peso 450–600 g · NFPA 1972',
+        waText: 'Hola, necesito cascos de bombero NFPA 1972 con visera para mi cuerpo. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Suspensores y Tirantes para Pantalón',
+        badge: 'Confort',
+        desc: 'Suspensores elásticos ajustables que distribuyen el peso del pantalón sobre los hombros, evitando presión en la cintura durante operaciones largas. Compatible con cintos de trabajo. Evita que el pantalón se deslice durante rescates dinámicos.',
+        specs: 'Material elástico reforzado · Ajustables · Conectores metálicos · Compatibles con cinto trabajo',
+        waText: 'Hola, necesito suspensores para pantalones de bombero. ¿Pueden cotizar?',
+      },
+      {
+        nombre: 'Kit Complementos Completo',
+        badge: 'Kit completo',
+        desc: 'Dotación de todos los complementos para un bombero: casco + capucha + guantes + botas + suspensores + PASS individual. Para incorporación de personal nuevo o actualización de certificación. Documentación NFPA 1971/1851 incluida por elemento.',
+        specs: '6 elementos · Casco + capucha + guantes + botas + suspensores + PASS · Tallas a medida · Doc. incluida',
+        waText: 'Hola, necesito un kit completo de complementos de uniforme para bombero. ¿Pueden cotizar?',
+      },
     ],
 
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Componentes del EPP',
       titleLine1: 'Complementos del uniforme',
       titleLine2: 'de bombero certificados',

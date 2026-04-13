@@ -117,48 +117,6 @@ h1.hero-title {
   text-align: center;
 }
 
-/* ── STATS BAR (CategoryLayout L4) ────────────────── */
-.cat-stats {
-  padding: 1.25rem 0;
-}
-.cat-stats__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  text-align: center;
-}
-.cat-stats__item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  position: relative;
-}
-.cat-stats__item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 15%;
-  height: 70%;
-  width: 1px;
-  background: rgba(255,255,255,0.2);
-}
-.cat-stats__value {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.02em;
-}
-.cat-stats__label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-@media (max-width: 640px) {
-  .cat-stats__grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* ── SECCIONES ───────────────────────────────────── */
 .cat-section {
   padding: 5rem 0;
@@ -491,9 +449,14 @@ h1.hero-title {
   background: var(--c-ink, #111);
 }
 
-.ccard__header img {
+.ccard__header img,
+.ccard__header picture {
+  display: block;
   width: 100%;
   height: 100%;
+}
+
+.ccard__header img {
   object-fit: cover;
   opacity: 0.85;
 }
@@ -507,6 +470,40 @@ h1.hero-title {
   inset: 0;
   background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
   pointer-events: none;
+}
+
+/* ── Placeholder header — usado cuando aún no hay imagen real ──
+   Mantiene el aspect-ratio 16:9 del header y muestra un icono
+   centrado que comunica visualmente "aquí irá la imagen".
+   El badge (.ccard__badge) sigue funcionando igual sobre él.    */
+.ccard__header--placeholder {
+  background: linear-gradient(145deg, #F2F2F5 0%, #E6E6EC 100%);
+}
+
+.ccard__placeholder-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #B8B8C8;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ccard__placeholder-icon svg {
+  flex-shrink: 0;
+}
+
+.ccard__placeholder-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #B8B8C8;
+  line-height: 1;
 }
 
 .ccard__badge {
@@ -956,8 +953,8 @@ h1.hero-title {
 
 .blog-layout {
   display:grid;
-  grid-template-columns:1fr 340px;
-  gap:3rem;
+  grid-template-columns:1fr 300px;
+  gap:2.5rem;
   align-items:start;
 }
 
@@ -1123,7 +1120,7 @@ h1.hero-title {
 
 .blog-grid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:1.25rem;
   list-style:none;
   padding:0;
@@ -1141,10 +1138,21 @@ h1.hero-title {
 }
 
 .blog-results-bar__count {
+  display:inline-flex;
+  align-items:center;
+  gap:.375rem;
   font-size:.8125rem;
   font-weight:600;
   color:var(--c-muted);
   letter-spacing:.01em;
+}
+
+.blog-results-bar__count svg { color:var(--c-primary); flex-shrink:0; }
+
+.blog-results-bar__pages {
+  font-size:.75rem;
+  font-weight:500;
+  color:var(--c-muted);
 }
 
 /* ── BLOGCARD — card estilo catálogo ─────────────── */
@@ -1192,16 +1200,17 @@ h1.hero-title {
 
 .blogcard__badge {
   position:absolute;
-  top:.75rem;
-  left:.75rem;
+  top:.625rem;
+  left:.625rem;
   display:inline-block;
-  background:var(--c-primary);
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(4px);
   color:#fff;
-  font-size:.6875rem;
+  font-size:.625rem;
   font-weight:700;
   letter-spacing:.04em;
   text-transform:uppercase;
-  padding:.2rem .5rem;
+  padding:.175rem .4375rem;
   border-radius:3px;
   line-height:1.4;
   z-index:1;
@@ -1209,18 +1218,18 @@ h1.hero-title {
 
 .blogcard__content {
   flex:1;
-  padding:1.125rem 1.25rem 1.25rem;
+  padding:1rem 1.125rem 1.125rem;
   display:flex;
   flex-direction:column;
-  gap:.5rem;
+  gap:.375rem;
 }
 
 .blogcard__title {
-  font-size:.9375rem;
+  font-size:.875rem;
   font-weight:700;
   color:var(--c-ink);
   letter-spacing:-.01em;
-  line-height:1.3;
+  line-height:1.35;
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
@@ -1237,7 +1246,7 @@ h1.hero-title {
   line-height:1.55;
   flex:1;
   display:-webkit-box;
-  -webkit-line-clamp:2;
+  -webkit-line-clamp:3;
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
@@ -1246,11 +1255,11 @@ h1.hero-title {
   display:inline-flex;
   align-items:center;
   gap:.375rem;
-  font-size:.8125rem;
+  font-size:.75rem;
   font-weight:600;
   color:var(--c-primary);
   margin-top:auto;
-  padding-top:.75rem;
+  padding-top:.625rem;
   border-top:1px solid var(--c-border);
 }
 
@@ -1863,11 +1872,13 @@ h1.hero-title {
 .blog-related__card:hover .blog-related__card-title { color:var(--c-primary); }
 
 @media(max-width:1100px) {
-  .blog-layout,.blog-post-layout { grid-template-columns:1fr 280px; gap:2rem; }
+  .blog-layout,.blog-post-layout { grid-template-columns:1fr 260px; gap:2rem; }
+  .blog-grid { grid-template-columns:repeat(2,1fr); }
 }
 
-@media(max-width:900px) {
+@media(max-width:960px) {
   .blog-layout,.blog-post-layout { grid-template-columns:1fr; }
+  .blog-grid { grid-template-columns:repeat(2,1fr); }
   .blog-sidebar {
     position:static;
     display:grid;
@@ -2658,6 +2669,46 @@ h1.hero-title {
 
 .guia-card__block--muted p { color: var(--c-muted, #6B7280); }
 
+/* Sub-título dentro del bloque "Qué necesitas" (Sistemas, PA, EPP) */
+.guia-card__sub {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--c-ink-2, #374151);
+  display: block;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+/* Lista de specs dentro del bloque "Qué necesitas" */
+.guia-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.guia-card__list li {
+  font-size: 0.8125rem;
+  color: var(--c-ink-2, #374151);
+  font-weight: 600;
+  line-height: 1.45;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.guia-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  top: 0.55em;
+  width: 4px;
+  height: 4px;
+  background: var(--c-primary, #C41E24);
+  border-radius: 50%;
+}
+
 .guia-card__cta {
   display: inline-flex;
   align-items: center;
@@ -2994,5 +3045,4 @@ h1.hero-title {
 @media (max-width: 1024px) {
   .faq-bomberos-grid { grid-template-columns: 1fr; gap: 3rem; }
   .cot-card { position: static; }
-}
 }

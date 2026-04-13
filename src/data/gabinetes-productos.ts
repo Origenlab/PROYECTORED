@@ -5,15 +5,39 @@
 //         /gabinetes/gabinete-bombero/, /gabinetes/gabinete-hidrante/
 // ============================================================
 
+// ── Interfaz de variante individual ─────────────────────────
+export interface VarianteGabinete {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string
+  waText: string
+}
+
+// ── Interfaz completa de producto ───────────────────────────
 export interface ProductoGabinetesData {
+  // SEO & meta
   metaTitle: string
   metaDesc: string
+
+  // Hero
   badge: string
   heroTitle: string
   heroAccent: string
   heroSubtitle: string
   heroDescRight: string[]
-  stats: { value: string; label: string }[]
+
+  // Imagen principal del producto (opcional — si existe muestra imagen en ccard)
+  img?: string
+
+  // Variantes / modelos disponibles (S0 — patrón idéntico a extintores y bomberos)
+  variantes?: VarianteGabinete[]
+  variantesEyebrow?: string
+  variantesTitleLine1?: string
+  variantesTitleLine2?: string
+  variantesBodyPara?: string
+
+  // Sección 1 — Características técnicas
   caracteristicas: {
     eyebrow: string
     titleLine1: string
@@ -21,6 +45,8 @@ export interface ProductoGabinetesData {
     desc: string
     items: { title: string; desc: string }[]
   }
+
+  // Sección 2 — ¿Dónde instalar?
   cuandoUsar: {
     eyebrow: string
     titleLine1: string
@@ -28,6 +54,7 @@ export interface ProductoGabinetesData {
     desc: string
     usos: { label: string; desc: string }[]
   }
+
   relatedTitle: string
   faqItems: { question: string; answer: string }[]
   waMessage: string
@@ -35,6 +62,7 @@ export interface ProductoGabinetesData {
   ctaBody: string
 }
 
+// ── Lista de productos (genera rutas estáticas) ──────────────
 export const GABINETE_PRODUCTS: { slug: string; label: string; badge: string }[] = [
   { slug: 'gabinete-extintor',  label: 'Gabinete para Extintor',  badge: 'NOM-002'  },
   { slug: 'porta-extintor',     label: 'Porta Extintor',          badge: 'NOM-002'  },
@@ -42,9 +70,12 @@ export const GABINETE_PRODUCTS: { slug: string; label: string; badge: string }[]
   { slug: 'gabinete-hidrante',  label: 'Gabinete para Hidrante',  badge: 'NFPA 14'  },
 ]
 
+// ── Datos por producto ───────────────────────────────────────
 export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
 
-  // ── Gabinete para Extintor ──────────────────────────────────
+  // ══════════════════════════════════════════════════════════
+  // 1. GABINETE PARA EXTINTOR
+  // ══════════════════════════════════════════════════════════
   'gabinete-extintor': {
     metaTitle: 'Gabinete para Extintor en CDMX | Acero y Acrílico | Proyecto Red',
     metaDesc: 'Gabinetes para extintor en acero y acrílico. Protegen el equipo y facilitan el acceso en emergencias. Cumplimiento NOM-002-STPS. Entrega en CDMX.',
@@ -53,30 +84,71 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
     heroAccent: 'para Extintor',
     heroSubtitle: 'Protección y acceso rápido para tus extintores en empresas, edificios y plantas industriales de CDMX.',
     heroDescRight: [
-      'Fabricados en acero calibre 22 o lámina galvanizada con acabado electrostático.',
+      'Fabricados en acero calibre 22 o lámina galvanizada con acabado electrostático rojo RAL 3001.',
       'Puerta de acrílico o vidrio templado con manija para apertura rápida en emergencias.',
-      'Medidas estándar y a especificación para extintores de 2.5 a 30 kg.',
+      'Medidas estándar y a especificación para extintores de 2.5 a 30 kg. Señalamiento NOM incluido.',
     ],
-    stats: [
-      { value: 'Cal. 22',  label: 'Acero calibre'         },
-      { value: 'NOM-002',  label: 'Cumplimiento norma'     },
-      { value: '48 h',     label: 'Entrega en CDMX'        },
-      { value: '100%',     label: 'Instalación disponible' },
+
+    // ── Variantes / modelos disponibles ──────────────────────
+    variantesEyebrow: 'Modelos disponibles',
+    variantesTitleLine1: 'Elige el gabinete',
+    variantesTitleLine2: 'según tu extintor',
+    variantesBodyPara: 'Todos nuestros gabinetes incluyen señalamiento NOM-003-SEGOB, herraje de instalación y garantía. Suministramos con factura electrónica y entregamos en CDMX el mismo día en pedidos antes de las 14:00 h.',
+    variantes: [
+      {
+        nombre: 'Gabinete 2.5 kg',
+        badge: 'Básico',
+        desc: 'Para extintores de 2.5 kg en oficinas pequeñas, pasillos y cajas de escalera. Puerta acrílica con manija. El modelo más compacto de la línea.',
+        specs: 'Acero cal. 22 · Puerta acrílica · 40×30×18 cm · Herraje incluido',
+        waText: 'Hola, quiero cotizar gabinete para extintor de 2.5 kg',
+      },
+      {
+        nombre: 'Gabinete 4.5–6 kg',
+        badge: 'Más vendido',
+        desc: 'El modelo estándar para oficinas, tiendas, restaurantes y locales comerciales. Compatible con extintores de 4.5 y 6 kg. La opción más solicitada para cumplimiento NOM-002-STPS.',
+        specs: 'Acero cal. 22 · Puerta acrílica o vidrio · 55×38×20 cm · Señal NOM incluida',
+        waText: 'Hola, quiero cotizar gabinetes para extintor de 4.5 a 6 kg',
+      },
+      {
+        nombre: 'Gabinete 9–12 kg',
+        badge: 'Industrial',
+        desc: 'Para extintores de 9 y 12 kg en bodegas, talleres y plantas industriales. Construido en lámina cal. 20 de mayor resistencia. Puerta con cerrojo y visor panorámico.',
+        specs: 'Acero cal. 20 · Puerta vidrio templado · 70×48×22 cm · Cerrojo incluido',
+        waText: 'Hola, quiero cotizar gabinete para extintor de 9 a 12 kg industrial',
+      },
+      {
+        nombre: 'Gabinete Panorámico',
+        badge: 'Visibilidad total',
+        desc: 'Frente acrílico total que permite ver el estado completo del extintor sin abrir el gabinete. Ideal para áreas con inspección frecuente y espacios corporativos con diseño.',
+        specs: 'Acero cal. 22 · Frente acrílico total · 55–70 cm alto · Sin cerrojo · Fácil inspección',
+        waText: 'Hola, quiero cotizar gabinete panorámico para extintor',
+      },
+      {
+        nombre: 'Gabinete 20–30 kg',
+        badge: 'Gran capacidad',
+        desc: 'Para extintores de gran capacidad (20 y 30 kg) o formatos especiales. Fabricado a especificación según el modelo exacto del extintor. Tiempo de fabricación: 5 a 7 días hábiles.',
+        specs: 'Acero cal. 20 · A medida · 90–110 cm alto · Bisagra reforzada · Entrega a 7 días',
+        waText: 'Hola, quiero cotizar gabinete a medida para extintor de 20 o 30 kg',
+      },
     ],
+
+    // ── Características técnicas ──────────────────────────────
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Gabinete construido',
       titleLine2: 'para resistir y proteger',
-      desc: 'Cada gabinete para extintor está diseñado para mantener el equipo visible, accesible y protegido frente a daños mecánicos o robo, cumpliendo con los requisitos de Protección Civil.',
+      desc: 'Cada gabinete para extintor está diseñado para mantener el equipo visible, accesible y protegido frente a daños mecánicos, golpes y condiciones del entorno.',
       items: [
-        { title: 'Acero calibre 22 o superior',  desc: 'Estructura robusta que protege el extintor de golpes y manipulaciones no autorizadas.' },
+        { title: 'Acero calibre 22 o 20',         desc: 'Estructura robusta que protege el extintor de golpes y manipulaciones no autorizadas.' },
         { title: 'Puerta acrílica o vidrio templado', desc: 'Permite identificar rápidamente el estado del extintor sin abrir el gabinete.' },
-        { title: 'Pintura electrostática',        desc: 'Acabado durable en color rojo RAL 3001 resistente a humedad y corrosión.' },
+        { title: 'Pintura electrostática rojo RAL 3001', desc: 'Acabado durable conforme a NOM-026-STPS resistente a humedad y corrosión.' },
         { title: 'Bisagra y manija de emergencia', desc: 'Apertura rápida sin llave para acceso inmediato en situaciones de emergencia.' },
-        { title: 'Medidas estándar NOM',          desc: 'Compatibles con extintores de 2.5, 4.5, 6, 9 y 12 kg según la norma aplicable.' },
-        { title: 'Opción con cerradura',          desc: 'Versión con cerradura transparente o precinto de seguridad para evitar uso no autorizado.' },
+        { title: 'Medidas estándar NOM',            desc: 'Compatibles con extintores de 2.5, 4.5, 6, 9 y 12 kg según la norma aplicable.' },
+        { title: 'Señalamiento NOM incluido',       desc: 'Etiqueta conforme a NOM-003-SEGOB entregada junto con el gabinete en cada pedido.' },
       ],
     },
+
+    // ── ¿Dónde instalar? ──────────────────────────────────────
     cuandoUsar: {
       eyebrow: 'Aplicaciones principales',
       titleLine1: '¿Dónde se requiere',
@@ -91,6 +163,7 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { label: 'Hospitales y clínicas',             desc: 'Facilita la inspección visual sin romper el precinto, cumpliendo protocolos de higiene.' },
       ],
     },
+
     relatedTitle: 'Otros gabinetes y porta extintores',
     faqItems: [
       { question: '¿Cuál es la diferencia entre gabinete y porta extintor?', answer: 'El gabinete es una caja cerrada (con puerta de acrílico o vidrio) que protege completamente el extintor. El porta extintor es un soporte abierto o semiabierto (herraje, gancho o base) que fija el extintor a la pared o piso sin cerramiento. Los gabinetes son más recomendables en áreas de alto tráfico o donde exista riesgo de robo o golpes.' },
@@ -103,25 +176,67 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
     ctaBody: 'Te ayudamos a calcular la cantidad correcta según la norma y el tamaño de tu espacio. Cotización sin costo en menos de 24 horas.',
   },
 
-  // ── Porta Extintor ─────────────────────────────────────────
+
+  // ══════════════════════════════════════════════════════════
+  // 2. PORTA EXTINTOR
+  // ══════════════════════════════════════════════════════════
   'porta-extintor': {
     metaTitle: 'Porta Extintor en CDMX | Herrajes y Soportes Certificados | Proyecto Red',
     metaDesc: 'Porta extintores de piso, pared y columna para todos los tamaños de extintor. Entrega en CDMX. Cumplimiento NOM-002-STPS.',
     badge: 'NOM-002-STPS',
     heroTitle: 'Porta Extintores',
     heroAccent: 'y Soportes',
-    heroSubtitle: 'Soportes de pared, piso y columna para fijar extintores de manera correcta, visible y accesible conforme a la norma.',
+    heroSubtitle: 'Soportes de pared, piso y columna para fijar extintores de manera correcta, visible y accesible conforme a NOM-002-STPS.',
     heroDescRight: [
       'Herrajes de acero con recubrimiento anticorrosivo para uso interior y exterior.',
       'Soportes universales compatibles con extintores de 1 a 150 kg.',
-      'Modelos de pared, piso con ruedas, móviles y para columnas.',
+      'Modelos de pared, piso con ruedas, móviles y para columnas. Tornillería incluida.',
     ],
-    stats: [
-      { value: '1–150 kg', label: 'Capacidad compatible'   },
-      { value: 'NOM-002',  label: 'Cumplimiento norma'     },
-      { value: '48 h',     label: 'Entrega en CDMX'        },
-      { value: '5+',       label: 'Modelos disponibles'    },
+
+    // ── Variantes / modelos disponibles ──────────────────────
+    variantesEyebrow: 'Tipos de soporte',
+    variantesTitleLine1: 'El herraje correcto',
+    variantesTitleLine2: 'para cada extintor y espacio',
+    variantesBodyPara: 'Todos los herrajes incluyen tornillería, taquetes y plantilla de instalación. En pedidos mayores de 10 piezas incluimos instalación a domicilio en CDMX. Fabricación nacional con recubrimiento anticorrosivo.',
+    variantes: [
+      {
+        nombre: 'Herraje pared 2.5–4.5 kg',
+        badge: 'Básico',
+        desc: 'Para extintores de 2.5 y 4.5 kg en oficinas, pasillos y locales. Soporte de pared con tornillería y taquetes incluidos. La solución más económica para cumplir NOM.',
+        specs: 'Acero con pintura · Pared · 2.5–4.5 kg · Tornillería incluida · Altura 1.10–1.50 m',
+        waText: 'Hola, quiero cotizar herrajes de pared para extintor de 2.5 a 4.5 kg',
+      },
+      {
+        nombre: 'Herraje pared 6–9 kg',
+        badge: 'Estándar',
+        desc: 'El soporte más solicitado para empresas y plantas. Compatible con extintores de 6 y 9 kg. Estructura reforzada con tornillo de ajuste para mantener el extintor firme.',
+        specs: 'Acero reforzado · Pared · 6–9 kg · Tornillo de ajuste · Plantilla incluida',
+        waText: 'Hola, quiero cotizar herrajes de pared para extintor de 6 a 9 kg',
+      },
+      {
+        nombre: 'Herraje pared 12 kg',
+        badge: 'Industrial',
+        desc: 'Soporte de pared reforzado para extintores de 12 kg en talleres y zonas industriales. Abrazadera de acero galvanizado con tornillo de apriete lateral.',
+        specs: 'Acero galvanizado · Pared · 12 kg · Abrazadera ajustable · Uso industrial',
+        waText: 'Hola, quiero cotizar herraje de pared para extintor de 12 kg',
+      },
+      {
+        nombre: 'Base piso con ruedas',
+        badge: 'Rodante',
+        desc: 'Para extintores de 20 a 150 kg que requieren movilidad en naves industriales, bodegas y estacionamientos. Ruedas neumáticas con freno para posicionamiento preciso.',
+        specs: 'Acero cal. 14 · Piso · 20–150 kg · Ruedas neumáticas · Freno incluido · Manguera hasta 6 m',
+        waText: 'Hola, quiero cotizar base de piso con ruedas para extintor rodante',
+      },
+      {
+        nombre: 'Soporte columna universal',
+        badge: 'Columna',
+        desc: 'Fija el extintor a columnas o postes con abrazadera ajustable de acero. Sin perforar paredes. Ideal para pasillos industriales y zonas sin muro disponible.',
+        specs: 'Acero inox. o galvanizado · Columna/poste · Ajustable ø50–200 mm · Sin perforación',
+        waText: 'Hola, quiero cotizar soporte para columna de extintor',
+      },
     ],
+
+    // ── Características técnicas ──────────────────────────────
     caracteristicas: {
       eyebrow: 'Tipos y especificaciones',
       titleLine1: 'El soporte correcto',
@@ -136,6 +251,7 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { title: 'Altura conforme a NOM',          desc: 'Diseñados para ubicar la válvula del extintor entre 1.10 m y 1.50 m del piso según la norma.' },
       ],
     },
+
     cuandoUsar: {
       eyebrow: 'Aplicaciones',
       titleLine1: '¿En qué instalaciones',
@@ -150,6 +266,7 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { label: 'Eventos y stands temporales',   desc: 'Bases portátiles de fácil instalación para cumplimiento temporal ante Protección Civil.' },
       ],
     },
+
     relatedTitle: 'Otros gabinetes y soportes del catálogo',
     faqItems: [
       { question: '¿A qué altura debe instalarse el extintor?', answer: 'Conforme a NOM-002-STPS, la válvula (manija) del extintor debe quedar entre 1.10 m y 1.50 m sobre el nivel del piso. Para extintores de más de 18 kg la parte superior puede ubicarse a 1.00 m. Nuestros soportes están diseñados para cumplir estas medidas.' },
@@ -161,25 +278,60 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
     ctaBody: 'Te cotizamos la cantidad exacta según la norma. Entrega en 48 horas en CDMX con instalación disponible.',
   },
 
-  // ── Gabinete para Bombero ──────────────────────────────────
+
+  // ══════════════════════════════════════════════════════════
+  // 3. GABINETE PARA BOMBERO
+  // ══════════════════════════════════════════════════════════
   'gabinete-bombero': {
     metaTitle: 'Gabinete para Bombero en CDMX | Equipamiento Completo | Proyecto Red',
     metaDesc: 'Gabinetes para equipo de bombero con manguera, pitón y llave Storz. Acero calibre 20, cierre con cerrojo y visor de acrílico. Entrega en CDMX.',
     badge: 'NFPA 10',
     heroTitle: 'Gabinetes',
     heroAccent: 'para Bombero',
-    heroSubtitle: 'Gabinetes de acero que alojan el equipo completo del bombero: manguera enrollada, pitón y llaves. Acceso rápido y visibilidad en emergencias.',
+    heroSubtitle: 'Gabinetes de acero que alojan el equipo completo del bombero: manguera enrollada, pitón y llaves. Acceso rápido y visibilidad inmediata en emergencias.',
     heroDescRight: [
-      'Cuerpo en lámina de acero cal. 20 con pintura electrostática roja.',
-      'Visor de acrílico transparente para inspección rápida sin abrir.',
-      'Disponibles en medidas estándar para 1 o 2 mangueras de 1½" y 2½".',
+      'Cuerpo en lámina de acero cal. 20 con pintura electrostática roja RAL 3001.',
+      'Visor de acrílico transparente para inspección rápida sin abrir ni romper precinto.',
+      'Disponibles en clase I (2½"), clase II (1½") y clase III (doble). Conforme a NFPA 14.',
     ],
-    stats: [
-      { value: 'Cal. 20',  label: 'Lámina de acero'        },
-      { value: 'NFPA 10',  label: 'Referencia técnica'     },
-      { value: '1–2',      label: 'Mangueras por gabinete' },
-      { value: '48 h',     label: 'Entrega en CDMX'        },
+
+    // ── Variantes / modelos disponibles ──────────────────────
+    variantesEyebrow: 'Clases de gabinete',
+    variantesTitleLine1: 'El gabinete correcto',
+    variantesTitleLine2: 'según la clase y el uso',
+    variantesBodyPara: 'Todos los modelos incluyen señalamiento NOM-003-SEGOB, herraje de montaje y opciones de equipamiento interior (manguera + pitón + llave Storz). Suministramos el gabinete solo o equipado según tus requerimientos de NFPA 14.',
+    variantes: [
+      {
+        nombre: 'Gabinete clase II · 1½"',
+        badge: 'Más solicitado',
+        desc: 'Para uso de ocupantes del edificio. Aloja manguera de 1½" × 15 m, pitón de neblina/chorro y llave Storz. El modelo exigido en la mayoría de los edificios de departamentos y oficinas.',
+        specs: 'Acero cal. 20 · 1 manguera 1½" · 75×60×20 cm · NFPA 14 clase II · Señal NOM',
+        waText: 'Hola, quiero cotizar gabinete para bombero clase II con manguera 1½"',
+      },
+      {
+        nombre: 'Gabinete clase I · 2½"',
+        badge: 'Bomberos',
+        desc: 'Toma de 2½" para uso exclusivo de bomberos. Solo tiene la válvula angular — sin manguera pre-conectada. Requerido en edificios con más de 6 niveles y plantas de alto riesgo.',
+        specs: 'Acero cal. 20 · Válvula angular 2½" · 60×50×18 cm · NFPA 14 clase I · Cierre con cerrojo',
+        waText: 'Hola, quiero cotizar gabinete para bombero clase I con toma de 2½"',
+      },
+      {
+        nombre: 'Gabinete clase III · Doble',
+        badge: 'Completo',
+        desc: 'Combina la manguera de 1½" para ocupantes y la toma de 2½" para bomberos en un solo gabinete. El sistema más completo conforme a NFPA 14 para edificios de alta ocupación.',
+        specs: 'Acero cal. 18 · 1½" equipada + 2½" sin manguera · 90×70×22 cm · NFPA 14 clase III',
+        waText: 'Hola, quiero cotizar gabinete para bombero clase III doble toma',
+      },
+      {
+        nombre: 'Gabinete a especificación',
+        badge: 'A medida',
+        desc: 'Dimensiones y configuración personalizadas para proyectos con requerimientos específicos de arquitectura o dictamen técnico. Tiempo de fabricación: 5 a 7 días hábiles.',
+        specs: 'Acero cal. 18 o 20 · Medidas a proyecto · Acabado a elección · Entrega 7 días hábiles',
+        waText: 'Hola, necesito cotizar gabinetes para bombero a medida para un proyecto',
+      },
     ],
+
+    // ── Características técnicas ──────────────────────────────
     caracteristicas: {
       eyebrow: 'Construcción y materiales',
       titleLine1: 'Gabinete de respuesta',
@@ -194,6 +346,7 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { title: 'Señalamiento NOM incluido',     desc: 'Etiqueta de identificación conforme a NOM-003-SEGOB incluida en la entrega.' },
       ],
     },
+
     cuandoUsar: {
       eyebrow: 'Instalaciones que lo requieren',
       titleLine1: '¿Cuándo instalar',
@@ -204,22 +357,26 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { label: 'Torres de oficinas',             desc: 'Parte del sistema de protección activa que exige el dictamen estructural y de seguridad.' },
         { label: 'Centros comerciales',           desc: 'Requieren colocación en zonas de carga, sótanos y cerca de locales de alto riesgo.' },
         { label: 'Plantas industriales',          desc: 'Complementan el sistema de rociadores como respuesta manual de primera intervención.' },
-        { label: 'Hospitales y clínicas',         desc: 'La NORMA NOM-001-SEDENA aplica en instalaciones de salud con requerimientos de mangueras.' },
-        { label: 'Hoteles y venues de eventos',   desc: 'El CASCE (Certificado de Seguridad) exige mangueras y gabinetes en áreas de concentración masiva.' },
+        { label: 'Hospitales y clínicas',         desc: 'Normativas de instalaciones de salud exigen mangueras y gabinetes en áreas de mayor riesgo.' },
+        { label: 'Hoteles y venues de eventos',   desc: 'El CASCE (Certificado de Seguridad) exige mangueras y gabinetes en áreas de concentración.' },
       ],
     },
+
     relatedTitle: 'Otros gabinetes del catálogo',
     faqItems: [
       { question: '¿Qué equipo viene dentro del gabinete?', answer: 'El gabinete se puede suministrar solo (vacío) o equipado con manguera de 1½" o 2½", pitón o chiflón, y llave Storz según la conexión del hidrante. También podemos incluir la válvula angular de 45°.' },
-      { question: '¿Cuánto pesa y qué medidas tiene el gabinete?', answer: 'Nuestro modelo estándar mide 75 × 60 × 20 cm (1 manguera) o 90 × 75 × 20 cm (2 mangueras). El peso vacío es de 12 a 18 kg. Fabricamos también en medidas a especificación.' },
-      { question: '¿Cuál es el mantenimiento del gabinete?', answer: 'Se recomienda revisión semestral del estado de la pintura, correcto enrollado de la manguera y funcionalidad de la válvula. Ofrecemos pólizas de mantenimiento preventivo para sistemas de mangueras.' },
+      { question: '¿Cuánto pesa y qué medidas tiene el gabinete?', answer: 'Nuestro modelo estándar clase II mide 75×60×20 cm y pesa 12 kg vacío. El clase III mide 90×70×22 cm y pesa 18 kg vacío. Fabricamos también en medidas a especificación.' },
+      { question: '¿Cuál es el mantenimiento del gabinete?', answer: 'Se recomienda revisión semestral del estado de la pintura, correcto enrollado de la manguera y funcionalidad de la válvula conforme a NFPA 25. Ofrecemos pólizas de mantenimiento preventivo.' },
     ],
     waMessage: 'Hola, necesito cotizar gabinetes para bombero en CDMX',
     ctaTitle: '¿Necesitas gabinetes para bombero con equipo completo?',
     ctaBody: 'Te cotizamos gabinete + manguera + pitón + llave en un solo paquete. Instalación disponible en CDMX.',
   },
 
-  // ── Gabinete para Hidrante ─────────────────────────────────
+
+  // ══════════════════════════════════════════════════════════
+  // 4. GABINETE PARA HIDRANTE
+  // ══════════════════════════════════════════════════════════
   'gabinete-hidrante': {
     metaTitle: 'Gabinete para Hidrante en CDMX | Siamesas y Columnas | Proyecto Red',
     metaDesc: 'Gabinetes para hidrante interior y exterior con válvula angular, manguera y chiflón. NFPA 14. Entrega e instalación en CDMX.',
@@ -229,15 +386,47 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
     heroSubtitle: 'Gabinetes de acero para proteger y dar acceso al sistema hidráulico de hidrantes interiores, con válvula angular, manguera acoplada y chiflón.',
     heroDescRight: [
       'Diseñados conforme a NFPA 14 para sistemas de mangueras en clase I, II y III.',
-      'Integran válvula angular de 1½" o 2½", manguera enrollada y chiflón.',
-      'Opciones para montaje en pared empotrado (flush) o sobrepuesto.',
+      'Integran válvula angular de 1½" o 2½", manguera semi-rígida y chiflón regulable.',
+      'Opciones para montaje en pared sobrepuesto (surface) o empotrado (flush mount).',
     ],
-    stats: [
-      { value: 'NFPA 14',  label: 'Norma de referencia'   },
-      { value: 'Clase I/II/III', label: 'Sistemas compatibles' },
-      { value: '1½" – 2½"', label: 'Diámetros disponibles' },
-      { value: '48 h',     label: 'Entrega en CDMX'       },
+
+    // ── Variantes / modelos disponibles ──────────────────────
+    variantesEyebrow: 'Configuraciones de hidrante',
+    variantesTitleLine1: 'El sistema de hidrante',
+    variantesTitleLine2: 'que tu edificio necesita',
+    variantesBodyPara: 'Todos los modelos incluyen la válvula angular, visor de acrílico con sello y señalética NFPA. Suministramos el gabinete solo o equipado con manguera, chiflón y llave de conexión. Instalación llave en mano en CDMX y Estado de México.',
+    variantes: [
+      {
+        nombre: 'Clase II equipado · 1½"',
+        badge: 'Más solicitado',
+        desc: 'El sistema completo para ocupantes: gabinete + válvula angular 1½" + manguera semi-rígida 15 m + chiflón regulable. El modelo requerido en la mayoría de los edificios de departamentos, oficinas y centros comerciales.',
+        specs: 'Acero cal. 16 · Válvula 1½" · Manguera 15 m · Chiflón · 80×65×20 cm · NFPA 14 clase II',
+        waText: 'Hola, quiero cotizar gabinete para hidrante clase II equipado con manguera 1½"',
+      },
+      {
+        nombre: 'Clase I · 2½" sola',
+        badge: 'Bomberos',
+        desc: 'Toma de gran diámetro para uso exclusivo de cuerpos de bomberos. Solo gabinete + válvula angular 2½" sin manguera. Requerido en edificios altos y plantas industriales con acceso de bomberos.',
+        specs: 'Acero cal. 16 · Válvula angular 2½" · Sin manguera · 65×55×18 cm · NFPA 14 clase I',
+        waText: 'Hola, quiero cotizar gabinete para hidrante clase I con válvula 2½" para bomberos',
+      },
+      {
+        nombre: 'Clase III · Doble toma',
+        badge: 'Sistema completo',
+        desc: 'El sistema más completo: clase I (2½" para bomberos) + clase II (1½" equipada para ocupantes) en un solo gabinete. Obligatorio en edificios de gran altura y complejos de alto riesgo conforme a NFPA 14.',
+        specs: 'Acero cal. 14 · 1½" equipada + 2½" sin manguera · 95×75×22 cm · NFPA 14 clase III',
+        waText: 'Hola, quiero cotizar gabinete para hidrante clase III doble toma',
+      },
+      {
+        nombre: 'Empotrado (flush mount)',
+        badge: 'Empotrado',
+        desc: 'Versión para instalación empotrada en muro, con marco de acabado arquitectónico. Misma funcionalidad que el sobrepuesto pero se integra a la superficie del muro para proyectos con diseño o remodelaciones.',
+        specs: 'Acero cal. 16 · Empotrado · Marco de acabado · 80×65×15 cm (profundidad) · A especificación',
+        waText: 'Hola, quiero cotizar gabinete para hidrante empotrado en muro',
+      },
     ],
+
+    // ── Características técnicas ──────────────────────────────
     caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Sistema de hidrante',
@@ -247,11 +436,12 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { title: 'Válvula angular 45° incluida',  desc: 'Válvula de bronce con asiento de disco para conexión directa a la red hidráulica de la edificación.' },
         { title: 'Manguera semi-rígida acoplada', desc: 'Manguera de poliéster o caucho de 1½" o 2½" con acoples Storz o roscados integrados.' },
         { title: 'Chiflón regulable incluido',    desc: 'Pitón de chorro recto y neblina para mayor versatilidad en la extinción.' },
-        { title: 'Gabinete acero cal. 16 o 18',  desc: 'Mayor grosor para instalaciones en áreas de alto tráfico o uso industrial pesado.' },
+        { title: 'Gabinete acero cal. 14 o 16',  desc: 'Mayor grosor para instalaciones en áreas de alto tráfico o uso industrial pesado.' },
         { title: 'Visor de acrílico con sello',  desc: 'Permite identificar visualmente el estado completo del sistema en cada ronda de inspección.' },
-        { title: 'Señalética NFPA incluida',     desc: 'Etiqueta con código de color conforme a NFPA 704 y señal de manguera conforme a NOM-003-SEGOB.' },
+        { title: 'Señalética NFPA incluida',     desc: 'Etiqueta conforme a NFPA 704 y señal de manguera conforme a NOM-003-SEGOB.' },
       ],
     },
+
     cuandoUsar: {
       eyebrow: 'Edificios y uso requerido',
       titleLine1: '¿Cuándo instalar',
@@ -266,6 +456,7 @@ export const GABINETE_PAGES: Record<string, ProductoGabinetesData> = {
         { label: 'Estacionamientos',        desc: 'Hidrantes en cada nivel de estacionamiento subterráneo conforme al Reglamento de Construcción CDMX.' },
       ],
     },
+
     relatedTitle: 'Otros gabinetes y herrajes del catálogo',
     faqItems: [
       { question: '¿Cuál es la diferencia entre gabinete clase I, II y III?', answer: 'Clase I: solo manguera de 2½" para uso de bomberos. Clase II: manguera de 1½" para uso de ocupantes. Clase III: ambas opciones. El tipo requerido depende del uso del inmueble y lo establece el dictamen de Protección Civil.' },

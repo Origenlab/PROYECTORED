@@ -6,6 +6,14 @@
 //         /sistemas/supresion-agente/
 // ============================================================
 
+export interface VarianteSistema {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string
+  waText: string
+}
+
 export interface ProductoSistemasData {
   metaTitle: string
   metaDesc: string
@@ -14,7 +22,14 @@ export interface ProductoSistemasData {
   heroAccent: string
   heroSubtitle: string
   heroDescRight: string[]
-  stats: { value: string; label: string }[]
+  // ── Campos opcionales para variantes (S0) ──────────────────
+  img?: string
+  variantes?: VarianteSistema[]
+  variantesEyebrow?: string
+  variantesTitleLine1?: string
+  variantesTitleLine2?: string
+  variantesBodyPara?: string
+  // ──────────────────────────────────────────────────────────
   caracteristicas: {
     eyebrow: string
     titleLine1: string
@@ -59,11 +74,39 @@ export const SISTEMA_PAGES: Record<string, ProductoSistemasData> = {
       'Paneles de alarma inteligentes con capacidad de 4 a 512 zonas.',
       'Instalación certificada conforme a NFPA 72 con documentación para Protección Civil.',
     ],
-    stats: [
-      { value: 'NFPA 72',   label: 'Norma de instalación'  },
-      { value: '4–512',     label: 'Zonas por panel'       },
-      { value: '24/7',      label: 'Monitoreo disponible'  },
-      { value: '100%',      label: 'Documentado para PC'   },
+    variantesEyebrow: 'Configuraciones disponibles',
+    variantesTitleLine1: 'Selecciona la capacidad',
+    variantesTitleLine2: 'del sistema de alarma',
+    variantesBodyPara: 'Disponemos de sistemas convencionales y direccionables para todo tamaño de inmueble, con instalación certificada conforme a NFPA 72 y documentación completa para Protección Civil en CDMX.',
+    variantes: [
+      {
+        nombre: 'Sistema Convencional 4 zonas',
+        badge: 'NFPA 72',
+        desc: 'Para locales, oficinas y naves de hasta 500 m² con riesgo simple. Económico, confiable y de fácil mantenimiento. El punto de entrada a la protección activa.',
+        specs: 'Convencional · 4 zonas · Batería 24 h · UL Listed · Indicadores LED',
+        waText: 'Hola, necesito cotizar un sistema de alarma convencional de 4 zonas en CDMX',
+      },
+      {
+        nombre: 'Sistema Convencional 8–16 zonas',
+        badge: 'NFPA 72',
+        desc: 'Para edificios de 2 a 4 pisos o inmuebles con múltiples áreas diferenciadas. Alarma por zona con salidas NAC independientes para evacuación parcial.',
+        specs: 'Convencional · 8–16 zonas · Salidas NAC · Remoto disponible · 48 h batería',
+        waText: 'Hola, necesito cotizar un sistema de alarma convencional 8-16 zonas en CDMX',
+      },
+      {
+        nombre: 'Sistema Direccionable 64 puntos',
+        badge: 'NFPA 72',
+        desc: 'Identifica el detector exacto activado por nombre y ubicación. Para hospitales, hoteles o edificios de 5 a 10 pisos donde la respuesta precisa es crítica.',
+        specs: 'Direccionable · 64 puntos · LCD · Integración BMS · Reporte IP',
+        waText: 'Hola, necesito cotizar un sistema de alarma direccionable 64 puntos en CDMX',
+      },
+      {
+        nombre: 'Sistema Direccionable 512+ puntos',
+        badge: 'NFPA 72',
+        desc: 'Para grandes complejos, hospitales y corporativos. Red TCP/IP con pantalla gráfica del edificio, historial de eventos y monitoreo remoto 24/7.',
+        specs: 'Direccionable · 512+ puntos · Red TCP/IP · Pantalla gráfica · Monitoreo remoto',
+        waText: 'Hola, necesito cotizar un sistema de alarma direccionable 512 puntos en CDMX',
+      },
     ],
     caracteristicas: {
       eyebrow: 'Componentes del sistema',
@@ -117,11 +160,39 @@ export const SISTEMA_PAGES: Record<string, ProductoSistemasData> = {
       'Cabezas pendant, upright, lateral y de alta descarga ESFR disponibles.',
       'Instalación llave en mano: tuberías, cabezas, válvulas y conexión a la bomba.',
     ],
-    stats: [
-      { value: 'NFPA 13',   label: 'Norma de diseño'       },
-      { value: '99%',       label: 'Efectividad estadística'},
-      { value: 'Llave mano',label: 'Instalación completa'  },
-      { value: 'D.A. PC',   label: 'Documentación incluida'},
+    variantesEyebrow: 'Tipos de sistema disponibles',
+    variantesTitleLine1: 'Selecciona el tipo',
+    variantesTitleLine2: 'de sistema de rociadores',
+    variantesBodyPara: 'Diseñamos e instalamos los cuatro tipos de sistemas de rociadores conforme a NFPA 13, con cálculo hidráulico, planos y documentación para Protección Civil en CDMX y Estado de México.',
+    variantes: [
+      {
+        nombre: 'Sistema Tubo Húmedo',
+        badge: 'NFPA 13',
+        desc: 'El más común y económico. La tubería permanece cargada de agua a presión. Respuesta inmediata al detectar calor. Para interiores con temperatura controlada.',
+        specs: 'Tubo húmedo · Activación inmediata · 8–12 bar · Riesgo ligero, ordinario o extra',
+        waText: 'Hola, necesito cotizar un sistema de rociadores tubo húmedo en CDMX',
+      },
+      {
+        nombre: 'Sistema Tubo Seco',
+        badge: 'NFPA 13',
+        desc: 'La tubería se presuriza con aire o nitrógeno. Para exteriores, bodegas no climatizadas y zonas con riesgo de congelamiento o temperaturas extremas.',
+        specs: 'Tubo seco · Aire/N₂ · −40 °C a +70 °C · Válvula diferencial · NFPA 13',
+        waText: 'Hola, necesito cotizar un sistema de rociadores tubo seco en CDMX',
+      },
+      {
+        nombre: 'Sistema Pre-acción',
+        badge: 'NFPA 13',
+        desc: 'Requiere dos señales de alarma antes de liberar agua. Elimina falsas descargas. Ideal para centros de datos, cuartos de servidores y archivos críticos.',
+        specs: 'Pre-acción · Doble señal · Sin descarga accidental · Integración FACP · NFPA 13',
+        waText: 'Hola, necesito cotizar un sistema de rociadores pre-acción en CDMX',
+      },
+      {
+        nombre: 'Sistema ESFR — Supresor Temprano',
+        badge: 'NFPA 13',
+        desc: 'Para almacenes con estanterías de más de 7.6 m. Alta presión y gran caudal: elimina el fuego en su punto de origen sin rociadores en rack ni agentes adicionales.',
+        specs: 'ESFR · K-factor 200–360 · Estanterías +7.6 m · Alta descarga · NFPA 13',
+        waText: 'Hola, necesito cotizar un sistema ESFR para almacén de gran altura en CDMX',
+      },
     ],
     caracteristicas: {
       eyebrow: 'Componentes del sistema',
@@ -175,11 +246,39 @@ export const SISTEMA_PAGES: Record<string, ProductoSistemasData> = {
       'Tableros para bombas CI conforme a NFPA 20: arranque automático, manual y por presostato.',
       'Instalación, cableado y programación con pruebas de aceptación documentadas.',
     ],
-    stats: [
-      { value: 'NFPA 72',    label: 'Alarma de incendio'    },
-      { value: 'NFPA 20',    label: 'Control de bomba'      },
-      { value: '512 pts',    label: 'Puntos direccionables' },
-      { value: 'UL Listed',  label: 'Certificación UL'     },
+    variantesEyebrow: 'Modelos disponibles',
+    variantesTitleLine1: 'Selecciona el tablero',
+    variantesTitleLine2: 'adecuado para tu sistema',
+    variantesBodyPara: 'Suministramos e instalamos paneles FACP convencionales y direccionables, así como tableros de bomba CI conforme a NFPA 20. Todos con programación certificada, pruebas de aceptación documentadas y soporte en CDMX.',
+    variantes: [
+      {
+        nombre: 'Panel FACP Convencional',
+        badge: 'NFPA 72',
+        desc: 'Para edificios con hasta 32 zonas de detección. Económico, confiable y de fácil mantenimiento. Con batería de respaldo de 24 horas y cargador automático.',
+        specs: 'Convencional · 4–32 zonas · Batería 24 h · UL Listed · Indicadores LED',
+        waText: 'Hola, necesito cotizar un panel FACP convencional en CDMX',
+      },
+      {
+        nombre: 'Panel FACP Direccionable',
+        badge: 'NFPA 72',
+        desc: 'Identifica el detector exacto por nombre y ubicación. Hasta 512 puntos en red SLC. Estándar para edificios de más de 3 pisos o más de 250 m² por nivel.',
+        specs: 'Direccionable · 512 puntos SLC · LCD · Red TCP/IP · UL Listed',
+        waText: 'Hola, necesito cotizar un panel FACP direccionable en CDMX',
+      },
+      {
+        nombre: 'Panel con Pantalla Gráfica',
+        badge: 'NFPA 72',
+        desc: 'Pantalla táctil con mapa del edificio por nivel. Muestra el detector activado en tiempo real, historial de eventos e integración con BMS del edificio.',
+        specs: 'Pantalla táctil · Mapa por piso · Historial de eventos · BMS gateway',
+        waText: 'Hola, necesito cotizar un panel FACP con pantalla gráfica en CDMX',
+      },
+      {
+        nombre: 'Tablero Bomba NFPA 20',
+        badge: 'NFPA 20',
+        desc: 'Control automático y manual de bomba principal CI. Arranque en menos de 10 segundos al detectar caída de presión. Registro de arranques y eventos. Transfer switch incluido.',
+        specs: 'NFPA 20 · Arranque auto/manual · < 10 s · Registro de eventos · Transfer switch',
+        waText: 'Hola, necesito cotizar un tablero de bomba CI NFPA 20 en CDMX',
+      },
     ],
     caracteristicas: {
       eyebrow: 'Tipos de tableros disponibles',
@@ -232,11 +331,39 @@ export const SISTEMA_PAGES: Record<string, ProductoSistemasData> = {
       'Tuberías de acero Schedule 10 y Schedule 40 en diámetros de ½" a 12".',
       'Instalación completa incluye excavación, montaje, prueba hidrostática y documentación.',
     ],
-    stats: [
-      { value: 'NFPA 13/14', label: 'Norma de diseño'      },
-      { value: '½" – 12"',   label: 'Diámetros de tubería' },
-      { value: 'Llave mano', label: 'Instalación completa' },
-      { value: '200 psi',    label: 'Prueba hidrostática'  },
+    variantesEyebrow: 'Configuraciones disponibles',
+    variantesTitleLine1: 'Selecciona la configuración',
+    variantesTitleLine2: 'de red hidráulica CI',
+    variantesBodyPara: 'Diseñamos e instalamos redes hidráulicas contra incendio para todo tipo de inmueble: desde sistemas básicos con bomba eléctrica hasta redes NFPA 20 con redundancia total de bombas. Cálculo hidráulico, planos y documentación incluidos.',
+    variantes: [
+      {
+        nombre: 'Red con Bomba Eléctrica + Jockey',
+        badge: 'NFPA 14',
+        desc: 'Motobomba eléctrica principal más bomba jockey de mantenimiento de presión. Para inmuebles con suministro eléctrico confiable y requerimiento básico de Protección Civil.',
+        specs: 'Bomba eléctrica · Jockey · Cisterna · Acero Schedule 40 · NFPA 14',
+        waText: 'Hola, necesito cotizar una red hidráulica CI con bomba eléctrica y jockey en CDMX',
+      },
+      {
+        nombre: 'Red NFPA 20 — Eléctrica + Jockey',
+        badge: 'NFPA 20',
+        desc: 'Sistema de dos bombas con tablero NFPA 20. Arranque automático al detectar caída de presión. Para edificios que requieren cumplir NFPA 20 sin redundancia de emergencia por diésel.',
+        specs: 'NFPA 20 · Bomba eléctrica · Jockey · Tablero arranque auto · Registrador eventos',
+        waText: 'Hola, necesito cotizar una red hidráulica NFPA 20 con bomba eléctrica y jockey en CDMX',
+      },
+      {
+        nombre: 'Red NFPA 20 — Eléctrica + Diésel + Jockey',
+        badge: 'NFPA 20',
+        desc: 'Sistema completo de tres bombas. La diésel actúa automáticamente si falla el suministro eléctrico. Exigido por aseguradoras y Protección Civil en instalaciones críticas.',
+        specs: 'NFPA 20 · Eléctrica + diésel + jockey · Redundancia total · Exigido aseguradoras',
+        waText: 'Hola, necesito cotizar una red hidráulica CI con sistema NFPA 20 completo en CDMX',
+      },
+      {
+        nombre: 'Red con Cisterna + Bombeo Completo',
+        badge: 'NFPA 13/14',
+        desc: 'Cuando la presión municipal es insuficiente. Incluye cisterna calculada según demanda del sistema, grupo de bombas, red de distribución, prueba hidrostática y planos as-built.',
+        specs: 'Cisterna calculada · Grupo de bombas · Red distribución · Prueba hidrostática · Planos',
+        waText: 'Hola, necesito cotizar una red CI completa con cisterna y bombeo en CDMX',
+      },
     ],
     caracteristicas: {
       eyebrow: 'Componentes del sistema',
@@ -289,11 +416,39 @@ export const SISTEMA_PAGES: Record<string, ProductoSistemasData> = {
       'Concentraciones de diseño calculadas conforme a NFPA 2001 para cada recinto protegido.',
       'Sistema completo: cilindros, tuberías, boquillas, panel de liberación y señalización.',
     ],
-    stats: [
-      { value: 'NFPA 2001',  label: 'Norma de diseño'       },
-      { value: '< 10 s',     label: 'Tiempo de descarga'    },
-      { value: '0%',         label: 'Residuo tras descarga' },
-      { value: 'UL Listed',  label: 'Certificación agente'  },
+    variantesEyebrow: 'Agentes disponibles',
+    variantesTitleLine1: 'Selecciona el agente',
+    variantesTitleLine2: 'de supresión correcto',
+    variantesBodyPara: 'Diseñamos e instalamos sistemas de supresión con cuatro agentes distintos según el tipo de recinto, el nivel de ocupación y los requerimientos ecológicos o normativos del cliente. Concentraciones calculadas conforme a NFPA 2001.',
+    variantes: [
+      {
+        nombre: 'HFC-227ea — FM-200',
+        badge: 'NFPA 2001',
+        desc: 'El agente de halocarbono más utilizado en el mundo. Extinción en menos de 10 segundos sin reducir el oxígeno ni dejar residuo. Seguro para personal presente durante la descarga.',
+        specs: 'FM-200 · Descarga < 10 s · Residuo cero · Conc. 7–9 % · Recintos hasta 300 m³',
+        waText: 'Hola, necesito cotizar un sistema de supresión FM-200 en CDMX',
+      },
+      {
+        nombre: 'FK-5-1-12 — Novec 1230',
+        badge: 'NFPA 2001',
+        desc: 'Potencial de calentamiento global casi cero (GWP = 1). Alternativa ecológica al FM-200. Seguro para personal expuesto y para documentos y equipos delicados.',
+        specs: 'Novec 1230 · GWP = 1 · Residuo cero · Ecológico · Conc. 4.2–5.9 % · NFPA 2001',
+        waText: 'Hola, necesito cotizar un sistema de supresión Novec 1230 en CDMX',
+      },
+      {
+        nombre: 'CO₂ Alta Concentración',
+        badge: 'NFPA 12',
+        desc: 'Para recintos desocupados: cuartos eléctricos, bodegas de pintura y equipos sin presencia humana. Elimina el oxígeno en el recinto — requiere señalización y retardo de descarga.',
+        specs: 'CO₂ · Alta concentración · Solo recintos desocupados · Económico · NFPA 12',
+        waText: 'Hola, necesito cotizar un sistema de supresión CO2 en CDMX',
+      },
+      {
+        nombre: 'Inergen — Gases Inertes',
+        badge: 'NFPA 2001',
+        desc: 'Mezcla de nitrógeno, argón y CO₂ que reduce el oxígeno al 12–13 %. Sin agentes químicos ni GWP. Ideal para áreas ecológicamente sensibles o con restricciones de emisiones.',
+        specs: 'Inergen · N₂ + Ar + CO₂ · GWP = 0 · Sin agentes químicos · 12–13 % O₂ · NFPA 2001',
+        waText: 'Hola, necesito cotizar un sistema de supresión Inergen en CDMX',
+      },
     ],
     caracteristicas: {
       eyebrow: 'Agentes y componentes',

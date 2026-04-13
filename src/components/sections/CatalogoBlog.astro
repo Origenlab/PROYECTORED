@@ -10,7 +10,7 @@ import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import BlogSidebar from './BlogSidebar.astro'
 import { getCollection } from 'astro:content'
 
-const POSTS_PER_PAGE = 9
+const POSTS_PER_PAGE = 18
 
 // Obtener todos los artículos ordenados por fecha
 const posts = (await getCollection('blog'))
@@ -71,6 +71,7 @@ function getGradient(category: string | undefined): string {
   if (!category) return defaultGradient
   return categoryGradients[category] ?? defaultGradient
 }
+
 
 // ── Mapa slug → imagen por artículo ──────────────────────────────────────────
 // Cuando el frontmatter no tiene `image`, se usa esta imagen según el slug.
@@ -207,7 +208,11 @@ function getPostImageCdn(slug: string, frontmatterImage: string | undefined, cat
 
         <!-- Contador de resultados -->
         <div class="blog-results-bar">
-          <span class="blog-results-bar__count">{posts.length} artículos disponibles</span>
+          <span class="blog-results-bar__count">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+            {posts.length} artículos disponibles
+          </span>
+          <span class="blog-results-bar__pages">Página <span id="currentPageLabel">1</span> de {totalPages}</span>
         </div>
 
         <!-- Grid de artículos (todas las cards, JS controla paginación) -->
@@ -291,6 +296,7 @@ function getPostImageCdn(slug: string, frontmatterImage: string | undefined, cat
   const prevBtn = document.getElementById('blogPrev')
   const nextBtn = document.getElementById('blogNext')
   const pagesBtns = document.querySelectorAll('.blog-pagination__page')
+  const pageLabel = document.getElementById('currentPageLabel')
 
   let currentPage = 0
 
@@ -311,6 +317,7 @@ function getPostImageCdn(slug: string, frontmatterImage: string | undefined, cat
 
     if (prevBtn) prevBtn.disabled = page === 0
     if (nextBtn) nextBtn.disabled = page === totalPages - 1
+    if (pageLabel) pageLabel.textContent = String(page + 1)
 
     // Scroll suave al grid
     const section = document.getElementById('articulos')

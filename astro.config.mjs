@@ -5,6 +5,6 @@ export default defineConfig({
   site: 'https://proyectored.com.mx',
   output: 'static',
   vite: {
-    cacheDir: '/tmp/vite-pr-v3',
+    cacheDir: '/tmp/vite-cache',
   },
 });

@@ -1,68 +1,80 @@
 ---
 /**
- * GuiaPrimerosAuxilios.astro — v1
+ * GuiaPrimerosAuxilios.astro — v2
  * Guía de selección por tipo de empresa — 4 escenarios.
- * Patrón 100% homologado con GuiaSistemas / GuiaMangueras.
+ * Estructura 100% homologada con GuiaExtintores (template L3 canónico).
+ * Usa SectionHeaderDuo + guia-grid (3 cols, global pages.css) + guia-card estándar.
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import Img from '../ui/Img.astro'
 import { waUrl } from '../../config/site'
-import '../../styles/pages.css'
 
 const waHref = waUrl('Hola, necesito asesoría sobre equipo de primeros auxilios para mi empresa. ¿Qué necesito según el número de trabajadores?')
 
 const escenarios = [
   {
-    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
-    badge: 'Oficina / Empresa pequeña',
+    num: '01',
+    tipo: 'Oficina / Empresa pequeña',
     norma: 'NOM-030-STPS Tipo A',
-    titulo: 'Botiquín Tipo A + Capacitación Básica',
-    desc: 'Para hasta 25 trabajadores. El botiquín tipo A incluye el contenido mínimo especificado por NOM-030-STPS: material de curación, guantes, torniquete improvisado y medicamentos básicos de libre venta. La diferencia entre tenerlo bien abastecido y tenerlo vacío puede ser la diferencia entre una herida menor manejada en sitio y una salida al hospital.',
-    specs: [
+    subtitulo: 'Botiquín Tipo A + Capacitación Básica',
+    necesitas: [
       'Botiquín tipo A con contenido NOM completo',
       'Visible y accesible en área de trabajo',
       'Resurtido anual con revisión de caducidades',
       'Capacitación básica de primeros auxilios (opcional)',
     ],
+    porque: 'Para hasta 25 trabajadores. El botiquín tipo A incluye el contenido mínimo especificado por NOM-030-STPS. La diferencia entre tenerlo bien abastecido y tenerlo vacío puede ser la diferencia entre una herida menor manejada en sitio y una salida al hospital.',
+    href: waUrl('Hola, necesito botiquín tipo A para oficina o empresa pequeña según NOM-030-STPS'),
+    img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
+    imgAlt: 'Botiquín de primeros auxilios tipo A certificado NOM-030-STPS para oficina',
   },
   {
-    img: '/imagenes/primeros-auxilios/botiquin.jpg',
-    badge: 'Empresa mediana / 26–100 trabajadores',
+    num: '02',
+    tipo: 'Empresa mediana / 26–100 trabajadores',
     norma: 'NOM-030-STPS Tipo B',
-    titulo: 'Botiquín Tipo B + DEA + Brigada',
-    desc: 'Para 26 a 100 trabajadores, la NOM exige botiquín tipo B con contenido ampliado. En este rango de empresa, se recomienda además un desfibrilador DEA accesible a no más de 3 minutos de cualquier puesto de trabajo — el tiempo de respuesta ante un paro cardíaco hace la diferencia entre la vida y la muerte. Con capacitación DC-3, tu brigada puede usar el DEA sin entrenamiento médico.',
-    specs: [
+    subtitulo: 'Botiquín Tipo B + DEA + Brigada',
+    necesitas: [
       'Botiquín tipo B con contenido ampliado NOM',
       'DEA automático con voz guía en español',
       'Gabinete DEA mural con alarma de apertura',
       'Capacitación brigada con constancia DC-3 STPS',
     ],
+    porque: 'Para 26 a 100 trabajadores. En este rango, se recomienda un desfibrilador DEA accesible a no más de 3 minutos de cualquier puesto de trabajo — el tiempo de respuesta ante un paro cardíaco hace la diferencia entre la vida y la muerte. Con capacitación DC-3, tu brigada puede usar el DEA sin entrenamiento médico.',
+    href: waUrl('Hola, necesito botiquín tipo B, DEA y capacitación para empresa mediana'),
+    img: '/imagenes/primeros-auxilios/botiquin.jpg',
+    imgAlt: 'Botiquín tipo B y desfibrilador DEA para empresa mediana con brigada capacitada',
   },
   {
-    img: '/imagenes/primeros-auxilios/camillas.jpg',
-    badge: 'Planta industrial / +100 trabajadores',
+    num: '03',
+    tipo: 'Planta industrial / +100 trabajadores',
     norma: 'NOM-030-STPS Tipo C',
-    titulo: 'Botiquín Tipo C + Camillas + Equipo Completo',
-    desc: 'Para más de 100 trabajadores o instalaciones con riesgo de trauma físico (plantas industriales, almacenes, construcción), la NOM exige botiquín tipo C y la empresa necesita equipo para manejo de traumas: camillas de inmovilización espinal, collarines cervicales y férulas. El objetivo es estabilizar al trabajador lesionado hasta que llegue la ambulancia sin agravar la lesión.',
-    specs: [
+    subtitulo: 'Botiquín Tipo C + Camillas + Equipo Completo',
+    necesitas: [
       'Botiquín tipo C con contenido completo NOM',
       'Camilla rígida tipo Miller para trauma espinal',
       'Collarines cervicales tallas S, M, L, XL',
       'Equipos de atención múltiple por zona de riesgo',
     ],
+    porque: 'Para más de 100 trabajadores o instalaciones con riesgo de trauma físico (plantas industriales, almacenes, construcción). El objetivo es estabilizar al trabajador lesionado hasta que llegue la ambulancia sin agravar la lesión. Un collarín mal aplicado puede convertir una lesión recuperable en una parálisis.',
+    href: waUrl('Hola, necesito equipo completo de primeros auxilios para planta industrial con más de 100 trabajadores'),
+    img: '/imagenes/primeros-auxilios/camillas.jpg',
+    imgAlt: 'Camilla de trauma y equipo de primeros auxilios tipo C para planta industrial',
   },
   {
-    img: '/imagenes/primeros-auxilios/collarin.jpg',
-    badge: 'Restaurante / Cocina industrial',
+    num: '04',
+    tipo: 'Restaurante / Cocina industrial',
     norma: 'NOM-030-STPS + Quemaduras',
-    titulo: 'Botiquín Especializado en Quemaduras',
-    desc: 'Las cocinas industriales tienen riesgos específicos que el botiquín estándar no cubre completamente: quemaduras por aceite a alta temperatura, cortes profundos y resbalones. El botiquín para cocina debe incluir apósitos especializados para quemaduras, cobertura de silicona sin adherencia y material para quemaduras de segundo grado — no los mismos productos que para una oficina.',
-    specs: [
+    subtitulo: 'Botiquín Especializado en Quemaduras',
+    necesitas: [
       'Apósitos especializados para quemaduras',
       'Cobertura de silicona no adherente',
       'Material para quemaduras de 2° grado',
       'Guantes de nitrilo XL para personal de cocina',
     ],
+    porque: 'Las cocinas industriales tienen riesgos específicos que el botiquín estándar no cubre: quemaduras por aceite a alta temperatura, cortes profundos y resbalones. El botiquín para cocina debe incluir apósitos especializados — no los mismos productos que para una oficina. El aceite a 180°C genera quemaduras de segundo grado en segundos.',
+    href: waUrl('Hola, necesito botiquín especializado en quemaduras para cocina industrial o restaurante'),
+    img: '/imagenes/primeros-auxilios/collarin.jpg',
+    imgAlt: 'Botiquín especializado en quemaduras para cocina industrial con apósitos de silicona',
   },
 ]
 ---
@@ -75,42 +87,76 @@ const escenarios = [
       eyebrow="Guía por tipo de empresa"
       titleLine1="¿Qué Necesita"
       titleLine2="tu Empresa Según la NOM?"
-      desc="El tipo de botiquín, la necesidad de DEA y el equipo adicional dependen del número de trabajadores y el tipo de riesgo de tu instalación."
-      bodyPara1="La NOM-030-STPS no es genérica — especifica exactamente qué debe tener cada tipo de empresa en función del número de trabajadores y el tipo de riesgo. Una empresa con 30 empleados tiene requisitos distintos a una con 150, y una cocina industrial tiene riesgos que no contempla un botiquín de oficina. Aquí está el equipo correcto para cada caso."
-      bodyPara2="Si tienes dudas sobre cuántos botiquines necesitas, qué tipo corresponde a tu empresa o si requieres DEA, mándanos el número de trabajadores y el tipo de actividad por WhatsApp — te respondemos con la especificación exacta en menos de 24 horas."
+      desc="NOM-030-STPS no es genérica — el tipo de botiquín, el DEA y el equipo adicional dependen del número de trabajadores y el tipo de riesgo."
+      bodyPara1="Una empresa con 30 empleados tiene requisitos distintos a una con 150, y una cocina industrial tiene riesgos que no contempla un botiquín de oficina. Comprar el botiquín incorrecto no solo genera incumplimiento ante la STPS — significa no tener el material adecuado cuando se necesita. Si tienes dudas, mándanos el número de trabajadores y el tipo de actividad por WhatsApp — te respondemos con la especificación exacta."
     />
 
-    <div class="guia-pa-grid">
-      {escenarios.map((e, i) => (
-        <article class="guia-card">
-          <div class="guia-card__img-wrap">
+    <div class="guia-grid" role="list" aria-label="Guía de primeros auxilios por tipo de empresa">
+      {escenarios.map((esc, i) => (
+        <article class="guia-card" role="listitem">
+          {/* Imagen superior */}
+          <div class="guia-card__header">
             <Img
-              src={e.img}
-              alt={`Primeros auxilios para ${e.badge} — Proyecto Red`}
-              width={560}
-              height={320}
+              src={esc.img}
+              alt={esc.imgAlt}
+              width={640}
+              height={360}
               loading={i < 2 ? 'eager' : 'lazy'}
+              class="guia-card__img"
             />
-            <span class="guia-card__badge">{e.badge}</span>
-            <span class="guia-card__norma">{e.norma}</span>
+            <span class="guia-card__badge">{esc.norma}</span>
+            <span class="guia-card__num">{esc.num}</span>
           </div>
+
+          {/* Contenido */}
           <div class="guia-card__body">
-            <h3 class="guia-card__title">{e.titulo}</h3>
-            <p class="guia-card__desc">{e.desc}</p>
-            <ul class="guia-card__specs">
-              {e.specs.map(s => <li>{s}</li>)}
-            </ul>
+            <h3 class="guia-card__tipo">{esc.tipo}</h3>
+
+            <div class="guia-card__block">
+              <span class="guia-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                Qué necesitas
+              </span>
+              <strong class="guia-card__sub">{esc.subtitulo}</strong>
+              <ul class="guia-card__list">
+                {esc.necesitas.map(item => <li>{item}</li>)}
+              </ul>
+            </div>
+
+            <div class="guia-card__block guia-card__block--muted">
+              <span class="guia-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Por qué
+              </span>
+              <p>{esc.porque}</p>
+            </div>
+
+            <a href={esc.href} class="guia-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar para mi empresa
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </article>
       ))}
     </div>
 
+    <!-- CTA asesoría -->
     <div class="guia-cta-bar">
-      <div class="guia-cta-bar__text">
-        <strong>¿Necesitas verificar si tu empresa cumple con la NOM-030-STPS?</strong>
-        <span>Revisamos tu situación actual y te decimos qué tipo de botiquín necesitas, cuántos, dónde colocarlos y qué documentación presentar ante STPS.</span>
+      <div class="guia-cta-bar__left">
+        <div class="guia-cta-bar__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <div class="guia-cta-bar__text">
+          <strong>¿Necesitas verificar si tu empresa cumple con la NOM-030-STPS?</strong>
+          <span>Revisamos tu situación y te decimos qué tipo de botiquín necesitas, cuántos, dónde colocarlos y qué documentación presentar ante STPS.</span>
+        </div>
       </div>
-      <a href={waHref} class="btn-primary" target="_blank" rel="noopener noreferrer">
+      <a
+        href={waHref}
+        class="btn-primary guia-cta-bar__btn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Verificar cumplimiento de mi empresa
       </a>
@@ -125,13 +171,4 @@ const escenarios = [
     background: var(--c-surface, #F4F4F5);
     border-top: 1px solid var(--c-border);
   }
-
-  .guia-pa-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: 900px) { .guia-pa-grid { grid-template-columns: 1fr; } }
 </style>

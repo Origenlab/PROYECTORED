@@ -7,10 +7,12 @@
 //         /equipo-bomberos/complementos-uniforme/
 //
 // Patrón 100% homologado con extintores/[producto].astro (referencia canónica L4).
-// Secciones: Características → ¿Para quién? → Servicios → TrustIndex → NormasBomberos → Otros productos
+// Secciones: [Variantes?] → Características → ¿Para quién? → Servicios →
+//            TrustIndex → NormasBomberos → Otros productos
 
 import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
+import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
 import NormasBomberos from '../../components/sections/NormasBomberos.astro'
 import { waUrl, SERVICES } from '../../config/site'
@@ -42,6 +44,17 @@ if (!data) {
 const related = BOMBERO_PRODUCTS.filter((p) => p.slug !== producto)
 
 const PAGE_WA = waUrl(data.waMessage)
+
+// ── Helper: ¿tiene variantes este producto? ──────────────────
+// Debe declararse DESPUÉS de que `data` esté definido.
+const hasVariantes = Boolean(data.variantes && data.variantes.length > 0)
+
+// ── Helper: desc corta para la columna izquierda de S0 ───────
+// Patrón idéntico a getVariantesDesc() en extintores/[producto].astro
+const getVariantesDesc = (): string => {
+  const n = data.variantes?.length ?? 0
+  return `${n} opciones disponibles de ${data.heroAccent} con documentación NFPA de origen y suministro en CDMX y Estado de México.`
+}
 ---
 
 <CategoryLayout
@@ -60,7 +73,6 @@ const PAGE_WA = waUrl(data.waMessage)
     { label: 'Equipo Bomberos', href: '/equipo-bomberos/' },
     { label: data.heroAccent },
   ]}
-  stats={data.stats}
   showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
@@ -72,16 +84,126 @@ const PAGE_WA = waUrl(data.waMessage)
 >
 
   <!-- ===========================================================
-       SECCIÓN 1 — Características técnicas
+       SECCIÓN 0 — Modelos / opciones disponibles (opcional)
+       Solo se renderiza si el producto tiene `variantes` definidas.
+       Patrón idéntico a la sección de capacidades en extintores/[producto].astro.
+
+       Alternancia de fondos con variantes:
+         S0=white → S1=gray → S2=white → S3=gray ✓
+       Sin variantes:
+         S1=white → S2=gray → S3=white ✓
        =========================================================== -->
-  <section class="cat-section cat-section--white" id="caracteristicas">
+  {hasVariantes && (
+    <section class="cat-section cat-section--white" id="variantes">
+      <div class="container">
+
+        <SectionHeaderDuo
+          eyebrow={data.variantesEyebrow ?? 'Opciones disponibles'}
+          titleLine1={data.variantesTitleLine1 ?? 'Modelos y configuraciones'}
+          titleLine2={data.variantesTitleLine2}
+          desc={getVariantesDesc()}
+          bodyPara1={data.variantesBodyPara ?? 'Cotiza el modelo correcto para tu tipo de operación. Todos los equipos se entregan con documentación de certificación NFPA de origen y soporte técnico incluido.'}
+        />
+
+        <div class="catidx-grid" role="list" aria-label={`Opciones de ${data.heroAccent}`}>
+          {data.variantes?.map((v, i) => (
+            <article class="ccard" role="listitem" aria-label={v.nombre}>
+              <div class:list={['ccard__header', !data.img && 'ccard__header--placeholder']}>
+                {data.img ? (
+                  <Img
+                    src={data.img}
+                    alt={v.nombre}
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                    fetchpriority={i === 0 ? 'high' : undefined}
+                    width={640}
+                    height={360}
+                    sizes="(max-width: 520px) 100vw, (max-width: 860px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                  />
+                ) : (
+                  <div class="ccard__placeholder-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="ccard__placeholder-label">Imagen próximamente</span>
+                  </div>
+                )}
+                {data.img && <div class="ccard__header-overlay" aria-hidden="true"></div>}
+                {v.badge && <span class="ccard__badge">{v.badge}</span>}
+              </div>
+              <div class="ccard__content">
+                <h3 class="ccard__title">{v.nombre}</h3>
+                <p class="ccard__desc">{v.desc}</p>
+                {v.specs && <p class="ccard__specs">{v.specs}</p>}
+                <a
+                  href={waUrl(v.waText)}
+                  class="ccard__cta"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Cotizar este modelo
+                  <svg
+                    width="13" height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+
+          <!-- CTA Card WhatsApp — siempre última tarjeta -->
+          <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir el modelo correcto">
+            <a
+              href={PAGE_WA}
+              class="ccard--cta-wa__inner"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="ccard--cta-wa__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <p class="ccard--cta-wa__title">¿No encuentras lo que necesitas?</p>
+              <p class="ccard--cta-wa__sub">
+                Cuéntanos el tipo de operación y te asesoramos sin costo.
+              </p>
+              <span class="ccard--cta-wa__btn">Asesoría por WhatsApp →</span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+  )}
+
+  <!-- ===========================================================
+       SECCIÓN 1 — Características técnicas
+       Fondo: --gray si hay variantes (S0=white antes), --white si no.
+       Usa `desc` en col. izquierda y `bodyPara1` en col. derecha,
+       igual que extintores/[producto].astro.
+       =========================================================== -->
+  <section
+    class={`cat-section ${hasVariantes ? 'cat-section--gray' : 'cat-section--white'}`}
+    id="caracteristicas"
+  >
     <div class="container">
 
       <SectionHeaderDuo
         eyebrow={data.caracteristicas.eyebrow}
         titleLine1={data.caracteristicas.titleLine1}
         titleLine2={data.caracteristicas.titleLine2}
-        bodyPara1={data.caracteristicas.desc}
+        desc={data.caracteristicas.desc}
+        bodyPara1="Consulta con nuestro equipo técnico para verificar la selección correcta, disponibilidad de tallas o modelos y documentación de certificación que necesitas para tu expediente."
       />
 
       <div class="l4-svc-grid" role="list" aria-label="Características técnicas">
@@ -116,15 +238,20 @@ const PAGE_WA = waUrl(data.waMessage)
 
   <!-- ===========================================================
        SECCIÓN 2 — ¿Para quién es este equipo?
+       Fondo: --white si hay variantes (S1=gray antes), --gray si no.
        =========================================================== -->
-  <section class="cat-section cat-section--gray" id="para-quien">
+  <section
+    class={`cat-section ${hasVariantes ? 'cat-section--white' : 'cat-section--gray'}`}
+    id="para-quien"
+  >
     <div class="container">
 
       <SectionHeaderDuo
         eyebrow={data.paraQuien.eyebrow}
         titleLine1={data.paraQuien.titleLine1}
         titleLine2={data.paraQuien.titleLine2}
-        bodyPara1={data.paraQuien.desc}
+        desc={data.paraQuien.desc}
+        bodyPara1="¿Tu caso no está listado? Cuéntanos el tipo de brigada, el nivel de riesgo y las operaciones que realizan — te proponemos la dotación correcta sin costo."
       />
 
       <div class="l4-svc-grid" role="list" aria-label="Perfiles operativos y sectores atendidos">
@@ -159,62 +286,75 @@ const PAGE_WA = waUrl(data.waMessage)
 
   <!-- ===========================================================
        SECCIÓN 3 — Servicios para tu cuerpo o brigada
+       Fondo: --gray si hay variantes (S2=white antes), --white si no.
+       NFPA patterns: asesoría técnica + capacitación + instalación CI.
        =========================================================== -->
-  <section class="cat-section cat-section--white" id="servicios-bomberos">
+  <section
+    class={`cat-section ${hasVariantes ? 'cat-section--gray' : 'cat-section--white'}`}
+    id="servicios-bomberos"
+  >
     <div class="container">
 
       <SectionHeaderDuo
         eyebrow="Servicios disponibles"
         titleLine1="Más que equipo:"
         titleLine2="soporte técnico y capacitación"
-        bodyPara1="No solo suministramos el equipo — acompañamos a tu cuerpo o brigada con asesoría técnica, capacitación NFPA y diagnóstico sin costo. Constancias DC-3 válidas ante STPS para todas las capacitaciones de brigada."
+        desc="No solo suministramos el equipo — te acompañamos con asesoría, capacitación NFPA e instalación."
+        bodyPara1="Constancias DC-3 válidas ante STPS para todas las capacitaciones de brigada. Diagnóstico de tu instalación sin costo. Gestión de documentación para Protección Civil y STPS."
       />
 
-      <div class="l4-svc-grid" role="list" aria-label="Servicios disponibles para brigadas y bomberos">
-        {RELATED_SERVICES.map((svc, idx) => (
-          <a
-            href={`/servicios/#${svc.id}`}
-            class="srv-mini"
-            role="listitem"
-            aria-label={svc.label}
-          >
-            <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
-            <div class="srv-mini__body">
-              <strong class="srv-mini__titulo">{svc.label}</strong>
-              <span class="srv-mini__sub">{svc.desc}</span>
-            </div>
-            <svg
-              class="srv-mini__arrow"
-              width="16" height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+      {RELATED_SERVICES.length > 0 && (
+        <div class="l4-svc-grid" role="list" aria-label="Servicios disponibles para brigadas y bomberos">
+          {RELATED_SERVICES.map((svc, idx) => (
+            <a
+              href={`/servicios/#${svc.id}`}
+              class="srv-mini"
+              role="listitem"
+              aria-label={svc.label}
             >
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        ))}
-      </div>
+              <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+              <div class="srv-mini__body">
+                <strong class="srv-mini__titulo">{svc.label}</strong>
+                <span class="srv-mini__sub">{svc.desc}</span>
+              </div>
+              <svg
+                class="srv-mini__arrow"
+                width="16" height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
 
     </div>
   </section>
 
   <!-- ===========================================================
        SECCIÓN 4 — Por qué Proyecto Red (homologado con L1/L3)
+       TrustIndex tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
   <TrustIndex />
 
   <!-- ===========================================================
        SECCIÓN 5 — Normas NFPA del equipo de bomberos
+       NormasBomberos tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
   <NormasBomberos />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros productos de la categoría
+       Siempre --white (después de las secciones con fondo propio).
+       Cards sin imagen (.ccard--text) porque BOMBERO_PRODUCTS no
+       incluye `img` — patrón intencional para este grid de referencia.
        =========================================================== -->
   <section class="cat-section cat-section--white" id="otros-bomberos">
     <div class="container">
@@ -222,7 +362,8 @@ const PAGE_WA = waUrl(data.waMessage)
       <SectionHeaderDuo
         eyebrow="Más opciones"
         titleLine1={data.relatedTitle}
-        bodyPara1="La protección completa de un bombero o brigadista requiere un conjunto integrado de equipo certificado. Explora el resto del catálogo para dotar correctamente a tu cuerpo o brigada."
+        desc="La protección completa de un bombero o brigadista es una cadena: tan fuerte como su eslabón más débil."
+        bodyPara1="Explora el resto del catálogo para dotar correctamente a tu cuerpo o brigada con equipo certificado NFPA, suministrado con documentación de origen y asesoría técnica sin costo."
       />
 
       <div class="catidx-grid catidx-grid--compact" role="list" aria-label="Otros productos en equipo para bomberos">
@@ -254,7 +395,7 @@ const PAGE_WA = waUrl(data.waMessage)
           </article>
         ))}
 
-        <!-- CTA Card WhatsApp -->
+        <!-- CTA Card WhatsApp — siempre última tarjeta -->
         <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir el equipo correcto">
           <a
             href={PAGE_WA}
@@ -263,7 +404,7 @@ const PAGE_WA = waUrl(data.waMessage)
             rel="noopener noreferrer"
           >
             <div class="ccard--cta-wa__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
             </div>
@@ -282,14 +423,18 @@ const PAGE_WA = waUrl(data.waMessage)
 </CategoryLayout>
 
 <!-- ─────────────────────────────────────────────────────────────
-     Estilos compartidos:
+     Estilos compartidos (importados en el frontmatter):
      · product-page.css → .l4-svc-grid, .srv-mini, .inline-cta
      · pages.css        → .catidx-grid, .ccard, .ccard--cta-wa, .cat-section
-     (ambos importados en el frontmatter)
+
+     Estilos scoped solo para variantes específicas de esta página:
+     · .ccard--text      → card sin imagen para la sección "Otros productos"
+     · .ccard__badge--top → badge pequeño encima del título en .ccard--text
+     · .catidx-grid--compact → más columnas para items sin imagen
      ───────────────────────────────────────────────────────────── -->
 
 <style>
-  /* ── Variante de card sin imagen para "Otros productos" ─────── */
+  /* ── Card sin imagen — usada en S6 "Otros productos" ─────── */
   .ccard--text {
     display: flex;
     flex-direction: column;
@@ -298,6 +443,7 @@ const PAGE_WA = waUrl(data.waMessage)
     border: 1px solid var(--c-border, #E4E4E7);
     border-radius: 10px;
     overflow: hidden;
+    min-height: 140px;
   }
 
   .ccard--text .ccard__content {
@@ -305,22 +451,25 @@ const PAGE_WA = waUrl(data.waMessage)
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex: 1;
   }
 
+  /* ── Badge superior pequeño (norma NFPA) en .ccard--text ─── */
   .ccard__badge--top {
-    font-size: 0.7rem;
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--c-primary, #C41E24);
     background: rgba(196, 30, 36, 0.06);
-    border: 1px solid rgba(196, 30, 36, 0.15);
+    border: 1px solid rgba(196, 30, 36, 0.18);
     border-radius: 4px;
     padding: 0.2rem 0.5rem;
     align-self: flex-start;
+    line-height: 1.4;
   }
 
-  /* ── Grid compact (más columnas para items sin imagen) ───────── */
+  /* ── Grid compacto: más columnas para cards sin imagen ────── */
   .catidx-grid--compact {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }

@@ -1,4 +1,150 @@
-# Graph Report - .  (2026-04-11)
+# Graph Report - .  (2026-04-12)
+
+## 🚨 Regla global L4: variantes DEBEN estar en los datos
+
+**El template `[producto].astro` de TODA categoría ya tiene la S0 de variantes lista.**
+La S0 es condicional: `hasVariantes = Boolean(data.variantes && data.variantes.length > 0)`.
+
+> Si `variantes?` está en la interface pero no tiene datos escritos → S0 **no aparece nunca**.
+> Solución: poblar `variantes: [...]` en el data file con mínimo 4 items por producto.
+
+**Template canónico completo:** `docs/L4-UNIVERSAL-TEMPLATE.md`
+**Checklist y reglas:** `ProyectoRed-Vault/05 - Desarrollo/L4 — Template Universal (Reglas y Checklist).md`
+
+---
+
+## 📌 Estado de páginas L4 — sistemas (actualizado 2026-04-12)
+
+| Ruta                                       | Estado       | Variantes | Notas                                                                                              |
+|--------------------------------------------|-------------|-----------|-----------------------------------------------------------------------------------------------------|
+| `/sistemas/deteccion-alarma/`              | ✅ Aprobada  | ✅ 4       | Convencional 4z · 8-16z · Direccionable 64pt · 512+pt. NFPA 72.                                   |
+| `/sistemas/rociadores/`                    | ✅ Aprobada  | ✅ 4       | Tubo húmedo · seco · Pre-acción · ESFR. NFPA 13.                                                   |
+| `/sistemas/tablero-control/`               | ✅ Aprobada  | ✅ 4       | FACP convencional · direccionable · pantalla gráfica · tablero bomba NFPA 20.                      |
+| `/sistemas/red-hidraulica/`                | ✅ Aprobada  | ✅ 4       | Bomba eléctrica+jockey · NFPA 20 E+J · NFPA 20 E+D+J · Cisterna+bombeo. NFPA 13/14.              |
+| `/sistemas/supresion-agente/`              | ✅ Aprobada  | ✅ 4       | FM-200 · Novec 1230 · CO₂ alta conc. · Inergen. NFPA 2001/12.                                     |
+
+### Patrón L4 sistemas v2 (2026-04-12 — homologado con mangueras/gabinetes)
+```
+CategoryLayout (Hero + CtaBar) →
+  S0 cat-section--white  : [CONDICIONAL si hasVariantes] SectionHeaderDuo + catidx-grid (ccard + ccard--cta-wa)
+                           · Ningún sistema tiene variantes definidas aún (interface lista para el futuro)
+  S1 cat-section--white* : SectionHeaderDuo + l4-svc-grid (características) + inline-cta  (* --gray si con variantes)
+  S2 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (cuándo instalar) + inline-cta  (* --white si con variantes)
+  S3 cat-section--white* : SectionHeaderDuo + l4-svc-grid (servicios, links)              (* --gray si con variantes)
+  S4                     : TrustIndex (componente global)
+  S5                     : NormasSistemas v2 (NFPA 72, 13, 14, 20, 2001, NOM-002-STPS) → usa .normas-grid global
+  S6 cat-section--white  : SectionHeaderDuo + catidx-grid--compact (ccard--text + ccard--cta-wa)
+→ FaqCotizacionIndex → CTAFinal
+```
+RELATED_SERVICES: instalacion-sistemas, mantenimiento-preventivo, asesoria-tecnica
+
+**NormasSistemas v2:** Homologada con NormasMangueras/NormasGabinetes — usa `.normas-grid` global (pages.css), estructura `norma-card__nombre` + `norma-tipo` + `norma-aplica-label` idéntica. Reemplaza `.normas-sis-grid` scoped de v1.
+
+**Interface:** `VarianteSistema` añadida + campos opcionales `img?`, `variantes?`, `variantesEyebrow/TitleLine1/TitleLine2/BodyPara?` en `ProductoSistemasData`. Ningún producto tiene variantes definidas aún.
+
+**Fix:** `astro.config.mjs` — `vite.cacheDir` corregido de sesión expirada → `/tmp/vite-cache`.
+
+---
+
+## 🖼️ Patrón global: ccard__header con imagen real o placeholder (2026-04-12)
+
+**Regla**: Toda card de variante en L4 SIEMPRE renderiza `.ccard__header` (aspect-ratio 16:9).
+Si el producto tiene `data.img` → imagen real. Si no → placeholder visual.
+
+**CSS en `pages.css`** (global, no scoped):
+```css
+.ccard__header--placeholder { background: linear-gradient(145deg, #F2F2F5, #E6E6EC); }
+.ccard__placeholder-icon    { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#B8B8C8; }
+.ccard__placeholder-label   { font-size:0.6875rem; font-weight:600; text-transform:uppercase; color:#B8B8C8; }
+```
+
+**Template en cada L4** (extintores, gabinetes, equipo-bomberos):
+```astro
+<div class:list={['ccard__header', !imgSrc && 'ccard__header--placeholder']}>
+  {imgSrc ? (
+    <Img src={imgSrc} ... />   <!-- imagen real + .ccard__header-overlay + .ccard__badge -->
+  ) : (
+    <div class="ccard__placeholder-icon">
+      <svg><!-- icono foto SVG --></svg>
+      <span class="ccard__placeholder-label">Imagen próximamente</span>
+    </div>
+  )}
+  {imgSrc && <div class="ccard__header-overlay" ...></div>}
+  {v.badge && <span class="ccard__badge">{v.badge}</span>}  <!-- badge SIEMPRE visible -->
+</div>
+```
+**Activar imagen real**: Agregar `img: '/imagenes/categoria/producto.avif'` a `ProductoXxxData`.
+
+---
+
+## 📌 Estado de páginas L4 — mangueras (actualizado 2026-04-12)
+
+| Ruta                                      | Estado       | Variantes | Notas                                                                                                    |
+|-------------------------------------------|-------------|-----------|----------------------------------------------------------------------------------------------------------|
+| `/mangueras/manguera-hidrante/`           | ✅ Aprobada  | ✅ 4       | S0 variantes + SectionHeaderDuo + l4-svc-grid + TrustIndex + NormasMangueras v2 + ccard--text           |
+| `/mangueras/chiflones/`                   | ✅ Aprobada  | ✅ 4       | Ídem. Combinado/chorro/niebla/CAFS. NFPA 1964.                                                          |
+| `/mangueras/toma-siamesa/`                | ✅ Aprobada  | ✅ 4       | Ídem. Pared/empotrada/piso/tripleta. NFPA 14.                                                            |
+| `/mangueras/monitor-incendio/`            | ✅ Aprobada  | ✅ 4       | Ídem. Distribuidor autorizado Elkhart Brass. Manual/eléctrico/oscilante/carro bomba. NFPA 15.           |
+| `/mangueras/valvulas-adaptadores/`        | ✅ Aprobada  | —         | Sin variantes. Angular/globo/check/mariposa/Storz. NFPA 1963.                                          |
+| `/mangueras/carrete-manguera/`            | ✅ Aprobada  | —         | Sin variantes. Fijo/giratorio 360°. NFPA 14.                                                            |
+
+### Patrón L4 mangueras v2 (2026-04-12 — con variantes + placeholder imagen)
+```
+CategoryLayout (Hero + CtaBar) →
+  S0 cat-section--white  : [CONDICIONAL si hasVariantes] SectionHeaderDuo + catidx-grid (ccard variantes + ccard--cta-wa)
+                           · ccard SIEMPRE tiene .ccard__header:
+                             - Si data.img → <Img> real + .ccard__header-overlay
+                             - Si !data.img → .ccard__header--placeholder + .ccard__placeholder-icon (SVG)
+                           · VarianteManguera: { nombre, badge?, desc, specs, waText }
+  S1 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (características) + inline-cta  (* --white si sin variantes)
+  S2 cat-section--white* : SectionHeaderDuo + l4-svc-grid (aplicaciones) + inline-cta      (* --gray si sin variantes)
+  S3 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (servicios, links)               (* --white si sin variantes)
+  S4                     : TrustIndex (componente global)
+  S5                     : NormasMangueras v2 (NFPA 1961, 1962, 1964, 14, 24, NOM-002-STPS) → usa .normas-grid global
+  S6 cat-section--white  : SectionHeaderDuo + catidx-grid--compact (ccard--text + ccard--cta-wa)
+→ FaqCotizacionIndex → CTAFinal
+```
+RELATED_SERVICES: instalacion-sistemas, mantenimiento-preventivo, asesoria-tecnica, prueba-hidrostatica
+
+**NormasMangueras v2:** Homologada con NormasGabinetes — usa `.normas-grid` global (pages.css), estructura `norma-card__nombre` + `norma-tipo` + `norma-aplica-label` idéntica.
+
+**Datos variantes (mangueras-productos.ts):**
+- `VarianteManguera` interface: `{ nombre: string; badge?: string; desc: string; specs: string; waText: string }`
+- `ProductoManguerasData` extiende con: `img?`, `variantes?`, `variantesEyebrow?`, `variantesTitleLine1?`, `variantesTitleLine2?`, `variantesBodyPara?`
+- manguera-hidrante: 4 variantes (1½"×15m Clase II, 1½"×20m Estándar, 2½"×20m Profesional, 2½"×30m Bomberos)
+- chiflones: 4 variantes (Combinado 1½", Pitón chorro recto 2½", Neblina baja velocidad, Pitón automático CAFS)
+- toma-siamesa: 4 variantes (Pared estándar, Empotrada flush, Piso, Tripleta 3 entradas)
+- monitor-incendio: 4 variantes (Manual Serie 1500, Eléctrico remoto Serie 3600, Oscilante automático Serie 4000, Carro bomba)
+
+---
+
+## 📌 Estado de páginas L4 — primeros-auxilios (actualizado 2026-04-12)
+
+| Ruta                                              | Estado       | Variantes | Notas                                                                                                            |
+|---------------------------------------------------|-------------|-----------|------------------------------------------------------------------------------------------------------------------|
+| `/primeros-auxilios/botiquin-stps/`              | ✅ Aprobada  | —         | Sin variantes. NOM-005-STPS. l4-svc-grid + TrustIndex + NormasPrimerosAuxilios + ccard--text                   |
+| `/primeros-auxilios/desfibrilador/`              | ✅ Aprobada  | —         | Sin variantes. AHA Guidelines. Philips HeartStart / Zoll AED Plus.                                              |
+| `/primeros-auxilios/camilla-emergencia/`         | ✅ Aprobada  | —         | Sin variantes. NOM-026-STPS. Rígida/plegable/cuchara/canasta/escalera/tablero.                                  |
+| `/primeros-auxilios/oxigeno-emergencia/`         | ✅ Aprobada  | —         | Sin variantes. NOM-235-SSA1. Cilindros + regulador + mascarilla.                                                |
+| `/primeros-auxilios/material-curacion/`          | ✅ Aprobada  | —         | Sin variantes. NOM-005-STPS. Gasas/vendas/antisépticos/inmovilizadores.                                        |
+
+### Patrón L4 primeros-auxilios v2 (2026-04-12 — sin variantes)
+```
+CategoryLayout (Hero + CtaBar) →
+  S1 cat-section--white  : SectionHeaderDuo + l4-svc-grid (características) + inline-cta
+  S2 cat-section--gray   : SectionHeaderDuo + l4-svc-grid (cuándo usar) + inline-cta
+  S3 cat-section--white  : SectionHeaderDuo + l4-svc-grid (servicios, links)
+  S4                     : TrustIndex (componente global)
+  S5                     : NormasPrimerosAuxilios (NOM-030, NOM-006, NOM-034, NOM-017, NOM-009, NOM-002)
+  S6 cat-section--white  : SectionHeaderDuo + catidx-grid--compact (ccard--text + ccard--cta-wa)
+→ FaqCotizacionIndex → CTAFinal
+```
+RELATED_SERVICES: capacitacion, asesoria-tecnica, venta-equipos
+
+**Sin variantes** — el campo `variantes?` no está en `ProductoPrimerosAuxiliosData` (pendiente si se requiere).
+**NormasPrimerosAuxilios:** 6 normas STPS (NOM-030, NOM-006, NOM-034, NOM-017, NOM-009, NOM-002-STPS). Usa `.normas-pa-grid` scoped.
+
+---
 
 ## 📌 Estado de páginas L2 — (actualizado manualmente 2026-04-11)
 
@@ -10,29 +156,80 @@
 | `/extintores/`      | ✅ Aprobada  | Primera L2 de categoría. 10 tipos, 5 secciones propias.     |
 | `/equipo-bomberos/` | ✅ Aprobada  | Homologada con extintores. 5 categorías NFPA, 5 secciones propias. |
 
+## 📌 Estado de páginas L4 — gabinetes (actualizado 2026-04-12)
+
+| Ruta                                      | Estado       | Variantes | Notas                                                                                                   |
+|-------------------------------------------|-------------|-----------|----------------------------------------------------------------------------------------------------------|
+| `/gabinetes/gabinete-extintor/`           | ✅ Aprobada  | ✅ 5       | S0 variantes + SectionHeaderDuo + l4-svc-grid + TrustIndex + NormasGabinetes (6 normas) + ccard--text  |
+| `/gabinetes/porta-extintor/`              | ✅ Aprobada  | ✅ 5       | Ídem. Soportes de piso/pared/columna. NOM-002-STPS.                                                     |
+| `/gabinetes/gabinete-bombero/`            | ✅ Aprobada  | ✅ 4       | Ídem. NFPA 14. Manguera + pitón + llave Storz.                                                          |
+| `/gabinetes/gabinete-hidrante/`           | ✅ Aprobada  | ✅ 4       | Ídem. NFPA 14 clase I/II/III. Válvula angular 2½".                                                      |
+
+### Patrón L4 gabinetes v2 (2026-04-12 — con variantes + placeholder imagen)
+```
+CategoryLayout (Hero + CtaBar) →
+  S0 cat-section--white  : [CONDICIONAL si hasVariantes] SectionHeaderDuo + catidx-grid (ccard variantes + ccard--cta-wa)
+                           · ccard SIEMPRE tiene .ccard__header:
+                             - Si data.img → <Img> real + .ccard__header-overlay
+                             - Si !data.img → .ccard__header--placeholder + .ccard__placeholder-icon (SVG)
+                           · VarianteGabinete: { nombre, badge?, desc, specs, waText }
+  S1 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (características) + inline-cta  (* --white si sin variantes)
+  S2 cat-section--white* : SectionHeaderDuo + l4-svc-grid (dónde instalar) + inline-cta   (* --gray si sin variantes)
+  S3 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (servicios, links)               (* --white si sin variantes)
+  S4                     : TrustIndex (componente global)
+  S5                     : NormasGabinetes (NOM-002-STPS, NOM-003-SEGOB, NFPA 10, NFPA 14, NFPA 25, NOM-026-STPS)
+  S6 cat-section--white  : SectionHeaderDuo + catidx-grid--compact (ccard--text + ccard--cta-wa)
+→ FaqCotizacionIndex → CTAFinal
+```
+RELATED_SERVICES: instalacion-sistemas, mantenimiento-preventivo, asesoria-tecnica, senalizacion
+
+**Datos variantes (gabinetes-productos.ts):**
+- `VarianteGabinete` interface: `{ nombre: string; badge?: string; desc: string; specs: string; waText: string }`
+- `ProductoGabinetesData` extiende con: `img?`, `variantes?`, `variantesEyebrow?`, `variantesTitleLine1?`, `variantesTitleLine2?`, `variantesBodyPara?`
+- gabinete-extintor: 5 variantes (2.5kg Básico, 4.5-6kg Más vendido, 9-12kg Industrial, Panorámico, 20-30kg Gran capacidad)
+- porta-extintor: 5 variantes (Herraje pared 2.5-4.5kg, 6-9kg, 12kg, Base piso ruedas, Soporte columna)
+- gabinete-bombero: 4 variantes (Clase II 1½", Clase I 2½", Clase III Doble, A especificación)
+- gabinete-hidrante: 4 variantes (Clase II equipado 1½", Clase I 2½", Clase III doble, Empotrado flush mount)
+
+---
+
 ## 📌 Estado de páginas L4 — equipo-bomberos (actualizado 2026-04-11)
 
-| Ruta                                          | Estado       | Notas                                                                              |
-|-----------------------------------------------|-------------|------------------------------------------------------------------------------------|
-| `/equipo-bomberos/trajes-estructurales/`      | ✅ Aprobada  | SectionHeaderDuo + l4-svc-grid + TrustIndex + NormasBomberos. Patrón canónico L4. |
-| `/equipo-bomberos/era/`                       | ✅ Aprobada  | Homologada con trajes-estructurales. NFPA 1981 / SCBA.                             |
-| `/equipo-bomberos/rescate-hidraulico/`        | ✅ Aprobada  | Homologada. Hurst/Holmatro. 6 características + 6 usos.                            |
-| `/equipo-bomberos/rescate-neumatico/`         | ✅ Aprobada  | Homologada. Cojines neumáticos USAR.                                               |
-| `/equipo-bomberos/rescate-electrico/`         | ✅ Aprobada  | Homologada. Herramientas de batería.                                               |
-| `/equipo-bomberos/arneses-rescate-altura/`    | ✅ Aprobada  | Homologada. NFPA 1983 / EN 1891. Rescate en altura USAR.                          |
-| `/equipo-bomberos/complementos-uniforme/`     | ✅ Aprobada  | Homologada. Nomex · NFPA.                                                          |
+| Ruta                                          | Estado       | Variantes | Notas                                                                              |
+|-----------------------------------------------|-------------|-----------|------------------------------------------------------------------------------------|
+| `/equipo-bomberos/trajes-estructurales/`      | ✅ Aprobada  | ✅ 3       | S0 variantes + img + SectionHeaderDuo + l4-svc-grid + TrustIndex + NormasBomberos |
+| `/equipo-bomberos/era/`                       | ✅ Aprobada  | ✅ 3       | S0 variantes + img. NFPA 1981 / SCBA. Variante de recarga incluida.               |
+| `/equipo-bomberos/rescate-hidraulico/`        | ✅ Aprobada  | ✅ 3       | S0 variantes + img. Gas / eléctrico / quijadas. Hurst/Holmatro.                   |
+| `/equipo-bomberos/rescate-neumatico/`         | ✅ Aprobada  | —         | Sin variantes. Cojines neumáticos USAR.                                            |
+| `/equipo-bomberos/rescate-electrico/`         | ✅ Aprobada  | —         | Sin variantes. Herramientas de batería.                                            |
+| `/equipo-bomberos/arneses-rescate-altura/`    | ✅ Aprobada  | ✅ 3       | S0 variantes + img. Clase II / Kit 50m / Polipasto 6:1. NFPA 1983.               |
+| `/equipo-bomberos/complementos-uniforme/`     | ✅ Aprobada  | —         | Sin variantes. Nomex · NFPA.                                                       |
 
-### Patrón L4 equipo-bomberos (referencia canónica — homologado con extintores)
+### Patrón L4 equipo-bomberos v2 (2026-04-12 — con variantes + placeholder imagen)
 ```
 CategoryLayout (Hero + Stats + CtaBar) →
-  S1 cat-section--white  : SectionHeaderDuo + l4-svc-grid (características) + inline-cta
-  S2 cat-section--gray   : SectionHeaderDuo + l4-svc-grid (para quién) + inline-cta
+  S0 cat-section--white  : [OPCIONAL] SectionHeaderDuo + catidx-grid (.ccard) + ccard--cta-wa
+                           Solo si data.variantes existe. Alternancia automática S1/S2 según hasVariantes.
+                           · ccard SIEMPRE tiene .ccard__header:
+                             - Si data.img → <Img> real + .ccard__header-overlay
+                             - Si !data.img → .ccard__header--placeholder + .ccard__placeholder-icon (SVG)
+  S1 cat-section--gray*  : SectionHeaderDuo + l4-svc-grid (características) + inline-cta
+  S2 cat-section--white* : SectionHeaderDuo + l4-svc-grid (para quién) + inline-cta
   S3 cat-section--white  : SectionHeaderDuo + l4-svc-grid (servicios, links)
   S4                     : TrustIndex (componente global)
   S5                     : NormasBomberos (NFPA 1971/1851/1981/1983/1991/NIOSH)
   S6 cat-section--white  : SectionHeaderDuo + catidx-grid--compact (otros productos) + ccard--cta-wa
 → FaqCotizacionIndex → CTAFinal
 ```
+*S1/S2: --gray/--white si hay variantes (S0=white); --white/--gray si no hay variantes.
+
+### Datos añadidos (VarianteBombero interface)
+- `img?: string` — imagen para tarjetas de variantes
+- `variantes?: VarianteBombero[]` — modelos disponibles (nombre, badge, desc, specs, waText)
+- `variantesEyebrow/TitleLine1/TitleLine2/BodyPara` — textos del SectionHeaderDuo de S0
+
+### Documentación
+- `docs/L4-BOMBEROS-TEMPLATE.md` — guía completa de patrón, datos, imágenes y roadmap
 
 > ⚠️ Este reporte fue generado el 2026-04-11 con 117 archivos. Las páginas `/extintores/` y `/equipo-bomberos/` se documentaron y aprobaron tras la generación del grafo. Pendiente: ejecutar `python3 -c "from graphify.watch import _rebuild_code; from pathlib import Path; _rebuild_code(Path('.'))"` para actualizar el grafo completo con estas páginas.
 

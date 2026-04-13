@@ -34,7 +34,6 @@ export interface CategoryPageData {
   heroDescRight: string[]
 
   // Stats bar
-  stats: { value: string; label: string }[]
 
   // Contenido del slot
   subcategories: SubcategoryItem[]
@@ -62,13 +61,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'En Proyecto Red no manejamos un solo tipo de extintor. Nuestro catálogo cubre todos los agentes extintores reconocidos por la NOM-154-SCFI: polvo seco, CO₂, AFFF, Tipo K para cocinas industriales, agente limpio para datos y archivos, y sistemas automáticos.',
       'Cada unidad se entrega con ficha técnica, certificado de conformidad, garantía del fabricante y etiqueta de inspección. Todo lo que necesitas para tu expediente de Protección Civil y STPS, en un solo pedido.',
     ],
-    stats: [
-      { value: '10+',       label: 'Tipos de extintor'      },
-      { value: 'NOM-154',   label: 'Certificación incluida' },
-      { value: 'Mismo día', label: 'Entrega en CDMX'        },
-      { value: 'Gratis',    label: 'Asesoría técnica'       },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Polvo seco PQS / ABC',
         desc: 'El más utilizado para fuegos clase A, B y C. Ideal para oficinas, bodegas, vehículos y áreas de uso general. Disponible en 1, 2.5, 4, 6, 9 y 12 kg.' },
       { label: 'CO₂ — Dióxido de carbono',
@@ -132,13 +125,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'Proyecto Red es proveedor especializado de equipo profesional para bomberos y brigadas de emergencia industrial. Nuestro catálogo incluye trajes estructurales certificados NFPA 1971, equipos de respiración autónoma (ERA), herramientas de rescate manual, hidráulico, neumático y eléctrico, y sistemas de rescate en altura.',
       'Trabajamos con cuerpos municipales de bomberos, brigadas de protección civil, plantas industriales con brigadas propias y equipos de respuesta a emergencias. Cada equipo se entrega con certificación de origen, ficha técnica y garantía del fabricante.',
     ],
-    stats: [
-      { value: 'NFPA',   label: 'Certificación internacional' },
-      { value: '5+',     label: 'Líneas de equipo'           },
-      { value: 'ERA',    label: 'Respiración autónoma'       },
-      { value: 'Gratis', label: 'Asesoría técnica'           },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Trajes estructurales NFPA 1971',
         desc: 'Trajes de bombero certificados para combate estructural de incendios. Capas de protección térmica, barrera de humedad y capa exterior resistente a llama. Certificación NFPA 1971.' },
       { label: 'ERA — Equipos de respiración autónoma',
@@ -197,13 +184,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'Los señalamientos no son solo obligación legal — son la diferencia entre una evacuación ordenada y una situación de riesgo. En Proyecto Red fabricamos y suministramos señalización conforme a la NOM-003-SEGOB (evacuación y emergencias) y la NOM-026-STPS (colores y señales de seguridad en centros de trabajo).',
       'Además del producto, ofrecemos el servicio completo: visitamos tu instalación, hacemos el levantamiento del inmueble, definimos qué señalamientos se necesitan y en qué ubicaciones, y entregamos el plano de señalización lista para integrar a tu expediente de Protección Civil.',
     ],
-    stats: [
-      { value: '4',      label: 'Categorías de señal'   },
-      { value: 'NOM',    label: 'Certificación incluida' },
-      { value: 'Foto',   label: 'Versiones luminiscentes' },
-      { value: 'Plano',  label: 'Para expediente PC'    },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Evacuación y rutas de salida',
         desc: 'Flechas de dirección, señales de salida, punto de reunión y rutas de evacuación. Materiales PVC, acrílico y fotoluminiscente. Visibilidad garantizada sin energía eléctrica.' },
       { label: 'Prohibición',
@@ -261,13 +242,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'El gabinete adecuado protege el extintor, facilita el acceso en una emergencia y cumple con los criterios de presentación que exigen las inspecciones de Protección Civil. En Proyecto Red manejamos gabinetes en acero galvanizado, laminado y resina para superficies interiores y exteriores, en todas las capacidades del catálogo.',
       'También suministramos gabinetes para hidrante con acceso a manguera y válvula, gabinetes para bombero con compartimentos de herraje, y soportes de pared con base de pedestal para áreas donde no es posible empotrar.',
     ],
-    stats: [
-      { value: '5+',   label: 'Tipos de gabinete'       },
-      { value: 'Acero', label: 'Construcción profesional' },
-      { value: 'Todo', label: 'Para cualquier extintor'  },
-      { value: 'Gratis', label: 'Asesoría de instalación' },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Gabinetes para extintor — empotrado',
         desc: 'Para extintor de 2.5 kg a 12 kg. Puerta de cristal o sólida, con cerradura o bisagra de apertura rápida. En acero laminado pintado o galvanizado.' },
       { label: 'Gabinetes para extintor — sobrepuesto',
@@ -321,13 +296,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'Una red hidráulica contra incendio requiere componentes certificados y compatibles entre sí. En Proyecto Red suministramos el sistema completo: mangueras para hidrante en diámetros 1½" y 2½", chiflones de ataque, válvulas angulares y de compuerta, adaptadores de acoplamiento, tomas siamesas y carretes de manguera.',
       'Somos distribuidores autorizados de Elkhart Brass, fabricante líder de monitores y herrajes para sistemas hidráulicos profesionales. Esto nos permite suministrar tanto componentes de reemplazo como sistemas nuevos para edificios, plantas industriales y equipos de bomberos.',
     ],
-    stats: [
-      { value: 'NFPA 14', label: 'Estándar hidráulico'        },
-      { value: 'Elkhart', label: 'Distribuidor autorizado'    },
-      { value: '1½" y 2½"', label: 'Diámetros disponibles'   },
-      { value: 'Gratis',  label: 'Asesoría técnica'           },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Mangueras para hidrante 1½" y 2½"',
         desc: 'Mangueras de ataque y de tendido en diámetros estándar NFPA. Cubierta de poliéster tejido, forro interior de EPDM, acoplamientos de aluminio o bronce. Presiones de operación hasta 250 PSI.' },
       { label: 'Chiflones y boquillas de ataque',
@@ -385,13 +354,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'Un sistema contra incendio integra tres funciones: detectar el incendio, alertar a los ocupantes y suprimirlo automáticamente. En Proyecto Red suministramos e instalamos los tres componentes: detección (detectores y tablero FACP), alarma (sirenas y luces de emergencia) y supresión (rociadores automáticos o gas).',
       'Todos nuestros sistemas cumplen con NFPA 13 (rociadores), NFPA 72 (detección y alarma) y NFPA 20 (control de bombas). Ofrecemos instalación llave en mano: diseño, suministro, instalación, comisionamiento y documentación para Protección Civil.',
     ],
-    stats: [
-      { value: 'NFPA 13',  label: 'Rociadores'           },
-      { value: 'NFPA 72',  label: 'Detección y alarma'   },
-      { value: 'NFPA 20',  label: 'Control de bombas'    },
-      { value: 'Llave',    label: 'Instalación completa' },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Detectores de humo y calor',
         desc: 'Detectores iónicos y fotoeléctricos para humo. Detectores de temperatura fija y de tasa de incremento para calor. Compatibles con tableros FACP de los principales fabricantes.' },
       { label: 'Alarmas, sirenas y luces de emergencia',
@@ -448,13 +411,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'La NOM-005-STPS exige que todo centro de trabajo cuente con botiquines de primeros auxilios adecuados al número de trabajadores y al tipo de riesgo de la actividad. En Proyecto Red suministramos botiquines tipo A (hasta 20 trabajadores) y tipo B (hasta 100 trabajadores), además de equipo avanzado para brigadas.',
       'Complementamos los botiquines con camillas de emergencia, collarines cervicales, equipo de reanimación básico y oxígeno portátil. Todo con ficha técnica y documentación lista para tu expediente ante la STPS.',
     ],
-    stats: [
-      { value: 'Tipo A/B', label: 'Botiquines STPS'       },
-      { value: 'NOM-005',  label: 'Certificación incluida' },
-      { value: 'DC-3',     label: 'Capacitación disponible' },
-      { value: 'Gratis',   label: 'Asesoría técnica'       },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Botiquines STPS tipo A',
         desc: 'Para centros de trabajo con hasta 20 trabajadores o riesgo bajo. Contenido mínimo NOM-005-STPS: vendas, gasas, agua oxigenada, alcohol, esparadrapo y manual de primeros auxilios.' },
       { label: 'Botiquines STPS tipo B',
@@ -512,13 +469,7 @@ export const CATEGORY_PAGES: Record<string, CategoryPageData> = {
       'El Equipo de Protección Personal (EPP) es la última barrera de seguridad entre el trabajador y el riesgo. En Proyecto Red manejamos EPP certificado para todos los niveles de protección exigidos por la NOM-017-STPS-2008: craneal, visual, auditiva, respiratoria, de extremidades y para trabajos en altura.',
       'Cada elemento de EPP que suministramos cumple con al menos una norma de referencia: NOM mexicana, estándar ANSI americano o norma EN europea. Ideal para empresas que exportan o tienen auditorías de clientes extranjeros con requerimientos específicos de certificación.',
     ],
-    stats: [
-      { value: '6',         label: 'Categorías de EPP'         },
-      { value: 'NOM-017',   label: 'Certificación STPS'        },
-      { value: 'ANSI / EN', label: 'Estándares internacionales' },
-      { value: 'Gratis',    label: 'Asesoría de dotación'      },
-    ],
-    subcategories: [
+subcategories: [
       { label: 'Protección craneal — cascos y gorras',
         desc: 'Cascos de seguridad tipo I y II, Clase E y G. Dieléctricos y no dieléctricos. En polietileno y fibra de vidrio. Compatibles con aditamentos como protección facial y auditiva.' },
       { label: 'Protección visual — lentes y caretas',

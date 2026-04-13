@@ -8,6 +8,14 @@
 //         /primeros-auxilios/material-curacion/
 // ============================================================
 
+export interface VariantePrimerosAuxilios {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string
+  waText: string
+}
+
 export interface ProductoPrimerosAuxiliosData {
   metaTitle: string
   metaDesc: string
@@ -16,7 +24,11 @@ export interface ProductoPrimerosAuxiliosData {
   heroAccent: string
   heroSubtitle: string
   heroDescRight: string[]
-  stats: { value: string; label: string }[]
+  variantes?: VariantePrimerosAuxilios[]
+  variantesEyebrow?: string
+  variantesTitleLine1?: string
+  variantesTitleLine2?: string
+  variantesBodyPara?: string
   caracteristicas: {
     eyebrow: string
     titleLine1: string
@@ -61,13 +73,54 @@ export const PRIMEROS_AUXILIOS_PAGES: Record<string, ProductoPrimerosAuxiliosDat
       'Contenedores de plástico rígido, metal o mochila con compartimentos identificados.',
       'Incluye ficha técnica de contenido e instrucciones de primeros auxilios.',
     ],
-    stats: [
-      { value: 'NOM-005',   label: 'Cumplimiento STPS'    },
-      { value: '1–100',     label: 'Trabajadores por kit'  },
-      { value: 'Completo',  label: 'Contenido normativo'  },
-      { value: '48 h',      label: 'Entrega en CDMX'      },
+    variantesEyebrow: 'Dotaciones por tamaño',
+    variantesTitleLine1: 'Botiquines conforme',
+    variantesTitleLine2: 'a NOM-005-STPS por empresa',
+    variantesBodyPara: 'Cada botiquín incluye contenido mínimo establecido por NOM-005-STPS-1998, ficha técnica de contenido y asesoría para cumplimiento con STPS y Protección Civil. Todos los modelos se entregan armados y listos para usar.',
+    variantes: [
+      {
+        nombre: 'Botiquín Básico (1–25 trabajadores)',
+        badge: 'Pequeña empresa',
+        desc: 'Contenedor plástico compacto con materiales de curación esencial para empresas pequeñas. Incluye vendas, gasas, antisépticos, guantes y apósitos para atención de lesiones menores.',
+        specs: '25 piezas · NOM-005-STPS · Para 1–25 trabajadores · Contenedor plástico',
+        waText: 'Hola, quiero cotizar botiquín STPS para 1–25 trabajadores en CDMX',
+      },
+      {
+        nombre: 'Botiquín Estándar (26–50 trabajadores)',
+        badge: 'Más vendido',
+        desc: 'Opción más utilizada en medianas empresas con riesgo bajo a medio. Incluye material de curación ampliado, inmovilizadores, tensiómetro manual y documentación completa para inspección STPS.',
+        specs: '50 piezas · NOM-005-STPS · Para 26–50 trabajadores · Maletín metálico',
+        waText: 'Hola, quiero cotizar botiquín STPS para 26–50 trabajadores en CDMX',
+      },
+      {
+        nombre: 'Botiquín Ampliado (51–100 trabajadores)',
+        badge: 'Mediana empresa',
+        desc: 'Contenido completo con material para quemaduras, inmovilización cervical y medicamentos de primera línea. Indicado para plantas industriales, construcción y comercios de alto riesgo.',
+        specs: '100 piezas · NOM-005-STPS · Para 51–100 trabajadores · Maletín profesional',
+        waText: 'Hola, quiero cotizar botiquín STPS para 51–100 trabajadores en CDMX',
+      },
+      {
+        nombre: 'Botiquín Industrial (101–200 trabajadores)',
+        badge: 'Industrial',
+        desc: 'Dotación completa para plantas de manufactura, químicas y refinerías. Incluye material para traumatismos graves, quemaduras químicas, inmovilizadores y oxímetro de pulso.',
+        specs: '150+ piezas · NOM-005-STPS · Para 101–200 trabajadores · Gabinete de pared',
+        waText: 'Hola, quiero cotizar botiquín STPS para 101–200 trabajadores en CDMX',
+      },
+      {
+        nombre: 'Maletín de Brigada',
+        badge: 'Brigada',
+        desc: 'Equipo portátil para brigadas de emergencia y coordinadores de primeros auxilios. Contenedor mochila resistente con todos los materiales para respuesta inmediata en planta.',
+        specs: '80 piezas · Mochila de cordura · Bandolera ajustable · Compartimentos identificados',
+        waText: 'Hola, quiero cotizar maletín de brigada para primeros auxilios en CDMX',
+      },
+      {
+        nombre: 'Kit de Reposición STPS',
+        desc: 'Reposición mensual y trimestral de los materiales consumidos o próximos a vencer. Personalizado según el botiquín original para simplificar el inventario.',
+        specs: 'Contenido variable · Según botiquín base · Stock permanente · Entrega 24h',
+        waText: 'Hola, necesito solicitar kit de reposición para botiquín STPS en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Contenido y especificaciones',
       titleLine1: 'Equipado con todo',
       titleLine2: 'lo que exige la norma',
@@ -119,13 +172,55 @@ export const PRIMEROS_AUXILIOS_PAGES: Record<string, ProductoPrimerosAuxiliosDat
       'Materiales de aluminio, acero inoxidable y polietileno de alta densidad.',
       'Capacidad de carga de 150 a 250 kg según el modelo.',
     ],
-    stats: [
-      { value: '4 tipos',   label: 'Modelos disponibles'   },
-      { value: '250 kg',    label: 'Capacidad máxima'      },
-      { value: 'Al/Ac.',    label: 'Materiales disponibles'},
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Tipos de camilla',
+    variantesTitleLine1: 'Modelos para cada',
+    variantesTitleLine2: 'tipo de emergencia',
+    variantesBodyPara: 'La camilla correcta depende de la infraestructura del lugar, el tipo de lesión probable y las condiciones del traslado. Todas incluyen manual de uso, accesorios de aseguramiento y documentación de certificación NOM-026-STPS.',
+    variantes: [
+      {
+        nombre: 'Camilla Rígida de Aluminio',
+        badge: 'Básica',
+        desc: 'Camilla liviana de aluminio estructural para traslado en terreno plano. Incluye cintas de sujeción y superficie radiotransparente. Ideal para oficinas, escuelas y comercios.',
+        specs: 'Aluminio · 8 kg · Capacidad 150 kg · Radiotransparente',
+        waText: 'Hola, quiero cotizar camilla rígida de aluminio para primeros auxilios en CDMX',
+      },
+      {
+        nombre: 'Camilla Plegable de Tela',
+        badge: 'Compacta',
+        desc: 'Camilla de tela con estructura plegable para almacenamiento compacto. Se despliega en menos de 30 segundos. Perfecta para vehículos, botiquines portátiles y espacios reducidos.',
+        specs: 'Tela de nylon · 4 kg · Capacidad 140 kg · Plegada 1 metro',
+        waText: 'Hola, quiero cotizar camilla plegable de tela para CDMX',
+      },
+      {
+        nombre: 'Camilla de Cuchara (Scoop)',
+        badge: 'Más solicitada',
+        desc: 'Camilla de inmovilización que se abre y se cierra sin mover al lesionado. Diseñada para sospechas de fracturas de columna y traumatismos graves. Estándar en brigadas industriales.',
+        specs: 'Aluminio anodizado · 6 kg · Capacidad 160 kg · Cierre de seguridad',
+        waText: 'Hola, quiero cotizar camilla de cuchara (scoop) para brigada en CDMX',
+      },
+      {
+        nombre: 'Camilla de Canasta (Stokes)',
+        badge: 'Rescate',
+        desc: 'Camilla de malla de acero inoxidable para rescate en terrenos difíciles, escombros y extracción en altura. Puntos de anclaje para cables de rescate. Indicada para operaciones complejas.',
+        specs: 'Acero inoxidable · 12 kg · Capacidad 180 kg · Certificada NFPA',
+        waText: 'Hola, quiero cotizar camilla de canasta (Stokes) para rescate en CDMX',
+      },
+      {
+        nombre: 'Camilla de Evacuación de Escalera',
+        badge: 'Edificios',
+        desc: 'Con patines de deslizamiento especial para evacuar personas con movilidad reducida por escaleras. Estándar en hoteles, hospitales y edificios de oficinas de varios pisos.',
+        specs: 'Aluminio · Patines de Teflón · 9 kg · Capacidad 150 kg',
+        waText: 'Hola, quiero cotizar camilla de evacuación de escalera para CDMX',
+      },
+      {
+        nombre: 'Tablero Espinal Largo',
+        badge: 'Inmovilización',
+        desc: 'Para inmovilización completa de columna vertebral. Se usa con camilla de cuchara en casos de traumatismo grave, accidentes viales y caídas de altura. Incluye cintas de fijación.',
+        specs: 'Polietileno de alta densidad · 3 kg · Radiotransparente · 180 cm',
+        waText: 'Hola, quiero cotizar tablero espinal largo para brigada en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Tipos disponibles',
       titleLine1: 'Traslado seguro',
       titleLine2: 'en cualquier escenario',
@@ -176,13 +271,55 @@ export const PRIMEROS_AUXILIOS_PAGES: Record<string, ProductoPrimerosAuxiliosDat
       'Instrucciones de voz y visuales paso a paso para uso por personal no médico.',
       'Gabinete de pared con alarma de apertura para cada DEA.',
     ],
-    stats: [
-      { value: '< 5 min',   label: 'Tiempo crítico de uso'  },
-      { value: '10×',       label: 'Mayor sobrevivencia'    },
-      { value: 'Philips/Zoll', label: 'Marcas disponibles' },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Marcas y modelos',
+    variantesTitleLine1: 'Desfibriladores certificados',
+    variantesTitleLine2: 'para diferentes espacios',
+    variantesBodyPara: 'Todos nuestros DEA cumplen con guías AHA y están certificados para uso público. Incluyen gabinete de pared, señalización NOM, electrodos de repuesto y capacitación en RCP básico. El servicio incluye instalación y registro ante autoridades de salud.',
+    variantes: [
+      {
+        nombre: 'Philips HeartStart FRx',
+        badge: 'Más vendido',
+        desc: 'Desfibrilador semiautomático compacto para espacios públicos. Batería de larga duración (5 años). Instrucciones de voz clara y análisis automático del ritmo cardíaco. Opción presupuestal sin sacrificar confiabilidad.',
+        specs: 'Semiautomático · 5 años de batería · Adulto/pediátrico · Peso 2.8 kg',
+        waText: 'Hola, quiero cotizar desfibrilador Philips HeartStart FRx para CDMX',
+      },
+      {
+        nombre: 'Philips HeartStart OnSite',
+        badge: 'Semiautomático',
+        desc: 'Versión mejorada con conexión a teléfono móvil para notificación a servicios de emergencia. Baterías de 5–6 años. Indicado para empresas grandes y complejos comerciales.',
+        specs: 'Semiautomático · Conectividad opcionl · 5–6 años · Adulto/pediátrico',
+        waText: 'Hola, quiero cotizar desfibrilador Philips HeartStart OnSite en CDMX',
+      },
+      {
+        nombre: 'Zoll AED Plus',
+        badge: 'Con CPR feedback',
+        desc: 'Desfibrilador con retroalimentación en tiempo real de la calidad de compresiones de RCP. Pantalla LCD y instrucciones visuales detalladas. Preferido en hospitales y brigadas profesionales.',
+        specs: 'Semiautomático · Feedback CPR · Pantalla LCD · 5 años batería',
+        waText: 'Hola, quiero cotizar desfibrilador Zoll AED Plus para brigada en CDMX',
+      },
+      {
+        nombre: 'Zoll AED 3',
+        badge: 'Pantalla táctil',
+        desc: 'Última generación con pantalla táctil a color y menú interactivo. Mayor durabilidad (IP54). Conectividad con red y descarga de datos de eventos. Estándar en grandes corporativos y hospitales.',
+        specs: 'Totalmente automático · Pantalla táctil · IP54 · WiFi integrado',
+        waText: 'Hola, quiero cotizar desfibrilador Zoll AED 3 con pantalla táctil en CDMX',
+      },
+      {
+        nombre: 'Cardiac Science G5',
+        badge: 'WiFi integrado',
+        desc: 'Desfibrilador de última generación con tecnología STAR (Shock Therapy Analysis and Response). WiFi integrado para transmisión de datos en tiempo real. Indicado para instalaciones de máxima seguridad.',
+        specs: 'Totalmente automático · WiFi · Seguimiento remoto · 6 años batería',
+        waText: 'Hola, quiero cotizar desfibrilador Cardiac Science G5 con WiFi en CDMX',
+      },
+      {
+        nombre: 'Gabinete + DEA (Kit completo)',
+        badge: 'Todo incluido',
+        desc: 'Desfibrilador con gabinete de pared color rojo, alarma de apertura, señalización conforme a NOM, electrodos de repuesto y manual. Instalación incluida. Modelo y marca según disponibilidad.',
+        specs: 'DEA + Gabinete rojo · Alarma sonora · Señalización NOM · Instalación',
+        waText: 'Hola, quiero cotizar kit completo de desfibrilador con gabinete en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones del equipo',
       titleLine1: 'Tecnología que salva',
       titleLine2: 'vidas en minutos',
@@ -234,13 +371,48 @@ export const PRIMEROS_AUXILIOS_PAGES: Record<string, ProductoPrimerosAuxiliosDat
       'Reguladores de flujo fijo (2, 4, 6, 8 lpm) y de flujo a demanda.',
       'Mascarillas con reservorio, cánulas nasales y mascarillas Venturi incluidas.',
     ],
-    stats: [
-      { value: '0.5–10 L',  label: 'Capacidad de cilindro'  },
-      { value: '2–15 lpm',  label: 'Flujo disponible'       },
-      { value: 'NOM-235',   label: 'Cumplimiento SSA'       },
-      { value: '48 h',      label: 'Entrega en CDMX'        },
+    variantesEyebrow: 'Equipos por autonomía',
+    variantesTitleLine1: 'Oxígeno para cada',
+    variantesTitleLine2: 'tipo de emergencia',
+    variantesBodyPara: 'Todos los equipos se entregan con regulador, mascarillas de múltiples tipos, bolsa de transporte y manual de uso. Incluye recarga inicial del cilindro y asesoría en procedimientos. Entregas en CDMX con disponibilidad de recargas.',
+    variantes: [
+      {
+        nombre: 'Kit Portátil 0.5 L (15 min)',
+        badge: 'Emergencia',
+        desc: 'Cilindro portátil ultralighter para emergencias inmediatas. Ideal para traslado de pacientes de corta distancia. Se complementa con kit de reanimación para soporte ventilatorio.',
+        specs: '0.5 L · 15 minutos autonomía · Cilindro aluminio · Regulador fijo 2 lpm',
+        waText: 'Hola, quiero cotizar kit oxígeno portátil 0.5 L en CDMX',
+      },
+      {
+        nombre: 'Kit Portátil 2 L (1 hora)',
+        badge: 'Brigada',
+        desc: 'Tamaño ideal para brigadas de primeros auxilios y equipos de rescate. Proporciona soporte de 1 hora a flujo bajo. Incluye bolsa de cordura con bandolera para transporte fácil.',
+        specs: '2 L · 1 hora autonomía · Cilindro aluminio · Mascarilla + cánula',
+        waText: 'Hola, quiero cotizar kit oxígeno portátil 2 L para brigada en CDMX',
+      },
+      {
+        nombre: 'Kit Completo 5 L (3 horas)',
+        badge: 'Más vendido',
+        desc: 'Cilindro médico estándar para centros de trabajo. Soporte prolongado de 3 horas a flujo bajo/medio. Opción presupuestal más versátil. Incluye regulador de flujo variable.',
+        specs: '5 L · 3 horas autonomía · Cilindro aluminio · Regulador variable 0–10 lpm',
+        waText: 'Hola, quiero cotizar kit completo oxígeno 5 L para centro de trabajo en CDMX',
+      },
+      {
+        nombre: 'Cilindro 10 L con carro (5+ horas)',
+        badge: 'Punto fijo',
+        desc: 'Instalación fija o semiportátil con carro para puntos de emergencia permanentes. Soporte de 5+ horas. Indicado para puestos de primeros auxilios, ambulancias y centros de salud.',
+        specs: '10 L · 5+ horas autonomía · Cilindro acero · Carro transportable',
+        waText: 'Hola, quiero cotizar cilindro de oxígeno 10 L con carro en CDMX',
+      },
+      {
+        nombre: 'Kit de Reanimación con O₂',
+        badge: 'RCP avanzado',
+        desc: 'Equipo especializado para reanimación cardiopulmonar (RCP) avanzada. Incluye cilindro 5 L, bolsa de resucitación manual, mascarilla adulto/pediátrica y regulador de demanda.',
+        specs: '5 L cilindro · Bolsa Ambu · Regulador demanda · Maletín profesional',
+        waText: 'Hola, quiero cotizar kit de reanimación con oxígeno para RCP en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Componentes del equipo',
       titleLine1: 'Oxígeno disponible',
       titleLine2: 'cuando más se necesita',
@@ -292,13 +464,54 @@ export const PRIMEROS_AUXILIOS_PAGES: Record<string, ProductoPrimerosAuxiliosDat
       'Antisépticos: solución de isodine, alcohol, agua oxigenada y suero fisiológico.',
       'Material especializado: inmovilizadores, apósitos para quemaduras y suturas adhesivas.',
     ],
-    stats: [
-      { value: 'NOM-005',   label: 'Estándar STPS'         },
-      { value: '30+ SKUs',  label: 'Productos disponibles' },
-      { value: 'Estéril',   label: 'Empaque garantizado'   },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Kits especializados',
+    variantesTitleLine1: 'Material de curación',
+    variantesTitleLine2: 'para cada tipo de lesión',
+    variantesBodyPara: 'Todos nuestros materiales cumplen con normas NOM-005-STPS, incluyen certificado de esterilidad y ficha técnica de contenido. Los kits pueden personalizarse según el nivel de riesgo de tu empresa y las lesiones más frecuentes.',
+    variantes: [
+      {
+        nombre: 'Kit Básico de Curación',
+        badge: 'Esencial',
+        desc: 'Materiales fundamentales para atención de lesiones menores. Incluye gasas estériles, vendas, curitas, antisépticos y guantes. Ideal para reposición de botiquines pequeños.',
+        specs: '30 piezas · Gasas 5x5 · Vendas · Antisépticos · Guantes nitrilo',
+        waText: 'Hola, quiero cotizar kit básico de curación para reposición en CDMX',
+      },
+      {
+        nombre: 'Kit de Reposición Mensual',
+        badge: 'Mantenimiento',
+        desc: 'Reposición estándar para botiquines medianos según consumo típico mensual. Se ajusta al tipo de botiquín y actividad del centro de trabajo.',
+        specs: 'Contenido variable · Gasas, vendas, antisépticos · Mensual · Inventario',
+        waText: 'Hola, quiero contratar reposición mensual de material de curación en CDMX',
+      },
+      {
+        nombre: 'Kit para Quemaduras',
+        badge: 'Especializado',
+        desc: 'Material especializado para atención inmediata de quemaduras de primer y segundo grado. Incluye apósitos no adherentes con agente antimicrobiano y gasa estéril.',
+        specs: 'Apósitos quemaduras · Gasas estériles · Guantes · Antisépticos especializados',
+        waText: 'Hola, quiero cotizar kit especializado para quemaduras en CDMX',
+      },
+      {
+        nombre: 'Kit de Inmovilización',
+        badge: 'Fracturas',
+        desc: 'Material para inmovilización temporal de fracturas y esguinces. Incluye tablillas de aluminio, vendas elásticas, collarín y vendaje triangular.',
+        specs: 'Tablillas · Vendas elásticas · Collarín cervical · Vendaje triangular',
+        waText: 'Hola, quiero cotizar kit de inmovilización para fracturas en CDMX',
+      },
+      {
+        nombre: 'Kit de Brigada Avanzado',
+        badge: 'Profesional',
+        desc: 'Contenido completo para brigadas de primeros auxilios con capacitación. Incluye todo lo anterior más material para traumatismos graves, oxímetro y manual de procedimientos.',
+        specs: '150+ piezas · Materiales completos · Oxímetro de pulso · Manual',
+        waText: 'Hola, quiero cotizar kit avanzado de brigada de primeros auxilios en CDMX',
+      },
+      {
+        nombre: 'Pack Antisépticos y Soluciones',
+        desc: 'Suministro de soluciones desinfectantes: isodine, alcohol al 70%, agua oxigenada y suero fisiológico en presentaciones de 500 ml a 1 L según consumo.',
+        specs: 'Isodine, alcohol, agua oxigenada, suero fisiológico · Presentaciones variables',
+        waText: 'Hola, quiero cotizar pack de antisépticos y soluciones para botiquines en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Materiales disponibles',
       titleLine1: 'Todo lo necesario',
       titleLine2: 'para la primera atención',

@@ -67,7 +67,7 @@ const escenarios = [
       bodyPara1="No todos los inmuebles necesitan las mismas señales. La NOM-003-SEGOB, la NOM-026-STPS y la NOM-017-STPS definen requerimientos distintos según el tipo de espacio, los riesgos presentes y el número de personas. Comprar señalamientos sin hacer este análisis genera gasto innecesario o, peor, inspección fallida. Te hacemos el levantamiento gratuito con plano de señalización."
     />
 
-    <div class="guia-sen-grid" role="list" aria-label="Guía de señalización por tipo de inmueble">
+    <div class="guia-grid" role="list" aria-label="Guía de señalización por tipo de inmueble">
       {escenarios.map((esc, i) => (
         <article class="guia-card" role="listitem">
           <div class="guia-card__header">
@@ -132,13 +132,4 @@ const escenarios = [
     background: var(--c-surface, #F4F4F5);
     border-top: 1px solid var(--c-border);
   }
-
-  .guia-sen-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: 640px) { .guia-sen-grid { grid-template-columns: 1fr; } }
 </style>

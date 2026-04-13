@@ -9,6 +9,18 @@
 //         /equipo-seguridad/proteccion-auditiva/
 // ============================================================
 
+// ============================================================
+// Variante / modelo disponible por producto
+// Aparece en la sección 0 (antes de Características)
+// ============================================================
+export interface VarianteEquipoSeguridad {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string        // Línea: material · norma · características
+  waText: string       // Mensaje pre-llenado para WhatsApp
+}
+
 export interface ProductoEquipoSeguridadData {
   metaTitle: string
   metaDesc: string
@@ -17,7 +29,14 @@ export interface ProductoEquipoSeguridadData {
   heroAccent: string
   heroSubtitle: string
   heroDescRight: string[]
-  stats: { value: string; label: string }[]
+
+  // Sección 0 — Modelos / opciones disponibles (opcional)
+  variantes?: VarianteEquipoSeguridad[]
+  variantesEyebrow?: string
+  variantesTitleLine1?: string
+  variantesTitleLine2?: string
+  variantesBodyPara?: string
+
   caracteristicas: {
     eyebrow: string
     titleLine1: string
@@ -63,13 +82,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Cascos con y sin ventilación, ratchet y driza, con portaprotector facial y de audición.',
       'Marcas certificadas: 3M, Honeywell Fibre-Metal, MSA Safety y Delta Plus.',
     ],
-    stats: [
-      { value: 'NOM-115',   label: 'Certificación STPS'    },
-      { value: 'Clase A/B/C', label: 'Clases disponibles'  },
-      { value: '4 marcas',  label: 'Certificadas'          },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Modelos disponibles',
+    variantesTitleLine1: 'Selecciona la clase',
+    variantesTitleLine2: 'de protección correcta',
+    variantesBodyPara: 'Todos los cascos cumplen con NOM-115-STPS y NOM-017-STPS. Stock permanente en CDMX con documentación técnica completa para tu expediente de seguridad.',
+    variantes: [
+      {
+        nombre: 'Casco Clase A — Impacto y Baja Tensión',
+        badge: 'Construcción',
+        desc: 'Protección contra impacto mecánico y riesgo eléctrico hasta 2,200 V. El más versátil para construcción, manufactura y obras civiles. Disponible en amarillo, blanco y rojo.',
+        specs: 'Polietileno de alta densidad · NOM-115-STPS · Ratchet/Driza',
+        waText: 'Hola, quiero cotizar cascos de seguridad Clase A en CDMX',
+      },
+      {
+        nombre: 'Casco Clase B — Dieléctrico Alta Tensión',
+        badge: 'Electricistas',
+        desc: 'Casco dieléctrico certificado hasta 20,000 V para trabajos en líneas de alta tensión, subestaciones y redes de distribución. Protección para electricistas y cuadrillas de mantenimiento eléctrico.',
+        specs: 'Fibra de vidrio reforzada · NOM-115-STPS · Dieléctrico 20 kV',
+        waText: 'Hola, quiero cotizar cascos Clase B dieléctricos en CDMX',
+      },
+      {
+        nombre: 'Casco Clase C — Ventilado Sin Dieléctrico',
+        badge: 'Espacios confinados',
+        desc: 'Casco ventilado sin protección dieléctrica para trabajo en espacios confinados, minas y áreas sin riesgo eléctrico. Mayor circulación de aire en ambientes calurosos.',
+        specs: 'Polietileno · NOM-115-STPS · Ventilación frontal y lateral',
+        waText: 'Hola, quiero cotizar cascos Clase C ventilados en CDMX',
+      },
+      {
+        nombre: 'Casco con Mentonera para Alturas',
+        badge: 'Trabajo en alturas',
+        desc: 'Casco Clase A con mentonera desmontable para evitar pérdida durante caídas en trabajos en alturas, andamios y plataformas. Arnés de 4 puntos reforzado.',
+        specs: 'Polietileno · NOM-115-STPS · Arnés 4 puntos + mentonera',
+        waText: 'Hola, quiero cotizar cascos con mentonera para trabajo en alturas en CDMX',
+      },
+      {
+        nombre: 'Casco tipo Bump Cap (Casquete Ligero)',
+        badge: 'Bajo riesgo',
+        desc: 'Casquete ligero para riesgo bajo sin impactos severos. Ideal para almacenes, oficinas industriales y áreas de bajo riesgo donde se requiere protección mínima contra golpes.',
+        specs: 'Plástico ABS · NOM-115-STPS · Peso ultra ligero 200g',
+        waText: 'Hola, quiero cotizar cascos tipo Bump Cap en CDMX',
+      },
+      {
+        nombre: 'Kit Casco + Accesorios (Facial + Orejeras)',
+        badge: 'Kit completo',
+        desc: 'Casco Clase A completo con protector facial transparente y orejeras de copa integradas. Solución todo-en-uno para protección de cabeza, cara y audición en manufactura de metales.',
+        specs: 'Casco + portafacial + orejeras · NOM-115 + 106 + 011',
+        waText: 'Hola, quiero cotizar kit de casco con accesorios en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Características y clases',
       titleLine1: 'Protección para',
       titleLine2: 'cada tipo de riesgo',
@@ -120,13 +181,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Goggles herméticos para protección contra líquidos corrosivos y vapores.',
       'Caretas de soldador, rectificado y protección química con diferentes tonos de filtro.',
     ],
-    stats: [
-      { value: 'NOM-106',   label: 'Certificación STPS'    },
-      { value: 'ANSI Z87.1', label: 'Estándar de impacto' },
-      { value: '5 tipos',   label: 'Protección disponible' },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Modelos de protección',
+    variantesTitleLine1: 'Elige el protector visual',
+    variantesTitleLine2: 'para tu área de trabajo',
+    variantesBodyPara: 'Todos cumplen con NOM-106-STPS y NOM-017-STPS. Stock disponible en CDMX con asesoría técnica para la selección correcta.',
+    variantes: [
+      {
+        nombre: 'Lentes de Seguridad Policarbonato Claro',
+        badge: 'Básico',
+        desc: 'Lentes transparentes de policarbonato resistentes a impacto. La opción estándar para manufactura, construcción y manejo de materiales. Disponibles con marco de acetato o nylon.',
+        specs: 'Policarbonato 2.2mm · ANSI Z87.1 · Frame estándar',
+        waText: 'Hola, quiero cotizar lentes de seguridad policarbonato claro en CDMX',
+      },
+      {
+        nombre: 'Lentes Oscuros con Protección UV',
+        badge: 'Exterior',
+        desc: 'Lentes oscuros (tono humo) con filtro UV 100% para trabajo en exterior con exposición prolongada al sol. Ideales para jardinería, construcción civil y operaciones al aire libre.',
+        specs: 'Policarbonato tono humo · UV 100% · ANSI Z87.1',
+        waText: 'Hola, quiero cotizar lentes oscuros con UV en CDMX',
+      },
+      {
+        nombre: 'Goggles Herméticos Antiquímicos',
+        badge: 'Químicos',
+        desc: 'Goggles con sello perimetral completo para protección contra salpicaduras de ácidos, bases y solventes. Ventilación indirecta para prevenir empañamiento. Obligatorio para manejo de químicos.',
+        specs: 'Policarbonato · Sello hermético · Ventilación indirecta',
+        waText: 'Hola, quiero cotizar goggles herméticos antiquímicos en CDMX',
+      },
+      {
+        nombre: 'Goggles de Rectificado (Vidrio Templado)',
+        badge: 'Esmerilado',
+        desc: 'Goggles con lentes de vidrio templado para protección contra chispas y partículas de alta energía en esmerilado, rectificado y operaciones de corte. Mayor resistencia a choque térmico que el policarbonato.',
+        specs: 'Vidrio templado · Marcos reforzados · Anti-empañante',
+        waText: 'Hola, quiero cotizar goggles de rectificado en CDMX',
+      },
+      {
+        nombre: 'Careta de Soldador Autooscurecente',
+        badge: 'Soldadura',
+        desc: 'Careta con pantalla de cristal líquido autooscurecente (rango 4-13). Se oscurece automáticamente al detectar el arco. Ideal para soldadura MIG, TIG y electrodo para mayor comodidad y seguridad.',
+        specs: 'Cristal líquido autooscurecente · Rango 4-13 · Batería 3 años',
+        waText: 'Hola, quiero cotizar caretas de soldador autooscurecentes en CDMX',
+      },
+      {
+        nombre: 'Careta Facial Completa',
+        badge: 'Máxima protección',
+        desc: 'Careta que cubre toda la cara para máxima protección en operaciones de alto riesgo con químicos, proyección de materiales y riesgo de salpicaduras. Compatible con casco de seguridad.',
+        specs: 'Policarbonato 3mm · Cubierta facial completa · Ajustable',
+        waText: 'Hola, quiero cotizar caretas faciales completas en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Tipos de protección ocular',
       titleLine1: 'Visión protegida',
       titleLine2: 'en cada área de trabajo',
@@ -177,13 +280,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Filtros intercambiables para polvo, gases ácidos, orgánicos, vapores y combinados.',
       'Equipos auto-contenidos (SCBA) para rescate y atmósferas IDLH.',
     ],
-    stats: [
-      { value: 'NOM-116',   label: 'Certificación STPS'    },
-      { value: 'NIOSH',     label: 'Certificación USA'     },
-      { value: 'N95–N100',  label: 'Filtros disponibles'   },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Equipos de protección',
+    variantesTitleLine1: 'Selecciona el filtro',
+    variantesTitleLine2: 'para tu contaminante',
+    variantesBodyPara: 'Todos los equipos cumplen con NOM-116-STPS y NIOSH. Disponibles con asesoría técnica para identificar el contaminante y seleccionar el filtro correcto.',
+    variantes: [
+      {
+        nombre: 'Mascarilla N95 Desechable (caja 20 pzas)',
+        badge: 'Básico',
+        desc: 'Mascarilla desechable de una sola capa con filtración del 95% para polvo fino, fibras y aerosoles no oleosos. La más económica para protección básica en construcción y manufactura.',
+        specs: 'Meltblown · NIOSH N95 · Elástico detrás de oreja',
+        waText: 'Hola, quiero cotizar mascarillas N95 desechables en CDMX',
+      },
+      {
+        nombre: 'Respirador Media Cara Reutilizable',
+        badge: 'Más vendido',
+        desc: 'Respirador de silicona con filtros intercambiables para polvo, gases ácidos, orgánicos o combinados. Se ajusta a la cara y permite larga jornada de uso. Reutilizable por años con cambio de filtros.',
+        specs: 'Silicona hypoalergénica · Filtros intercambiables · Ajuste individual',
+        waText: 'Hola, quiero cotizar respiradores media cara reutilizables en CDMX',
+      },
+      {
+        nombre: 'Respirador Cara Completa',
+        badge: 'Máxima protección',
+        desc: 'Respirador de cara completa con protección visual integrada. Ideal para ambientes con alta concentración de contaminantes donde se requiere protección ocular simultánea.',
+        specs: 'Facepiece completo · Visera transparente · Filtros intercambiables',
+        waText: 'Hola, quiero cotizar respiradores cara completa en CDMX',
+      },
+      {
+        nombre: 'Filtro P100 para Partículas',
+        badge: 'Amianto/plomo',
+        desc: 'Filtro P100 con filtración del 99.97% para amianto, plomo, sílice y partículas peligrosas. Compatible con respiradores media cara y cara completa. Reemplazo periódico según saturación.',
+        specs: 'Filtración HEPA 99.97% · NOM-116-STPS · Rosca bayoneta',
+        waText: 'Hola, quiero cotizar filtros P100 en CDMX',
+      },
+      {
+        nombre: 'Cartucho OV/AG Orgánicos y Ácidos',
+        badge: 'Químicos',
+        desc: 'Cartucho combinado para vapores orgánicos (solventes, pinturas) y gases ácidos (cloro, HCl). Ideal para pintura, impresión y química general. Vida útil aproximada 40 horas.',
+        specs: 'Carbón activado + carbón químico · Vida útil 40 hrs · NIOSH',
+        waText: 'Hola, quiero cotizar cartuchos OV/AG en CDMX',
+      },
+      {
+        nombre: 'SCBA Auto-Contenido (ERA)',
+        badge: 'NFPA 1981',
+        desc: 'Equipo de respiración autónoma certificado NFPA 1981 para rescate, atmósferas IDLH y espacios confinados. Suministro de aire independiente. Incluye capacitación obligatoria NOM-009-STPS.',
+        specs: 'Botella 4500 psi · Válvula reductora · Mascarilla completa · NFPA 1981',
+        waText: 'Hola, quiero cotizar SCBA (ERA) para rescate en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Tipos de protección respiratoria',
       titleLine1: 'El filtro correcto',
       titleLine2: 'para cada contaminante',
@@ -234,13 +379,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Clasificados conforme a EN 388 (mecánico), EN 374 (químico) y EN 407 (térmico).',
       'Marcas 3M, Ansell, Showa y Honeywell disponibles en stock en CDMX.',
     ],
-    stats: [
-      { value: 'NOM-138',   label: 'Certificación STPS'    },
-      { value: 'EN 388/374/407', label: 'Normas europeas'  },
-      { value: '10+ tipos', label: 'Materiales disponibles'},
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Tipos de guantes',
+    variantesTitleLine1: 'Elige el guante correcto',
+    variantesTitleLine2: 'para tu tipo de trabajo',
+    variantesBodyPara: 'Todos cumplen con NOM-138-STPS y EN 388/374/407. Stock disponible en tallas XS a XL con asesoría para selección según riesgo específico.',
+    variantes: [
+      {
+        nombre: 'Guante de Nitrilo Multiuso',
+        badge: 'Más vendido',
+        desc: 'Guante versátil de nitrilo sintético resistente a aceites, grasas y solventes ligeros. La opción más popular para manufactura, automotriz y manejo de herramientas. Disponible sin polvo para alimentos.',
+        specs: 'Nitrilo 100% · EN 388 · Tallas XS–XL',
+        waText: 'Hola, quiero cotizar guantes de nitrilo en CDMX',
+      },
+      {
+        nombre: 'Guante de Cuero Mecánico',
+        badge: 'Construcción',
+        desc: 'Guante de cuero de primera calidad resistente a abrasión y corte moderado. Ideal para manejo de materiales, herramientas manuales y construcción. Permite buen agarre y sensibilidad táctil.',
+        specs: 'Cuero bovino · EN 388 nivel 2 · Cubierta palmar',
+        waText: 'Hola, quiero cotizar guantes de cuero mecánico en CDMX',
+      },
+      {
+        nombre: 'Guante Anticorte Kevlar A4–A9',
+        badge: 'Vidrio/lámina',
+        desc: 'Guante con fibra Kevlar para máxima resistencia al corte (niveles A4 a A9). Obligatorio para manejo de vidrio, lámina metálica y cuchillos industriales. Mayor costo compensado por durabilidad.',
+        specs: 'Kevlar + nitrilo · EN 388 A4–A9 · Antideslizante',
+        waText: 'Hola, quiero cotizar guantes anticorte Kevlar en CDMX',
+      },
+      {
+        nombre: 'Guante de Neopreno Antiquímico',
+        badge: 'Químicos',
+        desc: 'Guante de neopreno doble exposición para protección contra ácidos, bases, solventes y productos químicos. Revisar tabla de compatibilidad para químicos específicos. Reutilizable con lavado diario.',
+        specs: 'Neopreno 0.38mm · EN 374 · Palma antideslizante',
+        waText: 'Hola, quiero cotizar guantes de neopreno antiquímico en CDMX',
+      },
+      {
+        nombre: 'Guante Anticalórico (hasta 250°C)',
+        badge: 'Calor',
+        desc: 'Guante para manejo de objetos calientes, piezas de fundición, hornos y soldadura. Aislamiento térmico hasta 250°C. Material aluminizado con forro de algodón para mayor comodidad.',
+        specs: 'Algodón + aluminizado · EN 407 · Hasta 250°C',
+        waText: 'Hola, quiero cotizar guantes anticalóricos en CDMX',
+      },
+      {
+        nombre: 'Guante Dieléctrico Clase 00–4',
+        badge: 'Eléctrico',
+        desc: 'Guante dieléctrico certificado NFPA para trabajos eléctricos en tensión desde 500 V a 40,000 V. Clase seleccionada según voltaje. Incluye guante de algodón interior para mayor confort.',
+        specs: 'Caucho natural dieléctrico · Clase 00–4 · IEC 60903',
+        waText: 'Hola, quiero cotizar guantes dieléctricos en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Tipos de guantes disponibles',
       titleLine1: 'El guante correcto',
       titleLine2: 'para cada tipo de trabajo',
@@ -291,13 +478,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Sistemas de detención de caída: retráctil, línea de vida horizontal y vertical.',
       'Puntos de anclaje, mosquetones, absorbedores de impacto y equipo de rescate.',
     ],
-    stats: [
-      { value: 'NOM-009',   label: 'Certificación STPS'    },
-      { value: 'ANSI Z359', label: 'Estándar USA'          },
-      { value: '5,000 lbf', label: 'Resistencia de anclaje'},
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Equipos de protección',
+    variantesTitleLine1: 'Selecciona el sistema',
+    variantesTitleLine2: 'de anticaída correcto',
+    variantesBodyPara: 'Todos los equipos cumplen con NOM-009-STPS e IRAM 3700. Stock permanente en CDMX con instalación de anclajes y capacitación incluida.',
+    variantes: [
+      {
+        nombre: 'Arnés Clase A — Detención de Caída',
+        badge: 'Estándar',
+        desc: 'Arnés de cuerpo completo con punto de conexión dorsal (espalda) para detención de caída. El más versátil para trabajos verticales y caídas en altura. Disponible en tallas S a XL con ajustes rápidos.',
+        specs: 'Poliéster 45 mm · NOM-009-STPS · Punto dorsal',
+        waText: 'Hola, quiero cotizar arneses Clase A para trabajo en alturas en CDMX',
+      },
+      {
+        nombre: 'Arnés Clase P — Posicionamiento',
+        badge: 'Trabajo lateral',
+        desc: 'Arnés con puntos de conexión laterales (costados) y dorsal para trabajo en posición con apoyo lateral. Ideal para mantenimiento en fachadas, torres y trabajo en posición recostada.',
+        specs: 'Poliéster 45 mm · NOM-009-STPS · Puntos laterales + dorsal',
+        waText: 'Hola, quiero cotizar arneses Clase P de posicionamiento en CDMX',
+      },
+      {
+        nombre: 'Línea Retráctil (Self-Retracting Lifeline)',
+        badge: 'Más vendido',
+        desc: 'Línea de vida automática que se retrae y limita la caída a menos de 30 cm. La opción más cómoda para movimiento horizontal (techos, pasarelas). Incluye absorbedor de impacto integrado.',
+        specs: 'Cable de acero · Automática · Caída limitada 30 cm',
+        waText: 'Hola, quiero cotizar líneas retráctiles en CDMX',
+      },
+      {
+        nombre: 'Línea de Vida Horizontal',
+        badge: 'Movilidad',
+        desc: 'Cable horizontal tensado entre dos puntos de anclaje para permitir movimiento libre a lo largo de la línea. Ideal para trabajos con movimiento continuo en techos o estructura metálica.',
+        specs: 'Cable de acero 12.5 mm · Tensores · Sistema rail',
+        waText: 'Hola, quiero cotizar líneas de vida horizontal en CDMX',
+      },
+      {
+        nombre: 'Absorbedor de Impacto Tipo Y',
+        badge: 'NOM-009',
+        desc: 'Dispositivo que reduce la fuerza de parada durante la caída a menos de 1,800 lbf. Obligatorio para caídas mayores a 1.8 m. Se une entre el arnés y la línea de vida.',
+        specs: 'Nylon trenzado · Deformación controlada · NOM-009-STPS',
+        waText: 'Hola, quiero cotizar absorbedores de impacto en CDMX',
+      },
+      {
+        nombre: 'Kit Completo Anticaída (Arnés + Retráctil + Anclaje)',
+        badge: 'Kit completo',
+        desc: 'Solución integral para trabajo en alturas: Arnés Clase A, línea retráctil automática, punto de anclaje portable y capacitación NOM-009-STPS. Todo lo necesario para iniciar operaciones.',
+        specs: 'Arnés + Retráctil + Anclaje · Capacitación incluida · Docs. NFPA',
+        waText: 'Hola, quiero cotizar kit completo de anticaída en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Componentes del sistema',
       titleLine1: 'Sistema completo',
       titleLine2: 'de protección contra caída',
@@ -348,13 +577,55 @@ export const EQUIPO_SEGURIDAD_PAGES: Record<string, ProductoEquipoSeguridadData>
       'Orejeras de copa con atenuación de 22 a 31 dB en diferentes diademas.',
       'Protección doble (tapones + orejeras) para entornos de más de 105 dB.',
     ],
-    stats: [
-      { value: 'NOM-011',   label: 'Certificación STPS'    },
-      { value: '85+ dB',    label: 'Nivel de acción'       },
-      { value: '33 dB NRR', label: 'Atenuación máxima'     },
-      { value: '48 h',      label: 'Entrega en CDMX'       },
+    variantesEyebrow: 'Productos de protección',
+    variantesTitleLine1: 'Elige el protector auditivo',
+    variantesTitleLine2: 'según el nivel de ruido',
+    variantesBodyPara: 'Todos cumplen con NOM-011-STPS y ANSI S3.19. Stock disponible en CDMX con asesoría técnica para calcular el NRR correcto según tu ambiente.',
+    variantes: [
+      {
+        nombre: 'Tapón de Espuma Desechable NRR 32 (caja 200 pares)',
+        badge: 'Económico',
+        desc: 'Tapones de espuma expandible desechables con NRR 32 dB. La opción más cómoda para uso continuo en calor. Se desecan al término del turno. Ideal para jornadas largas en manufactura y construcción.',
+        specs: 'Espuma PU · NRR 32 dB · Desechable por turno',
+        waText: 'Hola, quiero cotizar tapones de espuma desechables en CDMX',
+      },
+      {
+        nombre: 'Tapón Reutilizable con Cuerda',
+        badge: 'Uso intermitente',
+        desc: 'Tapones de silicón o neopreno con cuerda para permitir rápido acceso. Se lavan con agua y jabón tras cada turno. Ideal para trabajo intermitente con entradas y salidas frecuentes de área ruidosa.',
+        specs: 'Silicón o neopreno · Cuerda nylon · NRR 28 dB',
+        waText: 'Hola, quiero cotizar tapones reutilizables en CDMX',
+      },
+      {
+        nombre: 'Tapón Moldeado a Medida',
+        badge: 'Confort premium',
+        desc: 'Tapones personalizados moldeados a partir de molde del oído del trabajador. Máxima comodidad y ajuste perfecto para personal con uso diario intensivo. Duración 1 a 2 años por par.',
+        specs: 'Silicón moldeable · Personalizado · NRR 30 dB',
+        waText: 'Hola, quiero cotizar tapones moldeados a medida en CDMX',
+      },
+      {
+        nombre: 'Orejera de Copa Estándar NRR 25–27',
+        badge: 'Más vendida',
+        desc: 'Orejera de copa sobre diadema acolchada para protección contra ruido en trabajo intermitente. Cómoda para uso ocasional. Disponible en diferentes colores y materiales de almohadilla.',
+        specs: 'Copa plástico · Almohadilla espuma · NRR 25–27 dB',
+        waText: 'Hola, quiero cotizar orejeras de copa estándar en CDMX',
+      },
+      {
+        nombre: 'Orejera con Diadema para Casco',
+        badge: 'Construcción',
+        desc: 'Orejeras que se montan directamente en los canales laterales del casco de seguridad. Ideal para construcción y manufactura donde ya se usa casco. Evita llevar diadema adicional.',
+        specs: 'Copa + montaje para casco · NRR 25 dB · Ajustable',
+        waText: 'Hola, quiero cotizar orejeras para montar en casco en CDMX',
+      },
+      {
+        nombre: 'Orejera Electrónica con Comunicación',
+        badge: 'Alta tecnología',
+        desc: 'Orejera con circuito electrónico que atenúa ruido impulsivo (martillos, explosiones) pero permite comunicación normal. Incluye micrófono direccional. Ideal para operaciones de rescate y HAZMAT.',
+        specs: 'Electrónica digital · Micrófono · Batería AA · NRR dinámico',
+        waText: 'Hola, quiero cotizar orejeras electrónicas en CDMX',
+      },
     ],
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Tipos de protección auditiva',
       titleLine1: 'Protección correcta',
       titleLine2: 'según el nivel de ruido',

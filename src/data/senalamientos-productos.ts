@@ -4,6 +4,14 @@
 // Fuente de verdad para src/pages/senalamientos/[producto].astro
 // ============================================================
 
+export interface TipoSenalamiento {
+  nombre: string
+  badge?: string
+  desc: string
+  specs: string
+  waText: string
+}
+
 export interface ProductoSenalamientoData {
   // SEO & meta
   metaTitle: string
@@ -16,9 +24,6 @@ export interface ProductoSenalamientoData {
   heroSubtitle: string
   heroDescRight: string[]
 
-  // Stats bar (4 ítems)
-  stats: { value: string; label: string }[]
-
   // Sección 1 — Características técnicas
   caracteristicas: {
     eyebrow: string
@@ -27,6 +32,13 @@ export interface ProductoSenalamientoData {
     desc: string
     items: { title: string; desc: string }[]
   }
+
+  // Sección 0 — Tipos/modelos disponibles (opcional)
+  tipos?: TipoSenalamiento[]
+  tiposEyebrow?: string
+  tiposTitleLine1?: string
+  tiposTitleLine2?: string
+  tiposBodyPara?: string
 
   // Sección 2 — ¿Dónde se instalan?
   dondeInstalar: {
@@ -70,25 +82,18 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
   // 1. EVACUACIÓN Y RUTAS DE SALIDA
   // ──────────────────────────────────────────────────────────
   'evacuacion': {
-    metaTitle: 'Señalamientos de Evacuación y Rutas de Salida NOM | Proyecto Red',
-    metaDesc: 'Señalamientos de evacuación, flechas de dirección, salidas de emergencia y puntos de reunión. Certificados NOM-003-SEGOB. Materiales PVC, acrílico y fotoluminiscente. CDMX.',
+    metaTitle: 'Señalamientos de Evacuación y Salida de Emergencia NOM | Proyecto Red CDMX',
+    metaDesc: 'Señalamientos de evacuación NOM-003-SEGOB: flechas, salida de emergencia, punto de reunión. PVC, acrílico y fotoluminiscente. Levantamiento sin costo. CDMX y Estado de México.',
 
     badge: 'NOM-003-SEGOB · Evacuación · Punto de reunión',
     heroTitle: 'Señalamientos de',
     heroAccent: 'Evacuación',
-    heroSubtitle: 'Los señalamientos de evacuación guían al personal y visitantes hacia las salidas de emergencia de manera ordenada y segura. Flechas de dirección, señales de salida, puntos de reunión y rutas de evacuación certificados NOM-003-SEGOB.',
+    heroSubtitle: 'Los señalamientos de evacuación son el primer elemento que revisa Protección Civil. Flechas, salida de emergencia, punto de reunión y rutas NOM-003-SEGOB — certificados, con versión fotoluminiscente y plano de señalización para tu expediente. Entrega en CDMX y Estado de México.',
     heroDescRight: [
       'Una evacuación segura depende de que cada persona sepa exactamente hacia dónde ir, incluso si hay humo o iluminación deficiente. Los señalamientos de evacuación correctamente ubicados reducen el tiempo de evacuación, evitan el pánico y son el primer elemento que revisa Protección Civil en una visita de inspección.',
       'En Proyecto Red suministramos la señalización completa de evacuación: flechas direccionales, señales de "Salida", "Salida de emergencia", "Punto de reunión" y rutas de evacuación en PVC, acrílico, vinilo y material fotoluminiscente. También realizamos el levantamiento del inmueble y entregamos el plano de señalización.',
     ],
-    stats: [
-      { value: 'NOM-003',    label: 'SEGOB certificado'      },
-      { value: 'Foto',       label: 'Versión luminiscente'   },
-      { value: 'PVC · Acril', label: 'Materiales disponibles' },
-      { value: 'Plano',      label: 'Para expediente PC'     },
-    ],
-
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los señalamientos',
       titleLine2: 'de evacuación',
@@ -136,6 +141,55 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       ],
     },
 
+    tipos: [
+      {
+        nombre: 'Salida de Emergencia',
+        badge: 'ISO E001',
+        desc: 'La señal principal de toda ruta de evacuación. Fondo verde con figura corriendo hacia puerta abierta. Obligatoria sobre cada puerta de salida conforme a NOM-003-SEGOB e ISO 7010.',
+        specs: 'Fondo verde · 20×20 / 30×30 / 40×40 cm · PVC, acrílico o fotoluminiscente',
+        waText: 'Hola, necesito señales de Salida de Emergencia NOM-003-SEGOB. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Flecha Direccional de Evacuación',
+        badge: 'ISO E002',
+        desc: 'Indica el camino hacia la salida más cercana en cada cambio de dirección del pasillo. Disponible en izquierda, derecha, arriba y abajo. Pieza clave para guiar sin ambigüedad en condiciones de humo.',
+        specs: 'Fondo verde · 20×10 / 30×15 cm · Cuatro orientaciones · PVC, acrílico o fotoluminiscente',
+        waText: 'Hola, necesito flechas direccionales de evacuación NOM-003-SEGOB. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Punto de Reunión',
+        badge: 'ISO E007',
+        desc: 'Señaliza el área exterior donde se congrega el personal evacuado para conteo y control. Obligatoria en la salida principal y en la zona designada. Imprescindible en inmuebles con brigadas de emergencia.',
+        specs: 'Fondo verde · 30×30 / 40×40 cm · PVC exterior o vinilo con recubrimiento UV · ISO 7010-E007',
+        waText: 'Hola, necesito señales de Punto de Reunión NOM-003-SEGOB. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Escalera de Emergencia',
+        badge: 'ISO E004',
+        desc: 'Localiza el acceso a las escaleras de emergencia e indica la dirección de bajada en cada descanso de piso. Crítica en edificios de varios niveles donde el humo limita la visibilidad horizontal.',
+        specs: 'Fondo verde · 20×20 / 30×30 cm · PVC, acrílico o fotoluminiscente · ISO 7010-E004',
+        waText: 'Hola, necesito señales de Escalera de Emergencia NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'No Bloquear Salida',
+        badge: 'NOM-003',
+        desc: 'Prohíbe obstruir el acceso a las salidas de emergencia con materiales, equipos o mercancía. Reduce el riesgo de que la ruta quede bloqueada durante la operación diaria — una causa frecuente de observación en inspecciones de Protección Civil.',
+        specs: 'Fondo blanco/verde · 20×20 / 30×30 cm · PVC rígido 3 mm · NOM-003-SEGOB',
+        waText: 'Hola, necesito señales de No Bloquear Salida NOM-003-SEGOB. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Panel de Ruta de Evacuación',
+        badge: 'PC lo exige',
+        desc: 'Panel con el plano del piso que muestra la ruta de evacuación, ubicación de extintores, salidas y punto de reunión. Protección Civil lo solicita en la visita de inspección para integrar al expediente de seguridad.',
+        specs: 'Panel 30×40 / 40×60 cm · Acrílico o PVC · Impresión UV · Diseño personalizado del inmueble',
+        waText: 'Hola, necesito paneles de Ruta de Evacuación con plano personalizado para Protección Civil. ¿Pueden diseñarlos?',
+      },
+    ],
+    tiposEyebrow: 'Tipos disponibles',
+    tiposTitleLine1: 'Señalamientos de evacuación',
+    tiposTitleLine2: 'en nuestro catálogo',
+    tiposBodyPara: 'Todos cumplen NOM-003-SEGOB en colores, símbolos, dimensiones y materiales. Disponibles en PVC, acrílico, vinilo y fotoluminiscente con visibilidad de 8+ horas. Cotiza el tipo que necesitas o solicita el paquete completo con plano de señalización.',
+
     relatedTitle: 'Otros tipos de señalamientos en nuestro catálogo',
 
     faqItems: [
@@ -157,34 +211,27 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       },
     ],
 
-    waMessage: 'Hola, necesito señalamientos de evacuación y rutas de salida NOM para mi instalación. ¿Hacen levantamiento del inmueble?',
-    ctaTitle: '¿Necesitas señalamientos de evacuación en CDMX?',
-    ctaBody: 'Escríbenos con el tipo de instalación y el área aproximada. Agendamos el levantamiento sin costo y te entregamos plano de señalización para Protección Civil.',
+    waMessage: 'Hola, necesito señalamientos de evacuación NOM-003-SEGOB para mi instalación. ¿Hacen levantamiento del inmueble y entrega el plano de señalización?',
+    ctaTitle: '¿Necesitas señalamientos de evacuación certificados NOM en CDMX?',
+    ctaBody: 'Cuéntanos el tipo de instalación y el área aproximada. Realizamos el levantamiento sin costo, suministramos los señalamientos e incluimos el plano de señalización para Protección Civil.',
   },
 
   // ──────────────────────────────────────────────────────────
   // 2. PROHIBICIÓN
   // ──────────────────────────────────────────────────────────
   'prohibicion': {
-    metaTitle: 'Señalamientos de Prohibición NOM-026-STPS | Proyecto Red CDMX',
-    metaDesc: 'Señalamientos de prohibición: no fumar, no encender fuego, prohibido el paso, no usar celular. NOM-026-STPS Clase P. PVC y vinilo. Entrega en CDMX.',
+    metaTitle: 'Señalamientos de Prohibición NOM-026-STPS — No Fumar, Paso Restringido | Proyecto Red CDMX',
+    metaDesc: 'Señalamientos de prohibición NOM-026-STPS Clase P: no fumar, prohibido el paso, no encender fuego, no usar celular. +20 modelos. PVC, aluminio y vinilo. CDMX y Estado de México.',
 
     badge: 'NOM-026-STPS · Clase P · Fondo blanco / rojo',
     heroTitle: 'Señalamientos de',
     heroAccent: 'Prohibición',
-    heroSubtitle: 'Los señalamientos de prohibición indican acciones que no deben realizarse en un área determinada por representar un riesgo. Fondo blanco con símbolo negro dentro de un círculo rojo tachado. Certificados NOM-026-STPS Clase P.',
+    heroSubtitle: 'Los señalamientos de prohibición son el control visual de riesgo más visible en cualquier instalación. Más de 20 modelos estándar NOM-026-STPS Clase P — no fumar, prohibido el paso, acceso restringido y más. También fabricamos señales personalizadas para prohibiciones específicas de tu proceso. Entrega en CDMX y Estado de México.',
     heroDescRight: [
       'Las señales de prohibición son el primer elemento visual de control de riesgo en una instalación. Indican de manera clara y universal las conductas que no están permitidas: fumar, encender fuego, el paso de personal no autorizado, el uso de celulares en zonas de riesgo y muchas más.',
       'En Proyecto Red suministramos señales de prohibición en el catálogo estándar NOM-026-STPS y también fabricamos señales personalizadas para prohibiciones específicas de tu instalación. Todos los materiales cumplen con los colores, proporciones y pictogramas exigidos por la norma.',
     ],
-    stats: [
-      { value: 'NOM-026',    label: 'STPS certificado'       },
-      { value: 'Clase P',    label: 'Prohibición'            },
-      { value: 'Blanco/rojo', label: 'Color normativo'       },
-      { value: '+20 modelos', label: 'Catálogo estándar'     },
-    ],
-
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'señalamientos de prohibición',
@@ -232,6 +279,55 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       ],
     },
 
+    tipos: [
+      {
+        nombre: 'No Fumar',
+        badge: 'ISO P002',
+        desc: 'La señal de prohibición más requerida en México. Obligatoria en bodegas con materiales inflamables, gasolineras, talleres y cualquier área con vapores o gases. Combinada con "No encender fuego" en zonas de alto riesgo.',
+        specs: 'Círculo rojo · Fondo blanco · 15×15 / 20×20 / 30×30 cm · PVC, acrílico o aluminio',
+        waText: 'Hola, necesito señales de No Fumar NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Prohibido el Paso',
+        badge: 'ISO P023',
+        desc: 'Restringe el acceso a áreas donde solo personal autorizado puede ingresar: salas de máquinas, cuartos eléctricos, zonas de proceso y áreas de riesgo específico. La señal de prohibición de acceso más versátil del catálogo.',
+        specs: 'Círculo rojo · Fondo blanco · 15×15 / 20×20 / 30×30 cm · PVC, acrílico o aluminio',
+        waText: 'Hola, necesito señales de Prohibido el Paso NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'No Encender Fuego',
+        badge: 'ISO P003',
+        desc: 'Prohíbe el uso de flamas abiertas, cerillos o encendedores en áreas con materiales inflamables o combustibles. Complementa a las señales de no fumar en almacenes de solventes, pinturas y combustibles.',
+        specs: 'Círculo rojo · Fondo blanco · 15×15 / 20×20 / 30×30 cm · PVC, acrílico o aluminio',
+        waText: 'Hola, necesito señales de No Encender Fuego NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Prohibido Usar Celular',
+        badge: 'ISO P013',
+        desc: 'Restringe el uso de teléfonos en subestaciones eléctricas, áreas con equipos sensibles a interferencia electromagnética y zonas de proceso donde la distracción es un riesgo crítico de seguridad.',
+        specs: 'Círculo rojo · Fondo blanco · 15×15 / 20×20 cm · PVC, acrílico o vinilo adhesivo',
+        waText: 'Hola, necesito señales de Prohibido Usar Celular NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'No Operar sin Autorización',
+        badge: 'NOM-026',
+        desc: 'Restringe la operación de maquinaria, equipos o procesos a personal capacitado y autorizado. Esencial en equipos en mantenimiento o fuera de servicio para prevenir la activación inadvertida.',
+        specs: 'Círculo rojo · Fondo blanco · 20×20 / 30×30 cm · PVC rígido o aluminio industrial',
+        waText: 'Hola, necesito señales de No Operar sin Autorización NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Señal de Prohibición Personalizada',
+        badge: 'A medida',
+        desc: 'Fabricamos señales de prohibición para restricciones específicas de tu instalación: área de proceso confidencial, zona de cuarentena, acceso solo con EPP completo, y más. Cumple NOM-026-STPS con tu mensaje exacto.',
+        specs: 'Círculo rojo · Fondo blanco · Tamaño a medida · PVC, acrílico o aluminio · Mín. 5 piezas · 5–7 días',
+        waText: 'Hola, necesito señales de prohibición personalizadas NOM-026-STPS para mi empresa. ¿Pueden diseñarlas?',
+      },
+    ],
+    tiposEyebrow: 'Tipos disponibles',
+    tiposTitleLine1: 'Señalamientos de prohibición',
+    tiposTitleLine2: 'en nuestro catálogo',
+    tiposBodyPara: 'Más de 20 modelos estándar NOM-026-STPS más fabricación de señales personalizadas para restricciones específicas. Todos los colores, formas y pictogramas conforme a norma — válidos para auditorías STPS y Protección Civil.',
+
     relatedTitle: 'Otros tipos de señalamientos en nuestro catálogo',
 
     faqItems: [
@@ -247,36 +343,33 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
         question: '¿Pueden fabricar señales de prohibición personalizadas?',
         answer: 'Sí. Si tu instalación tiene una prohibición específica no cubierta por el catálogo estándar, fabricamos la señal manteniendo los colores, la forma circular y los pictogramas conforme a la NOM-026-STPS. El diseño se valida contigo antes de la producción. Se requieren mínimos de 5 piezas para señales personalizadas.',
       },
+      {
+        question: '¿Con qué frecuencia debo revisar y reemplazar los señalamientos de prohibición?',
+        answer: 'La NOM-026-STPS recomienda inspección semestral de toda la señalización de seguridad e higiene. Los criterios de reemplazo son: decoloración visible del fondo blanco o del círculo rojo, símbolo ilegible, daño físico (roturas o dobladuras) o cambio en los procedimientos que modifique las prohibiciones del área. En auditorías de STPS, señales deterioradas son una no conformidad frecuente que puede derivar en multa o acción correctiva.',
+      },
     ],
 
-    waMessage: 'Hola, necesito señalamientos de prohibición NOM para mi empresa. ¿Pueden asesorarme?',
-    ctaTitle: '¿Necesitas señalamientos de prohibición en CDMX?',
-    ctaBody: 'Cuéntanos el tipo de instalación y las áreas de riesgo. Te indicamos qué señales necesitas y hacemos el levantamiento sin costo.',
+    waMessage: 'Hola, necesito señalamientos de prohibición NOM-026-STPS para mi empresa. ¿Pueden hacer el levantamiento y asesorarme?',
+    ctaTitle: '¿Necesitas señalamientos de prohibición certificados NOM en CDMX?',
+    ctaBody: 'Cuéntanos el tipo de instalación y las áreas con acceso restringido o materiales peligrosos. Te indicamos qué señales aplican según la norma y hacemos el levantamiento sin costo.',
   },
 
   // ──────────────────────────────────────────────────────────
   // 3. ADVERTENCIA DE RIESGO
   // ──────────────────────────────────────────────────────────
   'advertencia': {
-    metaTitle: 'Señalamientos de Advertencia y Riesgo NOM-026-STPS | Proyecto Red',
-    metaDesc: 'Señalamientos de advertencia: riesgo eléctrico, materiales inflamables, sustancias corrosivas, peligro de caída. NOM-026-STPS Clase A. Fondo amarillo. Entrega CDMX.',
+    metaTitle: 'Señalamientos de Advertencia — Riesgo Eléctrico, Inflamable, Caída NOM | Proyecto Red CDMX',
+    metaDesc: 'Señalamientos de advertencia NOM-026-STPS Clase A: alto voltaje, inflamable, corrosivo, caída, maquinaria. +30 modelos. Fondo amarillo. Levantamiento sin costo. CDMX.',
 
     badge: 'NOM-026-STPS · Clase A · Fondo amarillo / negro',
     heroTitle: 'Señalamientos de',
     heroAccent: 'Advertencia',
-    heroSubtitle: 'Los señalamientos de advertencia informan sobre riesgos presentes en un área: alto voltaje, materiales inflamables, sustancias corrosivas, peligro de caída, superficies calientes. Fondo amarillo con triángulo y símbolo negro. NOM-026-STPS Clase A.',
+    heroSubtitle: 'Una señal de advertencia bien ubicada puede prevenir un accidente antes de que ocurra. Más de 30 modelos estándar NOM-026-STPS Clase A: alto voltaje, inflamable, corrosivo, tóxico, caída, maquinaria en movimiento y más. También fabricamos señales para riesgos específicos de tu proceso. Entrega en CDMX y Estado de México.',
     heroDescRight: [
       'Una señal de advertencia bien ubicada puede prevenir un accidente antes de que ocurra. A diferencia de las señales de prohibición que restringen una acción, las señales de advertencia informan sobre un peligro existente para que el trabajador tome las precauciones necesarias antes de ingresar o realizar una tarea.',
       'En Proyecto Red suministramos el catálogo completo de señales de advertencia NOM-026-STPS: riesgo eléctrico, inflamable, corrosivo, tóxico, explosivo, radiación, presión, temperatura, caída y muchos más. También fabricamos señales de advertencia personalizadas para riesgos específicos de tu proceso industrial.',
     ],
-    stats: [
-      { value: 'NOM-026',    label: 'STPS certificado'       },
-      { value: 'Clase A',    label: 'Advertencia'            },
-      { value: 'Amarillo',   label: 'Color normativo'        },
-      { value: '+30 modelos', label: 'Catálogo estándar'     },
-    ],
-
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'señalamientos de advertencia',
@@ -324,6 +417,55 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       ],
     },
 
+    tipos: [
+      {
+        nombre: 'Riesgo Eléctrico / Alto Voltaje',
+        badge: 'ISO W012',
+        desc: 'La señal de advertencia más crítica en instalaciones con tableros, subestaciones y cuartos eléctricos. Obligatoria en todo equipo expuesto con voltaje superior a 50 V conforme a NOM-026-STPS. Disponible en versión de alta resistencia para exteriores.',
+        specs: 'Triángulo amarillo · Símbolo negro · 15×15 / 20×20 / 30×30 cm · PVC, acrílico o aluminio',
+        waText: 'Hola, necesito señales de Riesgo Eléctrico / Alto Voltaje NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Material Inflamable',
+        badge: 'ISO W021',
+        desc: 'Advierte sobre la presencia de líquidos o sólidos inflamables en el área. Obligatoria en almacenes de solventes, pinturas, combustibles y cualquier área con materiales de clase de peligro 3 conforme a NOM-018-STPS.',
+        specs: 'Triángulo amarillo · Llama negra · 15×15 / 20×20 / 30×30 cm · PVC, acrílico o aluminio',
+        waText: 'Hola, necesito señales de Material Inflamable NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Sustancia Corrosiva',
+        badge: 'ISO W023',
+        desc: 'Indica la presencia de ácidos, bases u otras sustancias con capacidad de causar daño por contacto cutáneo o daño estructural. Exigida en laboratorios, plantas químicas y almacenes de productos corrosivos.',
+        specs: 'Triángulo amarillo · Símbolo negro · 15×15 / 20×20 / 30×30 cm · PVC resistente a químicos o aluminio',
+        waText: 'Hola, necesito señales de Sustancia Corrosiva NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Peligro de Caída',
+        badge: 'ISO W008',
+        desc: 'Señaliza bordes de azoteas, mezzanines, fosos, plataformas elevadas y desniveles mayores a 30 cm sin baranda. Complementa a las barreras físicas y es obligatoria en trabajos en altura conforme a NOM-009-STPS.',
+        specs: 'Triángulo amarillo · Símbolo negro · 20×20 / 30×30 cm · PVC, aluminio o vinilo exterior UV',
+        waText: 'Hola, necesito señales de Peligro de Caída NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Maquinaria en Movimiento',
+        badge: 'ISO W024',
+        desc: 'Advierte sobre piezas en rotación, traslación o impacto: bandas transportadoras, prensas, tornos, grúas puente y robots industriales. Se instala visible desde el pasillo de circulación del área de producción.',
+        specs: 'Triángulo amarillo · Símbolo negro · 15×15 / 20×20 / 30×30 cm · PVC, aluminio o vinilo adhesivo',
+        waText: 'Hola, necesito señales de Maquinaria en Movimiento NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Superficie Caliente',
+        badge: 'ISO W017',
+        desc: 'Alerta sobre superficies con temperatura que puede causar quemaduras: intercambiadores de calor, tuberías de vapor, calderas y equipos de proceso térmico. Se instala directamente sobre la superficie o en el acceso inmediato al equipo.',
+        specs: 'Triángulo amarillo · Símbolo negro · 10×10 / 15×15 / 20×20 cm · Aluminio resistente al calor o vinilo térmico',
+        waText: 'Hola, necesito señales de Superficie Caliente NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+    ],
+    tiposEyebrow: 'Tipos disponibles',
+    tiposTitleLine1: 'Señalamientos de advertencia',
+    tiposTitleLine2: 'en nuestro catálogo',
+    tiposBodyPara: 'Más de 30 modelos estándar conforme a NOM-026-STPS. Materiales según el tipo de ambiente: PVC para interiores, aluminio para industria húmeda y exteriores, vinilo para maquinaria y superficies. También fabricamos señales de advertencia personalizadas para riesgos específicos de tu proceso.',
+
     relatedTitle: 'Otros tipos de señalamientos en nuestro catálogo',
 
     faqItems: [
@@ -339,11 +481,15 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
         question: '¿Qué pasa si la señal de advertencia se decolora o deteriora?',
         answer: 'Una señal deteriorada pierde su función y puede ser señalada como incumplimiento en una auditoría de STPS o Protección Civil. Las señales deben inspeccionarse semestralmente y reemplazarse cuando el color amarillo pierde el 20% de su intensidad, el símbolo es ilegible o el material presenta daño físico. Ofrecemos servicio de mantenimiento y reemplazo periódico.',
       },
+      {
+        question: '¿Necesito señales de advertencia si ya tengo resguardos físicos en mi maquinaria?',
+        answer: 'Sí. Los resguardos físicos controlan el riesgo pero no lo eliminan en todos los escenarios. La NOM-026-STPS exige señalización de advertencia complementaria incluso cuando hay controles de ingeniería, especialmente durante mantenimiento, cuando los resguardos se retiran temporalmente o en los puntos de acceso al área de riesgo. La señal también informa a visitantes y contratistas que no conocen el proceso.',
+      },
     ],
 
-    waMessage: 'Hola, necesito señalamientos de advertencia NOM-026-STPS para mi planta o empresa. ¿Pueden asesorarme?',
-    ctaTitle: '¿Necesitas señalamientos de advertencia en CDMX?',
-    ctaBody: 'Cuéntanos los tipos de riesgo de tu instalación. Te indicamos qué señales aplican según la norma y hacemos el levantamiento sin costo.',
+    waMessage: 'Hola, necesito señalamientos de advertencia NOM-026-STPS para mi planta o empresa. ¿Pueden hacer el levantamiento y asesorarme?',
+    ctaTitle: '¿Necesitas señalamientos de advertencia certificados NOM en CDMX?',
+    ctaBody: 'Cuéntanos los riesgos de tu instalación: eléctrico, químico, caída, maquinaria. Te indicamos exactamente qué señales aplican y hacemos el levantamiento sin costo.',
   },
 
   // ──────────────────────────────────────────────────────────
@@ -361,14 +507,64 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       'La señal de obligación no es solo un requisito normativo — es el recordatorio permanente de que en esa área o tarea hay un riesgo que requiere equipo específico. Su efectividad depende de su correcta ubicación, visibilidad y de que el personal conozca el EPP que representa cada símbolo.',
       'En Proyecto Red suministramos señales de obligación para todos los tipos de EPP: craneal, visual, auditiva, respiratoria, de manos, de pies y de cuerpo completo. También fabricamos señales con múltiples EPP en una sola pieza para áreas donde aplican varios elementos simultáneamente.',
     ],
-    stats: [
-      { value: 'NOM-026',   label: 'STPS certificado'    },
-      { value: 'Clase O',   label: 'Obligación'          },
-      { value: 'Azul/blanco', label: 'Color normativo'   },
-      { value: '+15 EPP',   label: 'Tipos disponibles'   },
+
+    tiposEyebrow: 'Tipos disponibles',
+    tiposTitleLine1: 'Señalamientos de obligación',
+    tiposTitleLine2: 'para cada tipo de EPP',
+    tiposBodyPara: 'Todos cumplen NOM-026-STPS con fondo azul, símbolo blanco y pictogramas conforme a ISO 7010. Disponibles en PVC, acrílico, aluminio y vinilo adhesivo. Las señales combinadas permiten mostrar múltiples EPP en una sola pieza para áreas de riesgo mixto.',
+    tipos: [
+      {
+        nombre: 'Uso Obligatorio de Casco',
+        badge: 'M001 · Craneal',
+        desc: 'La señal más común en plantas de producción y construcción. El pictograma es un casco de seguridad de perfil visto de frente sobre fondo azul. Instálala en la entrada a cualquier área con riesgo de impacto craneal.',
+        specs: 'Pictograma M001 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de casco NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Uso Obligatorio de Lentes de Seguridad',
+        badge: 'M004 · Visual',
+        desc: 'Para áreas con riesgo de proyección de partículas, vapores químicos o radiación. El pictograma muestra lentes de seguridad sobre fondo azul. Obligatoria en esmerilado, torno y laboratorios.',
+        specs: 'Pictograma M004 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de lentes NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Uso Obligatorio de Protección Auditiva',
+        badge: 'M003 · Auditiva',
+        desc: 'Para áreas con ruido superior a 85 dB. Complementa al programa de conservación auditiva NOM-011-STPS. El pictograma muestra un protector auditivo o tapones sobre fondo azul.',
+        specs: 'Pictograma M003 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de protección auditiva NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Uso Obligatorio de Guantes',
+        badge: 'M009 · Manos',
+        desc: 'Para manipulación de materiales cortantes, productos químicos o temperaturas extremas. El pictograma muestra una mano con guante sobre fondo azul. Instálala antes de almacenes y áreas de química.',
+        specs: 'Pictograma M009 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de guantes NOM-026-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Uso Obligatorio de Calzado de Seguridad',
+        badge: 'M008 · Más solicitado',
+        desc: 'La segunda señal más común después del casco. Para cualquier área con riesgo de caída de objetos o perforación. El pictograma muestra una bota de seguridad sobre fondo azul.',
+        specs: 'Pictograma M008 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de calzado de seguridad NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Uso Obligatorio de Arnés de Seguridad',
+        badge: 'M014 · Alturas',
+        desc: 'Para trabajo en altura sobre plataformas, andamios o azoteas. Complementa al procedimiento de trabajo en altura y anclaje de línea de vida. El pictograma muestra un arnés o cinturón de seguridad.',
+        specs: 'Pictograma M014 · Circular · Fondo azul Pantone 286C · PVC/Aluminio/Vinilo · 20×20 a 30×30 cm',
+        waText: 'Hola, necesito señalamientos de obligación de arnés de seguridad NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Señal Combinada — Múltiples EPP',
+        badge: 'Personalizable',
+        desc: 'Para áreas donde se requieren 3 o más elementos de EPP simultáneamente. Mostramos casco, lentes, botas y guantes en una sola pieza de mayor tamaño. Reduce clutter visual y presenta todos los requisitos con claridad.',
+        specs: 'Múltiples pictogramas · Panel azul · Fondo azul Pantone 286C · PVC/Aluminio · 40×60 a 60×80 cm',
+        waText: 'Hola, necesito una señal combinada de múltiples EPP para mi planta. ¿Pueden diseñarla?',
+      },
     ],
 
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Características de los',
       titleLine2: 'señalamientos de obligación',
@@ -442,25 +638,18 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
   // 5. SEÑALES FOTOLUMINISCENTES
   // ──────────────────────────────────────────────────────────
   'fotoluminiscentes': {
-    metaTitle: 'Señalamientos Fotoluminiscentes — Visibles sin Electricidad | Proyecto Red',
-    metaDesc: 'Señalamientos fotoluminiscentes que se cargan con luz ambiental y mantienen visibilidad hasta 90 minutos sin electricidad. Salidas, evacuación, extintores. NOM-003-SEGOB. CDMX.',
+    metaTitle: 'Señalamientos Fotoluminiscentes NOM — Visibles sin Electricidad | Proyecto Red CDMX',
+    metaDesc: 'Señalamientos fotoluminiscentes NOM-003-SEGOB: visibilidad 60–90 min sin electricidad. Salidas, evacuación, extintor, escaleras. Aluminato de estroncio. CDMX y Estado de México.',
 
-    badge: 'NOM-003-SEGOB · Sin electricidad · 90 min visibilidad',
+    badge: 'NOM-003-SEGOB · Sin electricidad · 60–90 min visibilidad',
     heroTitle: 'Señalamientos',
     heroAccent: 'Fotoluminiscentes',
-    heroSubtitle: 'Los señalamientos fotoluminiscentes se cargan con luz ambiental (natural o artificial) y emiten luz en la oscuridad durante 60 a 90 minutos. Son la solución más confiable para rutas de evacuación cuando falla la electricidad, sin necesidad de baterías ni mantenimiento eléctrico.',
+    heroSubtitle: 'En un corte eléctrico, los señalamientos fotoluminiscentes son la única guía visible en escaleras, pasillos y salidas. Se cargan con luz ambiental y emiten luz 60 a 90 minutos — sin baterías, sin mantenimiento eléctrico, sin fallas. Certificados NOM-003-SEGOB. Entrega en CDMX y Estado de México.',
     heroDescRight: [
       'En una emergencia con corte eléctrico, las señales fotoluminiscentes son la única guía visible en escaleras, pasillos y salidas cuando la iluminación de emergencia no alcanza o falla. La tecnología fotoluminiscente usa pigmentos de aluminato de estroncio que absorben y almacenan energía luminosa durante el día y la liberan en la oscuridad.',
       'En Proyecto Red suministramos señales fotoluminiscentes en todos los tipos: evacuación, salida de emergencia, extintor, botiquín, ruta de evacuación y señales de escalera. Los materiales cumplen con los estándares de persistencia luminosa más exigentes del mercado, garantizando visibilidad mínima de 60 minutos en condiciones de oscuridad total.',
     ],
-    stats: [
-      { value: '60–90 min', label: 'Visibilidad en oscuridad' },
-      { value: '0 batería', label: 'Sin mantenimiento eléctrico' },
-      { value: 'NOM-003',   label: 'SEGOB certificado'        },
-      { value: 'Aluminato', label: 'Pigmento de estroncio'    },
-    ],
-
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Especificaciones técnicas',
       titleLine1: 'Cómo funcionan las señales',
       titleLine2: 'fotoluminiscentes',
@@ -508,6 +697,55 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       ],
     },
 
+    tipos: [
+      {
+        nombre: 'Salida de Emergencia Fotoluminiscente',
+        badge: 'ISO E001',
+        desc: 'La señal más crítica en fotoluminiscente. Sobre cada puerta de salida de emergencia, es la primera referencia visual en un corte eléctrico. Visibilidad mínima garantizada de 60 minutos en oscuridad total con pigmento de aluminato de estroncio.',
+        specs: 'Fondo verde · 20×20 / 30×30 / 40×40 cm · Lámina fotoluminiscente sobre PVC o acrílico · Aluminato de estroncio',
+        waText: 'Hola, necesito señales fotoluminiscentes de Salida de Emergencia NOM-003-SEGOB. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Flecha Direccional Fotoluminiscente',
+        badge: 'ISO E002',
+        desc: 'Guía la evacuación en pasillos oscuros indicando la dirección hacia la salida. Disponible en cuatro orientaciones. Imprescindible en pasillos largos sin luz natural y en sistemas de guía fotoluminiscente conforme a ISO 16069.',
+        specs: 'Fondo verde · 20×10 / 30×15 cm · Fotoluminiscente · Izq · Der · Arriba · Abajo',
+        waText: 'Hola, necesito flechas direccionales fotoluminiscentes NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Extintor Fotoluminiscente',
+        badge: 'NOM-002',
+        desc: 'Localiza el extintor en oscuridad total — precisamente cuando más se necesita. La NOM-002-STPS exige señalización de cada extintor y la versión fotoluminiscente garantiza su ubicación cuando falla la electricidad y los auxilios de emergencia.',
+        specs: 'Fondo rojo · 20×20 / 30×30 cm · Fotoluminiscente · NOM-002-STPS · PVC o acrílico',
+        waText: 'Hola, necesito señales fotoluminiscentes de extintor NOM-002-STPS. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Guía de Piso — Baliza Fotoluminiscente',
+        badge: 'ISO 16069',
+        desc: 'Franjas o balizas en el piso que guían la evacuación a ras del suelo, por debajo del humo. La evacuación agachada requiere guías en el piso — las balizas fotoluminiscentes antideslizantes son la solución efectiva sin cables ni mantenimiento eléctrico.',
+        specs: 'Franjas 5×30 / 10×30 cm · Antideslizante · Uso en piso · ISO 16069 · 10+ años de vida útil',
+        waText: 'Hola, necesito balizas fotoluminiscentes para piso — guías de evacuación ISO 16069. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Escalera de Emergencia Fotoluminiscente',
+        badge: 'ISO E004',
+        desc: 'Las cajas de escalera son las zonas con mayor probabilidad de oscuridad total en un incendio. Las señales fotoluminiscentes de dirección y número de piso son la única referencia de orientación cuando la iluminación de emergencia falla o no llega.',
+        specs: 'Fondo verde · 20×20 / 30×30 cm · Fotoluminiscente · NOM-003-SEGOB · Opción con número de piso',
+        waText: 'Hola, necesito señales fotoluminiscentes de escalera de emergencia NOM. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Botiquín y Equipo de Emergencia',
+        badge: 'ISO E003',
+        desc: 'Localiza el botiquín de primeros auxilios, el desfibrilador (DEA) y otros equipos de emergencia en oscuridad. Ideales para hoteles, hospitales y edificios corporativos donde las auditorías exigen señalización de todos los equipos de respuesta.',
+        specs: 'Fondo verde o blanco · 20×20 / 30×30 cm · Fotoluminiscente · NOM-003-SEGOB / ISO 7010-E003',
+        waText: 'Hola, necesito señales fotoluminiscentes de botiquín y DEA NOM. ¿Pueden cotizarme?',
+      },
+    ],
+    tiposEyebrow: 'Tipos disponibles',
+    tiposTitleLine1: 'Señalamientos fotoluminiscentes',
+    tiposTitleLine2: 'en nuestro catálogo',
+    tiposBodyPara: 'Todos usan pigmento de aluminato de estroncio — la tecnología de mayor persistencia del mercado, con visibilidad de 60 a 90 minutos y vida útil de 25 años. Disponibles en PVC, acrílico y balizas antideslizantes para piso.',
+
     relatedTitle: 'Otros tipos de señalamientos en nuestro catálogo',
 
     faqItems: [
@@ -529,9 +767,9 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       },
     ],
 
-    waMessage: 'Hola, necesito señalamientos fotoluminiscentes para rutas de evacuación. ¿Pueden asesorarme?',
-    ctaTitle: '¿Necesitas señalamientos fotoluminiscentes en CDMX?',
-    ctaBody: 'Cuéntanos el tipo de instalación y las áreas críticas. Te cotizamos la señalización fotoluminiscente completa con materiales de aluminato de estroncio certificados.',
+    waMessage: 'Hola, necesito señalamientos fotoluminiscentes NOM para rutas de evacuación, salidas y extintores. ¿Pueden asesorarme?',
+    ctaTitle: '¿Necesitas señalamientos fotoluminiscentes certificados NOM en CDMX?',
+    ctaBody: 'Cuéntanos el tipo de instalación y las áreas críticas: escaleras, sótanos, pasillos sin ventanas. Te cotizamos la señalización fotoluminiscente completa con materiales de aluminato de estroncio de alta persistencia.',
   },
 
   // ──────────────────────────────────────────────────────────
@@ -549,14 +787,57 @@ export const SENALAMIENTO_PAGES: Record<string, ProductoSenalamientoData> = {
       'No todas las situaciones de riesgo están cubiertas por el catálogo estándar de señalamientos. Cuando tu instalación tiene un proceso único, un riesgo específico o una combinación de peligros que no existe en señales genéricas, la señalización personalizada es la solución correcta.',
       'En Proyecto Red fabricamos señalamientos a medida respetando estrictamente los colores, formas, proporciones y materiales de la normativa. Podemos incorporar el logotipo de tu empresa, texto en varios idiomas, pictogramas específicos de tu proceso y cualquier información adicional que exija tu sistema de gestión de seguridad.',
     ],
-    stats: [
-      { value: 'NOM',       label: 'Cumplimiento garantizado' },
-      { value: 'Logotipo',  label: 'Con identidad de empresa' },
-      { value: '5 piezas',  label: 'Mínimo por diseño'       },
-      { value: '5–7 días',  label: 'Tiempo de fabricación'   },
+
+    tiposEyebrow: 'Tipos de personalización',
+    tiposTitleLine1: 'Señalización personalizada',
+    tiposTitleLine2: 'según tu necesidad',
+    tiposBodyPara: 'Cada tipo de personalización se diseña respetando estrictamente los colores, formas y proporciones de NOM-003-SEGOB y NOM-026-STPS. Mínimo 5 piezas por diseño. Entrega en 5–7 días hábiles. Archivos digitales incluidos para reposiciones futuras.',
+    tipos: [
+      {
+        nombre: 'Señal con Logotipo Corporativo',
+        badge: 'Más solicitado',
+        desc: 'Incorpora el logotipo o marca de tu empresa en la señal de emergencia, advertencia u obligación sin modificar los elementos normativos. La ubicación típica es en la parte inferior de la señal, preservando el color y forma exigidos por la NOM.',
+        specs: 'Señal estándar NOM · Logo corporativo incorporado · Mínimo 5 piezas · Tiempo 5–7 días',
+        waText: 'Hola, necesito señalamientos NOM personalizados con el logo de mi empresa. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Señal de Riesgo Específico de Proceso',
+        badge: 'Proceso único',
+        desc: 'Cuando tu planta tiene un riesgo que no está cubierto por señales genéricas — por ejemplo, riesgo de contacto eléctrico en un proceso específico, o exposición química no estándar — fabricamos la señal con pictograma y texto exactos para tu situación.',
+        specs: 'Diseño a medida · Riesgo específico · Colores NOM · Mínimo 5 piezas · 5–7 días',
+        waText: 'Hola, necesito una señal de riesgo específico personalizada para mi proceso. ¿Pueden diseñarla?',
+      },
+      {
+        nombre: 'Señalización Bilingüe (Español/Inglés)',
+        badge: 'Multinacional',
+        desc: 'Para instalaciones con personal extranjero o requisitos normativos binacionales. La señal muestra el pictograma normativo con texto en español e inglés, cada uno en su lado o en líneas separadas. Mantiene la validez normativa en ambos idiomas.',
+        specs: 'Señal NOM · Texto bilingüe · Español/Inglés · Mínimo 5 piezas · Diseño validado',
+        waText: 'Hola, necesito señalamientos NOM bilingües (español/inglés) para mi empresa multinacional. ¿Pueden cotizarme?',
+      },
+      {
+        nombre: 'Panel de Múltiples EPP Combinados',
+        badge: 'Flexible',
+        desc: 'Un panel que muestra de 3 a 8 elementos de EPP obligatorio en una sola pieza. Ideal para áreas con riesgos múltiples que cambian según la jornada o el proceso. Reduce clutter visual al consolidar varios requisitos en un solo panel ordenado.',
+        specs: 'Panel personalizado · Múltiples pictogramas · Hasta 8 elementos de EPP · PVC/Aluminio · 5–7 días',
+        waText: 'Hola, necesito un panel personalizado con múltiples requisitos de EPP para mi planta. ¿Pueden diseñarlo?',
+      },
+      {
+        nombre: 'Señal para Sistema ISO 45001',
+        badge: 'Certificación',
+        desc: 'Para empresas bajo el sistema de gestión de seguridad ISO 45001, que requieren señalización alineada con el estándar. Incorporamos referencia del estándar, pictogramas ISO 7010 completos y colores exactos Pantone para cumplimiento de auditoría.',
+        specs: 'Señal NOM + ISO 45001 · Pictogramas ISO 7010 · Referencia de estándar · Mínimo 5 piezas',
+        waText: 'Hola, necesito señalamientos personalizados para cumplimiento de ISO 45001. ¿Pueden asesorarme?',
+      },
+      {
+        nombre: 'Reposición de Señales Descontinuadas',
+        badge: 'Catalogo antiguo',
+        desc: 'Cuando tu instalación tiene señales antiguas de fabricantes que ya no existen, podemos reproducir el diseño adaptándolo a normativa vigente. Digitalizamos la antigua, la modernizamos manteniendo la esencia visual y la reproductibilidad a futuro.',
+        specs: 'Digitalización de antiguo · Adaptación normativa · Archivos digitales · 5–7 días',
+        waText: 'Hola, tengo señalamientos antiguos que necesito reponer. ¿Pueden reproducirlos?',
+      },
     ],
 
-    caracteristicas: {
+caracteristicas: {
       eyebrow: 'Cómo funciona el servicio',
       titleLine1: 'Proceso de fabricación',
       titleLine2: 'de señales personalizadas',

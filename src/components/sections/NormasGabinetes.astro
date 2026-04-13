@@ -1,69 +1,86 @@
 ---
 /**
- * NormasGabinetes.astro — v1
- * Cards de normas para gabinetes contra incendio.
- * Patrón 100% homologado con NormasSenalamientos / NormasExtintores.
- * Usa SectionHeaderDuo + .norma-card global (pages.css).
+ * NormasGabinetes.astro — v2
+ * Cards de normas premium con iconos y colores por tipo.
+ * Patrón 100% homologado con NormasExtintores y NormasBomberos.
+ * Cubre: NOM-002-STPS, NOM-003-SEGOB, NFPA 10, NFPA 14, NFPA 25, NOM-026-STPS.
+ * Usado en: L4 (/gabinetes/[producto]/)
+ * Usa SectionHeaderDuo + .normas-grid + .norma-card global (pages.css).
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 
 const normas = [
   {
     norma: 'NOM-002-STPS',
-    tipo: 'Prevención',
-    alcance: 'Condiciones de seguridad — prevención y protección contra incendios en centros de trabajo. Define el resguardo correcto de extintores: ubicación, accesibilidad y protección del equipo.',
-    aplica: 'Todo centro de trabajo. La STPS verifica que los extintores estén en buen estado y accesibles. Un extintor deteriorado por falta de gabinete (polvo, golpes, humedad) puede generar observación o multa en auditoría.',
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>`,
-  },
-  {
-    norma: 'NFPA 10',
-    tipo: 'Internacional',
-    alcance: 'Estándar para extintores portátiles — instalación, inspección y mantenimiento. Incluye requisitos de protección física del extintor según el tipo de riesgo y la ubicación.',
-    aplica: 'Plantas industriales, almacenes y proyectos con estándares internacionales. NFPA 10 es referencia técnica para decidir cuándo se requiere gabinete y qué tipo de protección es adecuada según la clase de riesgo.',
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
-  },
-  {
-    norma: 'NFPA 14',
-    tipo: 'Sistemas hidráulicos',
-    alcance: 'Instalación de sistemas de tuberías verticales y mangueras — define la ubicación, el tipo de gabinete y los accesorios requeridos (válvula, manguera, llave) en cada punto del sistema hidráulico.',
-    aplica: 'Edificios de más de 5 pisos y naves industriales con red hidráulica contra incendio. Cada toma de agua para bomberos requiere gabinete para hidrante con manguera pre-conectada y válvula angular 2½".',
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22V12m0 0c0-4-4-8-4-8s4 1 4 8zm0 0c0-4 4-8 4-8s-4 1-4 8z"/><path d="M5 12H2M22 12h-3M12 2V0"/></svg>`,
+    tipo: 'Obligatoria',
+    alcance: 'Condiciones de seguridad para la prevención y protección contra incendios en centros de trabajo. Establece el tipo, número, ubicación, altura de montaje y señalización de extintores — y por tanto de los gabinetes que los alojan.',
+    aplica: 'Todo centro de trabajo con trabajadores en México. La NOM-002-STPS es el principal instrumento que la STPS y Protección Civil revisan en auditoría. Un extintor deteriorado por falta de gabinete (golpes, polvo, humedad) puede generar observación o multa aunque el extintor funcione.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
   },
   {
     norma: 'NOM-003-SEGOB',
     tipo: 'Señalización',
-    alcance: 'Señales y avisos para protección civil — cada gabinete debe incluir señalamiento de ubicación visible desde el acceso. Define color rojo + blanco para gabinetes de extintor y manguera.',
-    aplica: 'Todo inmueble con gabinetes instalados. El señalamiento del gabinete es parte del dictamen de Protección Civil. Sin señal visible de ubicación, el inspector puede hacer observación aunque el gabinete esté correctamente instalado.',
+    alcance: 'Señales y avisos para protección civil — características, dimensiones, colores y símbolos. Define la señalización de gabinetes de extintor, manguera e hidrante: color rojo + blanco, tamaño según distancia de observación y posición visible desde el acceso.',
+    aplica: 'Todo inmueble que deba obtener Visto Bueno o Dictamen de Protección Civil. Sin señal visible y conforme en cada gabinete, el inspector puede hacer observación aunque el equipo esté correctamente instalado. La señal correcta, en el lugar correcto y al tamaño correcto.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  },
+  {
+    norma: 'NFPA 10',
+    tipo: 'Internacional',
+    alcance: 'Estándar para extintores portátiles — incluye criterios de instalación de soportes y gabinetes: altura de montaje, accesibilidad, distancia máxima de recorrido y condiciones del entorno para el alojamiento físico del extintor según la clase de riesgo.',
+    aplica: 'Proyectos con requerimiento de estándar internacional: plantas maquiladoras, parques industriales, inmuebles con certificación ISO o OSHA. Complementa la NOM y es el marco de referencia en auditorías para aseguradoras internacionales.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  },
+  {
+    norma: 'NFPA 14',
+    tipo: 'Sistemas CI',
+    alcance: 'Instalación de sistemas de tuberías verticales y mangueras — aplica directamente a los gabinetes para bombero (clase I, II y III) y gabinetes para hidrante. Define materiales, presiones de trabajo, válvulas angulares, acoples Storz y requisitos de prueba hidráulica.',
+    aplica: 'Edificios con 3 o más niveles, plantas industriales con sistema de hidrantes interiores, centros comerciales y hospitales. Los gabinetes para mangueras que no cumplan NFPA 14 son inválidos ante corporaciones de bomberos y no se integran legalmente a un sistema de supresión activa.',
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    norma: 'NFPA 25',
+    tipo: 'Mantenimiento',
+    alcance: 'Inspección, prueba y mantenimiento de sistemas de protección contra incendios a base de agua — incluye gabinetes de mangueras, válvulas angulares, tuberías y chiflones. Establece frecuencias de inspección: mensual visual, semestral funcional y anual de flujo.',
+    aplica: 'Toda instalación con sistema de mangueras (gabinetes para bombero o hidrante). Es el estándar que usan las aseguradoras para verificar operatividad. Un sistema sin programa de mantenimiento NFPA 25 puede invalidar la póliza de incendio del inmueble.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M20 12h-2M6 12H4M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93"/></svg>`,
+  },
+  {
+    norma: 'NOM-026-STPS',
+    tipo: 'Colores y señales',
+    alcance: 'Colores y señales de seguridad e higiene e identificación de riesgos por fluidos en tuberías. Define el color rojo RAL 3001 para equipos contra incendio (gabinetes, soportes, rutas de emergencia) y las dimensiones mínimas de las señales según la distancia de observación.',
+    aplica: 'Centros de trabajo con instalaciones de protección contra incendio. El color rojo del gabinete, el ancho del borde blanco y el tamaño del símbolo deben cumplir esta norma para ser válidos en revisiones de higiene y seguridad de la STPS. No basta que sea rojo — debe ser el rojo correcto.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>`,
   },
 ]
 ---
 
-<section class="normas-gab" id="normas-gabinetes" aria-labelledby="normas-gab-heading">
+<section class="normas-gab" aria-labelledby="normas-gab-heading">
   <div class="container">
 
     <SectionHeaderDuo
-      id="normas-gab-heading"
-      eyebrow="Marco normativo"
-      titleLine1="Normas que Aplican a"
-      titleLine2="Gabinetes e Instalación"
-      desc="NOM-002-STPS, NFPA 10 y NFPA 14 definen cuándo se necesita gabinete, qué tipo y cómo debe instalarse."
-      bodyPara1="La decisión de usar gabinete en lugar de soporte de pared no es solo estética — tiene respaldo normativo. NOM-002-STPS exige que los extintores estén protegidos y operables en todo momento. NFPA 10 detalla los criterios según tipo de riesgo. Y NFPA 14 es obligatoria en edificios con sistema de hidrantes. Cumplir las cuatro normas garantiza que no haya observaciones en inspección."
+      eyebrow="Respaldo normativo"
+      titleLine1="Normas que Regulan"
+      titleLine2="los Gabinetes Contra Incendio"
+      desc="Un gabinete sin norma es un mueble. Uno en norma es protección real, documentada y válida ante cualquier autoridad."
+      bodyPara1="En México, la validez de un gabinete para extintor, manguera o hidrante ante Protección Civil, la STPS o una aseguradora no depende solo de que esté pintado de rojo — depende de que cumpla con las normas de instalación, señalización y mantenimiento aplicables. Durante una auditoría, la autoridad revisa el gabinete, la señal encima, la altura de montaje y el estado del equipo interior. Si uno falla, el conjunto no cuenta. Todos nuestros gabinetes se suministran con señalamiento NOM incluido y documentación técnica para tu expediente."
     />
 
-    <div class="normas-gab-grid" role="list" aria-label="Normas aplicables a gabinetes contra incendio">
+    <!-- Grid de normas como cards — usa .normas-grid global (pages.css) -->
+    <div class="normas-grid" role="list" aria-label="Normas y estándares para gabinetes contra incendio">
       {normas.map(n => (
         <article class="norma-card" role="listitem">
           <div class="norma-card__head">
-            <div class="norma-card__icon" aria-hidden="true" set:html={n.icon} />
-            <div>
-              <span class="norma-card__codigo">{n.norma}</span>
-              <span class="norma-tipo">{n.tipo}</span>
-            </div>
+            <div class="norma-card__icon" set:html={n.icon} />
+            <span class="norma-tipo">{n.tipo}</span>
           </div>
+          <h3 class="norma-card__nombre">{n.norma}</h3>
           <p class="norma-card__alcance">{n.alcance}</p>
           <div class="norma-card__aplica">
-            <span class="norma-card__aplica-label">Aplica en</span>
+            <span class="norma-aplica-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Aplica
+            </span>
             <p>{n.aplica}</p>
           </div>
         </article>
@@ -71,9 +88,14 @@ const normas = [
     </div>
 
     <div class="normas-nota">
-      <svg class="normas-nota__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <p class="normas-nota__text">
-        <strong>¿Gabinete empotrado, sobrepuesto o pedestal?</strong> Cada tipo de instalación tiene implicaciones normativas y constructivas distintas. Asesoramos sin costo — cotiza por WhatsApp con foto del espacio y del extintor que vas a resguardar.
+      <div class="normas-nota__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <p>
+        Cada gabinete que suministramos incluye <strong>señalamiento NOM incluido</strong>,
+        <strong>ficha técnica</strong> y <strong>garantía del fabricante</strong> — los documentos que solicitan
+        Protección Civil y la STPS en cualquier inspección. Para expedientes más complejos
+        (dictamen técnico, plano de señalización, memoria de cálculo hidráulica), te asesoramos sin costo.
       </p>
     </div>
 
@@ -86,13 +108,4 @@ const normas = [
     background: var(--c-white);
     border-top: 1px solid var(--c-border);
   }
-
-  .normas-gab-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  @media (max-width: 900px) { .normas-gab-grid { grid-template-columns: 1fr; } }
 </style>

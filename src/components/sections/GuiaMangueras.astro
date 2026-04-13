@@ -66,7 +66,7 @@ const escenarios = [
       bodyPara1="El sistema de mangueras no es igual para todos los inmuebles. El diámetro, el caudal, el tipo de chiflón y los adaptadores dependen del riesgo del espacio y del tipo de brigada que responderá. Dimensionar mal el sistema resulta en un sistema que no funciona bajo presión real — o uno sobredimensionado que nadie puede operar."
     />
 
-    <div class="guia-man-grid" role="list" aria-label="Guía de sistemas hidráulicos por tipo de inmueble">
+    <div class="guia-grid" role="list" aria-label="Guía de sistemas hidráulicos por tipo de inmueble">
       {escenarios.map((esc, i) => (
         <article class="guia-card" role="listitem">
           <div class="guia-card__header">
@@ -131,13 +131,4 @@ const escenarios = [
     background: var(--c-surface, #F4F4F5);
     border-top: 1px solid var(--c-border);
   }
-
-  .guia-man-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: 640px) { .guia-man-grid { grid-template-columns: 1fr; } }
 </style>

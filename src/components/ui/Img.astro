@@ -1,6 +1,11 @@
 ---
 /**
- * Img.astro - VERSIÓN ULTRA-RESILIENTE (Fix de Visibilidad)
+ * Img.astro — Componente de imagen con AVIF + CDN
+ *
+ * Dev:  rutas directas, sin AVIF source (los archivos AVIF solo existen en producción
+ *       o cuando se generaron explícitamente). Evita 404s de <source> en local.
+ *
+ * Prod: <picture> con source AVIF via ExactDN CDN (conversión automática) + fallback JPG.
  */
 import { cdnUrl } from '../../config/site'
 
@@ -30,33 +35,53 @@ const {
   ...rest
 } = Astro.props
 
-// FORZAMOS MODO DESARROLLO para asegurar que lea archivos locales ahora mismo
-const isDev = true 
+const isDev = import.meta.env.DEV
 
-// Calculamos rutas
+// Rutas base (sin CDN)
 const isAvif = src.endsWith('.avif')
 const avifPath = isAvif ? src : src.replace(/\.(png|jpg|jpeg)$/, '.avif')
-const pngPath = isAvif ? src.replace('.avif', '.jpg') : src
+const jpgPath  = isAvif ? src.replace('.avif', '.jpg') : src
 
-// En desarrollo usamos rutas directas sin CDN
-const finalAvif = avifPath
-const finalPng = pngPath
+// En producción usamos CDN para la URL AVIF (ExactDN lo convierte automáticamente)
+// En desarrollo usamos rutas directas para que lea archivos locales
+const finalAvif = isDev ? avifPath : cdnUrl(avifPath)
+const finalJpg  = isDev ? jpgPath  : cdnUrl(jpgPath)
+
+// En dev, si el src original ya era .avif, asumimos que el archivo existe y usamos picture.
+// Si el src era .jpg/.png, saltamos el <source> AVIF para evitar 404s en local.
+const usePicture = !isDev || isAvif
 ---
 
-<picture class={className}>
-  <source srcset={finalAvif} type="image/avif" />
+{usePicture ? (
+  <picture class={className}>
+    <source srcset={finalAvif} type="image/avif" />
+    <img
+      src={finalJpg}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      fetchpriority={fetchpriority}
+      sizes={sizes}
+      style="display: block; width: 100%; height: 100%; object-fit: cover;"
+      {...rest}
+    />
+  </picture>
+) : (
   <img
-    src={finalPng}
+    src={finalJpg}
     alt={alt}
     width={width}
     height={height}
     loading={loading}
     decoding={decoding}
     fetchpriority={fetchpriority}
-    style="display: block; width: 100%; height: 100%; object-fit: cover; opacity: 1 !important; visibility: visible !important;"
+    sizes={sizes}
+    style="display: block; width: 100%; height: 100%; object-fit: cover;"
     {...rest}
   />
-</picture>
+)}
 
 <style>
   picture {
@@ -65,6 +90,6 @@ const finalPng = pngPath
     height: 100%;
   }
   img {
-    background-color: #f3f4f6; /* Placeholder gris suave si falla todo */
+    background-color: #f3f4f6;
   }
 </style>
