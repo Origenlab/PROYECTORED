@@ -50,9 +50,11 @@ const fallbackPath = isAvif ? src : src   // fallback = ruta original (jpg/png/a
 const finalAvif = isDev ? avifPath : cdnUrl(avifPath)
 const finalFallback = isDev ? fallbackPath : cdnUrl(fallbackPath)
 
-// En dev, si el src original ya era .avif, asumimos que el archivo existe y usamos picture.
-// Si el src era .jpg/.png, saltamos el <source> AVIF para evitar 404s en local.
-const usePicture = !isDev || isAvif
+// Usar <picture> con <source type="image/avif"> SOLO cuando el archivo original
+// ya es .avif (sabemos que existe). Si el src es .jpg/.png, usar <img> directo
+// porque no hay garantía de que exista una versión .avif en el origen
+// y ExactDN devolvería 404 que rompe el <picture> completo.
+const usePicture = isAvif
 ---
 
 {usePicture ? (
