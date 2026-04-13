@@ -38,14 +38,17 @@ const {
 const isDev = import.meta.env.DEV
 
 // Rutas base (sin CDN)
+// Muchas imágenes solo existen como .avif (sin .jpg ni .png).
+// El fallback del <img> usa la misma ruta AVIF — los navegadores modernos
+// lo soportan y ExactDN puede convertir al formato óptimo.
 const isAvif = src.endsWith('.avif')
 const avifPath = isAvif ? src : src.replace(/\.(png|jpg|jpeg)$/, '.avif')
-const jpgPath  = isAvif ? src.replace('.avif', '.jpg') : src
+const fallbackPath = isAvif ? src : src   // fallback = ruta original (jpg/png/avif)
 
-// En producción usamos CDN para la URL AVIF (ExactDN lo convierte automáticamente)
+// En producción usamos CDN para ambas URLs (ExactDN convierte automáticamente)
 // En desarrollo usamos rutas directas para que lea archivos locales
 const finalAvif = isDev ? avifPath : cdnUrl(avifPath)
-const finalJpg  = isDev ? jpgPath  : cdnUrl(jpgPath)
+const finalFallback = isDev ? fallbackPath : cdnUrl(fallbackPath)
 
 // En dev, si el src original ya era .avif, asumimos que el archivo existe y usamos picture.
 // Si el src era .jpg/.png, saltamos el <source> AVIF para evitar 404s en local.
@@ -56,7 +59,7 @@ const usePicture = !isDev || isAvif
   <picture class={className}>
     <source srcset={finalAvif} type="image/avif" />
     <img
-      src={finalJpg}
+      src={finalFallback}
       alt={alt}
       width={width}
       height={height}
@@ -70,7 +73,7 @@ const usePicture = !isDev || isAvif
   </picture>
 ) : (
   <img
-    src={finalJpg}
+    src={finalFallback}
     alt={alt}
     width={width}
     height={height}
