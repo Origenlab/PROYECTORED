@@ -1,0 +1,517 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaBar from '../../../components/CtaBar.astro';
+import FaqCotizacion from '../../../components/FaqCotizacion.astro';
+import '../../../styles/pages.css';
+
+const WHATSAPP = "525537238544";
+const WA_URL = `https://wa.me/${WHATSAPP}`;
+
+const seo = {
+  title: "Extintor PQS Rodante 150 kg — Polvo Seco Industrial Refinería y Aeropuertos | Proyecto Red",
+  description: "Extintor rodante de polvo seco ABC 150 kg para refinerías, aeropuertos, terminales de combustible y plantas petroquímicas. Alcance hasta 12 m. NOM-002-STPS, NFPA 10, UL 711. Entrega en CDMX.",
+};
+
+const breadcrumbs = [
+  { label: "Inicio", href: "/" },
+  { label: "Extintores", href: "/extintores/" },
+  { label: "Polvo Seco PQS", href: "/extintores/polvo-seco/" },
+  { label: "PQS Rodante 150 kg" },
+];
+
+const heroStats = [
+  { valor: "150 kg", label: "Capacidad" },
+  { valor: "Hasta 12 m", label: "Alcance" },
+  { valor: "~60 s", label: "Descarga" },
+];
+
+const specs = [
+  { label: "Agente extintor", value: "Fosfato monoamónico ABC o Bicarbonato de potasio (Purple K) — según configuración" },
+  { label: "Clases de fuego", value: "A · B · C (ABC) — B · C (Purple K)" },
+  { label: "Capacidad nominal", value: "150 kg / 330 lb" },
+  { label: "Tiempo de descarga", value: "~55–65 segundos" },
+  { label: "Alcance efectivo", value: "Hasta 12 metros" },
+  { label: "Longitud de manguera", value: "9 metros (30 ft)" },
+  { label: "Presión de trabajo", value: "10–14 bar con manómetro visual" },
+  { label: "Gas propelente", value: "Cilindro de nitrógeno seco externo (N₂) 55 ft³" },
+  { label: "Temperatura de operación", value: "-40 °C a +60 °C" },
+  { label: "Altura total del conjunto", value: "~145 cm" },
+  { label: "Diámetro del cilindro", value: "~37 cm" },
+  { label: "Peso total cargado", value: "~195 kg" },
+  { label: "Ruedas", value: "Acero reforzado 36\" × 6\" — aptas para pisos rugosos e industriales" },
+  { label: "Material cilindro", value: "Acero al carbón de alta resistencia, pintura electrostática roja" },
+  { label: "Válvula y chiflón", value: "Válvula de apertura rápida, manguera de alta presión, chiflón con lanza de descarga" },
+  { label: "Certificación", value: "NOM-002-STPS · NOM-154-SCFI · NFPA 10 · UL 711" },
+  { label: "Vida útil cilindro", value: "20 años (prueba hidrostática c/5 años)" },
+  { label: "Mantenimiento", value: "Anual obligatorio conforme a NOM-154-SCFI" },
+];
+
+const caracteristicas = [
+  "150 kg de agente extintor — mayor cobertura de área por descarga en la familia PQS",
+  "Manguera de 9 metros que permite atacar el fuego a distancia segura",
+  "Ruedas de acero reforzado para desplazamiento en pavimento, pisos industriales y terreno irregular",
+  "Cilindro de nitrógeno externo para propulsión constante durante toda la descarga",
+  "Chiflón de alta presión con lanza ergonómica para dirección precisa del agente",
+];
+
+const aplicaciones = [
+  "Refinerías y plantas petroquímicas",
+  "Terminales de combustible y almacenamiento de hidrocarburos",
+  "Aeropuertos (hangares, pistas y abastecimiento de combustible)",
+  "Plantas generadoras de energía y subestaciones eléctricas de alta potencia",
+  "Puertos y terminales marítimas con carga de combustible",
+  "Plantas de tratamiento de gas y fraccionamiento",
+];
+
+const categoriasNav = [
+  { label: "Portátiles (1–3 kg)", href: "/extintores/polvo-seco/" },
+  { label: "Estándar ABC (4.5–12 kg)", href: "/extintores/polvo-seco/" },
+  { label: "PQS 20 kg Portátil", href: "/extintores/polvo-seco/pqs-20-kg/" },
+  { label: "PQS BC — Clase B/C", href: "/extintores/polvo-seco/pqs-bc-6-kg/" },
+  { label: "Rodante 150 kg", href: "/extintores/polvo-seco/pqs-rodante-150-kg/", active: true },
+  { label: "Automáticos (techo)", href: "/extintores/polvo-seco/pqs-automatico-4-5-kg/" },
+];
+
+const productosRelacionados = [
+  { nombre: "PQS ABC 20 kg Portátil", href: "/extintores/polvo-seco/pqs-20-kg/" },
+  { nombre: "PQS BC 6 kg", href: "/extintores/polvo-seco/pqs-bc-6-kg/" },
+  { nombre: "PQS Automático 4.5 kg", href: "/extintores/polvo-seco/pqs-automatico-4-5-kg/" },
+  { nombre: "PQS ABC 12 kg", href: "/extintores/polvo-seco/" },
+];
+
+const otrosProductos = [
+  { nombre: "PQS ABC 20 kg", desc: "Alta capacidad portátil para bodegas industriales y naves de manufactura. Una sola persona.", specs: ["20 kg", "~28 s", "5–6 m"], href: "/extintores/polvo-seco/pqs-20-kg/", img: "/imagenes/extintores/polvo-seco/pqs-12kg-extintor-alta-capacidad-industrial.avif" },
+  { nombre: "PQS BC 6 kg", desc: "Bicarbonato de sodio para fuegos de líquidos inflamables y equipos eléctricos. Menos residuo corrosivo.", specs: ["6 kg", "~13 s", "4–5 m"], href: "/extintores/polvo-seco/pqs-bc-6-kg/", img: "/imagenes/extintores/polvo-seco/pqs-6kg-extintor-taller-bodega.avif" },
+  { nombre: "PQS Automático 4.5 kg", desc: "Extinción automática sin intervención humana. Para cuartos eléctricos y espacios cerrados.", specs: ["4.5 kg", "Automático", "68°C / 93°C"], href: "/extintores/polvo-seco/pqs-automatico-4-5-kg/", img: "/imagenes/extintores/polvo-seco/pqs-automatico-techo-cuarto-electrico.avif" },
+  { nombre: "PQS ABC 9 kg", desc: "Para zonas de riesgo medio-alto en almacenes, pasillos de carga y áreas de maquinaria.", specs: ["9 kg", "~18 s", "4–5 m"], href: "/extintores/polvo-seco/", img: "/imagenes/extintores/polvo-seco/pqs-9kg-extintor-industrial-almacen.avif" },
+];
+
+const faqs = [
+  {
+    pregunta: "¿En qué industrias es obligatorio un extintor rodante de gran capacidad?",
+    respuesta: "Los extintores rodantes de 150 kg son requeridos en instalaciones de <strong>riesgo extra</strong> conforme a NFPA 10 y NOM-002-STPS: refinerías, terminales de almacenamiento de hidrocarburos, aeropuertos (hangares y zonas de abastecimiento), plantas generadoras de energía, puertos con manejo de combustible y plantas petroquímicas. En estos entornos, la cantidad de agente extintor disponible en los modelos portátiles es insuficiente para el nivel de riesgo.",
+  },
+  {
+    pregunta: "¿Cuántas personas se necesitan para operar el extintor rodante?",
+    respuesta: "Por protocolo de seguridad industrial, el extintor rodante de 150 kg <strong>requiere al menos dos personas</strong>: una para desplazar y estabilizar el conjunto (cilindro + ruedas + cilindro de N₂) y otra para dirigir la manguera y el chiflón hacia el fuego. A diferencia de los portátiles, el peso total de ~195 kg hace inviable la operación individual. Proyecto Red ofrece <strong>capacitación DC-3</strong> para brigadas que operan este tipo de equipo.",
+  },
+  {
+    pregunta: "¿Cuál es la diferencia entre el modelo ABC y el Purple K en rodantes?",
+    respuesta: "El modelo <strong>ABC (fosfato monoamónico)</strong> combate fuegos de sólidos, líquidos inflamables y electricidad — es el más versátil y el más común en instalaciones industriales generales. El modelo <strong>Purple K (bicarbonato de potasio)</strong> está optimizado para fuegos de Clase B en combustibles líquidos, con mayor poder extintor por kilogramo que el fosfato monoamónico. Purple K es el estándar en la industria aeronáutica y en terminales de combustible donde el riesgo dominante son los líquidos inflamables.",
+  },
+  {
+    pregunta: "¿Cuánto alcance tiene la manguera?",
+    respuesta: "El extintor rodante 150 kg incluye <strong>9 metros (30 ft) de manguera de alta presión</strong> que permiten al operador atacar el fuego desde una distancia segura. Combinado con el alcance efectivo del chiflón de hasta 12 metros, el operador puede mantenerse hasta 21 metros del foco de fuego durante la descarga — factor crítico en refinerías y zonas con riesgo de explosión secundaria.",
+  },
+  {
+    pregunta: "¿Requiere permiso especial o instalación certificada?",
+    respuesta: "El extintor rodante no requiere instalación fija — se ubica en puntos estratégicos definidos en el plano de protección contra incendios del inmueble. Sin embargo, su <strong>ubicación, señalización y accesibilidad</strong> deben cumplir con NOM-002-STPS y el programa de protección civil del establecimiento. Proyecto Red puede realizar el <strong>levantamiento técnico</strong> del inmueble para definir las ubicaciones óptimas conforme a norma.",
+  },
+  {
+    pregunta: "¿Proyecto Red instala y da mantenimiento a extintores rodantes?",
+    respuesta: "Sí. Proyecto Red suministra, entrega e instala extintores rodantes en CDMX y Zona Metropolitana, y ofrece <strong>pólizas de mantenimiento preventivo anual</strong> que incluyen verificación del cilindro de N₂, inspección de manguera y chiflón, verificación de presión y etiquetado. También realizamos la <strong>prueba hidrostática</strong> obligatoria cada 5 años conforme a NOM-154-SCFI. Contáctanos al <strong>55 3723 8544</strong>.",
+  },
+];
+---
+<Base title={seo.title} description={seo.description}>
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          150 kg · Hasta 12 m · NOM-002-STPS · NFPA 10
+        </div>
+        <h1>Extintor PQS Rodante<br><span class="h1-accent">150 kg — Industrial</span></h1>
+        <p class="hero-sub">
+          El mayor extintor de polvo seco de la familia PQS. Para refinerías, aeropuertos, terminales de combustible y plantas petroquímicas donde la capacidad y el alcance son críticos. Manguera de 9 m y alcance hasta 12 metros.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20PQS%20rodante%20150%20kg%20industrial`}
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Cotización
+          </a>
+          <a href="/extintores/polvo-seco/" class="btn-secondary">Ver Catálogo PQS</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p>El extintor rodante de 150 kg es la solución de <strong>máxima capacidad</strong> en la línea de polvo seco. Diseñado para instalaciones industriales de alto riesgo donde un incendio de combustibles líquidos puede escalar rápidamente, este extintor entrega 150 kg de agente extintor en 55 a 65 segundos con un alcance de hasta 12 metros gracias a su chiflón de alta presión y manguera de 9 metros.</p>
+        <p>Disponible en configuración <strong>ABC (fosfato monoamónico)</strong> para protección general o <strong>Purple K (bicarbonato de potasio)</strong> para instalaciones aeronáuticas y terminales de combustible donde la eficacia en fuegos Clase B es la prioridad. El cilindro de nitrógeno externo garantiza presión de propulsión constante durante toda la descarga, sin caídas de rendimiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ══ MAIN LAYOUT: 2 COLUMNAS ══ -->
+  <div class="pp-layout container">
+
+    <!-- ─── COLUMNA PRINCIPAL ─── -->
+    <main class="pp-main">
+
+      <!-- Galería de imágenes -->
+      <div class="pp-gallery">
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco/pqs-rodante-50kg-extintor-planta-industrial.avif?strip=all&lossy=1" alt="Extintor PQS rodante 150 kg — Vista lateral en planta industrial" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco/galeria-2.avif?strip=all&lossy=1" alt="Extintor PQS rodante 150 kg — Detalle manguera y chiflón" width="400" height="300" loading="eager" />
+        </div>
+        <div class="pp-gallery__col">
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/polvo-seco/galeria-3.avif?strip=all&lossy=1" alt="Extintor PQS rodante 150 kg — Ruedas reforzadas y cilindro N₂" width="400" height="300" loading="eager" />
+          <img src="https://ewvydcs5uyw.exactdn.com/imagenes/extintores/extintor-pqs-bodega-industrial-zona-cdmx.avif?strip=all&lossy=1" alt="Extintor PQS rodante 150 kg — Posición en terminal de combustible" width="400" height="300" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="pp-desc">
+        <p>El extintor PQS rodante de 150 kg representa el nivel más alto de protección contra incendios en la categoría de polvo seco. Con una capacidad de <strong>150 kg (330 lb)</strong> de agente extintor propulsado por un cilindro independiente de nitrógeno seco, este equipo puede suprimir incendios de gran magnitud en instalaciones críticas donde los modelos portátiles son insuficientes para la escala del riesgo.</p>
+        <p>Sus <strong>ruedas de acero reforzado</strong> permiten su desplazamiento rápido sobre pavimento industrial, pisos de concreto rugoso y superficies irregulares. La <strong>manguera de 9 metros</strong> y el chiflón de alta presión con lanza ergonómica permiten dirigir el agente extintor con precisión a distancias de hasta 12 metros, manteniendo a los operadores alejados de la zona de peligro inmediato.</p>
+        <p><strong>Capacidad:</strong> 150 kg. <strong>Alcance:</strong> Hasta 12 m. <strong>Certificaciones:</strong> NOM-002-STPS, NOM-154-SCFI, NFPA 10, UL 711.</p>
+      </div>
+
+      <!-- Especificaciones Técnicas -->
+      <section class="pp-block">
+        <h2>Especificaciones Técnicas</h2>
+        <table class="pp-table">
+          <tbody>
+            {specs.map(s => (
+              <tr>
+                <td class="pp-table__label">{s.label}</td>
+                <td class="pp-table__value">{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Características Destacadas -->
+      <section class="pp-block">
+        <h2>Características Destacadas</h2>
+        <ul class="pp-features">
+          <li><strong>150 kg de agente — máxima cobertura por descarga</strong> — Equivale a más de 16 extintores de 9 kg en una sola unidad desplegable desde un punto estratégico. Diseñado para cubrir áreas de riesgo extra que la norma NFPA 10 clasifica como High Hazard.</li>
+          <li><strong>Cilindro de N₂ externo de 55 ft³</strong> — El propelente en cilindro separado garantiza presión de propulsión estable durante toda la descarga sin pérdida de rendimiento al vaciarse el cilindro principal. Esto es crítico en descargas largas donde la presión constante determina el alcance.</li>
+          <li><strong>Manguera de 9 metros (30 ft) con chiflón de alta presión</strong> — Permite atacar el fuego desde una distancia de seguridad, fundamental en escenarios con riesgo de explosión secundaria como terminales de combustible, refinerías o hangares de aeropuerto.</li>
+          <li><strong>Ruedas de acero industrial</strong> — Diseñadas para desplazamiento rápido sobre pisos industriales de concreto, asfalto, rejillas metálicas y terreno irregular. Su diámetro de 36 pulgadas permite cruzar pequeños obstáculos sin perder movilidad.</li>
+          <li><strong>Disponible en ABC o Purple K</strong> — Selecciona el agente extintor según el riesgo específico de la instalación. ABC para protección general, Purple K para máxima eficacia en fuegos de hidrocarburos y cumplimiento con estándares aeronáuticos.</li>
+        </ul>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="pp-block">
+        <h2>Aplicaciones</h2>
+        <ul class="pp-app-list">
+          <li>Refinerías de petróleo y plantas petroquímicas</li>
+          <li>Terminales de almacenamiento y distribución de combustible</li>
+          <li>Aeropuertos: hangares, pistas y zonas de abastecimiento de aeronaves</li>
+          <li>Plantas generadoras y subestaciones eléctricas de alta potencia</li>
+          <li>Puertos y terminales marítimas con carga de hidrocarburos</li>
+          <li>Plantas de fraccionamiento y tratamiento de gas</li>
+        </ul>
+      </section>
+
+      <!-- ABC vs Purple K -->
+      <section class="pp-block">
+        <h2>Configuración ABC vs Purple K — ¿Cuál elegir?</h2>
+        <p>El extintor rodante 150 kg está disponible en dos configuraciones de agente extintor según el tipo de riesgo dominante:</p>
+        <table class="pp-table" style="margin-top:0.75rem;">
+          <tbody>
+            <tr><td class="pp-table__label">Agente ABC</td><td class="pp-table__value">Fosfato monoamónico · Clase A, B y C · Industria general, manufactura, bodegas</td></tr>
+            <tr><td class="pp-table__label">Agente Purple K</td><td class="pp-table__value">Bicarbonato de potasio · Clase B y C · Aeronáutica, hidrocarburos, terminales combustible</td></tr>
+            <tr><td class="pp-table__label">Eficacia Clase B</td><td class="pp-table__value">Purple K supera en ~2× al ABC en extinciones de líquidos inflamables por kg</td></tr>
+            <tr><td class="pp-table__label">Residuo</td><td class="pp-table__value">Purple K deja menos residuo corrosivo sobre maquinaria y estructuras</td></tr>
+            <tr><td class="pp-table__label">Normativa aeronáutica</td><td class="pp-table__value">Purple K es el estándar NFPA 11/403 para rescate y extinción en aeropuertos</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Normativa -->
+      <section class="pp-block">
+        <h2>Cumplimiento Normativo</h2>
+        <p>El extintor PQS rodante 150 kg cumple con <strong>NOM-002-STPS</strong> (condiciones de seguridad contra incendio en centros de trabajo de riesgo extra), <strong>NOM-154-SCFI</strong> (mantenimiento de extintores de polvo químico seco), <strong>NFPA 10</strong> como norma de referencia internacional para extintores y <strong>UL 711</strong> para extintores con calificación de agente extintor. En instalaciones aeronáuticas, aplica también la norma <strong>NFPA 403</strong> para manejo de aeronaves y servicios de emergencia en aeropuertos.</p>
+      </section>
+
+      <!-- Specs mini -->
+      <section class="pp-block">
+        <h2>Resumen de Especificaciones</h2>
+        <div class="pp-specs-mini">
+          <div class="pp-specs-mini__item"><span>Capacidad</span><span>150 kg / 330 lb</span></div>
+          <div class="pp-specs-mini__item"><span>Agente</span><span>ABC o Purple K</span></div>
+          <div class="pp-specs-mini__item"><span>Alcance</span><span>Hasta 12 metros</span></div>
+          <div class="pp-specs-mini__item"><span>Manguera</span><span>9 m (30 ft)</span></div>
+          <div class="pp-specs-mini__item"><span>Certificación</span><span>NFPA 10 / UL 711</span></div>
+          <div class="pp-specs-mini__item"><span>Tipo</span><span>Rodante — 2 operadores</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sb">
+
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Extintores PQS</h3></div>
+        <nav class="sb__nav" aria-label="Categorías de extintores PQS">
+          <ul>
+            {categoriasNav.map(c => (
+              <li><a href={c.href} class={c.active ? 'sb__nav-active' : ''}>{c.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a href="/extintores/polvo-seco/" class="sb__back">← Ver todo el catálogo PQS</a>
+      </div>
+
+      <div class="sb__widget sb__widget--cta">
+        <h3>Cotización Rápida</h3>
+        <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
+        <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
+        <a href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20PQS%20rodante%20150%20kg%20industrial`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
+        <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Características Clave</h3></div>
+        <ul class="sb__checks">
+          {caracteristicas.map(c => (
+            <li><span class="sb__check-icon">✓</span><span>{c}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Certificaciones Disponibles</h3></div>
+        <div class="sb__certs">
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-154-SCFI</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NOM</span><span class="sb__cert-name">NOM-002-STPS</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">NFPA</span><span class="sb__cert-name">NFPA 10</span></div>
+          <div class="sb__cert"><span class="sb__cert-badge">UL</span><span class="sb__cert-name">UL 711</span></div>
+        </div>
+      </div>
+
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Aplicaciones</h3></div>
+        <ul class="sb__app-list">
+          {aplicaciones.map(a => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="sb__widget">
+        <div class="sb__header"><h3>Productos Relacionados</h3></div>
+        <ul class="sb__products">
+          {productosRelacionados.map(p => (
+            <li><a href={p.href}>{p.nombre}</a></li>
+          ))}
+          <li><a href="/extintores/co2/">Extintores CO₂</a></li>
+          <li><a href="/extintores/afff/">Extintores AFFF — Espuma</a></li>
+        </ul>
+      </div>
+
+      <div class="sb__widget sb__widget--services">
+        <div class="sb__header"><h3>Servicios Proyecto Red</h3></div>
+        <p class="sb__services-desc">Complementa tu compra con mantenimiento y capacitación profesional.</p>
+        <ul class="sb__services">
+          <li><a href="/servicios/recarga-extintores/">Recarga de extintores</a></li>
+          <li><a href="/servicios/mantenimiento-preventivo/">Mantenimiento preventivo</a></li>
+          <li><a href="/servicios/prueba-hidrostatica/">Prueba hidrostática</a></li>
+          <li><a href="/servicios/capacitacion-brigadas/">Capacitación DC-3</a></li>
+        </ul>
+        <a href="/servicios/" class="sb__services-link">¿Necesitas más servicios? Ver todos →</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ══ OTROS EXTINTORES ══ -->
+  <section class="pp-otros">
+    <div class="container">
+      <h2 class="pp-otros__title">Otros Extintores PQS Disponibles</h2>
+      <p class="pp-otros__sub">Explora más opciones según tu aplicación específica</p>
+      <a href="/extintores/polvo-seco/" class="pp-otros__link">Ver todo el catálogo PQS →</a>
+      <div class="pp-otros__grid">
+        {otrosProductos.map(p => (
+          <a href={p.href} class="pp-otros__card">
+            <div class="pp-otros__img">
+              <img src={p.img} alt={p.nombre} width="400" height="220" loading="lazy" />
+            </div>
+            <div class="pp-otros__body">
+              <h3 class="pp-otros__name">{p.nombre}</h3>
+              <p class="pp-otros__desc">{p.desc}</p>
+              <ul class="pp-otros__specs">
+                {p.specs.map(s => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <span class="pp-otros__cta">
+                {p.nombre.split(' — ')[0]}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COTIZACIÓN ══ -->
+  <section class="pp-cotizar" id="cotizar">
+    <div class="container pp-cotizar__inner">
+      <div class="pp-cotizar__info">
+        <h2>Cotiza Extintor PQS Rodante 150 kg</h2>
+        <p class="pp-cotizar__sub">Precio y disponibilidad en menos de 24 horas</p>
+        <ul class="pp-cotizar__perks">
+          <li>Asesoría técnica sin costo</li>
+          <li>Entrega en CDMX y Zona Metropolitana</li>
+          <li>Factura electrónica disponible</li>
+        </ul>
+      </div>
+      <div class="pp-cotizar__form">
+        <a
+          href={`${WA_URL}?text=Hola%2C%20necesito%20cotizar%20el%20extintor%20PQS%20rodante%20150%20kg%20industrial.%20Mi%20nombre%20es%3A`}
+          class="btn-primary"
+          style="background:#25D366;font-size:0.95rem;padding:0.85rem 1.8rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+        <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
+        <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQs ══ -->
+  <FaqCotizacion
+    titulo="Preguntas Frecuentes"
+    subtitulo="Todo sobre el extintor PQS rodante 150 kg"
+    pageId="pqs-rodante-150-kg"
+    bgGray={false}
+    faqs={faqs}
+  />
+
+</Base>
+<style>
+  .pp-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 3rem; align-items: start; }
+  .pp-main { min-width: 0; }
+  .pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.75rem; border-radius: 10px; overflow: hidden; }
+  .pp-gallery__col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pp-gallery img { width: 100%; height: 200px; object-fit: cover; display: block; background: #f5f5f5; border-radius: 6px; }
+  .pp-desc { margin-bottom: 2rem; }
+  .pp-desc p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 0.75rem; }
+  .pp-desc strong { color: #111; }
+  .pp-block { margin-bottom: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+  .pp-block:last-child { border-bottom: none; }
+  .pp-block h2 { font-size: 1.15rem; font-weight: 800; color: #111; margin: 0 0 1rem; }
+  .pp-block p { font-size: 0.85rem; color: #555; line-height: 1.65; margin: 0 0 0.5rem; }
+  .pp-table { width: 100%; border-collapse: collapse; }
+  .pp-table tr { border-bottom: 1px solid #f0f0f0; }
+  .pp-table td { padding: 0.65rem 0; font-size: 0.82rem; vertical-align: top; }
+  .pp-table__label { color: #888; font-weight: 600; width: 35%; padding-right: 1rem; }
+  .pp-table__value { color: #222; font-weight: 500; }
+  .pp-features { list-style: none; padding: 0; margin: 0; }
+  .pp-features li { position: relative; padding: 0.6rem 0 0.6rem 1.5rem; font-size: 0.84rem; color: #444; line-height: 1.55; border-bottom: 1px solid #f5f5f5; }
+  .pp-features li::before { content: "✓"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; }
+  .pp-features li strong { color: #111; }
+  .pp-app-list { list-style: none; padding: 0; margin: 0; }
+  .pp-app-list li { padding: 0.45rem 0 0.45rem 1.3rem; position: relative; font-size: 0.84rem; color: #444; }
+  .pp-app-list li::before { content: "•"; position: absolute; left: 0; color: var(--c-primary, #C41E24); font-weight: 800; font-size: 1.1rem; line-height: 1; top: 0.45rem; }
+  .pp-specs-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pp-specs-mini__item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .pp-specs-mini__item span:first-child { color: #888; font-weight: 600; }
+  .pp-specs-mini__item span:last-child { color: #222; font-weight: 500; text-align: right; }
+  .pp-specs-mini__item:nth-child(odd) { padding-right: 1rem; }
+  .pp-specs-mini__item:nth-child(even) { padding-left: 1rem; border-left: 1px solid #f0f0f0; }
+  .sb { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .sb__widget { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+  .sb__header { margin-bottom: 12px; }
+  .sb__header h3 { font-size: 0.85rem; font-weight: 700; color: #111; margin: 0; }
+  .sb__nav ul { list-style: none; padding: 0; margin: 0; }
+  .sb__nav li { border-bottom: 1px solid #f3f3f3; }
+  .sb__nav li:last-child { border-bottom: none; }
+  .sb__nav a { display: flex; align-items: center; gap: 6px; padding: 8px 10px; font-size: 0.8rem; color: #555; text-decoration: none; border-radius: 6px; font-weight: 500; }
+  .sb__nav a:hover { background: #f7f7f7; color: #111; }
+  .sb__nav-active { background: #fef2f2 !important; color: var(--c-primary, #C41E24) !important; font-weight: 700 !important; }
+  .sb__back { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); text-decoration: none; font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+  .sb__widget--cta { background: linear-gradient(135deg, #1a1a2e 0%, #1a365d 100%); border: none; color: #fff; }
+  .sb__widget--cta h3 { color: #fff; font-size: 0.9rem; font-weight: 700; margin: 0 0 6px; }
+  .sb__cta-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin: 0 0 14px; line-height: 1.5; }
+  .sb__btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 8px 20px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; }
+  .sb__btn--solid { background: var(--c-primary, #C41E24); color: #fff; border: 2px solid var(--c-primary, #C41E24); margin-bottom: 8px; }
+  .sb__btn--outline { background: transparent; color: var(--c-primary, #C41E24); border: 2px solid var(--c-primary, #C41E24); }
+  .sb__tel { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 10px 0 0; text-align: center; }
+  .sb__tel a { color: #fff; font-weight: 600; text-decoration: none; }
+  .sb__checks { list-style: none; padding: 0; margin: 0; }
+  .sb__checks li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 0.78rem; color: #444; line-height: 1.45; }
+  .sb__check-icon { color: #22c55e; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+  .sb__certs { display: flex; flex-direction: column; gap: 8px; }
+  .sb__cert { display: flex; align-items: center; gap: 10px; }
+  .sb__cert-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 0.6rem; font-weight: 800; color: #555; flex-shrink: 0; }
+  .sb__cert-name { font-size: 0.78rem; color: #333; font-weight: 500; }
+  .sb__app-list { list-style: none; padding: 0; margin: 0; }
+  .sb__app-list li { padding: 5px 0 5px 14px; position: relative; font-size: 0.78rem; color: #555; border-bottom: 1px solid #f5f5f5; }
+  .sb__app-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--c-primary, #C41E24); border-radius: 50%; }
+  .sb__app-list li:last-child { border-bottom: none; }
+  .sb__products { list-style: none; padding: 0; margin: 0; }
+  .sb__products li { border-bottom: 1px solid #f3f3f3; }
+  .sb__products li:last-child { border-bottom: none; }
+  .sb__products a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__products a:hover { color: var(--c-primary, #C41E24); }
+  .sb__widget--services { background: #fafafa; }
+  .sb__services-desc { font-size: 0.75rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+  .sb__services { list-style: none; padding: 0; margin: 0; }
+  .sb__services li { border-bottom: 1px solid #eee; }
+  .sb__services li:last-child { border-bottom: none; }
+  .sb__services a { display: block; padding: 7px 0; font-size: 0.8rem; color: #333; text-decoration: none; font-weight: 500; }
+  .sb__services a:hover { color: var(--c-primary, #C41E24); }
+  .sb__services-link { display: block; font-size: 0.75rem; color: var(--c-primary, #C41E24); font-weight: 600; text-decoration: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+  .pp-otros { padding: 3rem 0; background: #f9f9f9; border-top: 1px solid #eee; }
+  .pp-otros__title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 0.25rem; }
+  .pp-otros__sub { font-size: 0.85rem; color: #666; margin: 0 0 0.35rem; }
+  .pp-otros__link { font-size: 0.8rem; color: var(--c-primary, #C41E24); font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .pp-otros__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pp-otros__card { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .pp-otros__card:hover { border-color: var(--c-primary, #C41E24); }
+  .pp-otros__img { height: 160px; overflow: hidden; background: #1a1010; }
+  .pp-otros__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+  .pp-otros__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .pp-otros__name { font-size: 0.88rem; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }
+  .pp-otros__desc { font-size: 0.74rem; color: #666; line-height: 1.5; margin: 0; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pp-otros__specs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pp-otros__specs li { font-size: 0.62rem; font-weight: 700; color: var(--c-primary, #C41E24); background: #fef2f2; padding: 0.15rem 0.45rem; border-radius: 99px; }
+  .pp-otros__cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 700; color: var(--c-primary, #C41E24); margin-top: 0.5rem; }
+  .pp-cotizar { padding: 3rem 0; background: #111; color: #fff; }
+  .pp-cotizar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .pp-cotizar__info h2 { font-size: 1.4rem; font-weight: 800; margin: 0 0 0.5rem; }
+  .pp-cotizar__sub { font-size: 0.88rem; color: rgba(255,255,255,0.6); margin: 0 0 1rem; }
+  .pp-cotizar__perks { list-style: none; padding: 0; margin: 0; }
+  .pp-cotizar__perks li { padding: 0.3rem 0 0.3rem 1.3rem; position: relative; font-size: 0.82rem; color: rgba(255,255,255,0.8); }
+  .pp-cotizar__perks li::before { content: "✓"; position: absolute; left: 0; color: #25D366; font-weight: 800; }
+  .pp-cotizar__form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .pp-cotizar__note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin: 0; text-align: center; }
+  .pp-cotizar__alt { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 0; }
+  .pp-cotizar__alt a { color: #fff; font-weight: 600; text-decoration: none; }
+  @media (max-width: 1024px) {
+    .pp-layout { grid-template-columns: 1fr; }
+    .sb { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pp-otros__grid { grid-template-columns: repeat(2, 1fr); }
+    .pp-cotizar__inner { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+  }
+  @media (max-width: 768px) {
+    .sb { grid-template-columns: 1fr; }
+    .pp-specs-mini { grid-template-columns: 1fr; }
+    .pp-specs-mini__item:nth-child(even) { padding-left: 0; border-left: none; }
+  }
+  @media (max-width: 560px) {
+    .pp-otros__grid { grid-template-columns: 1fr; }
+  }
+</style>
