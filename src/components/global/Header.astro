@@ -724,14 +724,10 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   z-index: 490;
   overflow-y: auto;
   border-top: 2px solid var(--c-primary);
-  /* slide-in desde arriba */
-  transform: translateY(-10px);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.22s ease, opacity 0.22s ease;
 }
 .hdr-mobile-nav[aria-hidden="false"] {
-  transform: translateY(0);
   opacity: 1;
   pointer-events: all;
 }
@@ -759,12 +755,11 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
 .mob-item__trigger[aria-expanded="true"] { color: var(--c-primary); }
 .mob-item__trigger[aria-expanded="true"] .mob-chevron { transform: rotate(180deg); }
 
-.mob-chevron { transition: transform 0.2s ease; flex-shrink: 0; opacity: 0.6; }
+.mob-chevron { flex-shrink: 0; opacity: 0.6; }
 
 .mob-item__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.25s ease;
   overflow: hidden;
 }
 .mob-item__panel.is-open { grid-template-rows: 1fr; }

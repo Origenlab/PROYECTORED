@@ -1273,10 +1273,6 @@ h1.hero-title {
   flex-shrink:0;
 }
 
-.blogcard:hover .blogcard__cta svg {
-  transform:translateX(2px);
-}
-
 /* ── BLOG PAGINATION ─────────────────────────────── */
 .blog-pagination {
   display:flex;
