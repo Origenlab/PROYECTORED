@@ -128,4 +128,4 @@ Mantenimiento: Etiqueta de inspección vigente (no más de 12 meses atrás)
 
 En PROYECTORED ofrecemos extintores Tipo K de pared pre-equipados con soporte certificado. Contamos con experiencia en 100+ instalaciones en restaurantes y cocinas de CDMX, todas aprobadas en auditoría de Protección Civil.
 
-Solicita instalación profesional por WhatsApp **525537238544**. Incluimos fotografía de instalación finalizada, documentación de cumplimiento normativo, y garantía de soporte por 2 años.
+Solicita instalación profesional por WhatsApp **525627596245**. Incluimos fotografía de instalación finalizada, documentación de cumplimiento normativo, y garantía de soporte por 2 años.

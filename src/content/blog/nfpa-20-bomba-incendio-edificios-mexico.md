@@ -227,4 +227,4 @@ En PROYECTORED especializamos en sistemas de bombeo que cumplen NFPA 20 Y regula
 - Capacitación al personal
 - Servicio de mantenimiento preventivo
 
-Contáctanos al 525537238544 para evaluación de tu edificio. Protección Civil no aceptará sistemas que no cumplan NFPA 20. Nosotros nos aseguramos de que el tuyo sí cumpla.
+Contáctanos al 525627596245 para evaluación de tu edificio. Protección Civil no aceptará sistemas que no cumplan NFPA 20. Nosotros nos aseguramos de que el tuyo sí cumpla.

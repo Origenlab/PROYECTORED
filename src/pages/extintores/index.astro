@@ -22,6 +22,7 @@ import FaqExtintores       from '../../components/sections/FaqExtintores.astro'
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
 import ServiciosIndex    from '../../components/sections/ServiciosIndex.astro'
 // ReviewsIndex removido de esta página
+import CategoriasRelacionadas from '../../components/sections/CategoriasRelacionadas.astro'
 import CTAFinalIndex     from '../../components/sections/CTAFinalIndex.astro'
 
 // ── Datos para JSON-LD ────────────────────────────────────
@@ -240,7 +241,7 @@ const schemaWebPage = {
     "@type": "Organization",
     "name": "Proyecto Red",
     "url": siteUrl,
-    "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
+    "logo": `${siteUrl}/imagenes/logos/equipo-contra-incendios.jpg`,
     "telephone": `+52${CONTACT.phoneRaw}`,
     "email": CONTACT.email
   }
@@ -270,6 +271,7 @@ const schemaWebPage = {
   <ServiciosIndex />
   <NormasExtintores />
   <FaqExtintores />
+  <CategoriasRelacionadas current="extintores" />
   <CTAFinalIndex />
 
   <!-- ── Datos estructurados JSON-LD ──────────────────────

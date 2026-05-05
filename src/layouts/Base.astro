@@ -1,49 +1,115 @@
 ---
+// ─────────────────────────────────────────────────────────────────────────────
+// Base.astro — Layout raíz unificado del sitio
+// Usado directamente por L1/L2/L3/L4 y por CategoryLayout (vía BaseLayout).
+// Responsabilidades:
+//   · HTML shell (head, meta, hreflang, canonical, Open Graph, Twitter)
+//   · Preload tipografía Inter (sin bloquear render)
+//   · Preconnect CDN ExactDN
+//   · JSON-LD LocalBusiness global (desde src/lib/seo.ts)
+//   · Slot nombrado "head" para schemas/meta por página
+//   · Soporte noindex (para 404, gracias, drafts)
+// ─────────────────────────────────────────────────────────────────────────────
+
 import '../styles/global.css'
-import '../styles/components.css' // fuente única de titulo-duo + section-header
-import TopBar       from '../components/global/TopBar.astro'
-import Header       from '../components/global/Header.astro'
-import Footer       from '../components/global/Footer.astro'
+import '../styles/components.css' // complemento titulo-duo + section-header
+import TopBar         from '../components/global/TopBar.astro'
+import Header         from '../components/global/Header.astro'
+import Footer         from '../components/global/Footer.astro'
 import WhatsAppButton from '../components/global/WhatsAppButton.astro'
+import { SITE }       from '../config/site'
+import { localBusinessLd } from '../lib/seo'
 
 interface Props {
-  title: string;
-  description: string;
-  canonical?: string;
-  ogImage?: string;
+  title: string
+  description: string
+  canonical?: string
+  ogImage?: string
+  noindex?: boolean
 }
 
-const { title, description, canonical, ogImage } = Astro.props;
-const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex = false,
+} = Astro.props
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, SITE.url).href
+const ogImageAbs = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE.url).href)
+  : new URL('/imagenes/og/proyectored-og.jpg', SITE.url).href
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light only" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- SEO primario -->
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+  {noindex
+    ? <meta name="robots" content="noindex,nofollow" />
+    : <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  }
+
+  <!-- hreflang (sitio único es-MX) -->
+  <link rel="alternate" hreflang="es-mx" href={canonicalURL} />
+  <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+  <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Proyecto Red" />
-  {ogImage && <meta property="og:image" content={ogImage} />}
-  <meta property="og:locale" content="es_MX" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={SITE.locale} />
+  <meta property="og:image" content={ogImageAbs} />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  {ogImage && <meta name="twitter:image" content={ogImage} />}
-  <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="twitter:image" content={ogImageAbs} />
+
+  <!-- Favicons (fuente única: SVG moderno + ICO/PNG fallback) -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Preconnect CDN de imágenes (ExactDN / EWWW.io) -->
+  <link rel="preconnect" href="https://ewvydcs5uyw.exactdn.com" crossorigin />
+  <link rel="dns-prefetch" href="https://ewvydcs5uyw.exactdn.com" />
+
+  <!-- Tipografía Inter — preload no-bloqueante con fallback noscript -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
 
-  <!-- TruConversion for proyectored.com.mx -->
+  <!-- JSON-LD: LocalBusiness (global, todas las páginas) -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessLd)} />
+
+  <!-- Slot para JSON-LD adicional (FAQ, Breadcrumb, Product, Article, etc.) -->
+  <slot name="head" />
+
+  <!-- TruConversion — heatmaps/session recording -->
   <script type="text/javascript" is:inline>
     var _tip = _tip || [];
     (function(d,s,id){
@@ -59,13 +125,12 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 <body>
   <TopBar />
   <Header />
-  <main>
+  <main id="main-content">
     <!--
       REGLA DE LAYOUT — válida para todas las páginas del sitio:
       ─────────────────────────────────────────────────────────
       Entre el componente Hero y el CtaBar NO va ninguna sección.
       El orden siempre es:  breadcrumb-bar → <Hero> → <CtaBar> → resto de secciones.
-      No insertar StatsBar, banners ni ningún otro bloque entre ambos.
     -->
     <slot />
   </main>
@@ -91,8 +156,8 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     --c-surface:#F4F4F5;
     --c-white:  #FFFFFF;
 
-    /* Tipografía */
-    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Tipografía — Inter como estándar del sitio */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Spacing */
     --topbar-height: 36px;
@@ -219,6 +284,19 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     outline-offset: 2px;
     border-radius: 2px;
   }
+
+  /* Skip link — accesibilidad teclado */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    background: var(--c-primary);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+  }
+  .skip-link:focus { left: 0; }
 
   /* ══════════════════════════════════════════════════
      Estilos de páginas → src/styles/pages.css

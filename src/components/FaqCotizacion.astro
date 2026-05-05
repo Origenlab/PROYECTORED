@@ -33,43 +33,13 @@ const {
 
 let { faqs } = Astro.props;
 
-const WHATSAPP = "525537238544";
+import { FAQS_GLOBALES } from '../lib/seo';
+import { CONTACT } from '../config/site';
 
-// FAQs globales por defecto (las mejores 8 para conversión y SEO)
-const faqsGlobales: FaqItem[] = [
-  {
-    pregunta: "¿Cuánto cuesta un extintor certificado NOM en CDMX?",
-    respuesta: "El precio depende del tipo y capacidad. Un extintor de <strong>polvo seco ABC de 4 kg</strong> (el más solicitado para oficinas y negocios) parte desde $450 MXN. Los extintores <strong>CO₂ para equipo electrónico</strong>, <strong>Tipo K para cocinas industriales</strong> y <strong>Agente Limpio para centros de datos</strong> tienen precios distintos según capacidad y marca. Escríbenos por WhatsApp con el tipo y cantidad — te damos precio con certificado NOM incluido ese mismo día.",
-  },
-  {
-    pregunta: "¿Qué equipo contra incendios exige Protección Civil para empresas en CDMX?",
-    respuesta: "La <strong>NOM-002-STPS</strong> establece: un extintor por cada 300 m² de área de trabajo, mínimo uno por piso. La <strong>NOM-003-SEGOB</strong> exige señalamientos fotoluminiscentes de evacuación, salidas de emergencia y punto de reunión. Para instalaciones industriales o con riesgos específicos (gas, líquidos inflamables, electrónica) se requieren extintores especializados y en algunos casos sistemas de detección. Te hacemos un diagnóstico gratuito para que sepas exactamente qué necesitas.",
-  },
-  {
-    pregunta: "¿Hacen entrega a domicilio en CDMX y Estado de México?",
-    respuesta: "Sí, entrega directa en toda la <strong>Ciudad de México y el Estado de México</strong>. Pedidos confirmados antes de las 2 PM se entregan el mismo día en la zona metropolitana. Para pedidos de mayor volumen o fuera de la ZMVM coordinamos logística en la cotización. También hacemos envíos a todo el país para pedidos de volumen con paqueterías certificadas.",
-  },
-  {
-    pregunta: "¿Los extintores incluyen certificado NOM y documentación para Protección Civil?",
-    respuesta: "Sí. Todos nuestros extintores cumplen con la <strong>NOM-154-SCFI</strong> y se entregan con ficha técnica, certificado de conformidad y etiqueta de inspección actualizada — todo lo que necesitas para tu expediente de Protección Civil y auditorías STPS. Si tu aseguradora o auditora requiere documentación adicional, te la gestionamos sin costo.",
-  },
-  {
-    pregunta: "¿También realizan mantenimiento preventivo y recarga de extintores?",
-    respuesta: "Sí. Ofrecemos <strong>mantenimiento preventivo, recarga y prueba hidrostática</strong> de extintores directamente en tus instalaciones. El servicio incluye: revisión del agente extintor y presión, inspección de válvula, manguera y gatillo, reemplazo de sellos y etiqueta de inspección actualizada. Podemos programar visitas periódicas con reporte para tus expedientes de Protección Civil.",
-  },
-  {
-    pregunta: "¿Qué señalamientos de emergencia son obligatorios en oficinas y negocios?",
-    respuesta: "La <strong>NOM-003-SEGOB</strong> y <strong>NOM-026-STPS</strong> exigen: rutas de evacuación, salidas de emergencia, ubicación de extintores, punto de reunión, señales de prohibición en áreas de riesgo y señalamiento de equipo de primeros auxilios. Vendemos señalética <strong>fotoluminiscente</strong> (visible en cortes de luz) que cumple la norma y es aceptada por Protección Civil sin observaciones.",
-  },
-  {
-    pregunta: "¿Manejan precios especiales para empresas y pedidos de volumen?",
-    respuesta: "Sí. Trabajamos con empresas que abastecen múltiples sucursales, plantas o proyectos de construcción. A partir de ciertos volúmenes ofrecemos <strong>precios preferenciales, crédito a 30 días, facturación consolidada y entregas programadas</strong>. Contáctanos para diseñar un esquema de suministro continuo adaptado a tu operación.",
-  },
-  {
-    pregunta: "¿Cuánto tiempo tarda la instalación de un sistema contra incendio?",
-    respuesta: "Depende del alcance. <strong>Detectores y alarmas</strong> para una oficina mediana: 1-2 días hábiles. <strong>Sistema de rociadores NFPA 13</strong> para planta industrial: 1-3 semanas según la complejidad. Todos los proyectos inician con una visita técnica gratuita donde determinamos el alcance exacto, el tiempo de instalación y el presupuesto firme antes de que firmes cualquier contrato.",
-  },
-];
+const WHATSAPP = CONTACT.whatsapp;
+
+// FAQs globales — fuente única en src/lib/seo.ts (compartida con FAQPage JSON-LD)
+const faqsGlobales: FaqItem[] = FAQS_GLOBALES;
 
 if (!faqs || faqs.length === 0) {
   faqs = faqsGlobales;
@@ -111,7 +81,7 @@ const inputId = (name: string) => `cot-${pageId}-${name}`;
           <h3>Lo que nos preguntan nuestros clientes</h3>
           <p>
             ¿Tu duda no aparece aquí? Escríbenos directo al
-            <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">WhatsApp 55 3723 8544</a>
+            <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">WhatsApp 56 2759 6245</a>
             — respondemos en menos de 2 horas.
           </p>
         </div>
@@ -331,7 +301,7 @@ const inputId = (name: string) => `cot-${pageId}-${name}`;
       if (urgencia) msg += `\n⏱ *Urgencia:* ${urgencia}`;
       if (detalle)  msg += `\n📝 *Detalle:* ${detalle}`;
 
-      window.open(`https://wa.me/525537238544?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/525627596245?text=${encodeURIComponent(msg)}`, '_blank');
     });
   });
 </script>

@@ -209,4 +209,4 @@ Si vas a instalar/mejorar salidas, especifica:
 
 En PROYECTORED realizamos evaluación de salidas de emergencia: medición, evaluación de cumplimiento, especificación de correcciones, y suministro de letreros de emergencia conforme [NOM-003-SEGOB](/senalamientos/).
 
-Contacta por WhatsApp **525537238544** para auditoría de tus salidas de emergencia sin costo y propuesta de mejoras requeridas.
+Contacta por WhatsApp **525627596245** para auditoría de tus salidas de emergencia sin costo y propuesta de mejoras requeridas.

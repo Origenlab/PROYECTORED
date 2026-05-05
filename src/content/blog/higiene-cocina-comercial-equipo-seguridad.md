@@ -86,4 +86,4 @@ El costo incremental de acero inoxidable (30-40% adicional) es recuperable en:
 
 En PROYECTORED comprendemos que la cocina comercial mexicana debe balancear presupuesto con cumplimiento. Nuestro catálogo de [extintores para cocinas](/extintores/) incluye opciones estándar y certificadas en inoxidable, cada una apropiada para su contexto.
 
-Contáctanos por WhatsApp **525537238544** con detalles de tu operación (tamaño, tipo de alimento, aspiración de certificación). Te recomendamos la solución más costo-efectiva para tu caso específico.
+Contáctanos por WhatsApp **525627596245** con detalles de tu operación (tamaño, tipo de alimento, aspiración de certificación). Te recomendamos la solución más costo-efectiva para tu caso específico.

@@ -292,4 +292,4 @@ En PROYECTORED ofrecemos letreros de emergencia en los tres materiales, cada uno
 
 Realizamos también [auditoría de señalización](/servicios/) identificando qué materiales son óptimos para tu ambiente específico.
 
-Contacta por WhatsApp **525537238544** para evaluación de necesidades y propuesta de señalización con material recomendado.
+Contacta por WhatsApp **525627596245** para evaluación de necesidades y propuesta de señalización con material recomendado.

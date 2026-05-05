@@ -251,4 +251,4 @@ En PROYECTORED asistimos empresas con auditoría de cumplimiento normativo. Real
 
 Luego suministramos equipamiento, capacitación, y documentación lista para Protección Civil.
 
-Contacta por WhatsApp **525537238544** con descripción de tu empresa. Programamos evaluación sin costo. Recuperarás inversión en equipamiento mediante tranquilidad de cumplimiento normativo y protección de personal.
+Contacta por WhatsApp **525627596245** con descripción de tu empresa. Programamos evaluación sin costo. Recuperarás inversión en equipamiento mediante tranquilidad de cumplimiento normativo y protección de personal.

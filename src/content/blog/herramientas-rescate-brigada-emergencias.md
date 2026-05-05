@@ -194,4 +194,4 @@ Si tienes esto, cumples norma.
 
 En PROYECTORED armamos kits completos para brigadas. Desde componentes individuales hasta paquetes integrados, todo certificado y con documentación de cumplimiento normativo.
 
-Contacta por WhatsApp **525537238544** con descripción de tu empresa (tamaño, tipo de riesgo, número de personal en brigada). Diseñamos propuesta personalizada que cumpla NOM-002-STPS y maximice tu presupuesto.
+Contacta por WhatsApp **525627596245** con descripción de tu empresa (tamaño, tipo de riesgo, número de personal en brigada). Diseñamos propuesta personalizada que cumpla NOM-002-STPS y maximice tu presupuesto.

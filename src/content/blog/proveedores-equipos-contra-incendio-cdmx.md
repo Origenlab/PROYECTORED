@@ -51,4 +51,4 @@ La segunda es la visión integral. Un proveedor que ve toda tu instalación iden
 
 La tercera es la responsabilidad única. Si algo no está en orden, hay un solo interlocutor. Eso simplifica cualquier corrección antes o después de una inspección.
 
-En PROYECTORED trabajamos así. Diagnóstico técnico gratuito, cotización basada en lo que tu instalación realmente necesita, instalación con técnicos propios, mantenimiento certificado y documentación completa para tu expediente. Para coordinar una visita o solicitar cotización, escríbenos al WhatsApp **5537238544**.
+En PROYECTORED trabajamos así. Diagnóstico técnico gratuito, cotización basada en lo que tu instalación realmente necesita, instalación con técnicos propios, mantenimiento certificado y documentación completa para tu expediente. Para coordinar una visita o solicitar cotización, escríbenos al WhatsApp **5627596245**.

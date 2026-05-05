@@ -54,10 +54,12 @@ export function cdnUrl(path: string, opts: CdnOpts = {}): string {
 }
 
 export const CONTACT = {
-  phone: '55 3723 8544',
-  phoneRaw: '5537238544',
-  whatsapp: '525537238544',
+  phone: '56 2759 6245',
+  phoneRaw: '5627596245',
+  whatsapp: '525627596245',
   email: 'info@proyectored.com.mx',
+  // Dirección principal — se mantiene para compat. Para mostrar todas las
+  // sucursales (matriz + Edomex) usar BRANCHES.
   address: 'Paseo de la Reforma 26, Col. Juárez, Cuauhtémoc, CDMX 06600',
   mapsUrl: 'https://maps.google.com/?q=Paseo+de+la+Reforma+26+CDMX',
 
@@ -71,14 +73,62 @@ export const CONTACT = {
   },
 } as const
 
-// Mensajes predefinidos de WhatsApp por página
+// ============================================================
+// SUCURSALES — fuente de verdad para footer y páginas de contacto
+// Matriz CDMX + Sucursal Estado de México (Tlalnepantla).
+// ============================================================
+export const BRANCHES = [
+  {
+    id:       'matriz',
+    label:    'Matriz CDMX',
+    address:  'Paseo de la Reforma 26, Col. Juárez, Cuauhtémoc, CDMX 06600',
+    mapsUrl:  'https://maps.google.com/?q=Paseo+de+la+Reforma+26+Col+Juárez+CDMX',
+  },
+  {
+    id:       'edomex',
+    label:    'Sucursal Estado de México',
+    address:  'Av. Ayuntamiento 75, Centro, Tlalnepantla de Baz, Estado de México',
+    mapsUrl:  'https://maps.google.com/?q=Av+Ayuntamiento+75+Centro+Tlalnepantla+de+Baz+Estado+de+México',
+  },
+] as const
+
+// ============================================================
+// Mensajes predefinidos de WhatsApp — segmentados por intención
+// Cada mensaje pre-carga contexto para que el asesor entre en materia
+// sin tener que pedir "¿qué busca?". Aumenta la calidad del lead.
+// ============================================================
 export const WA_MESSAGES = {
-  default:    `Hola, necesito información sobre equipos contra incendios`,
-  cotizacion: `Hola, quiero una cotización de equipos contra incendios`,
-  productos:  `Hola, necesito cotizar equipos del catálogo`,
-  servicios:  `Hola, necesito información sobre sus servicios`,
-  blog:       `Hola, leí su blog y tengo una pregunta`,
-  contacto:   `Hola, necesito cotizar equipos contra incendios`,
+  // Genéricos
+  default:    `Hola, necesito información sobre equipos contra incendios.`,
+  cotizacion: `Hola, quiero solicitar una cotización de equipos contra incendios.`,
+
+  // Por página de intención
+  productos:  `Hola, estoy viendo el catálogo y quiero cotizar varios equipos.`,
+  servicios:  `Hola, necesito información sobre servicios (recarga, mantenimiento o instalación).`,
+  blog:       `Hola, leí un artículo de su blog y tengo una pregunta técnica.`,
+  contacto:   `Hola, quiero cotizar equipo contra incendios y necesito atención personalizada.`,
+
+  // Por categoría L2/L3 (cotización segmentada)
+  extintores:       `Hola, necesito cotizar extintores certificados NOM-154. ¿Me ayudan con precios y disponibilidad?`,
+  bomberos:         `Hola, necesito cotizar equipo para bomberos o brigadas (trajes, ERA, herramientas de rescate).`,
+  senalamientos:    `Hola, necesito cotizar señalamientos de emergencia fotoluminiscentes y levantamiento.`,
+  gabinetes:        `Hola, necesito cotizar gabinetes contra incendio (para extintor, bombero o hidrante).`,
+  mangueras:        `Hola, necesito cotizar mangueras y herrajes contra incendio (chiflones, válvulas, siamesas).`,
+  sistemas:         `Hola, necesito cotizar sistema contra incendio (alarma NFPA 72, rociadores o red hidráulica).`,
+  primerosAuxilios: `Hola, necesito cotizar equipo de primeros auxilios (botiquín STPS, DEA, camilla).`,
+  seguridadIndustrial: `Hola, necesito cotizar equipo de protección personal (EPP) para mi empresa.`,
+
+  // Por servicio
+  recarga:          `Hola, necesito servicio de recarga de extintores. ¿Pueden darme precio y fecha?`,
+  mantenimiento:    `Hola, quiero una póliza anual de mantenimiento preventivo de extintores.`,
+  pruebaHidrostatica: `Hola, necesito prueba hidrostática de extintores (NOM-154 cada 5 años).`,
+  instalacion:      `Hola, necesito instalación de sistema contra incendio llave en mano.`,
+  capacitacion:     `Hola, necesito capacitación de brigadas con constancia DC-3 válida ante STPS.`,
+  asesoria:         `Hola, quiero agendar un diagnóstico técnico gratuito en mi inmueble.`,
+
+  // Urgencia / emergencia
+  urgente:          `Hola, necesito atención urgente de equipos contra incendio hoy.`,
+  inspeccion:       `Hola, tengo inspección de Protección Civil próximamente y necesito cumplir con la normativa.`,
 } as const
 
 export function waUrl(message: string): string {

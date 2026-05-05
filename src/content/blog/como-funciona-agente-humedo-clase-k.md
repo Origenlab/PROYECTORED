@@ -143,4 +143,4 @@ Si diriges cocina comercial, esta comprensión te permite:
 
 En PROYECTORED ofrecemos extintores Clase K con agente de acetato de potasio certificado conforme NOM-154-SCFI. Cada uno viene con fichas técnicas de seguridad que explican el agente. Disponemos también [servicio de capacitación](/servicios/) para personal de cocina en uso correcto y entendimiento de mecanismo.
 
-Contacta por WhatsApp **525537238544** para consulta sobre cantidad, tipo, y capacitación para tu cocina.
+Contacta por WhatsApp **525627596245** para consulta sobre cantidad, tipo, y capacitación para tu cocina.

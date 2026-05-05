@@ -283,4 +283,4 @@ En PROYECTORED instalamos y mantenemos sistemas de supresión Clase K completos:
 
 La tuberías especializada que PROYECTORED provee es de **acero sin galvanizar** o **cobre**, diseñada específicamente para la corrosividad del agente Clase K, garantizando longevidad y confiabilidad.
 
-Si tu restaurante, cafetería o comedor industrial tiene freidoras o planchas de aceite, contacta PROYECTORED al 525537238544 por WhatsApp. La seguridad de tu cocina no es negociable.
+Si tu restaurante, cafetería o comedor industrial tiene freidoras o planchas de aceite, contacta PROYECTORED al 525627596245 por WhatsApp. La seguridad de tu cocina no es negociable.

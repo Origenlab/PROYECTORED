@@ -330,4 +330,4 @@ En PROYECTORED diseñamos, instalamos y certificamos sistemas completos:
 
 Un sistema es solo tan bueno como su componente más débil. PROYECTORED diseña eliminando debilidades.
 
-Para evaluación de tu edificio o planta, contáctanos al 525537238544 por WhatsApp.
+Para evaluación de tu edificio o planta, contáctanos al 525627596245 por WhatsApp.

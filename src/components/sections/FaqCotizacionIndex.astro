@@ -6,41 +6,11 @@
  */
 import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { CONTACT } from '../../config/site'
+import { FAQS_GLOBALES } from '../../lib/seo'
 
-const faqs = [
-  {
-    q: '¿Cuánto cuesta un extintor certificado en CDMX?',
-    a: 'El precio varía según el tipo y capacidad del extintor. Un cilindro de polvo seco (PQS) de 4 kg para uso general parte desde $450 MXN. Los modelos de CO₂ para electrónica y los Tipo K para cocinas industriales tienen precios distintos según la capacidad. Escríbenos por WhatsApp con el tipo y cantidad que necesitas y te damos precio directo ese mismo día.',
-  },
-  {
-    q: '¿Qué extintores exige Protección Civil para mi empresa?',
-    a: 'Depende del tipo de riesgo y la superficie de tu instalación. La NOM-002-STPS establece una unidad por cada 300 m² de área, con un mínimo de uno por piso. Para oficinas se recomienda el ABC multipropósito; para cocinas, el Tipo K; para servidores o equipo electrónico, el CO₂ o agente limpio. Nuestro equipo te asesora sin costo.',
-  },
-  {
-    q: '¿Hacen entrega a domicilio en CDMX y Estado de México?',
-    a: 'Sí. Entregamos en toda la Ciudad de México y el Estado de México. Los pedidos confirmados antes de las 2 PM los entregamos el mismo día en la zona metropolitana. Para pedidos mayores o fuera de la zona metro, coordinamos la logística en la cotización. También enviamos al interior de la república para pedidos de volumen.',
-  },
-  {
-    q: '¿Los extintores incluyen certificado NOM?',
-    a: 'Sí. Todos nuestros equipos cumplen con la NOM-154-SCFI y vienen con la documentación necesaria para tu expediente de Protección Civil. Cada unidad incluye etiqueta de inspección, garantía y ficha técnica del fabricante. Si necesitas documentación adicional para aseguradoras o auditorías, te la proporcionamos sin costo extra.',
-  },
-  {
-    q: '¿También hacen mantenimiento y recarga de extintores?',
-    a: 'Sí. Ofrecemos servicio de mantenimiento preventivo, recarga y verificación de cilindros en tus instalaciones. El servicio incluye revisión del agente de extinción, presión, válvulas, manguera y etiqueta de inspección actualizada. Podemos programar visitas periódicas para que tu equipo siempre esté listo para cualquier inspección.',
-  },
-  {
-    q: '¿Qué señalamientos son obligatorios en una oficina o negocio?',
-    a: 'La NOM-003-SEGOB y la NOM-026-STPS exigen: rutas de evacuación, salidas de emergencia, ubicación del equipamiento, punto de reunión y señales de prohibición en áreas de riesgo. Distribuimos señalización fotoluminiscente que cumple la norma y es visible en cortes de luz, ideal para pasar inspecciones sin observaciones.',
-  },
-  {
-    q: '¿Manejan precios por volumen para empresas?',
-    a: 'Sí. Trabajamos con empresas que necesitan surtir múltiples sucursales, plantas o proyectos. A partir de ciertos volúmenes ofrecemos precios preferenciales, facturación consolidada y entregas programadas. Si tienes un proyecto grande o necesitas abastecimiento recurrente, contáctanos para diseñar un esquema a tu medida.',
-  },
-  {
-    q: '¿Cuánto tiempo tarda la instalación de un sistema contra incendio?',
-    a: 'Depende del tipo y alcance del sistema. La instalación de detectores y alarmas de incendio en una oficina mediana puede completarse en 1-2 días. Un sistema de rociadores para una planta industrial requiere diagnóstico previo y puede tomar de 1 a 3 semanas. En todos los casos hacemos visita técnica sin costo para darte tiempo y presupuesto exactos.',
-  },
-]
+// Fuente única: lib/seo.ts. El contenido visible coincide con el JSON-LD
+// FAQPage que emite index.astro, evitando mismatch contenido/schema.
+const faqs = FAQS_GLOBALES.map(({ pregunta, respuesta }) => ({ q: pregunta, a: respuesta }))
 ---
 
 <section class="faq-cot-index" id="cotizacion" aria-labelledby="faq-heading">
@@ -77,7 +47,7 @@ const faqs = [
                 <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </summary>
               <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                <p itemprop="text">{f.a}</p>
+                <p itemprop="text" set:html={f.a}></p>
               </div>
             </details>
           ))}
@@ -169,7 +139,7 @@ const faqs = [
     if (servicio) msg += `\n📦 Necesito: ${servicio}`
     if (detalle)  msg += `\n📝 Detalle: ${detalle}`
 
-    const waNum = btn?.dataset.wa || '525537238544'
+    const waNum = btn?.dataset.wa || '525627596245'
     window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank')
   })
 </script>

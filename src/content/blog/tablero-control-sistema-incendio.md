@@ -263,4 +263,4 @@ En PROYECTORED diseñamos y construimos tableros de control contra incendios que
 - Capacitación al personal
 - Servicio de mantenimiento preventivo
 
-Contáctanos al 525537238544 por WhatsApp para consulta sobre tablero de control para tu sistema de bombeo.
+Contáctanos al 525627596245 por WhatsApp para consulta sobre tablero de control para tu sistema de bombeo.

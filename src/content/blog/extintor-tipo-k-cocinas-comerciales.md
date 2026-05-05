@@ -44,4 +44,4 @@ Cualquier duda en la ejecución, o un fuego fuera de control, significa activar 
 
 En PROYECTORED entendemos que una cocina es el corazón de un negocio de alimentos. Por eso ofrecemos [extintores de Clase K de 4 litros](/extintores/) especialmente dimensionados para restaurantes y espacios comerciales. Con un agente húmedo de potasio acetato certificado y conforme a normativa mexicana, tienes la certeza de que tu equipo reaccionará correctamente cuando más lo necesites.
 
-Consulta con nuestro equipo sobre cuántos extintores requiere tu cocina según su tamaño y carga de fuego. En CDMX, contáctanos por WhatsApp al **525537238544** para una evaluación sin costo.
+Consulta con nuestro equipo sobre cuántos extintores requiere tu cocina según su tamaño y carga de fuego. En CDMX, contáctanos por WhatsApp al **525627596245** para una evaluación sin costo.

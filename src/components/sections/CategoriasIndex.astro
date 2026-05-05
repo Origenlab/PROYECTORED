@@ -10,12 +10,12 @@ import Img from '../ui/Img.astro'
 const categorias = [
   {
     titulo: 'Extintores',
-    desc: 'Primera línea de defensa para cualquier tipo de riesgo',
+    desc: 'Agente adecuado para cada riesgo: PQS, CO₂, AFFF, Tipo K, agente limpio y más.',
     img: '/imagenes/extintores/extintores-contra-incendios.jpg',
     alt: 'Extintores contra incendios certificados NOM-154-SCFI',
     href: '/extintores/',
     ctaLabel: 'Ver todos los extintores',
-    badge: '10 tipos',
+    badge: 'NOM-154',
     subcats: [
       { label: 'Polvo Seco (PQS)', href: '/extintores/polvo-seco/' },
       { label: 'CO₂', href: '/extintores/co2/' },
@@ -31,7 +31,7 @@ const categorias = [
   },
   {
     titulo: 'Equipo para Bomberos',
-    desc: 'Protección personal certificada NFPA para cuerpos de bomberos y brigadas',
+    desc: 'Línea profesional para brigadas y cuerpos de emergencia: trajes, ERA y rescate.',
     img: '/imagenes/equipo-bomberos/equipo-bomberos-hero.jpg',
     alt: 'Equipo para bomberos certificado NFPA 1971',
     href: '/equipo-bomberos/',
@@ -47,7 +47,7 @@ const categorias = [
   },
   {
     titulo: 'Señalamientos de Emergencia',
-    desc: 'Señalética fotoluminiscente conforme a NOM-003-SEGOB y NOM-026-STPS',
+    desc: 'Fotoluminiscentes conforme a NOM-003-SEGOB y NOM-026-STPS, con plano incluido.',
     img: '/imagenes/senalamientos/senalamientos-hero.jpg',
     alt: 'Señalamientos de emergencia fotoluminiscentes NOM',
     href: '/senalamientos/',
@@ -62,12 +62,12 @@ const categorias = [
   },
   {
     titulo: 'Gabinetes y Porta Extintores',
-    desc: 'Resguardo y acceso inmediato para equipo contra incendios',
+    desc: 'Resguardo profesional para extintor, hidrante y equipo de bombero — acceso inmediato.',
     img: '/imagenes/gabinetes/gabinetes-extintores.jpg',
     alt: 'Gabinetes y porta extintores para empresas',
     href: '/gabinetes/',
     ctaLabel: 'Ver gabinetes',
-    badge: null,
+    badge: 'NFPA 14',
     subcats: [
       { label: 'Para Extintor', href: '/gabinetes/para-extintor/' },
       { label: 'Porta Extintor Cenicero', href: '/gabinetes/porta-extintor-cenicero/' },
@@ -77,12 +77,12 @@ const categorias = [
   },
   {
     titulo: 'Mangueras y Herrajes',
-    desc: 'Conducción de agua a alta presión para respuesta inmediata',
+    desc: 'Conducción a alta presión con herrajes bronce — mangueras, chiflones, válvulas y siamesas.',
     img: '/imagenes/mangueras/mangueras-hero.jpg',
     alt: 'Mangueras contra incendio y herrajes para hidrantes',
     href: '/mangueras/',
     ctaLabel: 'Ver mangueras y herrajes',
-    badge: null,
+    badge: 'NFPA 1961',
     subcats: [
       { label: 'Para Hidrante', href: '/mangueras/para-hidrante/' },
       { label: 'Chiflones', href: '/mangueras/chiflones/' },
@@ -96,7 +96,7 @@ const categorias = [
   },
   {
     titulo: 'Sistemas Contra Incendio',
-    desc: 'Detección, supresión y control automático para protección total',
+    desc: 'Detección, supresión y control automático — alarmas NFPA 72 y rociadores NFPA 13.',
     img: '/imagenes/sistemas/alarmas.jpg',
     alt: 'Sistemas contra incendio NFPA 13 y NFPA 72',
     href: '/sistemas/',
@@ -112,7 +112,7 @@ const categorias = [
   },
   {
     titulo: 'Primeros Auxilios',
-    desc: 'Kits de respuesta inmediata conforme a normativa STPS',
+    desc: 'Botiquines STPS, camillas, DEA y material de curación — con resurtido periódico.',
     img: '/imagenes/primeros-auxilios/botiquines-hero.jpg',
     alt: 'Botiquines de primeros auxilios STPS para empresas',
     href: '/primeros-auxilios/',
@@ -127,12 +127,12 @@ const categorias = [
   },
   {
     titulo: 'Equipo de Seguridad Industrial',
-    desc: 'EPP certificado ANSI y NOM-017-STPS para entornos industriales',
+    desc: 'EPP completo ANSI y NOM-017-STPS: casco, visual, auditivo, respiratorio y alturas.',
     img: '/imagenes/equipo-seguridad/equipos-seguridad-hero.jpg',
     alt: 'Equipo de protección personal EPP industrial NOM-017-STPS',
     href: '/equipo-seguridad/',
     ctaLabel: 'Ver equipo de seguridad',
-    badge: null,
+    badge: 'NOM-017',
     subcats: [
       { label: 'Cascos de Seguridad', href: '/equipo-seguridad/' },
       { label: 'Lentes de Protección', href: '/equipo-seguridad/' },
@@ -150,11 +150,11 @@ const categorias = [
     <SectionHeaderDuo
       id="cat-heading"
       eyebrow="Catálogo completo"
-      titleLine1="Categorías de equipo"
-      titleLine2="contra incendios"
-      desc="Ocho líneas de producto organizadas por tipo de riesgo, instalación y requerimiento normativo."
-      bodyPara1="Proyecto Red concentra en un solo proveedor toda la infraestructura de protección contra incendios que tu empresa necesita para operar con seguridad y cumplir con la normativa vigente. Nuestras ocho líneas de producto abarcan desde extintores certificados NOM-154-SCFI y señalamientos NOM-003-SEGOB, hasta sistemas de detección NFPA 72, equipo para bomberos NFPA 1971 y equipo de protección personal conforme a NOM-017-STPS-2008."
-      bodyPara2="Cada categoría está diseñada para resolver riesgos específicos: cocinas industriales, líquidos inflamables, equipos electrónicos, almacenes y edificios de uso mixto. Con un solo contacto obtienes cotización, suministro, instalación y mantenimiento — con la documentación y fichas técnicas listas para presentar ante Protección Civil y STPS."
+      titleLine1="Ocho categorías,"
+      titleLine2="un solo proveedor"
+      desc="Organizadas por tipo de riesgo — para que no tengas que comprar extintor con uno y señalética con otro."
+      bodyPara1="Concentramos en Proyecto Red toda la infraestructura de protección contra incendios que una empresa necesita para operar y pasar inspecciones. Desde extintores NOM-154-SCFI y señalamientos NOM-003-SEGOB, hasta sistemas NFPA 72, equipo para bomberos NFPA 1971 y EPP NOM-017-STPS. Cada categoría tiene su subcatálogo, precio de referencia y ficha técnica lista."
+      bodyPara2="Resolvemos riesgos específicos: cocinas industriales, líquidos inflamables, centros de datos, almacenes, hospitales y edificios de uso mixto. Con un solo contacto cotizas, recibes, instalas y tienes la documentación lista para Protección Civil y STPS — sin peloteos entre tres proveedores para un mismo expediente."
     />
 
     <!-- Grid 4 columnas -->

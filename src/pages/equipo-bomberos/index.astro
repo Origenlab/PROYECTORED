@@ -20,6 +20,7 @@ import FaqBomberos         from '../../components/sections/FaqBomberos.astro'
 
 // ── Secciones genéricas reutilizadas del index ─────────────
 import TrustIndex          from '../../components/sections/TrustIndex.astro'
+import CategoriasRelacionadas from '../../components/sections/CategoriasRelacionadas.astro'
 import CTAFinalIndex       from '../../components/sections/CTAFinalIndex.astro'
 
 // ── Datos para JSON-LD ─────────────────────────────────────
@@ -203,7 +204,7 @@ const schemaWebPage = {
     "@type": "Organization",
     "name": "Proyecto Red",
     "url": siteUrl,
-    "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
+    "logo": `${siteUrl}/imagenes/logos/equipo-contra-incendios.jpg`,
     "telephone": `+52${CONTACT.phoneRaw}`,
     "email": CONTACT.email
   }
@@ -233,6 +234,7 @@ const schemaWebPage = {
   <TrustIndex />
   <NormasBomberos />
   <FaqBomberos />
+  <CategoriasRelacionadas current="equipo-bomberos" />
   <CTAFinalIndex />
 
   <!-- ── Datos estructurados JSON-LD ────────────────────────

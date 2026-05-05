@@ -220,4 +220,4 @@ En PROYECTORED no solo vendemos paneles. Realizamos:
 - Capacitación a personal en operación y emergencias
 - Servicio de monitoreo 24/7 (si deseas)
 
-Contáctanos al 525537238544 por WhatsApp para consulta sobre panel de detección de incendio para tu edificio o planta industrial.
+Contáctanos al 525627596245 por WhatsApp para consulta sobre panel de detección de incendio para tu edificio o planta industrial.

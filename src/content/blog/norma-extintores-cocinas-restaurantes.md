@@ -75,4 +75,4 @@ Si diriges un restaurante, hotel o cocina comercial en CDMX, aquí está el proc
 
 5. **Mantenimiento**: Programa de inspecciones anuales con reporte que guardas para auditorías.
 
-Nuestro catálogo de [extintores Clase K](/extintores/) está certificado conforme NOM-154-SCFI y especificado para ambientes mexicanos. Contáctanos por WhatsApp al **525537238544** para agendar tu evaluación. En CDMX realizamos inspecciones sin costo y proponemos soluciones personalizadas según tu tipo de negocio.
+Nuestro catálogo de [extintores Clase K](/extintores/) está certificado conforme NOM-154-SCFI y especificado para ambientes mexicanos. Contáctanos por WhatsApp al **525627596245** para agendar tu evaluación. En CDMX realizamos inspecciones sin costo y proponemos soluciones personalizadas según tu tipo de negocio.

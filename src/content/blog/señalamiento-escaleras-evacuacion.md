@@ -229,4 +229,4 @@ En PROYECTORED diseñamos sistemas completos de señalización de escaleras. Inc
 
 Ofrecemos también [mantenimiento anual](/servicios/) de señalización: revisión de fotoluminiscencia, reemplazo de letreros degradados.
 
-Contacta por WhatsApp **525537238544** para evaluación de señalización de escaleras en tu edificio.
+Contacta por WhatsApp **525627596245** para evaluación de señalización de escaleras en tu edificio.

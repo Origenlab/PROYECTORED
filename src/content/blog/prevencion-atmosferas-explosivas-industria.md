@@ -94,4 +94,4 @@ Un detector LEL debe ser instalado por personal certificado en seguridad industr
 
 En PROYECTORED contamos con especialistas certificados en diseño de sistemas de detección de gases para industria mexicana. Realizamos evaluaciones de riesgo conforme NFPA y NOM, instalamos detectores LEL calibrados y proporcionamos capacitación a tu personal. Nuestro equipo entiende los requisitos específicos de STPS, Protección Civil CDMX y PEMEX (si aplica).
 
-Si tu instalación industrial maneja sustancias combustibles, una evaluación profesional no es un gasto sino una obligación legal. Contáctanos al 525537238544 por WhatsApp para agendar una inspección sin costo.
+Si tu instalación industrial maneja sustancias combustibles, una evaluación profesional no es un gasto sino una obligación legal. Contáctanos al 525627596245 por WhatsApp para agendar una inspección sin costo.

@@ -36,7 +36,7 @@ import CtaBar from '../../../components/CtaBar.astro';
 import FaqCotizacion from '../../../components/FaqCotizacion.astro';
 import '../../../styles/pages.css';
 
-const WHATSAPP = "525537238544";
+const WHATSAPP = "525627596245";
 const WA_URL = `https://wa.me/${WHATSAPP}`;
 ---
 ```
@@ -409,7 +409,7 @@ El sidebar usa `position: sticky; top: 32px;` con 8 widgets separados por `gap: 
     <p class="sb__cta-text">Respuesta en menos de 24 horas con precio y disponibilidad.</p>
     <a href="#cotizar" class="sb__btn sb__btn--solid">Solicitar Cotización</a>
     <a href={`${WA_URL}?text=...`} class="sb__btn sb__btn--outline" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
-    <p class="sb__tel">Tel: <a href="tel:+525537238544">55 3723 8544</a></p>
+    <p class="sb__tel">Tel: <a href="tel:+525627596245">56 2759 6245</a></p>
   </div>
 
   <!-- WIDGET 3: Características Clave -->
@@ -548,7 +548,7 @@ El sidebar usa `position: sticky; top: 32px;` con 8 widgets separados por `gap: 
         Enviar por WhatsApp
       </a>
       <p class="pp-cotizar__note">Sin compromiso · Atención personalizada · Te respondemos al instante</p>
-      <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525537238544">55 3723 8544</a></p>
+      <p class="pp-cotizar__alt">También puedes llamarnos: <a href="tel:+525627596245">56 2759 6245</a></p>
     </div>
   </div>
 </section>
@@ -666,5 +666,5 @@ Al crear una nueva página de producto:
 3. **Otros productos:** siempre 4 cards en grid fijo — nunca scroll horizontal
 4. **Imágenes de galería:** `height: 200px` con `object-fit: cover`
 5. **Font:** Outfit (400-800 weights) — viene de `Base.astro`
-6. **WhatsApp:** número `525537238544`, siempre abrir en `_blank`
+6. **WhatsApp:** número `525627596245`, siempre abrir en `_blank`
 7. **ID `#cotizar`** en la sección de cotización para anchor links

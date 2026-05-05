@@ -57,4 +57,4 @@ La forma más eficiente de gestionar todo esto es delegar el control del ciclo e
 
 Para el responsable de seguridad de la empresa, el beneficio es concreto: el expediente siempre está en orden, no hay que recordar vencimientos, y en caso de inspección hay una carpeta con todo documentado y firmado. Para la empresa, es la diferencia entre cumplimiento reactivo —apagar fuegos regulatorios— y cumplimiento proactivo que no genera sorpresas.
 
-Si quieres conocer nuestras pólizas de mantenimiento o tienes equipos que llevan tiempo sin revisión certificada, escríbenos al WhatsApp **5537238544**. Evaluamos el estado actual y te decimos exactamente qué necesita atención y en qué orden de prioridad.
+Si quieres conocer nuestras pólizas de mantenimiento o tienes equipos que llevan tiempo sin revisión certificada, escríbenos al WhatsApp **5627596245**. Evaluamos el estado actual y te decimos exactamente qué necesita atención y en qué orden de prioridad.

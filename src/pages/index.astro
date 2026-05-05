@@ -1,10 +1,10 @@
 ---
 /**
- * index.astro — Página principal de Proyecto Red
- * ─────────────────────────────────────────────
- * Orquestador limpio: importa secciones dedicadas y define SEO de nivel técnico.
- * Cada sección vive en src/components/sections/ con sus propios estilos.
- * SectionHeader.astro es el complemento oficial de encabezado en todas las secciones.
+ * index.astro — Home de Proyecto Red
+ * ──────────────────────────────────
+ * Orquestador limpio: importa secciones dedicadas e inyecta datos estructurados
+ * por página. LocalBusiness se emite en Base.astro (global); aquí solo añadimos
+ * FAQPage, WebSite y BreadcrumbList específicos de home.
  */
 
 import Base          from '../layouts/Base.astro'
@@ -25,190 +25,31 @@ import ReviewsIndex        from '../components/sections/ReviewsIndex.astro'
 import FaqCotizacionIndex  from '../components/sections/FaqCotizacionIndex.astro'
 import CTAFinalIndex       from '../components/sections/CTAFinalIndex.astro'
 
-// ── Datos para JSON-LD ─────────────────────────────────────
-import { SITE, CONTACT } from '../config/site'
+// ── SEO: datos centralizados (única fuente de verdad) ─────
+import { SITE } from '../config/site'
+import { faqPageLd, websiteLd, breadcrumbLd, FAQS_GLOBALES } from '../lib/seo'
 
-const siteUrl   = SITE.url
-const pageUrl   = `${siteUrl}/`
-const ogImage   = `${siteUrl}/imagenes/og/proyectored-og.jpg`
+const pageUrl = `${SITE.url}/`
+const ogImage = `${SITE.url}/imagenes/og/proyectored-og.jpg`
 
-// ── Schema: LocalBusiness ──────────────────────────────────
-const schemaLocalBusiness = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "FireProtectionEquipmentSupplier"],
-  "name": "Proyecto Red",
-  "alternateName": "ProyectoRed",
-  "description": "Proveedor directo de equipos contra incendios certificados. Venta, instalación, mantenimiento preventivo y capacitación. Cobertura en CDMX y Estado de México.",
-  "url": pageUrl,
-  "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
-  "image": ogImage,
-  "telephone": `+52${CONTACT.phoneRaw}`,
-  "email": CONTACT.email,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Paseo de la Reforma 26",
-    "addressLocality": "Ciudad de México",
-    "addressRegion": "CDMX",
-    "postalCode": "06600",
-    "addressCountry": "MX"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "19.4326",
-    "longitude": "-99.1332"
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "08:00",
-      "closes": "18:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:00",
-      "closes": "14:00"
-    }
-  ],
-  "areaServed": [
-    { "@type": "State", "name": "Ciudad de México" },
-    { "@type": "State", "name": "Estado de México" },
-    { "@type": "State", "name": "Querétaro" },
-    { "@type": "State", "name": "Puebla" },
-    { "@type": "State", "name": "Aguascalientes" },
-    { "@type": "State", "name": "Baja California" }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Equipos contra incendios",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Extintores certificados NOM-154-SCFI" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Equipo para bomberos NFPA 1971" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Señalamientos NOM-003-SEGOB" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gabinetes y porta extintores" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Mangueras y herrajes contra incendio" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Sistemas contra incendio NFPA 13/72" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Botiquines de primeros auxilios STPS" }},
-      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Equipo de seguridad industrial EPP" }}
-    ]
-  },
-  "sameAs": [
-    "https://www.facebook.com/proyectored",
-    "https://www.instagram.com/proyectored"
-  ],
-  "priceRange": "$$"
-}
-
-// ── Schema: FAQPage ────────────────────────────────────────
-const schemaFAQ = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Cuánto cuesta un extintor certificado en CDMX?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El precio varía según el tipo y capacidad. Un cilindro de polvo seco (PQS) de 4 kg para uso general parte desde $450 MXN. Los modelos de CO₂ para electrónica y los Tipo K para cocinas industriales tienen precios distintos. Contáctanos por WhatsApp para precio directo ese mismo día."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué extintores exige Protección Civil para mi empresa?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Depende del tipo de riesgo y superficie. La NOM-002-STPS establece una unidad por cada 300 m² de área, mínimo uno por piso. Para oficinas se recomienda el ABC multipropósito; para cocinas, el Tipo K; para servidores, el CO₂ o agente limpio. Realizamos diagnóstico técnico sin costo."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Hacen entrega a domicilio en CDMX y Estado de México?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Entregamos en toda la Ciudad de México y el Estado de México. Los pedidos confirmados antes de las 2 PM los entregamos el mismo día en la zona metropolitana. También coordinamos envíos al interior de la república para pedidos de volumen."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Los extintores incluyen certificado NOM?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Todos nuestros equipos cumplen con la NOM-154-SCFI y vienen con la documentación necesaria para tu expediente regulatorio: etiqueta de inspección, garantía y ficha técnica del fabricante."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿También hacen mantenimiento y recarga de extintores?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Ofrecemos mantenimiento preventivo, recarga y verificación en tus instalaciones. El servicio incluye revisión del agente de extinción, presión, válvulas, manguera y etiqueta de inspección actualizada."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué señalamientos son obligatorios en una oficina o negocio?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La NOM-003-SEGOB y la NOM-026-STPS exigen: rutas de evacuación, salidas de emergencia, ubicación del equipamiento portátil, punto de reunión y señales de prohibición en áreas de riesgo. Distribuimos señalización fotoluminiscente certificada que pasa inspecciones sin observaciones."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Manejan precios por volumen para empresas?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Ofrecemos precios preferenciales, facturación consolidada y entregas programadas para empresas con múltiples sucursales, plantas o proyectos. Contáctanos para un esquema de suministro a tu medida."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cuánto tiempo tarda la instalación de un sistema contra incendio?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La instalación de detectores y alarmas en una oficina mediana toma 1-2 días. Un sistema de rociadores para una planta industrial puede tomar de 1 a 3 semanas. Hacemos visita técnica sin costo para darte tiempo y presupuesto exactos."
-      }
-    }
-  ]
-}
-
-// ── Schema: BreadcrumbList ─────────────────────────────────
-const schemaBreadcrumb = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Inicio",
-      "item": pageUrl
-    }
-  ]
-}
-
-// ── Schema: WebSite (Sitelinks Search Box) ─────────────────
-const schemaWebsite = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Proyecto Red",
-  "url": siteUrl,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${siteUrl}/blog/?q={search_term_string}`
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
+// Schemas específicos de home
+const schemaFAQ       = faqPageLd(FAQS_GLOBALES)
+const schemaWebsite   = websiteLd
+const schemaBreadcrumb = breadcrumbLd([{ label: 'Inicio' }])
 ---
 
 <Base
-  title="Equipos Contra Incendios en CDMX — Certificados NOM | Proyecto Red"
-  description="Venta, instalación y mantenimiento de equipos contra incendios certificados en CDMX y Estado de México. Sistemas de rociadores, detección, señalización y protección personal. Asesoría técnica gratuita. 55 3723 8544."
+  title="Venta de Equipos Contra Incendios en CDMX | Proyecto Red"
+  description="Extintores, sistemas contra incendio, señalización NOM y equipo para bomberos. Entrega el mismo día en CDMX y Estado de México. Diagnóstico técnico sin costo."
   canonical={pageUrl}
   ogImage={ogImage}
 >
+  <!-- JSON-LD específico de home — emitido en <head> -->
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaFAQ)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaWebsite)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
 
   <!-- ── Secciones ──────────────────────────────────────── -->
   <HeroIndex />
@@ -224,13 +65,4 @@ const schemaWebsite = {
   <ReviewsIndex />
   <FaqCotizacionIndex />
   <CTAFinalIndex />
-
-  <!-- ── Datos estructurados JSON-LD ──────────────────────
-       Inyectados al final del <body> para no bloquear render
-  ─────────────────────────────────────────────────────── -->
-  <script type="application/ld+json" set:html={JSON.stringify(schemaLocalBusiness)} />
-  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
-  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
-  <script type="application/ld+json" set:html={JSON.stringify(schemaWebsite)} />
-
 </Base>

@@ -244,4 +244,4 @@ Valor de mejora en seguridad y cumplimiento: Incalculable.
 
 En PROYECTORED ofrecemos [asesoramiento en planificación de simulacros](/servicios/), coordinación, observación profesional, y reporte de debrief. Tenemos experiencia en 50+ simulacros en CDMX.
 
-Contacta por WhatsApp **525537238544** para consultar sobre diseño de simulacro adaptado a tu empresa.
+Contacta por WhatsApp **525627596245** para consultar sobre diseño de simulacro adaptado a tu empresa.

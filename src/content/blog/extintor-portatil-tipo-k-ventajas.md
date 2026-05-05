@@ -117,4 +117,4 @@ Ejemplo: Cocina de 80 m². Freidora permanente + 3 fogones = 2 extintores fijos.
 
 Costo: ~$11,000-12,000 MXN. Cumplimiento: 100%. Flexibilidad: máxima.
 
-En PROYECTORED ofrecemos ambos tipos. Hacemos auditoría gratuita para determinar combinación óptima portátil/fijo según tu cocina específica. Contacta por WhatsApp **525537238544** con detalles de tu operación. Te diseñamos solución que cumple norma y maximiza tu presupuesto.
+En PROYECTORED ofrecemos ambos tipos. Hacemos auditoría gratuita para determinar combinación óptima portátil/fijo según tu cocina específica. Contacta por WhatsApp **525627596245** con detalles de tu operación. Te diseñamos solución que cumple norma y maximiza tu presupuesto.

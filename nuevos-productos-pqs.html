@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuevos Productos PQS — Proyecto Red</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+
+  header {
+    background: #c0392b;
+    color: white;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  header .logo-text { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+  header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+  header .badge {
+    margin-left: auto;
+    background: white;
+    color: #c0392b;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 48px 40px 36px;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+  .hero p { font-size: 15px; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-image svg { width: 110px; height: 110px; }
+  .card-image .img-bg {
+    position: absolute; inset: 0;
+    opacity: 0.08;
+  }
+  .card-image .priority-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .card-num { font-size: 11px; font-weight: 700; color: #c0392b; letter-spacing: 1px; text-transform: uppercase; }
+  .card-title { font-size: 18px; font-weight: 700; color: #2c3e50; line-height: 1.3; }
+  .card-desc { font-size: 13px; color: #555; line-height: 1.6; flex: 1; }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .spec-item {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .spec-label { font-size: 10px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .spec-value { font-size: 13px; font-weight: 700; color: #2c3e50; margin-top: 1px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 10px;
+    border: 1.5px solid;
+  }
+  .tag-a { color: #e67e22; border-color: #e67e22; background: #fef9e7; }
+  .tag-b { color: #2980b9; border-color: #2980b9; background: #eaf4fb; }
+  .tag-c { color: #8e44ad; border-color: #8e44ad; background: #f5eef8; }
+
+  .card-footer {
+    border-top: 1px solid #eee;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .proveedor { font-size: 11px; color: #888; }
+  .proveedor strong { color: #2c3e50; }
+  .btn-cotizar {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-cotizar:hover { background: #96281b; }
+
+  .normas-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 2px;
+  }
+  .norma-chip {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    background: #2c3e50;
+    color: white;
+    border-radius: 6px;
+  }
+
+  footer {
+    background: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  footer strong { color: white; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo-text">🔴 PROYECTO RED</div>
+    <div class="subtitle">Extintores y Seguridad Industrial · CDMX</div>
+  </div>
+  <div class="badge">NUEVOS PRODUCTOS 2026</div>
+</header>
+
+<div class="hero">
+  <h1>Ampliación de Catálogo — Polvo Seco PQS</h1>
+  <p>Productos recomendados para incorporar a la oferta, basados en análisis de mercado y demanda industrial.</p>
+</div>
+
+<div class="grid">
+
+  <!-- PRODUCTO 1: PQS BC -->
+  <div class="card">
+    <div class="card-image" style="background: linear-gradient(135deg, #1a5276, #2e86ab);">
+      <div class="priority-badge" style="background:#e74c3c; color:white;">⬆ Alta Prioridad</div>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Extintor BC -->
+        <rect x="38" y="18" width="24" height="58" rx="5" fill="white" opacity="0.9"/>
+        <rect x="40" y="20" width="20" height="54" rx="4" fill="#2980b9"/>
+        <rect x="44" y="10" width="12" height="12" rx="3" fill="white" opacity="0.8"/>
+        <circle cx="50" cy="16" r="4" fill="white"/>
+        <rect x="46" y="8" width="8" height="4" rx="2" fill="white" opacity="0.7"/>
+        <rect x="42" y="34" width="16" height="18" rx="2" fill="white" opacity="0.15"/>
+        <text x="50" y="47" font-size="7" fill="white" text-anchor="middle" font-weight="bold">BC</text>
+        <ellipse cx="50" cy="75" rx="12" ry="4" fill="white" opacity="0.2"/>
+        <!-- Llama B -->
+        <ellipse cx="72" cy="62" rx="8" ry="12" fill="#f39c12" opacity="0.8"/>
+        <ellipse cx="72" cy="65" rx="5" ry="8" fill="#e74c3c" opacity="0.8"/>
+        <!-- Chorro -->
+        <path d="M60 44 Q68 48 70 54" stroke="white" stroke-width="2" stroke-dasharray="3,2" fill="none" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Producto 01 — Nuevo</div>
+      <div class="card-title">Extintor PQS BC<br>Bicarbonato de Sodio</div>
+      <div class="card-desc">Agente BC (NaHCO₃) para fuegos de líquidos inflamables y equipos eléctricos. Deja menos residuo corrosivo sobre maquinaria que el polvo ABC. El estándar en refinación, estaciones de servicio y talleres de mantenimiento.</div>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Agente</div>
+          <div class="spec-value">NaHCO₃ seco</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Capacidades</div>
+          <div class="spec-value">4.5 · 6 · 9 · 12 kg</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Alcance</div>
+          <div class="spec-value">3–5 metros</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Presión</div>
+          <div class="spec-value">9–12 bar</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag tag-b">Clase B</span>
+        <span class="tag tag-c">Clase C</span>
+      </div>
+
+      <div class="normas-row">
+        <span class="norma-chip">NOM-154-SCFI</span>
+        <span class="norma-chip">NOM-100-STPS</span>
+        <span class="norma-chip">NFPA 10</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="proveedor">Proveedor: <strong>Amerex / Fabricante NOM</strong></div>
+      <a class="btn-cotizar" href="https://wa.me/525627596245?text=Hola,%20quiero%20cotizar%20el%20extintor%20PQS%20BC%20Bicarbonato" target="_blank">Cotizar</a>
+    </div>
+  </div>
+
+  <!-- PRODUCTO 2: PQS 20 kg -->
+  <div class="card">
+    <div class="card-image" style="background: linear-gradient(135deg, #7d3c98, #a569bd);">
+      <div class="priority-badge" style="background:#e74c3c; color:white;">⬆ Alta Prioridad</div>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Extintor grande 20kg -->
+        <rect x="32" y="12" width="36" height="68" rx="7" fill="white" opacity="0.9"/>
+        <rect x="35" y="15" width="30" height="62" rx="5" fill="#c0392b"/>
+        <rect x="43" y="6" width="14" height="12" rx="3" fill="white" opacity="0.8"/>
+        <circle cx="50" cy="12" r="5" fill="white"/>
+        <rect x="46" y="4" width="8" height="5" rx="2" fill="white" opacity="0.7"/>
+        <rect x="38" y="30" width="24" height="28" rx="3" fill="white" opacity="0.12"/>
+        <text x="50" y="50" font-size="9" fill="white" text-anchor="middle" font-weight="bold">20 kg</text>
+        <text x="50" y="62" font-size="6" fill="white" text-anchor="middle" opacity="0.8">ABC</text>
+        <ellipse cx="50" cy="78" rx="18" ry="5" fill="white" opacity="0.15"/>
+        <!-- indicador presión -->
+        <circle cx="50" cy="22" r="5" fill="white" opacity="0.3"/>
+        <path d="M47 22 L53 22" stroke="white" stroke-width="1"/>
+        <path d="M50 19 L50 22" stroke="#2ecc71" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Producto 02 — Nuevo</div>
+      <div class="card-title">Extintor PQS ABC<br>20 kg Portátil</div>
+      <div class="card-desc">Cubre el vacío entre el modelo de 12 kg y los rodantes de 25 kg. Muy solicitado en naves industriales, bodegas de distribución y manufactura. Un solo operador puede manejarlo. Alta rotación esperada en clientes B2B.</div>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Agente</div>
+          <div class="spec-value">Fosfato ABC</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Descarga</div>
+          <div class="spec-value">~25–30 seg</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Alcance</div>
+          <div class="spec-value">5–6 metros</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Peso total</div>
+          <div class="spec-value">~26 kg</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag tag-a">Clase A</span>
+        <span class="tag tag-b">Clase B</span>
+        <span class="tag tag-c">Clase C</span>
+      </div>
+
+      <div class="normas-row">
+        <span class="norma-chip">NOM-154-SCFI</span>
+        <span class="norma-chip">NOM-002-STPS</span>
+        <span class="norma-chip">NFPA 10</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="proveedor">Proveedor: <strong>Amerex B441 / Badger</strong></div>
+      <a class="btn-cotizar" href="https://wa.me/525627596245?text=Hola,%20quiero%20cotizar%20el%20extintor%20PQS%20ABC%2020kg%20portatil" target="_blank">Cotizar</a>
+    </div>
+  </div>
+
+  <!-- PRODUCTO 3: Rodante 150 kg -->
+  <div class="card">
+    <div class="card-image" style="background: linear-gradient(135deg, #1e8449, #27ae60);">
+      <div class="priority-badge" style="background:#e74c3c; color:white;">⬆ Alta Prioridad</div>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rodante pesado 150kg -->
+        <!-- Ruedas -->
+        <circle cx="32" cy="82" r="10" fill="#2c3e50"/>
+        <circle cx="32" cy="82" r="6" fill="#7f8c8d"/>
+        <circle cx="68" cy="82" r="10" fill="#2c3e50"/>
+        <circle cx="68" cy="82" r="6" fill="#7f8c8d"/>
+        <!-- Chasis -->
+        <rect x="26" y="72" width="48" height="10" rx="3" fill="#34495e"/>
+        <!-- Cilindro grande -->
+        <rect x="36" y="18" width="28" height="58" rx="8" fill="#c0392b"/>
+        <rect x="38" y="20" width="24" height="54" rx="6" fill="#e74c3c"/>
+        <!-- Etiqueta -->
+        <rect x="40" y="34" width="20" height="24" rx="3" fill="white" opacity="0.2"/>
+        <text x="50" y="50" font-size="7" fill="white" text-anchor="middle" font-weight="bold">150 kg</text>
+        <text x="50" y="60" font-size="5" fill="white" text-anchor="middle" opacity="0.8">RODANTE</text>
+        <!-- Válvula top -->
+        <rect x="44" y="10" width="12" height="10" rx="3" fill="white" opacity="0.7"/>
+        <circle cx="50" cy="14" r="3" fill="white"/>
+        <!-- Manguera -->
+        <path d="M64 28 Q78 30 80 40 Q82 52 76 56" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="72" y="54" width="8" height="5" rx="2" fill="white" opacity="0.8"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Producto 03 — Nuevo</div>
+      <div class="card-title">PQS Rodante 150 kg<br>Alto Riesgo / Industrial</div>
+      <div class="card-desc">Extintor rodante de 150 kg para protección de hazards de muy alto riesgo: refinerías, aeropuertos, terminales de combustible y plataformas industriales. Manguera de 9 m. Operable por un solo brigadista. Ruedas 36" para terreno irregular.</div>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Capacidad</div>
+          <div class="spec-value">150 kg / 330 lb</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Alcance</div>
+          <div class="spec-value">Hasta 12 m</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Manguera</div>
+          <div class="spec-value">9 metros</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Descarga</div>
+          <div class="spec-value">~55–65 seg</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag tag-a">Clase A</span>
+        <span class="tag tag-b">Clase B</span>
+        <span class="tag tag-c">Clase C</span>
+      </div>
+
+      <div class="normas-row">
+        <span class="norma-chip">NFPA 10</span>
+        <span class="norma-chip">NOM-002-STPS</span>
+        <span class="norma-chip">UL 711</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="proveedor">Proveedor: <strong>Amerex / Kidde Industrial</strong></div>
+      <a class="btn-cotizar" href="https://wa.me/525627596245?text=Hola,%20quiero%20cotizar%20el%20extintor%20Rodante%20PQS%20150kg" target="_blank">Cotizar</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Proyecto Red</strong> · info@proyectored.com.mx · 56 2759 6245 · proyectored.com.mx<br>
+  <span style="opacity:0.6; font-size:11px;">Análisis de catálogo — Abril 2026 · Solo para uso interno</span>
+</footer>
+
+</body>
+</html>

@@ -150,4 +150,4 @@ El incumplimiento resulta en:
 - Cierre temporal o definitivo de la operación
 - Responsabilidad penal si hay lesión o muerte
 
-En PROYECTORED proporcionamos detectores multigas portátiles certificados para cumplir NOM-033-STPS, así como capacitación a personal y asistencia en documentación de protocolo. También diseñamos sistemas fijos de monitoreo para instalaciones que realizan trabajos en espacios confinados regularmente. Contáctanos al 525537238544 por WhatsApp para consulta sobre tu necesidad específica de detección.
+En PROYECTORED proporcionamos detectores multigas portátiles certificados para cumplir NOM-033-STPS, así como capacitación a personal y asistencia en documentación de protocolo. También diseñamos sistemas fijos de monitoreo para instalaciones que realizan trabajos en espacios confinados regularmente. Contáctanos al 525627596245 por WhatsApp para consulta sobre tu necesidad específica de detección.

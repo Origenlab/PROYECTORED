@@ -162,4 +162,4 @@ En PROYECTORED suministramos [hachas de rescate certificadas NFPA](/productos/) 
 
 Ofrecemos también [servicio de capacitación](/servicios/) para personal de brigada: técnicas de uso, mantenimiento, seguridad. Entrenamiento de 4 horas, grupal, con simulacro practicado.
 
-Contacta por WhatsApp **525537238544** para cotización de hachas y programa de capacitación para tu brigada.
+Contacta por WhatsApp **525627596245** para cotización de hachas y programa de capacitación para tu brigada.

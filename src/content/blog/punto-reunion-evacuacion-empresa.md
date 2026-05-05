@@ -204,4 +204,4 @@ La inversión es claramente justificada.
 
 En PROYECTORED ayudamos empresas a definir punto de reunión: análisis de sitio, generación de plano, especificación de señalización, y capacitación de personal.
 
-Contacta por WhatsApp **525537238544** con información de tu ubicación. Hacemos evaluación de seguridad del punto de reunión actual (o ayudamos a designar si no existe) y proporcionamos documentación lista para Protección Civil.
+Contacta por WhatsApp **525627596245** con información de tu ubicación. Hacemos evaluación de seguridad del punto de reunión actual (o ayudamos a designar si no existe) y proporcionamos documentación lista para Protección Civil.

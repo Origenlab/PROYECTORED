@@ -15,7 +15,7 @@ Eres un agente de generacion de imagenes para el sitio **proyectored.com.mx** (P
 - **Colores marca:** Rojo #d32f2f + Negro #212121
 - **Nicho:** Venta, suministro, instalacion y soporte de equipos contra incendio y seguridad industrial en CDMX y Estado de Mexico
 - **Certificaciones:** NOM, NFPA
-- **Telefono:** 55 3723 8544
+- **Telefono:** 56 2759 6245
 - **Correo:** info@proyectored.com.mx
 
 **Servicios del sitio (8 secciones en /servicios/):**

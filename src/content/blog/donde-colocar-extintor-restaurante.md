@@ -135,4 +135,4 @@ General:
 
 Si responde "Sí" a todas, la auditoría será sin observaciones.
 
-En PROYECTORED especializamos en auditoría y colocación de extintores para restaurantes de todos los tamaños en CDMX. Contacta por WhatsApp **525537238544** con foto de plano o medidas de tu espacio. Te proporcionamos recomendación de ubicación específica, presupuesto de equipamiento, e instalación certificada lista para auditoría de Protección Civil.
+En PROYECTORED especializamos en auditoría y colocación de extintores para restaurantes de todos los tamaños en CDMX. Contacta por WhatsApp **525627596245** con foto de plano o medidas de tu espacio. Te proporcionamos recomendación de ubicación específica, presupuesto de equipamiento, e instalación certificada lista para auditoría de Protección Civil.

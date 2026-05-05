@@ -61,4 +61,4 @@ Lo que ningún cálculo de área puede reemplazar es la visita técnica. Un téc
 
 Cada extintor que suministramos sale con ficha técnica, certificado de conformidad NOM, etiqueta de inspección vigente y garantía del fabricante. No es burocracia: es el expediente básico que necesitas tener. Instalamos el porta extintor o soporte de pared en la posición correcta según norma, colocamos el señalamiento conforme a NOM-026-STPS para que sea visible desde lejos, y dejamos agendada la primera revisión anual antes de retirarnos.
 
-Para cotización o diagnóstico de tu instalación, escríbenos al WhatsApp **5537238544**. Si estás en la Ciudad de México o el Estado de México y confirmas antes del mediodía, coordinamos entrega el mismo día.
+Para cotización o diagnóstico de tu instalación, escríbenos al WhatsApp **5627596245**. Si estás en la Ciudad de México o el Estado de México y confirmas antes del mediodía, coordinamos entrega el mismo día.

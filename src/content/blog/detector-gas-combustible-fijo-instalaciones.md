@@ -189,4 +189,4 @@ En PROYECTORED diseñamos y instalamos sistemas de detección fija que respetan 
 
 No instalamos "un detector en una pared". Realizamos evaluación de riesgo, identificamos puntos críticos, calculamos cobertura según densidad del gas, seleccionamos tipo de sensor apropiado para tu ambiente, integramos con panel de control, documentamos todo y entrenamos a tu personal.
 
-Contáctanos al 525537238544 por WhatsApp para consulta sobre instalación de sistema de detección fija para tu planta, gasolinera o almacén.
+Contáctanos al 525627596245 por WhatsApp para consulta sobre instalación de sistema de detección fija para tu planta, gasolinera o almacén.

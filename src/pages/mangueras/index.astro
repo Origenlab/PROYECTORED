@@ -20,6 +20,7 @@ import FaqMangueras      from '../../components/sections/FaqMangueras.astro'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
+import CategoriasRelacionadas from '../../components/sections/CategoriasRelacionadas.astro'
 import CTAFinalIndex     from '../../components/sections/CTAFinalIndex.astro'
 
 // ── Datos para JSON-LD ─────────────────────────────────────
@@ -181,7 +182,7 @@ const schemaWebPage = {
     "@type": "Organization",
     "name": "Proyecto Red",
     "url": siteUrl,
-    "logo": `${siteUrl}/imagenes/logos/logo-proyectored-201x60.png`,
+    "logo": `${siteUrl}/imagenes/logos/equipo-contra-incendios.jpg`,
     "telephone": `+52${CONTACT.phoneRaw}`,
     "email": CONTACT.email
   }
@@ -208,6 +209,7 @@ const schemaWebPage = {
   <TrustIndex />
   <NormasMangueras />
   <FaqMangueras />
+  <CategoriasRelacionadas current="mangueras" />
   <CTAFinalIndex />
 
   <script type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />

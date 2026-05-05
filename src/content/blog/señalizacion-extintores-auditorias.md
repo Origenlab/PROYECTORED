@@ -170,4 +170,4 @@ En PROYECTORED ofrecemos letreros de extintor certificados NOM-003-SEGOB en foto
 
 También realizamos auditoría de señalización completa: revisamos ubicación, tipo, condición, e identificamos correcciones requeridas. Servicio sin costo para clientes que compran con nosotros.
 
-Contacta por WhatsApp **525537238544** para cotización de letreros y programa de auditoría preventiva de tu establecimiento.
+Contacta por WhatsApp **525627596245** para cotización de letreros y programa de auditoría preventiva de tu establecimiento.

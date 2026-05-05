@@ -239,4 +239,4 @@ En PROYECTORED realizamos:
 
 No realizamos instalaciones "aproximadas". Cada detector está ubicado según cálculo de ingeniería, no según intuición.
 
-Contáctanos al 525537238544 por WhatsApp para evaluación de cobertura de tu edificio o planta. Haremos un diagrama detallado de cobertura como parte de nuestra evaluación inicial.
+Contáctanos al 525627596245 por WhatsApp para evaluación de cobertura de tu edificio o planta. Haremos un diagrama detallado de cobertura como parte de nuestra evaluación inicial.

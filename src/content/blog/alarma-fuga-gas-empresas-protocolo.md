@@ -225,4 +225,4 @@ En PROYECTORED no solo instalamos detectores. Ayudamos a desarrollar protocolos 
 - Documentación completa para auditoría
 - Integración con panel de control inteligente
 
-Contáctanos al 525537238544 por WhatsApp para desarrollar un protocolo de seguridad específico para tu empresa.
+Contáctanos al 525627596245 por WhatsApp para desarrollar un protocolo de seguridad específico para tu empresa.

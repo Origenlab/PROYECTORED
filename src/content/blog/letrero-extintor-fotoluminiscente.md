@@ -183,4 +183,4 @@ En PROYECTORED suministramos letreros fotoluminiscentes de extintor conforme a N
 
 Vendemos también [equipamiento completo de señalización](/senalamientos/): extintores, puntos de reunión, salidas de emergencia, flechas direccionales. Sistema integrado que cumple normativa completa.
 
-Contacta por WhatsApp **525537238544** para cotización de letreros y auditoría de señalización actual de tu establecimiento.
+Contacta por WhatsApp **525627596245** para cotización de letreros y auditoría de señalización actual de tu establecimiento.

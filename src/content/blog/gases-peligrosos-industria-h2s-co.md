@@ -154,4 +154,4 @@ La única forma de saber la atmósfera exacta es MEDIRLA. El olfato es inútil (
 
 Un detector multigas portátil proporciona medición simultánea de los cuatro gases críticos, permitiendo una decisión racional: entrar o no entrar. Sin él, cada entrada a espacio confinado es una apuesta con la vida del trabajador.
 
-En PROYECTORED proporcionamos detectores multigas calibrados que miden CO, H₂S, O₂ y LEL con precisión certificada. También ofrecemos capacitación sobre reconocimiento de síntomas de envenenamiento por gases para que tu equipo pueda responder rápidamente en caso de emergencia. Contáctanos al 525537238544 para obtener equipo de detección que salva vidas.
+En PROYECTORED proporcionamos detectores multigas calibrados que miden CO, H₂S, O₂ y LEL con precisión certificada. También ofrecemos capacitación sobre reconocimiento de síntomas de envenenamiento por gases para que tu equipo pueda responder rápidamente en caso de emergencia. Contáctanos al 525627596245 para obtener equipo de detección que salva vidas.
