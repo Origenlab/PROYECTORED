@@ -57,4 +57,4 @@ Ofrecemos programas de mantenimiento anual para edificios corporativos de cualqu
 
 Toda la documentación que entregamos es válida para expedientes de Protección Civil, para requerimientos de STPS de los inquilinos y para auditorías de aseguradoras de propiedad. Para edificios con múltiples sistemas que necesitan coordinación, manejamos el programa como un servicio integral con un solo punto de contacto.
 
-Para coordinar una visita técnica de diagnóstico, escríbenos al WhatsApp **5627596245** o a info@proyectored.com.mx. Evaluamos el estado actual de los sistemas y entregamos un informe técnico de brechas y recomendaciones sin costo.
+Para coordinar una visita técnica de diagnóstico, escríbenos al WhatsApp **5627596245** o a ventas@generalfiremexico.com. Evaluamos el estado actual de los sistemas y entregamos un informe técnico de brechas y recomendaciones sin costo.

@@ -51,4 +51,4 @@ En PROYECTORED operamos con cobertura directa en toda la zona metropolitana. Nue
 
 Lo que distingue nuestra propuesta no es el catálogo —eso cualquiera puede tenerlo— sino la continuidad del servicio: diagnóstico gratuito, instalación con técnicos propios, mantenimiento certificado con bitácora para Protección Civil, recargas con certificado NOM, y capacitación de brigadas con constancia DC-3 válida ante STPS.
 
-Emitimos factura electrónica en todos los servicios y manejamos crédito a 30 días para empresas con relación comercial establecida. Para coordinar una visita de diagnóstico o solicitar cotización, escríbenos al WhatsApp **5627596245** o a info@proyectored.com.mx.
+Emitimos factura electrónica en todos los servicios y manejamos crédito a 30 días para empresas con relación comercial establecida. Para coordinar una visita de diagnóstico o solicitar cotización, escríbenos al WhatsApp **5627596245** o a ventas@generalfiremexico.com.

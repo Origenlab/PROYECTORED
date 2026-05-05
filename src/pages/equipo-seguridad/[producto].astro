@@ -205,7 +205,7 @@ const getVariantesDesc = (): string => {
       </div>
       <div class="svc-grid">
         {RELATED_SERVICES.map((svc) => (
-          <a href={`/servicios/#${svc.id}`} class="svc-card">
+          <a href={`/servicios/${svc.id}/`} class="svc-card">
             <span class="svc-card__name">{svc.label}</span>
             <span class="svc-card__desc">{svc.desc}</span>
             <span class="svc-card__arrow" aria-hidden="true">→</span>

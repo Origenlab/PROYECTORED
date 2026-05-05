@@ -303,7 +303,7 @@ const getVariantesDesc = (): string => {
         <div class="l4-svc-grid" role="list" aria-label="Servicios disponibles para esta categoría">
           {RELATED_SERVICES.map((svc, idx) => (
             <a
-              href={`/servicios/#${svc.id}`}
+              href={`/servicios/${svc.id}/`}
               class="srv-mini"
               role="listitem"
               aria-label={svc.label}

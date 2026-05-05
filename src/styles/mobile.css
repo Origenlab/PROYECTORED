@@ -1,0 +1,536 @@
+/* ════════════════════════════════════════════════════════════════════
+   PROYECTO RED — Mobile.css
+   Hoja de overrides responsive PROFESIONALES.
+   Importado al final de global.css → siempre gana especificidad por orden.
+
+   Estrategia:
+     · Mobile-first cleanup sin duplicar tokens.
+     · Breakpoints unificados: 1024 (tablet), 768 (mobile L), 640 (mobile),
+       480 (small), 380 (XS — uso real Mexico City Metro).
+     · Touch targets ≥ 44px.
+     · Container fluido y aprovecha el ancho completo del viewport.
+     · Tipografía clamp ya existe en global; aquí solo afinamos casos.
+     · Cero animaciones nuevas (regla del proyecto).
+   ════════════════════════════════════════════════════════════════════ */
+
+
+/* ──────────────────────────────────────────────────────────────────
+   1. CONTAINER FLUIDO — usa más viewport en móvil
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --container-px: 1.25rem; }
+  .container { padding-inline: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  :root { --container-px: 1rem; }
+  .container { padding-inline: 1rem; }
+}
+
+@media (max-width: 380px) {
+  :root { --container-px: 0.875rem; }
+  .container { padding-inline: 0.875rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   2. SECTION PADDING — más respiración pero sin desperdiciar viewport
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --section-py: 4rem; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-py: 3rem; }
+  .section { padding-block: 3rem; }
+  .cat-section { padding: 3rem 0; }
+  .categorias-index { padding: 3rem 0; }
+  .proceso-section { padding: 3rem 0; }
+}
+
+@media (max-width: 480px) {
+  :root { --section-py: 2.5rem; }
+  .section { padding-block: 2.5rem; }
+  .cat-section { padding: 2.5rem 0; }
+  .categorias-index { padding: 2.5rem 0; }
+  .proceso-section { padding: 2.5rem 0; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   3. HEADER STACK — reducir altura en móvil para más viewport útil
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 72px;
+    --stack-height: calc(var(--topbar-height) + 72px);
+  }
+  .hdr-logo-img { height: 48px; }
+  .hdr-inner { gap: 1rem; height: 72px; }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --topbar-height: 32px;
+    --header-height: 64px;
+    --stack-height: calc(32px + 64px);
+  }
+  .hdr-logo-img { height: 42px; }
+  .hdr-inner { height: 64px; gap: 0.75rem; }
+
+  .topbar { font-size: 0.75rem; }
+  .tb-inner { gap: 0.5rem; padding-inline: 1rem; }
+
+  /* Burger touch target ≥ 44px */
+  .hdr-burger {
+    width: 44px;
+    height: 44px;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* En pantallas chicas: dejar solo WhatsApp en la topbar */
+  .tb-promo,
+  .tb-center,
+  .tb-phone,
+  .tb-schedule { display: none !important; }
+  .tb-right { margin-left: auto; }
+  .tb-wa { font-size: 0.75rem; }
+}
+
+@media (max-width: 380px) {
+  :root { --header-height: 60px; --stack-height: calc(32px + 60px); }
+  .hdr-inner { height: 60px; }
+  .hdr-logo-img { height: 38px; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   4. BREADCRUMB BAR — más compacta en móvil
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .breadcrumb-bar { padding-block: 0.5rem; font-size: 0.75rem; }
+  .breadcrumb__link,
+  .breadcrumb__current { font-size: 0.75rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   5. HERO — pages.css y HeroIndex
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: calc(var(--stack-height) + 2rem);
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 2.25rem;
+    padding-bottom: 2.5rem;
+  }
+  .hero-grid { gap: 2rem; }
+  .hero-sub { font-size: 0.9375rem; max-width: 100%; }
+  .hero-ctas { gap: 0.625rem; }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary,
+  .hero-ctas .btn-outline { width: 100%; justify-content: center; }
+  .hero-right p { font-size: 0.875rem; line-height: 1.65; }
+}
+
+
+/* HeroIndex (homepage) — overrides específicos */
+@media (max-width: 1024px) {
+  .hero-index { padding-top: 2.5rem !important; padding-bottom: 3rem !important; }
+  .hero-index__grid { gap: 2rem !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-index { padding-top: 2rem !important; padding-bottom: 2.5rem !important; }
+  .hero-index__h1 { font-size: clamp(2rem, 8.5vw, 2.625rem) !important; }
+  .hero-index__sub { font-size: 0.9375rem !important; max-width: 100% !important; margin-bottom: 1.75rem !important; }
+  .hero-badge { font-size: 0.75rem !important; padding: 0.25rem 0.75rem !important; margin-bottom: 1.25rem !important; }
+  .hero-index__ctas { width: 100%; }
+  .hero-index__ctas .hero-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.25rem !important;
+    font-size: 0.9375rem !important;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   6. MÉTRICAS / STATS BAR — orden 2x2 estable
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .metricas-section { padding: 1.5rem 0; }
+  .metricas-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .metrica-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.18); }
+  .metrica-item:nth-child(even) { border-right: none; }
+  .metrica-item:nth-child(1),
+  .metrica-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .metrica-item { padding: 1rem 0.75rem; }
+  .metrica-valor { font-size: 1.5rem; }
+  .metrica-label { font-size: 0.75rem; line-height: 1.35; }
+}
+
+@media (max-width: 380px) {
+  .metricas-grid { grid-template-columns: 1fr 1fr !important; }
+  .metrica-valor { font-size: 1.375rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   7. CARDS / GRIDS DE CATÁLOGO — aprovechar viewport
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .productos-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 520px) {
+  .catidx-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .ccard__content { padding: 1rem !important; }
+  .ccard__list { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .productos-grid { grid-template-columns: 1fr !important; gap: 0.875rem !important; }
+}
+
+/* Card visual: imagen un poco más alta en móvil para dar peso */
+@media (max-width: 520px) {
+  .ccard__header { aspect-ratio: 16 / 10; }
+}
+
+/* Sectores: 2 columnas siempre en móvil (más legible que 1) */
+@media (max-width: 480px) {
+  .sectores-grid { grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; }
+  .sector-card { padding: 1.25rem 1rem; gap: 0.75rem; }
+  .sector-card__icon { width: 40px; height: 40px; }
+  .sector-card__name { font-size: 0.9375rem; }
+  .sector-card__norma { font-size: 0.75rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   8. CAT-HEADER (productos/categoría) — apilado limpio
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cat-header {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-bottom: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .cat-header__img-wrap { aspect-ratio: 16 / 10; }
+  .cat-header__title { font-size: clamp(1.5rem, 6vw, 1.875rem); }
+  .cat-header__desc { font-size: 0.9375rem; max-width: 100%; }
+  .cat-header__ctas { gap: 0.875rem; flex-direction: row; }
+  .cat-header__ctas .btn-primary { width: 100%; justify-content: center; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   9. CTA FINAL — apilado vertical limpio + botones full
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cta-final { padding: 2.5rem 0; }
+  .cta-final__inner,
+  .cta-final-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .cta-final__btns,
+  .cta-btns {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.625rem;
+    justify-content: center;
+  }
+  .cta-final__btns > a,
+  .cta-btns > a,
+  .btn-cta-wa,
+  .btn-cta-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.25rem;
+  }
+  .cta-final__text p,
+  .cta-text p { font-size: 0.875rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   10. PROCESO (servicios / pasos)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .proceso-grid { grid-template-columns: 1fr !important; }
+  .paso-card {
+    padding: 1.5rem 1.25rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .paso-card:last-child { border-bottom: none; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   11. FORMULARIOS — touch-friendly e iOS sin zoom
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cotizacion__form { padding: 1.25rem !important; gap: 1rem !important; }
+  .form__row { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .cotizacion__title { font-size: clamp(1.5rem, 6vw, 1.875rem); }
+  .cotizacion__desc { font-size: 0.9375rem; }
+
+  /* Inputs: 16px+ evita zoom automático en iOS */
+  .form__input,
+  .form__select,
+  .form__textarea {
+    font-size: 16px !important;
+    padding: 0.875rem 0.875rem !important;
+    min-height: 48px;
+  }
+  .form__textarea { min-height: 96px; }
+
+  .form__radios {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  .form__radio {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    background: #fff;
+  }
+  .form__radio input { accent-color: var(--c-primary); }
+
+  .form__submit {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    min-height: 52px;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   12. SECTION HEADER DUO — ya tiene responsive base, mejorar móvil chico
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .titulo-duo {
+    gap: 1.5rem 0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .titulo-duo__title { font-size: clamp(1.625rem, 7vw, 2rem); }
+  .titulo-duo__desc,
+  .titulo-duo__body { font-size: 0.9375rem; line-height: 1.65; }
+  .titulo-duo__right { padding-top: 1.25rem; gap: 1rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   13. SECTION HEADER (single col)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .section-header { margin-bottom: 2rem; }
+  .section-header__title { font-size: clamp(1.5rem, 6vw, 1.875rem); }
+  .section-header__desc { font-size: 0.9375rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   14. TABLAS — scroll horizontal cómodo + indicación visual
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tabla-responsive {
+    margin-inline: -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .tabla-seo { font-size: 0.8125rem; }
+  .tabla-seo th,
+  .tabla-seo td { padding: 0.625rem 0.875rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   15. WHATSAPP FLOTANTE — no tapar contenido y hueco para CTA del header
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .wa-float {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    width: 52px;
+    height: 52px;
+    padding: 0 !important;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+  }
+  .wa-float svg { width: 28px; height: 28px; }
+  /* Padding extra al final del body para que el FAB no tape el último CTA */
+  body { padding-bottom: env(safe-area-inset-bottom, 0); }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   16. BOTONES GLOBALES — touch targets en móvil
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+    min-height: 44px;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   17. BLOG — listado y artículo
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .blog-post__h1 { font-size: clamp(1.625rem, 6vw, 2rem); }
+  .blog-post__content { font-size: 1rem; line-height: 1.75; }
+  .blog-post__content h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+  .blog-post__content h3 { font-size: 1.0625rem; margin: 1.5rem 0 0.5rem; }
+  .blog-post__cta { padding: 1.25rem; }
+  .blog-post__cta-btn { width: 100%; justify-content: center; }
+  .blog-related__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .blog-filters {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+  .blog-filters::-webkit-scrollbar { display: none; }
+  .blog-filter-btn { flex-shrink: 0; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   18. MEGA / DROP / MOBILE NAV — pulir scroll y safe areas
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hdr-mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .mob-item__trigger,
+  .mob-direct {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+    min-height: 48px;
+  }
+  .mob-item__link { min-height: 40px; display: flex; align-items: center; }
+  .mob-cta { min-height: 52px; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   19. INLINE-CTA (L4) — ya stack-ea pero asegurar botón full
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .inline-cta { padding: 1rem; gap: 0.875rem; }
+  .inline-cta__text { font-size: 0.875rem; }
+  .inline-cta .btn-primary,
+  .inline-cta .btn-outline { width: 100%; justify-content: center; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   20. COTIZACIÓN — trust list compacta
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cotizacion__trust {
+    gap: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    font-size: 0.8125rem;
+  }
+  .cotizacion__contact { margin-top: 0.5rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   21. CARD CTA WHATSAPP (.ccard--cta-wa) — más compacta
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .ccard--cta-wa__inner { padding: 2rem 1.25rem; }
+  .ccard--cta-wa__icon { width: 48px; height: 48px; margin-bottom: 1rem; }
+  .ccard--cta-wa__title { font-size: 1rem; }
+  .ccard--cta-wa__sub { font-size: 0.8125rem; margin-bottom: 1.25rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   22. UTILIDADES — viewport y overflow protection
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Evitar overflow horizontal en dispositivos con notch/punch-hole */
+  img, picture, video, svg, iframe { max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+  /* Reducir border-radius en cards muy pegados al borde para que no parezcan flotando */
+  .ccard,
+  .blog-card-pro,
+  .blogcard,
+  .sector-card { border-radius: 8px; }
+
+  /* Disclaimer pies de sección: más airosos */
+  .form__footer-note { font-size: 0.75rem; line-height: 1.5; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   23. SAFE-AREAS iOS — notch + bottom bar
+   ────────────────────────────────────────────────────────────────── */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(var(--container-px, 1rem), env(safe-area-inset-left));
+    padding-right: max(var(--container-px, 1rem), env(safe-area-inset-right));
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   24. SECCIONES "DUO" (CoberturaIndex / ServiciosIndex / TrustIndex)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cobertura-index__inner,
+  .servicios-index__inner,
+  .trust-index__inner,
+  .seleccion-index__inner {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .estado-card { padding: 0.875rem 1rem; min-height: 52px; }
+  .estado-card__nombre { font-size: 0.9375rem; }
+  .cob-badges { gap: 0.5rem; }
+  .cob-badge { font-size: 0.8125rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   25. ACCESIBILIDAD — outline más suave en touch (no tap-highlight feo)
+   ────────────────────────────────────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  a, button, .btn, .btn-primary, .btn-secondary, .btn-outline,
+  .hero-btn, .btn-cta-wa, .btn-cta-ghost {
+    -webkit-tap-highlight-color: rgba(196, 30, 36, 0.18);
+  }
+}

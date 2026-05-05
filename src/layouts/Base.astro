@@ -206,10 +206,34 @@ const ogImageAbs = ogImage
 
   a:hover { color: var(--c-primary-dark); }
 
+  /* ── Mobile-first overrides para tokens globales ──────────────── */
+  @media (max-width: 1024px) {
+    :root {
+      --header-height: 72px;
+      --stack-height: calc(var(--topbar-height) + 72px);
+      --section-py: 4rem;
+    }
+  }
+
   @media (max-width: 640px) {
     :root {
       --topbar-height: 32px;
-      --stack-height: calc(32px + var(--header-height));
+      --header-height: 64px;
+      --stack-height: calc(32px + 64px);
+      --section-py: 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --section-py: 2.5rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    :root {
+      --header-height: 60px;
+      --stack-height: calc(32px + 60px);
     }
   }
 

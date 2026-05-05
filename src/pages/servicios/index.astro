@@ -6,21 +6,21 @@
  * Mismo patrón que productos.astro — cada sección es un componente autónomo.
  */
 
-import Base                from '../layouts/Base.astro'
-import Breadcrumb          from '../components/ui/Breadcrumb.astro'
-import CtaBar              from '../components/CtaBar.astro'
+import Base                from '../../layouts/Base.astro'
+import Breadcrumb          from '../../components/ui/Breadcrumb.astro'
+import CtaBar              from '../../components/CtaBar.astro'
 
 // ── Secciones de Servicios ──────────────────────────
-import HeroServicios       from '../components/sections/HeroServicios.astro'
-import CatalogoServicios   from '../components/sections/CatalogoServicios.astro'
-import SeleccionIndex      from '../components/sections/SeleccionIndex.astro'
-import NormasIndex         from '../components/sections/NormasIndex.astro'
-import ProcesoIndex        from '../components/sections/ProcesoIndex.astro'
-import FaqCotizacionIndex  from '../components/sections/FaqCotizacionIndex.astro'
-import CTAFinalIndex       from '../components/sections/CTAFinalIndex.astro'
+import HeroServicios       from '../../components/sections/HeroServicios.astro'
+import CatalogoServicios   from '../../components/sections/CatalogoServicios.astro'
+import SeleccionIndex      from '../../components/sections/SeleccionIndex.astro'
+import NormasIndex         from '../../components/sections/NormasIndex.astro'
+import ProcesoIndex        from '../../components/sections/ProcesoIndex.astro'
+import FaqCotizacionIndex  from '../../components/sections/FaqCotizacionIndex.astro'
+import CTAFinalIndex       from '../../components/sections/CTAFinalIndex.astro'
 
 // ── Datos para JSON-LD ──────────────────────────────
-import { SITE, CONTACT } from '../config/site'
+import { SITE, CONTACT } from '../../config/site'
 
 const siteUrl   = SITE.url
 const pageUrl   = `${siteUrl}/servicios/`
@@ -55,14 +55,14 @@ const schemaOfferCatalog = {
   "url": pageUrl,
   "numberOfItems": 8,
   "itemListElement": [
-    { "@type": "OfferCatalog", "name": "Venta de Equipos Contra Incendios certificados NOM y NFPA", "url": `${siteUrl}/productos/` },
-    { "@type": "OfferCatalog", "name": "Recarga de Extintores NOM-154-SCFI", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Mantenimiento Preventivo con póliza anual", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Instalación de Sistemas Contra Incendio NFPA 13/72", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Prueba Hidrostática NOM-154-SCFI", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Asesoría Técnica y Dictamen sin costo", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Capacitación y Formación de Brigadas DC-3 STPS", "url": pageUrl },
-    { "@type": "OfferCatalog", "name": "Señalización e Instalación NOM-003-SEGOB", "url": `${siteUrl}/senalamientos/` },
+    { "@type": "OfferCatalog", "name": "Venta de Equipos Contra Incendios certificados NOM y NFPA", "url": `${siteUrl}/servicios/venta-equipos/` },
+    { "@type": "OfferCatalog", "name": "Recarga de Extintores NOM-154-SCFI",                       "url": `${siteUrl}/servicios/recarga-extintores/` },
+    { "@type": "OfferCatalog", "name": "Mantenimiento Preventivo con póliza anual",                "url": `${siteUrl}/servicios/mantenimiento-preventivo/` },
+    { "@type": "OfferCatalog", "name": "Instalación de Sistemas Contra Incendio NFPA 13/72",       "url": `${siteUrl}/servicios/instalacion-sistemas/` },
+    { "@type": "OfferCatalog", "name": "Prueba Hidrostática NOM-154-SCFI",                         "url": `${siteUrl}/servicios/prueba-hidrostatica/` },
+    { "@type": "OfferCatalog", "name": "Asesoría Técnica y Dictamen sin costo",                    "url": `${siteUrl}/servicios/asesoria-tecnica/` },
+    { "@type": "OfferCatalog", "name": "Capacitación y Formación de Brigadas DC-3 STPS",           "url": `${siteUrl}/servicios/capacitacion/` },
+    { "@type": "OfferCatalog", "name": "Señalización e Instalación NOM-003-SEGOB",                 "url": `${siteUrl}/servicios/senalizacion/` },
   ]
 }
 

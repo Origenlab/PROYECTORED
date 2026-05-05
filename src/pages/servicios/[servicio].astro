@@ -1,0 +1,336 @@
+---
+// src/pages/servicios/[servicio].astro
+// Páginas L2 individuales por servicio
+// Genera: /servicios/venta-equipos/, /servicios/recarga-extintores/,
+//         /servicios/mantenimiento-preventivo/, /servicios/instalacion-sistemas/,
+//         /servicios/prueba-hidrostatica/, /servicios/asesoria-tecnica/,
+//         /servicios/capacitacion/, /servicios/senalizacion/
+
+import CategoryLayout from '../../layouts/CategoryLayout.astro'
+import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
+import Img from '../../components/ui/Img.astro'
+import { SITE, waUrl } from '../../config/site'
+import { SERVICIO_PAGES, SERVICIO_PRODUCTS } from '../../data/servicios'
+import '../../styles/pages.css'
+
+// ── Rutas estáticas ──────────────────────────────────────────
+export function getStaticPaths() {
+  return SERVICIO_PRODUCTS.map((s) => ({
+    params: { servicio: s.slug },
+    props: { slug: s.slug },
+  }))
+}
+
+const { servicio } = Astro.params
+const data = SERVICIO_PAGES[servicio!]
+
+if (!data) {
+  return Astro.redirect('/servicios/')
+}
+
+const PAGE_WA = waUrl(data.waMessage)
+const pageUrl = `${SITE.url}/servicios/${servicio}/`
+
+// ── Schemas JSON-LD ──────────────────────────────────────────
+const schemaBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio',    item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${SITE.url}/servicios/` },
+    { '@type': 'ListItem', position: 3, name: data.heroAccent || data.heroTitle, item: pageUrl },
+  ],
+}
+
+const schemaService = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  url: pageUrl,
+  provider: {
+    '@type': 'LocalBusiness',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Ciudad de México' },
+    { '@type': 'AdministrativeArea', name: 'Estado de México' },
+  ],
+}
+
+const schemaFAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: data.faqItems.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+}
+
+// Otros servicios (relacionados)
+const relatedServicios = SERVICIO_PRODUCTS.filter((s) => s.slug !== servicio).slice(0, 6)
+---
+
+<CategoryLayout
+  title={data.metaTitle}
+  description={data.metaDesc}
+  canonical={pageUrl}
+  badge={data.badge}
+  heroTitle={data.heroTitle}
+  heroAccent={data.heroAccent}
+  heroSubtitle={data.heroSubtitle}
+  heroDescRight={[data.heroBodyPara]}
+  cta1={{ text: 'Cotizar por WhatsApp', href: PAGE_WA, variant: 'primary' }}
+  cta2={{ text: 'Ver todos los servicios', href: '/servicios/', variant: 'outline' }}
+  breadcrumb={[
+    { label: 'Inicio',    href: '/' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: data.heroAccent || data.heroTitle },
+  ]}
+  faqItems={data.faqItems}
+  ctaTitle={data.ctaTitle}
+  ctaBody={data.ctaBody}
+  ctaCTA1Text="Cotizar por WhatsApp"
+  ctaCTA1Href={PAGE_WA}
+  ctaCTA2Text="Ver más servicios"
+  ctaCTA2Href="/servicios/"
+>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 1 — Detalles / qué incluye
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" aria-labelledby="srv-detalles-title">
+    <div class="container">
+      <SectionHeaderDuo
+        id="srv-detalles-title"
+        eyebrow={data.detallesEyebrow}
+        titleLine1={data.detallesTitleLine1}
+        titleLine2={data.detallesTitleLine2}
+        desc={data.detallesDesc}
+        bodyPara1={data.heroBodyPara}
+      />
+
+      <div class="catidx-grid">
+        {data.detalles.map((d, di) => (
+          <article class="ccard" aria-label={d.nombre}>
+            <div class="ccard__header">
+              <Img
+                src={data.img}
+                alt={d.nombre}
+                loading={di < 4 ? 'eager' : 'lazy'}
+                fetchpriority={di === 0 ? 'high' : undefined}
+                width={640}
+                height={360}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+              />
+              <div class="ccard__header-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="ccard__content">
+              <h3 class="ccard__title">{d.nombre}</h3>
+              <p class="ccard__desc">{d.sub}</p>
+
+              <a
+                href={d.href || waUrl(`Hola, necesito información sobre ${d.nombre}`)}
+                class="ccard__cta"
+                target={d.href ? undefined : '_blank'}
+                rel={d.href ? undefined : 'noopener noreferrer'}
+              >
+                {d.href ? 'Ver detalles' : 'Cotizar'}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+
+        <article class="ccard ccard--cta-wa" aria-label={`Cotizar ${data.heroTitle} ${data.heroAccent}`}>
+          <a
+            href={PAGE_WA}
+            class="ccard--cta-wa__inner"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="ccard--cta-wa__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <p class="ccard--cta-wa__title">¿Necesitas este servicio?</p>
+            <p class="ccard--cta-wa__sub">Cotiza por WhatsApp — respondemos en menos de 24 horas</p>
+            <span class="ccard--cta-wa__btn">Escribir al WhatsApp →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 2 — Normas que aplican
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--gray" aria-labelledby="srv-normas-title">
+    <div class="container">
+      <SectionHeaderDuo
+        id="srv-normas-title"
+        eyebrow={data.normasEyebrow}
+        titleLine1={data.normasTitleLine1}
+        titleLine2={data.normasTitleLine2}
+        desc={data.normasDesc}
+        bodyPara1="La documentación que entregamos cumple con cada una de estas normas y es aceptada por Protección Civil, STPS y aseguradoras sin observaciones."
+      />
+
+      <ul class="srv-normas-grid" role="list">
+        {data.normas.map((n) => (
+          <li class="srv-norma">
+            <span class="srv-norma__codigo">{n.codigo}</span>
+            <h3 class="srv-norma__nombre">{n.nombre}</h3>
+            <p class="srv-norma__aplica">{n.aplica}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 3 — Otros servicios
+  ══════════════════════════════════════ -->
+  <section class="cat-section cat-section--white" aria-labelledby="srv-otros-title">
+    <div class="container">
+      <SectionHeaderDuo
+        id="srv-otros-title"
+        eyebrow="Otros servicios"
+        titleLine1="También"
+        titleLine2="te puede interesar"
+        desc="Proyecto Red ofrece soluciones integrales — combina servicios para optimizar tu presupuesto."
+        bodyPara1="Como proveedor integral, podemos coordinar varios servicios en una misma visita técnica para reducir costos logísticos y simplificar tu gestión administrativa."
+      />
+
+      <div class="srv-otros-grid">
+        {relatedServicios.map((r) => (
+          <a href={`/servicios/${r.slug}/`} class="srv-otros-card">
+            <span class="srv-otros-card__badge">{r.badge}</span>
+            <h3 class="srv-otros-card__title">{r.label}</h3>
+            <span class="srv-otros-card__cta">
+              Ver servicio
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JSON-LD ─────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaService)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+
+</CategoryLayout>
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   ESTILOS ESPECÍFICOS — página de servicio L2
+═══════════════════════════════════════════════════════ */
+
+/* — Grid de normas — */
+.srv-normas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.srv-norma {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.25rem 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.srv-norma__codigo {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  background: var(--c-primary-light);
+  border: 1px solid rgba(var(--c-primary-rgb, 220,38,38), 0.18);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.srv-norma__nombre {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  line-height: 1.35;
+}
+
+.srv-norma__aplica {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+
+/* — Grid otros servicios — */
+.srv-otros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.875rem;
+  margin-top: 2rem;
+}
+
+.srv-otros-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.125rem 1.125rem 1rem;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.srv-otros-card:hover {
+  border-color: var(--c-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.srv-otros-card__badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  background: var(--c-primary-light);
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  width: fit-content;
+  letter-spacing: 0.03em;
+}
+
+.srv-otros-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  line-height: 1.3;
+}
+
+.srv-otros-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-primary);
+}
+</style>

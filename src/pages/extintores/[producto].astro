@@ -268,7 +268,7 @@ const getVariantesBodyPara = () => {
 
       <div class="l4-svc-grid" role="list" aria-label="Servicios disponibles para extintores">
         {RELATED_SERVICES.map((svc, idx) => (
-          <a href={`/servicios/#${svc.id}`} class="srv-mini" role="listitem" aria-label={svc.label}>
+          <a href={`/servicios/${svc.id}/`} class="srv-mini" role="listitem" aria-label={svc.label}>
             <span class="srv-mini__num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
             <div class="srv-mini__body">
               <strong class="srv-mini__titulo">{svc.label}</strong>

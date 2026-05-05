@@ -7,6 +7,8 @@
 @import './components.css';
 /* FAQ + Cotización (FaqCotizacionIndex) */
 @import './faq-cotizacion-index.css';
+/* Overrides responsive profesionales (mobile-first) — DEBE ir al final */
+@import './mobile.css';
 
 /* ---- Design Tokens ---------------------------------------- */
 :root {

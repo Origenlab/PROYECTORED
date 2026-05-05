@@ -57,7 +57,7 @@ export const CONTACT = {
   phone: '56 2759 6245',
   phoneRaw: '5627596245',
   whatsapp: '525627596245',
-  email: 'info@proyectored.com.mx',
+  email: 'ventas@generalfiremexico.com',
   // Dirección principal — se mantiene para compat. Para mostrar todas las
   // sucursales (matriz + Edomex) usar BRANCHES.
   address: 'Paseo de la Reforma 26, Col. Juárez, Cuauhtémoc, CDMX 06600',
