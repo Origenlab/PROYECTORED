@@ -5,6 +5,7 @@
 ══════════════════════════════════════════════════════ */
 
 /* ── HERO ─────────────────────────────────────────── */
+/* (Los overrides responsive viven al FINAL del archivo en mobile.css) */
 .hero {
   padding-top: calc(var(--stack-height, 124px) + 3.5rem);
   padding-bottom: 4rem;
@@ -3046,3 +3047,9 @@ h1.hero-title {
   .faq-bomberos-grid { grid-template-columns: 1fr; gap: 3rem; }
   .cot-card { position: static; }
 }
+
+/* Los overrides responsive globales viven en mobile.css
+   y se cargan vía global.css → Base.astro. mobile.css usa
+   !important en las reglas críticas para ganar la cascada
+   incluso cuando esta hoja se carga después por página. */
+

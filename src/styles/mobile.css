@@ -42,18 +42,28 @@
 
 @media (max-width: 768px) {
   :root { --section-py: 3rem; }
-  .section { padding-block: 3rem; }
-  .cat-section { padding: 3rem 0; }
-  .categorias-index { padding: 3rem 0; }
-  .proceso-section { padding: 3rem 0; }
+  .section { padding-block: 3rem !important; }
+  .cat-section,
+  .categorias-index,
+  .proceso-section,
+  .normas-ext,
+  .trust-index,
+  .faq-bomberos,
+  .faq-cot-index { padding: 3rem 0 !important; }
+  .catalogo-intro { padding-top: 3rem !important; }
 }
 
 @media (max-width: 480px) {
   :root { --section-py: 2.5rem; }
-  .section { padding-block: 2.5rem; }
-  .cat-section { padding: 2.5rem 0; }
-  .categorias-index { padding: 2.5rem 0; }
-  .proceso-section { padding: 2.5rem 0; }
+  .section { padding-block: 2.5rem !important; }
+  .cat-section,
+  .categorias-index,
+  .proceso-section,
+  .normas-ext,
+  .trust-index,
+  .faq-bomberos,
+  .faq-cot-index { padding: 2.5rem 0 !important; }
+  .catalogo-intro { padding-top: 2.5rem !important; }
 }
 
 
@@ -117,27 +127,31 @@
 
 
 /* ──────────────────────────────────────────────────────────────────
-   5. HERO — pages.css y HeroIndex
+   5. HERO genérico (.hero en pages.css)
    ────────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .hero {
-    padding-top: calc(var(--stack-height) + 2rem);
-    padding-bottom: 3rem;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
+  .hero-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
 }
 
 @media (max-width: 640px) {
   .hero {
-    padding-top: 2.25rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.5rem !important;
   }
-  .hero-grid { gap: 2rem; }
-  .hero-sub { font-size: 0.9375rem; max-width: 100%; }
-  .hero-ctas { gap: 0.625rem; }
+  .hero-grid { gap: 1.75rem !important; }
+  .hero h1, h1.hero-title { font-size: clamp(1.875rem, 7.5vw, 2.5rem) !important; line-height: 1.1 !important; }
+  .hero-sub { font-size: 0.9375rem !important; max-width: 100% !important; line-height: 1.65 !important; }
+  .hero-ctas { gap: 0.625rem !important; flex-direction: column !important; width: 100%; }
   .hero-ctas .btn-primary,
   .hero-ctas .btn-secondary,
-  .hero-ctas .btn-outline { width: 100%; justify-content: center; }
-  .hero-right p { font-size: 0.875rem; line-height: 1.65; }
+  .hero-ctas .btn-outline,
+  .hero-ctas > a { width: 100% !important; justify-content: center !important; min-height: 48px; }
+  .hero-right p { font-size: 0.875rem !important; line-height: 1.7 !important; }
+  .hero-badge { font-size: 0.75rem !important; padding: 0.25rem 0.75rem !important; margin-bottom: 1.25rem !important; }
 }
 
 
@@ -158,6 +172,196 @@
     justify-content: center;
     padding: 0.875rem 1.25rem !important;
     font-size: 0.9375rem !important;
+  }
+}
+
+/* Heroes L2/L3 (todos los hero-{slug}: ext, sen, gab, man, sis, pa, es,
+   bomb, productos, servicios, empresas, contacto, blog) — mismo patrón */
+@media (max-width: 1024px) {
+  .hero-bomb,
+  .hero-ext,
+  .hero-sen,
+  .hero-gab,
+  .hero-man,
+  .hero-sis,
+  .hero-pa,
+  .hero-es,
+  .hero-productos,
+  .hero-servicios,
+  .hero-empresas,
+  .hero-contacto,
+  .hero-blog {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .hero-bomb__grid,
+  .hero-ext__grid,
+  .hero-sen__grid,
+  .hero-gab__grid,
+  .hero-man__grid,
+  .hero-sis__grid,
+  .hero-pa__grid,
+  .hero-es__grid,
+  .hero-productos__grid,
+  .hero-servicios__grid,
+  .hero-empresas__grid,
+  .hero-contacto__grid,
+  .hero-blog__grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .hero-bomb__glow,
+  .hero-ext__glow,
+  .hero-sen__glow,
+  .hero-gab__glow,
+  .hero-man__glow,
+  .hero-sis__glow,
+  .hero-pa__glow,
+  .hero-es__glow {
+    width: 380px !important;
+    height: 380px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-bomb,
+  .hero-ext,
+  .hero-sen,
+  .hero-gab,
+  .hero-man,
+  .hero-sis,
+  .hero-pa,
+  .hero-es,
+  .hero-productos,
+  .hero-servicios,
+  .hero-empresas,
+  .hero-contacto,
+  .hero-blog {
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .hero-bomb__h1,
+  .hero-ext__h1,
+  .hero-sen__h1,
+  .hero-gab__h1,
+  .hero-man__h1,
+  .hero-sis__h1,
+  .hero-pa__h1,
+  .hero-es__h1,
+  .hero-productos__h1,
+  .hero-servicios__h1,
+  .hero-empresas__h1,
+  .hero-contacto__h1,
+  .hero-blog__h1 {
+    font-size: clamp(1.875rem, 7.5vw, 2.5rem) !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero-bomb__sub,
+  .hero-ext__sub,
+  .hero-sen__sub,
+  .hero-gab__sub,
+  .hero-man__sub,
+  .hero-sis__sub,
+  .hero-pa__sub,
+  .hero-es__sub,
+  .hero-productos__sub,
+  .hero-servicios__sub,
+  .hero-empresas__sub,
+  .hero-contacto__sub,
+  .hero-blog__sub {
+    font-size: 0.9375rem !important;
+    max-width: 100% !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-bomb__badge,
+  .hero-ext__badge,
+  .hero-sen__badge,
+  .hero-gab__badge,
+  .hero-man__badge,
+  .hero-sis__badge,
+  .hero-pa__badge,
+  .hero-es__badge,
+  .hero-productos__badge,
+  .hero-servicios__badge,
+  .hero-empresas__badge,
+  .hero-contacto__badge,
+  .hero-blog__badge {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .hero-bomb__right p,
+  .hero-ext__right p,
+  .hero-sen__right p,
+  .hero-gab__right p,
+  .hero-man__right p,
+  .hero-sis__right p,
+  .hero-pa__right p,
+  .hero-es__right p,
+  .hero-productos__right p,
+  .hero-servicios__right p,
+  .hero-empresas__right p,
+  .hero-contacto__right p,
+  .hero-blog__right p {
+    font-size: 0.875rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .hero-bomb__glow,
+  .hero-ext__glow,
+  .hero-sen__glow,
+  .hero-gab__glow,
+  .hero-man__glow,
+  .hero-sis__glow,
+  .hero-pa__glow,
+  .hero-es__glow {
+    width: 280px !important;
+    height: 280px !important;
+    opacity: 0.6 !important;
+  }
+
+  /* CTAs dentro de cualquier hero de L2/L3 → stack + full width */
+  .hero-bomb__ctas,
+  .hero-ext__ctas,
+  .hero-sen__ctas,
+  .hero-gab__ctas,
+  .hero-man__ctas,
+  .hero-sis__ctas,
+  .hero-pa__ctas,
+  .hero-es__ctas,
+  .hero-productos__ctas,
+  .hero-servicios__ctas,
+  .hero-empresas__ctas,
+  .hero-contacto__ctas,
+  .hero-blog__ctas {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 0.625rem !important;
+  }
+
+  .hero-bomb__ctas > a,
+  .hero-ext__ctas > a,
+  .hero-sen__ctas > a,
+  .hero-gab__ctas > a,
+  .hero-man__ctas > a,
+  .hero-sis__ctas > a,
+  .hero-pa__ctas > a,
+  .hero-es__ctas > a,
+  .hero-productos__ctas > a,
+  .hero-servicios__ctas > a,
+  .hero-empresas__ctas > a,
+  .hero-contacto__ctas > a,
+  .hero-blog__ctas > a {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.875rem 1.25rem !important;
+    font-size: 0.9375rem !important;
+    min-height: 48px;
   }
 }
 
@@ -237,26 +441,40 @@
    9. CTA FINAL — apilado vertical limpio + botones full
    ────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .cta-final { padding: 2.5rem 0; }
+  .cta-final,
+  .cta-final-index { padding: 2.5rem 0 !important; }
+
   .cta-final__inner,
-  .cta-final-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .cta-final-inner,
+  .cta-final-index__inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+
   .cta-final__btns,
-  .cta-btns {
+  .cta-btns,
+  .cta-final-index__btns {
     width: 100%;
     flex-direction: column;
     gap: 0.625rem;
     justify-content: center;
   }
+
   .cta-final__btns > a,
   .cta-btns > a,
+  .cta-final-index__btns > a,
   .btn-cta-wa,
   .btn-cta-ghost {
-    width: 100%;
-    justify-content: center;
-    padding: 0.875rem 1.25rem;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.875rem 1.25rem !important;
+    min-height: 48px;
   }
+
   .cta-final__text p,
-  .cta-text p { font-size: 0.875rem; }
+  .cta-text p,
+  .cta-final-index__text p { font-size: 0.875rem; max-width: 100% !important; }
 }
 
 
@@ -501,6 +719,84 @@
     padding-left: max(var(--container-px, 1rem), env(safe-area-inset-left));
     padding-right: max(var(--container-px, 1rem), env(safe-area-inset-right));
   }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   24A. COT-CARD FORM (FAQ + Cotización lateral)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cot-card { position: static !important; }
+}
+
+@media (max-width: 640px) {
+  .faq-cot-index__grid,
+  .faq-bomberos-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .cot-card__head { padding: 1.25rem !important; }
+  .cot-card__head h3 { font-size: 1.125rem !important; }
+  .cot-card__body { padding: 1.25rem !important; gap: 0.875rem !important; }
+  .cot-card__footer { padding: 1rem 1.25rem !important; }
+
+  /* iOS no-zoom: inputs ≥ 16px */
+  .cot-field input,
+  .cot-field select,
+  .cot-field textarea {
+    font-size: 16px !important;
+    padding: 0.75rem 0.875rem !important;
+    min-height: 48px;
+  }
+  .cot-field textarea { min-height: 96px; }
+
+  .cot-btn {
+    padding: 1rem 1.25rem !important;
+    font-size: 1rem !important;
+    min-height: 52px;
+  }
+
+  .faq-item summary {
+    padding: 1rem 1.125rem !important;
+    font-size: 0.9375rem !important;
+  }
+  .faq-answer { padding: 0 1.125rem 1.25rem !important; }
+  .faq-answer p { font-size: 0.875rem !important; line-height: 1.7 !important; }
+  .faq-col__top h3 { font-size: 1.125rem !important; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   24B. NORMAS / GUIA / TRUST grids — pulido <480 (1 col, padding ajustado)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .normas-grid { gap: 0.875rem !important; }
+  .norma-card { padding: 1.25rem !important; }
+  .norma-card__nombre { font-size: 0.9375rem; }
+  .normas-nota { padding: 1rem !important; gap: 0.75rem !important; }
+  .normas-nota p { font-size: 0.8125rem; }
+
+  .guia-grid { gap: 0.875rem !important; }
+  .guia-card__body { padding: 1rem 1.125rem 1.125rem !important; }
+
+  .trust-index__grid { gap: 1.25rem !important; }
+  .trust-icon { width: 40px; height: 40px; }
+  .trust-item__titulo { font-size: 0.9375rem; }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   24C. FOOTER — refinos finales (≤640 ya stack-ea, falta pulir <480)
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .footer__body { padding: 2rem 0 1.5rem !important; }
+  .footer__cert-band { padding: 0.875rem 0; }
+  .footer__cert-list { gap: 0.375rem; }
+  .footer__cert-item { font-size: 0.625rem; padding: 2px 6px; }
+  .footer__contact-row--cta { padding: 0.75rem 0.875rem; min-height: 56px; }
+  .footer__nav-link { padding: 0.5rem 0; min-height: 36px; }
+  .footer__col-heading--mt { margin-top: 1.5rem; }
 }
 
 
