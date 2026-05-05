@@ -117,7 +117,7 @@ const relatedServicios = SERVICIO_PRODUCTS.filter((s) => s.slug !== servicio).sl
           <article class="ccard" aria-label={d.nombre}>
             <div class="ccard__header">
               <Img
-                src={data.img}
+                src={d.img || data.img}
                 alt={d.nombre}
                 loading={di < 4 ? 'eager' : 'lazy'}
                 fetchpriority={di === 0 ? 'high' : undefined}
