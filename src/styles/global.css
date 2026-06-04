@@ -85,9 +85,9 @@
   --sp-24:  6rem;      /* 96px */
   --sp-32:  8rem;      /* 128px */
 
-  /* Layout */
-  --container-max:   1400px;
-  --container-px:    1.5rem;
+  /* Layout — ancho fluido pro (cap amplio + padding lateral en vw) */
+  --container-max:   1760px;
+  --container-px:    clamp(1.25rem, 3.5vw, 3.5rem);
   --section-py:      clamp(3rem, 6vw, 5rem);
   --section-py-sm:   clamp(2rem, 4vw, 3rem);
 

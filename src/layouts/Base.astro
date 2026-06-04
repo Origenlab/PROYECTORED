@@ -163,7 +163,10 @@ const ogImageAbs = ogImage
     --topbar-height: 36px;
     --header-height: 88px;
     --stack-height: calc(var(--topbar-height) + var(--header-height));
-    --max-w: 1400px;
+    /* Ancho fluido pro — aprovecha monitores anchos sin romper legibilidad.
+       Cap amplio + padding lateral en vw (escala con el viewport). */
+    --max-w: 1760px;
+    --container-px: clamp(1.25rem, 3.5vw, 3.5rem);
     --section-py: 5rem;
 
     /* Sombras tintadas */
@@ -241,7 +244,7 @@ const ogImageAbs = ogImage
     width: 100%;
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding-inline: var(--container-px);
   }
 
   /* Botones globales */
