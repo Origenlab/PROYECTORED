@@ -13,6 +13,7 @@
 export interface VarianteBombero {
   nombre: string
   badge?: string
+  img?: string         // Imagen propia de la variante (cae a data.img si falta)
   desc: string
   specs: string        // Línea monoespaciada: material · norma · tallas
   waText: string       // Mensaje pre-llenado para WhatsApp
@@ -112,6 +113,7 @@ variantesEyebrow:    'Opciones disponibles',
       {
         nombre: 'Traje Nomex® III — Dotación municipal',
         badge:  'Nomex III · NFPA 1971',
+        img:    '/imagenes/equipo-bomberos/traje-bombero-nomex-iii-estructural-nfpa-1971.avif',
         desc:   'Chaquetón + pantalón de Nomex® III con barrera de humedad Crosstech® y forro térmico Caldura®. La opción más utilizada en cuerpos municipales de bomberos por su relación precio/desempeño. Disponible en tallas S a 4XL.',
         specs:  'Exterior: Nomex® III · Barrera: Crosstech® · Tallas: S – 4XL',
         waText: 'Hola, necesito cotizar trajes estructurales NFPA 1971 sistema Nomex III para mi cuerpo o brigada. ¿Pueden asesorarme?',
@@ -119,6 +121,7 @@ variantesEyebrow:    'Opciones disponibles',
       {
         nombre: 'Traje PBI Matrix — Alta performance',
         badge:  'PBI Matrix · Máxima protección',
+        img:    '/imagenes/equipo-bomberos/traje-bombero-pbi-matrix-alta-proteccion-nfpa-1971.avif',
         desc:   'Chaquetón + pantalón de PBI Matrix con barrera Gore-Tex® PTB y forro Aralite®. Mayor resistencia al calor y a la llama que el Nomex III. El estándar en cuerpos de alta demanda operativa y brigadas industriales de alto riesgo.',
         specs:  'Exterior: PBI Matrix · Barrera: Gore-Tex® PTB · Tallas: S – 4XL',
         waText: 'Hola, necesito cotizar trajes estructurales NFPA 1971 sistema PBI Matrix para mi cuerpo o brigada. ¿Pueden asesorarme?',
@@ -126,6 +129,7 @@ variantesEyebrow:    'Opciones disponibles',
       {
         nombre: 'Dotación completa — Traje + Casco + Guantes + Capucha',
         badge:  'EPP completo · 5 elementos',
+        img:    '/imagenes/equipo-bomberos/traje-bombero-dotacion-completa-epp-nfpa-1971.avif',
         desc:   'Traje estructural NFPA 1971 + casco estructural + guantes de combate + capucha Nomex® + PASS individual. Dotación completa para incorporación de personal nuevo o actualización de certificación. Documentación por elemento incluida.',
         specs:  '5 elementos · Certificados NFPA 1971/1851 · Doc. de origen',
         waText: 'Hola, necesito cotizar una dotación completa de EPP (traje + casco + guantes + capucha) NFPA 1971. ¿Pueden asesorarme?',

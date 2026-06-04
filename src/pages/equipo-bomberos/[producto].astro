@@ -106,13 +106,15 @@ const getVariantesDesc = (): string => {
         />
 
         <div class="catidx-grid" role="list" aria-label={`Opciones de ${data.heroAccent}`}>
-          {data.variantes?.map((v, i) => (
+          {data.variantes?.map((v, i) => {
+            const cardImg = v.img ?? data.img
+            return (
             <article class="ccard" role="listitem" aria-label={v.nombre}>
-              <div class:list={['ccard__header', !data.img && 'ccard__header--placeholder']}>
-                {data.img ? (
+              <div class:list={['ccard__header', !cardImg && 'ccard__header--placeholder']}>
+                {cardImg ? (
                   <Img
-                    src={data.img}
-                    alt={v.nombre}
+                    src={cardImg}
+                    alt={`${v.nombre} — traje estructural de bombero certificado NFPA 1971`}
                     loading={i < 3 ? 'eager' : 'lazy'}
                     fetchpriority={i === 0 ? 'high' : undefined}
                     width={640}
@@ -129,7 +131,7 @@ const getVariantesDesc = (): string => {
                     <span class="ccard__placeholder-label">Imagen próximamente</span>
                   </div>
                 )}
-                {data.img && <div class="ccard__header-overlay" aria-hidden="true"></div>}
+                {cardImg && <div class="ccard__header-overlay" aria-hidden="true"></div>}
                 {v.badge && <span class="ccard__badge">{v.badge}</span>}
               </div>
               <div class="ccard__content">
@@ -158,7 +160,7 @@ const getVariantesDesc = (): string => {
                 </a>
               </div>
             </article>
-          ))}
+          )})}
 
           <!-- CTA Card WhatsApp — siempre última tarjeta -->
           <article class="ccard ccard--cta-wa" aria-label="Asesoría para elegir el modelo correcto">
