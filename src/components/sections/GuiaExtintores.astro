@@ -146,10 +146,10 @@ const escenarios = [
     position: relative;
   }
 
-  /* ── GRID ── */
+  /* ── GRID auto-fit (columnas según ancho) ── */
   .guia-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
     margin-bottom: 2.5rem;
   }
@@ -363,14 +363,7 @@ const escenarios = [
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .guia-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 640px) {
-    .guia-grid { grid-template-columns: 1fr; }
-  }
-
+  /* .guia-grid usa auto-fit: columnas automáticas por ancho. */
   @media (max-width: 768px) {
     .guia-cta-bar {
       flex-direction: column;

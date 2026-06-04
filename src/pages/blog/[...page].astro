@@ -417,8 +417,8 @@ const breadcrumbs = [
   .blog-section-header__left h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--c-ink); margin-bottom: 0.625rem; }
   .blog-section-header__left p { color: var(--c-muted); font-size: 0.9375rem; line-height: 1.6; }
 
-  /* ── GRID DE ARTÍCULOS ─────────────────────────────── */
-  .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  /* ── GRID DE ARTÍCULOS (auto-fit por ancho) ────────── */
+  .productos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
 
   .prod-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: var(--c-ink); }
   .cat-section--gray .prod-card { background: var(--c-white); }
@@ -534,7 +534,6 @@ const breadcrumbs = [
     .cat-header__img-wrap { aspect-ratio: 16/9; }
     
     .metrica-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.2); }
-    .productos-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
     .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -545,7 +544,4 @@ const breadcrumbs = [
     .pagination { gap: 0.375rem; }
     .pagination__btn { padding: 0.5rem 0.875rem; font-size: 0.8125rem; }
   }
-  @media (max-width: 480px) {
-    .productos-grid { grid-template-columns: 1fr; }
-    }
 </style>

@@ -210,10 +210,10 @@ const categorias = [
     background: var(--c-white, #fff);
   }
 
-  /* ── GRID 4 COLUMNAS ──────────────────────────────── */
+  /* ── GRID AUTO-FIT (columnas según ancho) ─────────── */
   .catidx-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
   }
 
@@ -358,21 +358,9 @@ const categorias = [
   }
 
   /* ── RESPONSIVE ───────────────────────────────────── */
-  @media (max-width: 1200px) {
-    .catidx-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (max-width: 860px) {
-    .catidx-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
+  /* .catidx-grid usa auto-fit: las columnas se ajustan solas por ancho. */
   @media (max-width: 520px) {
     .catidx-grid {
-      grid-template-columns: 1fr;
       gap: 1rem;
     }
     .ccard__content {
