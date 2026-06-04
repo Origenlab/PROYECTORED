@@ -128,9 +128,17 @@ const getVariantesBodyPara = () => {
                 )
               })()}
               <div class="ccard__content">
-                <h3 class="ccard__title">{v.nombre}</h3>
+                <h3 class="ccard__title">
+                  {v.href ? <a href={v.href} class="ccard__title-link">{v.nombre}</a> : v.nombre}
+                </h3>
                 <p class="ccard__desc">{v.desc}</p>
                 {v.specs && <p class="ccard__specs">{v.specs}</p>}
+                {v.href && (
+                  <a href={v.href} class="ccard__ficha-link">
+                    Ver ficha técnica
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                )}
                 <a
                   href={waUrl(v.waText)}
                   class="ccard__cta"

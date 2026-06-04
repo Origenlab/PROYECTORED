@@ -593,6 +593,24 @@ h1.hero-title {
   transform: translateX(2px);
 }
 
+.ccard__title-link {
+  color: inherit;
+  text-decoration: none;
+}
+.ccard__title-link:hover { color: var(--c-primary, #C41E24); }
+
+.ccard__ficha-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--c-primary, #C41E24);
+  text-decoration: none;
+}
+.ccard__ficha-link:hover { gap: 0.55rem; }
+
 .ccard__cta {
   display: inline-flex;
   align-items: center;

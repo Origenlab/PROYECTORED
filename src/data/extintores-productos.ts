@@ -10,6 +10,7 @@ export interface VarianteExtintor {
   desc: string
   specs: string
   img?: string
+  href?: string   // Ficha de detalle dedicada (si existe)
   waText: string
 }
 
@@ -125,6 +126,7 @@ img: '/imagenes/extintores/polvo-seco.avif',
         desc: 'El más solicitado para oficinas, tiendas y locales comerciales. Cubre hasta 200 m². El mínimo que exige Protección Civil para cualquier inmueble con acceso al público.',
         specs: 'Polvo ABC · 4.5 kg · ~10 s descarga · 3–4 m alcance · 60 bar · Manómetro',
         img: '/imagenes/extintores/polvo-seco/pqs-4-5kg-extintor-oficinas-comercio.avif',
+        href: '/extintores/polvo-seco/pqs-4-5-kg/',
         waText: 'Hola, quiero cotizar extintores de polvo seco 4.5 kg',
       },
       {
@@ -132,6 +134,7 @@ img: '/imagenes/extintores/polvo-seco.avif',
         desc: 'Estándar para talleres, bodegas pequeñas y plantas de manufactura ligera. Mayor carga de agente para áreas con mayor densidad de material combustible.',
         specs: 'Polvo ABC · 6 kg · ~13 s descarga · 4–5 m alcance · Manguera con boquilla',
         img: '/imagenes/extintores/polvo-seco/pqs-6kg-extintor-taller-bodega.avif',
+        href: '/extintores/polvo-seco/pqs-6-kg/',
         waText: 'Hola, quiero cotizar extintores de polvo seco 6 kg',
       },
       {
@@ -140,6 +143,7 @@ img: '/imagenes/extintores/polvo-seco.avif',
         desc: 'Para zonas de riesgo medio-alto: almacenes con mercancía, pasillos de carga, áreas de maquinaria. Requerido por NOM-002-STPS en industria.',
         specs: 'Polvo ABC · 9 kg · ~18 s descarga · 4–5 m alcance · Soporte de pared incluido',
         img: '/imagenes/extintores/polvo-seco/pqs-9kg-extintor-industrial-almacen.avif',
+        href: '/extintores/polvo-seco/pqs-9-kg/',
         waText: 'Hola, quiero cotizar extintores de polvo seco 9 kg',
       },
       {
@@ -148,6 +152,7 @@ img: '/imagenes/extintores/polvo-seco.avif',
         desc: 'Uso industrial intensivo: talleres de soldadura, montacargas, plantas con líquidos clase B. Para gabinete metálico visible. Inspección semestral recomendada.',
         specs: 'Polvo ABC · 12 kg · ~22 s descarga · 5–6 m alcance · Para gabinete metálico',
         img: '/imagenes/extintores/polvo-seco/pqs-12kg-extintor-alta-capacidad-industrial.avif',
+        href: '/extintores/polvo-seco/pqs-12-kg/',
         waText: 'Hola, quiero cotizar extintores de polvo seco 12 kg',
       },
       {
