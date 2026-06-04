@@ -266,7 +266,7 @@ h1.hero-title {
 /* ── GRID DE CARDS ───────────────────────────────── */
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
 
@@ -425,7 +425,7 @@ h1.hero-title {
 
 .catidx-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
 }
 
@@ -639,14 +639,9 @@ h1.hero-title {
   color: rgba(255,255,255,0.4);
 }
 
-@media (max-width: 1200px) {
-  .catidx-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 860px) {
-  .catidx-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* .catidx-grid usa auto-fit: columnas automáticas por ancho. */
 @media (max-width: 520px) {
-  .catidx-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .catidx-grid { gap: 1rem; }
   .ccard__content { padding: 1rem; }
 }
 
@@ -790,10 +785,7 @@ h1.hero-title {
 }
 
 /* ── RESPONSIVE ──────────────────────────────────── */
-@media (max-width: 1200px) {
-  .productos-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
+/* .productos-grid usa auto-fit: las columnas se ajustan solas por ancho. */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .cat-header { grid-template-columns: 1fr; gap: 2rem; }
@@ -808,7 +800,6 @@ h1.hero-title {
 }
 
 @media (max-width: 768px) {
-  .productos-grid { grid-template-columns: repeat(2, 1fr); }
   .cta-final-inner { flex-direction: column; text-align: center; }
   .cta-btns { justify-content: center; }
   .hero-ctas { flex-direction: column; }
@@ -818,14 +809,13 @@ h1.hero-title {
 }
 
 @media (max-width: 480px) {
-  .productos-grid { grid-template-columns: 1fr; }
   .metricas-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── SECTORES ─────────────────────────────────────── */
 .sectores-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 2.5rem;
 }
@@ -915,9 +905,7 @@ h1.hero-title {
   line-height: 1.55;
   margin: 0;
 }
-@media (max-width: 900px) {
-  .sectores-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* .sectores-grid usa auto-fit: columnas automáticas por ancho. */
 @media (max-width: 480px) {
   .sectores-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
@@ -1121,7 +1109,7 @@ h1.hero-title {
 
 .blog-grid {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
   gap:1.25rem;
   list-style:none;
   padding:0;
@@ -1835,7 +1823,7 @@ h1.hero-title {
 
 .blog-related__grid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
   gap:1rem;
 }
 
@@ -1870,12 +1858,10 @@ h1.hero-title {
 
 @media(max-width:1100px) {
   .blog-layout,.blog-post-layout { grid-template-columns:1fr 260px; gap:2rem; }
-  .blog-grid { grid-template-columns:repeat(2,1fr); }
 }
 
 @media(max-width:960px) {
   .blog-layout,.blog-post-layout { grid-template-columns:1fr; }
-  .blog-grid { grid-template-columns:repeat(2,1fr); }
   .blog-sidebar {
     position:static;
     display:grid;
@@ -1888,7 +1874,6 @@ h1.hero-title {
 @media(max-width:768px) {
   .blog-featured { grid-template-columns:1fr; }
   .blog-featured__img { aspect-ratio:16/9; }
-  .blog-grid,.blog-related__grid { grid-template-columns:1fr; }
   .blog-post__cta { flex-direction:column; text-align:center; }
   .blog-pagination { gap:.375rem; }
   .blog-pagination__btn { padding:.4375rem .75rem; font-size:.75rem; }
@@ -2244,7 +2229,7 @@ h1.hero-title {
 
 .normas-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -2374,11 +2359,8 @@ h1.hero-title {
   font-weight: 700;
 }
 
-@media (max-width: 1024px) {
-  .normas-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* .normas-grid usa auto-fit: columnas automáticas por ancho. */
 @media (max-width: 640px) {
-  .normas-grid { grid-template-columns: 1fr; }
   .normas-nota { flex-direction: column; align-items: center; text-align: center; }
 }
 
@@ -2546,7 +2528,7 @@ h1.hero-title {
 
 .guia-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2.5rem;
 }
@@ -2775,9 +2757,7 @@ h1.hero-title {
 
 .guia-cta-bar__btn { flex-shrink: 0; white-space: nowrap; }
 
-@media (max-width: 1024px) {
-  .guia-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* .guia-grid usa auto-fit: columnas automáticas por ancho. */
 @media (max-width: 768px) {
   .guia-cta-bar {
     flex-direction: column;
@@ -2789,9 +2769,6 @@ h1.hero-title {
   .guia-cta-bar__left { flex-direction: column; }
   .guia-cta-bar__btn { width: 100%; justify-content: center; }
   .guia-card__body { padding: 1rem 1.25rem 1.25rem; }
-}
-@media (max-width: 640px) {
-  .guia-grid { grid-template-columns: 1fr; }
 }
 
 /* ── FAQ BOMBEROS ────────────────────────────────────────── */
@@ -3042,6 +3019,31 @@ h1.hero-title {
 @media (max-width: 1024px) {
   .faq-bomberos-grid { grid-template-columns: 1fr; gap: 3rem; }
   .cot-card { position: static; }
+}
+
+/* ════════════════════════════════════════════════════════
+   PULIDO PREMIUM — refinamiento visual estático
+   Sin animaciones nuevas (regla de performance del proyecto):
+   solo profundidad/sombra y consistencia entre tarjetas.
+   ════════════════════════════════════════════════════════ */
+
+/* Profundidad sutil en reposo para tarjetas planas (antes solo borde).
+   Da sensación de capas/premium sin recargar. */
+.prod-card,
+.sector-card,
+.guia-card,
+.norma-card {
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04),
+              0 2px 6px rgba(17, 17, 17, 0.05);
+}
+
+/* Hover con sombra definida y coherente (las ccard/sector ya la tenían;
+   aquí igualamos prod-card, guia-card y norma-card). */
+.prod-card:hover,
+.guia-card:hover,
+.norma-card:hover {
+  box-shadow: 0 8px 24px rgba(196, 30, 36, 0.10),
+              0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Los overrides responsive globales viven en mobile.css
