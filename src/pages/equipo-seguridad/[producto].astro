@@ -11,7 +11,7 @@
 import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
-import { waUrl, SERVICES } from '../../config/site'
+import { SITE, waUrl, SERVICES } from '../../config/site'
 import { EQUIPO_SEGURIDAD_PAGES, EQUIPO_SEGURIDAD_PRODUCTS } from '../../data/equipo-seguridad-productos'
 import '../../styles/product-page.css'
 
@@ -48,6 +48,20 @@ const getVariantesDesc = (): string => {
   const n = data.variantes?.length ?? 0
   return `${n} opciones disponibles de ${data.heroAccent} con certificación NOM y stock permanente en CDMX.`
 }
+
+// ── JSON-LD: Product (entidad del tipo de producto de esta página) ──────────
+const productImg = (data as any).variantes?.find?.((v: any) => v.img)?.img
+  ?? (data as any).tipos?.find?.((v: any) => v.img)?.img
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  sku: producto,
+  brand: { '@type': 'Brand', name: 'Proyecto Red' },
+  url: `${SITE.url}/equipo-seguridad/${producto}/`,
+  image: productImg ? `${SITE.url}${productImg}` : `${SITE.url}/imagenes/og/proyectored-og.jpg`,
+}
 ---
 
 <CategoryLayout
@@ -66,7 +80,6 @@ const getVariantesDesc = (): string => {
     { label: 'Equipo de Seguridad Industrial', href: '/equipo-seguridad/' },
     { label: data.heroAccent },
   ]}
-  showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
   ctaBody={data.ctaBody}
@@ -75,6 +88,10 @@ const getVariantesDesc = (): string => {
   ctaCTA2Text="Ver todo el equipo de seguridad"
   ctaCTA2Href="/equipo-seguridad/"
 >
+
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productLd).replace(/</g, '\\u003c')} />
+  </Fragment>
 
   <!-- ===========================================================
        SECCIÓN 0 — Variantes / Modelos disponibles (opcional)

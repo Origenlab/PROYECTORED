@@ -8,9 +8,17 @@ import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
 import { CONTACT } from '../../config/site'
 import { FAQS_GLOBALES } from '../../lib/seo'
 
-// Fuente única: lib/seo.ts. El contenido visible coincide con el JSON-LD
-// FAQPage que emite index.astro, evitando mismatch contenido/schema.
-const faqs = FAQS_GLOBALES.map(({ pregunta, respuesta }) => ({ q: pregunta, a: respuesta }))
+interface Props {
+  /** FAQs específicas de la página. Si se omiten, usa las globales (lib/seo).
+   *  Quien pase faqs debe emitir el FAQPage JSON-LD con las mismas preguntas
+   *  (lo hace CategoryLayout) para que schema y contenido visible coincidan. */
+  faqs?: { q: string; a: string }[]
+}
+
+// Fuente única por defecto: lib/seo.ts. El contenido visible coincide con el
+// JSON-LD FAQPage que emite index.astro, evitando mismatch contenido/schema.
+const faqs = Astro.props.faqs
+  ?? FAQS_GLOBALES.map(({ pregunta, respuesta }) => ({ q: pregunta, a: respuesta }))
 ---
 
 <section class="faq-cot-index" id="cotizacion" aria-labelledby="faq-heading">

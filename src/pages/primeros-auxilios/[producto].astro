@@ -15,7 +15,7 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
 import NormasPrimerosAuxilios from '../../components/sections/NormasPrimerosAuxilios.astro'
-import { waUrl, SERVICES } from '../../config/site'
+import { SITE, waUrl, SERVICES } from '../../config/site'
 import { PRIMEROS_AUXILIOS_PAGES, PRIMEROS_AUXILIOS_PRODUCTS } from '../../data/primeros-auxilios-productos'
 import '../../styles/product-page.css'
 import '../../styles/pages.css'
@@ -51,6 +51,20 @@ const getVariantesDesc = (): string => {
 const related = PRIMEROS_AUXILIOS_PRODUCTS.filter((p) => p.slug !== producto)
 
 const PAGE_WA = waUrl(data.waMessage)
+
+// ── JSON-LD: Product (entidad del tipo de producto de esta página) ──────────
+const productImg = (data as any).variantes?.find?.((v: any) => v.img)?.img
+  ?? (data as any).tipos?.find?.((v: any) => v.img)?.img
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  sku: producto,
+  brand: { '@type': 'Brand', name: 'Proyecto Red' },
+  url: `${SITE.url}/primeros-auxilios/${producto}/`,
+  image: productImg ? `${SITE.url}${productImg}` : `${SITE.url}/imagenes/og/proyectored-og.jpg`,
+}
 ---
 
 <CategoryLayout
@@ -69,7 +83,6 @@ const PAGE_WA = waUrl(data.waMessage)
     { label: 'Primeros Auxilios',  href: '/primeros-auxilios/'  },
     { label: data.heroAccent },
   ]}
-  showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
   ctaBody={data.ctaBody}
@@ -78,6 +91,10 @@ const PAGE_WA = waUrl(data.waMessage)
   ctaCTA2Text="Ver todo el equipo de primeros auxilios"
   ctaCTA2Href="/primeros-auxilios/"
 >
+
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productLd).replace(/</g, '\\u003c')} />
+  </Fragment>
 
   <!-- ===========================================================
        SECCIÓN 0 — Variantes (OPCIONAL)

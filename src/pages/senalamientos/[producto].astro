@@ -14,7 +14,7 @@ import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
 import NormasCategoria from '../../components/sections/NormasCategoria.astro'
 import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
-import { waUrl, SERVICES } from '../../config/site'
+import { SITE, waUrl, SERVICES } from '../../config/site'
 import { SENALAMIENTO_PAGES, SENALAMIENTO_PRODUCTS } from '../../data/senalamientos-productos'
 import '../../styles/product-page.css'
 import '../../styles/pages.css'
@@ -52,6 +52,20 @@ const getTiposDesc = (): string => {
   const n = data.tipos?.length ?? 0
   return `${n} tipos disponibles de ${data.heroAccent} con certificación NOM y suministro en CDMX y Estado de México.`
 }
+
+// ── JSON-LD: Product (entidad del tipo de producto de esta página) ──────────
+const productImg = (data as any).variantes?.find?.((v: any) => v.img)?.img
+  ?? (data as any).tipos?.find?.((v: any) => v.img)?.img
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  sku: producto,
+  brand: { '@type': 'Brand', name: 'Proyecto Red' },
+  url: `${SITE.url}/senalamientos/${producto}/`,
+  image: productImg ? `${SITE.url}${productImg}` : `${SITE.url}/imagenes/og/proyectored-og.jpg`,
+}
 ---
 
 <CategoryLayout
@@ -70,7 +84,6 @@ const getTiposDesc = (): string => {
     { label: 'Señalamientos', href: '/senalamientos/' },
     { label: data.heroAccent },
   ]}
-  showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
   ctaBody={data.ctaBody}
@@ -79,6 +92,10 @@ const getTiposDesc = (): string => {
   ctaCTA2Text="Ver todos los señalamientos"
   ctaCTA2Href="/senalamientos/"
 >
+
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productLd).replace(/</g, '\\u003c')} />
+  </Fragment>
 
   <!-- ===========================================================
        SECCIÓN 0 — Tipos disponibles (opcional)

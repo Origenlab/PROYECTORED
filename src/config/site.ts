@@ -160,6 +160,20 @@ export const SERVICES = [
   { id: 'senalizacion',           label: 'Señalización NOM',          desc: 'Instalación y plano para Protección Civil'          },
 ] as const
 
+// Sectores atendidos (páginas /sectores/*) — fuente de verdad para navegación
+export const SECTORS = [
+  { slug: 'restaurantes',       label: 'Restaurantes y Cocinas' },
+  { slug: 'oficinas',           label: 'Oficinas y Corporativos' },
+  { slug: 'fabricas',           label: 'Fábricas y Manufactura' },
+  { slug: 'bodegas',            label: 'Bodegas y Naves Industriales' },
+  { slug: 'hoteles',            label: 'Hoteles' },
+  { slug: 'hospitales',         label: 'Hospitales y Clínicas' },
+  { slug: 'escuelas',           label: 'Escuelas y Universidades' },
+  { slug: 'centros-comerciales',label: 'Centros Comerciales' },
+  { slug: 'gasolineras',        label: 'Gasolineras' },
+  { slug: 'laboratorios',       label: 'Laboratorios' },
+] as const
+
 // Estados con cobertura
 export const COVERAGE_STATES = [
   { slug: 'cdmx',            label: 'Ciudad de México',  type: 'operativo' as const },

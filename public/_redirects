@@ -21,3 +21,13 @@
 /redes-hidraulicas-contraincendios/ /sistemas/redes-hidraulicas/ 301
 /equipo-para-primeros-auxilios/ /primeros-auxilios/ 301
 /equipos-de-seguridad/ /equipo-seguridad/ 301
+
+# Slugs de blog renombrados de ñ a n (2026-06) — versión cruda y percent-encoded
+/blog/señalamiento-escaleras-evacuacion/ /blog/senalamiento-escaleras-evacuacion/ 301
+/blog/se%C3%B1alamiento-escaleras-evacuacion/ /blog/senalamiento-escaleras-evacuacion/ 301
+/blog/materiales-señalizacion-emergencia-tipos/ /blog/materiales-senalizacion-emergencia-tipos/ 301
+/blog/materiales-se%C3%B1alizacion-emergencia-tipos/ /blog/materiales-senalizacion-emergencia-tipos/ 301
+/blog/señal-extintor-pvc-rigido/ /blog/senal-extintor-pvc-rigido/ 301
+/blog/se%C3%B1al-extintor-pvc-rigido/ /blog/senal-extintor-pvc-rigido/ 301
+/blog/señalizacion-extintores-auditorias/ /blog/senalizacion-extintores-auditorias/ 301
+/blog/se%C3%B1alizacion-extintores-auditorias/ /blog/senalizacion-extintores-auditorias/ 301

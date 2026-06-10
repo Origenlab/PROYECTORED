@@ -12,7 +12,7 @@ import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
 import NormasCategoria from '../../components/sections/NormasCategoria.astro'
 import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
-import { waUrl, SERVICES } from '../../config/site'
+import { SITE, waUrl, SERVICES } from '../../config/site'
 import { EXTINTOR_PAGES, EXTINTOR_PRODUCTS } from '../../data/extintores-productos'
 import '../../styles/product-page.css'
 import '../../styles/pages.css'
@@ -53,6 +53,20 @@ const getVariantesDesc = () => {
 const getVariantesBodyPara = () => {
   return 'Todas nuestras capacidades cumplen con las normas NOM-002-STPS y están disponibles con documentación técnica completa. Consulta stock y disponibilidad para tu zona.'
 }
+
+// ── JSON-LD: Product (entidad del tipo de producto de esta página) ──────────
+const productImg = (data as any).variantes?.find?.((v: any) => v.img)?.img
+  ?? (data as any).tipos?.find?.((v: any) => v.img)?.img
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  sku: producto,
+  brand: { '@type': 'Brand', name: 'Proyecto Red' },
+  url: `${SITE.url}/extintores/${producto}/`,
+  image: productImg ? `${SITE.url}${productImg}` : `${SITE.url}/imagenes/og/proyectored-og.jpg`,
+}
 ---
 
 <CategoryLayout
@@ -71,7 +85,6 @@ const getVariantesBodyPara = () => {
     { label: 'Extintores', href: '/extintores/' },
     { label: data.heroAccent },
   ]}
-  showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
   ctaBody={data.ctaBody}
@@ -80,6 +93,10 @@ const getVariantesBodyPara = () => {
   ctaCTA2Text="Ver todos los extintores"
   ctaCTA2Href="/extintores/"
 >
+
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productLd).replace(/</g, '\\u003c')} />
+  </Fragment>
 
   <!-- ===========================================================
        SECCIÓN 0 — Variantes / Capacidades disponibles
@@ -97,7 +114,7 @@ const getVariantesBodyPara = () => {
         />
 
         <div class="catidx-grid" role="list" aria-label={`Capacidades de ${data.heroAccent}`}>
-          {data.variantes.map((v, i) => (
+          {(data.variantes ?? []).map((v, i) => (
             <article class="ccard" role="listitem" aria-label={v.nombre}>
               {(() => {
                 const imgSrc = v.img ?? data.img
@@ -188,7 +205,7 @@ const getVariantesBodyPara = () => {
         titleLine1={data.caracteristicas.titleLine1}
         titleLine2={data.caracteristicas.titleLine2}
         desc={data.caracteristicas.desc}
-        bodyPara1={data.caracteristicas.bodyPara}
+        bodyPara1={data.caracteristicas.bodyPara ?? undefined}
       />
 
       <div class="l4-svc-grid" role="list" aria-label="Características técnicas">
@@ -230,7 +247,7 @@ const getVariantesBodyPara = () => {
         titleLine1={data.cuandoUsar.titleLine1}
         titleLine2={data.cuandoUsar.titleLine2}
         desc={data.cuandoUsar.desc}
-        bodyPara1={data.cuandoUsar.bodyPara}
+        bodyPara1={data.cuandoUsar.bodyPara ?? undefined}
       />
 
       <div class="l4-svc-grid" role="list" aria-label="Dónde usar este extintor">

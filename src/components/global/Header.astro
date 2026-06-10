@@ -2,7 +2,7 @@
 // Header.astro — Navegación principal con mega menú profesional
 // Dropdowns controlados por JS (timer de gracia) — mobile con acordeón
 
-import { PRODUCT_CATEGORIES, SERVICES, COVERAGE_STATES, waUrl, WA_MESSAGES } from '../../config/site'
+import { PRODUCT_CATEGORIES, SERVICES, SECTORS, COVERAGE_STATES, waUrl, WA_MESSAGES } from '../../config/site'
 
 const currentPath = Astro.url.pathname
 
@@ -132,6 +132,21 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
           </a>
         </li>
 
+        <!-- Sectores -->
+        <li class="hdr-nav__item" data-dropdown="drop-sectores">
+          <a
+            href="/sectores/"
+            class:list={['hdr-nav__link', { 'hdr-nav__link--active': currentPath.startsWith('/sectores') }]}
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Sectores
+            <svg class="hdr-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </a>
+        </li>
+
         <!-- Blog -->
         <li class="hdr-nav__item">
           <a
@@ -247,6 +262,15 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
   </div>
 </div>
 
+<div class="drop-panel" id="drop-sectores" role="region" aria-label="Sectores" aria-hidden="true">
+  <div class="drop-panel__inner">
+    <a href="/sectores/" class="drop-panel__header">Ver todos los sectores →</a>
+    {SECTORS.map((sec) => (
+      <a href={`/sectores/${sec.slug}/`} class="drop-panel__link">{sec.label}</a>
+    ))}
+  </div>
+</div>
+
 <!-- ══════════════════════════════════════════════════
      OVERLAY (cierra al hacer clic fuera)
 ══════════════════════════════════════════════════ -->
@@ -302,6 +326,22 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
         <a href="/empresas/" class="mob-item__all">Ver toda la cobertura</a>
         {COVERAGE_STATES.map((state) => (
           <a href={`/empresas/${state.slug}/`} class="mob-item__link">{state.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Sectores accordion -->
+    <div class="mob-item">
+      <button class="mob-item__trigger" aria-expanded="false">
+        <span>Sectores</span>
+        <svg class="mob-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="mob-item__panel">
+        <a href="/sectores/" class="mob-item__all">Ver todos los sectores</a>
+        {SECTORS.map((sec) => (
+          <a href={`/sectores/${sec.slug}/`} class="mob-item__link">{sec.label}</a>
         ))}
       </div>
     </div>

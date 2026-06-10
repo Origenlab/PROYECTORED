@@ -48,9 +48,13 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: |
-          rm -f package-lock.json
-          npm install
+        # npm ci usa el lockfile commiteado → builds reproducibles.
+        # (El workaround anterior borraba el lockfile por el bug de npm con
+        # binarios opcionales de rollup; npm moderno en Node 22 lo resuelve.)
+        run: npm ci
+
+      - name: Type check (astro check)
+        run: npx astro check
 
       - name: Build with Astro
         run: npm run build

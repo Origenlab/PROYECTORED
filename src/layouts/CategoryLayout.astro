@@ -44,7 +44,6 @@ interface Props {
   breadcrumb: BreadcrumbItem[]
 
   // Secciones opcionales
-  showForm?: boolean
   faqItems?: FAQItem[]
 
   // CTA Final
@@ -70,7 +69,6 @@ const {
   cta1,
   cta2,
   breadcrumb,
-  showForm = true,
   faqItems,
   ctaTitle = '¿Necesitas equipo contra incendios en CDMX?',
   ctaBody = 'Mándanos un WhatsApp con lo que necesitas. Te respondemos con precios, disponibilidad y tiempos de entrega.',
@@ -93,6 +91,9 @@ const breadcrumbLd = {
 }
 
 // ── JSON-LD: FAQPage (solo si hay preguntas) ──────────────────────────────────
+// El texto del schema se limpia de HTML y las MISMAS preguntas se pasan al
+// componente visible (FaqCotizacionIndex) — schema y contenido coinciden.
+const stripHtml = (s: string) => s.replace(/<[^>]*>/g, '')
 const faqLd = faqItems && faqItems.length > 0
   ? {
       '@context': 'https://schema.org',
@@ -102,7 +103,7 @@ const faqLd = faqItems && faqItems.length > 0
         name: faq.question,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: faq.answer,
+          text: stripHtml(faq.answer),
         },
       })),
     }
@@ -116,6 +117,7 @@ const faqLd = faqItems && faqItems.length > 0
     {faqLd && (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)} />
     )}
+    <slot name="head" />
   </Fragment>
 
   <!-- Barra de migas de pan (entre header y hero) -->
@@ -138,8 +140,8 @@ const faqLd = faqItems && faqItems.length > 0
   <!-- Contenido único de cada página -->
   <slot />
 
-  <!-- FAQ + Cotización (mismo componente del index) -->
-  <FaqCotizacionIndex />
+  <!-- FAQ + Cotización — con las mismas preguntas del FAQPage JSON-LD -->
+  <FaqCotizacionIndex faqs={faqItems?.map((f) => ({ q: f.question, a: f.answer }))} />
 
   <!-- CTA de cierre -->
   <CTAFinal

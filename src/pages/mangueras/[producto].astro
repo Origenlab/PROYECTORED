@@ -15,7 +15,7 @@ import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
 import NormasCategoria from '../../components/sections/NormasCategoria.astro'
 import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
-import { waUrl, SERVICES } from '../../config/site'
+import { SITE, waUrl, SERVICES } from '../../config/site'
 import { MANGUERA_PAGES, MANGUERA_PRODUCTS } from '../../data/mangueras-productos'
 import '../../styles/product-page.css'
 import '../../styles/pages.css'
@@ -53,6 +53,20 @@ const getVariantesDesc = (): string => {
   const n = data.variantes?.length ?? 0
   return `${n} opciones disponibles de ${data.heroAccent} con documentación normativa de origen y suministro en CDMX y Estado de México.`
 }
+
+// ── JSON-LD: Product (entidad del tipo de producto de esta página) ──────────
+const productImg = (data as any).variantes?.find?.((v: any) => v.img)?.img
+  ?? (data as any).tipos?.find?.((v: any) => v.img)?.img
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${data.heroTitle} ${data.heroAccent}`.trim(),
+  description: data.metaDesc,
+  sku: producto,
+  brand: { '@type': 'Brand', name: 'Proyecto Red' },
+  url: `${SITE.url}/mangueras/${producto}/`,
+  image: productImg ? `${SITE.url}${productImg}` : `${SITE.url}/imagenes/og/proyectored-og.jpg`,
+}
 ---
 
 <CategoryLayout
@@ -71,7 +85,6 @@ const getVariantesDesc = (): string => {
     { label: 'Mangueras y Herrajes', href: '/mangueras/' },
     { label: data.heroAccent },
   ]}
-  showForm={true}
   faqItems={data.faqItems}
   ctaTitle={data.ctaTitle}
   ctaBody={data.ctaBody}
@@ -80,6 +93,10 @@ const getVariantesDesc = (): string => {
   ctaCTA2Text="Ver mangueras y herrajes"
   ctaCTA2Href="/mangueras/"
 >
+
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productLd).replace(/</g, '\\u003c')} />
+  </Fragment>
 
   <!-- ===========================================================
        SECCIÓN 0 — Modelos / opciones disponibles (opcional)
