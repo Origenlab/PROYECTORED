@@ -13,11 +13,15 @@ import CtaBar            from '../../components/CtaBar.astro'
 import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de señalamientos ─────────────────
-import HeroSenalamientos      from '../../components/sections/HeroSenalamientos.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoSenalamientos  from '../../components/sections/CatalogoSenalamientos.astro'
-import GuiaSenalamientos      from '../../components/sections/GuiaSenalamientos.astro'
-import NormasSenalamientos    from '../../components/sections/NormasSenalamientos.astro'
-import FaqSenalamientos       from '../../components/sections/FaqSenalamientos.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
@@ -197,13 +201,13 @@ const schemaWebPage = {
     { label: 'Señalamientos de Emergencia' }
   ]} />
 
-  <HeroSenalamientos />
+  <HeroCategoria {...HERO_CATEGORIAS['senalamientos']} />
   <CtaBar />
   <CatalogoSenalamientos />
-  <GuiaSenalamientos />
+  <GuiaCategoria {...GUIA_CATEGORIAS['senalamientos']} />
   <TrustIndex />
-  <NormasSenalamientos />
-  <FaqSenalamientos />
+  <NormasCategoria {...NORMAS_CATEGORIAS['senalamientos']} />
+  <FaqCategoria {...FAQ_CATEGORIAS['senalamientos']} />
   <CategoriasRelacionadas current="senalamientos" />
   <CTAFinalIndex />
 

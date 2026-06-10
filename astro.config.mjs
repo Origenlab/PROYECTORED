@@ -10,11 +10,6 @@ const sitemapOptions = {
     !page.includes('/_') &&
     !page.includes('/admin'),
 
-  // Idioma único — es-MX
-  i18n: {
-    defaultLocale: 'es',
-    locales: { es: 'es-MX' },
-  },
 
   // Ajuste de prioridades por tipo de página
   // (home y categorías empujan más fuerte que fichas individuales)
@@ -47,7 +42,8 @@ const sitemapOptions = {
       item.changefreq = /** @type {any} */ ('monthly');
     }
 
-    item.lastmod = new Date().toISOString();
+    // lastmod intencionalmente omitido: poner new Date() en cada build
+    // hace que Google ignore el campo en todo el sitio (señal no confiable).
     return item;
   },
 };

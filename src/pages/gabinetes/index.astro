@@ -12,11 +12,15 @@ import CtaBar            from '../../components/CtaBar.astro'
 import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de gabinetes ─────────────────────
-import HeroGabinetes     from '../../components/sections/HeroGabinetes.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoGabinetes from '../../components/sections/CatalogoGabinetes.astro'
-import GuiaGabinetes     from '../../components/sections/GuiaGabinetes.astro'
-import NormasGabinetes   from '../../components/sections/NormasGabinetes.astro'
-import FaqGabinetes      from '../../components/sections/FaqGabinetes.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
@@ -182,13 +186,13 @@ const schemaWebPage = {
     { label: 'Gabinetes Contra Incendio' }
   ]} />
 
-  <HeroGabinetes />
+  <HeroCategoria {...HERO_CATEGORIAS['gabinetes']} />
   <CtaBar />
   <CatalogoGabinetes />
-  <GuiaGabinetes />
+  <GuiaCategoria {...GUIA_CATEGORIAS['gabinetes']} />
   <TrustIndex />
-  <NormasGabinetes />
-  <FaqGabinetes />
+  <NormasCategoria {...NORMAS_CATEGORIAS['gabinetes']} />
+  <FaqCategoria {...FAQ_CATEGORIAS['gabinetes']} />
   <CategoriasRelacionadas current="gabinetes" />
   <CTAFinalIndex />
 

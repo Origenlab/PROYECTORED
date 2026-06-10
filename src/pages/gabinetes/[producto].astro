@@ -12,7 +12,8 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasGabinetes from '../../components/sections/NormasGabinetes.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { GABINETE_PAGES, GABINETE_PRODUCTS } from '../../data/gabinetes-productos'
 import '../../styles/product-page.css'
@@ -344,7 +345,7 @@ const getVariantesDesc = (): string => {
        SECCIÓN 5 — Normas aplicables (NOM-002, NOM-003, NFPA 10/14/25, NOM-026)
        NormasGabinetes tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
-  <NormasGabinetes />
+  <NormasCategoria {...NORMAS_CATEGORIAS['gabinetes']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros gabinetes del catálogo

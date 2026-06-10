@@ -47,8 +47,10 @@
   .categorias-index,
   .proceso-section,
   .normas-ext,
+  .normas-categoria,
   .trust-index,
   .faq-bomberos,
+  .faq-categoria,
   .faq-cot-index { padding: 3rem 0 !important; }
   .catalogo-intro { padding-top: 3rem !important; }
 }
@@ -60,8 +62,10 @@
   .categorias-index,
   .proceso-section,
   .normas-ext,
+  .normas-categoria,
   .trust-index,
   .faq-bomberos,
+  .faq-categoria,
   .faq-cot-index { padding: 2.5rem 0 !important; }
   .catalogo-intro { padding-top: 2.5rem !important; }
 }
@@ -178,6 +182,7 @@
 /* Heroes L2/L3 (todos los hero-{slug}: ext, sen, gab, man, sis, pa, es,
    bomb, productos, servicios, empresas, contacto, blog) — mismo patrón */
 @media (max-width: 1024px) {
+  .hero-categoria,
   .hero-bomb,
   .hero-ext,
   .hero-sen,
@@ -194,6 +199,7 @@
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
+  .hero-categoria__grid,
   .hero-bomb__grid,
   .hero-ext__grid,
   .hero-sen__grid,
@@ -224,6 +230,7 @@
 }
 
 @media (max-width: 640px) {
+  .hero-categoria,
   .hero-bomb,
   .hero-ext,
   .hero-sen,
@@ -731,7 +738,8 @@
 
 @media (max-width: 640px) {
   .faq-cot-index__grid,
-  .faq-bomberos-grid {
+  .faq-bomberos-grid,
+  .faq-categoria-grid {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }

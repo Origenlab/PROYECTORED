@@ -12,11 +12,15 @@ import CtaBar            from '../../components/CtaBar.astro'
 import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de mangueras ─────────────────────
-import HeroMangueras     from '../../components/sections/HeroMangueras.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoMangueras from '../../components/sections/CatalogoMangueras.astro'
-import GuiaMangueras     from '../../components/sections/GuiaMangueras.astro'
-import NormasMangueras   from '../../components/sections/NormasMangueras.astro'
-import FaqMangueras      from '../../components/sections/FaqMangueras.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
@@ -202,13 +206,13 @@ const schemaWebPage = {
     { label: 'Mangueras y Herrajes' }
   ]} />
 
-  <HeroMangueras />
+  <HeroCategoria {...HERO_CATEGORIAS['mangueras']} />
   <CtaBar />
   <CatalogoMangueras />
-  <GuiaMangueras />
+  <GuiaCategoria {...GUIA_CATEGORIAS['mangueras']} />
   <TrustIndex />
-  <NormasMangueras />
-  <FaqMangueras />
+  <NormasCategoria {...NORMAS_CATEGORIAS['mangueras']} />
+  <FaqCategoria {...FAQ_CATEGORIAS['mangueras']} />
   <CategoriasRelacionadas current="mangueras" />
   <CTAFinalIndex />
 

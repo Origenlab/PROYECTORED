@@ -12,11 +12,15 @@ import CtaBar            from '../../components/CtaBar.astro'
 import Breadcrumb        from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de extintores ───────────────────
-import HeroExtintores      from '../../components/sections/HeroExtintores.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoExtintores  from '../../components/sections/CatalogoExtintores.astro'
-import GuiaExtintores      from '../../components/sections/GuiaExtintores.astro'
-import NormasExtintores    from '../../components/sections/NormasExtintores.astro'
-import FaqExtintores       from '../../components/sections/FaqExtintores.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas del index ────────────
 import TrustIndex        from '../../components/sections/TrustIndex.astro'
@@ -263,14 +267,14 @@ const schemaWebPage = {
     { label: 'Extintores' }
   ]} />
 
-  <HeroExtintores />
+  <HeroCategoria {...HERO_CATEGORIAS['extintores']} />
   <CtaBar />
   <CatalogoExtintores />
-  <GuiaExtintores />
+  <GuiaCategoria {...GUIA_CATEGORIAS['extintores']} />
   <TrustIndex />
   <ServiciosIndex />
-  <NormasExtintores />
-  <FaqExtintores />
+  <NormasCategoria {...NORMAS_CATEGORIAS['extintores']} />
+  <FaqCategoria {...FAQ_CATEGORIAS['extintores']} />
   <CategoriasRelacionadas current="extintores" />
   <CTAFinalIndex />
 

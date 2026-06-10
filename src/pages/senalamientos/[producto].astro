@@ -12,7 +12,8 @@
 import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasSenalamientos from '../../components/sections/NormasSenalamientos.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { SENALAMIENTO_PAGES, SENALAMIENTO_PRODUCTS } from '../../data/senalamientos-productos'
 import '../../styles/product-page.css'
@@ -316,7 +317,7 @@ const getTiposDesc = (): string => {
        SECCIÓN 5 — Normas que regulan la señalización de emergencia
        NormasSenalamientos tiene su propio fondo.
        =========================================================== -->
-  <NormasSenalamientos />
+  <NormasCategoria {...NORMAS_CATEGORIAS['senalamientos']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros señalamientos del catálogo

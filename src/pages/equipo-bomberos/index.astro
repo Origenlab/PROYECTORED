@@ -12,11 +12,15 @@ import CtaBar              from '../../components/CtaBar.astro'
 import Breadcrumb          from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de equipo para bomberos ──────────
-import HeroBomberos        from '../../components/sections/HeroBomberos.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoBomberos    from '../../components/sections/CatalogoBomberos.astro'
-import GuiaBomberos        from '../../components/sections/GuiaBomberos.astro'
-import NormasBomberos      from '../../components/sections/NormasBomberos.astro'
-import FaqBomberos         from '../../components/sections/FaqBomberos.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas del index ─────────────
 import TrustIndex          from '../../components/sections/TrustIndex.astro'
@@ -227,13 +231,13 @@ const schemaWebPage = {
     { label: 'Equipo para Bomberos' }
   ]} />
 
-  <HeroBomberos />
+  <HeroCategoria {...HERO_CATEGORIAS['bomberos']} />
   <CtaBar />
   <CatalogoBomberos />
-  <GuiaBomberos />
+  <GuiaCategoria {...GUIA_CATEGORIAS['bomberos']} />
   <TrustIndex />
-  <NormasBomberos />
-  <FaqBomberos />
+  <NormasCategoria {...NORMAS_CATEGORIAS['bomberos']} />
+  <FaqCategoria {...FAQ_CATEGORIAS['bomberos']} />
   <CategoriasRelacionadas current="equipo-bomberos" />
   <CTAFinalIndex />
 

@@ -13,7 +13,8 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasSistemas from '../../components/sections/NormasSistemas.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { SISTEMA_PAGES, SISTEMA_PRODUCTS } from '../../data/sistemas-productos'
 import '../../styles/product-page.css'
@@ -343,7 +344,7 @@ const getVariantesDesc = (): string => {
        SECCIÓN 5 — Normas aplicables (NFPA 72, 13, 14, 20, 96, NOM-002)
        NormasSistemas tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
-  <NormasSistemas />
+  <NormasCategoria {...NORMAS_CATEGORIAS['sistemas']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros sistemas del catálogo

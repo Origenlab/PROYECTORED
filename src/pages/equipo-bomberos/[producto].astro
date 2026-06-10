@@ -14,7 +14,8 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasBomberos from '../../components/sections/NormasBomberos.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { BOMBERO_PAGES, BOMBERO_PRODUCTS } from '../../data/bomberos-productos'
 import '../../styles/product-page.css'
@@ -350,7 +351,7 @@ const getVariantesDesc = (): string => {
        SECCIÓN 5 — Normas NFPA del equipo de bomberos
        NormasBomberos tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
-  <NormasBomberos />
+  <NormasCategoria {...NORMAS_CATEGORIAS['bomberos']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros productos de la categoría

@@ -13,7 +13,8 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasMangueras from '../../components/sections/NormasMangueras.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { MANGUERA_PAGES, MANGUERA_PRODUCTS } from '../../data/mangueras-productos'
 import '../../styles/product-page.css'
@@ -343,7 +344,7 @@ const getVariantesDesc = (): string => {
        SECCIÓN 5 — Normas aplicables (NFPA 14, 1961, 1962, 1964, 24, NOM-002)
        NormasMangueras tiene su propio fondo — no interrumpe la alternancia.
        =========================================================== -->
-  <NormasMangueras />
+  <NormasCategoria {...NORMAS_CATEGORIAS['mangueras']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros productos del catálogo de mangueras

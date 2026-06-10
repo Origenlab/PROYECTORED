@@ -12,11 +12,14 @@ import CtaBar                  from '../../components/CtaBar.astro'
 import Breadcrumb              from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de primeros auxilios ────────────
-import HeroPrimerosAuxilios    from '../../components/sections/HeroPrimerosAuxilios.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoPrimerosAuxilios from '../../components/sections/CatalogoPrimerosAuxilios.astro'
-import GuiaPrimerosAuxilios    from '../../components/sections/GuiaPrimerosAuxilios.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
 import NormasPrimerosAuxilios  from '../../components/sections/NormasPrimerosAuxilios.astro'
-import FaqPrimerosAuxilios     from '../../components/sections/FaqPrimerosAuxilios.astro'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex              from '../../components/sections/TrustIndex.astro'
@@ -184,13 +187,13 @@ const schemaWebPage = {
     { label: 'Primeros Auxilios' }
   ]} />
 
-  <HeroPrimerosAuxilios />
+  <HeroCategoria {...HERO_CATEGORIAS['primeros-auxilios']} />
   <CtaBar />
   <CatalogoPrimerosAuxilios />
-  <GuiaPrimerosAuxilios />
+  <GuiaCategoria {...GUIA_CATEGORIAS['primeros-auxilios']} />
   <TrustIndex />
   <NormasPrimerosAuxilios />
-  <FaqPrimerosAuxilios />
+  <FaqCategoria {...FAQ_CATEGORIAS['primeros-auxilios']} />
   <CategoriasRelacionadas current="primeros-auxilios" />
   <CTAFinalIndex />
 

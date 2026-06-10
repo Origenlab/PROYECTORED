@@ -10,7 +10,8 @@ import CategoryLayout from '../../layouts/CategoryLayout.astro'
 import SectionHeaderDuo from '../../components/ui/SectionHeaderDuo.astro'
 import Img from '../../components/ui/Img.astro'
 import TrustIndex from '../../components/sections/TrustIndex.astro'
-import NormasExtintores from '../../components/sections/NormasExtintores.astro'
+import NormasCategoria from '../../components/sections/NormasCategoria.astro'
+import { NORMAS_CATEGORIAS } from '../../data/normas-categorias'
 import { waUrl, SERVICES } from '../../config/site'
 import { EXTINTOR_PAGES, EXTINTOR_PRODUCTS } from '../../data/extintores-productos'
 import '../../styles/product-page.css'
@@ -298,7 +299,7 @@ const getVariantesBodyPara = () => {
   <!-- ===========================================================
        SECCIÓN 5 — Normas aplicables (homologado con L3)
        =========================================================== -->
-  <NormasExtintores />
+  <NormasCategoria {...NORMAS_CATEGORIAS['extintores']} />
 
   <!-- ===========================================================
        SECCIÓN 6 — Otros extintores del catálogo

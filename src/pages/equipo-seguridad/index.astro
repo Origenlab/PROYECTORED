@@ -12,11 +12,14 @@ import CtaBar                  from '../../components/CtaBar.astro'
 import Breadcrumb              from '../../components/ui/Breadcrumb.astro'
 
 // ── Secciones específicas de equipo seguridad ─────────────
-import HeroEquipoSeguridad     from '../../components/sections/HeroEquipoSeguridad.astro'
+import HeroCategoria from '../../components/sections/HeroCategoria.astro'
+import { HERO_CATEGORIAS } from '../../data/heroes-categorias'
 import CatalogoEquipoSeguridad from '../../components/sections/CatalogoEquipoSeguridad.astro'
-import GuiaEquipoSeguridad     from '../../components/sections/GuiaEquipoSeguridad.astro'
+import GuiaCategoria from '../../components/sections/GuiaCategoria.astro'
+import { GUIA_CATEGORIAS } from '../../data/guias-categorias'
 import NormasEquipoSeguridad   from '../../components/sections/NormasEquipoSeguridad.astro'
-import FaqEquipoSeguridad      from '../../components/sections/FaqEquipoSeguridad.astro'
+import FaqCategoria       from '../../components/sections/FaqCategoria.astro'
+import { FAQ_CATEGORIAS } from '../../data/faqs-categorias'
 
 // ── Secciones genéricas reutilizadas ───────────────────────
 import TrustIndex              from '../../components/sections/TrustIndex.astro'
@@ -202,13 +205,13 @@ const schemaWebPage = {
     { label: 'Equipo de Seguridad Industrial' }
   ]} />
 
-  <HeroEquipoSeguridad />
+  <HeroCategoria {...HERO_CATEGORIAS['equipo-seguridad']} />
   <CtaBar />
   <CatalogoEquipoSeguridad />
-  <GuiaEquipoSeguridad />
+  <GuiaCategoria {...GUIA_CATEGORIAS['equipo-seguridad']} />
   <TrustIndex />
   <NormasEquipoSeguridad />
-  <FaqEquipoSeguridad />
+  <FaqCategoria {...FAQ_CATEGORIAS['equipo-seguridad']} />
   <CategoriasRelacionadas current="equipo-seguridad" />
   <CTAFinalIndex />
 

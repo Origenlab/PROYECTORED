@@ -1,0 +1,85 @@
+---
+/**
+ * NormasCategoria.astro
+ * Cards de normas + nota de cumplimiento. Estilos .normas-* y .norma-card
+ * globales (pages.css).
+ *
+ * Sustituye a los antiguos Normas{Extintores,Bomberos,Gabinetes,Mangueras,
+ * Senalamientos,Sistemas}.astro. (PrimerosAuxilios y EquipoSeguridad usan
+ * un markup distinto y conservan componente propio.)
+ *
+ * Contenido por categoría: src/data/normas-categorias.ts
+ * Uso:  <NormasCategoria {...NORMAS_CATEGORIAS['gabinetes']} />
+ */
+import SectionHeaderDuo from '../ui/SectionHeaderDuo.astro'
+import type { NormasCategoriaConfig } from '../../data/normas-categorias'
+
+type Props = NormasCategoriaConfig
+
+const { id, header, gridAria, normas, notaHtml, gridFixed3 = false } = Astro.props
+---
+
+<section class="normas-categoria" id={`normas-${id}`} aria-labelledby={`normas-${id}-heading`}>
+  <div class="container">
+
+    <SectionHeaderDuo
+      id={`normas-${id}-heading`}
+      eyebrow={header.eyebrow}
+      titleLine1={header.titleLine1}
+      titleLine2={header.titleLine2}
+      desc={header.desc}
+      bodyPara1={header.bodyPara1}
+      bodyPara2={header.bodyPara2}
+    />
+
+    <div class:list={['normas-grid', { 'normas-grid--cols3': gridFixed3 }]} role="list" aria-label={gridAria}>
+      {normas.map(n => (
+        <article class="norma-card" role="listitem">
+          <div class="norma-card__head">
+            <div class="norma-card__icon" set:html={n.icon} />
+            <span class="norma-tipo">{n.tipo}</span>
+          </div>
+          <h3 class="norma-card__nombre">{n.norma}</h3>
+          <p class="norma-card__alcance">{n.alcance}</p>
+          <div class="norma-card__aplica">
+            <span class="norma-aplica-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Aplica
+            </span>
+            <p>{n.aplica}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="normas-nota">
+      <div class="normas-nota__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <p set:html={notaHtml}></p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .normas-categoria {
+    padding: var(--section-py, 5rem) 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-border);
+  }
+
+  /* Variante de señalamientos: 3 columnas fijas (ex .normas-sen-grid) */
+  .normas-categoria :global(.normas-grid--cols3) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .normas-categoria :global(.normas-grid--cols3) { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .normas-categoria :global(.normas-grid--cols3) { grid-template-columns: 1fr; }
+  }
+</style>

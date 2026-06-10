@@ -7,8 +7,16 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     slug: z.string().optional(),
     category: z.string(),
+    // Campos que antes definía el config legacy (src/content/config.ts,
+    // API eliminada en Astro 5) y Zod descartaba silenciosamente:
+    image: z.string().optional(),
+    author: z.string().default('Proyecto Red'),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    noindex: z.boolean().default(false),
   }),
 });
 

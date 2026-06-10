@@ -2506,12 +2506,14 @@ h1.hero-title {
 }
 
 /* ── STATS BAR BOMBEROS (mejoras sobre .metricas-section base) ── */
-.hero-bomb ~ .metricas-section {
+.hero-bomb ~ .metricas-section,
+.hero-categoria ~ .metricas-section {
   background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark, #A01820) 100%);
   padding: 0;
 }
 
-.hero-bomb ~ .metricas-section::before {
+.hero-bomb ~ .metricas-section::before,
+.hero-categoria ~ .metricas-section::before {
   content: '';
   position: absolute;
   inset: 0;
