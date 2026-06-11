@@ -1,11 +1,13 @@
 ---
 /**
- * Img.astro — Componente de imagen con AVIF + CDN
+ * Img.astro — Componente de imagen con AVIF + CDN + srcset responsive
  *
- * Dev:  rutas directas, sin AVIF source (los archivos AVIF solo existen en producción
- *       o cuando se generaron explícitamente). Evita 404s de <source> en local.
+ * Dev:  rutas directas, sin AVIF source ni srcset CDN (los archivos AVIF y los
+ *       redimensionados solo existen vía ExactDN en producción).
  *
- * Prod: <picture> con source AVIF via ExactDN CDN (conversión automática) + fallback JPG.
+ * Prod: <picture> con source AVIF via ExactDN + srcset de 4 anchos (?w=) para
+ *       que móvil descargue la resolución que necesita, no la de desktop.
+ *       El atributo `sizes` ya existía; sin srcset era inerte.
  */
 import { cdnUrl } from '../../config/site'
 
@@ -50,6 +52,17 @@ const fallbackPath = isAvif ? src : src   // fallback = ruta original (jpg/png/a
 const finalAvif = isDev ? avifPath : cdnUrl(avifPath)
 const finalFallback = isDev ? fallbackPath : cdnUrl(fallbackPath)
 
+// srcset responsive vía ExactDN (?w=) — SOLO para JPG/PNG.
+// Verificado contra el CDN: ?w= reduce JPG/PNG ~8× (90 KB → 11 KB @320),
+// pero sobre AVIF re-codifica PEOR (52 KB → 93 KB) y no redimensiona,
+// así que los .avif conservan su URL única original.
+const WIDTHS = [320, 480, 640, 960, 1280]
+const candidateWidths = width ? WIDTHS.filter((w) => w <= width * 2) : WIDTHS
+const srcsetWidths = candidateWidths.length > 0 ? candidateWidths : WIDTHS.slice(0, 2)
+const buildSrcset = (path: string) =>
+  srcsetWidths.map((w) => `${cdnUrl(path, { w, lossy: 1, strip: 'all' })} ${w}w`).join(', ')
+const fallbackSrcset = isDev || isAvif ? undefined : buildSrcset(fallbackPath)
+
 // Usar <picture> con <source type="image/avif"> SOLO cuando el archivo original
 // ya es .avif (sabemos que existe). Si el src es .jpg/.png, usar <img> directo
 // porque no hay garantía de que exista una versión .avif en el origen
@@ -62,6 +75,7 @@ const usePicture = isAvif
     <source srcset={finalAvif} type="image/avif" />
     <img
       src={finalFallback}
+      srcset={fallbackSrcset}
       alt={alt}
       width={width}
       height={height}
@@ -76,6 +90,7 @@ const usePicture = isAvif
 ) : (
   <img
     src={finalFallback}
+    srcset={fallbackSrcset}
     alt={alt}
     width={width}
     height={height}

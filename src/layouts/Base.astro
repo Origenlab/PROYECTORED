@@ -100,21 +100,8 @@ const ogImageAbs = ogImage
   <link rel="preconnect" href="https://ewvydcs5uyw.exactdn.com" crossorigin />
   <link rel="dns-prefetch" href="https://ewvydcs5uyw.exactdn.com" />
 
-  <!-- Tipografía Inter — preload no-bloqueante con fallback noscript -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </noscript>
+  <!-- Tipografía Inter — self-hosted (woff2 variable, @font-face en global.css) -->
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- JSON-LD: LocalBusiness (global, todas las páginas) -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessLd).replace(/</g, '\\u003c')} />
@@ -122,17 +109,27 @@ const ogImageAbs = ogImage
   <!-- Slot para JSON-LD adicional (FAQ, Breadcrumb, Product, Article, etc.) -->
   <slot name="head" />
 
-  <!-- TruConversion — heatmaps/session recording -->
+  <!-- TruConversion — heatmaps/session recording.
+       Diferido a idle tras window.load: es el único JS de terceros del sitio
+       y no debe competir con el arranque (LCP/INP). -->
   <script type="text/javascript" is:inline>
     var _tip = _tip || [];
-    (function(d,s,id){
-        var js, tjs = d.getElementsByTagName(s)[0];
-        if(d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
+    (function(){
+      function loadTi(){
+        if (document.getElementById('ti-js')) return;
+        var js = document.createElement('script');
+        js.id = 'ti-js';
         js.async = true;
-        js.src = d.location.protocol + '//app.truconversion.com/ti-js/62910/efa5e.js';
-        tjs.parentNode.insertBefore(js, tjs);
-    }(document, 'script', 'ti-js'));
+        js.src = location.protocol + '//app.truconversion.com/ti-js/62910/efa5e.js';
+        document.head.appendChild(js);
+      }
+      function onIdle(){
+        if ('requestIdleCallback' in window) requestIdleCallback(loadTi, { timeout: 4000 });
+        else setTimeout(loadTi, 2000);
+      }
+      if (document.readyState === 'complete') onIdle();
+      else window.addEventListener('load', onIdle, { once: true });
+    })();
   </script>
 </head>
 <body>
