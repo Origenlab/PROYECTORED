@@ -81,7 +81,7 @@ Esta documentación es la diferencia entre aprobar la inspección de Protección
 
 El flujo está pensado para que la cotización avance en el día. Funciona así:
 
-1. **Contacto inicial.** Por WhatsApp al **5256 2759 6245** o por correo a ventas@generalfiremexico.com, describiendo lo que necesitas o pidiendo visita técnica.
+1. **Contacto inicial.** Por WhatsApp al **5256 2759 6245** o por correo a ventasproyectored@gmail.com, describiendo lo que necesitas o pidiendo visita técnica.
 2. **Visita técnica sin costo.** Un asesor acude a tu inmueble dentro del municipio para levantar cantidades reales y proponer combinación de equipo según riesgo.
 3. **Cotización formal.** Llega por correo con fichas técnicas, opciones de equipo y tiempos de entrega claros, además de opciones para crédito a 30 días para empresas.
 4. **Confirmación y entrega.** Pedidos confirmados antes del mediodía salen el mismo día con técnico que verifica instalación o ubicación correcta.

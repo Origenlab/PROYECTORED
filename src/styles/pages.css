@@ -1784,6 +1784,48 @@ h1.hero-title {
   color:var(--c-ink);
 }
 
+.blog-post__content h4 {
+  font-size:1.0625rem;
+  margin:1.5rem 0 .5rem;
+  font-weight:700;
+  letter-spacing:-.01em;
+  color:var(--c-ink);
+}
+
+/* Tablas comparativas */
+.blog-post__content .table-wrap { overflow-x:auto; margin:1.75rem 0; }
+
+.blog-post__content table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:.9375rem;
+  line-height:1.55;
+  border:1px solid var(--c-border);
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.blog-post__content thead th {
+  background:var(--c-primary);
+  color:#fff;
+  font-weight:700;
+  text-align:left;
+  padding:.75rem .9rem;
+  letter-spacing:-.01em;
+}
+
+.blog-post__content tbody td {
+  padding:.7rem .9rem;
+  border-top:1px solid var(--c-border);
+  color:var(--c-ink);
+  opacity:.9;
+  vertical-align:top;
+}
+
+.blog-post__content tbody tr:nth-child(even) td { background:var(--c-surface); }
+
+.blog-post__content tbody td:first-child { font-weight:600; opacity:1; }
+
 .blog-post__cta {
   margin-top:3rem;
   padding:1.75rem;
@@ -1921,6 +1963,25 @@ h1.hero-title {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* ── Figura inline con pie de foto ──────────────── */
+.blog-post__content figure.blog-figure { margin: 2rem 0; }
+.blog-post__content figure.blog-figure img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  background: var(--c-surface);
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.blog-post__content figure.blog-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--c-ink-2);
+  margin-top: 0.6rem;
+  text-align: center;
+  font-style: italic;
+  opacity: .9;
 }
 
 /* ── Lead paragraph ─────────────────────────────── */
