@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # graphify knowledge graph (auto-generado, no se sube)
 graphify-out/
+*.cfbak
