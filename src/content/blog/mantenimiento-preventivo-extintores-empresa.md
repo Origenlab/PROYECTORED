@@ -74,4 +74,4 @@ La póliza es deducible de impuestos, se amortiza mensualmente, y es una inversi
 
 Revisa si actualmente tienes un programa de mantenimiento preventivo documentado. Si no, implementa uno inmediatamente. Si tienes, verifica que esté actualizado y que toda la documentación esté centralizada y accesible.
 
-Ofrecemos pólizas de mantenimiento preventivo con cobertura completa, inspecciones según frecuencia pactada, y documentación que cumple 100% con requisitos de Protección Civil. Contáctanos al WhatsApp **5255372385544** para evaluar tus [servicios](/servicios/) actuales y diseñar un programa que ajuste al tipo y cantidad de tu equipo.
+Ofrecemos pólizas de mantenimiento preventivo con cobertura completa, inspecciones según frecuencia pactada, y documentación que cumple 100% con requisitos de Protección Civil. Contáctanos al WhatsApp **525627596245** para evaluar tus [servicios](/servicios/) actuales y diseñar un programa que ajuste al tipo y cantidad de tu equipo.

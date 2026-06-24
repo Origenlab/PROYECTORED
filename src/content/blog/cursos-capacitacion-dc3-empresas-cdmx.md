@@ -93,4 +93,4 @@ Se le entrega plan de mejora individual y se programa repetición sin costo adic
 
 ## Cotiza tu programa
 
-Comparte número de participantes, modalidad preferida y disponibilidad horaria al WhatsApp **5255372385544**. Entregamos propuesta y calendario el mismo día. Conoce más sobre el servicio en [capacitación y brigadas](/servicios/capacitacion/).
+Comparte número de participantes, modalidad preferida y disponibilidad horaria al WhatsApp **525627596245**. Entregamos propuesta y calendario el mismo día. Conoce más sobre el servicio en [capacitación y brigadas](/servicios/capacitacion/).

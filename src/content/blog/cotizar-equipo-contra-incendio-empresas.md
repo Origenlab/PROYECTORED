@@ -71,4 +71,4 @@ Cada producto entregado se acompaña de ficha técnica, certificado de conformid
 
 ## Solicita tu cotización
 
-Si necesitas equipar tu empresa, renovar un inventario o resolver una inspección en pocos días, escríbenos al WhatsApp **5255372385544** con el listado preliminar o el plano del sitio. Un especialista en [venta de equipos contra incendio](/servicios/venta-equipos/) responde con propuesta el mismo día y coordina entrega o visita técnica según convenga.
+Si necesitas equipar tu empresa, renovar un inventario o resolver una inspección en pocos días, escríbenos al WhatsApp **525627596245** con el listado preliminar o el plano del sitio. Un especialista en [venta de equipos contra incendio](/servicios/venta-equipos/) responde con propuesta el mismo día y coordina entrega o visita técnica según convenga.

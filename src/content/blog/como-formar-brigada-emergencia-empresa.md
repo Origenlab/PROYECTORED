@@ -93,4 +93,4 @@ No tiene fecha de caducidad explícita en todos los casos, pero la práctica rec
 
 ## Capacita a tu brigada
 
-Si tu empresa requiere armar brigada por primera vez o renovar capacitación, agenda con un especialista al WhatsApp **5255372385544**. Diseñamos el programa al alcance del giro y entregamos constancias DC-3 al cierre. Conoce más en [capacitación y brigadas](/servicios/capacitacion/).
+Si tu empresa requiere armar brigada por primera vez o renovar capacitación, agenda con un especialista al WhatsApp **525627596245**. Diseñamos el programa al alcance del giro y entregamos constancias DC-3 al cierre. Conoce más en [capacitación y brigadas](/servicios/capacitacion/).

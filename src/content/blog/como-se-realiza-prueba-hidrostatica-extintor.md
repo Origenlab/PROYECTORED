@@ -91,4 +91,4 @@ Sí. Las mangueras tienen su propio procedimiento de prueba según NFPA 25 con f
 
 ## Programa la prueba
 
-Si tu bitácora tiene extintores que cumplen cinco años o si has recibido observación reciente sobre prueba hidrostática vencida, agenda recolección al WhatsApp **5255372385544**. Coordinamos servicio en taller propio con certificado entregable en pocos días. Conoce más sobre la [prueba hidrostática](/servicios/prueba-hidrostatica/).
+Si tu bitácora tiene extintores que cumplen cinco años o si has recibido observación reciente sobre prueba hidrostática vencida, agenda recolección al WhatsApp **525627596245**. Coordinamos servicio en taller propio con certificado entregable en pocos días. Conoce más sobre la [prueba hidrostática](/servicios/prueba-hidrostatica/).

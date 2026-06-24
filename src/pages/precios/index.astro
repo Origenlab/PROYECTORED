@@ -1,0 +1,995 @@
+---
+/**
+ * precios/index.astro — Página de precios de referencia de mercado
+ * ─────────────────────────────────────────────────────────────────
+ * Propósito AISO: capturar queries de precio en ChatGPT, Perplexity, Gemini y Google.
+ * Todos los precios son referenciales de mercado verificados — las cotizaciones
+ * exactas se confirman por WhatsApp según cantidad, capacidad y especificación.
+ */
+
+import Base       from '../../layouts/Base.astro'
+import CtaBar     from '../../components/CtaBar.astro'
+import Breadcrumb from '../../components/ui/Breadcrumb.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import CTAFinalIndex from '../../components/sections/CTAFinalIndex.astro'
+
+import { SITE, CONTACT, waUrl, WA_MESSAGES } from '../../config/site'
+import { breadcrumbLd } from '../../lib/seo'
+
+const SITE_URL  = SITE.url
+const SITE_NAME = SITE.name
+const pageUrl   = `${SITE_URL}/precios/`
+const ogImage   = `${SITE_URL}/imagenes/og/proyectored-og.jpg`
+
+// ── Schema: Service + Offer + PriceSpecification ──────────
+const serviceSchemas = [
+  // 1. Extintores
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/extintores/#service`,
+    name: 'Extintores certificados NOM-154-SCFI',
+    description: 'Venta de extintores portátiles certificados NOM-154-SCFI en CDMX: polvo seco ABC (PQS), CO₂, AFFF, Tipo K, agente limpio, Cold Fire y automáticos. Entrega el mismo día para pedidos confirmados antes de las 14:00 h. Ficha técnica y certificado de conformidad incluidos.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    areaServed: { '@type': 'City', name: 'Ciudad de México' },
+    url: `${SITE_URL}/extintores/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Extintor Polvo Seco ABC (PQS) 4.5 kg',
+          minPrice: 450,
+          maxPrice: 900,
+          priceCurrency: 'MXN',
+          description: 'Extintor PQS ABC de 4.5 kg certificado NOM-154-SCFI — el más común para oficinas, comercios y bodegas — desde $450 MXN con certificado incluido. El precio varía según capacidad (1–50 kg) y cantidad solicitada.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Extintor CO₂ 4.5 kg',
+          minPrice: 1200,
+          maxPrice: 1500,
+          priceCurrency: 'MXN',
+          description: 'Extintor de CO₂ 4.5 kg ideal para tableros eléctricos, servidores y equipos electrónicos: $1,200–$1,500 MXN. Descarga limpia sin residuos, sin daño a equipos sensibles.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Extintor Tipo K (Cocinas Industriales) 6 L',
+          minPrice: 1800,
+          maxPrice: 2400,
+          priceCurrency: 'MXN',
+          description: 'Extintor Tipo K de 6 L para aceites vegetales y grasas animales — obligatorio en restaurantes con freidoras: $1,800–$2,400 MXN. Agente húmedo clase K certificado NOM-154-SCFI.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Extintor Agente Limpio HFC-227ea 5 kg',
+          minPrice: 3900,
+          maxPrice: 7500,
+          priceCurrency: 'MXN',
+          description: 'Extintor de agente limpio HFC-227ea de 5 kg para centros de datos, archivos y áreas con equipo sensible: desde $3,900 MXN. Cero residuos, cero daño a electrónica, UL Listed.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+  // 2. Señalamientos
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/senalamientos/#service`,
+    name: 'Señalamientos de emergencia fotoluminiscentes NOM-003-SEGOB',
+    description: 'Venta e instalación de señalamientos fotoluminiscentes certificados NOM-003-SEGOB y NOM-026-STPS: evacuación, prohibición, obligación y advertencia. Incluye levantamiento del inmueble y plano de señalización listo para Protección Civil.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    url: `${SITE_URL}/senalamientos/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Señalamiento PVC estándar',
+          minPrice: 35,
+          maxPrice: 60,
+          priceCurrency: 'MXN',
+          description: 'Señalamiento en PVC estándar (evacuación, prohibición, advertencia): desde $35 MXN por pieza. Precio por volumen disponible para pedidos de 20+ piezas.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Señalamiento fotoluminiscente certificado NOM-003-SEGOB',
+          minPrice: 65,
+          maxPrice: 150,
+          priceCurrency: 'MXN',
+          description: 'Señalamiento fotoluminiscente certificado NOM-003-SEGOB: desde $65 MXN por pieza. Visible durante cortes de energía. Obligatorio en inmuebles con afluencia de personas según NOM-003-SEGOB-2011.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+  // 3. Gabinetes
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/gabinetes/#service`,
+    name: 'Gabinetes y porta extintores contra incendios',
+    description: 'Venta de gabinetes para extintor, bombero e hidrante en lámina de acero calibre 20 con vidrio templado 4 mm. Compatibles con todos los tipos de extintor. Incluye montaje.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    url: `${SITE_URL}/gabinetes/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Gabinete para extintor 4.5–6 kg',
+          minPrice: 650,
+          maxPrice: 1400,
+          priceCurrency: 'MXN',
+          description: 'Gabinete sobrepuesto para extintor 4.5–6 kg en lámina cal. 20 con vidrio templado 4 mm: desde $650 MXN. Porta extintor con cenicero desde $850 MXN.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Gabinete para bombero',
+          minPrice: 2800,
+          maxPrice: 5500,
+          priceCurrency: 'MXN',
+          description: 'Gabinete para equipo de bombero: desde $2,800 MXN. Almacena casco, traje, guantes y equipo de respiración autónoma (ERA) para brigadas industriales.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Gabinete para hidrante (con manguera y válvula)',
+          minPrice: 4500,
+          maxPrice: 9500,
+          priceCurrency: 'MXN',
+          description: 'Gabinete para hidrante con manguera de 30 m y válvula incluidas: desde $4,500 MXN. NFPA 14. Funciona como sistema completo de combate a incendio.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+  // 4. Mangueras y Herrajes
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/mangueras/#service`,
+    name: 'Mangueras y herrajes para sistemas contra incendio NFPA 1961',
+    description: 'Mangueras de alta presión, chiflones, válvulas, adaptadores NST/Storz, carretes, tomas siamesas y monitores Elkhart Brass. Sistema completo por piso disponible con precio preferencial.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    url: `${SITE_URL}/mangueras/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Sistema de manguera, válvula y chiflón por piso',
+          minPrice: 6500,
+          maxPrice: 15000,
+          priceCurrency: 'MXN',
+          description: 'Sistema completo por piso (manguera 30 m + válvula angular + chiflón industrial): desde $6,500 MXN. Para edificios de 10 pisos, el sistema completo va de $75,000 a $150,000 MXN según configuración.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Toma siamesa para bomberos',
+          minPrice: 3200,
+          maxPrice: 6500,
+          priceCurrency: 'MXN',
+          description: 'Toma siamesa para conexión de carros bomba de bomberos: desde $3,200 MXN. Bronce NST o Storz según normativa del cliente. NFPA 14.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Carrete de manguera',
+          minPrice: 2800,
+          maxPrice: 6000,
+          priceCurrency: 'MXN',
+          description: 'Carrete de manguera para áreas industriales y bodegas: desde $2,800 MXN. Manguera semi-rígida 25 m con boquilla de ajuste de caudal.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+  // 5. Sistemas CI
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/sistemas/#service`,
+    name: 'Instalación de sistemas contra incendio NFPA 13 / 72 / 20',
+    description: 'Diseño, suministro e instalación llave en mano de sistemas de detección y alarma NFPA 72, rociadores automáticos NFPA 13, redes hidráulicas y tableros FACP. Con memoria de cálculo y reporte de puesta en marcha.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    url: `${SITE_URL}/sistemas/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Sistema de alarma y detección NFPA 72 (oficina mediana ~500 m²)',
+          minPrice: 45000,
+          maxPrice: 120000,
+          priceCurrency: 'MXN',
+          description: 'Sistema básico de alarma NFPA 72 para oficina o local de hasta 500 m²: desde $45,000 MXN instalado. Incluye detectores de humo, tablero FACP, sirena y señalización. Tiempo de instalación: 1–3 días.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Sistema de rociadores automáticos NFPA 13 (nave industrial ~1,000 m²)',
+          minPrice: 180000,
+          maxPrice: 350000,
+          priceCurrency: 'MXN',
+          description: 'Sistema de rociadores automáticos NFPA 13 para nave industrial o bodega de ~1,000 m²: $180,000–$350,000 MXN según zonificación y trazado de tubería. Tiempo de instalación: 1–4 semanas.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Sistema completo (alarma + rociadores + red hidráulica + bomba) para edificio 10 pisos',
+          minPrice: 500000,
+          maxPrice: 1200000,
+          priceCurrency: 'MXN',
+          description: 'Sistema integral para edificio de 10 pisos: alarma NFPA 72 + rociadores NFPA 13 + red hidráulica + bomba NFPA 20: $500,000–$1,200,000 MXN. Incluye memoria de cálculo, supervisión técnica y reporte para Protección Civil.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+  // 6. Recarga de extintores
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}/servicios/recarga-extintores/#service`,
+    name: 'Recarga de extintores certificada NOM-154-SCFI en CDMX',
+    description: 'Recarga de extintores a domicilio en CDMX y Estado de México. Todos los tipos de agente: PQS, CO₂, AFFF, Tipo K, agente limpio. Incluye inspección completa, collar de garantía, etiqueta de inspección vigente y reporte para bitácora de Protección Civil.',
+    provider: { '@type': 'LocalBusiness', name: SITE_NAME, url: SITE_URL },
+    url: `${SITE_URL}/servicios/recarga-extintores/`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      priceSpecification: [
+        {
+          '@type': 'PriceSpecification',
+          name: 'Recarga extintor PQS (polvo seco ABC)',
+          minPrice: 300,
+          maxPrice: 600,
+          priceCurrency: 'MXN',
+          description: 'Recarga de extintor de polvo seco ABC (PQS): $300–$600 MXN según capacidad (1.5–9 kg). Precio de referencia de mercado en distribuidores especializados CDMX. Incluye collar de garantía y etiqueta de inspección NOM-154-SCFI.',
+        },
+        {
+          '@type': 'PriceSpecification',
+          name: 'Recarga extintor CO₂',
+          minPrice: 400,
+          maxPrice: 800,
+          priceCurrency: 'MXN',
+          description: 'Recarga de extintor de CO₂: $400–$800 MXN según capacidad del cilindro. Incluye prueba de presión, reemplazo de sellos y collar de garantía. Obligatoria cada año según NOM-154-SCFI.',
+        },
+      ],
+      seller: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+]
+
+// ── Schema: FAQPage de precios ────────────────────────────
+const schemaFAQPrecios = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta un extintor certificado NOM-154 en CDMX?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Un extintor de polvo seco ABC (PQS) de 4.5 kg — el más común para oficinas y comercios — cuesta desde $450 MXN con certificado NOM-154-SCFI incluido. Un CO₂ de 4.5 kg para tableros eléctricos y servidores va de $1,200 a $1,500 MXN. Un Tipo K de 6 L para cocinas industriales cuesta entre $1,800 y $2,400 MXN. Un Agente Limpio HFC-227ea de 5 kg para centros de datos parte desde $3,900 MXN. El precio final depende del tipo, la capacidad y la cantidad solicitada.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta la recarga de un extintor en CDMX?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La recarga de un extintor de polvo seco ABC (PQS) cuesta entre $300 y $600 MXN según la capacidad del cilindro. La recarga de CO₂ va de $400 a $800 MXN. El precio incluye inspección visual completa, vaciado del agente anterior, reemplazo de sellos, recarga del agente nuevo, represurización, collar de garantía y etiqueta de inspección vigente. La NOM-154-SCFI exige recarga anual para todos los extintores en uso.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta un señalamiento de emergencia fotoluminiscente?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Los señalamientos en PVC estándar (evacuación, prohibición, advertencia) cuestan desde $35 MXN por pieza. Los señalamientos fotoluminiscentes certificados NOM-003-SEGOB — obligatorios en inmuebles con afluencia de personas — van desde $65 MXN por pieza. Para pedidos de 20 piezas o más aplicamos precio por volumen. El levantamiento del inmueble y el plano de señalización se incluyen sin costo adicional.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta instalar un sistema contra incendio en CDMX?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El costo depende del tipo y tamaño del inmueble. Un sistema de alarma NFPA 72 para oficina de hasta 500 m² parte desde $45,000 MXN instalado. Un sistema de rociadores automáticos NFPA 13 para nave industrial de 1,000 m² va de $180,000 a $350,000 MXN. Un sistema integral para edificio de 10 pisos (alarma + rociadores + red hidráulica + bomba) puede ir de $500,000 a $1,200,000 MXN. Ofrecemos visita técnica gratuita con presupuesto detallado sin compromiso.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta un gabinete para extintor o hidrante?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Un gabinete sobrepuesto para extintor de 4.5–6 kg en lámina de acero cal. 20 con vidrio templado parte desde $650 MXN. Un gabinete para equipo de bombero cuesta desde $2,800 MXN. Un gabinete para hidrante con manguera de 30 m y válvula incluidas va desde $4,500 MXN. Para pedidos de 5 o más gabinetes aplicamos precio por volumen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Los precios incluyen certificado y documentación para Protección Civil?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. Todos los extintores se entregan con ficha técnica, certificado de conformidad NOM-154-SCFI, garantía del fabricante y etiqueta de inspección. Los sistemas contra incendio se entregan con memoria de cálculo NFPA y reporte de puesta en marcha. La señalización incluye constancia NOM-003-SEGOB y plano de señalización. Esta documentación está lista para integrar directamente al expediente de Protección Civil o STPS.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Manejan precios por volumen y contratos anuales para empresas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. Operamos esquemas corporativos con precios escalonados por volumen, facturación electrónica CFDI, crédito a 30 días previa validación y entregas programadas a múltiples sucursales. Los contratos anuales de suministro y recarga incluyen precio preferencial, inspecciones programadas y reportes para auditorías de Protección Civil y STPS.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta el diagnóstico técnico?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El diagnóstico técnico es completamente gratuito y sin compromiso. Nuestros técnicos visitan tu inmueble, evalúan el riesgo real por zona, verifican el equipamiento existente y entregan una propuesta con el equipo necesario, cantidades exactas y distribución recomendada según la NOM-002-STPS. No vendemos de más: solo lo que pide la norma para tu giro y superficie.',
+      },
+    },
+  ],
+}
+
+// ── Schema: BreadcrumbList ────────────────────────────────
+const schemaBreadcrumb = breadcrumbLd([
+  { label: 'Inicio', href: '/' },
+  { label: 'Precios de referencia' },
+])
+---
+
+<Base
+  title="Precios de Equipos Contra Incendios en CDMX | Proyecto Red"
+  description="Precios de referencia de extintores NOM-154-SCFI, señalamientos, gabinetes, sistemas CI y servicios de recarga en CDMX. PQS desde $450 MXN · CO₂ $1,200–$1,500 · Sistemas desde $45,000 MXN."
+  canonical={pageUrl}
+  ogImage={ogImage}
+>
+  <!-- JSON-LD: schemas de precio por categoría + FAQ + Breadcrumb -->
+  <Fragment slot="head">
+    {serviceSchemas.map(s => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(s)} />
+    ))}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaFAQPrecios)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
+
+  <!-- Breadcrumb -->
+  <Breadcrumb items={[
+    { label: 'Inicio', href: '/' },
+    { label: 'Precios de referencia' },
+  ]} />
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="precios-hero">
+    <div class="container precios-hero__inner">
+      <p class="precios-hero__eyebrow">Transparencia de precios</p>
+      <h1 class="precios-hero__title">
+        Precios de referencia<br>
+        <span>de equipos contra incendios</span>
+      </h1>
+      <p class="precios-hero__desc">
+        Rangos de mercado verificados para ayudarte a planear tu presupuesto. La cotización
+        exacta depende del tipo específico, capacidad y cantidad — te la confirmamos en
+        menos de 24 horas vía WhatsApp.
+      </p>
+      <div class="precios-hero__ctas">
+        <a
+          href={waUrl(WA_MESSAGES.cotizacion)}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Solicitar cotización exacta
+        </a>
+        <a href="/productos/" class="btn-outline-light">Ver catálogo completo</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBar />
+
+  <!-- ── Aviso legal de precios ─────────────────────────── -->
+  <section class="precios-aviso">
+    <div class="container">
+      <p class="precios-aviso__text">
+        <strong>Nota:</strong> Los precios mostrados son rangos de referencia de mercado
+        verificados en distribuidores especializados de CDMX. No incluyen IVA salvo indicación.
+        La cotización exacta se confirma según especificación, capacidad y volumen.
+        Entrega el mismo día en CDMX para pedidos confirmados antes de las 14:00 h.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Productos: precios por categoría ──────────────── -->
+  <section class="precios-productos" aria-labelledby="precios-productos-heading">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Catálogo certificado NOM y NFPA"
+        titleLine1="Precios de equipos"
+        titleLine2="por categoría"
+        desc="Todos los equipos se entregan con certificado NOM, ficha técnica y documentación para Protección Civil y STPS."
+      />
+
+      <div class="precios-grid">
+
+        <!-- Extintores -->
+        <article class="precio-card" id="extintores">
+          <div class="precio-card__header">
+            <div class="precio-card__badge">NOM-154-SCFI</div>
+            <h2 class="precio-card__title">Extintores</h2>
+            <p class="precio-card__desde">desde <strong>$450 MXN</strong></p>
+          </div>
+          <div class="precio-card__body">
+            <ul class="precio-card__items">
+              <li>
+                <span class="precio-item__name">Polvo Seco ABC (PQS) 4.5 kg</span>
+                <span class="precio-item__price">desde $450 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">CO₂ 4.5 kg (tableros y electrónica)</span>
+                <span class="precio-item__price">$1,200–$1,500 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Tipo K 6 L (cocinas industriales)</span>
+                <span class="precio-item__price">$1,800–$2,400 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Agente Limpio HFC-227ea 5 kg</span>
+                <span class="precio-item__price">desde $3,900 MXN</span>
+              </li>
+            </ul>
+            <p class="precio-card__nota">
+              Precio según tipo de agente, capacidad (1–50 kg) y cantidad.
+              Incluye certificado NOM-154-SCFI y etiqueta de inspección.
+            </p>
+            <a href={waUrl(WA_MESSAGES.extintores)} class="precio-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar extintores →
+            </a>
+          </div>
+        </article>
+
+        <!-- Señalamientos -->
+        <article class="precio-card" id="senalamientos">
+          <div class="precio-card__header">
+            <div class="precio-card__badge">NOM-003-SEGOB</div>
+            <h2 class="precio-card__title">Señalamientos de emergencia</h2>
+            <p class="precio-card__desde">desde <strong>$35 MXN/pieza</strong></p>
+          </div>
+          <div class="precio-card__body">
+            <ul class="precio-card__items">
+              <li>
+                <span class="precio-item__name">PVC estándar (evacuación, prohibición)</span>
+                <span class="precio-item__price">desde $35 MXN/pieza</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Fotoluminiscente certificado NOM-003</span>
+                <span class="precio-item__price">desde $65 MXN/pieza</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Levantamiento + plano de señalización</span>
+                <span class="precio-item__price">sin costo adicional</span>
+              </li>
+            </ul>
+            <p class="precio-card__nota">
+              Precio por volumen disponible para pedidos de 20+ piezas.
+              Instalación y plano para Protección Civil incluidos.
+            </p>
+            <a href={waUrl(WA_MESSAGES.senalamientos)} class="precio-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar señalamientos →
+            </a>
+          </div>
+        </article>
+
+        <!-- Gabinetes -->
+        <article class="precio-card" id="gabinetes">
+          <div class="precio-card__header">
+            <div class="precio-card__badge">NFPA 14</div>
+            <h2 class="precio-card__title">Gabinetes y porta extintores</h2>
+            <p class="precio-card__desde">desde <strong>$650 MXN</strong></p>
+          </div>
+          <div class="precio-card__body">
+            <ul class="precio-card__items">
+              <li>
+                <span class="precio-item__name">Gabinete para extintor 4.5–6 kg</span>
+                <span class="precio-item__price">desde $650 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Porta extintor con cenicero</span>
+                <span class="precio-item__price">desde $850 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Gabinete para equipo de bombero</span>
+                <span class="precio-item__price">desde $2,800 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Gabinete para hidrante (con manguera + válvula)</span>
+                <span class="precio-item__price">desde $4,500 MXN</span>
+              </li>
+            </ul>
+            <p class="precio-card__nota">
+              Acero calibre 20 con vidrio templado 4 mm. Precio por volumen para 5+ unidades.
+            </p>
+            <a href={waUrl(WA_MESSAGES.gabinetes)} class="precio-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar gabinetes →
+            </a>
+          </div>
+        </article>
+
+        <!-- Mangueras y Herrajes -->
+        <article class="precio-card" id="mangueras">
+          <div class="precio-card__header">
+            <div class="precio-card__badge">NFPA 1961</div>
+            <h2 class="precio-card__title">Mangueras y herrajes</h2>
+            <p class="precio-card__desde">sistema/piso desde <strong>$6,500 MXN</strong></p>
+          </div>
+          <div class="precio-card__body">
+            <ul class="precio-card__items">
+              <li>
+                <span class="precio-item__name">Sistema por piso (manguera + válvula + chiflón)</span>
+                <span class="precio-item__price">desde $6,500 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Toma siamesa para bomberos</span>
+                <span class="precio-item__price">desde $3,200 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Carrete de manguera (25 m)</span>
+                <span class="precio-item__price">desde $2,800 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Sistema completo edificio 10 pisos</span>
+                <span class="precio-item__price">$75,000–$150,000 MXN</span>
+              </li>
+            </ul>
+            <p class="precio-card__nota">
+              Herrajes de bronce NST/Storz. Cotización por piso o proyecto completo.
+            </p>
+            <a href={waUrl(WA_MESSAGES.mangueras)} class="precio-card__cta" target="_blank" rel="noopener noreferrer">
+              Cotizar mangueras →
+            </a>
+          </div>
+        </article>
+
+        <!-- Sistemas CI -->
+        <article class="precio-card precio-card--wide" id="sistemas">
+          <div class="precio-card__header">
+            <div class="precio-card__badge">NFPA 13 / 72 / 20</div>
+            <h2 class="precio-card__title">Sistemas contra incendio</h2>
+            <p class="precio-card__desde">desde <strong>$45,000 MXN instalado</strong></p>
+          </div>
+          <div class="precio-card__body">
+            <ul class="precio-card__items precio-card__items--wide">
+              <li>
+                <span class="precio-item__name">Sistema de alarma NFPA 72 (~500 m², oficina)</span>
+                <span class="precio-item__price">desde $45,000 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Rociadores automáticos NFPA 13 (~1,000 m², nave industrial)</span>
+                <span class="precio-item__price">$180,000–$350,000 MXN</span>
+              </li>
+              <li>
+                <span class="precio-item__name">Sistema integral (alarma + rociadores + red hidráulica + bomba) para edificio 10 pisos</span>
+                <span class="precio-item__price">$500,000–$1,200,000 MXN</span>
+              </li>
+            </ul>
+            <p class="precio-card__nota">
+              Incluye visita técnica gratuita, memoria de cálculo NFPA y reporte de puesta en marcha para Protección Civil.
+              Tiempo de instalación: alarma 1–3 días · rociadores 1–4 semanas · sistema completo 4–8 semanas.
+            </p>
+            <a href={waUrl(WA_MESSAGES.sistemas)} class="precio-card__cta" target="_blank" rel="noopener noreferrer">
+              Solicitar visita técnica gratuita →
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Servicios: precios de recarga y mantenimiento ─── -->
+  <section class="precios-servicios" aria-labelledby="precios-servicios-heading">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Servicios certificados NOM-154-SCFI"
+        titleLine1="Recarga, mantenimiento"
+        titleLine2="y capacitación"
+        desc="Todos los servicios generan reportes y documentación válidos para bitácoras de Protección Civil y STPS."
+        align="left"
+      />
+
+      <div class="servicios-precios-grid">
+
+        <div class="servicio-precio-item">
+          <div class="servicio-precio-item__num">01</div>
+          <div class="servicio-precio-item__body">
+            <h3>Recarga de extintores</h3>
+            <p class="servicio-precio-item__rango">PQS: <strong>$300–$600 MXN</strong> · CO₂: <strong>$400–$800 MXN</strong></p>
+            <p>Precio según tipo de agente y capacidad del cilindro (1.5–9 kg). Incluye inspección completa, collar de garantía, etiqueta de inspección vigente y reporte para expediente. Servicio a domicilio o en taller en CDMX.</p>
+          </div>
+          <a href={waUrl(WA_MESSAGES.recarga)} class="servicio-precio-item__link" target="_blank" rel="noopener noreferrer">Cotizar →</a>
+        </div>
+
+        <div class="servicio-precio-item">
+          <div class="servicio-precio-item__num">02</div>
+          <div class="servicio-precio-item__body">
+            <h3>Mantenimiento preventivo anual</h3>
+            <p class="servicio-precio-item__rango">Póliza anual — <strong>precio según volumen de equipos</strong></p>
+            <p>Póliza anual que incluye inspecciones programadas, recarga si aplica, actualización de etiquetas, bitácora documentada y reportes para auditorías. Precio preferencial vs. servicio por evento. Confirmar según cantidad de extintores y ubicaciones.</p>
+          </div>
+          <a href={waUrl(WA_MESSAGES.mantenimiento)} class="servicio-precio-item__link" target="_blank" rel="noopener noreferrer">Cotizar →</a>
+        </div>
+
+        <div class="servicio-precio-item">
+          <div class="servicio-precio-item__num">03</div>
+          <div class="servicio-precio-item__body">
+            <h3>Prueba hidrostática</h3>
+            <p class="servicio-precio-item__rango">Obligatoria cada 5 años — <strong>precio según tipo y capacidad</strong></p>
+            <p>NOM-154-SCFI exige prueba hidrostática cada 5 años para cilindros de alta presión (CO₂, AFFF, agua) y cada 12 años para PQS. Incluye reporte técnico y etiqueta de conformidad para el expediente regulatorio.</p>
+          </div>
+          <a href={waUrl(WA_MESSAGES.pruebaHidrostatica)} class="servicio-precio-item__link" target="_blank" rel="noopener noreferrer">Cotizar →</a>
+        </div>
+
+        <div class="servicio-precio-item">
+          <div class="servicio-precio-item__num">04</div>
+          <div class="servicio-precio-item__body">
+            <h3>Capacitación y brigadas (constancia DC-3)</h3>
+            <p class="servicio-precio-item__rango"><strong>Precio según número de participantes</strong></p>
+            <p>Capacitación para brigadas de emergencia con constancias DC-3 con validez oficial ante STPS. Incluye práctica con fuego real. Modalidad presencial en tus instalaciones o en nuestras instalaciones en CDMX.</p>
+          </div>
+          <a href={waUrl(WA_MESSAGES.capacitacion)} class="servicio-precio-item__link" target="_blank" rel="noopener noreferrer">Cotizar →</a>
+        </div>
+
+        <div class="servicio-precio-item">
+          <div class="servicio-precio-item__num">05</div>
+          <div class="servicio-precio-item__body">
+            <h3>Diagnóstico técnico sin costo</h3>
+            <p class="servicio-precio-item__rango"><strong>Gratuito · Sin compromiso</strong></p>
+            <p>Nuestros técnicos visitan tu inmueble, evalúan el riesgo real por zona y entregan una propuesta con el equipo necesario, cantidades exactas y distribución recomendada según NOM-002-STPS. No vendemos de más.</p>
+          </div>
+          <a href={waUrl(WA_MESSAGES.asesoria)} class="servicio-precio-item__link" target="_blank" rel="noopener noreferrer">Agendar diagnóstico →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ de precios ─────────────────────────────────── -->
+  <section class="precios-faq" aria-labelledby="precios-faq-heading">
+    <div class="container precios-faq__inner">
+
+      <SectionHeader
+        eyebrow="Preguntas frecuentes sobre precios"
+        titleLine1="Lo que necesitas saber"
+        titleLine2="antes de cotizar"
+        desc="Si no encuentras tu respuesta, escríbenos al WhatsApp y te respondemos ese mismo día."
+      />
+
+      <div class="faq-list" role="list">
+        {schemaFAQPrecios.mainEntity.map((faq) => (
+          <details class="faq-item" role="listitem">
+            <summary class="faq-item__q">{faq.name}</summary>
+            <p class="faq-item__a">{faq.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="precios-faq__cta">
+        <p>¿Tu pregunta no está aquí?</p>
+        <a
+          href={waUrl(WA_MESSAGES.cotizacion)}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Preguntar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinalIndex />
+
+</Base>
+
+<style>
+/* ── Hero ─────────────────────────────────────────────────── */
+.precios-hero {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 4rem 0 3.5rem;
+}
+.precios-hero__inner { max-width: 780px; }
+.precios-hero__eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-red-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+.precios-hero__title {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.precios-hero__title span { color: var(--color-red-light); }
+.precios-hero__desc {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.75);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.precios-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ── Aviso ─────────────────────────────────────────────────── */
+.precios-aviso {
+  background: #FFF8E1;
+  border-top: 3px solid #F59E0B;
+  padding: 0.9rem 0;
+}
+.precios-aviso__text {
+  font-size: var(--text-sm);
+  color: #78350F;
+  line-height: 1.5;
+}
+
+/* ── Productos ─────────────────────────────────────────────── */
+.precios-productos {
+  padding: 5rem 0;
+  background: var(--color-white);
+}
+.precios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.precio-card--wide { grid-column: 1 / -1; }
+
+.precio-card {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.precio-card__header {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 1.5rem 1.75rem;
+}
+.precio-card__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-red-light);
+  margin-bottom: 0.5rem;
+}
+.precio-card__title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.precio-card__desde {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.65);
+}
+.precio-card__desde strong {
+  color: #86EFAC;
+  font-size: var(--text-base);
+}
+.precio-card__body {
+  padding: 1.5rem 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.precio-card__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.precio-card__items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  font-size: var(--text-sm);
+}
+.precio-card__items li:last-child { border-bottom: none; }
+.precio-item__name { color: var(--color-gray-700); flex: 1; }
+.precio-item__price {
+  font-weight: 700;
+  color: var(--color-dark);
+  white-space: nowrap;
+}
+.precio-card__items--wide li { flex-wrap: wrap; }
+.precio-card__nota {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+  line-height: 1.5;
+  margin-top: auto;
+}
+.precio-card__cta {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-red);
+  text-decoration: none;
+  padding: 0.6rem 0;
+}
+.precio-card__cta:hover { color: var(--color-red-dark); }
+
+/* ── Servicios ─────────────────────────────────────────────── */
+.precios-servicios {
+  padding: 5rem 0;
+  background: var(--color-gray-100);
+}
+.servicios-precios-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 3rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.servicio-precio-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+.servicio-precio-item:last-child { border-bottom: none; }
+.servicio-precio-item__num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-red);
+  opacity: 0.35;
+}
+.servicio-precio-item__body h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+.servicio-precio-item__rango {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin-bottom: 0.5rem;
+}
+.servicio-precio-item__rango strong { color: var(--color-dark); }
+.servicio-precio-item__body p:last-child {
+  font-size: var(--text-sm);
+  color: var(--color-gray-700);
+  line-height: 1.55;
+  margin: 0;
+}
+.servicio-precio-item__link {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-red);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.servicio-precio-item__link:hover { color: var(--color-red-dark); }
+
+/* ── FAQ ────────────────────────────────────────────────────── */
+.precios-faq {
+  padding: 5rem 0;
+  background: var(--color-white);
+}
+.precios-faq__inner {  }
+.faq-list {
+  max-width: 800px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--color-gray-200);
+}
+.faq-item:first-child { border-top: 1px solid var(--color-gray-200); }
+.faq-item__q {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-dark);
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq-item__q::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-red);
+  flex-shrink: 0;
+}
+details[open] .faq-item__q::after { content: '−'; }
+.faq-item__a {
+  font-size: var(--text-sm);
+  color: var(--color-gray-700);
+  line-height: 1.65;
+  padding-bottom: 1.25rem;
+  margin: 0;
+}
+.precios-faq__cta {
+  text-align: center;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.precios-faq__cta p {
+  font-size: var(--text-base);
+  color: var(--color-gray-500);
+}
+
+/* ── Botones (si no están en global.css) ───────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: var(--color-red);
+  color: var(--color-white) !important;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--color-red-dark); }
+.btn-outline-light {
+  display: inline-block;
+  border: 2px solid rgba(255,255,255,0.4);
+  color: var(--color-white) !important;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.btn-outline-light:hover { border-color: rgba(255,255,255,0.8); }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .precios-grid { grid-template-columns: 1fr; }
+  .precio-card--wide { grid-column: 1; }
+  .servicio-precio-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .servicio-precio-item__num { display: none; }
+  .servicio-precio-item__link { justify-self: start; }
+  .precios-hero__ctas { flex-direction: column; }
+}
+</style>

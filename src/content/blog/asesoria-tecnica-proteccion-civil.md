@@ -213,4 +213,4 @@ Si tu empresa aún no tiene dictamen técnico, es momento de proceder:
 
 Ofrecemos evaluación técnica sin costo inicial. Analizamos tu instalación, identificamos qué se requiere según normativa, y proporcionamos plan claro con presupuesto. Si decides implementar las medidas con nosotros, el costo de la evaluación se deduce del presupuesto total.
 
-Contáctanos al WhatsApp **5255372385544** para agendar evaluación gratuita de tu instalación.
+Contáctanos al WhatsApp **525627596245** para agendar evaluación gratuita de tu instalación.

@@ -196,4 +196,4 @@ Ofrecemos capacitación DC-3 "in-house" donde vamos a tu empresa, dictamos 16 ho
 
 También ayudamos a diseñar brigada acorde a tu ocupancia y riesgo, incluyendo estructura de roles, cadena de mando, y procedimientos específicos para tu instalación.
 
-Contáctanos al WhatsApp **5255372385544** para información sobre capacitaciones DC-3 programadas o para agendar curso personalizado en tu empresa.
+Contáctanos al WhatsApp **525627596245** para información sobre capacitaciones DC-3 programadas o para agendar curso personalizado en tu empresa.

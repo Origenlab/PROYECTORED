@@ -85,4 +85,4 @@ Sí, y es recomendable. La presencia del responsable agiliza el diagnóstico y p
 
 ## Agenda tu visita
 
-Comparte ubicación, giro y, si lo tienes a la mano, plano del inmueble al WhatsApp **5255372385544**. Confirmamos cita en menos de 72 horas hábiles y un especialista realiza el diagnóstico sin costo. Conoce el detalle en [asesoría técnica](/servicios/asesoria-tecnica/).
+Comparte ubicación, giro y, si lo tienes a la mano, plano del inmueble al WhatsApp **525627596245**. Confirmamos cita en menos de 72 horas hábiles y un especialista realiza el diagnóstico sin costo. Conoce el detalle en [asesoría técnica](/servicios/asesoria-tecnica/).

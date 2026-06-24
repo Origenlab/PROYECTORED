@@ -1,0 +1,65 @@
+name: Deploy to Cloudflare Pages
+
+# ============================================================
+# Pipeline CANÓNICO OrigenLab — Astro SSG → Cloudflare Pages
+# Build en CI (astro check + build) y deploy con wrangler.
+# Requiere secrets de org: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+# Replicable a los 31 sitios: solo cambia --project-name.
+# ============================================================
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: "cf-pages-proyectored"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate package.json (no platform-specific deps)
+        run: |
+          node -e "
+          const pkg = require('./package.json');
+          const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+          const bad = Object.keys(allDeps).filter(k =>
+            /@rollup\/rollup-(linux|darwin|win32|android)/.test(k) ||
+            /@esbuild\/(linux|darwin|win32|android)/.test(k)
+          );
+          if (bad.length > 0) {
+            console.error('ERROR: Paquetes de plataforma en dependencies:', bad.join(', '));
+            process.exit(1);
+          }
+          console.log('package.json OK — sin paquetes de plataforma');
+          "
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check (astro check)
+        run: npx astro check
+
+      - name: Build with Astro
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=proyectored --branch=main

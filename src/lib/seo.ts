@@ -22,7 +22,7 @@ export const localBusinessLd = {
   '@id': `${origin}/#business`,
   additionalType: 'https://www.wikidata.org/wiki/Q1099680', // Fire safety (concept de Wikidata)
   name: SITE.name,
-  alternateName: 'ProyectoRed',
+  alternateName: ['ProyectoRed', 'Proyecto Red CDMX', 'General Fire Extinguisher International'],
   description: SITE.description,
   url: `${origin}/`,
   logo: `${origin}/imagenes/logos/equipo-contra-incendios.jpg`,

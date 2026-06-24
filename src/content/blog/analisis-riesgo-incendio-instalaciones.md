@@ -239,4 +239,4 @@ Si deseas un análisis de riesgo profesional para tu instalación, ofrecemos eva
 
 El análisis nos permite diseñar solución exacta a tu riesgo real, no genérica. Algunas empresas descubren que necesitan menos equipos de los que pensaban; otras descubren que sus riesgos son mayores de lo estimado.
 
-Contáctanos al WhatsApp **5255372385544** para agendar análisis sin costo de tu instalación.
+Contáctanos al WhatsApp **525627596245** para agendar análisis sin costo de tu instalación.

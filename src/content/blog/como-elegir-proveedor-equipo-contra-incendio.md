@@ -75,4 +75,4 @@ No necesariamente. El precio del equipo es similar entre proveedores serios. La 
 
 ## Siguiente paso
 
-Si estás evaluando un nuevo proveedor o renovando contrato con uno existente, agenda una visita técnica sin costo. Un especialista revisa tu instalación, identifica brechas de cumplimiento y entrega una propuesta clara antes de cualquier compromiso. Escríbenos al WhatsApp **5255372385544** o conoce el detalle de la [venta de equipos contra incendio](/servicios/venta-equipos/) que ofrecemos en CDMX y Estado de México.
+Si estás evaluando un nuevo proveedor o renovando contrato con uno existente, agenda una visita técnica sin costo. Un especialista revisa tu instalación, identifica brechas de cumplimiento y entrega una propuesta clara antes de cualquier compromiso. Escríbenos al WhatsApp **525627596245** o conoce el detalle de la [venta de equipos contra incendio](/servicios/venta-equipos/) que ofrecemos en CDMX y Estado de México.

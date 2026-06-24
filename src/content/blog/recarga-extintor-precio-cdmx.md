@@ -37,6 +37,6 @@ La certificación también te protege legalmente. Si ocurre un incendio en tu em
 
 Ofrecemos recarga certificada a domicilio en toda la CDMX y Estado de México. El proceso incluye recolección del equipo, recarga en nuestro taller certificado, y devolución con documentación completa. Cada recarga genera un certificado técnico que adjuntas a tu bitácora de protección civil.
 
-Puedes consultar nuestro catálogo completo de [extintores](/extintores/) y conocer más sobre nuestros [servicios de mantenimiento](/servicios/). Para coordinar una recarga en tu ubicación, contáctanos al WhatsApp **5255372385544** y agendar el servicio que se ajuste a tu calendario.
+Puedes consultar nuestro catálogo completo de [extintores](/extintores/) y conocer más sobre nuestros [servicios de mantenimiento](/servicios/). Para coordinar una recarga en tu ubicación, contáctanos al WhatsApp **525627596245** y agendar el servicio que se ajuste a tu calendario.
 
 La recarga certificada no es un gasto adicional; es inversión en seguridad, cumplimiento legal y continuidad de tu operación.

@@ -89,4 +89,4 @@ Necesita limpieza periódica para conservar capacidad de absorción de luz. Si l
 
 ## Agenda tu levantamiento
 
-Comparte ubicación, giro y plano si lo tienes a la mano al WhatsApp **5255372385544**. Coordinamos visita técnica y entregamos plano de señalización en pocos días. Conoce más en [señalización NOM](/servicios/senalizacion/).
+Comparte ubicación, giro y plano si lo tienes a la mano al WhatsApp **525627596245**. Coordinamos visita técnica y entregamos plano de señalización en pocos días. Conoce más en [señalización NOM](/servicios/senalizacion/).

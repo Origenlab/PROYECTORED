@@ -122,4 +122,4 @@ Contacta a tu proveedor de servicios de extintor para solicitar prueba hidrostá
 - Emita certificado oficial con resultado
 - Entregue documento que adjuntes a bitácora
 
-Nosotros realizamos pruebas hidrostáticas certificadas con recolección y devolución a domicilio en CDMX y Estado de México. Contacta al WhatsApp **5255372385544** para agendar.
+Nosotros realizamos pruebas hidrostáticas certificadas con recolección y devolución a domicilio en CDMX y Estado de México. Contacta al WhatsApp **525627596245** para agendar.

@@ -59,4 +59,4 @@ Aunque el calendario establece recarga anual, hay situaciones donde debes proced
 
 Cada recarga genera un comprobante técnico. Guarda estos documentos en una carpeta o bitácora digital. Cuando Protección Civil inspecciona, solicita precisamente esto: evidencia de que tus extintores se recargan anualmente. Si no tienes documentación, la inspección resultará en requerimiento de corrección y multa.
 
-La recarga certificada es más que mantenimiento; es tu defensa ante autoridades y tu garantía de que el equipo funcionará en una emergencia. Nosotros ofrecemos recargas que cumplen **NOM-154-SCFI** con documentación completa y recordatorio automático antes de que venza cada ciclo. Contáctanos al WhatsApp **5255372385544** para agendar tu próxima recarga certificada.
+La recarga certificada es más que mantenimiento; es tu defensa ante autoridades y tu garantía de que el equipo funcionará en una emergencia. Nosotros ofrecemos recargas que cumplen **NOM-154-SCFI** con documentación completa y recordatorio automático antes de que venza cada ciclo. Contáctanos al WhatsApp **525627596245** para agendar tu próxima recarga certificada.

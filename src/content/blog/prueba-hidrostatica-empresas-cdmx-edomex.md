@@ -77,4 +77,4 @@ Sí. Si tu empresa tiene fecha agendada de inspección, priorizamos la prueba pa
 
 ## Coordina la prueba
 
-Comparte bitácora vigente o listado de extintores al WhatsApp **5255372385544** y un especialista entrega calendario y costo el mismo día. Conoce más sobre el servicio en [prueba hidrostática](/servicios/prueba-hidrostatica/).
+Comparte bitácora vigente o listado de extintores al WhatsApp **525627596245** y un especialista entrega calendario y costo el mismo día. Conoce más sobre el servicio en [prueba hidrostática](/servicios/prueba-hidrostatica/).

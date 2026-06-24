@@ -85,4 +85,4 @@ El procedimiento técnico toma entre 30 y 60 minutos por equipo. Cuando se recar
 
 ## Programa tu recarga
 
-Si tu bitácora marca extintores próximos a vencer o necesitas regularizar equipo encontrado en una inspección, escríbenos al WhatsApp **5255372385544**. Coordinamos recolección en sitio y devolución con expediente completo. Conoce más sobre el servicio en la página de [recarga de extintores](/servicios/recarga-extintores/).
+Si tu bitácora marca extintores próximos a vencer o necesitas regularizar equipo encontrado en una inspección, escríbenos al WhatsApp **525627596245**. Coordinamos recolección en sitio y devolución con expediente completo. Conoce más sobre el servicio en la página de [recarga de extintores](/servicios/recarga-extintores/).

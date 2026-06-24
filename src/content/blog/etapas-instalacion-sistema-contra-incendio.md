@@ -81,4 +81,4 @@ Entregamos toda la documentación técnica que el cliente requiere para presenta
 
 ## Arranca tu proyecto
 
-Si tienes una nave nueva, una remodelación o una observación reciente de Protección Civil, agenda diagnóstico técnico sin costo en el WhatsApp **5255372385544**. Visitamos el sitio, levantamos el alcance y entregamos propuesta con cronograma en una semana. Conoce el detalle de la [instalación de sistemas contra incendio](/servicios/instalacion-sistemas/).
+Si tienes una nave nueva, una remodelación o una observación reciente de Protección Civil, agenda diagnóstico técnico sin costo en el WhatsApp **525627596245**. Visitamos el sitio, levantamos el alcance y entregamos propuesta con cronograma en una semana. Conoce el detalle de la [instalación de sistemas contra incendio](/servicios/instalacion-sistemas/).

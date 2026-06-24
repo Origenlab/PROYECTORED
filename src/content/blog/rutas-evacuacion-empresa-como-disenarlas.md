@@ -252,4 +252,4 @@ Revisa tu plano actual:
 
 Si no tienes plano, o si está viejo, es momento de hacerlo. Ofrecemos diseño profesional de rutas de evacuación, validación según norma, y creación de planos señalizados.
 
-Contáctanos al WhatsApp **5255372385544** para consulta sobre diseño de rutas de evacuación de tu instalación.
+Contáctanos al WhatsApp **525627596245** para consulta sobre diseño de rutas de evacuación de tu instalación.

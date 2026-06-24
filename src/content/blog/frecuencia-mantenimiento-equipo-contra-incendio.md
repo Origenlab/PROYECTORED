@@ -109,4 +109,4 @@ Visitas programadas, inspecciones documentadas, reportes técnicos, actualizaci�
 
 ## Cierra el calendario de tu empresa
 
-Si tu empresa no tiene calendario formalizado o quieres validar que el actual cubre los requisitos NOM y NFPA, agenda diagnóstico sin costo en el WhatsApp **5255372385544**. Construimos el calendario con frecuencias por equipo, responsables y formato de bitácora. Conoce más en [mantenimiento preventivo](/servicios/mantenimiento-preventivo/).
+Si tu empresa no tiene calendario formalizado o quieres validar que el actual cubre los requisitos NOM y NFPA, agenda diagnóstico sin costo en el WhatsApp **525627596245**. Construimos el calendario con frecuencias por equipo, responsables y formato de bitácora. Conoce más en [mantenimiento preventivo](/servicios/mantenimiento-preventivo/).

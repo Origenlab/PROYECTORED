@@ -300,4 +300,4 @@ Para tu empresa:
 
 Nuestro catálogo incluye todos los [tipos de extintores](/extintores/) certificados NOM-154-SCFI. Ofrecemos análisis gratuito de necesidades, recomendación de cantidad y tipo, y entrega con documentación completa.
 
-Contáctanos al WhatsApp **5255372385544** para consulta sobre qué extintores necesitas.
+Contáctanos al WhatsApp **525627596245** para consulta sobre qué extintores necesitas.

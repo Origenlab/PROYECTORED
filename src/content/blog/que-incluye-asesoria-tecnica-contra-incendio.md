@@ -87,4 +87,4 @@ Sirve para cualquier tamaño. La diferencia está en la profundidad del entregab
 
 ## Agenda tu asesoría
 
-Comparte ubicación y giro al WhatsApp **5255372385544** y agendamos visita en CDMX o Estado de México. Llegamos con check list completo y entregamos reporte preliminar el mismo día. Conoce el alcance del servicio en [asesoría técnica](/servicios/asesoria-tecnica/).
+Comparte ubicación y giro al WhatsApp **525627596245** y agendamos visita en CDMX o Estado de México. Llegamos con check list completo y entregamos reporte preliminar el mismo día. Conoce el alcance del servicio en [asesoría técnica](/servicios/asesoria-tecnica/).

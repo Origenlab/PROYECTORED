@@ -85,4 +85,4 @@ Sí. La identificación de tuberías y zonas con sustancias peligrosas se cubre 
 
 ## Cotiza tu proyecto
 
-Comparte ubicación, giro y plano del inmueble si lo tienes al WhatsApp **5255372385544**. Visita de levantamiento sin costo y propuesta integral en pocos días. Conoce el detalle del servicio en [señalización NOM](/servicios/senalizacion/).
+Comparte ubicación, giro y plano del inmueble si lo tienes al WhatsApp **525627596245**. Visita de levantamiento sin costo y propuesta integral en pocos días. Conoce el detalle del servicio en [señalización NOM](/servicios/senalizacion/).

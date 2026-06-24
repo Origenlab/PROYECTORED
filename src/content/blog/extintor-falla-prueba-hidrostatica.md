@@ -117,4 +117,4 @@ Ambos casos pudieron evitarse con prueba hidrostática periódica.
 3. Contacta a proveedor para agendar pruebas.
 4. Mientras esperas, asegúrate de tener al menos algunos extintores certificados en servicio.
 
-Ofrecemos prueba hidrostática completa con recolección y devolución. Si tu cilindro falla, gestionamos la eliminación y te asesoramos en compra de reemplazo certificado. Contáctanos al WhatsApp **5255372385544** para agendar tu prueba o consultar sobre cilindros en riesgo.
+Ofrecemos prueba hidrostática completa con recolección y devolución. Si tu cilindro falla, gestionamos la eliminación y te asesoramos en compra de reemplazo certificado. Contáctanos al WhatsApp **525627596245** para agendar tu prueba o consultar sobre cilindros en riesgo.

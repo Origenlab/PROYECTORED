@@ -71,4 +71,4 @@ Se factura por equipo recargado, con desglose por capacidad y tipo de agente. Si
 
 ## Agenda tu recarga
 
-Comparte bitácora vigente o listado de extintores y un especialista te confirma calendario, costo y tiempo de respuesta el mismo día. Escríbenos al WhatsApp **5255372385544** o conoce el detalle del servicio en [recarga de extintores](/servicios/recarga-extintores/).
+Comparte bitácora vigente o listado de extintores y un especialista te confirma calendario, costo y tiempo de respuesta el mismo día. Escríbenos al WhatsApp **525627596245** o conoce el detalle del servicio en [recarga de extintores](/servicios/recarga-extintores/).

@@ -196,4 +196,4 @@ Si eres brigadista, practica PASA mensualmente aunque sea mental (sin agente, im
 
 Ofrecemos sesiones de práctica con extintores reales (agente simulado, seguro para interior) donde grupos aprenden y practican PASA. También capacitamos en identificación de clase de fuego y extintor correcto.
 
-Contáctanos al WhatsApp **5255372385544** para información sobre sesiones de práctica de PASA en tu empresa.
+Contáctanos al WhatsApp **525627596245** para información sobre sesiones de práctica de PASA en tu empresa.

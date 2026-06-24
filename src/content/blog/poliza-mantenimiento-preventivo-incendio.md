@@ -81,4 +81,4 @@ Las pólizas intermedia e integral incluyen capacitación anual y un simulacro d
 
 ## Cotiza tu póliza
 
-Comparte ubicación, giro y un listado preliminar de equipos al WhatsApp **5255372385544**. Coordinamos levantamiento sin costo y entregamos propuesta con calendario en 48 horas hábiles. Conoce el alcance del servicio en [mantenimiento preventivo](/servicios/mantenimiento-preventivo/).
+Comparte ubicación, giro y un listado preliminar de equipos al WhatsApp **525627596245**. Coordinamos levantamiento sin costo y entregamos propuesta con calendario en 48 horas hábiles. Conoce el alcance del servicio en [mantenimiento preventivo](/servicios/mantenimiento-preventivo/).

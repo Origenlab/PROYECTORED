@@ -75,4 +75,4 @@ Garantía de fabricante para cada componente (típicamente 12 meses) y garantía
 
 ## Cotiza tu proyecto
 
-Si tienes obra en curso, una nave nueva o una observación reciente de Protección Civil, agenda visita técnica sin costo en el WhatsApp **5255372385544**. Levantamos el alcance, entregamos propuesta con cronograma comprometido y arrancamos en cuanto firmes el contrato. Conoce más sobre la [instalación de sistemas contra incendio](/servicios/instalacion-sistemas/).
+Si tienes obra en curso, una nave nueva o una observación reciente de Protección Civil, agenda visita técnica sin costo en el WhatsApp **525627596245**. Levantamos el alcance, entregamos propuesta con cronograma comprometido y arrancamos en cuanto firmes el contrato. Conoce más sobre la [instalación de sistemas contra incendio](/servicios/instalacion-sistemas/).
