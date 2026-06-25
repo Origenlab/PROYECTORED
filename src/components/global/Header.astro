@@ -155,6 +155,14 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
           >Blog</a>
         </li>
 
+        <!-- Precios -->
+        <li class="hdr-nav__item">
+          <a
+            href="/precios/"
+            class:list={['hdr-nav__link', { 'hdr-nav__link--active': currentPath.startsWith('/precios') }]}
+          >Precios</a>
+        </li>
+
         <!-- Contacto -->
         <li class="hdr-nav__item">
           <a
@@ -348,6 +356,7 @@ const MEGA_SUBCATEGORIES: Record<string, { label: string; slug: string }[]> = {
 
     <!-- Links directos -->
     <a href="/blog/"     class="mob-direct">Blog</a>
+    <a href="/precios/"  class="mob-direct">Precios</a>
     <a href="/contacto/" class="mob-direct">Contacto</a>
 
     <!-- CTA -->
